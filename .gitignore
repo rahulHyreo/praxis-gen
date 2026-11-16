@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output
+dist/
+build/
+*.tsbuildinfo
+
+# Local env override only — committed layered env files (base.env, <env>.env) stay tracked (§42)
+.env
+.env.local
+
+# Tests and coverage
+coverage/
+test-results/
+playwright-report/
+blob-report/
+
+# Tool caches
+.turbo/
+.cache/
+.vite/
+.eslintcache
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Editor and OS
+.vscode/*
+!.vscode/tasks.json
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+
+# Claude Code local settings (project commands and skills stay tracked)
+.claude/settings.local.json

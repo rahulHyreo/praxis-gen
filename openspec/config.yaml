@@ -1,0 +1,78 @@
+schema: spec-driven
+
+# Project context — shown to AI when creating artifacts.
+context: |
+  Praxis v2 — a configurable healthcare-operations training and certification platform.
+  Launch configuration is the Claims Operations track: 3 x 4-week blocks (Foundations →
+  Compliance Passport + Reasoning Core → domain pack) plus an optional employer overlay.
+  v1's claims content becomes the first domain pack.
+
+  Authority: SPEC.md at the repo root is the build specification. Cite its section anchors
+  (e.g. "§12", "§45.1") in every artifact; never renumber them. Precedence: code >
+  SPEC.md > openspec/specs > v1 SPEC (only where SPEC.md marks an item [v1]) > design docs.
+  SPEC.md marks carried v1 behaviour [v1], additions [new] and deliberate departures
+  [changed] — say which applies to the behaviour you are specifying.
+
+  Stack: pnpm monorepo. apps/web = React 19 + Vite 7 + Tailwind v4 + shadcn/ui, React
+  Router v7, Zustand, TanStack Form/Table/Query, strict MVVM (model/ → viewmodel/ → view/,
+  views never call api.* directly), design tokens locked to shadcn preset b1aJCZWLY.
+  apps/api = Express 4 + Better Auth + Drizzle, routes/ + services/. packages/db =
+  Drizzle schema + ID helpers + seed. packages/shared = Zod schemas + shared constants.
+  packs/ = authored domain-pack content (foundations, compliance, reasoning-generic, claims).
+  Postgres, Redis, object storage; images on Bun; deploy via Docker Swarm.
+
+  Non-negotiables (SPEC.md "Non-negotiables", §45.2):
+  - Domain content is pack configuration, not architecture. No pack vocabulary
+    (claim, DCN, pay, deny) in core services outside allow-listed adapters.
+  - No hard-coded pass marks, weights, DRI formulas, thresholds, attempt caps, durations,
+    renewal periods or progression rules — use the versioned §45.1 config surfaces.
+  - Scores, DRI results and credential decisions are snapshotted at write, never
+    re-derived at read time.
+  - Attempts, sittings, reasoning traces, DRI rows, credentials, audit and email logs are
+    append-only; authored content is versioned, not edited in place.
+  - Progression, eligibility, scoring, visibility and RBAC are decided server-side; the UI
+    renders the returned lock reason verbatim.
+  - Answer keys, reference reasoning and assist correctness flags are stripped from every
+    trainee-role response.
+  - AI suggestions are never copied into a submission; verify + resolution is required.
+  - A NULL decision is a valid correct answer, not a missing one.
+  - Every state change to content, scores, config, roster, standards or credentials emits
+    an audit_log row.
+  - No real PHI. No pricing, billing or payment features.
+
+  Conventions: Zod schema first → route → store → viewmodel → view. Drizzle query builder
+  only, no `any`. IDs only via @platform/db ids.ts helpers. Errors as
+  { error, details?, code? }; ZodError → 422; shared error codes live in packages/shared.
+  Branch: develop. Conventional commit prefixes: feat, fix, schema, api, ui, store, seed,
+  test, chore, pack. Git hooks are develop's CI — never bypass them.
+
+  Build order: SPEC.md §41 phases A–I. Audit (phase A) and the progression engine
+  (phase B) land before anything that depends on them.
+
+# Per-artifact rules
+rules:
+  proposal:
+    - One domain per change — split cross-domain work into separate changes.
+    - Cite the SPEC.md sections the change implements (e.g. "implements §12, §38").
+    - State whether each behaviour is [v1] carried, [new] or [changed], per SPEC.md.
+    - Any value that needs governance (SPEC.md §45.3) ships as config with a default
+      marked "not approved" — never invent the value. Say so in the proposal and the PR.
+    - Name the §41 phase the change belongs to and list upstream changes it depends on.
+  specs:
+    - Write requirements in domain-neutral terms; pack vocabulary only inside pack-scoped
+      capabilities.
+    - Specify server-side authority explicitly — who decides, what the refusal code and
+      lock reason are, and what the client renders.
+    - For anything graded or credentialed, state the snapshot and append-only behaviour as
+      a requirement, including which version ids are snapshotted.
+    - Include a scenario covering the stripped-answer-key / no-auto-accept path wherever a
+      trainee-facing payload or submission is involved.
+  design:
+    - Reuse v1's proven engines (bundle loader, navigator, rubric scoring, normalization,
+      proctoring, audit) rather than redesigning them; note any [changed] departure and why.
+    - Name the config surface and table for every tunable value; no literals in logic.
+  tasks:
+    - Chunks of max 2 hours, each with an explicit `Depends on:` line.
+    - Include a task for tests covering every acceptance criterion touched; coverage is a
+      ratchet.
+    - Include the audit_log emission and the migration/seed work as their own tasks.

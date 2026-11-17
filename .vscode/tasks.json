@@ -1,0 +1,93 @@
+{
+  "version": "2.0.0",
+  "// docs": [
+    "The documented path for the local stack is a task, not a remembered",
+    "command line: every compose invocation needs both --env-file flags and the",
+    "right -f chain, and getting either wrong fails in a way that looks like a",
+    "broken stack rather than a wrong command.",
+    "",
+    "docs/SPEC.md §42. The stack is local only — no deploy tasks exist because",
+    "there is no deployment path in this repository."
+  ],
+  "tasks": [
+    {
+      "label": "stack:up",
+      "detail": "Bring up Postgres, MinIO, Redis and the api/web from source (hot reload).",
+      "type": "shell",
+      "command": "docker compose --env-file docker/env/base.env --env-file docker/env/local.env -f docker/docker-compose.yml -f docker/docker-compose.local.yml up -d --build",
+      "problemMatcher": [],
+      "group": { "kind": "build", "isDefault": true }
+    },
+    {
+      "label": "stack:up (services only)",
+      "detail": "Postgres, MinIO and Redis only — for running the api and web on the host with `pnpm dev`.",
+      "type": "shell",
+      "command": "docker compose --env-file docker/env/base.env --env-file docker/env/local.env -f docker/docker-compose.yml up -d",
+      "problemMatcher": []
+    },
+    {
+      "label": "stack:down",
+      "detail": "Stop the stack, keeping volumes.",
+      "type": "shell",
+      "command": "docker compose --env-file docker/env/base.env --env-file docker/env/local.env -f docker/docker-compose.yml -f docker/docker-compose.local.yml down",
+      "problemMatcher": []
+    },
+    {
+      "label": "stack:reset",
+      "detail": "Stop the stack and DELETE its volumes — database, object storage and cache.",
+      "type": "shell",
+      "command": "docker compose --env-file docker/env/base.env --env-file docker/env/local.env -f docker/docker-compose.yml -f docker/docker-compose.local.yml down -v",
+      "problemMatcher": []
+    },
+    {
+      "label": "stack:logs",
+      "detail": "Follow the api and web logs.",
+      "type": "shell",
+      "command": "docker compose --env-file docker/env/base.env --env-file docker/env/local.env -f docker/docker-compose.yml -f docker/docker-compose.local.yml logs -f api web",
+      "problemMatcher": [],
+      "isBackground": true
+    },
+    {
+      "label": "stack:debug",
+      "detail": "Bring the stack up with the Bun inspector on the api (attach to localhost:6500).",
+      "type": "shell",
+      "command": "docker compose --env-file docker/env/base.env --env-file docker/env/local.env -f docker/docker-compose.yml -f docker/docker-compose.local.yml -f docker/docker-compose.debug.yml up -d --build",
+      "problemMatcher": []
+    },
+    {
+      "label": "db:init",
+      "detail": "One-shot: apply migrations, run the seed, create the MinIO buckets. Idempotent.",
+      "type": "shell",
+      "command": "docker compose --env-file docker/env/base.env --env-file docker/env/local.env -f docker/docker-compose.yml -f docker/docker-compose.seed.yml --profile seed up --abort-on-container-exit",
+      "problemMatcher": []
+    },
+    {
+      "label": "db:migrate (container)",
+      "detail": "Apply pending migrations inside the api container, through praxis-task.",
+      "type": "shell",
+      "command": "docker compose --env-file docker/env/base.env --env-file docker/env/local.env -f docker/docker-compose.yml -f docker/docker-compose.local.yml exec api praxis-task migrate",
+      "problemMatcher": []
+    },
+    {
+      "label": "db:seed (container)",
+      "detail": "Run the seed inside the api container, through praxis-task. Idempotent.",
+      "type": "shell",
+      "command": "docker compose --env-file docker/env/base.env --env-file docker/env/local.env -f docker/docker-compose.yml -f docker/docker-compose.local.yml exec api praxis-task seed",
+      "problemMatcher": []
+    },
+    {
+      "label": "health",
+      "detail": "Check the api's health endpoint through the published port.",
+      "type": "shell",
+      "command": "curl -sS http://localhost:3002/api/health",
+      "problemMatcher": []
+    },
+    {
+      "label": "verify (lint, typecheck, test)",
+      "detail": "What the pre-push hook runs, minus the database suites.",
+      "type": "shell",
+      "command": "pnpm lint && pnpm format:check && pnpm typecheck && pnpm test",
+      "problemMatcher": []
+    }
+  ]
+}

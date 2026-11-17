@@ -1,0 +1,18 @@
+# Default: treat every file as text and normalize to LF in the repository AND
+# the working tree. With core.autocrlf=true this silences the "LF will be
+# replaced by CRLF" warnings and keeps line endings deterministic across
+# Windows, Linux and CI. Binaries are auto-detected and skipped. More specific
+# rules below override this.
+* text=auto eol=lf
+
+# Shell scripts must stay LF: CRLF makes bash fail with "$'\r': command not
+# found". This repository's primary development platform is Windows and its
+# container jobs run these scripts inside Linux images, so this rule is
+# load-bearing, not cosmetic.
+*.sh text eol=lf
+
+# V1 additionally pins its SSH deploy key and PEM files to -text, because
+# core.autocrlf would rewrite them to CRLF on checkout and break OpenSSH. V2
+# carries no deploy key and no remote host (see docs/SPEC.md §42 and this
+# change's proposal), so those rules have nothing to protect here. The change
+# that adds deployment reintroduces them with the keys they guard.

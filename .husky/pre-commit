@@ -1,0 +1,41 @@
+echo "→ Formatting and linting staged files…"
+# Two guards against the hook dying with an OOM instead of a lint error:
+#
+#  - `--max-old-space-size`: prettier parses each file whole, and docs/SPEC.md
+#    and docs/v1-SPEC.md are large enough to matter on their own. ESLint is
+#    type-aware, so it holds a full TypeScript program per package on top of
+#    that.
+#  - `--concurrent 1`: with the heap raised, running those tasks in parallel
+#    (lint-staged's default) across the chunks of a large commit — a merge from
+#    develop can stage several hundred files — oversubscribes real memory.
+#
+# The cost on an ordinary few-file commit is a second or two.
+export NODE_OPTIONS="${NODE_OPTIONS:-} --max-old-space-size=8192"
+pnpm exec lint-staged --concurrent 1 || exit 1
+
+echo "→ Type-checking workspace…"
+# Git exports GIT_DIR (and GIT_INDEX_FILE) to hooks. In a linked worktree
+# GIT_DIR is .git/worktrees/<name> with no GIT_WORK_TREE, so the `git status`
+# turbo runs inside each package treats that package as the work-tree root.
+# Praxis v1 hit this as an indefinite hang on Windows — turbo's git hashing
+# fails, it falls back to manual hashing, and never starts a task.
+#
+# VERIFIED STATUS: the hang does NOT reproduce on this repository's toolchain
+# (turbo 2.9.14, git 2.50). Reproduced the exact condition — a real linked
+# worktree's GIT_DIR exported, Turbo cache cleared — and `pnpm typecheck`
+# completed in 13s. So this is a cheap guard against a failure v1 observed and
+# this setup currently does not, kept because the trigger is
+# environment-dependent (git and turbo versions, worktree location) and the
+# symptom is a hook that never returns, which is expensive to diagnose.
+#
+# tsc reads the working tree, not the index, so the typecheck needs neither var.
+(unset GIT_DIR GIT_INDEX_FILE; pnpm typecheck) || exit 1
+
+echo "→ Running the tests related to the staged files…"
+# The git hooks are develop's CI (docs/SPEC.md §Workflow): there is no pipeline
+# running lint, format, typecheck or test. This runs only the tests the staged
+# files can affect, the api's database suites included (on an in-memory PGlite,
+# nothing to set up), plus the repo-level tooling suite when a root-level file
+# is staged. The script reads the index itself, so GIT_INDEX_FILE stays set for
+# it (`git commit -a` stages into a temporary index).
+node scripts/test-staged.mjs || exit 1

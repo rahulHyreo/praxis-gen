@@ -1,0 +1,46 @@
+# Build context excludes — keep the image small and safe.
+
+# Node / pnpm
+**/node_modules
+.pnpm-store
+.pnpm-debug.log*
+
+# Build outputs
+**/dist
+**/build
+**/.turbo
+**/coverage
+**/.cache
+
+# Local env — NEVER bake into an image. The container receives configuration
+# through compose env_file layering (docker/env/README.md), not a baked file.
+.env
+.env.*
+
+# VCS / IDE
+.git
+.gitignore
+.vscode
+.idea
+**/.DS_Store
+
+# Logs / runtime
+**/*.log
+**/npm-debug.log*
+
+# Tests and planning docs not needed in an image
+**/__tests__
+**/*.test.ts
+**/*.test.tsx
+**/*.spec.ts
+docs
+openspec
+.claude
+
+# Docker and compose themselves
+**/Dockerfile*
+docker-compose*.yml
+
+# NOTE: packs/ is deliberately NOT excluded. Authored pack content is the
+# application's data (docs/SPEC.md §5); the api reads it and the pack sync job
+# publishes it to object storage.

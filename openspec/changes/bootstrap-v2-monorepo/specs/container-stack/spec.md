@@ -16,7 +16,7 @@ shared environment CI deploys to remote hosts; `local.yml` is the developer-mach
 already carries the local fixes this change needs.
 
 The base network SHALL use the `bridge` driver and the compose files SHALL carry no `deploy:` keys.
-V1 declares an `overlay` network and Swarm `deploy:` blocks in its *base* file and overrides the
+V1 declares an `overlay` network and Swarm `deploy:` blocks in its _base_ file and overrides the
 network back to `bridge` in `local.yml`. In v2 the `bridge` driver moves into the base file and the
 override disappears [changed]: with no Swarm consumer left there is nothing for an overlay network to
 serve, and a base file that cannot be brought up on its own is a trap. Swarm concerns are
@@ -61,25 +61,61 @@ today.
 - **WHEN** the compose files are inspected
 - **THEN** no `sync` service running a flow-bundle sync is present
 
-### Requirement: Hot reload works through a Windows bind mount
+### Requirement: Web hot reload works through a Windows bind mount
 
-The local overlay SHALL set `CHOKIDAR_USEPOLLING=true` and a polling interval on both the api and web
-containers, and the web Vite configuration SHALL read that variable and enable `server.watch.usePolling`.
-[v1]
+The local overlay SHALL set `CHOKIDAR_USEPOLLING=true` and a polling interval on the web container,
+and the web Vite configuration SHALL read that variable and enable `server.watch.usePolling`. [v1]
 
 This is load-bearing on this repository's primary platform. WSL2 and DrvFs bind mounts do not
-propagate inotify events into a Linux container, so `tsx watch` and Vite would never observe a host
-edit: the stack would start, appear healthy, and silently stop reflecting changes.
+propagate inotify events into a Linux container, so Vite would never observe a host edit: the stack
+would start, appear healthy, and silently stop reflecting changes.
 
-The overlay SHALL also preserve the in-image `node_modules` against the host bind mount, using a
+#### Scenario: A host edit hot-updates the web app
+
+- **WHEN** the stack is up with the local overlay on Windows and a file under `apps/web/src` is
+  edited on the host
+- **THEN** Vite reports an HMR update for that module, without a rebuild or restart
+
+### Requirement: The api container's reload limitation is documented, not implied
+
+The documentation SHALL NOT claim that the api container hot-reloads, because it does not:
+`bun --watch` does not observe a host edit through a Docker Desktop bind mount on Windows, and
+`CHOKIDAR_USEPOLLING` does not change that — it is a chokidar variable, honoured by Vite and `tsx`,
+and Bun's watcher is neither. The variable MAY be set on the api container for consistency. [changed]
+
+This is a departure from what v1's compose comments imply. The bind mount itself propagates
+correctly — the container reads the edited bytes immediately — so the failure is specifically Bun's
+change detection, and it is silent: nothing errors, the endpoint simply keeps serving the old code.
+An undocumented silent staleness is worse than a documented restart.
+
+`docker/README.md` SHALL state the limitation and give the two working paths: restart the api
+container, or run the api on the host with `pnpm dev`, which the port allocation deliberately keeps
+available (§Layout's 3001 and 5173 are left free).
+
+#### Scenario: A host edit does not reload the api container
+
+- **WHEN** the stack is up with the local overlay on Windows and a file under `apps/api/src` is
+  edited on the host
+- **THEN** the container sees the new file contents, but the running api continues to serve the
+  previous code until it is restarted
+
+#### Scenario: Restarting the api picks the edit up
+
+- **WHEN** the api container is restarted after such an edit
+- **THEN** it serves the edited code
+
+#### Scenario: The limitation is written down
+
+- **WHEN** `docker/README.md` is read
+- **THEN** it states that the api container does not hot-reload on a Windows bind mount, and names
+  both working alternatives
+
+### Requirement: The host's node_modules does not shadow the image's
+
+The local overlay SHALL preserve the in-image `node_modules` against the host bind mount, using a
 named volume for the workspace root and an anonymous volume per package, carrying v1's naming
 rationale: a named volume is seeded from the image only while empty, so the name encodes the
-installer layout to stop a stale layout being carried forward.
-
-#### Scenario: A host edit reaches the container
-
-- **WHEN** the stack is up with the local overlay on Windows and a source file is edited on the host
-- **THEN** the api reloads and the web app hot-updates, without a rebuild or restart
+installer layout to stop a stale layout being carried forward. [v1]
 
 #### Scenario: Host node_modules does not shadow the image's
 
@@ -96,7 +132,7 @@ remain by the `APP_ENV` shell variable, defaulting to `local`. [v1, narrowed]
 
 Only `base.env` and `local.env` SHALL be carried. V1's `dev.env`, `uat.env`, `prod.env`,
 `preview.env`, `customer.env` and `lt.env` describe deployed environments that do not exist for v2
-and SHALL NOT be created; the layering *mechanism* is kept so adding one later is a data change.
+and SHALL NOT be created; the layering _mechanism_ is kept so adding one later is a data change.
 
 #### Scenario: Later layer wins
 

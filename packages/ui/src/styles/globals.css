@@ -1,0 +1,282 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/inter";
+
+@custom-variant dark (&:is(.dark *));
+@source "../../../apps/**/*.{ts,tsx}";
+@source "../../../components/**/*.{ts,tsx}";
+@source "../**/*.{ts,tsx}";
+
+@theme inline {
+  --font-heading: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+  --font-sans: "Inter Variable", sans-serif;
+}
+
+:root {
+  /* Page sits a clear step below the white card so cards read as raised
+     surfaces (depth via shade, not just border/shadow). */
+  --background: oklch(0.946 0.004 286.32);
+  --foreground: oklch(0.141 0.005 285.823);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.141 0.005 285.823);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.141 0.005 285.823);
+  --primary: oklch(0.488 0.243 264.376);
+  --primary-foreground: oklch(0.97 0.014 254.604);
+  --secondary: oklch(0.967 0.001 286.375);
+  --secondary-foreground: oklch(0.21 0.006 285.885);
+  --muted: oklch(0.967 0.001 286.375);
+  --muted-foreground: oklch(0.552 0.016 285.938);
+  --accent: oklch(0.967 0.001 286.375);
+  --accent-foreground: oklch(0.21 0.006 285.885);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.92 0.004 286.32);
+  --input: oklch(0.92 0.004 286.32);
+  --ring: oklch(0.705 0.015 286.067);
+  --chart-1: oklch(0.809 0.105 251.813);
+  --chart-2: oklch(0.623 0.214 259.815);
+  --chart-3: oklch(0.546 0.245 262.881);
+  --chart-4: oklch(0.488 0.243 264.376);
+  --chart-5: oklch(0.424 0.199 265.638);
+  --radius: 0.45rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.141 0.005 285.823);
+  --sidebar-primary: oklch(0.546 0.245 262.881);
+  --sidebar-primary-foreground: oklch(0.97 0.014 254.604);
+  --sidebar-accent: oklch(0.967 0.001 286.375);
+  --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
+  --sidebar-border: oklch(0.92 0.004 286.32);
+  --sidebar-ring: oklch(0.705 0.015 286.067);
+}
+
+.dark {
+  /* Deepen the page and lift the card so the surfaces separate by shade
+     instead of relying on the faint border alone. */
+  --background: oklch(0.131 0.005 285.823);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.235 0.006 285.885);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.235 0.006 285.885);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.424 0.199 265.638);
+  --primary-foreground: oklch(0.97 0.014 254.604);
+  --secondary: oklch(0.274 0.006 286.033);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.274 0.006 286.033);
+  --muted-foreground: oklch(0.705 0.015 286.067);
+  --accent: oklch(0.274 0.006 286.033);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.552 0.016 285.938);
+  --chart-1: oklch(0.809 0.105 251.813);
+  --chart-2: oklch(0.623 0.214 259.815);
+  --chart-3: oklch(0.546 0.245 262.881);
+  --chart-4: oklch(0.488 0.243 264.376);
+  --chart-5: oklch(0.424 0.199 265.638);
+  --sidebar: oklch(0.21 0.006 285.885);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.623 0.214 259.815);
+  --sidebar-primary-foreground: oklch(0.97 0.014 254.604);
+  --sidebar-accent: oklch(0.274 0.006 286.033);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.552 0.016 285.938);
+}
+
+/* ── Accent color axis ──────────────────────────────────────────────────────
+   Orthogonal to light/dark. `data-accent` on <html> (set by the anti-flash
+   bootstrap in index.html and by useAccent) overrides only the brand tokens;
+   surface tokens (background/card/border/muted) stay owned by :root/.dark, so
+   every accent works in both modes. `blue` is the :root/.dark baseline and so
+   needs no block; the app's default accent is `violet`, which the bootstrap
+   always applies. --primary-foreground contrast on --primary is AA in both modes:
+   violet uses light text (dark primary); green/amber use dark text (luminous
+   primary). Chart values are shared across light/dark, matching the blue ramp. */
+
+[data-accent="violet"] {
+  --primary: oklch(0.488 0.243 293.5);
+  --primary-foreground: oklch(0.97 0.014 293);
+  --ring: oklch(0.606 0.2 293.5);
+  --sidebar-primary: oklch(0.546 0.245 293.5);
+  --sidebar-primary-foreground: oklch(0.97 0.014 293);
+  --chart-1: oklch(0.809 0.105 300);
+  --chart-2: oklch(0.623 0.214 296);
+  --chart-3: oklch(0.546 0.245 294);
+  --chart-4: oklch(0.488 0.243 293.5);
+  --chart-5: oklch(0.424 0.199 292);
+}
+.dark[data-accent="violet"] {
+  --primary: oklch(0.514 0.244 293.5);
+  --primary-foreground: oklch(0.97 0.014 293);
+  --ring: oklch(0.6 0.2 293.5);
+  --sidebar-primary: oklch(0.623 0.214 296);
+  --sidebar-primary-foreground: oklch(0.97 0.014 293);
+}
+
+[data-accent="green"] {
+  --primary: oklch(0.62 0.16 152);
+  --primary-foreground: oklch(0.2 0.04 152);
+  --ring: oklch(0.62 0.16 152);
+  --sidebar-primary: oklch(0.58 0.16 152);
+  --sidebar-primary-foreground: oklch(0.2 0.04 152);
+  --chart-1: oklch(0.85 0.12 156);
+  --chart-2: oklch(0.75 0.16 153);
+  --chart-3: oklch(0.68 0.17 152);
+  --chart-4: oklch(0.6 0.16 151);
+  --chart-5: oklch(0.52 0.13 150);
+}
+.dark[data-accent="green"] {
+  --primary: oklch(0.68 0.17 152);
+  --primary-foreground: oklch(0.18 0.04 152);
+  --ring: oklch(0.68 0.17 152);
+  --sidebar-primary: oklch(0.68 0.17 152);
+  --sidebar-primary-foreground: oklch(0.18 0.04 152);
+}
+
+[data-accent="amber"] {
+  --primary: oklch(0.78 0.155 75);
+  --primary-foreground: oklch(0.28 0.06 70);
+  --ring: oklch(0.78 0.155 75);
+  --sidebar-primary: oklch(0.75 0.155 72);
+  --sidebar-primary-foreground: oklch(0.28 0.06 70);
+  --chart-1: oklch(0.88 0.11 85);
+  --chart-2: oklch(0.83 0.14 80);
+  --chart-3: oklch(0.78 0.155 75);
+  --chart-4: oklch(0.72 0.15 68);
+  --chart-5: oklch(0.64 0.13 55);
+}
+.dark[data-accent="amber"] {
+  --primary: oklch(0.8 0.155 78);
+  --primary-foreground: oklch(0.26 0.06 70);
+  --ring: oklch(0.8 0.155 78);
+  --sidebar-primary: oklch(0.8 0.155 78);
+  --sidebar-primary-foreground: oklch(0.26 0.06 70);
+}
+
+/* ── Trainee home motion ─────────────────────────────────────────────────────
+   Scoped, home-prefixed helpers used only by the trainee dashboard hero. All
+   animation is gated behind `prefers-reduced-motion: no-preference` so reduced-
+   motion users get the static final state. Kept out of @layer so the utility
+   classes are not purged and win over base rules without specificity games. */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes home-aurora {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+      opacity: 0.7;
+    }
+    50% {
+      transform: translate3d(-4%, 3%, 0) scale(1.12);
+      opacity: 1;
+    }
+  }
+
+  .home-aurora {
+    animation: home-aurora 14s ease-in-out infinite;
+    will-change: transform, opacity;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  /* Tailwind v4 drops the default pointer cursor on buttons; restore it
+     app-wide for enabled buttons (and anything role="button"). */
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]):not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@media print {
+  /* No page in either app has a bespoke print layout, so for printing
+     ("Save as PDF" included) collapse the fixed-height app shell into a normal
+     flowing document instead of one clipped screen. */
+  @page {
+    margin: 14mm;
+  }
+
+  html,
+  body {
+    height: auto !important;
+    overflow: visible !important;
+    background: #fff !important;
+  }
+
+  /* Hide the app-shell chrome (see ShellLayout) so only page content prints. */
+  nav[aria-label="Primary"] {
+    display: none !important;
+  }
+
+  /* The app shell's <main> is a native overflow:auto scroll container -let it
+     grow so the page paginates across sheets instead of clipping to one screen. */
+  main {
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  /* Radix ScrollArea (used for inner scroll regions) clips content to one
+     viewport height -let it grow too. */
+  [data-slot="scroll-area"],
+  [data-slot="scroll-area-viewport"] {
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  [data-slot="scroll-area-scrollbar"] {
+    display: none !important;
+  }
+
+  /* Keep background colours (pass/fail pills, answer highlights) in the PDF. */
+  *,
+  *::before,
+  *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}

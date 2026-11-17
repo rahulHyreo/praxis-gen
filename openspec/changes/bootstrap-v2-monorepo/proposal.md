@@ -23,7 +23,7 @@ layered-env Docker Swarm stack — is the fastest correct way to stand v2 up, an
 operational fixes (the Windows `GIT_DIR` worktree hang, the fork-per-file OOM bound, the
 `load-env.sh` quoting bug) that a from-scratch setup would rediscover the hard way.
 
-The risk is the opposite one: V1 *is* the claims platform. Its schema, services, routes, web features
+The risk is the opposite one: V1 _is_ the claims platform. Its schema, services, routes, web features
 and scripts are saturated with claims vocabulary, which §Non-negotiables forbids in v2 core code
 ("No domain-specific names (claim, DCN, Pay/Deny) in core logic"). So this change copies V1's
 **scaffolding** and deliberately leaves its **content** behind — and lands the §43 no-domain-names
@@ -45,7 +45,7 @@ good intentions.
   `test:db`, the `db:*` tasks, `dev:setup`, `dev`. **[v1]**
 - Root `tsconfig.json`: ES2022, `strict`, `moduleResolution: bundler`, the four `@platform/*` /
   `@workspace/ui` path aliases, and project references to all five packages. **[v1]**
-- Five workspace packages, each a *shell* — `package.json`, `tsconfig.json`, `eslint.config.js`,
+- Five workspace packages, each a _shell_ — `package.json`, `tsconfig.json`, `eslint.config.js`,
   `vitest.config.ts`, and the minimum source to typecheck, lint, build and test green:
   `apps/web` (React 19 + Vite 7 + Tailwind v4 + React Router v7 + Zustand + TanStack, strict MVVM
   folders per §39), `apps/api` (Express 4 + `express-async-errors`, `routes/` + `services/` +
@@ -71,7 +71,7 @@ good intentions.
   contract from §43 (no live DB in unit tests, `hasTestDb()`/`requireTestDb()` discovery by content),
   `pool: "forks"`, `isolate: true` and the `--max-old-space-size` ceiling. **[v1]**
 - Root `vitest.workspace.ts` for single-command local full-suite runs. **[v1]**
-- **[changed]** Coverage thresholds are a ratchet, as in §43 — but the *values* are re-locked to what
+- **[changed]** Coverage thresholds are a ratchet, as in §43 — but the _values_ are re-locked to what
   v2's own bootstrap tests measure. V1's floors (api 69.7/88.9/92.3, web 60.2/73.3/86.6) are
   measurements of V1's code and are meaningless here. The ratchet doctrine comment — measure twice,
   keep headroom, never lower — is carried verbatim.
@@ -142,22 +142,22 @@ specification's target and is deferred, not abandoned.
 
 Everything below is V1 content, not V1 scaffolding, and arrives in its own later change:
 
-| Not copied | Why / where it belongs |
-| --- | --- |
-| `packages/db/src/schema.ts`, V1 `drizzle/` migrations | §40: "the v2 migration set starts fresh (`0000_init`)". Schema groups land per phase. |
-| V1 `apps/api/src/services/*` (47 files: flow-bundle, rubric-scoring, assessment-*, proctoring, leaderboard, at-risk…) | Phases C–H. Copying them now would import the claims schema and fail the no-domain-names guard. |
-| V1 `apps/api/src/routes/*` (claims, attempts, assessments, teaching…) | Phases C–D. §38's new router list supersedes it. |
-| V1 `apps/web/src/features/*` (24 features incl. `admin-scenarios`, `training`, `trainee-assessment`) | Phases B–H. §39's new feature-folder list supersedes it. |
-| V1 claims scripts: `scenarios:roundtrip`, `migrate:flow-bundles`, `backfill:claim-correctness`, `scaffold:variants`, `validate:variants`, `sync:search-member`, `report:flow-points` | Claims-specific; `packs:validate` / `packs:sync` replace the variant ones (§42, §44). |
-| Feature-only web dependencies: `@vladmandic/face-api`, `pdfjs-dist`, `docx-preview`, `exceljs`, `jspdf*`, `xlsx`, `papaparse`, `@xyflow/react`, `@uiw/react-codemirror`, `@dnd-kit/*`, `zundo` | Added by the change that needs them (proctoring → §25, reports → §34, bundle studio → §10). A bootstrap that installs them carries dead weight. |
-| `ci/jenkins/`, `ansible/` | Deployment automation. Not needed to run locally; deferred to the change that adds deployment. |
+| Not copied                                                                                                                                                                                     | Why / where it belongs                                                                                                                                            |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `packages/db/src/schema.ts`, V1 `drizzle/` migrations                                                                                                                                          | §40: "the v2 migration set starts fresh (`0000_init`)". Schema groups land per phase.                                                                             |
+| V1 `apps/api/src/services/*` (47 files: flow-bundle, rubric-scoring, assessment-\*, proctoring, leaderboard, at-risk…)                                                                         | Phases C–H. Copying them now would import the claims schema and fail the no-domain-names guard.                                                                   |
+| V1 `apps/api/src/routes/*` (claims, attempts, assessments, teaching…)                                                                                                                          | Phases C–D. §38's new router list supersedes it.                                                                                                                  |
+| V1 `apps/web/src/features/*` (24 features incl. `admin-scenarios`, `training`, `trainee-assessment`)                                                                                           | Phases B–H. §39's new feature-folder list supersedes it.                                                                                                          |
+| V1 claims scripts: `scenarios:roundtrip`, `migrate:flow-bundles`, `backfill:claim-correctness`, `scaffold:variants`, `validate:variants`, `sync:search-member`, `report:flow-points`           | Claims-specific; `packs:validate` / `packs:sync` replace the variant ones (§42, §44).                                                                             |
+| Feature-only web dependencies: `@vladmandic/face-api`, `pdfjs-dist`, `docx-preview`, `exceljs`, `jspdf*`, `xlsx`, `papaparse`, `@xyflow/react`, `@uiw/react-codemirror`, `@dnd-kit/*`, `zundo` | Added by the change that needs them (proctoring → §25, reports → §34, bundle studio → §10). A bootstrap that installs them carries dead weight.                   |
+| `ci/jenkins/`, `ansible/`                                                                                                                                                                      | Deployment automation. Not needed to run locally; deferred to the change that adds deployment.                                                                    |
 | `docker/remote-deploy.sh`, `sync-remote.sh`, `docker/preview/`, `host-nginx*.conf`, `nginx.conf`, the `prod`/`uat`/`dev`/`preview`/`customer`/`lt` env files and the `prod` and `dev` overlays | Remote-deployment surface. Nothing here is exercised by a local `docker compose up`; carrying it would ship untested scripts pointing at hosts that do not exist. |
-| V1's `overlay` network driver and `deploy:` blocks | Swarm-only; an overlay network cannot be created without an initialized Swarm, so these would break `docker compose up` outright. |
-| The `sync` service in V1's `local.yml` | Runs the claims flow-bundle sync. Becomes pack-sync (§44) in the packs change; the seed overlay covers what v2 has today. |
-| Committed credentials in env files | V1's trust model, deliberately dropped (see above). |
-| `loadtest/`, `postman/`, `.github/workflows/e2e.yaml` | Reference V1 claims endpoints; rewritten against §38's routers later. |
-| `graphify-out/`, `.omc/`, `.agents/`, `secrets/`, `skills-lock.json`, `tools/` | V1-local tooling and artefacts, not part of the specified stack. |
-| V1 coverage threshold *values* | Measurements of V1's code (see Quality gates above). |
+| V1's `overlay` network driver and `deploy:` blocks                                                                                                                                             | Swarm-only; an overlay network cannot be created without an initialized Swarm, so these would break `docker compose up` outright.                                 |
+| The `sync` service in V1's `local.yml`                                                                                                                                                         | Runs the claims flow-bundle sync. Becomes pack-sync (§44) in the packs change; the seed overlay covers what v2 has today.                                         |
+| Committed credentials in env files                                                                                                                                                             | V1's trust model, deliberately dropped (see above).                                                                                                               |
+| `loadtest/`, `postman/`, `.github/workflows/e2e.yaml`                                                                                                                                          | Reference V1 claims endpoints; rewritten against §38's routers later.                                                                                             |
+| `graphify-out/`, `.omc/`, `.agents/`, `secrets/`, `skills-lock.json`, `tools/`                                                                                                                 | V1-local tooling and artefacts, not part of the specified stack.                                                                                                  |
+| V1 coverage threshold _values_                                                                                                                                                                 | Measurements of V1's code (see Quality gates above).                                                                                                              |
 
 `pnpm packs:validate` and `pnpm packs:sync` (§42) are **not** declared in this change: a script name
 that resolves to nothing is worse than an absent one. They arrive with the packs capability, which
@@ -219,15 +219,15 @@ by the changes that own them. Nothing in this change ships a default needing a "
 
 **Risks.**
 
-1. *Silent claims leakage.* V1 files carry claims vocabulary in comments, type names and test
+1. _Silent claims leakage._ V1 files carry claims vocabulary in comments, type names and test
    fixtures. Mitigated by the no-domain-names guard test landing in this change, not a later one.
-2. *Copying V1's coverage floors.* They would either fail instantly (nothing is covered) or, if the
+2. _Copying V1's coverage floors._ They would either fail instantly (nothing is covered) or, if the
    suite were trimmed to pass, hide the ratchet. Mitigated by re-locking to measured v2 values with
    the doctrine comment intact.
-3. *Collision with a v1 stack on the same developer machine.* The sharper local risk is not a name
+3. _Collision with a v1 stack on the same developer machine._ The sharper local risk is not a name
    clash — that fails loudly — but a **port** clash, which either refuses to start or silently
    attaches a tool to v1's database. Mitigated by separating project name, network, volumes, database
    name, buckets, Redis prefix **and published ports**, verified by a task that brings both local
    stacks up side by side.
-4. *Lockfile drift.* Resolving every dependency afresh could pick a version V1 has never run.
+4. _Lockfile drift._ Resolving every dependency afresh could pick a version V1 has never run.
    Mitigated by pinning to V1's resolved versions and treating upgrades as their own change.

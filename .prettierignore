@@ -1,0 +1,12 @@
+dist/
+node_modules/
+.turbo/
+coverage/
+pnpm-lock.yaml
+.pnpm-store/
+.claude/
+
+# NOTE: packs/ is deliberately NOT ignored. Authored pack content is JSON that
+# Prettier formats and ESLint does not lint (see lint-staged.config.mjs and the
+# quality-gates capability). Adding packs/ here would take the only formatter
+# that covers it away.

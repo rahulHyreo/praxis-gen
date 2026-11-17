@@ -100,6 +100,12 @@ than per package, so that files outside any package — root configs, `packs/**`
 covered. `test` SHALL run with `--concurrency=1` so that per-package suites do not oversubscribe
 memory when run together.
 
+`test` SHALL additionally run the repo-level tooling suite (`test:root`) after the per-package run.
+Turbo only runs each package's own tests, so a root-level file that belongs to no package —
+`lint-staged.config.mjs`, `scripts/test-staged.mjs` — would otherwise be ungated. Those two files
+decide what gets linted and tested, so a mistake in them does not fail a build; it silently stops
+checking the right files, which is the failure the gate exists to prevent.
+
 A command SHALL NOT be declared unless it resolves to a working implementation. The §42 commands
 `packs:validate` and `packs:sync` are therefore NOT declared by this change; they are declared by
 the change that implements the pack validator.
@@ -120,6 +126,11 @@ the change that implements the pack validator.
 
 - **WHEN** the root `package.json` scripts are inspected
 - **THEN** `packs:validate` and `packs:sync` are absent rather than present-and-failing
+
+#### Scenario: Repo-level tooling is covered by the test gate
+
+- **WHEN** a mistake is introduced into `lint-staged.config.mjs` and `pnpm test` runs
+- **THEN** the run fails, rather than passing because no package owns that file
 
 ### Requirement: Package shells are runnable, not empty
 

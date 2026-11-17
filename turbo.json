@@ -1,0 +1,152 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "ui": "tui",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": ["dist/**"]
+    },
+    "lint": {
+      "dependsOn": ["^lint"]
+    },
+    "lint:fix": {
+      "dependsOn": ["^lint:fix"]
+    },
+    "format": {
+      "dependsOn": ["^format"]
+    },
+    "format:fix": {
+      "dependsOn": ["^format:fix"]
+    },
+    "typecheck": {
+      "dependsOn": ["^typecheck"]
+    },
+    "test": {
+      "dependsOn": ["^build"],
+      "outputs": ["coverage/**"]
+    },
+    "test:db": {
+      "dependsOn": ["^build"],
+      "outputs": [],
+      "env": ["TEST_DATABASE_URL"],
+      "passThroughEnv": ["VITEST_MAX_FORKS"]
+    },
+    "db:generate": {
+      "cache": false,
+      "inputs": ["src/schema.ts", "drizzle.config.ts", ".env*"],
+      "passThroughEnv": [
+        "DATABASE_URL",
+        "APP_ENV",
+        "DB_POOL_MAX",
+        "DB_WAIT_RETRIES",
+        "DB_WAIT_DELAY_MS",
+        "SKIP_SEED"
+      ]
+    },
+    "db:migrate": {
+      "cache": false,
+      "inputs": ["src/migrations/**", "drizzle.config.ts", ".env*"],
+      "passThroughEnv": [
+        "DATABASE_URL",
+        "APP_ENV",
+        "DB_POOL_MAX",
+        "DB_WAIT_RETRIES",
+        "DB_WAIT_DELAY_MS",
+        "SKIP_SEED"
+      ]
+    },
+    "db:migrate:run": {
+      "cache": false,
+      "inputs": ["drizzle/**", "src/scripts/migrate.ts", ".env*"],
+      "passThroughEnv": [
+        "DATABASE_URL",
+        "APP_ENV",
+        "DB_POOL_MAX",
+        "DB_WAIT_RETRIES",
+        "DB_WAIT_DELAY_MS",
+        "SKIP_SEED"
+      ]
+    },
+    "db:deploy": {
+      "cache": false,
+      "inputs": [
+        "drizzle/**",
+        "src/scripts/deploy.ts",
+        "src/scripts/migrate.ts",
+        "src/seed.ts",
+        ".env*"
+      ],
+      "passThroughEnv": [
+        "DATABASE_URL",
+        "APP_ENV",
+        "DB_POOL_MAX",
+        "DB_WAIT_RETRIES",
+        "DB_WAIT_DELAY_MS",
+        "SKIP_SEED"
+      ]
+    },
+    "db:studio": {
+      "cache": false,
+      "persistent": true,
+      "inputs": ["drizzle.config.ts", ".env*"],
+      "passThroughEnv": [
+        "DATABASE_URL",
+        "APP_ENV",
+        "DB_POOL_MAX",
+        "DB_WAIT_RETRIES",
+        "DB_WAIT_DELAY_MS",
+        "SKIP_SEED"
+      ]
+    },
+    "db:push": {
+      "cache": false,
+      "inputs": ["src/schema.ts", "drizzle.config.ts", ".env*"],
+      "passThroughEnv": [
+        "DATABASE_URL",
+        "APP_ENV",
+        "DB_POOL_MAX",
+        "DB_WAIT_RETRIES",
+        "DB_WAIT_DELAY_MS",
+        "SKIP_SEED"
+      ]
+    },
+    "db:seed": {
+      "cache": false,
+      "inputs": ["src/seed.ts", ".env*"],
+      "passThroughEnv": [
+        "DATABASE_URL",
+        "APP_ENV",
+        "DB_POOL_MAX",
+        "DB_WAIT_RETRIES",
+        "DB_WAIT_DELAY_MS",
+        "SKIP_SEED"
+      ]
+    },
+    "dev:setup": {
+      "cache": false,
+      "inputs": ["src/schema.ts", "src/seed.ts", "drizzle.config.ts", ".env*"],
+      "passThroughEnv": [
+        "DATABASE_URL",
+        "APP_ENV",
+        "DB_POOL_MAX",
+        "DB_WAIT_RETRIES",
+        "DB_WAIT_DELAY_MS",
+        "SKIP_SEED"
+      ]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true,
+      "dependsOn": ["^build"],
+      "passThroughEnv": [
+        "DATABASE_URL",
+        "APP_ENV",
+        "DB_POOL_MAX",
+        "DB_WAIT_RETRIES",
+        "DB_WAIT_DELAY_MS",
+        "SKIP_SEED"
+      ]
+    }
+  }
+}

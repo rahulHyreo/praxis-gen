@@ -1,0 +1,24 @@
+# Adds the Bun inspector to the api, for stepping through server code.
+#
+# Usage:
+#   docker compose --env-file docker/env/base.env --env-file docker/env/local.env \
+#     -f docker/docker-compose.yml -f docker/docker-compose.local.yml \
+#     -f docker/docker-compose.debug.yml up -d
+#
+# Then attach to ws://localhost:6500 (VS Code: the "Attach to api (docker)"
+# configuration in .vscode/launch.json).
+#
+# Compose last in the chain, so this command replaces the local overlay's.
+
+services:
+  api:
+    command:
+      [
+        "sh",
+        "-c",
+        "praxis-task migrate || echo '[debug] migrate failed (continuing)'; exec praxis-task api --inspect=0.0.0.0:6499",
+      ]
+    ports:
+      - "${API_PORT:-3002}:3001"
+      - "${STUDIO_PORT:-4984}:4983"
+      - "${INSPECT_PORT:-6500}:6499"

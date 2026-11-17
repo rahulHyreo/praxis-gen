@@ -1,0 +1,8 @@
+# Read by shellcheck for every script under this directory — currently the
+# container helpers in docker/ (load-env.sh and the praxis-task wrapper).
+#
+# No rules are disabled. V1's copy disables SC2119 for a default-argument
+# function in ci/jenkins/scripts/lib.sh; v2 carries no CI scripts (see this
+# change's proposal), so that suppression would be an unexplained exception
+# guarding nothing. A disable belongs here only with the file and reason that
+# earn it.

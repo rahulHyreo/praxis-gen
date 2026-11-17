@@ -1,40 +1,43 @@
 # Dependencies
-node_modules/
-.pnpm-store/
+node_modules
+.pnp
+.pnp.js
+.pnpm-store
 
-# Build output
-dist/
-build/
-*.tsbuildinfo
-
-# Local env override only — committed layered env files (base.env, <env>.env) stay tracked (§42)
-.env
+# Local env files.
+#
+# Root /.env is an optional host-mode fallback, read by packages/db/src/env.ts
+# (dotenv, override: false) so a plain `pnpm dev` on the host can find a
+# database. Nothing generates it.
+#
+# docker/env/.env is the third, OPTIONAL layer of the committed env stack
+# (docker/env/README.md): base.env -> local.env -> .env, later wins. It is the
+# only place a real secret may live. The first two layers are committed and
+# carry non-secret, localhost-only values; this one never is.
+/.env
 .env.local
+.env.development.local
+.env.test.local
+.env.production.local
+docker/env/.env
 
-# Tests and coverage
-coverage/
-test-results/
-playwright-report/
-blob-report/
+# Testing
+coverage
 
-# Tool caches
-.turbo/
-.cache/
-.vite/
-.eslintcache
+# Turbo
+.turbo
 
-# Logs
-*.log
+# Build outputs
+dist
+
+# Debug
 npm-debug.log*
-pnpm-debug.log*
 
-# Editor and OS
-.vscode/*
-!.vscode/tasks.json
-!.vscode/extensions.json
-.idea/
+# Misc
 .DS_Store
-Thumbs.db
+*.pem
 
-# Claude Code local settings (project commands and skills stay tracked)
-.claude/settings.local.json
+# Later changes add their own entries here as they introduce the tools that
+# produce them (Playwright reports, load-test output, CI scratch, and so on).
+# Keeping this file to what the repository actually generates means an entry
+# here is evidence that something writes that path.

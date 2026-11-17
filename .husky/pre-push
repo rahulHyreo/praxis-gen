@@ -1,0 +1,46 @@
+# Everything that would otherwise be a CI job, before anything leaves this
+# machine. The git hooks are develop's CI (docs/SPEC.md §Workflow): no pipeline
+# runs lint, format, typecheck or test. .husky/pre-commit covers the staged
+# files and the typecheck; this covers the whole tree:
+#
+#   pnpm lint           every package (the commit only linted staged files)
+#   pnpm format:check   the whole repo, including docs/ and packs/
+#   pnpm test           every package with the coverage gate, then the
+#                       repo-level tooling suite
+#   pnpm test:db        the api's database suites, on an in-memory PGlite
+#
+# Turbo replays a package whose inputs have not changed since its last green
+# run, and prettier skips files it has already checked, so a second push of the
+# same tree takes seconds. It checks the working tree, so stash what you are
+# not pushing. `git push --no-verify` skips it — never onto develop.
+
+# Git passes one line per ref: <local ref> <local sha> <remote ref> <remote sha>.
+# A push that only deletes branches or tags (local sha all zeros) checks nothing.
+has_commits=false
+while read -r _local_ref local_sha _remote_ref _remote_sha; do
+  case "$local_sha" in
+    *[!0]*) has_commits=true ;;
+  esac
+done
+[ "$has_commits" = true ] || exit 0
+
+# Same heap as the pre-commit hook: prettier parses each file whole, and the two
+# spec documents are large.
+export NODE_OPTIONS="${NODE_OPTIONS:-} --max-old-space-size=8192"
+
+# See .husky/pre-commit for the full note: a linked worktree's exported GIT_DIR
+# made turbo hang indefinitely on Windows in v1. It does not reproduce on this
+# toolchain, but the guard is free and the symptom is a hook that never returns.
+unset GIT_DIR GIT_INDEX_FILE
+
+echo "→ Linting every package (pnpm lint)…"
+pnpm lint || exit 1
+
+echo "→ Checking formatting (pnpm format:check)…"
+pnpm format:check --cache --cache-strategy content || exit 1
+
+echo "→ Running the full test suite (pnpm test)…"
+pnpm test || exit 1
+
+echo "→ Running the api database suites on PGlite (pnpm test:db)…"
+pnpm test:db || exit 1

@@ -7,7 +7,7 @@ until the repository is a git repository at all.
 
 V1 is a working monorepo on the same declared stack (§1), with four months of production operation
 behind its toolchain. Its scaffolding is therefore both the fastest and the lowest-risk starting
-point — it already encodes fixes for failures v2 would otherwise rediscover. But V1 *is* the claims
+point — it already encodes fixes for failures v2 would otherwise rediscover. But V1 _is_ the claims
 platform: its schema, 47 services, 15 route modules, 24 web features and seven maintenance scripts
 are saturated with claims vocabulary that §Non-negotiables bars from v2 core logic.
 
@@ -79,17 +79,17 @@ reproduction recorded in a comment. Three in particular:
   back to manual hashing, and on Windows hangs forever before starting a task. This repository's
   primary platform is Windows. Re-authoring the hooks loses this and the symptom is an indefinite
   hang with no error.
-- **`pool: "forks"` with `isolate: true` and an explicit heap ceiling.** A worker *thread* rejects
+- **`pool: "forks"` with `isolate: true` and an explicit heap ceiling.** A worker _thread_ rejects
   `--max-old-space-size` in `execArgv` (`ERR_WORKER_INVALID_EXEC_ARGV`) and its heap sits in the
   parent's resident set, so with threads neither a ceiling nor a legible OOM is achievable. V1
   measured a monotonic ~340 MB-per-file climb and a kernel OOM kill at 32 minutes before this
   configuration.
 - **`load-env.sh`'s read-loop.** POSIX `source` executes the file, so `FROM_NAME=Praxis Training
-  Platform` runs `Training Platform` as a command and, under `set -e`, aborts the caller.
+Platform` runs `Training Platform` as a command and, under `set -e`, aborts the caller.
 
-**Alternatives considered.** *Fresh scaffolding from `create-vite` / `create-turbo`*: produces a
-tree that diverges from §Layout and discards all three fixes above. Rejected. *Fork the V1 git
-repository and delete*: carries V1's full history and makes "what did v2 add" unanswerable; also
+**Alternatives considered.** _Fresh scaffolding from `create-vite` / `create-turbo`_: produces a
+tree that diverges from §Layout and discards all three fixes above. Rejected. _Fork the V1 git
+repository and delete_: carries V1's full history and makes "what did v2 add" unanswerable; also
 makes it easy to leave claims code in by forgetting to delete it. Rejected in favour of a fresh
 history with an explicit copy list — the default is "absent", not "present".
 
@@ -118,7 +118,7 @@ a fixture.
 Concretely, from V1: copy every `package.json`, `tsconfig*.json`, `eslint.config.js`,
 `vitest*.config.ts`, `vite.config.ts`, `components.json`, `drizzle.config.ts`, `Dockerfile`,
 `docker/**`, `.husky/**`, `lint-staged.config.mjs`, `scripts/test-staged.mjs` and the dotfiles.
-Copy *none* of `packages/db/src/schema.ts`, `apps/api/src/{routes,services,data,emails}/**`,
+Copy _none_ of `packages/db/src/schema.ts`, `apps/api/src/{routes,services,data,emails}/**`,
 `apps/web/src/features/**`, or V1's `drizzle/` migrations.
 
 Dependency lists get the same treatment: V1's `apps/web` declares 30 runtime dependencies, of which
@@ -163,7 +163,7 @@ that passes for the wrong reason.
 ### D5. Re-lock the coverage ratchet to v2's measurements
 
 **Decision.** Carry §43's ratchet doctrine and the comment discipline; replace the threshold
-*values* with v2's own measured readings, taken twice, with each floor set below the lower reading.
+_values_ with v2's own measured readings, taken twice, with each floor set below the lower reading.
 
 **Why.** V1's floors (api 69.7 / 88.9 / 92.3, web 60.2 / 73.3 / 86.6) measure V1's code. Copied into
 a repository with a handful of smoke tests they either fail immediately — leaving a red suite and the
@@ -194,7 +194,7 @@ just a stale read.
 **Ports are the layer that matters most locally, and the one V1's naming scheme does not cover.** A
 name collision fails loudly. A port collision does one of two things: refuse to start, or — when a
 developer points `psql`, Drizzle Studio or a `.env` at `localhost:5432` — silently attach to the
-*other* stack's database. The second is a data-loss path during migration, when V1 is the system of
+_other_ stack's database. The second is a data-loss path during migration, when V1 is the system of
 record. Offsetting the published ports removes it; leaving the in-container ports alone keeps
 §Layout's 3001/5173 free for a host `pnpm dev` beside the containers.
 
@@ -252,7 +252,7 @@ shared `dev` environment that CI deploys to remote hosts". `dev.yml` is a deploy
 bridge-network override, Redis published to the host for `redis-cli`, the `node_modules` shadowing
 fix, and `CHOKIDAR_USEPOLLING`. Carrying `dev.yml` would have meant re-deriving all four.
 
-**Why drop Swarm rather than keep the override.** A V1-shaped *base* file cannot be brought up on its
+**Why drop Swarm rather than keep the override.** A V1-shaped _base_ file cannot be brought up on its
 own at all: an `overlay` network requires an initialized Swarm, so `docker compose up -f
 docker-compose.yml` fails on the network definition before any service starts. V1 lives with that
 because `local.yml` overrides the driver back to `bridge`. With no Swarm consumer left in v2, the
@@ -326,7 +326,7 @@ coverage floors) — operational limits, not platform behaviour. No §45.1 surfa
 §45.3 value is invented. The first change to introduce one declares its table and its flagged
 default then.
 
-The one value that *looks* like a tunable is the coverage threshold set. It is deliberately a literal
+The one value that _looks_ like a tunable is the coverage threshold set. It is deliberately a literal
 in `vitest.config.ts` rather than configuration: §43 makes it a ratchet whose every movement must be
 reviewable in a diff with a justifying comment. Externalising it would let it be lowered without
 review, which is the one thing the ratchet exists to prevent.
@@ -343,7 +343,7 @@ records the measured v2 reading and the command it was measured under.
 
 **[A local tool silently attaches to V1's database]** → The real local hazard. D6 offsets every
 published port, so `localhost:5432` remains V1's and `localhost:5433` is v2's; a task verifies both
-stacks side by side on one machine. There is no deployment path in this change, so a v2 *deploy*
+stacks side by side on one machine. There is no deployment path in this change, so a v2 _deploy_
 cannot disturb anything — the first real deploy happens under the deployment change with this
 separation already in place.
 
@@ -361,7 +361,7 @@ acceptance task rather than assumed from V1's behaviour.
 **[The bootstrap looks finished]** → `README.md` states plainly what does not exist (schema, auth,
 content, trainee behaviour) and that this is a local stack with no deployment path at all. The
 `container-stack` spec carries this as a requirement rather than leaving it to prose. There is
-nothing to deploy *with*, which is itself the strongest guard.
+nothing to deploy _with_, which is itself the strongest guard.
 
 **[Placeholder files are mistaken for real implementations]** → Each placeholder folder carries a
 README naming the § section that will fill it and the capability that owns it. Same for the four

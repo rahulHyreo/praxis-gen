@@ -1,0 +1,123 @@
+# Local developer overlay — the api and web run from your working tree.
+#
+# Usage (or hit a task in .vscode/tasks.json):
+#   docker compose \
+#     --env-file docker/env/base.env --env-file docker/env/local.env \
+#     -f docker/docker-compose.yml -f docker/docker-compose.local.yml up -d
+#
+# Carried from v1's `local` overlay, NOT its `dev` overlay. v1 has both, and
+# `dev` is the one its CI deploys to remote hosts — `local.yml`'s own header
+# says it was forked from `dev.yml` so local DX could change "without
+# disturbing the shared dev environment". This is the developer-machine one.
+#
+# Not carried from it: the network-driver override (the base file is already
+# bridge) and its one-shot `sync` service, which runs the claims flow-bundle
+# sync — pack content and `pnpm packs:sync` (§44) arrive with the packs
+# capability.
+
+services:
+  api:
+    build:
+      context: ..
+      dockerfile: apps/api/Dockerfile
+      target: dev
+    image: praxis2-api:local
+    env_file:
+      - env/base.env
+      - env/${APP_ENV:-local}.env
+      - path: env/.env
+        required: false
+    environment:
+      NODE_ENV: development
+      PORT: 3001
+      # Inside the container these must be service names, not localhost.
+      # local.env carries the host-side values for a plain `pnpm dev`.
+      DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+      REDIS_URL: redis://redis:6379
+      S3_ENDPOINT: http://minio:9000
+      S3_ACCESS_KEY_ID: ${MINIO_ROOT_USER}
+      S3_SECRET_ACCESS_KEY: ${MINIO_ROOT_PASSWORD}
+      # NOTE: these do NOT make the api hot-reload, and v1's comments imply
+      # otherwise. CHOKIDAR_* is a chokidar setting — Vite and tsx honour it,
+      # Bun's own `--watch` watcher does not — and verified behaviour on
+      # Windows is that a host edit does not reload this container. The bind
+      # mount is fine: the container reads the edited bytes immediately. It is
+      # Bun's change detection that misses them, because a Docker Desktop bind
+      # mount delivers no inotify events.
+      #
+      # So after editing apps/api, either restart this container
+      # (`docker compose restart api`) or run the api on the host with
+      # `pnpm dev` — the port block deliberately leaves 3001 free for that.
+      # See docker/README.md.
+      #
+      # Kept set for consistency with the web container and in case Bun gains
+      # a polling mode; harmless either way.
+      CHOKIDAR_USEPOLLING: "true"
+      CHOKIDAR_INTERVAL: "300"
+    volumes:
+      - ..:/repo
+      # Preserve the in-image node_modules against the host bind mount.
+      # `bun install` puts a node_modules under every workspace package;
+      # without these anonymous volumes the host's (often empty, or
+      # Windows-symlinked) folders win and drizzle-kit/vite disappear inside
+      # the container.
+      #
+      # Named *_bun_modules, not *_node_modules: Docker seeds a named volume
+      # from the image only while it is empty, so encoding the installer in the
+      # name stops a stale layout being carried forward under the old name.
+      - api_bun_modules:/repo/node_modules
+      - /repo/apps/api/node_modules
+      - /repo/packages/db/node_modules
+      - /repo/packages/shared/node_modules
+      - /repo/packages/ui/node_modules
+    ports:
+      - "${API_PORT:-3002}:3001"
+      - "${STUDIO_PORT:-4984}:4983"
+    networks:
+      - praxis2
+    depends_on:
+      postgres:
+        condition: service_healthy
+      minio:
+        condition: service_started
+      redis:
+        condition: service_started
+
+  web:
+    build:
+      context: ..
+      dockerfile: apps/web/Dockerfile
+      target: dev
+    image: praxis2-web:local
+    env_file:
+      - env/base.env
+      - env/${APP_ENV:-local}.env
+      - path: env/.env
+        required: false
+    environment:
+      NODE_ENV: development
+      # Empty by default: the SPA resolves /api same-origin, and Vite proxies
+      # it to the api (apps/web/vite.config.ts).
+      VITE_API_URL: ${VITE_API_URL:-}
+      # Where Vite's dev-server proxy forwards /api inside the network.
+      VITE_API_PROXY: http://api:3001
+      # Same inotify gap as the api — vite.config.ts reads this and flips
+      # server.watch.usePolling so HMR fires on a host edit.
+      CHOKIDAR_USEPOLLING: "true"
+      CHOKIDAR_INTERVAL: "300"
+    volumes:
+      - ..:/repo
+      - web_bun_modules:/repo/node_modules
+      - /repo/apps/web/node_modules
+      - /repo/packages/shared/node_modules
+      - /repo/packages/ui/node_modules
+    ports:
+      - "${WEB_PORT:-5174}:5173"
+    networks:
+      - praxis2
+    depends_on:
+      - api
+
+volumes:
+  api_bun_modules:
+  web_bun_modules:

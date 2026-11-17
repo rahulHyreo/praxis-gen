@@ -7,9 +7,10 @@ context: |
   Compliance Passport + Reasoning Core → domain pack) plus an optional employer overlay.
   v1's claims content becomes the first domain pack.
 
-  Authority: SPEC.md at the repo root is the build specification. Cite its section anchors
+  Authority: docs/SPEC.md is the build specification. Cite its section anchors
   (e.g. "§12", "§45.1") in every artifact; never renumber them. Precedence: code >
-  SPEC.md > openspec/specs > v1 SPEC (only where SPEC.md marks an item [v1]) > design docs.
+  docs/SPEC.md > openspec/specs > docs/v1-SPEC.md (only where docs/SPEC.md marks an
+  item [v1]) > design docs. When docs and code disagree, trust the code.
   SPEC.md marks carried v1 behaviour [v1], additions [new] and deliberate departures
   [changed] — say which applies to the behaviour you are specifying.
 

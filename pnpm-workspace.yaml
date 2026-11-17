@@ -1,0 +1,31 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+
+# NOTE: packs/ is deliberately absent. Authored domain-pack content (docs/SPEC.md
+# §5) is data, not a compiled package: it has no package.json, nothing imports it
+# as a module, and the api reads it at runtime. Listing it here would make
+# `pnpm install` try to install it.
+
+allowBuilds:
+  # The sentry-cli binary arrives through its per-platform optional dependency
+  # (@sentry/cli-linux-x64 etc.); the postinstall download is redundant.
+  "@sentry/cli": false
+  core-js: true
+  core-js-pure: true
+  esbuild: true
+  msw: true
+
+packageExtensions:
+  # pglite-socket (the in-memory Postgres the api DB tests run on, see
+  # apps/api/vitest.db.config.ts) lists every PGlite extension as a required
+  # peer. None is used, and pnpm would otherwise auto-install all seven.
+  "@electric-sql/pglite-socket":
+    peerDependenciesMeta:
+      "@electric-sql/pglite-age": { optional: true }
+      "@electric-sql/pglite-pg_hashids": { optional: true }
+      "@electric-sql/pglite-pg_ivm": { optional: true }
+      "@electric-sql/pglite-pg_textsearch": { optional: true }
+      "@electric-sql/pglite-pg_uuidv7": { optional: true }
+      "@electric-sql/pglite-pgtap": { optional: true }
+      "@electric-sql/pglite-pgvector": { optional: true }

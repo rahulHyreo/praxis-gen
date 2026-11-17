@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "skipLibCheck": true,
+    "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "@platform/db": ["./packages/db/src"],
+      "@platform/db/*": ["./packages/db/src/*"],
+      "@platform/shared": ["./packages/shared/src"],
+      "@platform/shared/*": ["./packages/shared/src/*"],
+      "@workspace/ui": ["./packages/ui/src"],
+      "@workspace/ui/*": ["./packages/ui/src/*"]
+    }
+  },
+  "files": [],
+  "references": [
+    { "path": "./apps/web" },
+    { "path": "./apps/api" },
+    { "path": "./packages/db" },
+    { "path": "./packages/shared" },
+    { "path": "./packages/ui" }
+  ]
+}

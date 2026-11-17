@@ -1,0 +1,90 @@
+# One-shot initialisation overlay: migrate, seed, create buckets, then exit.
+#
+# Usage:
+#   docker compose --env-file docker/env/base.env --env-file docker/env/local.env \
+#     -f docker/docker-compose.yml -f docker/docker-compose.seed.yml \
+#     --profile seed up --abort-on-container-exit
+#
+# Both jobs are IDEMPOTENT and safe to re-run: the seed is additive by contract
+# (packages/db/src/seed.ts) and `mc mb --ignore-existing` is a no-op on an
+# existing bucket. V2's seed does not TRUNCATE, unlike v1's, which is why there
+# is no four-rule safety model guarding it.
+#
+# Today the migrate step applies nothing (docs/SPEC.md §40 starts the migration
+# set fresh at 0000_init) and the seed inserts no rows. Wiring it now means the
+# change that adds the first table adds rows to a path that already works.
+
+services:
+  db-init:
+    build:
+      context: ..
+      dockerfile: apps/api/Dockerfile
+      target: dev
+    image: praxis2-api:local
+    profiles: [seed]
+    env_file:
+      - env/base.env
+      - env/${APP_ENV:-local}.env
+      - path: env/.env
+        required: false
+    environment:
+      DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+    networks:
+      - praxis2
+    depends_on:
+      postgres:
+        condition: service_healthy
+    # The repo is bind-mounted, exactly as the api dev container has it.
+    #
+    # REQUIRED, not optional: the `dev` stage does not COPY the source — it
+    # expects compose to mount it — so without this `praxis-task migrate`
+    # fails with `Module not found "src/scripts/migrate.ts"`. (V1 runs this job
+    # from its `prod` image, which does copy the source; v2 has no prod stage
+    # because it has no deployment target.) Mounting the working tree is also
+    # the behaviour you want locally: the job migrates and seeds YOUR tree, not
+    # a snapshot baked at image-build time.
+    #
+    # The anonymous volumes keep the in-image node_modules from being shadowed
+    # by the host's — same reason as docker-compose.local.yml.
+    volumes:
+      - ..:/repo
+      - db_init_bun_modules:/repo/node_modules
+      - /repo/apps/api/node_modules
+      - /repo/packages/db/node_modules
+      - /repo/packages/shared/node_modules
+    # Through praxis-task, like every other container job, so it gets the same
+    # layered env, network and volumes as the long-running services.
+    command: ["sh", "-c", "praxis-task migrate && praxis-task seed"]
+    restart: "no"
+
+  minio-init:
+    # The Chainguard MinIO image ships `mc` and `sh`; minio/mc is no longer
+    # published.
+    image: cgr.dev/chainguard/minio:latest
+    profiles: [seed]
+    env_file:
+      - env/base.env
+      - env/${APP_ENV:-local}.env
+      - path: env/.env
+        required: false
+    networks:
+      - praxis2
+    depends_on:
+      minio:
+        condition: service_healthy
+    entrypoint: >
+      sh -c '
+        until mc alias set local http://minio:9000 "$$MINIO_ROOT_USER" "$$MINIO_ROOT_PASSWORD" >/dev/null 2>&1; do
+          echo "waiting for minio..."; sleep 2;
+        done;
+        mc mb --ignore-existing local/"$$S3_PACKS_BUCKET";
+        mc mb --ignore-existing local/"$$S3_PUBLIC_BUCKET";
+        mc mb --ignore-existing local/"$$S3_BUCKET";
+        mc anonymous set download local/"$$S3_PUBLIC_BUCKET" || true;
+        mc version enable local/"$$S3_PACKS_BUCKET" || true;
+        echo "minio buckets ready";
+      '
+    restart: "no"
+
+volumes:
+  db_init_bun_modules:

@@ -1,0 +1,631 @@
+{
+  "$schema": "training-platform/v1/workspace-data",
+  "$version": "2.0.0",
+  "id": "claim_data_bnr_1_dcn_613101",
+  "claimId": "claim_bnr_1_001",
+  "dcn": "DCN-9640200",
+  "flowId": "flow_benefit_review_non_par_bnr_1",
+  "navigatorSchemaId": "nav_bnr_1_benefit_review_non_par",
+  "correctDecision": "pay",
+  "correctDecisionLabel": "Pay",
+  "correctReasonCode": "",
+  "claim": {
+    "dcn": "DCN-9640200",
+    "status": "Pended — PX_BNR",
+    "receivedDate": "2026-06-22",
+    "processingType": "Original processing",
+    "lineOfBusiness": "Commercial",
+    "par": "Non-Par"
+  },
+  "header": {
+    "dcn": "DCN-9640200",
+    "memberName": "LINDA R CARTER",
+    "providerName": "CEDAR POINT HEALTH SYSTEM",
+    "billed": "$1000.00",
+    "serviceFrom": "2026-06-15",
+    "serviceTo": "2026-06-15"
+  },
+  "eventResolution": {
+    "editCode": "PX_BNR",
+    "description": "Benefit Review Non Par — the allowable on this claim may need to be reduced because a related claim already consumed part of a bundled (global fee) allowance.",
+    "severity": "Hard edit",
+    "status": "Open — current event",
+    "hierarchyNote": "No event on this claim ranks above PX_BNR in the event hierarchy. The remaining edits are informational and require no claim action, so PX_BNR is resolved first.",
+    "edits": [
+      {
+        "code": "PX_BNR",
+        "description": "Benefit Review Non Par",
+        "type": "Hard edit",
+        "hierarchyRank": "1",
+        "status": "Open — resolve now"
+      },
+      {
+        "code": "PX_RNB",
+        "description": "Rendering NPI is Blank. This event appears when the rendering NPI field is blank. It will not affect adjudication.",
+        "type": "Informational",
+        "hierarchyRank": "—",
+        "status": "No action required"
+      },
+      {
+        "code": "PX_RNI",
+        "description": "The license number lists no active NPI, or it lists multiple NPIs, and there is no match to the incoming rendering NPI.",
+        "type": "Informational",
+        "hierarchyRank": "—",
+        "status": "No action required"
+      },
+      {
+        "code": "PX_RNO",
+        "description": "Rendering NPI Overlaid. This event appears in either DDC or PAC when WGS or an associate changes a rendering NPI.",
+        "type": "Informational",
+        "hierarchyRank": "—",
+        "status": "No action required"
+      }
+    ]
+  },
+  "memberInfo": {
+    "name": "LINDA R CARTER",
+    "memberId": "M208221001",
+    "dob": "1972-03-14",
+    "sex": "F",
+    "relationship": "Subscriber",
+    "group": {
+      "groupId": "208221M500",
+      "detailContractCode": "612B",
+      "caseNumber": "197115",
+      "groupName": "SILVER CREEK EMPLOYERS TRUST"
+    },
+    "specialConditions": {
+      "instruction": "Compare the Group ID and Detail contract code above against the combinations below. A match means the claim follows the alternate guidelines instead of this flow.",
+      "combinations": [
+        "197111M001 / 521W",
+        "197111M002 / 521X",
+        "197111M603 / 524S",
+        "197111M604 / 524T"
+      ],
+      "result": "No match — Group ID 208221M500 / contract code 612B is not on the special-condition list. Proceed with the PX_BNR flow."
+    }
+  },
+  "providerInfo": {
+    "name": "CEDAR POINT HEALTH SYSTEM",
+    "npi": "4861027395",
+    "taxId": "84-5310472",
+    "specialty": "Physical Therapy",
+    "par": "Non-Par",
+    "specialConditionProviders": [
+      {
+        "name": "Jim's Body Shop",
+        "taxIdNpi": "84-2004551 / 1093847562"
+      },
+      {
+        "name": "Zeno Sport & Spine",
+        "taxIdNpi": "84-3116620 / 1275093841"
+      },
+      {
+        "name": "Colorado Physical Therapy Inc",
+        "taxIdNpi": "84-4229733 / 1386204957"
+      }
+    ],
+    "instruction": "Check the provider name and NPI on this claim against the Provider Tax ID's and NPI's reference list below.",
+    "result": "No match — CEDAR POINT HEALTH SYSTEM (NPI 4861027395) is not on the special-condition provider list. Proceed with the PX_BNR flow."
+  },
+  "claimImage": {
+    "additional": {
+      "its": {
+        "account": {
+          "aso": "—",
+          "stateId": "—",
+          "accountType": "—",
+          "originalGroup": "—",
+          "deliveryMethod": "—",
+          "originalCertificate": "—"
+        },
+        "pricing": {
+          "primarySop": "—",
+          "tertiarySop": "—",
+          "cobCalMethod": "—",
+          "secondarySop": "—"
+        },
+        "providers": {
+          "eft835": "—",
+          "serviceZip": "—",
+          "mppqAssignUnassigned": "—",
+          "ppoNetworkAvailability": "—",
+          "ppoProviderAvailability": "—"
+        }
+      },
+      "sfdf": {
+        "primacy": "—",
+        "dfMessage": "—",
+        "sfMessage": "—",
+        "totalDaysVisits": "—",
+        "autoOtherAccident": "—"
+      },
+      "stopData": {
+        "stopEdit": "-",
+        "lobSequence": "-",
+        "medSequence": "-",
+        "lobChildRule": "-",
+        "lobParentRule": "-",
+        "medBusinessChildRule": "-",
+        "medBusinessParentRule": "-"
+      },
+      "ambulance": {
+        "pickupZip": "-",
+        "dropoffZip": "-"
+      },
+      "highDollar": {
+        "riskOutcome": "-"
+      },
+      "refundData": {
+        "carveOut": "-",
+        "vendorName": "-",
+        "delayReason": "-",
+        "refundAmount": "-",
+        "adjustmentReason": "-",
+        "correspondenceNumber": "-",
+        "adjustmentReceiptDate": "-"
+      },
+      "claimSource": {
+        "mixerPar": "-",
+        "authExcln": "-",
+        "mediaType": "-",
+        "authNumber": "-",
+        "receiverId": "WI",
+        "receivedDate": "-",
+        "pricingSource": "-",
+        "pricingSystem": "-",
+        "providerError": "-",
+        "receivedAtEdi": "-",
+        "vendorIndicator": "-",
+        "originalReferenceNumber": "-"
+      },
+      "miscellaneous": {
+        "epsdt": "-",
+        "gtessDate": "-",
+        "dateOfInjury": "-",
+        "dateOfIllness": "-",
+        "familyPlanning": "-",
+        "consultationDate": "-",
+        "lastMenstrualDate": "-"
+      },
+      "claimLineDetail": [
+        {
+          "lineNum": "—",
+          "blankDateInd": "—",
+          "approvedDenyInd": "—"
+        },
+        {
+          "lineNum": "—",
+          "blankDateInd": "—",
+          "approvedDenyInd": "—"
+        }
+      ],
+      "ancillaryProvider": {
+        "zip": "-",
+        "type": "-",
+        "state": "-"
+      }
+    },
+    "memberDetails": {
+      "patient": {
+        "dob": "1972-03-14",
+        "pcp": "—",
+        "sex": "F",
+        "hcid": "HC208221001",
+        "erisa": "Y",
+        "groupId": "208221M500",
+        "product": "BCPI",
+        "lastName": "CARTER",
+        "pcpState": "—",
+        "firstName": "LINDA",
+        "memberCode": "01",
+        "middleName": "R",
+        "contractType": "C",
+        "memberPrefix": "ZCA",
+        "relationship": "Subscriber",
+        "groupContract": "612B",
+        "pcpRelationship": "—",
+        "detailContractCode": "612B"
+      },
+      "subscriber": {
+        "address": "Oak Avenue  CHICAGO IL 60614",
+        "lastName": "CARTER",
+        "firstName": "LINDA",
+        "middleName": "R",
+        "subscriberId": "M208221001"
+      },
+      "totalClaimLines": "1"
+    }
+  },
+  "paymentInfo": {
+    "drg": {
+      "keyed": "-",
+      "priced": "—",
+      "original": "—"
+    },
+    "check": {
+      "amount": "0",
+      "paidTo": "LAKE VIEW MEDICAL GROUP",
+      "checkDate": "—",
+      "finalized": "4/6/2026",
+      "checkNumber": "—",
+      "checkStatus": "CHECK NOT FOUND ON RECON DB",
+      "eftCheckDate": "—",
+      "accountNumber": "1234512345",
+      "checkMailedTo": "\"PO BOX 00000 CHICAGO",
+      "paymentSystem": "D",
+      "checkStatusDate": "2/10/2026"
+    },
+    "claim": {
+      "coins": "0",
+      "copay": "0",
+      "nonElg": "0",
+      "hraPaid": "0",
+      "claimPaid": "0.00",
+      "deductible": "0",
+      "patientLiab": "0",
+      "totalCharge": "1000.00",
+      "memberSurcharge": "0",
+      "finalizationCode": "PX_P10000",
+      "pricingAllowedAmount": "700"
+    },
+    "provider": {
+      "lr": "L",
+      "penalty": "0",
+      "interest": "0",
+      "providerDisc": "300",
+      "providerLiab": "300",
+      "systemInterest": "0",
+      "providerSurcharge": "0",
+      "providerRiskWithhold": "0"
+    },
+    "payeeDetails": {
+      "flipPayee": "N"
+    }
+  },
+  "claimHeader": {
+    "general": {
+      "fsbInd": "None",
+      "emergency": "No",
+      "frequency": "1",
+      "employment": "No",
+      "bbiIndicator": "-",
+      "fsbExclusion": "X",
+      "pciIndicator": "-",
+      "treatmentAuth": "—",
+      "patientAccount": "M000000000",
+      "coveredZipRadius": "-",
+      "providerContract": "612B",
+      "serviceFromThrough": "2026-06-15 - 2026-06-15",
+      "assignmentOfBenefits": "Y - Benefit assigned to provider",
+      "providerParticipation": "PAR"
+    },
+    "conditionCodes": {
+      "code": "-"
+    },
+    "diagnosisCodes": {
+      "dx1": "—"
+    },
+    "benefitIndicators": {
+      "cob": "0",
+      "cdhp": "N",
+      "medInd": "No",
+      "cobRule": "-",
+      "medRule": "-",
+      "planPayer": "N",
+      "cobPercent": "0",
+      "medicareAdvantage": "Yes"
+    }
+  },
+  "claimLines": {
+    "line1": {
+      "lineNumber": "1",
+      "procedureCode": "67876",
+      "serviceFrom": "2026-06-15",
+      "serviceTo": "2026-06-15",
+      "units": "1",
+      "billed": "1000",
+      "allowed": "700",
+      "writeOff": "300"
+    },
+    "indicators": {
+      "ePricingError": "PX_3C",
+      "ePricingErrorNote": "The E / Pricing error indicator is populated with PX_3C, confirming that a related claim affects the global pricing of this claim."
+    },
+    "benefitNote": "The allowed amount is displayed here for training purposes. In actual processing the allowed amount is either paid or applied toward member cost shares as per the benefit — that benefit calculation is not yet implemented in this tool."
+  },
+  "notes": {
+    "wgs": "—",
+    "research": "—",
+    "mainframe": "244383",
+    "taskManagement": {
+      "csPg": "GS-National",
+      "regCa": "-",
+      "skills": "CT-Professional",
+      "homeAge": "59",
+      "urgency": "65",
+      "routedTo": "-",
+      "totalAge": "59",
+      "ageAdjusted": "N",
+      "benNonspider": "-",
+      "baselineUrgency": "45",
+      "resUnrestricted": "-",
+      "urgencyModifiers": "\"PG Modifer(0)"
+    }
+  },
+  "search": {
+    "benefits": {
+      "advisory": "Benefits are applied directly on this claim. Verify that the benefits have been applied correctly in the CI&W system.",
+      "line1Procedure": "67876",
+      "line1Service": "Ophthalmological surgery — global package",
+      "coverageStatus": "Covered",
+      "result": "The services billed on Line 1 are covered. Proceed to the next step."
+    },
+    "member": {
+      "searchMember": {
+        "memberId": "M208221001",
+        "firstName": "LINDA",
+        "mi": "R",
+        "lastName": "CARTER",
+        "dob": "1972-03-14",
+        "relationship": "Subscriber",
+        "memberCode": "01",
+        "gender": "F",
+        "state": "CO",
+        "contractId": "208221M500",
+        "caseEntity": "197115",
+        "groupNumber": "208221G001",
+        "hcid": "HC208221001",
+        "prefix": "ZCA",
+        "effectiveDate": "2025-01-01",
+        "endDate": "2026-12-31",
+        "productCode": "PPO",
+        "contractState": "CO"
+      },
+      "general": {
+        "name": "LINDA R CARTER",
+        "dateOfBirth": "1972-03-14",
+        "age": "54",
+        "sex": "F",
+        "memberId": "M208221001",
+        "hcid": "HC208221001",
+        "relationship": "Subscriber",
+        "memberCode": "01",
+        "county": "Denver",
+        "country": "USA",
+        "effectiveDate": "2025-01-01",
+        "endDate": "2026-12-31",
+        "productType": "PPO",
+        "groupType": "Commercial",
+        "businessUnit": "Commercial",
+        "caseName": "SILVER CREEK EMPLOYERS TRUST"
+      }
+    },
+    "claims": {
+      "instruction": "Claims for the same date of service (2026-06-15) and the same provider specialty (Physical Therapy). Note the procedure code and billed amount — they are needed for the pricing review.",
+      "resultCount": "1 result",
+      "results": [
+        {
+          "dcn": "2026118BN4471",
+          "memberName": "LINDA R CARTER",
+          "provider": "CEDAR POINT HEALTH SYSTEM",
+          "specialty": "Physical Therapy",
+          "serviceFrom": "2026-06-15",
+          "serviceTo": "2026-06-15",
+          "procedureCode": "77875",
+          "billedAmount": "500.00",
+          "paidAmount": "500.00",
+          "status": "Resolved-Paid"
+        }
+      ]
+    },
+    "pricing": {
+      "claimHeader": {
+        "serviceFrom": "2026-06-15",
+        "serviceTo": "2026-06-15",
+        "providerSpecialty": "Physical Therapy"
+      },
+      "line1": {
+        "procedureCode": "67876",
+        "billedAmount": "1000.00",
+        "units": "1"
+      },
+      "line2": {
+        "procedureCode": "",
+        "billedAmount": "",
+        "units": ""
+      },
+      "pricingStatus": "Pending — enter the related claim's procedure code in Line 2, then click Get Pricing.",
+      "results": {
+        "line1": {
+          "procedureCode": "67876",
+          "allowed": "$1000.00"
+        },
+        "line2": {
+          "procedureCode": "",
+          "allowed": ""
+        },
+        "packageNote": ""
+      },
+      "historyNote": "",
+      "multipleDosNote": "If multiple dates of service are involved, enter each date separately and change the Service from / to dates in the Claim header section above. Add a note such as \"The global fee/grouping allowable was applied to DCN 2026118BN4471 in history\" to alert others that the current claim was priced correctly against the finalized DCN."
+    }
+  },
+  "duplicate": {
+    "detailSections": [
+      {
+        "id": "sec_detail_indicators",
+        "title": "Indicators",
+        "columns": 1,
+        "fields": [
+          {
+            "id": "f_cl_e_pricing_error",
+            "type": "readonly_label",
+            "label": "E / Pricing error",
+            "dataKey": "claimLines.indicators.ePricingError"
+          },
+          {
+            "id": "f_cl_e_pricing_note",
+            "type": "alert",
+            "label": "Related claim affects global pricing",
+            "dataKey": "claimLines.indicators.ePricingErrorNote",
+            "variant": "info"
+          }
+        ]
+      },
+      {
+        "id": "sec_detail_note",
+        "title": "Note",
+        "columns": 1,
+        "fields": [
+          {
+            "id": "f_cl_benefit_note",
+            "type": "alert",
+            "label": "Benefit calculation is not yet implemented",
+            "dataKey": "claimLines.benefitNote",
+            "variant": "info"
+          }
+        ]
+      },
+      {
+        "id": "sec_detail_related_claim",
+        "title": "Related Claim",
+        "columns": 4,
+        "fields": [
+          {
+            "id": "f_sc_r0_dcn",
+            "type": "readonly_label",
+            "label": "DCN",
+            "dataKey": "search.claims.results.0.dcn"
+          },
+          {
+            "id": "f_sc_r0_provider",
+            "type": "readonly_label",
+            "label": "Provider",
+            "dataKey": "search.claims.results.0.provider"
+          },
+          {
+            "id": "f_sc_r0_specialty",
+            "type": "readonly_label",
+            "label": "Provider Specialty",
+            "dataKey": "search.claims.results.0.specialty"
+          },
+          {
+            "id": "f_sc_r0_service_from",
+            "type": "readonly_label",
+            "label": "Date of Service",
+            "dataKey": "search.claims.results.0.serviceFrom"
+          },
+          {
+            "id": "f_sc_r0_procedure_code",
+            "type": "readonly_label",
+            "label": "Procedure Code",
+            "dataKey": "search.claims.results.0.procedureCode"
+          },
+          {
+            "id": "f_sc_r0_billed",
+            "type": "readonly_label",
+            "label": "Billed Amount",
+            "dataKey": "search.claims.results.0.billedAmount"
+          },
+          {
+            "id": "f_sc_r0_paid",
+            "type": "readonly_label",
+            "label": "Paid Amount",
+            "dataKey": "search.claims.results.0.paidAmount"
+          },
+          {
+            "id": "f_sc_r0_status",
+            "type": "readonly_label",
+            "label": "Status",
+            "dataKey": "search.claims.results.0.status"
+          }
+        ]
+      }
+    ],
+    "rows": [
+      {
+        "code": "20",
+        "name": "LINDA R CARTER",
+        "from": "20260615",
+        "to": "20260615",
+        "type": "P",
+        "provider": "CEDAR POINT HEALTH SYSTEM",
+        "dcn": "2026118BN4471",
+        "charged": "500.00",
+        "paid": "500.00",
+        "status": "Resolved-Paid"
+      }
+    ],
+    "compare": {
+      "sections": [
+        {
+          "id": "provider_information",
+          "title": "Provider Information",
+          "rows": [
+            {
+              "field": "Provider specialty",
+              "currentDcn": "Physical Therapy",
+              "historyDcn": "Physical Therapy"
+            },
+            {
+              "field": "Provider name",
+              "currentDcn": "CEDAR POINT HEALTH SYSTEM",
+              "historyDcn": "CEDAR POINT HEALTH SYSTEM"
+            },
+            {
+              "field": "Rendering provider NPI",
+              "currentDcn": "4861027395",
+              "historyDcn": "4861027395"
+            },
+            {
+              "field": "Provider Tax ID",
+              "currentDcn": "84-5310472",
+              "historyDcn": "84-5310472"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "claimData": {
+    "related": {
+      "instruction": "Select the related claim and click Compare Claim, then open the Provider Information accordion to compare the provider specialties.",
+      "result": "The provider specialties match — the DCN and History DCN columns carry the same value. Proceed."
+    }
+  },
+  "randomization": {
+    "fields": [
+      {
+        "strategy": "linked_group",
+        "dataKeys": [
+          "memberInfo.name",
+          "memberInfo.dob",
+          "memberInfo.memberId"
+        ],
+        "pool": [
+          ["LINDA R CARTER", "1972-03-14", "M208221001"],
+          ["PRIYA S RAMANATHAN", "1980-11-02", "M315907001"],
+          ["DERRICK L WHITFIELD", "1958-06-07", "M429183001"],
+          ["NATALIE K OSBORNE", "1977-09-21", "M536470001"],
+          ["MARCUS T ELLISON", "1965-08-29", "M644128001"]
+        ]
+      }
+    ]
+  },
+  "system": {
+    "benefitRecommendation": {
+      "endDate": "12/31/2025",
+      "planState": "CO",
+      "contractCode": "612B",
+      "effectiveDate": "1/1/2025",
+      "planDescription": "PX_BNR plan 612B — global-fee (bundled) benefit"
+    }
+  },
+  "attachment": {
+    "pwk": {
+      "type": "View Remittance",
+      "view": "-"
+    }
+  }
+}

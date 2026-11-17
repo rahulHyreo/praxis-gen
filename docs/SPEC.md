@@ -136,7 +136,7 @@ Wk Block Content Output / assessment Pack
 11 3 AI-assisted adjudication: verify copilot output, catch plausible-but-wrong decisions Adversarial verification flows claims
 12 3 Integration: manual, AI-assisted and exception flows Proctored domain exam claims
 
-Mapping v1 content into Block 3: v1's 93 flows are migrated into the claims pack and assigned to weeks 9–12 by an authored mapping in the pack manifest. Weeks 9–10 draw on v1 flows directly; weeks 11–12 need new AI-assisted and integration flows (§14.3).
+Mapping v1 content into Block 3: v1's 92 flows are migrated into the claims pack and assigned to weeks 9–12 by an authored mapping in the pack manifest. Weeks 9–10 draw on v1 flows directly; weeks 11–12 need new AI-assisted and integration flows (§14.3). [corrected from 93: v1's flow-bundle-registry.ts exports 92 flow groups and the source holds 92 index.ts modules — 456 bundles in all. See the move-claims-content change.]
 
 §5 — Domain packs [new]
 
@@ -242,7 +242,7 @@ Pipeline as v1: resolveBundleSource(subject) → cache → assembleFlowBundle() 
 
 [changed] Defects not carried into v2:
 
-One navigator per flow, by construction. v1 serves the base navigator.json to every variant, leaving ignored v2–v5 copies. v2's bundle loader rejects a variant folder that contains navigator.json; the migration deletes the stale copies.
+One navigator per flow, by construction. v1 serves the base navigator.json to every variant, leaving ignored v2–v5 copies. v2's bundle loader rejects a variant folder that contains navigator.json; the migration deletes the stale copies. [changed — narrowed by the move-claims-content change: the premise holds for 356 of v1's 364 variant navigators, but 507.3 and W-DMX.2 import their own and those steps carry variant-specific GRADED values, so the rule is "reject a variant navigator that DUPLICATES its base; permit one that is semantically distinct". A loader implementing the blanket rule breaks both flows' grading.]
 Field-level visibleWhen — v1 silently ignores it. v2's schema rejects it at load time (only section-level, single strict-equality visibleWhen, as v1).
 Variant provider identity — the v1 → v2 migration validates graded values against each variant's own data and fails flows whose variants contradict themselves.
 §14 — Workbench [v1 §11, generalized]
@@ -671,7 +671,7 @@ Whether DRI or reasoning score enters the leaderboard or at-risk model
 A one-way, idempotent v1 import job (apps/api/src/services/v1-import/) runs against a read-only v1 database and v1 object storage.
 
 v1 v2 Notes
-93 flow bundles packs/claims/flows/<code>/ Delete ignored v2–v5 navigator.json; reject field-level visibleWhen; rename assignment keys in state.json; validate variant provider data
+92 flow bundles packs/claims/flows/<code>/ Delete DUPLICATE v2–v5 navigator.json (see §13); reject field-level visibleWhen; rename assignment keys in state.json; validate variant provider data [corrected from 93; on the real source the field-level visibleWhen and assignment-key fixes are no-ops and are asserted rather than performed — see the move-claims-content change]
 scenarios / sub-scenarios modules / sub-modules in claims pack Mapped to weeks 9–10 via pack manifest
 claims, claim variants subjects, subject variants DCN- refs preserved
 claim_decision_type values pack decision keys pay / deny; NULL preserved

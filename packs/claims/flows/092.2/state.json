@@ -1,0 +1,114 @@
+{
+  "$schema": "training-platform/v1/flow-state",
+  "$version": "1.0.0",
+  "id": "state_092_2_newborn_enrolled_apply_member_pay",
+  "initial": {
+    "defaultActiveTabId": "tab_event_resolution",
+    "defaultActiveSubTabIds": {
+      "tab_search": "subtab_search_benefits",
+      "tab_claim_data": "subtab_claim_data_details",
+      "tab_attachment": "subtab_attachment_attachments"
+    },
+    "defaultCollapsedSections": {},
+    "defaultDecision": ""
+  },
+  "modeConfig": {
+    "training": {
+      "id": "training",
+      "label": "Training mode",
+      "badgeIcon": "graduation-cap",
+      "showNavigator": true,
+      "timerType": "count_up",
+      "timerPosition": "navigator_header",
+      "timeLockEnabled": false,
+      "showHints": true,
+      "showMarkCompleteButton": true,
+      "allowTabClose": true
+    },
+    "practice": {
+      "id": "practice",
+      "label": "Practice mode",
+      "badgeIcon": "dumbbell",
+      "showNavigator": false,
+      "timerType": "count_up",
+      "timerPosition": "topbar",
+      "timeLockEnabled": false,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": true
+    },
+    "assessment": {
+      "id": "assessment",
+      "label": "Assessment Mode",
+      "badgeIcon": "graduation-cap",
+      "showNavigator": false,
+      "timerType": "count_down",
+      "timerPosition": "topbar_right",
+      "timeLimitSeconds": 600,
+      "timeLockEnabled": true,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": false,
+      "beforeUnloadWarning": "Assessment in progress. Leaving will lose your progress."
+    }
+  },
+  "actions": {
+    "open_patient_policies": {
+      "label": "Open the patient's row",
+      "latencyMs": 0,
+      "writes": {},
+      "completesStepId": "step_005"
+    },
+    "expand_member_group": {
+      "label": "Expand the policy line for the claim group",
+      "latencyMs": 0,
+      "writes": {},
+      "completesStepId": "step_006"
+    },
+    "apply_selected_member": {
+      "label": "Apply Selected Member",
+      "latencyMs": 0,
+      "writes": {
+        "memberInfo.patient.memberCode": "50"
+      },
+      "completesStepId": "step_007"
+    },
+    "validate": {
+      "label": "Validate",
+      "latencyMs": 400,
+      "guard": {
+        "dataKey": "memberInfo.patient.memberCode",
+        "equals": "50",
+        "elseWrites": {
+          "memberInfo.patient.memberCodeMessage": "No member code applied. Apply the patient's enrolled member under the policy for the claim's group on Search → Member, then click Validate again.",
+          "eventResolution.validationMessage": ""
+        }
+      },
+      "writes": {
+        "memberInfo.patient.memberCodeMessage": "Member code: 50 - Male dependent",
+        "eventResolution.validationMessage": "PX_092 RESOLVED — MEMBER CODE APPLIED"
+      },
+      "completesStepId": "step_008"
+    },
+    "apply_other_policy": {
+      "label": "Apply Selected Member — policy under another group",
+      "latencyMs": 0,
+      "writes": {}
+    },
+    "search_member": {
+      "label": "Search member",
+      "latencyMs": 0,
+      "writes": {}
+    },
+    "search_member_clear": {
+      "label": "Clear member search",
+      "latencyMs": 0,
+      "writes": {}
+    }
+  },
+  "persistence": {
+    "persistKey": null,
+    "autosave": false,
+    "resetOnSubmit": false
+  }
+}

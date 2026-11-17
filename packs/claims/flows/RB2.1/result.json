@@ -1,0 +1,65 @@
+{
+  "$schema": "training-platform/v1/flow-result",
+  "$version": "1.0.0",
+  "id": "result_rb2_1_secondary_policy_cob_split",
+  "rubric": {
+    "expectedDecision": "pay",
+    "expectedReasonCode": null,
+    "requiredStepIds": [
+      "step_001",
+      "step_002",
+      "step_003",
+      "step_004",
+      "step_005",
+      "step_006",
+      "step_007",
+      "step_008",
+      "step_009"
+    ],
+    "weights": {
+      "navigator": 90,
+      "decision": 20,
+      "reasonCode": 0
+    },
+    "deductions": {
+      "perMissedRequiredStep": 0,
+      "wrongDecision": 20,
+      "wrongReasonCode": 0
+    }
+  },
+  "resultConfig": {
+    "passLabel": "Passed!",
+    "failLabel": "You did not meet the pass mark.",
+    "passDescription": "Great work — you read the full edit list, identified DIS and RB2 among the informational events and confirmed nothing of higher priority had to be resolved first. You reviewed the primary policy information on the Limited Liability record and took the primary policy ID from its Policy# field. Searching the claims history with it returned the primary claim as Resolved-Paid, the WGS note confirmed the pair came from one DUP-IN-SERVICE SYSTEMATIC SPLIT, and opening the claim gave you the billed amount, provider discount, co-insurance and payment the primary plan settled on. You checked those against the other insurer's EOB on the COB sub-tab, found they matched, then ran the COB worksheet and applied its calculated values to the claim lines — provider discount $92.70 with EOB 00128, paid amount $2.43, copay $10.00 with EOB 00135 and non-covered $111.87 with EOB 00159. The secondary claim was adjudicated from the primary claim's processing and payment information, applying the appropriate Coordination of Benefits methodology per COB processing guidelines, and you paid it.",
+    "failDescription": "Pass mark is {passMark}%. Review the steps below to see where you can improve.",
+    "scoreCircle": {
+      "radius": 40,
+      "strokeWidth": 8,
+      "passColor": "#3B6D11",
+      "failColor": "#A32D2D",
+      "trackColor": "#E5E7EB"
+    },
+    "statBoxes": [
+      {
+        "id": "navigator_score",
+        "label": "Navigator",
+        "dataKey": "navigatorScore",
+        "max": 90
+      },
+      {
+        "id": "decision_score",
+        "label": "Decision",
+        "dataKey": "decisionScore",
+        "max": 20
+      },
+      {
+        "id": "time_taken",
+        "label": "Time Taken",
+        "dataKey": "timeTakenSeconds",
+        "format": "duration"
+      }
+    ],
+    "retakeButton": true,
+    "backToClaimsButton": true
+  }
+}

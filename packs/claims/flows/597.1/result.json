@@ -1,0 +1,61 @@
+{
+  "$schema": "training-platform/v1/flow-result",
+  "$version": "1.0.0",
+  "id": "result_597_1",
+  "rubric": {
+    "expectedDecision": "deny",
+    "expectedReasonCode": "PX_R01030",
+    "requiredStepIds": ["step_004", "step_006", "step_007", "step_008"],
+    "weights": {
+      "navigator": 80,
+      "decision": 20,
+      "reasonCode": 10
+    },
+    "deductions": {
+      "perMissedRequiredStep": 0,
+      "wrongDecision": 20,
+      "wrongReasonCode": 10
+    }
+  },
+  "resultConfig": {
+    "passLabel": "Passed!",
+    "failLabel": "You did not meet the pass mark.",
+    "passDescription": "Great work — you correctly denied the claim with reject code PX_R01030; the service dates fall after the member's coverage termination, so there is no active eligibility for any billed date of service.",
+    "failDescription": "Pass mark is {passMark}%. Review the steps below to see where you can improve.",
+    "scoreCircle": {
+      "radius": 40,
+      "strokeWidth": 8,
+      "passColor": "#3B6D11",
+      "failColor": "#A32D2D",
+      "trackColor": "#E5E7EB"
+    },
+    "statBoxes": [
+      {
+        "id": "navigator_score",
+        "label": "Navigator",
+        "dataKey": "navigatorScore",
+        "max": 80
+      },
+      {
+        "id": "decision_score",
+        "label": "Decision",
+        "dataKey": "decisionScore",
+        "max": 20
+      },
+      {
+        "id": "reason_code_score",
+        "label": "Reason Code",
+        "dataKey": "reasonCodeScore",
+        "max": 10
+      },
+      {
+        "id": "time_taken",
+        "label": "Time Taken",
+        "dataKey": "timeTakenSeconds",
+        "format": "duration"
+      }
+    ],
+    "retakeButton": true,
+    "backToClaimsButton": true
+  }
+}

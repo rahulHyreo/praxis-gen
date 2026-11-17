@@ -1,0 +1,64 @@
+{
+  "$schema": "praxis/v2/pack-flow",
+  "code": "X6.1",
+  "name": "Modifier 22 No Records (PX_X6) — Pay at 100%",
+  "variants": [
+    {
+      "variant": "base",
+      "variantIndex": 1,
+      "subjectRefs": ["DCN-606104"]
+    },
+    {
+      "variant": "v2",
+      "variantIndex": 2,
+      "subjectRefs": [
+        "DCN-9570200",
+        "DCN-9570201",
+        "DCN-9570202",
+        "DCN-9570203",
+        "DCN-9570204",
+        "DCN-9570205",
+        "DCN-9570206"
+      ]
+    },
+    {
+      "variant": "v3",
+      "variantIndex": 3,
+      "subjectRefs": [
+        "DCN-9570300",
+        "DCN-9570301",
+        "DCN-9570302",
+        "DCN-9570303",
+        "DCN-9570304",
+        "DCN-9570305",
+        "DCN-9570306"
+      ]
+    },
+    {
+      "variant": "v4",
+      "variantIndex": 4,
+      "subjectRefs": [
+        "DCN-9570400",
+        "DCN-9570401",
+        "DCN-9570402",
+        "DCN-9570403",
+        "DCN-9570404",
+        "DCN-9570405",
+        "DCN-9570406"
+      ]
+    },
+    {
+      "variant": "v5",
+      "variantIndex": 5,
+      "subjectRefs": [
+        "DCN-9570500",
+        "DCN-9570501",
+        "DCN-9570502",
+        "DCN-9570503",
+        "DCN-9570504",
+        "DCN-9570505",
+        "DCN-9570506"
+      ]
+    }
+  ]
+}

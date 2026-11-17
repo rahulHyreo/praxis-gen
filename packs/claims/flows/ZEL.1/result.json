@@ -1,0 +1,55 @@
+{
+  "$schema": "training-platform/v1/flow-result",
+  "$version": "1.0.0",
+  "id": "result_zel_1_zelis_vendor_pricing_validate_pay",
+  "rubric": {
+    "expectedDecision": "pay",
+    "expectedReasonCode": null,
+    "requiredStepIds": ["step_001", "step_002", "step_003", "step_004"],
+    "weights": {
+      "navigator": 40,
+      "decision": 20,
+      "reasonCode": 0
+    },
+    "deductions": {
+      "perMissedRequiredStep": 0,
+      "wrongDecision": 20,
+      "wrongReasonCode": 0
+    }
+  },
+  "resultConfig": {
+    "passLabel": "Passed!",
+    "failLabel": "You did not meet the pass mark.",
+    "passDescription": "Great work — you identified the PX_ZEL hard edit and confirmed the event hierarchy was clear (no other events), clicked Validate to apply the benefits, confirmed there were no bypass codes to apply and that the claim was eligible for routing (CHDP CLAIM ELIGIBLE FOR PING), and correctly paid the claim to route it to Zelis.",
+    "failDescription": "Pass mark is {passMark}%. Review the steps below to see where you can improve.",
+    "scoreCircle": {
+      "radius": 40,
+      "strokeWidth": 8,
+      "passColor": "#3B6D11",
+      "failColor": "#A32D2D",
+      "trackColor": "#E5E7EB"
+    },
+    "statBoxes": [
+      {
+        "id": "navigator_score",
+        "label": "Navigator",
+        "dataKey": "navigatorScore",
+        "max": 40
+      },
+      {
+        "id": "decision_score",
+        "label": "Decision",
+        "dataKey": "decisionScore",
+        "max": 20
+      },
+      {
+        "id": "time_taken",
+        "label": "Time Taken",
+        "dataKey": "timeTakenSeconds",
+        "format": "duration"
+      }
+    ],
+    "retakeButton": true,
+    "backToClaimsButton": true
+  }
+}

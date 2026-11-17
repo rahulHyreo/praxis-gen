@@ -1,0 +1,64 @@
+{
+  "$schema": "praxis/v2/pack-flow",
+  "code": "QT8.1",
+  "name": "Duplicate of Open Claim — Process Earlier & Reject",
+  "variants": [
+    {
+      "variant": "base",
+      "variantIndex": 1,
+      "subjectRefs": ["DCN-608101"]
+    },
+    {
+      "variant": "v2",
+      "variantIndex": 2,
+      "subjectRefs": [
+        "DCN-9550200",
+        "DCN-9550201",
+        "DCN-9550202",
+        "DCN-9550203",
+        "DCN-9550204",
+        "DCN-9550205",
+        "DCN-9550206"
+      ]
+    },
+    {
+      "variant": "v3",
+      "variantIndex": 3,
+      "subjectRefs": [
+        "DCN-9550300",
+        "DCN-9550301",
+        "DCN-9550302",
+        "DCN-9550303",
+        "DCN-9550304",
+        "DCN-9550305",
+        "DCN-9550306"
+      ]
+    },
+    {
+      "variant": "v4",
+      "variantIndex": 4,
+      "subjectRefs": [
+        "DCN-9550400",
+        "DCN-9550401",
+        "DCN-9550402",
+        "DCN-9550403",
+        "DCN-9550404",
+        "DCN-9550405",
+        "DCN-9550406"
+      ]
+    },
+    {
+      "variant": "v5",
+      "variantIndex": 5,
+      "subjectRefs": [
+        "DCN-9550500",
+        "DCN-9550501",
+        "DCN-9550502",
+        "DCN-9550503",
+        "DCN-9550504",
+        "DCN-9550505",
+        "DCN-9550506"
+      ]
+    }
+  ]
+}

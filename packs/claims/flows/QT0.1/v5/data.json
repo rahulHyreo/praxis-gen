@@ -1,0 +1,1465 @@
+{
+  "$schema": "training-platform/v1/workspace-data",
+  "$version": "2.0.0",
+  "id": "claim_data_qt0_1_dcn_610101",
+  "claimId": "claim_duplicate_qt0_rejected_001",
+  "dcn": "DCN-9520500",
+  "flowId": "flow_duplicate_qt0_rejected",
+  "navigatorSchemaId": "nav_qt0_1_duplicate",
+  "correctDecision": "deny",
+  "correctDecisionLabel": "Reject",
+  "correctReasonCode": "PX_RADJT0",
+  "claim": {
+    "dcn": "DCN-9520500",
+    "patient": "NATALIE K OSBORNE",
+    "serviceFrom": "09/03/2025",
+    "billedAmount": "$1,663.47",
+    "receiptDate": "5/11/2026"
+  },
+  "header": {
+    "dcn": "DCN-9520500",
+    "edits": "PX_DP1 / PX_QT0",
+    "billed": "$1,663.47",
+    "allowed": "$455.00",
+    "paid": "$455.00",
+    "actionCode": "—",
+    "writeOff": "$0.00",
+    "deductible": "$0.00",
+    "receipt": "05/11/2026",
+    "serviceFrom": "03/27/2026",
+    "serviceTo": "03/27/2026",
+    "coinsurance": "$0.00",
+    "copay": "$0.00"
+  },
+  "eventResolution": {
+    "editCode": "PX_DP1 / PX_QT0",
+    "editLabel": "Possible duplicate of a rejected claim — the claim partially matches a history claim that was Resolved-Denied (rejected for authorization); complete the duplicate review before deciding",
+    "severity": "Hard Edit",
+    "edits": [
+      {
+        "code": "PX_RNB",
+        "label": "Edit PX_RNB description",
+        "active": false
+      },
+      {
+        "code": "PX_IAF",
+        "label": "Edit PX_IAF description",
+        "active": false
+      },
+      {
+        "code": "PX_UM",
+        "label": "Authorization Required",
+        "active": true,
+        "severity": "Hard"
+      },
+      {
+        "code": "PX_DP1",
+        "label": "PX_DP1 — Possible duplicate of a previously processed claim (Active — Informational Edit)",
+        "active": true,
+        "severity": "Hard"
+      },
+      {
+        "code": "PX_QT0",
+        "label": "PX_QT0 — Possible duplicate of a rejected claim; the related claim was denied for authorization that is now available — complete the duplicate review before deciding (Active — Hard Edit)",
+        "active": true,
+        "severity": "Hard"
+      },
+      {
+        "code": "PX_334",
+        "label": "Edit PX_334 description",
+        "active": false
+      }
+    ]
+  },
+  "memberInfo": {
+    "patient": {
+      "firstName": "NATALIE",
+      "middleName": "K",
+      "lastName": "OSBORNE",
+      "dob": "9/21/1977",
+      "sex": "F",
+      "memberPrefix": "567",
+      "hcid": "55310284",
+      "relationship": "—",
+      "memberCode": "20",
+      "contractType": "C",
+      "erisa": "N",
+      "pcp": "—",
+      "pcpState": "CA",
+      "pcpRelationship": "—",
+      "programCode": "—"
+    },
+    "subscriber": {
+      "firstName": "NATALIE",
+      "middleName": "K",
+      "lastName": "OSBORNE",
+      "subscriberId": "55310284",
+      "address": "Ventura Blvd  TARZANA CA 91356"
+    },
+    "group": {
+      "groupName": "—",
+      "groupId": "1111EH",
+      "groupContract": "—",
+      "detailContractCode": "8SVX",
+      "product": "Local",
+      "networkId": "—",
+      "networkName": "—"
+    }
+  },
+  "claimImage": {
+    "memberDetails": {
+      "patient": {
+        "firstName": "NATALIE",
+        "middleName": "K",
+        "lastName": "OSBORNE",
+        "dob": "9/21/1977",
+        "sex": "F",
+        "memberPrefix": "YZC",
+        "hcid": "55310284",
+        "relationship": "—",
+        "memberCode": "20",
+        "detailContractCode": "8SVX",
+        "contractType": "C",
+        "groupId": "5803EH",
+        "groupContract": "—",
+        "product": "Host",
+        "erisa": "N",
+        "pcp": "—",
+        "pcpState": "OH",
+        "pcpRelationship": "—"
+      },
+      "subscriber": {
+        "firstName": "NATALIE",
+        "middleName": "K",
+        "lastName": "OSBORNE",
+        "subscriberId": "55310284",
+        "address": "Oak Avenue  CHICAGO IL 60614"
+      },
+      "totalClaimLines": "2"
+    },
+    "additional": {
+      "claimSource": {
+        "mediaType": "—",
+        "pricingSource": "—",
+        "pricingSystem": "—",
+        "mixerPar": "—",
+        "receiverId": "—",
+        "receivedAtEdi": "—",
+        "providerError": "—",
+        "authNumber": "—",
+        "authExcln": "—",
+        "vendorIndicator": "—",
+        "receivedDate": "—",
+        "originalReferenceNumber": "—"
+      },
+      "ancillaryProvider": {
+        "type": "—",
+        "zip": "—",
+        "state": "—"
+      },
+      "ambulance": {
+        "pickupZip": "—",
+        "dropoffZip": "—"
+      },
+      "miscellaneous": {
+        "epsdt": "—",
+        "familyPlanning": "—",
+        "gtessDate": "—",
+        "dateOfIllness": "—",
+        "dateOfInjury": "—",
+        "lastMenstrualDate": "—",
+        "consultationDate": "—"
+      },
+      "stopData": {
+        "stopEdit": "—",
+        "lobParentRule": "—",
+        "lobChildRule": "—",
+        "lobSequence": "—",
+        "medBusinessParentRule": "—",
+        "medBusinessChildRule": "—",
+        "medSequence": "—"
+      },
+      "refundData": {
+        "correspondenceNumber": "—",
+        "refundAmount": "—",
+        "adjustmentReason": "—",
+        "vendorName": "—",
+        "delayReason": "—",
+        "carveOut": "—",
+        "adjustmentReceiptDate": "—"
+      },
+      "highDollar": {
+        "riskOutcome": "—"
+      },
+      "its": {
+        "account": {
+          "deliveryMethod": "—",
+          "accountType": "—",
+          "aso": "—",
+          "stateId": "—",
+          "originalCertificate": "—",
+          "originalGroup": "—"
+        },
+        "pricing": {
+          "primarySop": "—",
+          "secondarySop": "—",
+          "tertiarySop": "—",
+          "cobCalMethod": "—"
+        },
+        "providers": {
+          "mppqAssignUnassigned": "—",
+          "ppoNetworkAvailability": "—",
+          "ppoProviderAvailability": "—",
+          "eft835": "—",
+          "serviceZip": "—"
+        }
+      },
+      "sfdf": {
+        "sfMessage": "—",
+        "dfMessage": "—",
+        "primacy": "—",
+        "autoOtherAccident": "—",
+        "totalDaysVisits": "—"
+      },
+      "claimLineDetail": [
+        {
+          "lineNum": "—",
+          "blankDateInd": "—",
+          "approvedDenyInd": "—"
+        },
+        {
+          "lineNum": "—",
+          "blankDateInd": "—",
+          "approvedDenyInd": "—"
+        }
+      ]
+    }
+  },
+  "providerInfo": {
+    "rendering": {
+      "npi": "9318472605",
+      "name": "Dr. Naomi Albright",
+      "address": "9963 JOHNSON COURSE EAST WILLIAM OH 40495-9279",
+      "pricingState": "OH",
+      "pricingZip": "40495-9279",
+      "providerSps": "7110082321",
+      "providerEpin": "—",
+      "license": "4733616459",
+      "networkOption": "Y",
+      "specialty": "030",
+      "specialtyDescription": "DIAGNOSTIC RADIOLOGY",
+      "taxonomy": "2085R0202X"
+    },
+    "billing": {
+      "taxId": "954651287",
+      "npi": "1042869357",
+      "name": "MERIDIAN CARE PARTNERS",
+      "facilityType": "DIAGNOSTIC IMAGING CENTER",
+      "providerSps": "7110082321",
+      "providerEpin": "—",
+      "medicareId": "—",
+      "address": "18133 VENTURA BLVD SUITE 20 TARZANA, CA 91356-7134",
+      "nationalState": "CA",
+      "locationCode": "—",
+      "bhaProviderIndicator": "NN",
+      "taxonomy": "792XR2424X",
+      "timelyFilingLimit": "90"
+    },
+    "referring": {
+      "referringPhysician": "A",
+      "npi": "9703905715"
+    },
+    "serviceFacility": {
+      "facilityTier": "—",
+      "type": "—",
+      "npi": "9703905715"
+    },
+    "miscellaneous": {
+      "supportingOrderingNpi": "9841118422",
+      "nsbIndicator": "—",
+      "alternateFacilityNpi": "—"
+    },
+    "renderingCompare": {
+      "current": {
+        "taxId": "954651287",
+        "providerGroup": "BEVERLY RADIOLOGY MEDICAL",
+        "renderingNpi": "1962457812",
+        "specialty": "Diagnostic Radiology",
+        "subSpecialty": "Technical Component (TC)",
+        "procedureCode": "G0279",
+        "billed": "$455.00",
+        "modifier": "TC"
+      },
+      "history": {
+        "taxId": "954651287",
+        "providerGroup": "BEVERLY RADIOLOGY MEDICAL",
+        "renderingNpi": "1730122456",
+        "specialty": "Radiation Oncology",
+        "subSpecialty": "Professional Component (26)",
+        "procedureCode": "G0279",
+        "billed": "$447.00",
+        "modifier": "26"
+      },
+      "differenceNote": "Same Tax ID, provider group and procedure code — but the rendering-provider specialties differ (Diagnostic Radiology vs Radiation Oncology), so the matching criteria are not fully met."
+    }
+  },
+  "paymentInfo": {
+    "finalizationCode": "PX_R15270",
+    "finalizationDescription": "Denied — authorization required and not on file at the time the related claim was finalized.",
+    "denialReason": "Authorization",
+    "authorizationAvailable": true,
+    "authorizationAvailableLabel": "Yes — authorization is now on file for the current claim",
+    "claim": {
+      "deductible": "$37.45",
+      "copay": "$26.61",
+      "coins": "$312.51",
+      "patientLiab": "$376.57",
+      "memberSurcharge": "$0.00",
+      "nonElg": "$0.00",
+      "hraPaid": "$0.00",
+      "claimPaid": "$894.25",
+      "pricingAllowedAmount": "$1,270.82",
+      "totalCharge": "$1,517.42",
+      "finalizationCode": "PX_P00000"
+    },
+    "provider": {
+      "providerDisc": "$246.60",
+      "providerLiab": "$246.60",
+      "providerRiskWithhold": "—",
+      "providerSurcharge": "—",
+      "interest": "—",
+      "penalty": "—",
+      "lr": "N",
+      "systemInterest": "—"
+    },
+    "drg": {
+      "keyed": "—",
+      "priced": "—",
+      "original": "—"
+    },
+    "check": {
+      "accountNumber": "9928378856",
+      "checkNumber": "496922",
+      "checkDate": "2024-12-21",
+      "amount": "—",
+      "paymentSystem": "D",
+      "checkMailedTo": "\"PO BOX 00000 CHICAGO",
+      "eftCheckDate": "2024-12-21",
+      "checkStatus": "CHECK NOT FOUND ON RECON DB",
+      "checkStatusDate": "2026-11-01",
+      "paidTo": "BEVERLY RADIOLOGY MEDICAL",
+      "finalized": "2024-12-21"
+    },
+    "payeeDetails": {
+      "flipPayee": "N"
+    }
+  },
+  "claimHeader": {
+    "general": {
+      "serviceFromThrough": "11/14/2024 - 11/16/2024",
+      "assignmentOfBenefits": "Y - Benefit assigned to provider",
+      "providerParticipation": "Non Par",
+      "providerContract": "STDX0000",
+      "treatmentAuth": "2.75687E+13",
+      "patientAccount": "M339670711",
+      "emergency": "N",
+      "employment": "No",
+      "coveredZipRadius": "—",
+      "frequency": "3",
+      "bbiIndicator": "—",
+      "pciIndicator": "—",
+      "fsbInd": "—",
+      "fsbExclusion": "T"
+    },
+    "benefitIndicators": {
+      "cob": "No",
+      "cobRule": "—",
+      "medInd": "No",
+      "medRule": "—",
+      "medicareAdvantage": "Yes",
+      "cdhp": "N",
+      "planPayer": "N",
+      "cobPercent": "0"
+    },
+    "diagnosisCodes": {
+      "dx1": "I10"
+    },
+    "conditionCodes": {
+      "code": "—"
+    }
+  },
+  "claimLines": [
+    {
+      "lineNum": "1",
+      "fromDate": "03/27/2026",
+      "toDate": "03/27/2026",
+      "pos": "11",
+      "service": "DXL",
+      "procedure": "G0279",
+      "modifiers": "—",
+      "units": "1",
+      "diagnosis": "Z98890",
+      "billed": "170.00",
+      "dedInd": "NO",
+      "coinsPercent": "27",
+      "stoploss": "No",
+      "eobTy": "—",
+      "writeoffEobTy": "$0.00",
+      "noncoveredUnit": "0",
+      "deductible": "—",
+      "otherUnit": "0",
+      "copay": "—",
+      "eobTyLast": "PX_MP",
+      "payment": "170.00"
+    },
+    {
+      "lineNum": "2",
+      "fromDate": "03/27/2026",
+      "toDate": "03/27/2026",
+      "pos": "11",
+      "service": "DXL",
+      "procedure": "77065",
+      "modifiers": "RT",
+      "units": "1",
+      "diagnosis": "Z98890",
+      "billed": "285.00",
+      "dedInd": "NO",
+      "coinsPercent": "27",
+      "stoploss": "No",
+      "eobTy": "—",
+      "writeoffEobTy": "$0.00",
+      "noncoveredUnit": "0",
+      "deductible": "—",
+      "otherUnit": "0",
+      "copay": "—",
+      "eobTyLast": "PX_MP",
+      "payment": "285.00"
+    }
+  ],
+  "claimLineSummary": {
+    "lineNum": "1",
+    "fromDate": "03/27/2026",
+    "toDate": "03/27/2026",
+    "pos": "11",
+    "service": "DXL",
+    "procedure": "G0279",
+    "modifiers": "—",
+    "units": "1",
+    "diagnosis": "Z98890",
+    "billed": "$170.00",
+    "dedInd": "NO",
+    "coinsPercent": "27",
+    "stoploss": "No",
+    "eobTy": "—",
+    "writeoffEobTy": "$0.00",
+    "noncoveredUnit": "0",
+    "deductible": "—",
+    "otherUnit": "0",
+    "copay": "—",
+    "eobTyLast": "PX_MP",
+    "payment": "$170.00"
+  },
+  "claimLineSummary2": {
+    "lineNum": "2",
+    "fromDate": "03/27/2026",
+    "toDate": "03/27/2026",
+    "pos": "11",
+    "service": "DXL",
+    "procedure": "77065",
+    "modifiers": "RT",
+    "units": "1",
+    "diagnosis": "Z98890",
+    "billed": "$285.00",
+    "dedInd": "NO",
+    "coinsPercent": "27",
+    "stoploss": "No",
+    "eobTy": "—",
+    "writeoffEobTy": "$0.00",
+    "noncoveredUnit": "0",
+    "deductible": "—",
+    "otherUnit": "0",
+    "copay": "—",
+    "eobTyLast": "PX_MP",
+    "payment": "$285.00"
+  },
+  "notes": {
+    "research": "—",
+    "mainframe": "244383",
+    "wgs": "—",
+    "taskManagement": {
+      "routedTo": "—",
+      "urgency": "67",
+      "skills": "CT-Professional",
+      "csPg": "Host",
+      "benNonspider": "—",
+      "regCa": "—",
+      "resUnrestricted": "—",
+      "totalAge": "40",
+      "homeAge": "69",
+      "ageAdjusted": "63",
+      "baselineUrgency": "62",
+      "urgencyModifiers": "Blank"
+    }
+  },
+  "search": {
+    "claims": {
+      "dcnKernalClaim": "1803457621458",
+      "claimId": "7694982976",
+      "subscriberOrHcid": "12222220",
+      "sccf": "—",
+      "procedure": "80053",
+      "serviceFrom": "10/23/2025",
+      "serviceTo": "10/23/2025",
+      "code": "—",
+      "totalCharge": "$1,517.42",
+      "status": "All",
+      "providerTaxId": "100197520",
+      "providerNpi": "9703905715",
+      "renderingLicenseId": "4733616459",
+      "billType": "131"
+    },
+    "claimsResultCount": "1 result",
+    "claimsResults": [
+      {
+        "code": "20",
+        "name": "NATALIE K OSBORNE",
+        "from": "03/27/2026",
+        "to": "03/27/2026",
+        "type": "P",
+        "provider": "BEVERLY RADIOLOGY MEDICAL",
+        "billType": "—",
+        "dcn": "2026112EG2292",
+        "charged": "$455.00",
+        "paid": "$0.00",
+        "status": "Resolved-Denied"
+      }
+    ],
+    "codeSet": {
+      "selectCodeType": "—",
+      "enterCode": "—"
+    },
+    "auth": {
+      "search": {
+        "subscriberOrHcid": "102222220",
+        "serviceStartDate": "10/23/2025",
+        "serviceEndDate": "10/23/2025",
+        "status": "—"
+      },
+      "members": {
+        "name": "JAMES",
+        "dob": "1/5/1945",
+        "ageAdjusted": "63",
+        "memberId": "339670711",
+        "mcid": "—",
+        "subscriberOrHcid": "102222220"
+      }
+    },
+    "benefits": {
+      "searchBenefits": {
+        "contractCode": "828T",
+        "effectiveDate": "2024-11-14",
+        "endDate": "2025-01-01",
+        "effectiveEndDate": "—"
+      },
+      "general": {
+        "contractCode": "828T",
+        "product": "HYWC",
+        "plan": "RAND CORP",
+        "contractState": "OH",
+        "benefitPeriod": "—",
+        "benefitPeriodAlt": "—",
+        "fundingArrangement": "—",
+        "cdhpInd": "—",
+        "groupNumber": "212037M1AA",
+        "contractId": "828T",
+        "memberName": "Mark Johnson",
+        "caseNumber": "A12192",
+        "contractType": "—",
+        "crossAccumulation": "—"
+      },
+      "viewNic": {
+        "coverage": "RX Drugs & Vision coverage",
+        "pricing": "0000 - NON NEG DEFAULT",
+        "network": "HMO"
+      },
+      "accumulators": {
+        "criteria": {
+          "memberId": "339670711",
+          "memberCode": "20",
+          "fromDate": "10/23/2025",
+          "toDate": "10/23/2025",
+          "sourceSystem": "WGS"
+        },
+        "selection": {
+          "accumulatorName": "—",
+          "benefitYear": "—",
+          "accumulatorEffDate": "—",
+          "cob": "—",
+          "deductible": "—",
+          "fertilityRx": "—",
+          "lifetime": "—",
+          "other": "—",
+          "outOfPocket": "—"
+        }
+      }
+    },
+    "provider": {
+      "npiTaxId": {
+        "npi": "9703905715",
+        "orgTaxId": "732719211",
+        "fromDate": "10/23/2025",
+        "throughDate": "10/23/2025",
+        "sourceSystem": "WGS",
+        "zipCode": "87397-7912",
+        "billingType": "—",
+        "specialty": "012",
+        "state": "OH",
+        "alternateId": "—",
+        "alternateKey": "—"
+      },
+      "practitioner": {
+        "firstName": "Mark",
+        "lastName": "Johnson",
+        "fromDate": "10/23/2025",
+        "throughDate": "10/23/2025",
+        "sourceSystem": "SPS",
+        "addressLine": "9963 JOHNSON COURSE EAST WILLIAM OH 40495-9279",
+        "city": "—",
+        "state": "OH",
+        "specialty": "012"
+      },
+      "organization": {
+        "organizationName": "Community Health Center",
+        "orgTaxId": "732719211",
+        "fromDate": "10/23/2025",
+        "throughDate": "10/23/2025",
+        "sourceSystem": "SPS",
+        "addressLine": "9963 JOHNSON COURSE EAST WILLIAM OH 40495-9279",
+        "city": "—",
+        "state": "OH",
+        "zipCode": "87397-7912",
+        "billingType": "—",
+        "specialty": "012"
+      },
+      "pcpPmg": {
+        "pcpPmgId": "—",
+        "fromDate": "10/23/2025",
+        "throughDate": "10/23/2025",
+        "sourceSystem": "SPS",
+        "specialty": "012",
+        "state": "OH"
+      },
+      "alternateId": {
+        "organizationName": "—",
+        "alternateKeyOrg": "—",
+        "individual": "—",
+        "alternateKeyIndiv": "—",
+        "nonAnthem": "—",
+        "alternateKeyNonAnthem": "—"
+      }
+    },
+    "member": {
+      "searchMember": {
+        "memberId": "55310284",
+        "firstName": "NATALIE",
+        "mi": "K",
+        "lastName": "OSBORNE",
+        "dob": "9/21/1977",
+        "relationship": "SPS - Spouse / 1-male subscriber",
+        "memberCode": "20",
+        "gender": "F",
+        "state": "OH",
+        "contractId": "828T",
+        "caseEntity": "C85674",
+        "groupNumber": "5803EH",
+        "hcid": "55310284",
+        "prefix": "YZC",
+        "effectiveDate": "2024-11-14",
+        "endDate": "2025-01-01",
+        "productCode": "Local",
+        "contractState": "OH",
+        "businessUnit": "Small Group"
+      },
+      "results": [
+        {
+          "memberId": "55310284",
+          "firstName": "NATALIE",
+          "mi": "K",
+          "lastName": "OSBORNE",
+          "dob": "9/21/1977",
+          "relationship": "SPS - Spouse / 1-male subscriber",
+          "memberCode": "20",
+          "gender": "F",
+          "state": "OH",
+          "contractGroups": [
+            {
+              "id": "cg_12222220_1",
+              "contractId": "828T",
+              "caseEntity": "C85674",
+              "groupNumber": "5803EH",
+              "hcid": "55310284",
+              "prefix": "YZC",
+              "effectiveDate": "2024-11-14",
+              "endDate": "2025-01-01",
+              "productCode": "Local",
+              "contractState": "OH",
+              "contractType": "C",
+              "cancellationDate": "2025-01-01",
+              "terminationReason": "Terminated — does not cover service dates",
+              "numberCovered": "01",
+              "updatedDate": "2024-11-14",
+              "updateById": "WMXOLEUS",
+              "applyAction": ""
+            },
+            {
+              "id": "cg_12222220_2",
+              "contractId": "828T",
+              "caseEntity": "C85674",
+              "groupNumber": "7711IG",
+              "hcid": "55310284",
+              "prefix": "YZC",
+              "effectiveDate": "2026-01-01",
+              "endDate": "2030-12-31",
+              "productCode": "Local",
+              "contractState": "OH",
+              "contractType": "C",
+              "cancellationDate": "—",
+              "terminationReason": "Future — not yet effective for service dates",
+              "numberCovered": "01",
+              "updatedDate": "2026-01-01",
+              "updateById": "WMXOLEUS",
+              "applyAction": ""
+            }
+          ]
+        }
+      ],
+      "groupOptions": {
+        "keyed": {
+          "name": "GEORGIA ELECTRIC ASSOCIATES INC",
+          "groupId": "5803EH",
+          "prefix": "YZC",
+          "businessUnit": "Small Group",
+          "effectiveDate": "2024-11-14",
+          "terminationDate": "2025-01-01",
+          "status": "Terminated",
+          "coversServiceDates": "No"
+        },
+        "alternate": {
+          "name": "GEORGIA ELECTRIC ASSOCIATES INC",
+          "groupId": "7711IG",
+          "prefix": "YZC",
+          "businessUnit": "Small Group",
+          "effectiveDate": "2026-01-01",
+          "terminationDate": "2030-12-31",
+          "status": "Future",
+          "coversServiceDates": "No"
+        }
+      },
+      "general": {
+        "name": "NATALIE OSBORNE",
+        "dateOfBirth": "9/21/1977",
+        "age": "49",
+        "sex": "F",
+        "memberId": "55310284",
+        "hcid": "55310284",
+        "relationship": "Spouse",
+        "memberCode": "20",
+        "address": "Oak Avenue  CHICAGO IL 60614",
+        "county": "47",
+        "country": "US",
+        "phone": "3153086420",
+        "effectiveDate": "2024-11-14",
+        "endDate": "2025-01-01",
+        "productType": "Local",
+        "groupType": "A - ACTIVE",
+        "cob": "—",
+        "businessUnit": "Small Group",
+        "paidToDate": "—",
+        "erisa": "N",
+        "caseGroupSetup": "Y",
+        "contractStartDate": "—",
+        "shortTermEndDate": "—",
+        "cxlProcessDate": "—",
+        "aptcIndicator": "Y",
+        "csdt": "—",
+        "caseName": "GEORGIA ELECTRIC ASSOCIATES INC",
+        "ncnReferralsInd": "N",
+        "foi": "12",
+        "roundoprd": "12",
+        "conversionCode": "0",
+        "medicareIndicator": "B"
+      },
+      "additionalAddress": {
+        "address": "620 ERICA PLAINS JOHNBERG OH 87397-7912"
+      },
+      "providerNetwork": {
+        "product": "HMO/POS",
+        "providerGroupName": "Community Health Center",
+        "address": "620 ERICA PLAINS JOHNBERG OH 87397-7912",
+        "phone": "—"
+      },
+      "contractMembers": [
+        {
+          "memberCode": "10",
+          "name": "NATALIE K OSBORNE",
+          "relationship": "SUB - Subscriber",
+          "dob": "9/21/1977",
+          "age": "49",
+          "effectiveDate": "2024-11-14",
+          "endDate": "2025-01-01"
+        },
+        {
+          "memberCode": "20",
+          "name": "NATALIE",
+          "relationship": "Spouse",
+          "dob": "9/21/1977",
+          "age": "49",
+          "effectiveDate": "2024-11-14",
+          "endDate": "2025-01-01"
+        }
+      ],
+      "group": {
+        "general": {
+          "name": "GEORGIA ELECTRIC ASSOCIATES INC",
+          "status": "O ACTIVE",
+          "companyCode": "886C ABCBS",
+          "paidToDate": "2025-10-10",
+          "locationStateCode": "CA",
+          "locationCodeEffectiveDate": "2024-05-18",
+          "workLocation": "9040 GA GROUP ADMIN",
+          "workLocationPhone": "(830) 922-1034",
+          "rateMethodCode": "1 ASO BUSINESS",
+          "rmcEffectiveDate": "2025-10-31",
+          "groupType": "A ACTIVE",
+          "fundingTypeCode": "H ASC",
+          "graceDays": "90",
+          "claimGraceDays": "90"
+        },
+        "coverage": {
+          "originalEffectiveDate": "2025-12-11",
+          "groupProcessedDate": "2024-09-16",
+          "reinstateEffectiveDate": "—",
+          "reinstateProcessedDate": "—",
+          "cancelEffectiveDate": "—",
+          "cancelProcessedDate": "—",
+          "cancelReason": "—"
+        },
+        "contract": {
+          "productLine": "Blue Access PPO",
+          "claimsRoute": "PX_OHSTRC - STERIS CORP",
+          "benefitYearCalendarYear": "CY",
+          "benefitYearCalendarYearAsOfDate": "2024-06-08",
+          "contractCode": "82D3",
+          "contractCodeEffectiveDate": "2025-08-01",
+          "promptPay": "N",
+          "promptPayDate": "2025-05-11",
+          "itsHomeParticipatingCode": "E CONTROL CUSTOM",
+          "itsHomeEffectiveDate": "2025-04-22",
+          "locationLobCode": "X",
+          "overAgeMailing": "S MAIL TO SUBR",
+          "networkId": "BLUECDOO",
+          "networkName": "BLUE XXXX BLUE XXXX"
+        },
+        "additional": {
+          "product": "OPENACCPOS",
+          "mbuCode": "NAO00000",
+          "claimsServiceLocation": "COOIO/CAACOII",
+          "serviceManager": "SRVC/DARLENE",
+          "claimManager": "CLMS/M PENNER",
+          "servicePhone": "582718617",
+          "serviceAddress": "620 ERICA PLAINS JOHNBERG OH 87397-7912",
+          "sourceSystem": "WGS 2.0"
+        }
+      }
+    },
+    "limitedLiability": {
+      "memberId": "102222220",
+      "memberCode": "20",
+      "dob": "1/5/1945",
+      "activeRecords": "—",
+      "allRecords": "—"
+    },
+    "pricing": {
+      "member": {
+        "dob": "1/5/1945",
+        "sex": "M",
+        "groupNumber": "5803EH",
+        "groupId": "5803EH",
+        "networkId": "BLUECS",
+        "memberZipCode": "87397",
+        "alternateZipCode": "—",
+        "medicareInd": "Y",
+        "hixInd": "—",
+        "marketType": "GANA",
+        "memberInd": "—",
+        "ab72": "—",
+        "patientCode": "—",
+        "product": "JBNK",
+        "variance": "1",
+        "coverage": "MED",
+        "groupIdentifier": "5803EH"
+      },
+      "provider": {
+        "taxId": "732719211",
+        "renderingNumber": "9703905715",
+        "billingNumber": "7635473142",
+        "renderingNpi": "9703905715",
+        "billingNpi": "7635473142",
+        "license": "4733616459",
+        "specialty": "012",
+        "zipCode": "87397-7912",
+        "planInd": "WI",
+        "wgsp": "P",
+        "pcpState": "OH",
+        "region": "598",
+        "gbdId": "—",
+        "providerInd": "P",
+        "providerParticipation": "—",
+        "providerProdVar": "WIP02186",
+        "networxInd": "—",
+        "finalMixer": "—",
+        "legacySpecialty": "—"
+      },
+      "claimHeader": {
+        "serviceFrom": "10/23/2025",
+        "serviceTo": "10/23/2025",
+        "placeOfService1": "1",
+        "placeOfService2": "21",
+        "cxtInd": "X",
+        "productLineCode": "OA",
+        "serviceClassType": "—",
+        "emergRefInd": "E",
+        "icd9": "N",
+        "federalMandate": "—",
+        "cocInd": "—",
+        "mixerOverrideInd": "—",
+        "streetMedicineInd": "None",
+        "surpriseBillingInd": "—",
+        "cgntInd": "—",
+        "product": "HOSP",
+        "variance": "2202",
+        "contractNotes": "—",
+        "overridePriceProduct": "—",
+        "contractHierarchy": "—",
+        "bundleStatus": "—",
+        "clusterId": "—"
+      },
+      "diagnosisCodes": {
+        "a": "Z1231",
+        "b": "—",
+        "c": "—",
+        "d": "—",
+        "e": "—"
+      },
+      "lineSummary": {
+        "procedure": "80053",
+        "modifier": "26",
+        "uo": "1",
+        "cxPercent": "71",
+        "allowed": "$760.55",
+        "billedAmount": "$887.88",
+        "writeoff": "$127.33"
+      }
+    }
+  },
+  "system": {
+    "benefitRecommendation": {
+      "contractCode": "828T",
+      "effectiveDate": "2024-11-14",
+      "endDate": "2025-01-01",
+      "planState": "OH",
+      "planDescription": "Rand corporation 2025/01/01 PPO E636"
+    }
+  },
+  "attachment": {
+    "pwk": {
+      "type": "-",
+      "view": "-"
+    }
+  },
+  "claimData": {
+    "details": {
+      "claimType": "PA - Professional",
+      "claimSource": {
+        "mediaType": "PC",
+        "pricingSource": "W",
+        "pricingSystem": "WP",
+        "mixerPar": "Y",
+        "receiverId": "WGSGA",
+        "receivedAtEdi": "2024-11-22",
+        "providerError": "I000",
+        "imageControlNumber": "CI25281103489293491",
+        "authNumber": "—",
+        "authExcln": "—",
+        "vendorIndicator": "—",
+        "receivedDate": "2024-11-22",
+        "splitInd": "—",
+        "epactPlm": "—",
+        "gnyhaInd": "—",
+        "imrIndicator": "—",
+        "cliaId": "—",
+        "cliaQualifier": "—"
+      },
+      "ancillaryProvider": {
+        "type": "—",
+        "zip": "—",
+        "state": "—"
+      },
+      "ambulance": {
+        "pickupZip": "—",
+        "dropoffZip": "—"
+      },
+      "miscellaneous": {
+        "epsdt": "—",
+        "familyPlanning": "No",
+        "gtessDate": "—",
+        "dateOfIllness": "—",
+        "dateOfInjury": "—",
+        "lastMenstrualDate": "—",
+        "consultationDate": "—",
+        "eruDecision": "—",
+        "jaaErrorCode": "No"
+      },
+      "stopData": {
+        "stopEdit": "No",
+        "lobParentRule": "—",
+        "lobChildRule": "ALL WGS",
+        "lobSequence": "1",
+        "medBusinessParentRule": "NA",
+        "medBusinessChildRule": "656881",
+        "medSequence": "51"
+      },
+      "refundData": {
+        "correspondenceNumber": "—",
+        "refundAmount": "$0.00",
+        "adjustmentReasonCode": "PX_4",
+        "correctedClaimDcn": "—",
+        "vendorName": "—",
+        "delayReason": "—",
+        "carveOut": "2026-12-08",
+        "adjustmentReceipt": "2024-08-06"
+      },
+      "highDollar": {
+        "riskOutcome": "—"
+      }
+    },
+    "editing": {
+      "claimXten": {
+        "originalLine": {
+          "lineNum": "1",
+          "serviceDate": "10/23/2025",
+          "procedure": "80053",
+          "mod": "26",
+          "units": "1",
+          "billedAmount": "$887.88"
+        },
+        "proposedLine": {
+          "lineNum": "1",
+          "procedure": "99205",
+          "mod": "26",
+          "units": "1",
+          "supportCode": "—",
+          "payPercent": "93",
+          "billedAmount": "$887.88"
+        }
+      },
+      "ihealth": {
+        "originalLine": {
+          "lineNum": "1",
+          "serviceDate": "10/23/2025",
+          "procedure": "80053",
+          "mod": "26",
+          "units": "1",
+          "allowedAmount": "$760.55",
+          "savingsAmount": "$127.33"
+        },
+        "proposedLine": {
+          "procedure": "99205",
+          "mod": "26",
+          "units": "1",
+          "payPercent": "68",
+          "status": "PX_P"
+        }
+      }
+    },
+    "benefits": {
+      "accumulator1": {
+        "type": "BENYTD",
+        "fromDate": "2024-11-14",
+        "toDate": "2024-11-16",
+        "unit": "Dollar",
+        "status": "Accrued"
+      },
+      "accumulator2": {
+        "type": "MMCYTD",
+        "fromDate": "2024-11-14",
+        "toDate": "2024-11-16",
+        "unit": "Dollar",
+        "status": "Accrued"
+      }
+    },
+    "promptPay": {
+      "claim": {
+        "status": "PX_WGS",
+        "state": "—",
+        "ruleId": "—",
+        "systemInterest": "$0.00",
+        "penaltyAmount": "$0.00",
+        "manualInterestAmount": "—"
+      },
+      "calculation": {
+        "calculationFromDate": "2024-12-14",
+        "carveoutDate": "—",
+        "lastProcessedDate": "2024-12-14",
+        "baseAmount": "$0.00",
+        "calculatedInterestAmount": "$0.00",
+        "processedInDays": "0",
+        "mailingDays": "0",
+        "disburseDays": "0",
+        "allowedDays": "0",
+        "carveoutDays": "0",
+        "lateByDays": "0",
+        "dailyInterest": "$0.00"
+      },
+      "miscellaneous": {
+        "carveoutReasonCode": "PX_0",
+        "dayIndicator": "0",
+        "receiptMethod": "—",
+        "productFundType": "W",
+        "interestRate": "—",
+        "penalty": "—",
+        "minimumPayAmount": "—",
+        "erMinimumPay": "—",
+        "annualMonthlyPenalty": "—",
+        "mlhDate": "24319",
+        "ppStopDate": "—",
+        "additionalInformationRequestDate": "—",
+        "tdiInterestAmount": "—",
+        "tdiPenaltyAmount": "—"
+      }
+    },
+    "review": {
+      "utilization": {
+        "service": {
+          "lineNum": "1",
+          "procedure": "G0279",
+          "revenueCode": "0981",
+          "date": "03/27/2026",
+          "revenueCodeDate": "0981",
+          "ruleId": "AIMCADRUG",
+          "caseNumber": "6509985983"
+        }
+      },
+      "authorization": {
+        "rows": [
+          {
+            "id": "auth_6509985983",
+            "authNumber": "6509985983",
+            "dateRange": "03/27/2026–03/27/2026",
+            "procedure": "G0279",
+            "provider": "Hailey",
+            "status": "Approved",
+            "serviceType": "Medical",
+            "score": "65%",
+            "memberName": "NATALIE K OSBORNE",
+            "memberCode": "20",
+            "detailProcedure": "G0279",
+            "requestedUnits": "1",
+            "approvedUnits": "1",
+            "pos": "11"
+          }
+        ]
+      },
+      "cdhp": {
+        "claim": {
+          "litesClaim": "—",
+          "rsnEobCode": "—",
+          "hraPaidTotal": "$0.00",
+          "hraEndingBalance": "$0.00",
+          "paymentCode": "—",
+          "cdhpAdmin": "—",
+          "acknowledgementRcvd": "—",
+          "requeryCount": "—"
+        },
+        "lineSummary": {
+          "lineNum": "1",
+          "procedure": "80053",
+          "billed": "$887.88",
+          "patientResp": "—",
+          "hraPaid": "—",
+          "rsnCode": "—"
+        }
+      },
+      "dofr": {
+        "meta": {
+          "inzip": "—",
+          "providerNetworkCode": "—",
+          "dofrId1": "—",
+          "dofrName1": "—",
+          "relationship": "—",
+          "pgmId": "—",
+          "pgId": "—",
+          "umDelegationIndicator": "—",
+          "effectiveDate": "—",
+          "endDate": "—"
+        },
+        "lineSummary": {
+          "lineNum": "1",
+          "procedure": "80053",
+          "revenueCode": "0777",
+          "serviceCategory": "—",
+          "event": "—",
+          "capIndicator": "—",
+          "risk": "—",
+          "groupCode": "—",
+          "hc": "PP"
+        }
+      }
+    },
+    "relatedSummary": {
+      "code": "76",
+      "name": "Mark Johnson",
+      "fromDate": "10/23/2025",
+      "toDate": "10/23/2025",
+      "type": "—",
+      "provider": "Community Health Center",
+      "dcn": "1803457621458",
+      "charged": "$1,517.42",
+      "paid": "$894.25",
+      "status": "—"
+    }
+  },
+  "claimScenarios": {
+    "applicable": "None of the listed claim scenarios apply",
+    "rows": [
+      {
+        "label": "Surgeries (Anesthesia & CRNA, Epidural & General Anesthesia, Surgery & Assistant/Co-Surgery)",
+        "applicable": false,
+        "applicableLabel": "Surgeries (anesthesia/CRNA, epidural, assistant/co-surgery) — Not applicable"
+      },
+      {
+        "label": "Either of the claims contain modifiers",
+        "applicable": false,
+        "applicableLabel": "Either of the claims contain modifiers — Not applicable"
+      },
+      {
+        "label": "ACA California HMO Encounter claim",
+        "applicable": false,
+        "applicableLabel": "ACA California HMO Encounter claim — Not applicable"
+      },
+      {
+        "label": "A QCM event is setting on the claim",
+        "applicable": false,
+        "applicableLabel": "QCM event on the claim — Not applicable"
+      },
+      {
+        "label": "Both claims billed with an ambulance service",
+        "applicable": false,
+        "applicableLabel": "Ambulance service — Not applicable"
+      },
+      {
+        "label": "Both claims billed with procedure code 62270",
+        "applicable": false,
+        "applicableLabel": "Procedure code 62270 (diagnostic spinal/lumbar puncture) — Not applicable"
+      },
+      {
+        "label": "Both claims billed with an administration service (90460-90461)",
+        "applicable": false,
+        "applicableLabel": "Administration services (90460-90461) — Not applicable"
+      }
+    ]
+  },
+  "priorClaim": {
+    "note": "History claim — opened in the same layout as the current claim. Review the Rendering provider's Specialty Description.",
+    "header": {
+      "dcn": "2026112EG2292",
+      "receiptDate": "04/22/2026",
+      "serviceFrom": "03/27/2026",
+      "serviceTo": "03/27/2026",
+      "status": "Resolved-Denied"
+    },
+    "rendering": {
+      "npi": "1730122456",
+      "name": "BEVERLY RADIOLOGY MEDICAL",
+      "taxId": "954651287",
+      "specialty": "029",
+      "specialtyDescription": "RADIATION ONCOLOGY",
+      "taxonomy": "2085R0001X"
+    },
+    "line": {
+      "lineNum": "1",
+      "fromDate": "03/27/2026",
+      "procedure": "G0279",
+      "modifiers": "26",
+      "units": "1",
+      "billed": "$455.00"
+    },
+    "determinationNote": "The history claim's rendering-provider Specialty Description is RADIATION ONCOLOGY, while the current claim's is DIAGNOSTIC RADIOLOGY. Because the rendering providers differ, verify whether the remaining criteria match — same Tax ID, Provider Group, Specialty/Sub-specialty, Date of Service, Procedure Code, Billed Amount, and no/same Modifier (line level). The specialties differ, so the criteria are not fully met — continue to the next step."
+  },
+  "duplicate": {
+    "rows": [
+      {
+        "code": "20",
+        "name": "NATALIE K OSBORNE",
+        "from": "20260327",
+        "to": "20260327",
+        "type": "P",
+        "provider": "BEVERLY RADIOLOGY MEDICAL",
+        "dcn": "2026112EG2292",
+        "charged": "455.00",
+        "paid": "0",
+        "status": "Resolved-Denied"
+      }
+    ],
+    "compare": {
+      "sections": [
+        {
+          "id": "attachments",
+          "title": "Attachments",
+          "rows": []
+        },
+        {
+          "id": "additional",
+          "title": "Additional Claim Data",
+          "rows": []
+        },
+        {
+          "id": "provider",
+          "title": "Provider",
+          "rows": [
+            {
+              "field": "Rendering Address",
+              "currentDcn": "",
+              "historyDcn": "18133 VENTURA BLVD SUITE 20 TARZANA, CA, 91356-7134"
+            },
+            {
+              "field": "Billing Number",
+              "currentDcn": "6004308478",
+              "historyDcn": "6004647110"
+            },
+            {
+              "field": "Pricing ZIP",
+              "currentDcn": "90025-3303",
+              "historyDcn": "91356-7134"
+            }
+          ]
+        },
+        {
+          "id": "header",
+          "title": "Claim Header",
+          "rows": []
+        },
+        {
+          "id": "lines",
+          "title": "Claim Lines",
+          "rows": [
+            {
+              "field": "Modifiers",
+              "currentDcn": "",
+              "historyDcn": "RT"
+            }
+          ]
+        }
+      ]
+    },
+    "matching": {
+      "fields": [
+        {
+          "label": "Tax ID",
+          "current": "954651287",
+          "history": "954651287"
+        },
+        {
+          "label": "Group or Provider name",
+          "current": "BEVERLY RADIOLOGY MEDICAL",
+          "history": "BEVERLY RADIOLOGY MEDICAL"
+        },
+        {
+          "label": "Rendering provider / NPI",
+          "current": "1962457812",
+          "history": "1730122456"
+        },
+        {
+          "label": "Attachments",
+          "current": "None",
+          "history": "None"
+        },
+        {
+          "label": "Date of service",
+          "current": "03/27/2026",
+          "history": "03/27/2026"
+        },
+        {
+          "label": "Place of treatment",
+          "current": "11 - Office",
+          "history": "11 - Office"
+        },
+        {
+          "label": "Procedure code",
+          "current": "G0279",
+          "history": "G0279"
+        },
+        {
+          "label": "Modifiers",
+          "current": "—",
+          "history": "RT"
+        },
+        {
+          "label": "Diagnosis codes",
+          "current": "Z98890",
+          "history": "Z98890"
+        },
+        {
+          "label": "National Drug Codes",
+          "current": "—",
+          "history": "—"
+        },
+        {
+          "label": "Billed amount",
+          "current": "455.00",
+          "history": "455.00"
+        },
+        {
+          "label": "Units of occurrence",
+          "current": "1",
+          "history": "1"
+        }
+      ]
+    },
+    "historyClaim": {
+      "dcn": "2026112EG2292",
+      "status": "Resolved-Denied",
+      "statusLabel": "Rejected",
+      "openClaimDetailMessage": "In real application, you need to follow guidelines to check if the history claim is processed correctly. In this scenario, consider this history claim is processed correctly."
+    }
+  },
+  "randomization": {
+    "fields": [
+      {
+        "strategy": "linked_group",
+        "dataKeys": [
+          "memberInfo.patient.firstName",
+          "memberInfo.patient.middleName",
+          "memberInfo.patient.lastName"
+        ],
+        "pool": [
+          ["LINDA", "R", "CARTER"],
+          ["JAMES", "P", "OKONKWO"],
+          ["PRIYA", "S", "RAMANATHAN"],
+          ["DERRICK", "L", "WHITFIELD"],
+          ["NATALIE", "K", "OSBORNE"]
+        ]
+      },
+      {
+        "strategy": "pick_from_pool",
+        "dataKey": "memberInfo.patient.dob",
+        "pool": ["3/14/1972", "8/29/1965", "11/2/1980", "6/7/1958", "9/21/1977"]
+      },
+      {
+        "strategy": "pick_from_pool",
+        "dataKey": "memberInfo.patient.hcid",
+        "pool": ["21884503", "47120936", "63095221", "80457718", "55310284"]
+      }
+    ]
+  }
+}

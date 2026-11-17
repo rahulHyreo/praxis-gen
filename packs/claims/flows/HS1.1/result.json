@@ -1,0 +1,67 @@
+{
+  "$schema": "training-platform/v1/flow-result",
+  "$version": "1.0.0",
+  "id": "result_hs1_1_hsa_cob_deductible_workaround",
+  "rubric": {
+    "expectedDecision": "pay",
+    "expectedReasonCode": null,
+    "requiredStepIds": [
+      "step_001",
+      "step_002",
+      "step_003",
+      "step_004",
+      "step_005",
+      "step_006",
+      "step_007",
+      "step_008",
+      "step_009",
+      "step_010",
+      "step_011"
+    ],
+    "weights": {
+      "navigator": 110,
+      "decision": 20,
+      "reasonCode": 0
+    },
+    "deductions": {
+      "perMissedRequiredStep": 0,
+      "wrongDecision": 20,
+      "wrongReasonCode": 0
+    }
+  },
+  "resultConfig": {
+    "passLabel": "Passed!",
+    "failLabel": "You did not meet the pass mark.",
+    "passDescription": "Great work — you identified PX_HS1 as the hard edit among the seven events and confirmed nothing of higher priority preceded it, found the Limited Liability record showing Our Insurance secondary and already updated with the primary's processing, confirmed from the Product field that the secondary plan is an HSA plan, validated, set the COB indicators on the Claim Header so the claim records how the coordination was applied, and then did the part the system would never have prompted you for: you read what validation had done, saw the full $250.00 allowed amount sitting on the secondary's deductible when the primary had already taken that same deductible, moved it to Non-covered under EOB code 00003 so the member was not charged twice for one claim, re-validated to clear the deductible, and paid.",
+    "failDescription": "Pass mark is {passMark}%. Review the steps below to see where you can improve.",
+    "scoreCircle": {
+      "radius": 40,
+      "strokeWidth": 8,
+      "passColor": "#3B6D11",
+      "failColor": "#A32D2D",
+      "trackColor": "#E5E7EB"
+    },
+    "statBoxes": [
+      {
+        "id": "navigator_score",
+        "label": "Navigator",
+        "dataKey": "navigatorScore",
+        "max": 110
+      },
+      {
+        "id": "decision_score",
+        "label": "Decision",
+        "dataKey": "decisionScore",
+        "max": 20
+      },
+      {
+        "id": "time_taken",
+        "label": "Time Taken",
+        "dataKey": "timeTakenSeconds",
+        "format": "duration"
+      }
+    ],
+    "retakeButton": true,
+    "backToClaimsButton": true
+  }
+}

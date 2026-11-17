@@ -1,0 +1,158 @@
+{
+  "$schema": "training-platform/v1/flow-state",
+  "$version": "1.0.0",
+  "id": "state_wdmx_2_dme_limits",
+  "initial": {
+    "defaultActiveTabId": "tab_claim_lines",
+    "defaultActiveSubTabIds": {
+      "tab_search": "subtab_search_pricing",
+      "tab_claim_data": "subtab_claim_data_details"
+    },
+    "defaultCollapsedSections": {},
+    "defaultDecision": "",
+    "decisionRequired": true
+  },
+  "modeConfig": {
+    "training": {
+      "id": "training",
+      "label": "Training mode",
+      "badgeIcon": "graduation-cap",
+      "showNavigator": true,
+      "timerType": "count_up",
+      "timerPosition": "navigator_header",
+      "timeLimitSeconds": null,
+      "timeLockEnabled": false,
+      "showHints": true,
+      "showMarkCompleteButton": true,
+      "allowTabClose": true
+    },
+    "practice": {
+      "id": "practice",
+      "label": "Practice mode",
+      "badgeIcon": "target",
+      "showNavigator": false,
+      "timerType": "count_up",
+      "timerPosition": "topbar",
+      "timeLimitSeconds": null,
+      "timeLockEnabled": false,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": true
+    },
+    "assessment": {
+      "id": "assessment",
+      "label": "Assessment mode",
+      "badgeIcon": "clipboard-check",
+      "showNavigator": false,
+      "timerType": "count_down",
+      "timerPosition": "topbar",
+      "timeLimitSeconds": 900,
+      "timeLockEnabled": true,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": false,
+      "beforeUnloadWarning": "Leaving this page will end your assessment attempt."
+    }
+  },
+  "actions": {
+    "get_pricing_purchase": {
+      "label": "Get Pricing — surface the DME purchase price",
+      "latencyMs": 400,
+      "guard": {
+        "all": [
+          {
+            "dataKey": "search.pricing.claimLines.line1.modifier",
+            "equals": "NU"
+          },
+          {
+            "dataKey": "search.pricing.claimLines.line1.billedAmount",
+            "equals": "100000"
+          }
+        ],
+        "elseWrites": {
+          "search.pricing.purchasePriceNote": "No purchase price returned. Two things must both be true before the pricing engine will quote a purchase: the Modifier must be NU (this line is billed RR, a rental), and the Billed amount in this section must be 100000 so the quote is not capped at the billed charge. Set both, then click Get Pricing again."
+        }
+      },
+      "writes": {
+        "search.pricing.claimLines.line1.allowed": "401.00",
+        "search.pricing.purchasePriceNote": "Purchase price for E0601 is $401.00. At a rental of $40.10 a month the plan buys this equipment outright after 10 rentals — which is why the SPI-CLM record on file runs from 01/01/2026 to 10/01/2026. Every rental allowed so far counts against this $401."
+      },
+      "completesStepId": "step_005"
+    },
+    "get_pricing_allowed": {
+      "label": "Get Pricing — the allowed amount for this claim",
+      "latencyMs": 400,
+      "writes": {
+        "search.pricing.results.allowed": "40.10",
+        "search.pricing.results.comparisonNote": "The system suggests an allowed amount of $40.10 for this claim. The SPI-CLM record shows $120.30 of allowance remaining, and $40.10 is less than $120.30 — so this rental can be allowed in full with no reduction. Note the general rule for the opposite case: where a claim’s allowed amount exceeds the remaining allowance in the SPI-CLM record, pay only up to the purchase price."
+      },
+      "completesStepId": "step_008"
+    },
+    "open_ll_record_edit": {
+      "label": "Edit — open the SPI-CLM record for update",
+      "latencyMs": 250,
+      "writes": {
+        "search.limitedLiability.editRecord.notes": "E0601 / NU: $401, RR: $40.10, PTD: 280.70, REM: $120.30 / DOS: 1/5/2026, 2/5/2026, 3/5/2026, 4/5/2026, 5/5/2026, 6/5/2026, 7/5/2026 / DCN: DCN-619146, DCN-629106, DCN-639506, DCN-689146, DCN-612146, DCN-621136, DCN-699506"
+      },
+      "completesStepId": "step_010"
+    },
+    "update_ll_record": {
+      "label": "Update — save the amended SPI-CLM record",
+      "latencyMs": 400,
+      "writes": {
+        "search.limitedLiability.results.0.description": "E0601 | NU: $401 | RR: $40.10 | PTD: $320.80 | REM: $80.20 | DOS: 1/5/2026, 2/5/2026, 3/5/2026, 4/5/2026, 5/5/2026, 6/5/2026, 7/5/2026, 8/5/2026 | DCN: DCN-619146, DCN-629106, DCN-639506, DCN-689146, DCN-612146, DCN-621136, DCN-699506, DCN-9680300",
+        "search.limitedLiability.recordNotes": "E0601 / NU: $401, RR: $40.10, PTD: 320.80, REM: $80.20 / DOS: 1/5/2026, 2/5/2026, 3/5/2026, 4/5/2026, 5/5/2026, 6/5/2026, 7/5/2026, 8/5/2026 / DCN: DCN-619146, DCN-629106, DCN-639506, DCN-689146, DCN-612146, DCN-621136, DCN-699506, DCN-9680300",
+        "search.limitedLiability.editRecord.updateNote": "SPI-CLM record updated. The record now shows PTD $320.80 and REM $80.20 — $80.20 of the $401 purchase price is left to apply to future rentals. The claim can be paid.",
+        "search.limitedLiability.remainingNote": "Reconciled and extended. Seven history rentals at $40.10 came to $280.70; this claim adds $40.10 for a paid-to-date of $320.80, leaving $80.20 of the $401 purchase price."
+      },
+      "completesStepId": "step_012"
+    },
+    "open_history_claim_1": {
+      "label": "Open claim detail — history claim 1",
+      "latencyMs": 200,
+      "writes": {},
+      "completesStepId": ["step_006", "step_009"]
+    },
+    "open_history_claim_2": {
+      "label": "Open claim detail — history claim 2",
+      "latencyMs": 200,
+      "writes": {},
+      "completesStepId": ["step_006", "step_009"]
+    },
+    "open_history_claim_3": {
+      "label": "Open claim detail — history claim 3",
+      "latencyMs": 200,
+      "writes": {},
+      "completesStepId": ["step_006", "step_009"]
+    },
+    "open_history_claim_4": {
+      "label": "Open claim detail — history claim 4",
+      "latencyMs": 200,
+      "writes": {},
+      "completesStepId": ["step_006", "step_009"]
+    },
+    "open_history_claim_5": {
+      "label": "Open claim detail — history claim 5",
+      "latencyMs": 200,
+      "writes": {},
+      "completesStepId": ["step_006", "step_009"]
+    },
+    "open_history_claim_6": {
+      "label": "Open claim detail — history claim 6",
+      "latencyMs": 200,
+      "writes": {},
+      "completesStepId": ["step_006", "step_009"]
+    },
+    "open_history_claim_7": {
+      "label": "Open claim detail — history claim 7",
+      "latencyMs": 200,
+      "writes": {},
+      "completesStepId": ["step_006", "step_009"]
+    }
+  },
+  "persistence": {
+    "persistKey": null,
+    "autosave": false,
+    "resetOnSubmit": false
+  }
+}

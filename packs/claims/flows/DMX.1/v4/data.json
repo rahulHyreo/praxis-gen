@@ -1,0 +1,751 @@
+{
+  "$schema": "training-platform/v1/workspace-data",
+  "$version": "2.0.0",
+  "id": "claim_data_dmx_1_dcn_614101",
+  "claimId": "claim_dmx_1_001",
+  "dcn": "DCN-9650400",
+  "flowId": "flow_dme_limits_dmx_1",
+  "navigatorSchemaId": "nav_dmx_1_dme_limits",
+  "correctDecision": "pay",
+  "correctDecisionLabel": "Pay",
+  "correctReasonCode": "",
+  "claim": {
+    "dcn": "DCN-9650400",
+    "status": "Pended — PX_DMX",
+    "receivedDate": "2026-05-26",
+    "processingType": "Original processing",
+    "lineOfBusiness": "Commercial",
+    "par": "Par"
+  },
+  "header": {
+    "dcn": "DCN-9650400",
+    "memberName": "HANNAH B VOSS",
+    "memberId": "452097863",
+    "providerName": "CASCADE DME PARTNERS INC",
+    "providerTaxId": "931586402",
+    "billed": "$5000.00",
+    "serviceFrom": "2026-05-15",
+    "serviceTo": "2026-05-15"
+  },
+  "eventResolution": {
+    "editCode": "PX_DMX",
+    "description": "DME maximum met — the member has already accrued against the DME rental/purchase cap for this provider and procedure. The allowable on this claim must be reduced to the amount still remaining under the purchase price before it can pay.",
+    "severity": "Hard edit",
+    "status": "Open — current event",
+    "hierarchyNote": "PX_DMX is the only hard edit on this claim. PX_DMY is a soft edit and requires no claim action, so nothing ranks above PX_DMX in the event hierarchy.",
+    "edits": [
+      {
+        "code": "PX_DMX",
+        "description": "DME maximum met — reduce the allowable to the remaining purchase price",
+        "type": "Hard edit",
+        "hierarchyRank": "1",
+        "status": "Open — resolve now"
+      },
+      {
+        "code": "PX_DMY",
+        "description": "DME rental accumulator advisory",
+        "type": "Soft edit",
+        "hierarchyRank": "—",
+        "status": "No action required"
+      }
+    ],
+    "bypassCode": "",
+    "bypassStatus": "Not validated — select a bypass code and click Validate."
+  },
+  "memberInfo": {
+    "group": {
+      "groupId": "W22640M001",
+      "product": "BC PPO INCENTIVE",
+      "groupName": "CASE W22640",
+      "networkId": "BLUECDOO",
+      "networkName": "BLUE XXXX BLUE XXXX",
+      "groupContract": "MHTR",
+      "detailContractCode": "MHTR"
+    },
+    "patient": {
+      "dob": "1/5/1945",
+      "pcp": "—",
+      "sex": "M",
+      "hcid": "452097863",
+      "erisa": "Y",
+      "lastName": "VOSS",
+      "pcpState": "—",
+      "firstName": "HANNAH",
+      "memberCode": "10",
+      "middleName": "B",
+      "programCode": "—",
+      "contractType": "C",
+      "memberPrefix": "RDX",
+      "relationship": "SPS - Spouse",
+      "pcpRelationship": "—"
+    },
+    "subscriber": {
+      "address": "Oak Avenue  CHICAGO IL 60614",
+      "lastName": "VOSS",
+      "firstName": "HANNAH",
+      "middleName": "B",
+      "subscriberId": "452097863"
+    }
+  },
+  "claimImage": {
+    "additional": {
+      "its": {
+        "account": {
+          "aso": "—",
+          "stateId": "—",
+          "accountType": "—",
+          "originalGroup": "—",
+          "deliveryMethod": "—",
+          "originalCertificate": "—"
+        },
+        "pricing": {
+          "primarySop": "—",
+          "tertiarySop": "—",
+          "cobCalMethod": "—",
+          "secondarySop": "—"
+        },
+        "providers": {
+          "eft835": "—",
+          "serviceZip": "—",
+          "mppqAssignUnassigned": "—",
+          "ppoNetworkAvailability": "—",
+          "ppoProviderAvailability": "—"
+        }
+      },
+      "sfdf": {
+        "primacy": "—",
+        "dfMessage": "—",
+        "sfMessage": "—",
+        "totalDaysVisits": "—",
+        "autoOtherAccident": "—"
+      },
+      "stopData": {
+        "stopEdit": "-",
+        "lobSequence": "-",
+        "medSequence": "-",
+        "lobChildRule": "-",
+        "lobParentRule": "-",
+        "medBusinessChildRule": "-",
+        "medBusinessParentRule": "-"
+      },
+      "ambulance": {
+        "pickupZip": "-",
+        "dropoffZip": "-"
+      },
+      "highDollar": {
+        "riskOutcome": "-"
+      },
+      "refundData": {
+        "carveOut": "-",
+        "vendorName": "-",
+        "delayReason": "-",
+        "refundAmount": "-",
+        "adjustmentReason": "-",
+        "correspondenceNumber": "-",
+        "adjustmentReceiptDate": "-"
+      },
+      "claimSource": {
+        "mixerPar": "-",
+        "authExcln": "-",
+        "mediaType": "-",
+        "authNumber": "-",
+        "receiverId": "WI",
+        "receivedDate": "-",
+        "pricingSource": "-",
+        "pricingSystem": "-",
+        "providerError": "-",
+        "receivedAtEdi": "-",
+        "vendorIndicator": "-",
+        "originalReferenceNumber": "-"
+      },
+      "miscellaneous": {
+        "epsdt": "-",
+        "gtessDate": "-",
+        "dateOfInjury": "-",
+        "dateOfIllness": "-",
+        "familyPlanning": "-",
+        "consultationDate": "-",
+        "lastMenstrualDate": "-"
+      },
+      "claimLineDetail": [
+        {
+          "lineNum": "—",
+          "blankDateInd": "—",
+          "approvedDenyInd": "—"
+        },
+        {
+          "lineNum": "—",
+          "blankDateInd": "—",
+          "approvedDenyInd": "—"
+        }
+      ],
+      "ancillaryProvider": {
+        "zip": "-",
+        "type": "-",
+        "state": "-"
+      }
+    },
+    "memberDetails": {
+      "patient": {
+        "dob": "1/5/1945",
+        "pcp": "—",
+        "sex": "M",
+        "hcid": "452097863",
+        "erisa": "Y",
+        "groupId": "W22640M001",
+        "product": "BCPI",
+        "lastName": "VOSS",
+        "pcpState": "—",
+        "firstName": "HANNAH",
+        "memberCode": "10",
+        "middleName": "B",
+        "contractType": "C",
+        "memberPrefix": "RDX",
+        "relationship": "SPS - Spouse",
+        "groupContract": "MHTR",
+        "pcpRelationship": "—",
+        "detailContractCode": "E636"
+      },
+      "subscriber": {
+        "address": "Oak Avenue  CHICAGO IL 60614",
+        "lastName": "VOSS",
+        "firstName": "HANNAH",
+        "middleName": "B",
+        "subscriberId": "452097863"
+      },
+      "totalClaimLines": "1"
+    }
+  },
+  "providerInfo": {
+    "billing": {
+      "npi": "2000000000",
+      "name": "CASCADE DME PARTNERS INC",
+      "taxId": "931586402",
+      "address": "XXXX PARK Road WAUWATOSA WI 53213",
+      "taxonomy": "100000000X",
+      "medicareId": "—",
+      "providerSps": "6667778888",
+      "facilityType": "—",
+      "locationCode": "—",
+      "providerEpin": "—",
+      "nationalState": "WI",
+      "timelyFilingLimit": "—",
+      "bhaProviderIndicator": "YN"
+    },
+    "referring": {
+      "npi": "1212121212",
+      "referringPhysician": "A"
+    },
+    "rendering": {
+      "npi": "1000000000",
+      "name": "CASCADE DME PARTNERS INC",
+      "address": "XXXX PARK Road WAUWATOSA WI 53213",
+      "license": "1111111111",
+      "taxonomy": "0000R0000X",
+      "specialty": "676",
+      "pricingZip": "53226-3522",
+      "providerSps": "7000000000",
+      "pricingState": "WI",
+      "providerEpin": "—",
+      "networkOption": "N",
+      "specialtyDescription": "RADIOLOGY"
+    },
+    "miscellaneous": {
+      "nsbIndicator": "None",
+      "alternateFacilityNpi": "—",
+      "supportingOrderingNpi": "1231231231"
+    },
+    "serviceFacility": {
+      "npi": "2000000000",
+      "type": "N",
+      "facilityTier": "N"
+    }
+  },
+  "paymentInfo": {
+    "drg": {
+      "keyed": "-",
+      "priced": "—",
+      "original": "—"
+    },
+    "check": {
+      "amount": "0",
+      "paidTo": "LAKE VIEW MEDICAL GROUP",
+      "checkDate": "—",
+      "finalized": "4/6/2026",
+      "checkNumber": "—",
+      "checkStatus": "CHECK NOT FOUND ON RECON DB",
+      "eftCheckDate": "—",
+      "accountNumber": "1234512345",
+      "checkMailedTo": "\"PO BOX 00000 CHICAGO",
+      "paymentSystem": "D",
+      "checkStatusDate": "2/10/2026"
+    },
+    "claim": {
+      "coins": "0",
+      "copay": "0",
+      "nonElg": "0",
+      "hraPaid": "0",
+      "claimPaid": "0.00",
+      "deductible": "0",
+      "patientLiab": "0",
+      "totalCharge": "5000.00",
+      "memberSurcharge": "0",
+      "finalizationCode": "PX_P10000",
+      "pricingAllowedAmount": "4000.00"
+    },
+    "provider": {
+      "lr": "L",
+      "penalty": "0",
+      "interest": "0",
+      "providerDisc": "1000.00",
+      "providerLiab": "1000.00",
+      "systemInterest": "0",
+      "providerSurcharge": "0",
+      "providerRiskWithhold": "0"
+    },
+    "payeeDetails": {
+      "flipPayee": "N"
+    }
+  },
+  "claimHeader": {
+    "general": {
+      "fsbInd": "None",
+      "emergency": "No",
+      "frequency": "1",
+      "employment": "No",
+      "bbiIndicator": "-",
+      "fsbExclusion": "X",
+      "pciIndicator": "-",
+      "treatmentAuth": "—",
+      "patientAccount": "M000000000",
+      "coveredZipRadius": "-",
+      "providerContract": "MHTR",
+      "serviceFromThrough": "2026-05-15 - 2026-05-15",
+      "assignmentOfBenefits": "Y - Benefit assigned to provider",
+      "providerParticipation": "PAR"
+    },
+    "conditionCodes": {
+      "code": "-"
+    },
+    "diagnosisCodes": {
+      "dx1": "G4733"
+    },
+    "benefitIndicators": {
+      "cob": "0",
+      "cdhp": "N",
+      "medInd": "No",
+      "cobRule": "-",
+      "medRule": "-",
+      "planPayer": "N",
+      "cobPercent": "0",
+      "medicareAdvantage": "Yes"
+    }
+  },
+  "notes": {
+    "research": "05/26/2026 02:22 AM — Smart Audit: all detail line allowable amounts match. 05/26/2026 02:19 AM — System recommendation for Manual Adjudication processing, manually applied.",
+    "mainframe": "218764",
+    "wgs": "401A931586402 CASCADE DME PARTNERS INC 1962048175\nDMEMAXMET | TIN:931586402 | E0601 | PP:$ 05000.00 | V:010 | RTD:$ 03000.00 | VTD:0010\nDMEMAXMET | TIN:931586402 | E0562 | PP:$ 05000.00 | V:010 | RTD:$ 03000.00 | VTD:0010",
+    "dmeMaxMetPresent": "Yes — the DMEMAXMET message is present on this claim, so the DME maximum review applies.",
+    "taskRoutedTo": "PX_55",
+    "taskSkills": "CT-Professional, CS-PG, GS-Local, BEN-NonSpider, REG-CA, RES-Unrestricted"
+  },
+  "claimLines": {
+    "line1": {
+      "lineNumber": "1",
+      "procedureCode": "E0562",
+      "modifier": "RR",
+      "serviceFrom": "2026-05-15",
+      "serviceTo": "2026-05-15",
+      "placeOfService": "12",
+      "serviceType": "DME",
+      "diagnosis": "G4733",
+      "units": "1",
+      "billed": "5000.00",
+      "allowed": "4000.00",
+      "writeOff": "1000.00",
+      "eobTy": "",
+      "noncovered": ""
+    },
+    "procedureCheckNote": "The procedure code on this claim is E0562, not E1399. The E1399 alternate guidelines do not apply — proceed with the standard DME maximum review.",
+    "modifierNote": "Modifier NU means the DME was purchased (RR would mean it was rented). A purchased item is capped at the DME purchase price.",
+    "repricingNote": "Deny any amount over the purchase price with EOB code PX_00256 (non-covered). Enter the EOB code and the non-covered amount, then validate the PX_DX bypass on the Event Resolution tab to settle the line."
+  },
+  "search": {
+    "benefits": {
+      "accumulators": {
+        "searchCriteria": {
+          "Member ID": "452097863",
+          "Member code": "10",
+          "From": "05/15/2026",
+          "To": "05/15/2026",
+          "Source System": "WGS"
+        },
+        "generalInformation": {
+          "Group Number": "W22640M001",
+          "Contract ID": "MHTR",
+          "Member Name": "HANNAH B VOSS",
+          "Case number": "W22640",
+          "Benefit year": "2026"
+        },
+        "groups": [
+          {
+            "id": "copay",
+            "label": "COPAY",
+            "rows": []
+          },
+          {
+            "id": "deductible",
+            "label": "DEDUCTIBLE",
+            "rows": []
+          },
+          {
+            "id": "lifetime",
+            "label": "LIFETIME",
+            "rows": []
+          },
+          {
+            "id": "other",
+            "label": "OTHER",
+            "actionId": "view_accumulators",
+            "rows": [
+              {
+                "id": "dmerntmx_visit",
+                "accumulator": "DMERNTMX",
+                "description": "DME RENTAL MAX PROV/PROC",
+                "fromThru": "01/01/1900 - 12/31/9999",
+                "unit": "Visit",
+                "accrued": "1",
+                "overAppInd": ""
+              },
+              {
+                "id": "dmerntmx_dollars",
+                "accumulator": "DMERNTMX",
+                "description": "DME RENTAL MAX PROV/PROC",
+                "fromThru": "01/01/1900 - 12/31/9999",
+                "unit": "Dollars",
+                "accrued": "3000",
+                "overAppInd": ""
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "pricing": {
+      "claimHeader": {
+        "dcn": "DCN-9650400",
+        "provider": "CASCADE DME PARTNERS INC",
+        "serviceFrom": "2026-05-15",
+        "serviceTo": "2026-05-15"
+      },
+      "claimLines": {
+        "line1": {
+          "procedureCode": "E0562",
+          "modifier": "RR",
+          "unitsOverride": "1",
+          "cxPercent": "100",
+          "billedAmount": "5000.00",
+          "allowed": "0.00",
+          "writeOff": "0.00"
+        }
+      },
+      "purchasePriceNote": "",
+      "purchasePriceHint": "To obtain the DME purchase price: set the Modifier to NU (purchased), change the Billed amount to 100000 so the price is not capped by the billed charge, then click Get Pricing. The purchase price appears in the Allowed column.",
+      "results": {
+        "currentAllowed": "",
+        "currentAllowedHint": "Click Get Pricing to obtain the allowed amount the system is suggesting for this claim."
+      },
+      "allowanceNote": "Correct allowance = DME purchase price − the amount already allowed on history for this procedure code."
+    },
+    "claims": {
+      "searchCriteria": {
+        "subscriberId": "452097863",
+        "providerTaxId": "931586402",
+        "status": "ALL"
+      },
+      "results": [
+        {
+          "code": "10",
+          "name": "HANNAH B VOSS",
+          "from": "2026-04-15",
+          "to": "2026-04-15",
+          "type": "P",
+          "provider": "CASCADE DME PARTNERS INC",
+          "dcn": "2026105HM2518 - 999",
+          "charged": "5000.00",
+          "paid": "3000.00",
+          "status": "Resolved-Paid"
+        }
+      ],
+      "historyNote": "One history claim exists for this member and provider. Open the claim detail to check whether the same DME procedure was previously allowed, and note the amount."
+    }
+  },
+  "priorClaim": {
+    "note": "History claim — a DME item for this member was previously allowed against the same purchase price cap.",
+    "summary": {
+      "dcn": "2026105HM2518 - 999",
+      "memberName": "HANNAH B VOSS",
+      "provider": "CASCADE DME PARTNERS INC",
+      "serviceDate": "2026-04-15",
+      "status": "Resolved-Paid",
+      "billed": "5000.00",
+      "allowed": "3000.00"
+    },
+    "claimLines": {
+      "line1": {
+        "lineNumber": "1",
+        "procedureCode": "E0562",
+        "modifier": "RR",
+        "units": "1",
+        "diagnosis": "G4733",
+        "billed": "5000.00",
+        "allowed": "3000.00"
+      }
+    }
+  },
+  "system": {
+    "benefitRecommendation": {
+      "endDate": "12/31/2025",
+      "planState": "CA",
+      "contractCode": "MHTR",
+      "effectiveDate": "1/1/2025",
+      "planDescription": "DME plan MHTR — purchase-price capped benefit"
+    }
+  },
+  "attachment": {
+    "pwk": {
+      "type": "View Remittance",
+      "view": "-"
+    }
+  },
+  "claimData": {
+    "review": {
+      "cdhp": {
+        "claim": {
+          "cdhpAdmin": "—",
+          "litesClaim": "—",
+          "rsnEobCode": "—",
+          "paymentCode": "—",
+          "hraPaidTotal": "$0.00",
+          "requeryCount": "—",
+          "hraEndingBalance": "$0.00",
+          "acknowledgementRcvd": "—"
+        },
+        "lineSummary": {
+          "billed": "$887.88",
+          "hraPaid": "—",
+          "lineNum": "1",
+          "rsnCode": "—",
+          "procedure": "80053",
+          "patientResp": "—"
+        }
+      },
+      "dofr": {
+        "meta": {
+          "pgId": "—",
+          "inzip": "—",
+          "pgmId": "—",
+          "dofrId1": "—",
+          "endDate": "—",
+          "dofrName1": "—",
+          "relationship": "—",
+          "effectiveDate": "—",
+          "providerNetworkCode": "—",
+          "umDelegationIndicator": "—"
+        },
+        "lineSummary": {
+          "hc": "PP",
+          "risk": "—",
+          "event": "—",
+          "lineNum": "1",
+          "groupCode": "—",
+          "procedure": "80053",
+          "revenueCode": "0777",
+          "capIndicator": "—",
+          "serviceCategory": "—"
+        }
+      },
+      "utilization": {
+        "service": {
+          "ruleId": "AIMCADRUG",
+          "lineNum": "24",
+          "procedure": "80053",
+          "caseNumber": "6509985983",
+          "revenueCodeDate": "0981"
+        }
+      }
+    },
+    "details": {
+      "stopData": {
+        "stopEdit": "No",
+        "lobSequence": "1",
+        "medSequence": "51",
+        "lobChildRule": "ALL WGS",
+        "lobParentRule": "—",
+        "medBusinessChildRule": "656881",
+        "medBusinessParentRule": "NA"
+      },
+      "ambulance": {
+        "pickupZip": "—",
+        "dropoffZip": "—"
+      },
+      "claimType": "PA - Professional",
+      "highDollar": {
+        "riskOutcome": "—"
+      },
+      "refundData": {
+        "carveOut": "2026-12-08",
+        "vendorName": "—",
+        "delayReason": "—",
+        "refundAmount": "$0.00",
+        "adjustmentReceipt": "2024-08-06",
+        "correctedClaimDcn": "—",
+        "adjustmentReasonCode": "PX_4",
+        "correspondenceNumber": "—"
+      },
+      "claimSource": {
+        "cliaId": "—",
+        "epactPlm": "—",
+        "gnyhaInd": "—",
+        "mixerPar": "Y",
+        "splitInd": "—",
+        "authExcln": "—",
+        "mediaType": "PC",
+        "authNumber": "—",
+        "receiverId": "WGSGA",
+        "imrIndicator": "—",
+        "receivedDate": "2024-11-22",
+        "cliaQualifier": "—",
+        "pricingSource": "W",
+        "pricingSystem": "WP",
+        "providerError": "I000",
+        "receivedAtEdi": "2024-11-22",
+        "vendorIndicator": "—",
+        "imageControlNumber": "CI25281103489293491"
+      },
+      "miscellaneous": {
+        "epsdt": "—",
+        "gtessDate": "—",
+        "eruDecision": "—",
+        "dateOfInjury": "—",
+        "jaaErrorCode": "No",
+        "dateOfIllness": "—",
+        "familyPlanning": "No",
+        "consultationDate": "—",
+        "lastMenstrualDate": "—"
+      },
+      "ancillaryProvider": {
+        "zip": "—",
+        "type": "—",
+        "state": "—"
+      }
+    },
+    "editing": {
+      "ihealth": {
+        "originalLine": {
+          "mod": "26",
+          "units": "1",
+          "lineNum": "1",
+          "procedure": "80053",
+          "serviceDate": "10/23/2025",
+          "allowedAmount": "$760.55",
+          "savingsAmount": "$127.33"
+        },
+        "proposedLine": {
+          "mod": "26",
+          "units": "1",
+          "status": "PX_P",
+          "procedure": "99205",
+          "payPercent": "68"
+        }
+      },
+      "claimXten": {
+        "originalLine": {
+          "mod": "26",
+          "units": "1",
+          "lineNum": "1",
+          "procedure": "80053",
+          "serviceDate": "10/23/2025",
+          "billedAmount": "$887.88"
+        },
+        "proposedLine": {
+          "mod": "26",
+          "units": "1",
+          "lineNum": "1",
+          "procedure": "99205",
+          "payPercent": "93",
+          "supportCode": "—",
+          "billedAmount": "$887.88"
+        }
+      }
+    },
+    "benefits": {
+      "accumulator1": {
+        "type": "BENYTD",
+        "unit": "Dollar",
+        "status": "Accrued",
+        "toDate": "2024-11-16",
+        "fromDate": "2024-11-14"
+      },
+      "accumulator2": {
+        "type": "MMCYTD",
+        "unit": "Dollar",
+        "status": "Accrued",
+        "toDate": "2024-11-16",
+        "fromDate": "2024-11-14"
+      }
+    },
+    "promptPay": {
+      "claim": {
+        "state": "—",
+        "ruleId": "—",
+        "status": "PX_WGS",
+        "penaltyAmount": "$0.00",
+        "systemInterest": "$0.00",
+        "manualInterestAmount": "—"
+      },
+      "calculation": {
+        "baseAmount": "$0.00",
+        "lateByDays": "0",
+        "allowedDays": "0",
+        "mailingDays": "0",
+        "carveoutDate": "—",
+        "carveoutDays": "0",
+        "disburseDays": "0",
+        "dailyInterest": "$0.00",
+        "processedInDays": "0",
+        "lastProcessedDate": "2024-12-14",
+        "calculationFromDate": "2024-12-14",
+        "calculatedInterestAmount": "$0.00"
+      },
+      "miscellaneous": {
+        "mlhDate": "24319",
+        "penalty": "—",
+        "ppStopDate": "—",
+        "dayIndicator": "0",
+        "erMinimumPay": "—",
+        "interestRate": "—",
+        "receiptMethod": "—",
+        "productFundType": "W",
+        "minimumPayAmount": "—",
+        "tdiPenaltyAmount": "—",
+        "tdiInterestAmount": "—",
+        "carveoutReasonCode": "PX_0",
+        "annualMonthlyPenalty": "—",
+        "additionalInformationRequestDate": "—"
+      }
+    },
+    "relatedSummary": {
+      "dcn": "7777777EW4444",
+      "code": "40",
+      "name": "MR.X",
+      "paid": "$742.05",
+      "type": "o",
+      "status": "Resolved - paid",
+      "toDate": "10/23/2025",
+      "charged": "$873.00",
+      "fromDate": "10/23/2025",
+      "provider": "ABCDE HOSPITAL"
+    }
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "$schema": "training-platform/v1/flow-result",
+  "$version": "1.0.0",
+  "id": "result_mn_1_noc_grid_price_pay",
+  "rubric": {
+    "expectedDecision": "pay",
+    "expectedReasonCode": null,
+    "requiredStepIds": [
+      "step_001",
+      "step_002",
+      "step_003",
+      "step_004",
+      "step_005",
+      "step_006",
+      "step_007",
+      "step_008"
+    ],
+    "weights": {
+      "navigator": 80,
+      "decision": 20,
+      "reasonCode": 0
+    },
+    "deductions": {
+      "perMissedRequiredStep": 0,
+      "wrongDecision": 20,
+      "wrongReasonCode": 0
+    }
+  },
+  "resultConfig": {
+    "passLabel": "Passed!",
+    "failLabel": "You did not meet the pass mark.",
+    "passDescription": "Great work — you noted the Pricing state (IN), identified the PX_MN01 soft edit and confirmed the event hierarchy was clear, confirmed the Line-1 services were covered (verify in CI&W), confirmed the claim type was Professional, confirmed the billed amount ($200) was below $250, determined the LOB was Local and looked up the NOC grid (IN → 50% / $1000) to calculate the $100 allowance, entered 100.00 into the Manual Pricing Allowed field, and correctly paid the claim.",
+    "failDescription": "Pass mark is {passMark}%. Review the steps below to see where you can improve.",
+    "scoreCircle": {
+      "radius": 40,
+      "strokeWidth": 8,
+      "passColor": "#3B6D11",
+      "failColor": "#A32D2D",
+      "trackColor": "#E5E7EB"
+    },
+    "statBoxes": [
+      {
+        "id": "navigator_score",
+        "label": "Navigator",
+        "dataKey": "navigatorScore",
+        "max": 80
+      },
+      {
+        "id": "decision_score",
+        "label": "Decision",
+        "dataKey": "decisionScore",
+        "max": 20
+      },
+      {
+        "id": "time_taken",
+        "label": "Time Taken",
+        "dataKey": "timeTakenSeconds",
+        "format": "duration"
+      }
+    ],
+    "retakeButton": true,
+    "backToClaimsButton": true
+  }
+}

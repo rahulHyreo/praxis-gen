@@ -1,0 +1,64 @@
+{
+  "$schema": "praxis/v2/pack-flow",
+  "code": "G24.2",
+  "name": "Provider Data Mis-match — G17 and G24 events with no handle-direct note: review all events, find the WGS notes empty, work the exception sweep and reject with PX_RG2400",
+  "variants": [
+    {
+      "variant": "base",
+      "variantIndex": 1,
+      "subjectRefs": ["DCN-621107"]
+    },
+    {
+      "variant": "v2",
+      "variantIndex": 2,
+      "subjectRefs": [
+        "DCN-8100200",
+        "DCN-8100201",
+        "DCN-8100202",
+        "DCN-8100203",
+        "DCN-8100204",
+        "DCN-8100205",
+        "DCN-8100206"
+      ]
+    },
+    {
+      "variant": "v3",
+      "variantIndex": 3,
+      "subjectRefs": [
+        "DCN-8100300",
+        "DCN-8100301",
+        "DCN-8100302",
+        "DCN-8100303",
+        "DCN-8100304",
+        "DCN-8100305",
+        "DCN-8100306"
+      ]
+    },
+    {
+      "variant": "v4",
+      "variantIndex": 4,
+      "subjectRefs": [
+        "DCN-8100400",
+        "DCN-8100401",
+        "DCN-8100402",
+        "DCN-8100403",
+        "DCN-8100404",
+        "DCN-8100405",
+        "DCN-8100406"
+      ]
+    },
+    {
+      "variant": "v5",
+      "variantIndex": 5,
+      "subjectRefs": [
+        "DCN-8100500",
+        "DCN-8100501",
+        "DCN-8100502",
+        "DCN-8100503",
+        "DCN-8100504",
+        "DCN-8100505",
+        "DCN-8100506"
+      ]
+    }
+  ]
+}

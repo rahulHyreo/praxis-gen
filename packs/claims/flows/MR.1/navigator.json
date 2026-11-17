@@ -1,0 +1,263 @@
+{
+  "$schema": "training-platform/v1/navigator",
+  "$version": "2.0.0",
+  "id": "nav_mr_1_modifier_reprice_pay",
+  "flowId": "flow_pricing_mr_1",
+  "name": "Pricing MR.1 — Medical Records / Medical Review (Re-price via Increase Modifiers & Pay) Navigator",
+  "description": "Walk the Pricing SOP for the PX_MR event (Medical Records required / Medical Review) when the resolution is to re-price the claim line via its billed modifiers. Review all events on the Event Resolution tab (including informational events) and identify the PX_MR event in the events list; identify the billed modifiers (QX and P3) on Claim Lines Line 1 (procedure 70030) and confirm they are not on the Modifier Grid (Excel); on Search → Code Set select Code Type 'Modifier Code' and confirm both QX and P3 carry a Procedure pricing change of 'I – Increase'; on Search → Pricing remove the non-increase modifiers and enter the increase modifier with the highest allowable amount (QX) in the first modifier field and the other (P3) in the second; click Get Pricing (Allowed → $21, Write-off $9); add the New Comment 'As per modifier QX & P3' on the Notes tab and submit it; verify on Claim Lines that the Write-off is already updated and the EOB code PX_00AWD is auto-populated on Line 1; then pay the claim.",
+  "totalSteps": 8,
+  "passMark": 70,
+  "correctDecision": "pay",
+  "correctDecisionLabel": "Pay",
+  "totalMaxPoints": 100,
+  "totalNavigatorPoints": 80,
+  "steps": [
+    {
+      "id": "step_001",
+      "sequenceId": 1,
+      "name": "Review all events and identify the PX_MR event",
+      "description": "Open the Event Resolution tab and review all events in the events list, including informational events, before paying, denying, or routing the claim when multiple events are set. The PX_MR event is displayed in the events list — this Pricing event indicates that medical records or a medical review are required because pricing or a decision cannot be made with the available data. In this scenario the PX_MR event is resolved by re-pricing the claim line via its billed modifiers, so proceed.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_all_edits",
+      "targetFieldId": "f_er_e_mr",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Event Resolution tab and reviews the events list, where the PX_MR event is displayed.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Event Resolution' and review all events, including informational events. The PX_MR event (Medical Records / Medical Review) is in the events list — it is resolved by re-pricing the line via its billed modifiers.",
+      "highlightFields": ["f_er_edit_code", "f_er_e_mr"],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Review all events and identify the PX_MR event"
+    },
+    {
+      "id": "step_002",
+      "sequenceId": 2,
+      "name": "Identify the billed modifiers",
+      "description": "Open the Claim Lines tab and identify the modifiers currently billed on the claim from the Modifier field on Line 1. Determine whether the claim includes any of the modifier pairs listed in the Modifier Grid (Excel). In this scenario two modifiers are billed — QX and P3 — on procedure 70030, and they are not present on the Modifier Grid, so proceed to determine which modifier affects pricing.",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_summary",
+      "targetFieldId": "f_cl_modifiers",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_lines"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Claim Lines tab and reads the Line-1 billed modifiers (QX, P3) on procedure 70030.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Lines'. Line 1 carries procedure 70030 with billed modifiers QX and P3 — neither is on the Modifier Grid (Excel), so check which modifier changes pricing.",
+      "highlightFields": ["f_cl_modifiers", "f_cl_procedure"],
+      "highlightTabId": "tab_claim_lines",
+      "checklistItem": "Identify the billed modifiers"
+    },
+    {
+      "id": "step_003",
+      "sequenceId": 3,
+      "name": "Check which modifiers change pricing",
+      "description": "Navigate to the Search tab ,then open Code Set sub-tab. From the Select Code Type dropdown choose 'Modifier Code' to review the Procedure pricing change field, which indicates whether a modifier increases or decreases pricing. Search both QX and P3. In this scenario both modifiers carry a Procedure pricing change of 'I – Increase', confirming both increase the procedure's pricing allowance. Click 'Confirm — both modifiers increase pricing' to record the determination.",
+      "targetTabId": "tab_search",
+      "targetSubTabId": "subtab_search_codeset",
+      "targetSectionId": "sec_sc_cs_result",
+      "targetFieldId": "f_sc_cs_confirm",
+      "actionType": "confirm_code_set",
+      "actionPayload": {
+        "type": "action",
+        "action": "confirm_code_set"
+      },
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the trainee opens the Search → Code Set sub-tab, reviews the Procedure pricing change for QX and P3, and clicks 'Confirm — both modifiers increase pricing', dispatching the confirm_code_set action.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Search' → 'Code Set'. Select Code Type 'Modifier Code' and search QX and P3 — both show Procedure pricing change 'I – Increase'. Click 'Confirm — both modifiers increase pricing'.",
+      "highlightFields": [
+        "f_sc_cs_select",
+        "f_sc_cs_qx_change",
+        "f_sc_cs_p3_change",
+        "f_sc_cs_confirm"
+      ],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_codeset",
+      "checklistItem": "Check which modifiers change pricing"
+    },
+    {
+      "id": "step_004",
+      "sequenceId": 4,
+      "name": "Manually price using the increase modifiers",
+      "description": "Navigate to the Search tab, open the Pricing sub-tab then Claim Lines section. Remove the non-increase modifiers and manually price the line using the two increase modifiers — enter the increase modifier with the highest allowable amount (QX) in the first modifier field, and enter the other increase modifier (P3) in the second modifier field. Type QX into the first modifier field.",
+      "targetTabId": "tab_search",
+      "targetSubTabId": "subtab_search_pricing",
+      "targetSectionId": "sec_sc_pr_modifiers",
+      "targetFieldId": "f_sc_p_mod1",
+      "actionType": "field_edit",
+      "actionPayload": {
+        "fieldId": "f_sc_p_mod1"
+      },
+      "completionTrigger": "field_value_set",
+      "completionTriggerNote": "Completes when the trainee types 'QX' into the first modifier field on the Search → Pricing sub-tab (with P3 entered in the second modifier field).",
+      "expectedValue": "QX",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Search' → 'Pricing'. Remove the non-increase modifiers and enter the increase modifier with the highest allowable amount (QX) in the first modifier field and P3 in the second.",
+      "highlightFields": ["f_sc_p_mod1", "f_sc_p_mod2"],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_pricing",
+      "checklistItem": "Manually price using the increase modifiers"
+    },
+    {
+      "id": "step_005",
+      "sequenceId": 5,
+      "name": "Get pricing for the updated line",
+      "description": "After updating the modifier fields, click the Get Pricing button. The system recalculates the allowed amount; in this scenario the Allowed amount changes to 21 and the Write-off is 9.",
+      "targetTabId": "tab_search",
+      "targetSubTabId": "subtab_search_pricing",
+      "targetSectionId": "sec_sc_pr_modifiers",
+      "targetFieldId": "f_sc_p_getpricing",
+      "actionType": "get_pricing",
+      "actionPayload": {
+        "type": "action",
+        "action": "get_pricing"
+      },
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the trainee clicks Get Pricing on the Search → Pricing sub-tab, dispatching the get_pricing action (revealing Allowed $21 / Write-off $9).",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Search' → 'Pricing' and click 'Get Pricing' — the Allowed amount changes to 21 (Write-off 9).",
+      "highlightFields": ["f_sc_p_getpricing", "f_sc_p_res_allowed"],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_pricing",
+      "checklistItem": "Get pricing for the updated line"
+    },
+    {
+      "id": "step_006",
+      "sequenceId": 6,
+      "name": "Add the pricing-calculation note",
+      "description": "Navigate to the Notes tab,then open the Claim Notes sub-tab and update the New Comment with the pricing calculations for the line(s) in the textarea box, then click Submit. In this scenario the comment reads 'As per modifier QX & P3'.",
+      "targetTabId": "tab_notes",
+      "targetSubTabId": "subtab_notes_claim_notes",
+      "targetSectionId": "sec_n_claim_notes",
+      "targetFieldId": "f_n_submit",
+      "actionType": "submit_note",
+      "actionPayload": {
+        "type": "action",
+        "action": "submit_note"
+      },
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the trainee types the New Comment 'As per modifier QX & P3' on the Notes → Claim Notes sub-tab and clicks Submit, dispatching the submit_note action.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Notes' → 'Claim Notes'. In the New Comment box type: As per modifier QX & P3, then click Submit.",
+      "highlightFields": ["f_n_new_comment", "f_n_submit"],
+      "highlightTabId": "tab_notes",
+      "highlightSubTabId": "subtab_notes_claim_notes",
+      "checklistItem": "Add the pricing-calculation note"
+    },
+    {
+      "id": "step_007",
+      "sequenceId": 7,
+      "name": "Verify the write-off and EOB code",
+      "description": "Return to the Claim Lines tab and access the Claim Lines section. Verify that the Write-off column value is already updated and the EOB code column value PX_00AWD is auto-populated on Line 1. Once verified, click 'Confirm — write-off and EOB verified' to record the determination and proceed.",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_verify",
+      "targetFieldId": "f_cl_eob_confirm",
+      "actionType": "confirm_eob",
+      "actionPayload": {
+        "type": "action",
+        "action": "confirm_eob"
+      },
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the trainee opens the Claim Lines tab, verifies the auto-populated Write-off and EOB code PX_00AWD on Line 1, and clicks 'Confirm — write-off and EOB verified', dispatching the confirm_eob action.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Lines'. The Write-off is already updated and the EOB code PX_00AWD is auto-populated on Line 1. Click 'Confirm — write-off and EOB verified'.",
+      "highlightFields": ["f_cl_writeoff", "f_cl_eob_code", "f_cl_eob_confirm"],
+      "highlightTabId": "tab_claim_lines",
+      "checklistItem": "Verify the write-off and EOB code"
+    },
+    {
+      "id": "step_008",
+      "sequenceId": 8,
+      "name": "Submit Pay decision",
+      "description": "Navigate to the Decision section in the header, select 'Pay' from the dropdown menu and click Submit. The line has been re-priced via the increase modifiers, the pricing-calculation note recorded, and the write-off / EOB verified, so the claim is paid.",
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "submit_decision",
+      "actionPayload": {
+        "type": "submit_decision",
+        "expectedDecision": "pay"
+      },
+      "completionTrigger": "decision_submitted",
+      "completionTriggerNote": "Completes when the trainee confirms the Pay decision in the submit dialog.",
+      "expectedValue": "pay",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Pick 'Pay' from the Decision dropdown in the claim header, then click Submit and confirm in the dialog.",
+      "highlightFields": [],
+      "checklistItem": "Submit Pay decision"
+    }
+  ],
+  "scoreBreakdown": {
+    "navigatorStepsMaxPoints": 80,
+    "decisionMaxPoints": 20,
+    "reasonCodeMaxPoints": 0,
+    "totalMaxPoints": 100,
+    "passMark": 70,
+    "weightedPassScore": 70
+  },
+  "stepSummaryForResults": [
+    {
+      "sequenceId": 1,
+      "name": "All events reviewed; PX_MR event identified",
+      "points": 10
+    },
+    {
+      "sequenceId": 2,
+      "name": "Billed modifiers identified (QX, P3); not on Modifier Grid",
+      "points": 10
+    },
+    {
+      "sequenceId": 3,
+      "name": "Both modifiers confirmed 'I – Increase' in Code Set",
+      "points": 10
+    },
+    {
+      "sequenceId": 4,
+      "name": "Line re-priced with increase modifiers (QX, P3)",
+      "points": 10
+    },
+    {
+      "sequenceId": 5,
+      "name": "Pricing obtained (Allowed $21 / Write-off $9)",
+      "points": 10
+    },
+    {
+      "sequenceId": 6,
+      "name": "Pricing-calculation note submitted",
+      "points": 10
+    },
+    {
+      "sequenceId": 7,
+      "name": "Write-off and EOB code PX_00AWD verified",
+      "points": 10
+    },
+    {
+      "sequenceId": 8,
+      "name": "Pay decision submitted",
+      "points": 10
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "$schema": "training-platform/v1/flow-state",
+  "$version": "1.0.0",
+  "id": "state_ncn_1_national_care_network_bypass_pay",
+  "initial": {
+    "defaultActiveTabId": "tab_event_resolution",
+    "defaultActiveSubTabIds": {
+      "tab_search": "subtab_search_benefits",
+      "tab_claim_data": "subtab_claim_data_pricing",
+      "tab_attachment": "subtab_attachment_attachments"
+    },
+    "defaultCollapsedSections": {},
+    "defaultDecision": ""
+  },
+  "modeConfig": {
+    "training": {
+      "id": "training",
+      "label": "Training mode",
+      "badgeIcon": "graduation-cap",
+      "showNavigator": true,
+      "timerType": "count_up",
+      "timerPosition": "navigator_header",
+      "timeLockEnabled": false,
+      "showHints": true,
+      "showMarkCompleteButton": true,
+      "allowTabClose": true
+    },
+    "practice": {
+      "id": "practice",
+      "label": "Practice mode",
+      "badgeIcon": "dumbbell",
+      "showNavigator": false,
+      "timerType": "count_up",
+      "timerPosition": "topbar",
+      "timeLockEnabled": false,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": true
+    },
+    "assessment": {
+      "id": "assessment",
+      "label": "Assessment Mode",
+      "badgeIcon": "graduation-cap",
+      "showNavigator": false,
+      "timerType": "count_down",
+      "timerPosition": "topbar_right",
+      "timeLimitSeconds": 600,
+      "timeLockEnabled": true,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": false,
+      "beforeUnloadWarning": "Assessment in progress. Leaving will lose your progress."
+    }
+  },
+  "actions": {
+    "validate": {
+      "label": "Validate",
+      "latencyMs": 400,
+      "writes": {
+        "eventResolution.benefitsStatus": "Benefits applied"
+      },
+      "completesStepId": "step_007"
+    },
+    "mpValidate": {
+      "label": "Validate",
+      "latencyMs": 400,
+      "writes": {
+        "claimData.pricing.mp.network.bypassStatus": "Bypass applied — PX_NCN not eligible"
+      },
+      "completesStepId": "step_010",
+      "guard": {
+        "all": [
+          {
+            "dataKey": "claimData.pricing.mp.network.claimNumberEntry",
+            "equalsIgnoreCase": "NOT ELIGIBLE"
+          },
+          {
+            "dataKey": "claimData.pricing.mp.network.ncnIdEntry",
+            "equalsIgnoreCase": "CN"
+          },
+          {
+            "dataKey": "claimData.pricing.mp.network.priceSheetEntry",
+            "equalsIgnoreCase": "N"
+          }
+        ],
+        "elseWrites": {
+          "claimData.pricing.mp.network.bypassStatus": "Enter NOT ELIGIBLE / CN / N in the three Network fields, then click Validate."
+        }
+      }
+    },
+    "noteValidate": {
+      "label": "Validate",
+      "latencyMs": 400,
+      "writes": {
+        "notes.commentStatus": "Note submitted"
+      },
+      "completesStepId": "step_009",
+      "guard": {
+        "all": [
+          {
+            "dataKey": "notes.comment",
+            "nonEmpty": true
+          }
+        ],
+        "elseWrites": {
+          "notes.commentStatus": "Enter a comment before clicking Validate."
+        }
+      }
+    }
+  },
+  "persistence": {
+    "persistKey": null,
+    "autosave": false,
+    "resetOnSubmit": false
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "$schema": "training-platform/v1/flow-result",
+  "$version": "1.0.0",
+  "id": "result_590_1_claim_submit_time_limit_exceeded",
+  "rubric": {
+    "expectedDecision": "deny",
+    "expectedReasonCode": "PX_R21410",
+    "requiredStepIds": [
+      "step_004",
+      "step_005",
+      "step_009",
+      "step_010",
+      "step_011"
+    ],
+    "weights": {
+      "navigator": 100,
+      "decision": 20,
+      "reasonCode": 10
+    },
+    "deductions": {
+      "perMissedRequiredStep": 0,
+      "wrongDecision": 20,
+      "wrongReasonCode": 10
+    }
+  },
+  "resultConfig": {
+    "passLabel": "Passed!",
+    "failLabel": "You did not meet the pass mark.",
+    "passDescription": "Great work — you reviewed the Timely filing pop-up criteria, confirmed all three claim lines on the corrected claim were filed outside the 90-day window, and correctly denied the claim with reject code PX_R21410.",
+    "failDescription": "Pass mark is {passMark}%. Review the steps below to see where you can improve.",
+    "scoreCircle": {
+      "radius": 40,
+      "strokeWidth": 8,
+      "passColor": "#3B6D11",
+      "failColor": "#A32D2D",
+      "trackColor": "#E5E7EB"
+    },
+    "statBoxes": [
+      {
+        "id": "navigator_score",
+        "label": "Navigator",
+        "dataKey": "navigatorScore",
+        "max": 100
+      },
+      {
+        "id": "decision_score",
+        "label": "Decision",
+        "dataKey": "decisionScore",
+        "max": 20
+      },
+      {
+        "id": "reason_score",
+        "label": "Reason Code",
+        "dataKey": "reasonCodeScore",
+        "max": 10
+      },
+      {
+        "id": "time_taken",
+        "label": "Time Taken",
+        "dataKey": "timeTakenSeconds",
+        "format": "duration"
+      }
+    ],
+    "retakeButton": true,
+    "backToClaimsButton": true
+  }
+}

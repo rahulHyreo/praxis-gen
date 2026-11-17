@@ -1,0 +1,1213 @@
+{
+  "$schema": "training-platform/v1/workspace-data",
+  "$version": "2.0.0",
+  "id": "claim_data_rb2_1_dcn_9890300",
+  "claimId": "claim_rb2_1_v3",
+  "dcn": "DCN-9890300",
+  "flowId": "flow_cob_rb2_1",
+  "navigatorSchemaId": "nav_rb2_1_secondary_policy_cob_split",
+  "claim": {
+    "dcn": "DCN-9890300",
+    "patient": "Priya Raghunathan",
+    "serviceFrom": "09/25/2026",
+    "billedAmount": "$217.00"
+  },
+  "header": {
+    "dcn": "DCN-9890300",
+    "edits": "PX_RB2",
+    "billed": "$217.00",
+    "claimAllowed": "—",
+    "paid": "—",
+    "writeOff": "—",
+    "deductible": "—",
+    "coinsurance": "—",
+    "copay": "—",
+    "actionCode": "—",
+    "receiptDate": "09/28/2026",
+    "serviceFrom": "09/25/2026",
+    "serviceTo": "09/25/2026"
+  },
+  "eventResolution": {
+    "edits": [
+      {
+        "code": "PX_SPS",
+        "label": "USE PA MENU OPTION TO VIEW PRV",
+        "active": false
+      },
+      {
+        "code": "PX_DF02",
+        "label": "CXT BUNDLED SERV NON COV",
+        "active": false
+      },
+      {
+        "code": "PX_NIP",
+        "label": "NATIONAL INTRAPLAN CLAIM",
+        "active": false
+      },
+      {
+        "code": "PX_DIS",
+        "label": "DUPLICATION OF SERVICE",
+        "active": false
+      },
+      {
+        "code": "PX_RB2",
+        "label": "DUP IN SERV SYS SPLIT CLAIM",
+        "active": true
+      },
+      {
+        "code": "PX_TR2",
+        "label": "TIER CLAIM EMPLOYEE PLUS 1",
+        "active": false
+      },
+      {
+        "code": "PX_DXG",
+        "label": "DX POINTERS ON PD POP UP",
+        "active": false
+      }
+    ],
+    "editCode": "PX_RB2",
+    "editLabel": "DUP IN SERV SYS SPLIT CLAIM",
+    "severity": "Informational",
+    "validationMessage": ""
+  },
+  "memberInfo": {
+    "patient": {
+      "firstName": "MEGUMI",
+      "middleName": "K",
+      "lastName": "MAHONY",
+      "dob": "11/2/1991",
+      "sex": "F",
+      "memberPrefix": "QKR",
+      "hcid": "60553918",
+      "relationship": "SUB - Subscriber",
+      "memberCode": "40",
+      "memberCodeMessage": "",
+      "contractType": "F",
+      "erisa": "Y",
+      "pcp": "—",
+      "pcpState": "—",
+      "pcpRelationship": "—",
+      "programCode": "—",
+      "state": "CA"
+    },
+    "subscriber": {
+      "firstName": "MEGUMI",
+      "middleName": "K",
+      "lastName": "MAHONY",
+      "subscriberId": "557470697",
+      "address": "1184 Alameda Ave, Burbank, CA 91506"
+    },
+    "group": {
+      "groupName": "ALAMEDA VALLEY GROWERS COOPERATIVE",
+      "groupId": "JNT206M403",
+      "groupContract": "W17N",
+      "detailContractCode": "W17N",
+      "product": "LOCAL",
+      "networkId": "NHPPO100",
+      "networkName": "NH PPO/EPO BLUE ACCESS LOCAL/NATL"
+    }
+  },
+  "claimImage": {
+    "memberDetails": {
+      "patient": {
+        "firstName": "MEGUMI",
+        "middleName": "K",
+        "lastName": "MAHONY",
+        "dob": "7/30/1973",
+        "sex": "F",
+        "memberPrefix": "QKR",
+        "hcid": "557470697",
+        "relationship": "SUB - Subscriber",
+        "memberCode": "40",
+        "detailContractCode": "W17N",
+        "contractType": "C",
+        "groupId": "JNT206M403",
+        "groupContract": "W17N",
+        "product": "BCBI",
+        "erisa": "Y",
+        "pcp": "—",
+        "pcpState": "—",
+        "pcpRelationship": "—"
+      },
+      "subscriber": {
+        "firstName": "MEGUMI",
+        "middleName": "K",
+        "lastName": "MAHONY",
+        "subscriberId": "557470697",
+        "address": "1184 Alameda Ave, Burbank, CA 91506"
+      },
+      "totalClaimLines": "1"
+    },
+    "additional": {
+      "claimSource": {
+        "mediaType": "-",
+        "pricingSource": "-",
+        "pricingSystem": "-",
+        "mixerPar": "-",
+        "receiverId": "NH",
+        "receivedAtEdi": "-",
+        "providerError": "-",
+        "authNumber": "-",
+        "authExcln": "-",
+        "vendorIndicator": "-",
+        "receivedDate": "-",
+        "originalReferenceNumber": "-"
+      },
+      "ancillaryProvider": {
+        "type": "-",
+        "zip": "-",
+        "state": "-"
+      },
+      "ambulance": {
+        "pickupZip": "-",
+        "dropoffZip": "-"
+      },
+      "miscellaneous": {
+        "epsdt": "-",
+        "familyPlanning": "-",
+        "gtessDate": "-",
+        "dateOfIllness": "-",
+        "dateOfInjury": "-",
+        "lastMenstrualDate": "-",
+        "consultationDate": "-"
+      },
+      "stopData": {
+        "stopEdit": "-",
+        "lobParentRule": "-",
+        "lobChildRule": "-",
+        "lobSequence": "-",
+        "medBusinessParentRule": "-",
+        "medBusinessChildRule": "-",
+        "medSequence": "-"
+      },
+      "refundData": {
+        "correspondenceNumber": "-",
+        "refundAmount": "-",
+        "adjustmentReason": "-",
+        "vendorName": "-",
+        "delayReason": "-",
+        "carveOut": "-",
+        "adjustmentReceiptDate": "-"
+      },
+      "highDollar": {
+        "riskOutcome": "-"
+      },
+      "its": {
+        "account": {
+          "deliveryMethod": "—",
+          "accountType": "—",
+          "aso": "—",
+          "stateId": "—",
+          "originalCertificate": "—",
+          "originalGroup": "—"
+        },
+        "pricing": {
+          "primarySop": "—",
+          "secondarySop": "—",
+          "tertiarySop": "—",
+          "cobCalMethod": "—"
+        },
+        "providers": {
+          "mppqAssignUnassigned": "—",
+          "ppoNetworkAvailability": "—",
+          "ppoProviderAvailability": "—",
+          "eft835": "—",
+          "serviceZip": "—"
+        }
+      },
+      "sfdf": {
+        "sfMessage": "—",
+        "dfMessage": "—",
+        "primacy": "—",
+        "autoOtherAccident": "—",
+        "totalDaysVisits": "—"
+      },
+      "claimLineDetail": [
+        {
+          "lineNum": "1",
+          "blankDateInd": "—",
+          "approvedDenyInd": "—"
+        }
+      ]
+    }
+  },
+  "providerInfo": {
+    "rendering": {
+      "npi": "1336550274",
+      "name": "SOMERSET WOMENS HEALTH",
+      "address": "64 Epping Rd, Exeter, NH 03833",
+      "pricingState": "NH",
+      "pricingZip": "03833-2117",
+      "providerSps": "7418205563",
+      "providerEpin": "—",
+      "license": "01082547A",
+      "networkOption": "N",
+      "specialty": "037",
+      "specialtyDescription": "PEDIATRICS",
+      "taxonomy": "208000000X"
+    },
+    "billing": {
+      "taxId": "223916805",
+      "npi": "1336550274",
+      "name": "SOMERSET WOMENS HEALTH",
+      "facilityType": "—",
+      "providerSps": "6630947128",
+      "providerEpin": "—",
+      "medicareId": "—",
+      "address": "64 Epping Rd, Exeter, NH 03833",
+      "nationalState": "NH",
+      "locationCode": "—",
+      "bhaProviderIndicator": "N",
+      "taxonomy": "208000000X",
+      "timelyFilingLimit": "—"
+    },
+    "referring": {
+      "referringPhysician": "—",
+      "npi": "1336550274"
+    },
+    "serviceFacility": {
+      "facilityTier": "N",
+      "type": "N",
+      "npi": "1336550274"
+    },
+    "miscellaneous": {
+      "supportingOrderingNpi": "—",
+      "nsbIndicator": "None",
+      "alternateFacilityNpi": "—"
+    }
+  },
+  "paymentInfo": {
+    "claim": {
+      "deductible": "0.00",
+      "copay": "0.00",
+      "coins": "0.00",
+      "patientLiab": "0.00",
+      "memberSurcharge": "0.00",
+      "nonElg": "0.00",
+      "hraPaid": "0.00",
+      "claimPaid": "0.00",
+      "pricingAllowedAmount": "0.00",
+      "totalCharge": "217.30",
+      "finalizationCode": "—"
+    },
+    "provider": {
+      "providerDisc": "0.00",
+      "providerLiab": "0.00",
+      "providerRiskWithhold": "0.00",
+      "providerSurcharge": "0.00",
+      "interest": "0.00",
+      "penalty": "0.00",
+      "lr": "L",
+      "systemInterest": "0.00"
+    },
+    "drg": {
+      "keyed": "-",
+      "priced": "—",
+      "original": "—"
+    },
+    "check": {
+      "accountNumber": "1234512345",
+      "checkNumber": "—",
+      "checkDate": "—",
+      "amount": "0.00",
+      "paymentSystem": "D",
+      "checkMailedTo": "—",
+      "eftCheckDate": "—",
+      "checkStatus": "CHECK NOT FOUND ON RECON DB",
+      "checkStatusDate": "09/24/2026",
+      "paidTo": "BELLA CARA DERMATOLOGY",
+      "finalized": "—"
+    },
+    "payeeDetails": {
+      "flipPayee": "N"
+    }
+  },
+  "claimHeader": {
+    "general": {
+      "serviceFromThrough": "08/27/2026 - 08/27/2026",
+      "assignmentOfBenefits": "Y - Benefit assigned to provider",
+      "providerParticipation": "PAR",
+      "providerContract": "INP00000",
+      "treatmentAuth": "—",
+      "patientAccount": "W000000000",
+      "emergency": "No",
+      "employment": "No",
+      "coveredZipRadius": "-",
+      "frequency": "1",
+      "bbiIndicator": "-",
+      "pciIndicator": "-",
+      "fsbInd": "None",
+      "fsbExclusion": "X"
+    },
+    "benefitIndicators": {
+      "cob": "0",
+      "cobRule": "-",
+      "medInd": "No",
+      "medRule": "-",
+      "medicareAdvantage": "No",
+      "cdhp": "N",
+      "planPayer": "N",
+      "cobPercent": "0"
+    },
+    "diagnosisCodes": {
+      "dx1": "Z3800"
+    },
+    "conditionCodes": {
+      "code": "-"
+    }
+  },
+  "claimLines": [
+    {
+      "lineNum": "1",
+      "fromDate": "09/25/2026",
+      "toDate": "09/25/2026",
+      "pos": "21",
+      "revCode": "170",
+      "service": "RAB",
+      "procedure": "—",
+      "modifiers": "—",
+      "units": "1",
+      "diagnosis": "Z3800",
+      "billed": "217.00",
+      "dedInd": "NO",
+      "coinsPercent": "100",
+      "stoploss": "No",
+      "eobTy": "—",
+      "writeoffEobTy": "$0.00",
+      "noncoveredUnit": "0",
+      "deductible": "—",
+      "otherUnit": "0",
+      "copay": "—",
+      "eobTyLast": "—",
+      "payment": "0.00"
+    }
+  ],
+  "claimLineSummary": {
+    "lineNum": "1",
+    "fromDate": "09/25/2026",
+    "toDate": "09/25/2026",
+    "pos": "11",
+    "revCode": "—",
+    "service": "MED",
+    "procedure": "99213",
+    "modifiers": "—",
+    "units": "1",
+    "diagnosis": "L7090",
+    "billed": "$217.00",
+    "dedInd": "NO",
+    "coinsPercent": "100",
+    "stoploss": "No",
+    "eobTy": "—",
+    "writeoffEobTy": "$0.00",
+    "noncoveredUnit": "0",
+    "deductible": "—",
+    "otherUnit": "0",
+    "copay": "—",
+    "eobTyLast": "—",
+    "payment": "$0.00",
+    "providerDiscount": "",
+    "providerDiscountEob": "",
+    "paidAmount": "",
+    "deductibleAmount": "",
+    "copayAmount": "",
+    "copayEob": "",
+    "coinsuranceAmount": "",
+    "noncoveredAmount": "",
+    "noncoveredEob": ""
+  },
+  "notes": {
+    "research": "—",
+    "mainframe": "QVIP00",
+    "wgs": "DUP-IN-SERVICE SYSTEMATIC SPLIT\nORIGINAL DCN: 98789876",
+    "taskManagement": {
+      "routedTo": "Legato_National_NonITS_1",
+      "urgency": "45",
+      "skills": "CT-COBProf",
+      "csPg": "GS-National",
+      "benNonspider": "SPIDER",
+      "regCa": "-",
+      "resUnrestricted": "-",
+      "totalAge": "4",
+      "homeAge": "4",
+      "ageAdjusted": "N",
+      "baselineUrgency": "45",
+      "urgencyModifiers": "PG Modifer(0)"
+    }
+  },
+  "search": {
+    "claims": {
+      "dcnKernalClaim": "",
+      "claimId": "",
+      "subscriberOrHcid": "60553918",
+      "sccf": "",
+      "procedure": "",
+      "serviceFrom": "",
+      "serviceTo": "",
+      "code": "",
+      "totalCharge": "",
+      "status": "ALL",
+      "providerTaxId": "",
+      "providerNpi": "",
+      "renderingLicenseId": "",
+      "billType": ""
+    },
+    "claimsResultCount": "1 result",
+    "claimsResults": [
+      {
+        "hcid": "22470631",
+        "name": "PRIYA",
+        "from": "09/25/2026",
+        "to": "09/25/2026",
+        "billType": "P",
+        "dcn": "989866855",
+        "charged": "217.00",
+        "paid": "111.87",
+        "status": "Resolved-Paid"
+      }
+    ],
+    "codeSet": {
+      "selectCodeType": "-",
+      "enterCode": "-"
+    },
+    "auth": {
+      "search": {
+        "subscriberOrHcid": "614W20937",
+        "serviceStartDate": "9/18/2026",
+        "serviceEndDate": "9/18/2026",
+        "status": "-"
+      },
+      "members": {
+        "name": "—",
+        "dob": "—",
+        "ageAdjusted": "—",
+        "memberId": "-",
+        "mcid": "-",
+        "subscriberOrHcid": "614W20937"
+      }
+    },
+    "benefits": {
+      "planOptions": [
+        {
+          "costShare": "DEDUCTIBLE",
+          "network": "PPO",
+          "maximum": "$500",
+          "accumType": "Calendar Year"
+        },
+        {
+          "costShare": "OUT-OF-POCKET MAX",
+          "network": "PPO",
+          "maximum": "$3,000",
+          "accumType": "Calendar Year"
+        },
+        {
+          "costShare": "MEMBER CLAIM FILING DAY LIMIT",
+          "network": "—",
+          "maximum": "365 days",
+          "accumType": "—"
+        }
+      ],
+      "searchBenefits": {
+        "contractCode": "72HN",
+        "effectiveDate": "1/1/2026",
+        "endDate": "12/31/9999",
+        "effectiveEndDate": "-"
+      },
+      "general": {
+        "contractCode": "72HN",
+        "product": "BCBI",
+        "plan": "SQUAMSCOTT RIVER TIMBER COOPERATIVE",
+        "contractState": "NH",
+        "benefitPeriod": "-",
+        "benefitPeriodAlt": "-",
+        "fundingArrangement": "-",
+        "cdhpInd": "-",
+        "groupNumber": "L02417M003",
+        "contractId": "72HN",
+        "memberName": "GRANT HARTWELL",
+        "caseNumber": "L02417",
+        "contractType": "-",
+        "crossAccumulation": "-"
+      },
+      "viewNic": {
+        "coverage": "MED-MEDICL COVERAGE",
+        "pricing": "IN29",
+        "network": "PPO"
+      },
+      "accumulators": {
+        "criteria": {
+          "memberId": "614W20937",
+          "memberCode": "70",
+          "fromDate": "9/18/2026",
+          "toDate": "9/18/2026",
+          "sourceSystem": "WGS"
+        },
+        "selection": {
+          "accumulatorName": "—",
+          "benefitYear": "—",
+          "accumulatorEffDate": "—",
+          "cob": "—",
+          "deductible": "—",
+          "fertilityRx": "—",
+          "lifetime": "—",
+          "other": "—",
+          "outOfPocket": "—"
+        }
+      }
+    },
+    "provider": {
+      "npiTaxId": {
+        "npi": "1548273906",
+        "orgTaxId": "020418365",
+        "fromDate": "9/18/2026",
+        "throughDate": "9/18/2026",
+        "lastUpdateDate": "12/15/2025",
+        "sourceSystem": "WGS",
+        "zipCode": "-",
+        "billingType": "-",
+        "specialty": "-",
+        "state": "-",
+        "alternateId": "-",
+        "alternateKey": "-"
+      },
+      "practitioner": {
+        "firstName": "-",
+        "lastName": "-",
+        "fromDate": "9/18/2026",
+        "throughDate": "9/18/2026",
+        "sourceSystem": "SPS",
+        "addressLine": "-",
+        "city": "-",
+        "state": "-",
+        "specialty": "-"
+      },
+      "organization": {
+        "organizationName": "-",
+        "orgTaxId": "020418365",
+        "fromDate": "9/18/2026",
+        "throughDate": "9/18/2026",
+        "sourceSystem": "SPS",
+        "addressLine": "-",
+        "city": "-",
+        "state": "-",
+        "zipCode": "-",
+        "billingType": "-",
+        "specialty": "-"
+      },
+      "pcpPmg": {
+        "pcpPmgId": "-",
+        "fromDate": "9/18/2026",
+        "throughDate": "9/18/2026",
+        "sourceSystem": "SPS",
+        "specialty": "-",
+        "state": "-"
+      },
+      "alternateId": {
+        "organizationName": "XXXXX",
+        "alternateKeyOrg": "-",
+        "individual": "8023 - Legacy provider ID",
+        "alternateKeyIndiv": "-",
+        "nonAnthem": "33-NPI",
+        "alternateKeyNonAnthem": "-"
+      }
+    },
+    "member": {
+      "results": [
+        {
+          "memberId": "60553918",
+          "firstName": "Priya",
+          "mi": "",
+          "lastName": "Raghunathan",
+          "dob": "11/2/1991",
+          "relationship": "SUB - Subscriber",
+          "memberCode": "00",
+          "gender": "F",
+          "state": "NJ",
+          "contractGroups": [
+            {
+              "id": "cg_rb2_secondary",
+              "contractId": "8KD5",
+              "caseEntity": "C22465",
+              "groupNumber": "60553918",
+              "hcid": "60553918",
+              "prefix": "NJH",
+              "effectiveDate": "01/01/2025",
+              "endDate": "12/31/2028",
+              "productCode": "PBPI",
+              "contractState": "NJ",
+              "contractType": "C",
+              "cancellationDate": "—",
+              "terminationReason": "—",
+              "numberCovered": "01",
+              "updatedDate": "12/15/2024",
+              "updateById": "WMXBRN01"
+            }
+          ]
+        }
+      ],
+      "searchMember": {
+        "memberId": "60553918",
+        "firstName": "Priya",
+        "mi": "",
+        "lastName": "Raghunathan",
+        "dob": "11/2/1991",
+        "relationship": "SUB - Subscriber",
+        "memberCode": "00",
+        "gender": "F",
+        "state": "NJ",
+        "contractId": "8KD5",
+        "groupNumber": "60553918",
+        "caseEntity": "C22465",
+        "hcid": "60553918",
+        "prefix": "NJH",
+        "effectiveDate": "01/01/2025",
+        "endDate": "12/31/2028",
+        "productCode": "PBPI",
+        "contractState": "NJ",
+        "businessUnit": "Group"
+      },
+      "general": {
+        "name": "Priya Raghunathan",
+        "dateOfBirth": "11/2/1991",
+        "age": "0",
+        "sex": "F",
+        "memberId": "60553918",
+        "hcid": "60553918",
+        "relationship": "SUB - Subscriber",
+        "memberCode": "00",
+        "address": "92 Finderne Ave  BRIDGEWATER NJ 08807",
+        "county": "—",
+        "country": "US",
+        "phone": "—",
+        "effectiveDate": "01/01/2025",
+        "endDate": "12/31/2028",
+        "productType": "BCPI - BC INCENTIVE PPO",
+        "groupType": "A -ACTIVE",
+        "cob": "",
+        "businessUnit": "Group",
+        "paidToDate": "9/1/2026",
+        "erisa": "Y",
+        "caseGroupSetup": "Y",
+        "contractStartDate": "-",
+        "shortTermEndDate": "-",
+        "cxlProcessDate": "-",
+        "aptcIndicator": "-",
+        "csdt": "-",
+        "caseName": "Raritan Valley Analytics",
+        "ncnReferralsInd": "—",
+        "foi": "G",
+        "roundoprd": "12",
+        "conversionCode": "0",
+        "medicareIndicator": "—"
+      },
+      "additionalAddress": {
+        "address": "-"
+      },
+      "providerNetwork": {
+        "product": "57BC PPO INCENTIVE",
+        "providerGroupName": "-",
+        "address": "-",
+        "phone": "-"
+      },
+      "contractMembers": [
+        {
+          "memberCode": "00",
+          "name": "Priya Raghunathan",
+          "relationship": "SUB - Subscriber",
+          "dob": "11/2/1991",
+          "age": "—",
+          "effectiveDate": "01/01/2025",
+          "endDate": "12/31/2028"
+        },
+        {
+          "memberCode": "—",
+          "name": "—",
+          "relationship": "—",
+          "dob": "—",
+          "age": "—",
+          "effectiveDate": "—",
+          "endDate": "—"
+        }
+      ],
+      "group": {
+        "general": {
+          "name": "RARITAN VALLEY ANALYTICS",
+          "status": "O ACTIVE",
+          "companyCode": "123C XXXX",
+          "paidToDate": "2/1/2026",
+          "locationStateCode": "NH",
+          "locationCodeEffectiveDate": "1/1/2019",
+          "workLocation": "7003 ANTHEM NAT ACCT",
+          "workLocationPhone": "9999888899",
+          "rateMethodCode": "1 ASO BUSINESS",
+          "rmcEffectiveDate": "1/1/2019",
+          "groupType": "A ACTIVE",
+          "fundingTypeCode": "H ASC",
+          "graceDays": "30",
+          "claimGraceDays": "30"
+        },
+        "coverage": {
+          "originalEffectiveDate": "1/1/2019",
+          "groupProcessedDate": "10/9/2018",
+          "reinstateEffectiveDate": "-",
+          "reinstateProcessedDate": "-",
+          "cancelEffectiveDate": "-",
+          "cancelProcessedDate": "-",
+          "cancelReason": "-"
+        },
+        "contract": {
+          "productLine": "BC PPO INCENTIVE",
+          "claimsRoute": "PX_P-EXEC - NATIONAL ACCTS",
+          "benefitYearCalendarYear": "CY",
+          "benefitYearCalendarYearAsOfDate": "1/1/2019",
+          "contractCode": "72HN",
+          "contractCodeEffectiveDate": "1/1/2019",
+          "promptPay": "N",
+          "promptPayDate": "1/1/2019",
+          "itsHomeParticipatingCode": "E CONTROL CUSTOM",
+          "itsHomeEffectiveDate": "1/1/2019",
+          "locationLobCode": "X BC/BCLH",
+          "overAgeMailing": "S MAIL TO SUBR",
+          "networkId": "BLUECDOO",
+          "networkName": "BLUE XXXX BLUE XXXX"
+        },
+        "additional": {
+          "product": "BC PPO INC Claim Manager",
+          "mbuCode": "NAC00000",
+          "claimsServiceLocation": "COOIO/CAACOII",
+          "serviceManager": "SRVC/DARLENE",
+          "claimManager": "CLMS/M PENNER",
+          "servicePhone": "999999999",
+          "serviceAddress": "XXXX PARK Road CONCORD NH 03301",
+          "sourceSystem": "WGS 2.0"
+        }
+      },
+      "autoSearch": {
+        "memberId": "60553918",
+        "firstName": "Priya",
+        "lastName": "Raghunathan",
+        "dob": ""
+      }
+    },
+    "limitedLiability": {
+      "memberId": "60553918",
+      "memberCode": "00",
+      "dob": "11/2/1991",
+      "activeRecords": "Active records",
+      "allRecords": "—",
+      "resultsNote": "1 active record found.",
+      "results": [
+        {
+          "type": "COB",
+          "effectiveDate": "07/01/2026",
+          "endDate": "",
+          "orderOfBenefits": "S – Our Insurance is secondary",
+          "insuranceCode": "A62825",
+          "insuranceName": "Our Insurance is primary",
+          "policyType": "MED - Medical",
+          "policyNumber": "22470631",
+          "description": "Our Insurance is primary"
+        }
+      ]
+    },
+    "pricing": {
+      "member": {
+        "dob": "9/14/2026",
+        "sex": "F",
+        "groupNumber": "L02417M003",
+        "groupId": "-",
+        "networkId": "BLUECS",
+        "memberZipCode": "03833",
+        "alternateZipCode": "-",
+        "medicareInd": "N",
+        "hixInd": "-",
+        "marketType": "NTLA",
+        "memberInd": "-",
+        "ab72": "-",
+        "patientCode": "-",
+        "product": "BCBI -",
+        "variance": "IN29",
+        "coverage": "MED",
+        "groupIdentifier": "-"
+      },
+      "provider": {
+        "taxId": "020418365",
+        "renderingNumber": "77777777777",
+        "billingNumber": "6666666666",
+        "renderingNpi": "1548273906",
+        "billingNpi": "1548273906",
+        "license": "01082547A",
+        "specialty": "037",
+        "zipCode": "03833-2117",
+        "planInd": "NH",
+        "wgsp": "P",
+        "pcpState": "NP",
+        "region": "462",
+        "gbdId": "-",
+        "providerInd": "-",
+        "providerParticipation": "PAR",
+        "providerProdVar": "INP02186",
+        "networxInd": "-",
+        "finalMixer": "-",
+        "legacySpecialty": "-"
+      },
+      "claimHeader": {
+        "serviceFrom": "9/18/2026",
+        "serviceTo": "9/18/2026",
+        "placeOfService1": "2",
+        "placeOfService2": "21",
+        "cxtInd": "X",
+        "productLineCode": "57",
+        "serviceClassType": "-",
+        "emergRefInd": "-",
+        "icd9": "N",
+        "federalMandate": "-",
+        "cocInd": "-",
+        "mixerOverrideInd": "-",
+        "streetMedicineInd": "None",
+        "surpriseBillingInd": "-",
+        "cgntInd": "-",
+        "product": "INPO",
+        "variance": "2186",
+        "contractNotes": "-",
+        "overridePriceProduct": "-",
+        "contractHierarchy": "-",
+        "bundleStatus": "-",
+        "clusterId": "-"
+      },
+      "diagnosisCodes": {
+        "a": "Z3800",
+        "b": "-",
+        "c": "-",
+        "d": "-",
+        "e": "-"
+      },
+      "lineSummary": {
+        "procedure": "—",
+        "modifier": "—",
+        "uo": "1",
+        "cxPercent": "100",
+        "allowed": "0",
+        "billedAmount": "12762",
+        "writeoff": "0"
+      }
+    },
+    "claimsSearched": false,
+    "claimsSearchedNote": "Searched — Subscriber or HCID 22470631 (the primary policy)"
+  },
+  "system": {
+    "benefitRecommendation": {
+      "contractCode": "72HN",
+      "effectiveDate": "1/1/2026",
+      "endDate": "12/31/9999",
+      "planState": "NH",
+      "planDescription": "Squamscott River Timber Cooperative 01/01/2026 PPO 72HN"
+    }
+  },
+  "attachment": {
+    "pwk": {
+      "type": "—",
+      "documentNumber": "—"
+    }
+  },
+  "claimData": {
+    "details": {
+      "claimType": "Professional",
+      "itsHome": "No",
+      "claimSource": {
+        "mediaType": "PC",
+        "pricingSource": "W",
+        "pricingSystem": "WP",
+        "mixerPar": "Y",
+        "receiverId": "WGSGA",
+        "receivedAtEdi": "9/24/2026",
+        "providerError": "I000",
+        "imageControlNumber": "CI26027110348931562",
+        "authNumber": "—",
+        "authExcln": "—",
+        "vendorIndicator": "—",
+        "receivedDate": "9/24/2026",
+        "splitInd": "—",
+        "epactPlm": "—",
+        "gnyhaInd": "—",
+        "imrIndicator": "—",
+        "cliaId": "—",
+        "cliaQualifier": "—"
+      },
+      "ancillaryProvider": {
+        "type": "—",
+        "zip": "—",
+        "state": "—"
+      },
+      "ambulance": {
+        "pickupZip": "—",
+        "dropoffZip": "—"
+      },
+      "miscellaneous": {
+        "epsdt": "—",
+        "familyPlanning": "No",
+        "gtessDate": "—",
+        "dateOfIllness": "—",
+        "dateOfInjury": "—",
+        "lastMenstrualDate": "—",
+        "consultationDate": "—",
+        "eruDecision": "—",
+        "jaaErrorCode": "No"
+      },
+      "stopData": {
+        "stopEdit": "No",
+        "lobParentRule": "—",
+        "lobChildRule": "ALL WGS",
+        "lobSequence": "1",
+        "medBusinessParentRule": "NA",
+        "medBusinessChildRule": "656881",
+        "medSequence": "51"
+      },
+      "refundData": {
+        "correspondenceNumber": "—",
+        "refundAmount": "$0.00",
+        "adjustmentReasonCode": "PX_4",
+        "correctedClaimDcn": "—",
+        "vendorName": "—",
+        "delayReason": "—",
+        "carveOut": "—",
+        "adjustmentReceipt": "—"
+      },
+      "highDollar": {
+        "riskOutcome": "—"
+      }
+    },
+    "editing": {
+      "claimXten": {
+        "originalLine": {
+          "lineNum": "1",
+          "serviceDate": "9/18/2026",
+          "procedure": "—",
+          "mod": "—",
+          "units": "1",
+          "billedAmount": "$217.30"
+        },
+        "proposedLine": {
+          "lineNum": "1",
+          "procedure": "—",
+          "mod": "—",
+          "units": "1",
+          "supportCode": "—",
+          "payPercent": "100",
+          "billedAmount": "$217.30"
+        }
+      },
+      "ihealth": {
+        "originalLine": {
+          "lineNum": "1",
+          "serviceDate": "9/18/2026",
+          "procedure": "—",
+          "mod": "—",
+          "units": "1",
+          "allowedAmount": "$0.00",
+          "savingsAmount": "$0.00"
+        },
+        "proposedLine": {
+          "procedure": "—",
+          "mod": "—",
+          "units": "1",
+          "payPercent": "100",
+          "status": "PX_P"
+        }
+      }
+    },
+    "benefits": {
+      "accumulator1": {
+        "type": "INDYTD",
+        "fromDate": "1/1/2026",
+        "toDate": "12/31/2026",
+        "unit": "Dollar",
+        "status": "Accrued"
+      },
+      "accumulator2": {
+        "type": "MMCYTD",
+        "fromDate": "1/1/2026",
+        "toDate": "12/31/2026",
+        "unit": "Dollar",
+        "status": "Accrued"
+      }
+    },
+    "promptPay": {
+      "claim": {
+        "status": "PX_WGS",
+        "state": "—",
+        "ruleId": "—",
+        "systemInterest": "$0.00",
+        "penaltyAmount": "$0.00",
+        "manualInterestAmount": "—"
+      },
+      "calculation": {
+        "calculationFromDate": "9/24/2026",
+        "carveoutDate": "—",
+        "lastProcessedDate": "9/24/2026",
+        "baseAmount": "$0.00",
+        "calculatedInterestAmount": "$0.00",
+        "processedInDays": "0",
+        "mailingDays": "0",
+        "disburseDays": "0",
+        "allowedDays": "0",
+        "carveoutDays": "0",
+        "lateByDays": "0",
+        "dailyInterest": "$0.00"
+      },
+      "miscellaneous": {
+        "carveoutReasonCode": "PX_0",
+        "dayIndicator": "0",
+        "receiptMethod": "—",
+        "productFundType": "W",
+        "interestRate": "—",
+        "penalty": "—",
+        "minimumPayAmount": "—",
+        "erMinimumPay": "—",
+        "annualMonthlyPenalty": "—",
+        "mlhDate": "26027",
+        "ppStopDate": "—",
+        "additionalInformationRequestDate": "—",
+        "tdiInterestAmount": "—",
+        "tdiPenaltyAmount": "—"
+      }
+    },
+    "review": {
+      "utilization": {
+        "service": {
+          "lineNum": "1",
+          "procedure": "—",
+          "revenueCodeDate": "170",
+          "ruleId": "—",
+          "caseNumber": "—"
+        }
+      },
+      "cdhp": {
+        "claim": {
+          "litesClaim": "—",
+          "rsnEobCode": "—",
+          "hraPaidTotal": "$0.00",
+          "hraEndingBalance": "$0.00",
+          "paymentCode": "—",
+          "cdhpAdmin": "—",
+          "acknowledgementRcvd": "—",
+          "requeryCount": "—"
+        },
+        "lineSummary": {
+          "lineNum": "1",
+          "procedure": "—",
+          "billed": "$217.30",
+          "patientResp": "—",
+          "hraPaid": "—",
+          "rsnCode": "—"
+        }
+      },
+      "dofr": {
+        "meta": {
+          "inzip": "—",
+          "providerNetworkCode": "—",
+          "dofrId1": "—",
+          "dofrName1": "—",
+          "relationship": "—",
+          "pgmId": "—",
+          "pgId": "—",
+          "umDelegationIndicator": "—",
+          "effectiveDate": "—",
+          "endDate": "—"
+        },
+        "lineSummary": {
+          "lineNum": "1",
+          "procedure": "—",
+          "revenueCode": "170",
+          "serviceCategory": "—",
+          "event": "—",
+          "capIndicator": "—",
+          "risk": "—",
+          "groupCode": "—",
+          "hc": "PP"
+        }
+      }
+    },
+    "relatedSummary": {
+      "code": "—",
+      "name": "—",
+      "fromDate": "—",
+      "toDate": "—",
+      "type": "—",
+      "provider": "—",
+      "dcn": "—",
+      "charged": "—",
+      "paid": "—",
+      "status": "—"
+    }
+  },
+  "cob": {
+    "commercial": {
+      "name": "Other Insu",
+      "policyId": "12345",
+      "policyholder": "—",
+      "eobDate": "9/9/2026",
+      "rollup": "—",
+      "medAssignInd": "—",
+      "otherCarrierAddress": "—"
+    },
+    "amounts": {
+      "allowed": "124.30",
+      "deduct": "0",
+      "copay": "0",
+      "coins": "12.43",
+      "nonElig": "0",
+      "disc": "92.70",
+      "excl": "0",
+      "contr": "0",
+      "subLiab": "0",
+      "withhold": "0",
+      "paid": "111.87"
+    }
+  },
+  "priorClaim": {
+    "note": "Processing detail for the claim returned by the history search.",
+    "summary": {
+      "dcn": "989866855",
+      "hcid": "22470631",
+      "memberName": "PRIYA RAGHUNATHAN",
+      "patientDob": "11/2/1991",
+      "provider": "SOMERSET WOMENS HEALTH",
+      "serviceDate": "09/25/2026",
+      "status": "Resolved-Paid",
+      "processDate": "10/08/2026"
+    },
+    "processing": {
+      "billedAmount": "217.00",
+      "providerDiscount": "92.70",
+      "coinsurance": "12.43",
+      "payment": "111.87"
+    }
+  },
+  "cobWorksheet": {
+    "primaryInsurance": {
+      "billedAmount": "$217.00",
+      "primaryAllowed": "$124.30",
+      "primaryDeductible": "—",
+      "primaryCoinsurance": "—",
+      "primaryCopayment": "$10.00",
+      "primaryPayment": "$114.30"
+    },
+    "primaryCoveragePayment": {
+      "billedAmount": "$217.00",
+      "primaryAllowed": "$124.30",
+      "primaryDeductible": "—",
+      "primaryCoinsurance": "$12.43",
+      "primaryCopayment": "—",
+      "primaryCoveragePayment": "$111.87"
+    },
+    "secondaryCalculations": {
+      "primaryPayment": "$114.30",
+      "primaryCoveragePayment": "$111.87",
+      "balance": "$2.43",
+      "primaryCoverageLiabilities": "$12.43",
+      "primarySecondaryPayment": "$2.43",
+      "cobEligibleExpense": "$10.00"
+    },
+    "status": ""
+  }
+}

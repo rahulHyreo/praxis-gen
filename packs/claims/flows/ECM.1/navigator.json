@@ -1,0 +1,170 @@
+{
+  "$schema": "training-platform/v1/flow-navigator",
+  "$version": "1.0.0",
+  "id": "nav_ecm_1_line_level_vs_total_mismatch",
+  "name": "Medicare — ECM.1 line level versus total mismatch",
+  "description": "Identify PX_ECM and check the event hierarchy, compare the COB Total line against the three Detail lines column by column, read the per-line discounts off the EOB claim form, enter them into the Disc boxes, Validate and Pay.",
+  "flowId": "flow_medicare_ecm_1",
+  "passMark": 70,
+  "totalSteps": 6,
+  "totalNavigatorPoints": 60,
+  "totalMaxPoints": 80,
+  "steps": [
+    {
+      "timeLimitSeconds": null,
+      "highlightTabId": null,
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_all_edits",
+      "targetFieldId": "f_er_e_ecm",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "highlightFields": [
+        "f_er_e_ecm",
+        "f_er_e_ecm_sev",
+        "f_er_e_sps_sev",
+        "f_er_e_dgx_sev",
+        "f_er_e_nip_sev",
+        "f_er_e_rfp_sev",
+        "f_er_e_lum_sev",
+        "f_er_e_tr2_sev"
+      ],
+      "id": "step_001",
+      "sequenceId": 1,
+      "name": "Identify the ECM event and check the event hierarchy",
+      "description": "Open the Event Resolution tab. The application displays every edit the claim hit, and PX_ECM is the current event requiring review — the line-level-versus-total mismatch event, which occurs when the total amount matches the expected value but the corresponding values are missing or incorrect at the individual claim-line level. Read down the All Edits list in hierarchy order and check the Severity beside each code to determine whether any event must be resolved before PX_ECM. If one is, resolve it first in hierarchy order; if none is, carry on. Here every event is Informational, so you proceed.",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the Event Resolution tab is clicked while this step is active. It is the tab the workspace opens on, so the click is a deliberate one.",
+      "hint": "On 'Event Resolution', the All Edits list shows PX_ECM marked (Active), and a Severity beside every code. Read them all before moving on.",
+      "checklistItem": "Identify the ECM event and check the event hierarchy"
+    },
+    {
+      "timeLimitSeconds": null,
+      "highlightTabId": null,
+      "targetTabId": "tab_claim_data",
+      "targetSubTabId": "subtab_claim_data_cob",
+      "targetSectionId": "sec_cd_cob_total",
+      "targetFieldId": null,
+      "expectedValue": null,
+      "scorePoints": 10,
+      "highlightFields": [],
+      "id": "step_002",
+      "sequenceId": 2,
+      "name": "Compare the Total line against the Detail lines",
+      "description": "Go to the Claim Data tab and open the COB sub-tab. Review the claim-level Total line against all three Detail line dollar amounts, and validate whether the COB and/or Medicare amounts on the Total line balance with the Detail line amounts for each column. Check each amount column separately: add its line-level values and compare the sum against that column's claim-level total. Check every column — even a small difference means the lines do not balance, and ECM can be triggered by a mismatch in just one column. Here the discount has a claim-level total but no line-level values, so its line amounts cannot add up to that total.",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_data",
+        "subTabId": "subtab_claim_data_cob"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes on opening Claim Data > COB. The column-by-column comparison it asks for has no field to type into and no single field whose focus would evidence it; forcing focus onto a column would hand over the answer this step exists to make the trainee find. Step 4 is where the finding is graded — a trainee who skipped the comparison has nothing to type.",
+      "hint": "Claim Data > COB. Take one amount column at a time: add the three Detail line values and compare the sum against that column's Total.",
+      "checklistItem": "Compare the Total line against the Detail lines"
+    },
+    {
+      "timeLimitSeconds": null,
+      "highlightTabId": null,
+      "targetTabId": "tab_claim_data",
+      "targetSubTabId": "subtab_claim_data_cob",
+      "targetSectionId": "sec_cd_cob_eob_toggle",
+      "targetFieldId": "f_cd_cob_eob_btn",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "highlightFields": ["f_cd_cob_eob_btn"],
+      "id": "step_003",
+      "sequenceId": 3,
+      "name": "Review the EOB claim-form discount values",
+      "description": "One column has a claim-level total that its line amounts cannot add up to, so the next step is to check the claim form for the correct amounts. Scroll down on the COB sub-tab and expand \"EOB (Claim form) details\" to see them. In the live system you would read these values from the claim form itself; in this application they are shown in this accordion.",
+      "actionType": "action_trigger",
+      "actionPayload": {
+        "actionId": "open_eob_details"
+      },
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when open_eob_details is dispatched. A reveal button rather than a collapsible section, because expanding a section fires no completion trigger and this step has to be graded. Design D6.",
+      "hint": "Scroll to the bottom of the COB sub-tab and click \"EOB (Claim form) details\".",
+      "checklistItem": "Review the EOB claim-form discount values"
+    },
+    {
+      "timeLimitSeconds": null,
+      "highlightTabId": null,
+      "targetTabId": "tab_claim_data",
+      "targetSubTabId": "subtab_claim_data_cob",
+      "targetSectionId": "sec_cd_cob_line3",
+      "targetFieldId": "f_cd_cob_l3_disc",
+      "expectedValue": "27.38",
+      "scorePoints": 10,
+      "highlightFields": [
+        "f_cd_cob_l1_disc",
+        "f_cd_cob_l2_disc",
+        "f_cd_cob_l3_disc"
+      ],
+      "id": "step_004",
+      "sequenceId": 4,
+      "name": "Update the Disc values on lines 1-3",
+      "description": "Use the claim-form values to update the three discount lines. In Claim Data > COB, edit line 1 to 85.30, line 2 to 51.95 and line 3 to 27.38 in the Disc text input boxes. Once the discount column balances to the claim-level total of 164.63, the ECM event will resolve.",
+      "actionType": "field_set",
+      "actionPayload": {
+        "fieldId": "f_cd_cob_l3_disc"
+      },
+      "completionTrigger": "field_value_set",
+      "completionTriggerNote": "Completes when cob.lines.line3.disc is set to 27.38. Lines 1 and 2 are confirmed by the Validate guard on step 5, which tests all three — one step grades one field.",
+      "hint": "The claim form gives the discount per line. Enter all three into the Disc boxes; they must add up to the 164.63 total.",
+      "checklistItem": "Update the Disc values on lines 1-3"
+    },
+    {
+      "timeLimitSeconds": null,
+      "highlightTabId": null,
+      "targetTabId": "tab_claim_data",
+      "targetSubTabId": "subtab_claim_data_cob",
+      "targetSectionId": "sec_cd_cob_line1",
+      "targetFieldId": null,
+      "expectedValue": null,
+      "scorePoints": 10,
+      "highlightFields": [
+        "f_cd_cob_l1_disc",
+        "f_cd_cob_l2_disc",
+        "f_cd_cob_l3_disc"
+      ],
+      "id": "step_005",
+      "sequenceId": 5,
+      "name": "Validate the corrected amounts",
+      "description": "Confirm the updated values have been entered correctly — line 1 at 85.30, line 2 at 51.95 and line 3 at 27.38 — then navigate to the claim summary and click the Validate button. Validate is refused while any of the three is wrong, and the balance check on the COB sub-tab says so.",
+      "actionType": "action_trigger",
+      "actionPayload": {
+        "actionId": "validate"
+      },
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when validate is dispatched AND all three Disc amounts satisfy the guard. The guard uses equalsAmount, not equalsIgnoreCase, so it is never stricter than step 4's grading.",
+      "hint": "Check all three Disc boxes against the claim form, then click Validate on the claim summary bar.",
+      "checklistItem": "Validate the corrected amounts"
+    },
+    {
+      "timeLimitSeconds": null,
+      "highlightTabId": null,
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "expectedValue": "pay",
+      "scorePoints": 10,
+      "highlightFields": [],
+      "id": "step_006",
+      "sequenceId": 6,
+      "name": "Submit Pay decision",
+      "description": "Navigate to the Decision section in the claim summary, select 'Pay' from the dropdown menu and click Submit.",
+      "actionType": "decision_submit",
+      "actionPayload": {
+        "decision": "pay"
+      },
+      "completionTrigger": "decision_submitted",
+      "completionTriggerNote": "Completes on submitting the claim with the Pay decision.",
+      "hint": "Decision > Pay, then Submit.",
+      "checklistItem": "Submit Pay decision"
+    }
+  ]
+}

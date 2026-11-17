@@ -1,0 +1,61 @@
+{
+  "$schema": "training-platform/v1/flow-result",
+  "$version": "1.0.0",
+  "id": "result_ann_1_provider_data_mismatch",
+  "rubric": {
+    "expectedDecision": "deny",
+    "expectedReasonCode": "PX_RANNPI",
+    "requiredStepIds": ["step_004", "step_005", "step_006", "step_007"],
+    "weights": {
+      "navigator": 70,
+      "decision": 20,
+      "reasonCode": 10
+    },
+    "deductions": {
+      "perMissedRequiredStep": 0,
+      "wrongDecision": 20,
+      "wrongReasonCode": 10
+    }
+  },
+  "resultConfig": {
+    "passLabel": "Passed!",
+    "failLabel": "You did not meet the pass mark.",
+    "passDescription": "Good work — you established the absence, and you established it twice. You confirmed the provider was an ancillary service from the L02 - INDEPENDENT LABORATORY specialty description, and that the claim met the ancillary filing requirement for its service type from the place of service 81. Then you went looking for the referring and ordering provider NPI: the Referring group carried a physician indicator and no NPI, the Miscellaneous Data section carried no supporting ordering NPI, and the claim image — the form the provider actually submitted — carried none in field 17b or field 44 either. That is the finding. An NPI on the image and not on the record would have been a keying defect to correct; absent from both, the provider never submitted one, and PX_RANNPI is the code for what was actually wrong.",
+    "failDescription": "Pass mark is {passMark}%. Review the steps below to see where you can improve.",
+    "scoreCircle": {
+      "radius": 40,
+      "strokeWidth": 8,
+      "passColor": "#3B6D11",
+      "failColor": "#A32D2D",
+      "trackColor": "#E5E7EB"
+    },
+    "statBoxes": [
+      {
+        "id": "navigator_score",
+        "label": "Navigator",
+        "dataKey": "navigatorScore",
+        "max": 70
+      },
+      {
+        "id": "decision_score",
+        "label": "Decision",
+        "dataKey": "decisionScore",
+        "max": 20
+      },
+      {
+        "id": "reason_code_score",
+        "label": "Reason Code",
+        "dataKey": "reasonCodeScore",
+        "max": 10
+      },
+      {
+        "id": "time_taken",
+        "label": "Time Taken",
+        "dataKey": "timeTakenSeconds",
+        "format": "duration"
+      }
+    ],
+    "retakeButton": true,
+    "backToClaimsButton": true
+  }
+}

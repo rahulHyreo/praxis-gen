@@ -1,0 +1,101 @@
+{
+  "$schema": "training-platform/v1/flow-state",
+  "$version": "1.0.0",
+  "id": "state_rb1_1_cob_dual_membership_primary",
+  "initial": {
+    "defaultActiveTabId": "tab_event_resolution",
+    "defaultActiveSubTabIds": {
+      "tab_search": "subtab_search_benefits",
+      "tab_claim_data": "subtab_claim_data_details",
+      "tab_attachment": "subtab_attachment_attachments"
+    },
+    "defaultCollapsedSections": {},
+    "defaultDecision": ""
+  },
+  "modeConfig": {
+    "training": {
+      "id": "training",
+      "label": "Training mode",
+      "badgeIcon": "graduation-cap",
+      "showNavigator": true,
+      "timerType": "count_up",
+      "timerPosition": "navigator_header",
+      "timeLockEnabled": false,
+      "showHints": true,
+      "showMarkCompleteButton": true,
+      "allowTabClose": true
+    },
+    "practice": {
+      "id": "practice",
+      "label": "Practice mode",
+      "badgeIcon": "dumbbell",
+      "showNavigator": false,
+      "timerType": "count_up",
+      "timerPosition": "topbar",
+      "timeLockEnabled": false,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": true
+    },
+    "assessment": {
+      "id": "assessment",
+      "label": "Assessment Mode",
+      "badgeIcon": "graduation-cap",
+      "showNavigator": false,
+      "timerType": "count_down",
+      "timerPosition": "topbar_right",
+      "timeLimitSeconds": 600,
+      "timeLockEnabled": true,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": false,
+      "beforeUnloadWarning": "Assessment in progress. Leaving will lose your progress."
+    }
+  },
+  "actions": {
+    "open_group_contract": {
+      "label": "Open Group Contract Information",
+      "latencyMs": 0,
+      "writes": {},
+      "completesStepId": "step_003"
+    },
+    "expand_primary_policy": {
+      "label": "Open the primary policy contract line",
+      "latencyMs": 0,
+      "writes": {},
+      "completesStepId": "step_005"
+    },
+    "open_ll_record_rb1": {
+      "label": "Open record — cob, effective 1/1/2024",
+      "latencyMs": 0,
+      "writes": {
+        "search.limitedLiability.selectedRecord.notes": "",
+        "search.limitedLiability.selectedRecord.status": "COB record effective 1/1/2024, no end date."
+      },
+      "completesStepId": "step_006"
+    },
+    "validate": {
+      "label": "Validate",
+      "latencyMs": 400,
+      "writes": {
+        "eventResolution.validationMessage": "CLAIM VALIDATED — PROCESSED UNDER NORMAL BENEFITS AND CONTRACT GUIDELINES"
+      },
+      "completesStepId": "step_008"
+    },
+    "search_member": {
+      "label": "Search member",
+      "latencyMs": 0,
+      "writes": {}
+    },
+    "search_member_clear": {
+      "label": "Clear member search",
+      "latencyMs": 0,
+      "writes": {}
+    }
+  },
+  "persistence": {
+    "persistKey": null,
+    "autosave": false,
+    "resetOnSubmit": false
+  }
+}

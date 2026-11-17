@@ -1,0 +1,140 @@
+{
+  "$schema": "training-platform/v1/flow-state",
+  "$version": "1.0.0",
+  "id": "state_benefits_3_par_physical_therapy_copay",
+  "initial": {
+    "defaultActiveTabId": "tab_search",
+    "defaultActiveSubTabIds": {
+      "tab_search": "subtab_search_pricing",
+      "tab_claim_data": "subtab_claim_data_details",
+      "tab_attachment": "subtab_attachment_attachments"
+    },
+    "defaultCollapsedSections": {},
+    "defaultDecision": ""
+  },
+  "modeConfig": {
+    "training": {
+      "id": "training",
+      "label": "Training mode",
+      "badgeIcon": "graduation-cap",
+      "showNavigator": true,
+      "timerType": "count_up",
+      "timerPosition": "navigator_header",
+      "timeLockEnabled": false,
+      "showHints": true,
+      "showMarkCompleteButton": true,
+      "allowTabClose": true
+    },
+    "practice": {
+      "id": "practice",
+      "label": "Practice mode",
+      "badgeIcon": "dumbbell",
+      "showNavigator": false,
+      "timerType": "count_up",
+      "timerPosition": "topbar",
+      "timeLockEnabled": false,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": true
+    },
+    "assessment": {
+      "id": "assessment",
+      "label": "Assessment Mode",
+      "badgeIcon": "graduation-cap",
+      "showNavigator": false,
+      "timerType": "count_down",
+      "timerPosition": "topbar_right",
+      "timeLimitSeconds": 900,
+      "timeLockEnabled": true,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": false,
+      "beforeUnloadWarning": "Assessment in progress. Leaving will lose your progress."
+    }
+  },
+  "actions": {
+    "get_pricing": {
+      "label": "Get Pricing — price line 1",
+      "latencyMs": 400,
+      "writes": {
+        "search.pricing.lineSummary.allowed": "112.51",
+        "search.pricing.lineSummary.writeoff": "228.49",
+        "search.pricing.pricingNote": "Pricing complete for procedure 97110 — review the Allowed and Write-off columns."
+      },
+      "completesStepId": "step_001"
+    },
+    "lookup_pos_code": {
+      "label": "Code Set — look up POS 22",
+      "latencyMs": 0,
+      "writes": {},
+      "completesStepId": "step_009"
+    },
+    "lookup_dx_code": {
+      "label": "Code Set — look up diagnosis Z4789",
+      "latencyMs": 0,
+      "writes": {},
+      "completesStepId": "step_011"
+    },
+    "expand_rehabilitation_therapies": {
+      "label": "Service level — expand Rehabilitation Therapies",
+      "latencyMs": 0,
+      "writes": {},
+      "completesStepId": "step_013"
+    },
+    "open_par_outpatient_benefits": {
+      "label": "View Benefits — open the PAR outpatient option",
+      "latencyMs": 0,
+      "writes": {},
+      "completesStepId": "step_014"
+    },
+    "open_plan_level": {
+      "label": "Open Plan Level",
+      "latencyMs": 0,
+      "writes": {},
+      "completesStepId": "step_015"
+    },
+    "view_deductible_accumulators": {
+      "label": "Accumulators — expand DEDUCTIBLE",
+      "latencyMs": 0,
+      "writes": {},
+      "completesStepId": "step_016"
+    },
+    "view_oop_accumulators": {
+      "label": "Accumulators — expand OUT OF POCKET",
+      "latencyMs": 0,
+      "writes": {},
+      "completesStepId": "step_017"
+    },
+    "validate": {
+      "label": "Validate — apply the benefits to line 1",
+      "latencyMs": 400,
+      "writes": {
+        "claimLineSummary.allowed": "$112.51",
+        "claimLineSummary.writeOffEob": "PX_00066",
+        "claimLineSummary.writeOff": "$228.49",
+        "claimLineSummary.deductible": "$0.00",
+        "claimLineSummary.coinsurance": "$0.00",
+        "claimLineSummary.copayEob": "PX_00135",
+        "claimLineSummary.copay": "$20.00",
+        "claimLineSummary.paid": "$92.51",
+        "claimLineSummary.benefitRule": "PHYSTHERAPY - PHYSTHR",
+        "header.claimAllowed": "$112.51",
+        "header.writeOff": "$228.49",
+        "header.copay": "$20.00",
+        "header.paid": "$92.51",
+        "paymentInfo.claim.pricingAllowedAmount": "112.51",
+        "paymentInfo.claim.copay": "20.00",
+        "paymentInfo.claim.patientLiab": "20.00",
+        "paymentInfo.claim.claimPaid": "92.51",
+        "paymentInfo.provider.providerDisc": "228.49",
+        "paymentInfo.provider.providerLiab": "228.49"
+      },
+      "completesStepId": "step_019"
+    }
+  },
+  "persistence": {
+    "persistKey": null,
+    "autosave": false,
+    "resetOnSubmit": false
+  }
+}

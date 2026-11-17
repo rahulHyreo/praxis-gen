@@ -1,0 +1,67 @@
+{
+  "$schema": "training-platform/v1/flow-result",
+  "$version": "1.0.0",
+  "id": "result_g24_2_g17_g24_exception_sweep_reject",
+  "rubric": {
+    "expectedDecision": "deny",
+    "expectedReasonCode": "PX_RG2400",
+    "requiredStepIds": [
+      "step_003",
+      "step_004",
+      "step_014",
+      "step_015",
+      "step_016"
+    ],
+    "weights": {
+      "navigator": 160,
+      "decision": 20,
+      "reasonCode": 10
+    },
+    "deductions": {
+      "perMissedRequiredStep": 0,
+      "wrongDecision": 20,
+      "wrongReasonCode": 10
+    }
+  },
+  "resultConfig": {
+    "passLabel": "Passed!",
+    "failLabel": "You did not meet the pass mark.",
+    "passDescription": "Great work — you reviewed every event on the Event Resolution tab, found the WGS notes carried no comment directing the claim be handled directly, noted the National state DC and confirmed the claim image matched it, established that the service location is not an Our Insurance state, and then ruled out every exception in turn: Medicare is not primary, there is no HPD event, the provider is not a VA or Military Hospital, the claim is not member-submitted, the services are neither ancillary nor Air Ambulance nor Home Infusion Therapy, there is no EP1 event, the provider is not in a contiguous county, the benefits cover the services and no duplicate exists in history. With every exception ruled out you correctly rejected the claim with reject code PX_RG2400, which sends it to the provider's local Blue Cross Blue Shield plan.",
+    "failDescription": "Pass mark is {passMark}%. Review the steps below to see where you can improve.",
+    "scoreCircle": {
+      "radius": 40,
+      "strokeWidth": 8,
+      "passColor": "#3B6D11",
+      "failColor": "#A32D2D",
+      "trackColor": "#E5E7EB"
+    },
+    "statBoxes": [
+      {
+        "id": "navigator_score",
+        "label": "Navigator",
+        "dataKey": "navigatorScore",
+        "max": 160
+      },
+      {
+        "id": "decision_score",
+        "label": "Decision",
+        "dataKey": "decisionScore",
+        "max": 20
+      },
+      {
+        "id": "reason_code_score",
+        "label": "Reason Code",
+        "dataKey": "reasonCodeScore",
+        "max": 10
+      },
+      {
+        "id": "time_taken",
+        "label": "Time Taken",
+        "dataKey": "timeTakenSeconds",
+        "format": "duration"
+      }
+    ],
+    "retakeButton": true,
+    "backToClaimsButton": true
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "$schema": "training-platform/v1/flow-state",
+  "$version": "1.0.0",
+  "id": "state_092_1_newborn_not_enrolled_member_code_pay",
+  "initial": {
+    "defaultActiveTabId": "tab_event_resolution",
+    "defaultActiveSubTabIds": {
+      "tab_search": "subtab_search_benefits",
+      "tab_claim_data": "subtab_claim_data_details",
+      "tab_attachment": "subtab_attachment_attachments"
+    },
+    "defaultCollapsedSections": {},
+    "defaultDecision": ""
+  },
+  "modeConfig": {
+    "training": {
+      "id": "training",
+      "label": "Training mode",
+      "badgeIcon": "graduation-cap",
+      "showNavigator": true,
+      "timerType": "count_up",
+      "timerPosition": "navigator_header",
+      "timeLockEnabled": false,
+      "showHints": true,
+      "showMarkCompleteButton": true,
+      "allowTabClose": true
+    },
+    "practice": {
+      "id": "practice",
+      "label": "Practice mode",
+      "badgeIcon": "dumbbell",
+      "showNavigator": false,
+      "timerType": "count_up",
+      "timerPosition": "topbar",
+      "timeLockEnabled": false,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": true
+    },
+    "assessment": {
+      "id": "assessment",
+      "label": "Assessment Mode",
+      "badgeIcon": "graduation-cap",
+      "showNavigator": false,
+      "timerType": "count_down",
+      "timerPosition": "topbar_right",
+      "timeLimitSeconds": 600,
+      "timeLockEnabled": true,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": false,
+      "beforeUnloadWarning": "Assessment in progress. Leaving will lose your progress."
+    }
+  },
+  "actions": {
+    "search_member_by_id": {
+      "label": "Search — Member ID only",
+      "latencyMs": 0,
+      "writes": {},
+      "completesStepId": "step_005"
+    },
+    "open_subscriber_contracts": {
+      "label": "Open the subscriber row",
+      "latencyMs": 0,
+      "writes": {},
+      "completesStepId": "step_006"
+    },
+    "expand_member_group": {
+      "label": "Expand the contract line for the claim group",
+      "latencyMs": 0,
+      "writes": {},
+      "completesStepId": "step_007"
+    },
+    "open_member_details": {
+      "label": "Open Member Detail",
+      "latencyMs": 0,
+      "writes": {},
+      "completesStepId": "step_008"
+    },
+    "validate": {
+      "label": "Validate",
+      "latencyMs": 400,
+      "guard": {
+        "dataKey": "memberInfo.patient.memberCode",
+        "equalsIgnoreCase": "70",
+        "elseWrites": {
+          "memberInfo.patient.memberCodeMessage": "Member code not accepted. Assign the next free member code in the range for the patient's sex, then click Validate again.",
+          "eventResolution.validationMessage": ""
+        }
+      },
+      "writes": {
+        "memberInfo.patient.memberCodeMessage": "Member code: 70 - Female dependent",
+        "eventResolution.validationMessage": "PX_092 RESOLVED — MEMBER CODE APPLIED"
+      },
+      "completesStepId": "step_010"
+    },
+    "apply_selected_member": {
+      "label": "Apply Selected Member",
+      "latencyMs": 0,
+      "writes": {}
+    },
+    "search_member_clear": {
+      "label": "Clear member search",
+      "latencyMs": 0,
+      "writes": {}
+    }
+  },
+  "persistence": {
+    "persistKey": null,
+    "autosave": false,
+    "resetOnSubmit": false
+  }
+}

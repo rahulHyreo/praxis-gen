@@ -1,0 +1,67 @@
+{
+  "$schema": "training-platform/v1/flow-result",
+  "$version": "1.0.0",
+  "id": "result_nbc_1_newborn_nbc_event",
+  "rubric": {
+    "expectedDecision": null,
+    "expectedReasonCode": null,
+    "requiredStepIds": [
+      "step_001",
+      "step_002",
+      "step_003",
+      "step_004",
+      "step_005",
+      "step_006",
+      "step_007",
+      "step_008",
+      "step_009",
+      "step_010",
+      "step_011"
+    ],
+    "weights": {
+      "navigator": 110,
+      "decision": 20,
+      "reasonCode": 0
+    },
+    "deductions": {
+      "perMissedRequiredStep": 0,
+      "wrongDecision": 20,
+      "wrongReasonCode": 0
+    }
+  },
+  "resultConfig": {
+    "passLabel": "Passed!",
+    "failLabel": "You did not meet the pass mark.",
+    "passDescription": "Great work — you identified the PX_NBC hard edit among all eight edits, verified that the patient's state is NH and that no other priority event is present, noted the 09/14/2026 date of birth, confirmed that the claim is billed above $10,000.00, found no Limited Liability record on file, opened Request Claim Review, selected Request COB Update, marked the review as related to a newborn with a comment, submitted the request, and correctly submitted the claim without a decision so that it is routed for COB Update Review.",
+    "failDescription": "Pass mark is {passMark}%. Review the steps below to see where you can improve.",
+    "scoreCircle": {
+      "radius": 40,
+      "strokeWidth": 8,
+      "passColor": "#3B6D11",
+      "failColor": "#A32D2D",
+      "trackColor": "#E5E7EB"
+    },
+    "statBoxes": [
+      {
+        "id": "navigator_score",
+        "label": "Navigator",
+        "dataKey": "navigatorScore",
+        "max": 110
+      },
+      {
+        "id": "decision_score",
+        "label": "Decision",
+        "dataKey": "decisionScore",
+        "max": 20
+      },
+      {
+        "id": "time_taken",
+        "label": "Time Taken",
+        "dataKey": "timeTakenSeconds",
+        "format": "duration"
+      }
+    ],
+    "retakeButton": true,
+    "backToClaimsButton": true
+  }
+}

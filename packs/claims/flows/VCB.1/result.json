@@ -1,0 +1,66 @@
+{
+  "$schema": "training-platform/v1/flow-result",
+  "$version": "1.0.0",
+  "id": "result_vcb_1_stale_other_carrier_eob",
+  "rubric": {
+    "expectedDecision": "pay",
+    "expectedReasonCode": null,
+    "requiredStepIds": [
+      "step_001",
+      "step_002",
+      "step_003",
+      "step_004",
+      "step_005",
+      "step_006",
+      "step_007",
+      "step_008",
+      "step_009",
+      "step_010"
+    ],
+    "weights": {
+      "navigator": 100,
+      "decision": 20,
+      "reasonCode": 0
+    },
+    "deductions": {
+      "perMissedRequiredStep": 0,
+      "wrongDecision": 20,
+      "wrongReasonCode": 0
+    }
+  },
+  "resultConfig": {
+    "passLabel": "Passed!",
+    "failLabel": "You did not meet the pass mark.",
+    "passDescription": "Great work — you reviewed every event on the claim and identified PX_VCB among them, searched history and established that the only claim matching was this one, so the EOB was not a prior transaction of a claim already processed. You read the Limited Liability record and confirmed from its Order of benefits that Our Insurance is the primary carrier, then matched the EOB on the COB sub-tab against the policy that record lists and found it was the carrier shown as secondary. That made the other insurer's information no longer needed, so you deleted the CB - Commercial popup through the Actions menu and confirmed the deletion. With that information off the claim you validated it from the claim summary bar, read the system message back and found nothing outstanding, and paid the claim under the current established unit guidelines.",
+    "failDescription": "Pass mark is {passMark}%. Review the steps below to see where you can improve.",
+    "scoreCircle": {
+      "radius": 40,
+      "strokeWidth": 8,
+      "passColor": "#3B6D11",
+      "failColor": "#A32D2D",
+      "trackColor": "#E5E7EB"
+    },
+    "statBoxes": [
+      {
+        "id": "navigator_score",
+        "label": "Navigator",
+        "dataKey": "navigatorScore",
+        "max": 100
+      },
+      {
+        "id": "decision_score",
+        "label": "Decision",
+        "dataKey": "decisionScore",
+        "max": 20
+      },
+      {
+        "id": "time_taken",
+        "label": "Time Taken",
+        "dataKey": "timeTakenSeconds",
+        "format": "duration"
+      }
+    ],
+    "retakeButton": true,
+    "backToClaimsButton": true
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "$schema": "training-platform/v1/flow-result",
+  "$version": "1.0.0",
+  "id": "result_mn_2_psccr_route",
+  "rubric": {
+    "expectedDecision": null,
+    "expectedReasonCode": null,
+    "requiredStepIds": [
+      "step_001",
+      "step_002",
+      "step_003",
+      "step_004",
+      "step_005",
+      "step_006",
+      "step_007",
+      "step_008",
+      "step_009",
+      "step_010",
+      "step_011"
+    ],
+    "weights": {
+      "navigator": 110,
+      "decision": 20,
+      "reasonCode": 0
+    },
+    "deductions": {
+      "perMissedRequiredStep": 0,
+      "wrongDecision": 20,
+      "wrongReasonCode": 0
+    }
+  },
+  "resultConfig": {
+    "passLabel": "Passed!",
+    "failLabel": "You did not meet the pass mark.",
+    "passDescription": "Great work — you noted the Pricing state (CA), identified the PX_MN01 soft edit and confirmed no higher-hierarchy event blocked it, confirmed the Line-1 services were covered (verify in CI&W) and that procedure 67725 was not on the PSCCR NOC Codes Exception List, confirmed the LOB was Local, inspected the Line-1 billed amount ($1250 > $250) and opened the Code Set lookup, looked up the Suspend/Deny dollar threshold ($500), confirmed the billed amount ($1250) was at or above the threshold, confirmed the claim carried PSCCR events (PX_MJ present), confirmed medical records were available (25035878888), raised the PSCCR review request for Line 1, and correctly routed the claim to PSCCR without paying or denying (submitted with no decision).",
+    "failDescription": "Pass mark is {passMark}%. Review the steps below to see where you can improve.",
+    "scoreCircle": {
+      "radius": 40,
+      "strokeWidth": 8,
+      "passColor": "#3B6D11",
+      "failColor": "#A32D2D",
+      "trackColor": "#E5E7EB"
+    },
+    "statBoxes": [
+      {
+        "id": "navigator_score",
+        "label": "Navigator",
+        "dataKey": "navigatorScore",
+        "max": 110
+      },
+      {
+        "id": "decision_score",
+        "label": "Decision",
+        "dataKey": "decisionScore",
+        "max": 20
+      },
+      {
+        "id": "time_taken",
+        "label": "Time Taken",
+        "dataKey": "timeTakenSeconds",
+        "format": "duration"
+      }
+    ],
+    "retakeButton": true,
+    "backToClaimsButton": true
+  }
+}

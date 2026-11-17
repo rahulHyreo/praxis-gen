@@ -1,0 +1,1134 @@
+{
+  "$schema": "training-platform/v1/workspace-data",
+  "$version": "2.0.0",
+  "id": "data_anz_1_ancillary_provider_location_v4",
+  "claimId": "claim_anz_1_004",
+  "dcn": "DCN-9950400",
+  "flowId": "flow_provider_data_mismatch_anz_1",
+  "navigatorSchemaId": "nav_anz_1_ancillary_provider_location",
+  "claim": {
+    "dcn": "DCN-9950400",
+    "patient": "Annelise Varghese",
+    "serviceFrom": "08/06/2026",
+    "billedAmount": "$109.37"
+  },
+  "header": {
+    "dcn": "DCN-9950400",
+    "edits": "PX_ANZ",
+    "billed": "$109.37",
+    "claimAllowed": "—",
+    "paid": "—",
+    "writeOff": "—",
+    "deductible": "—",
+    "coinsurance": "—",
+    "copay": "—",
+    "actionCode": "—",
+    "receiptDate": "8/13/2026",
+    "serviceFrom": "08/06/2026",
+    "serviceTo": "08/06/2026"
+  },
+  "eventResolution": {
+    "editCode": "PX_ANZ",
+    "editLabel": "ANCILLARY PROVIDER DETAILS MISSING",
+    "severity": "Informational",
+    "validationMessage": "",
+    "edits": [
+      {
+        "code": "PX_SPS",
+        "label": "USE PA MENU OPTION TO VIEW PRV",
+        "severity": "Informational",
+        "active": false
+      },
+      {
+        "code": "PX_DGX",
+        "label": "CLAIM RECEIVED AT ECP",
+        "severity": "Informational",
+        "active": false
+      },
+      {
+        "code": "PX_ANZ",
+        "label": "ANCILLARY PROVIDER DETAILS MISSING",
+        "severity": "Informational",
+        "active": true
+      },
+      {
+        "code": "PX_DME",
+        "label": "DURABLE MEDICAL EQUIPMENT CLAIM",
+        "severity": "Informational",
+        "active": false
+      },
+      {
+        "code": "PX_RFP",
+        "label": "Digital RFAI Provider",
+        "severity": "Informational",
+        "active": false
+      },
+      {
+        "code": "PX_LUM",
+        "label": "CDHP CLAIM",
+        "severity": "Informational",
+        "active": false
+      },
+      {
+        "code": "PX_TR2",
+        "label": "TIER CLAIM EMPLOYEE PLUS 1",
+        "severity": "Informational",
+        "active": false
+      }
+    ]
+  },
+  "memberInfo": {
+    "patient": {
+      "firstName": "ANNELISE",
+      "middleName": "E",
+      "lastName": "VARGHESE",
+      "dob": "9/08/1991",
+      "sex": "F",
+      "memberPrefix": "YTB",
+      "hcid": "865E23097",
+      "relationship": "SUB - Subscriber",
+      "memberCode": "30",
+      "memberCodeMessage": "",
+      "contractType": "F",
+      "erisa": "Y",
+      "pcp": "—",
+      "pcpState": "—",
+      "pcpRelationship": "—",
+      "programCode": "—",
+      "state": "AZ"
+    },
+    "subscriber": {
+      "firstName": "MARISOL",
+      "middleName": "E",
+      "lastName": "CARRANZA",
+      "subscriberId": "804R21947",
+      "address": "1430 Rio Salado Pkwy, Tempe, AZ 85281"
+    },
+    "group": {
+      "groupName": "RIO SALADO FREIGHT GROUP",
+      "groupId": "KPR417M620",
+      "groupContract": "R28D",
+      "detailContractCode": "R28D",
+      "product": "LOCAL",
+      "networkId": "NHPPO100",
+      "networkName": "NH PPO/EPO BLUE ACCESS LOCAL/NATL"
+    }
+  },
+  "claimImage": {
+    "memberDetails": {
+      "patient": {
+        "firstName": "ANNELISE",
+        "middleName": "T",
+        "lastName": "VARGHESE",
+        "dob": "9/08/1991",
+        "sex": "F",
+        "memberPrefix": "JWD",
+        "hcid": "865E23097",
+        "relationship": "SUB - Subscriber",
+        "memberCode": "30",
+        "detailContractCode": "R28D",
+        "contractType": "C",
+        "groupId": "TNC947M136",
+        "groupContract": "R28D",
+        "product": "BCBI",
+        "erisa": "Y",
+        "pcp": "—",
+        "pcpState": "—",
+        "pcpRelationship": "—",
+        "address": "#17, Boulevard road, WI 47885"
+      },
+      "subscriber": {
+        "firstName": "MARISOL",
+        "middleName": "A",
+        "lastName": "CARRANZA",
+        "subscriberId": "804R21947",
+        "address": "1430 Rio Salado Pkwy, Tempe, AZ 85281"
+      },
+      "totalClaimLines": "1"
+    },
+    "additional": {
+      "claimSource": {
+        "mediaType": "-",
+        "pricingSource": "-",
+        "pricingSystem": "-",
+        "mixerPar": "-",
+        "receiverId": "NH",
+        "receivedAtEdi": "8/13/2026",
+        "providerError": "-",
+        "authNumber": "-",
+        "authExcln": "-",
+        "vendorIndicator": "-",
+        "receivedDate": "8/13/2026",
+        "originalReferenceNumber": "-"
+      },
+      "ancillaryProvider": {
+        "type": "—",
+        "zip": "—",
+        "state": "—"
+      },
+      "ambulance": {
+        "pickupZip": "-",
+        "dropoffZip": "-"
+      },
+      "miscellaneous": {
+        "epsdt": "-",
+        "familyPlanning": "-",
+        "gtessDate": "-",
+        "dateOfIllness": "-",
+        "dateOfInjury": "-",
+        "lastMenstrualDate": "-",
+        "consultationDate": "-"
+      },
+      "stopData": {
+        "stopEdit": "-",
+        "lobParentRule": "-",
+        "lobChildRule": "-",
+        "lobSequence": "-",
+        "medBusinessParentRule": "-",
+        "medBusinessChildRule": "-",
+        "medSequence": "-"
+      },
+      "refundData": {
+        "correspondenceNumber": "-",
+        "refundAmount": "-",
+        "adjustmentReason": "-",
+        "vendorName": "-",
+        "delayReason": "-",
+        "carveOut": "-",
+        "adjustmentReceiptDate": "-"
+      },
+      "highDollar": {
+        "riskOutcome": "-"
+      },
+      "its": {
+        "account": {
+          "deliveryMethod": "—",
+          "accountType": "—",
+          "aso": "—",
+          "stateId": "—",
+          "originalCertificate": "—",
+          "originalGroup": "—"
+        },
+        "pricing": {
+          "primarySop": "—",
+          "secondarySop": "—",
+          "tertiarySop": "—",
+          "cobCalMethod": "—"
+        },
+        "providers": {
+          "mppqAssignUnassigned": "—",
+          "ppoNetworkAvailability": "—",
+          "ppoProviderAvailability": "—",
+          "eft835": "—",
+          "serviceZip": "—"
+        }
+      },
+      "sfdf": {
+        "sfMessage": "—",
+        "dfMessage": "—",
+        "primacy": "—",
+        "autoOtherAccident": "—",
+        "totalDaysVisits": "—"
+      },
+      "claimLineDetail": [
+        {
+          "lineNum": "1",
+          "blankDateInd": "—",
+          "approvedDenyInd": "—"
+        }
+      ]
+    }
+  },
+  "providerInfo": {
+    "rendering": {
+      "npi": "1760384295",
+      "name": "TEMPE VALLEY MEDICAL ASSOCIATES",
+      "address": "82 Mill Ave, Tempe, AZ 85281",
+      "pricingState": "AZ",
+      "pricingZip": "85281-3140",
+      "providerSps": "7418205563",
+      "providerEpin": "—",
+      "license": "01082547A",
+      "networkOption": "N",
+      "specialty": "037",
+      "specialtyDescription": "PEDIATRICS",
+      "taxonomy": "208000000X"
+    },
+    "billing": {
+      "taxId": "861403927",
+      "npi": "1760384295",
+      "name": "TEMPE VALLEY MEDICAL ASSOCIATES",
+      "facilityType": "—",
+      "providerSps": "6630947128",
+      "providerEpin": "—",
+      "medicareId": "—",
+      "address": "82 Mill Ave, Tempe, AZ 85281",
+      "nationalState": "AZ",
+      "locationCode": "—",
+      "bhaProviderIndicator": "N",
+      "taxonomy": "208000000X",
+      "timelyFilingLimit": "—"
+    },
+    "referring": {
+      "referringPhysician": "—",
+      "npi": "—"
+    },
+    "serviceFacility": {
+      "facilityTier": "N",
+      "type": "N",
+      "npi": "1760384295"
+    },
+    "miscellaneous": {
+      "supportingOrderingNpi": "—",
+      "nsbIndicator": "None",
+      "alternateFacilityNpi": "—"
+    }
+  },
+  "paymentInfo": {
+    "claim": {
+      "deductible": "0.00",
+      "copay": "0.00",
+      "coins": "0.00",
+      "patientLiab": "0.00",
+      "memberSurcharge": "0.00",
+      "nonElg": "0.00",
+      "hraPaid": "0.00",
+      "claimPaid": "0.00",
+      "pricingAllowedAmount": "0.00",
+      "totalCharge": "217.30",
+      "finalizationCode": "—"
+    },
+    "provider": {
+      "providerDisc": "0.00",
+      "providerLiab": "0.00",
+      "providerRiskWithhold": "0.00",
+      "providerSurcharge": "0.00",
+      "interest": "0.00",
+      "penalty": "0.00",
+      "lr": "L",
+      "systemInterest": "0.00"
+    },
+    "drg": {
+      "keyed": "-",
+      "priced": "—",
+      "original": "—"
+    },
+    "check": {
+      "accountNumber": "1234512345",
+      "checkNumber": "—",
+      "checkDate": "—",
+      "amount": "0.00",
+      "paymentSystem": "D",
+      "checkMailedTo": "—",
+      "eftCheckDate": "—",
+      "checkStatus": "CHECK NOT FOUND ON RECON DB",
+      "checkStatusDate": "09/24/2026",
+      "paidTo": "TEMPE VALLEY MEDICAL ASSOCIATES",
+      "finalized": "—"
+    },
+    "payeeDetails": {
+      "flipPayee": "N"
+    }
+  },
+  "claimHeader": {
+    "general": {
+      "serviceFromThrough": "09/08/2026 - 09/08/2026",
+      "assignmentOfBenefits": "Y - Benefit assigned to provider",
+      "providerParticipation": "PAR",
+      "providerContract": "INP00000",
+      "treatmentAuth": "—",
+      "patientAccount": "W000000000",
+      "emergency": "No",
+      "employment": "No",
+      "coveredZipRadius": "-",
+      "frequency": "1",
+      "bbiIndicator": "-",
+      "pciIndicator": "-",
+      "fsbInd": "None",
+      "fsbExclusion": "X"
+    },
+    "benefitIndicators": {
+      "cob": "0",
+      "cobRule": "-",
+      "medInd": "No",
+      "medRule": "-",
+      "medicareAdvantage": "No",
+      "cdhp": "N",
+      "planPayer": "N",
+      "cobPercent": "0"
+    },
+    "diagnosisCodes": {
+      "dx1": "Z3800"
+    },
+    "conditionCodes": {
+      "code": "-"
+    }
+  },
+  "claimLines": [
+    {
+      "lineNum": "1",
+      "fromDate": "08/06/2026",
+      "toDate": "08/06/2026",
+      "pos": "21",
+      "revCode": "170",
+      "service": "RAB",
+      "procedure": "—",
+      "modifiers": "—",
+      "units": "1",
+      "diagnosis": "Z3800",
+      "billed": "300.00",
+      "dedInd": "NO",
+      "coinsPercent": "100",
+      "stoploss": "No",
+      "eobTy": "—",
+      "writeoffEobTy": "$0.00",
+      "noncoveredUnit": "0",
+      "deductible": "—",
+      "otherUnit": "0",
+      "copay": "—",
+      "eobTyLast": "—",
+      "payment": "0.00"
+    }
+  ],
+  "claimLineSummary": {
+    "lineNum": "1",
+    "fromDate": "08/06/2026",
+    "toDate": "08/06/2026",
+    "pos": "12",
+    "revCode": "—",
+    "service": "SUP",
+    "procedure": "E0601",
+    "modifiers": "NU",
+    "units": "1",
+    "diagnosis": "G4733",
+    "billed": "$109.37",
+    "dedInd": "NO",
+    "coinsPercent": "100",
+    "stoploss": "No",
+    "eobTy": "—",
+    "writeoffEobTy": "$0.00",
+    "noncoveredUnit": "0",
+    "deductible": "—",
+    "otherUnit": "0",
+    "copay": "—",
+    "eobTyLast": "—",
+    "payment": "$0.00"
+  },
+  "notes": {
+    "research": "—",
+    "mainframe": "251907",
+    "wgs": "—",
+    "taskManagement": {
+      "routedTo": "-",
+      "urgency": "65",
+      "skills": "CT-Professional",
+      "csPg": "GS-National",
+      "benNonspider": "SPIDER",
+      "regCa": "-",
+      "resUnrestricted": "-",
+      "totalAge": "4",
+      "homeAge": "4",
+      "ageAdjusted": "N",
+      "baselineUrgency": "45",
+      "urgencyModifiers": "PG Modifer(0)"
+    }
+  },
+  "search": {
+    "claims": {
+      "dcnKernalClaim": "",
+      "claimId": "",
+      "subscriberOrHcid": "804R21947",
+      "sccf": "",
+      "procedure": "",
+      "serviceFrom": "08/06/2026",
+      "serviceTo": "",
+      "code": "",
+      "totalCharge": "",
+      "status": "ALL",
+      "providerTaxId": "861403927",
+      "providerNpi": "",
+      "renderingLicenseId": "",
+      "billType": ""
+    },
+    "claimsResultCount": "1 result",
+    "claimsResults": [
+      {
+        "code": "30",
+        "name": "DESMOND OKONJO",
+        "from": "08/06/2026",
+        "to": "08/06/2026",
+        "type": "P",
+        "provider": "TEMPE VALLEY MEDICAL ASSOCIATES",
+        "billType": "-",
+        "dcn": "DCN-620103",
+        "charged": "300.00",
+        "paid": "0.00",
+        "status": "Pending-Investigation"
+      }
+    ],
+    "codeSet": {
+      "selectCodeType": "-",
+      "enterCode": "-"
+    },
+    "auth": {
+      "search": {
+        "subscriberOrHcid": "614W20937",
+        "serviceStartDate": "9/18/2026",
+        "serviceEndDate": "9/18/2026",
+        "status": "-"
+      },
+      "members": {
+        "name": "—",
+        "dob": "—",
+        "ageAdjusted": "—",
+        "memberId": "-",
+        "mcid": "-",
+        "subscriberOrHcid": "614W20937"
+      }
+    },
+    "benefits": {
+      "planOptions": [
+        {
+          "costShare": "DEDUCTIBLE",
+          "network": "PPO",
+          "maximum": "$500",
+          "accumType": "Calendar Year"
+        },
+        {
+          "costShare": "OUT-OF-POCKET MAX",
+          "network": "PPO",
+          "maximum": "$3,000",
+          "accumType": "Calendar Year"
+        },
+        {
+          "costShare": "MEMBER CLAIM FILING DAY LIMIT",
+          "network": "—",
+          "maximum": "365 days",
+          "accumType": "—"
+        }
+      ],
+      "searchBenefits": {
+        "contractCode": "72HN",
+        "effectiveDate": "1/1/2026",
+        "endDate": "12/31/9999",
+        "effectiveEndDate": "-"
+      },
+      "general": {
+        "contractCode": "72HN",
+        "product": "BCBI",
+        "plan": "SQUAMSCOTT RIVER TIMBER COOPERATIVE",
+        "contractState": "NH",
+        "benefitPeriod": "-",
+        "benefitPeriodAlt": "-",
+        "fundingArrangement": "-",
+        "cdhpInd": "-",
+        "groupNumber": "L02417M003",
+        "contractId": "72HN",
+        "memberName": "GRANT HARTWELL",
+        "caseNumber": "L02417",
+        "contractType": "-",
+        "crossAccumulation": "-"
+      },
+      "viewNic": {
+        "coverage": "MED-MEDICL COVERAGE",
+        "pricing": "IN29",
+        "network": "PPO"
+      },
+      "accumulators": {
+        "criteria": {
+          "memberId": "614W20937",
+          "memberCode": "70",
+          "fromDate": "9/18/2026",
+          "toDate": "9/18/2026",
+          "sourceSystem": "WGS"
+        },
+        "selection": {
+          "accumulatorName": "—",
+          "benefitYear": "—",
+          "accumulatorEffDate": "—",
+          "cob": "—",
+          "deductible": "—",
+          "fertilityRx": "—",
+          "lifetime": "—",
+          "other": "—",
+          "outOfPocket": "—"
+        }
+      }
+    },
+    "provider": {
+      "npiTaxId": {
+        "npi": "1760384295",
+        "orgTaxId": "020418365",
+        "fromDate": "9/18/2026",
+        "throughDate": "9/18/2026",
+        "lastUpdateDate": "12/15/2025",
+        "sourceSystem": "WGS",
+        "zipCode": "-",
+        "billingType": "-",
+        "specialty": "-",
+        "state": "-",
+        "alternateId": "-",
+        "alternateKey": "-"
+      },
+      "practitioner": {
+        "firstName": "-",
+        "lastName": "-",
+        "fromDate": "9/18/2026",
+        "throughDate": "9/18/2026",
+        "sourceSystem": "SPS",
+        "addressLine": "-",
+        "city": "-",
+        "state": "-",
+        "specialty": "-"
+      },
+      "organization": {
+        "organizationName": "-",
+        "orgTaxId": "020418365",
+        "fromDate": "9/18/2026",
+        "throughDate": "9/18/2026",
+        "sourceSystem": "SPS",
+        "addressLine": "-",
+        "city": "-",
+        "state": "-",
+        "zipCode": "-",
+        "billingType": "-",
+        "specialty": "-"
+      },
+      "pcpPmg": {
+        "pcpPmgId": "-",
+        "fromDate": "9/18/2026",
+        "throughDate": "9/18/2026",
+        "sourceSystem": "SPS",
+        "specialty": "-",
+        "state": "-"
+      },
+      "alternateId": {
+        "organizationName": "XXXXX",
+        "alternateKeyOrg": "-",
+        "individual": "8023 - Legacy provider ID",
+        "alternateKeyIndiv": "-",
+        "nonAnthem": "33-NPI",
+        "alternateKeyNonAnthem": "-"
+      }
+    },
+    "member": {
+      "results": [],
+      "searchMember": {
+        "memberId": "804R21947",
+        "firstName": "Desmond",
+        "mi": "A",
+        "lastName": "Okonjo",
+        "dob": "7/22/1981",
+        "relationship": "SUB - Subscriber",
+        "memberCode": "30",
+        "gender": "M",
+        "state": "TX",
+        "contractId": "R28D",
+        "caseEntity": "T41C08",
+        "groupNumber": "KPR417M620",
+        "hcid": "804R21947",
+        "prefix": "YTB",
+        "effectiveDate": "1/1/2026",
+        "endDate": "12/31/9999",
+        "productCode": "Local",
+        "contractState": "TX",
+        "businessUnit": "Group"
+      },
+      "general": {
+        "name": "Desmond A Okonjo",
+        "dateOfBirth": "7/22/1981",
+        "age": "—",
+        "sex": "M",
+        "memberId": "804R21947",
+        "hcid": "804R21947",
+        "relationship": "SUB - Subscriber",
+        "memberCode": "30",
+        "address": "920 Caddo Bend  PLANO TX 75023",
+        "county": "—",
+        "country": "US",
+        "phone": "—",
+        "effectiveDate": "1/1/2026",
+        "endDate": "12/31/9999",
+        "productType": "BCPI - BC INCENTIVE PPO",
+        "groupType": "A -ACTIVE",
+        "cob": "",
+        "businessUnit": "Group",
+        "paidToDate": "9/1/2026",
+        "erisa": "Y",
+        "caseGroupSetup": "Y",
+        "contractStartDate": "-",
+        "shortTermEndDate": "-",
+        "cxlProcessDate": "-",
+        "aptcIndicator": "-",
+        "csdt": "-",
+        "caseName": "Caddo Bend Logistics Group",
+        "ncnReferralsInd": "—",
+        "foi": "G",
+        "roundoprd": "12",
+        "conversionCode": "0",
+        "medicareIndicator": "—"
+      },
+      "additionalAddress": {
+        "address": "920 Caddo Bend  PLANO TX 75023"
+      },
+      "providerNetwork": {
+        "product": "57BC PPO INCENTIVE",
+        "providerGroupName": "-",
+        "address": "-",
+        "phone": "-"
+      },
+      "contractMembers": [
+        {
+          "memberCode": "30",
+          "name": "Desmond A Okonjo",
+          "relationship": "SUB - Subscriber",
+          "dob": "7/22/1981",
+          "age": "—",
+          "effectiveDate": "1/1/2026",
+          "endDate": "12/31/9999"
+        },
+        {
+          "memberCode": "—",
+          "name": "—",
+          "relationship": "—",
+          "dob": "—",
+          "age": "—",
+          "effectiveDate": "—",
+          "endDate": "—"
+        },
+        {
+          "memberCode": "—",
+          "name": "—",
+          "relationship": "—",
+          "dob": "—",
+          "age": "—",
+          "effectiveDate": "—",
+          "endDate": "—"
+        }
+      ],
+      "group": {
+        "general": {
+          "name": "RIO SALADO FREIGHT GROUP",
+          "status": "O ACTIVE",
+          "companyCode": "123C XXXX",
+          "paidToDate": "2/1/2026",
+          "locationStateCode": "TX",
+          "locationCodeEffectiveDate": "1/1/2019",
+          "workLocation": "7003 ANTHEM NAT ACCT",
+          "workLocationPhone": "9999888899",
+          "rateMethodCode": "1 ASO BUSINESS",
+          "rmcEffectiveDate": "1/1/2019",
+          "groupType": "A ACTIVE",
+          "fundingTypeCode": "H ASC",
+          "graceDays": "30",
+          "claimGraceDays": "30"
+        },
+        "coverage": {
+          "originalEffectiveDate": "1/1/2019",
+          "groupProcessedDate": "10/9/2018",
+          "reinstateEffectiveDate": "-",
+          "reinstateProcessedDate": "-",
+          "cancelEffectiveDate": "-",
+          "cancelProcessedDate": "-",
+          "cancelReason": "-"
+        },
+        "contract": {
+          "productLine": "BC PPO INCENTIVE",
+          "claimsRoute": "PX_P-EXEC - NATIONAL ACCTS",
+          "benefitYearCalendarYear": "CY",
+          "benefitYearCalendarYearAsOfDate": "1/1/2019",
+          "contractCode": "72HN",
+          "contractCodeEffectiveDate": "1/1/2019",
+          "promptPay": "N",
+          "promptPayDate": "1/1/2019",
+          "itsHomeParticipatingCode": "E CONTROL CUSTOM",
+          "itsHomeEffectiveDate": "1/1/2019",
+          "locationLobCode": "X BC/BCLH",
+          "overAgeMailing": "S MAIL TO SUBR",
+          "networkId": "BLUECDOO",
+          "networkName": "BLUE XXXX BLUE XXXX"
+        },
+        "additional": {
+          "product": "BC PPO INC Claim Manager",
+          "mbuCode": "NAC00000",
+          "claimsServiceLocation": "COOIO/CAACOII",
+          "serviceManager": "SRVC/DARLENE",
+          "claimManager": "CLMS/M PENNER",
+          "servicePhone": "999999999",
+          "serviceAddress": "XXXX PARK Road CONCORD NH 03301",
+          "sourceSystem": "WGS 2.0"
+        }
+      }
+    },
+    "limitedLiability": {
+      "memberId": "804R21947",
+      "memberCode": "30",
+      "dob": "7/22/1981",
+      "activeRecords": "Active records",
+      "allRecords": "—",
+      "resultsNote": "1 active record found.",
+      "results": [
+        {
+          "type": "COB",
+          "effectiveDate": "01/01/2024",
+          "endDate": "",
+          "orderOfBenefits": "P – Our Insurance is primary",
+          "description": ""
+        }
+      ],
+      "recordDetail": {
+        "insuranceCode": "QCR",
+        "insuranceName": "Other Insu",
+        "policyType": "MED - Medical",
+        "policyNumber": "12345",
+        "groupNumber": "KPR417M620",
+        "cobType": "C - Other carrier",
+        "stateCarrierCode": "—",
+        "questionnaireSend": "—",
+        "questionnaireSentDate": "12/09/2024",
+        "questionnaireReceivedDate": "04/21/2025",
+        "sentCount": "1",
+        "resultsCode": "P – Our Insurance is primary",
+        "letterTypeIndicator": "—",
+        "letterAckIndicator": "N - No",
+        "letterSendDate": "—",
+        "updatedDate": "—",
+        "updatedById": "—"
+      },
+      "selectedRecord": {
+        "notes": "",
+        "status": ""
+      }
+    },
+    "pricing": {
+      "member": {
+        "dob": "9/14/2026",
+        "sex": "F",
+        "groupNumber": "KPR417M620",
+        "groupId": "-",
+        "networkId": "BLUECS",
+        "memberZipCode": "03833",
+        "alternateZipCode": "-",
+        "medicareInd": "N",
+        "hixInd": "-",
+        "marketType": "NTLA",
+        "memberInd": "-",
+        "ab72": "-",
+        "patientCode": "-",
+        "product": "BCBI -",
+        "variance": "IN29",
+        "coverage": "MED",
+        "groupIdentifier": "-"
+      },
+      "provider": {
+        "taxId": "861403927",
+        "renderingNumber": "77777777777",
+        "billingNumber": "6666666666",
+        "renderingNpi": "1760384295",
+        "billingNpi": "1760384295",
+        "license": "01082547A",
+        "specialty": "037",
+        "zipCode": "03833-2117",
+        "planInd": "NH",
+        "wgsp": "P",
+        "pcpState": "NP",
+        "region": "462",
+        "gbdId": "-",
+        "providerInd": "-",
+        "providerParticipation": "PAR",
+        "providerProdVar": "INP02186",
+        "networxInd": "-",
+        "finalMixer": "-",
+        "legacySpecialty": "-"
+      },
+      "claimHeader": {
+        "serviceFrom": "08/06/2026",
+        "serviceTo": "08/06/2026",
+        "placeOfService1": "2",
+        "placeOfService2": "21",
+        "cxtInd": "X",
+        "productLineCode": "57",
+        "serviceClassType": "-",
+        "emergRefInd": "-",
+        "icd9": "N",
+        "federalMandate": "-",
+        "cocInd": "-",
+        "mixerOverrideInd": "-",
+        "streetMedicineInd": "None",
+        "surpriseBillingInd": "-",
+        "cgntInd": "-",
+        "product": "INPO",
+        "variance": "2186",
+        "contractNotes": "-",
+        "overridePriceProduct": "-",
+        "contractHierarchy": "-",
+        "bundleStatus": "-",
+        "clusterId": "-"
+      },
+      "diagnosisCodes": {
+        "a": "Z3800",
+        "b": "-",
+        "c": "-",
+        "d": "-",
+        "e": "-"
+      },
+      "lineSummary": {
+        "procedure": "—",
+        "modifier": "—",
+        "uo": "1",
+        "cxPercent": "100",
+        "allowed": "0",
+        "billedAmount": "300.00",
+        "writeoff": "0"
+      }
+    },
+    "claimsSearched": false
+  },
+  "system": {
+    "benefitRecommendation": {
+      "contractCode": "72HN",
+      "effectiveDate": "1/1/2026",
+      "endDate": "12/31/9999",
+      "planState": "NH",
+      "planDescription": "Squamscott River Timber Cooperative 01/01/2026 PPO 72HN"
+    }
+  },
+  "attachment": {
+    "pwk": {
+      "type": "—",
+      "documentNumber": "—"
+    }
+  },
+  "claimData": {
+    "details": {
+      "claimType": "Professional",
+      "itsHome": "No",
+      "claimSource": {
+        "mediaType": "PC",
+        "pricingSource": "W",
+        "pricingSystem": "WP",
+        "mixerPar": "Y",
+        "receiverId": "WGSGA",
+        "receivedAtEdi": "8/13/2026",
+        "providerError": "I000",
+        "imageControlNumber": "CI26218071126859042",
+        "authNumber": "—",
+        "authExcln": "—",
+        "vendorIndicator": "—",
+        "receivedDate": "8/13/2026",
+        "splitInd": "—",
+        "epactPlm": "—",
+        "gnyhaInd": "—",
+        "imrIndicator": "—",
+        "cliaId": "—",
+        "cliaQualifier": "—"
+      },
+      "ancillaryProvider": {
+        "type": "",
+        "zip": "",
+        "state": "",
+        "validationStatus": "Pending validation"
+      },
+      "ambulance": {
+        "pickupZip": "—",
+        "dropoffZip": "—"
+      },
+      "miscellaneous": {
+        "epsdt": "—",
+        "familyPlanning": "No",
+        "gtessDate": "—",
+        "dateOfIllness": "—",
+        "dateOfInjury": "—",
+        "lastMenstrualDate": "—",
+        "consultationDate": "—",
+        "eruDecision": "—",
+        "jaaErrorCode": "No"
+      },
+      "stopData": {
+        "stopEdit": "No",
+        "lobParentRule": "—",
+        "lobChildRule": "ALL WGS",
+        "lobSequence": "1",
+        "medBusinessParentRule": "NA",
+        "medBusinessChildRule": "656881",
+        "medSequence": "51"
+      },
+      "refundData": {
+        "correspondenceNumber": "—",
+        "refundAmount": "$0.00",
+        "adjustmentReasonCode": "PX_4",
+        "correctedClaimDcn": "—",
+        "vendorName": "—",
+        "delayReason": "—",
+        "carveOut": "—",
+        "adjustmentReceipt": "—"
+      },
+      "highDollar": {
+        "riskOutcome": "—"
+      }
+    },
+    "editing": {
+      "claimXten": {
+        "originalLine": {
+          "lineNum": "1",
+          "serviceDate": "9/18/2026",
+          "procedure": "—",
+          "mod": "—",
+          "units": "1",
+          "billedAmount": "$217.30"
+        },
+        "proposedLine": {
+          "lineNum": "1",
+          "procedure": "—",
+          "mod": "—",
+          "units": "1",
+          "supportCode": "—",
+          "payPercent": "100",
+          "billedAmount": "$217.30"
+        }
+      },
+      "ihealth": {
+        "originalLine": {
+          "lineNum": "1",
+          "serviceDate": "9/18/2026",
+          "procedure": "—",
+          "mod": "—",
+          "units": "1",
+          "allowedAmount": "$0.00",
+          "savingsAmount": "$0.00"
+        },
+        "proposedLine": {
+          "procedure": "—",
+          "mod": "—",
+          "units": "1",
+          "payPercent": "100",
+          "status": "PX_P"
+        }
+      }
+    },
+    "benefits": {
+      "accumulator1": {
+        "type": "INDYTD",
+        "fromDate": "1/1/2026",
+        "toDate": "12/31/2026",
+        "unit": "Dollar",
+        "status": "Accrued"
+      },
+      "accumulator2": {
+        "type": "MMCYTD",
+        "fromDate": "1/1/2026",
+        "toDate": "12/31/2026",
+        "unit": "Dollar",
+        "status": "Accrued"
+      }
+    },
+    "promptPay": {
+      "claim": {
+        "status": "PX_WGS",
+        "state": "—",
+        "ruleId": "—",
+        "systemInterest": "$0.00",
+        "penaltyAmount": "$0.00",
+        "manualInterestAmount": "—"
+      },
+      "calculation": {
+        "calculationFromDate": "9/24/2026",
+        "carveoutDate": "—",
+        "lastProcessedDate": "9/24/2026",
+        "baseAmount": "$0.00",
+        "calculatedInterestAmount": "$0.00",
+        "processedInDays": "0",
+        "mailingDays": "0",
+        "disburseDays": "0",
+        "allowedDays": "0",
+        "carveoutDays": "0",
+        "lateByDays": "0",
+        "dailyInterest": "$0.00"
+      },
+      "miscellaneous": {
+        "carveoutReasonCode": "PX_0",
+        "dayIndicator": "0",
+        "receiptMethod": "—",
+        "productFundType": "W",
+        "interestRate": "—",
+        "penalty": "—",
+        "minimumPayAmount": "—",
+        "erMinimumPay": "—",
+        "annualMonthlyPenalty": "—",
+        "mlhDate": "26027",
+        "ppStopDate": "—",
+        "additionalInformationRequestDate": "—",
+        "tdiInterestAmount": "—",
+        "tdiPenaltyAmount": "—"
+      }
+    },
+    "review": {
+      "utilization": {
+        "service": {
+          "lineNum": "1",
+          "procedure": "—",
+          "revenueCodeDate": "170",
+          "ruleId": "—",
+          "caseNumber": "—"
+        }
+      },
+      "cdhp": {
+        "claim": {
+          "litesClaim": "—",
+          "rsnEobCode": "—",
+          "hraPaidTotal": "$0.00",
+          "hraEndingBalance": "$0.00",
+          "paymentCode": "—",
+          "cdhpAdmin": "—",
+          "acknowledgementRcvd": "—",
+          "requeryCount": "—"
+        },
+        "lineSummary": {
+          "lineNum": "1",
+          "procedure": "—",
+          "billed": "$217.30",
+          "patientResp": "—",
+          "hraPaid": "—",
+          "rsnCode": "—"
+        }
+      },
+      "dofr": {
+        "meta": {
+          "inzip": "—",
+          "providerNetworkCode": "—",
+          "dofrId1": "—",
+          "dofrName1": "—",
+          "relationship": "—",
+          "pgmId": "—",
+          "pgId": "—",
+          "umDelegationIndicator": "—",
+          "effectiveDate": "—",
+          "endDate": "—"
+        },
+        "lineSummary": {
+          "lineNum": "1",
+          "procedure": "—",
+          "revenueCode": "170",
+          "serviceCategory": "—",
+          "event": "—",
+          "capIndicator": "—",
+          "risk": "—",
+          "groupCode": "—",
+          "hc": "PP"
+        }
+      }
+    },
+    "relatedSummary": {
+      "code": "—",
+      "name": "—",
+      "fromDate": "—",
+      "toDate": "—",
+      "type": "—",
+      "provider": "—",
+      "dcn": "—",
+      "charged": "—",
+      "paid": "—",
+      "status": "—"
+    }
+  }
+}

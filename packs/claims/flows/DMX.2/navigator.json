@@ -1,0 +1,299 @@
+{
+  "$schema": "training-platform/v1/navigator",
+  "$version": "2.0.0",
+  "id": "nav_dmx_2_dme_limits",
+  "flowId": "flow_dme_limits_dmx_2",
+  "name": "DME Limits — DMX.2",
+  "description": "Resolve the PX_DMX hard edit: confirm the DMEMAXMET message, rule out procedure E1399, review the DMERNTMX accumulator and the NU modifier, obtain the DME purchase price ($2000) and the history allowance ($2000), find that nothing remains allowable ($2000 − $2000 = $0), and deny the claim with reject code PX_R21650.",
+  "totalSteps": 9,
+  "passMark": 70,
+  "correctDecision": "deny",
+  "correctDecisionLabel": "Deny",
+  "totalMaxPoints": 120,
+  "totalNavigatorPoints": 90,
+  "steps": [
+    {
+      "id": "step_001",
+      "sequenceId": 1,
+      "name": "Identify the PX_DMX hard edit",
+      "description": "The Event Resolution tab lists every edit on the claim. PX_DMX is the hard edit highlighted with an error indication — this is the current event to resolve. PX_DMY is also present, but it is a soft edit and needs no claim action, so nothing ranks above PX_DMX in the event hierarchy.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_active",
+      "targetFieldId": "f_er_edit_code",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the Event Resolution tab is opened.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "PX_DMX is the only hard edit. PX_DMY is a soft edit — informational only.",
+      "highlightFields": [
+        "f_er_edit_code",
+        "f_er_severity",
+        "f_er_description"
+      ],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Event Resolution opened — PX_DMX hard edit identified, PX_DMY is a soft edit"
+    },
+    {
+      "id": "step_002",
+      "sequenceId": 2,
+      "name": "Confirm the DMEMAXMET message",
+      "description": "Open the Notes tab and confirm that the DMEMAXMET message is present in the WGS notes. DMEMAXMET is the system's signal that the member has already met the DME maximum for this provider and procedure. If the message is present, proceed. In this scenario it is present.",
+      "targetTabId": "tab_notes",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_n_wgs",
+      "targetFieldId": "f_n_wgs",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_notes"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the Notes tab is opened.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Look for the DMEMaxMet line in the WGS Notes section.",
+      "highlightFields": ["f_n_wgs", "f_n_dmemaxmet"],
+      "highlightTabId": "tab_notes",
+      "checklistItem": "DMEMAXMET message confirmed present in the WGS notes"
+    },
+    {
+      "id": "step_003",
+      "sequenceId": 3,
+      "name": "Check the procedure code is not E1399",
+      "description": "Validate whether the procedure code on the claim is E1399 by checking the Procedure code field on the Claim Lines tab. E1399 is a miscellaneous DME code that follows separate alternate guidelines. In this scenario the procedure code is E0601, so E1399 does not apply and the trainee proceeds. Note the modifier while you are here — NU means the DME was purchased, RR means it was rented.",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_line1",
+      "targetFieldId": "f_cl_procedure_code",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_lines"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the Claim Lines tab is opened.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "The procedure code is E0601 — not E1399 — so the alternate guidelines do not apply.",
+      "highlightFields": [
+        "f_cl_procedure_code",
+        "f_cl_modifier",
+        "f_cl_procedure_note"
+      ],
+      "highlightTabId": "tab_claim_lines",
+      "checklistItem": "Procedure code is E0601, not E1399 — main path applies"
+    },
+    {
+      "id": "step_004",
+      "sequenceId": 4,
+      "name": "Review the DME rental accumulator and modifier",
+      "description": "Navigate to Search → Benefits and open the Accumulators screen. Expand the OTHER group and look for DMERNTMX (DME RENTAL MAX PROV/PROC). It carries what the member has already accrued against the DME cap for this provider and procedure: a Visit row accrued 1, and a Dollars row accrued 3000. Combined with the NU modifier on the claim line (NU = purchased, RR = rented), this tells you the DME was bought and the purchase-price cap has already been consumed.",
+      "targetTabId": "tab_search",
+      "targetSubTabId": "subtab_search_benefits_dmx",
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "view_accumulators",
+      "actionPayload": {
+        "action": "view_accumulators"
+      },
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the OTHER accumulator group is expanded — not on merely opening the Benefits sub-tab.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "The accumulator is under OTHER — click it to expand and find DMERNTMX.",
+      "highlightFields": [],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_benefits_dmx",
+      "completesActionId": "view_accumulators",
+      "checklistItem": "DMERNTMX found under OTHER — Visit 1 / Dollars 3000 accrued; modifier NU = purchased"
+    },
+    {
+      "id": "step_005",
+      "sequenceId": 5,
+      "name": "Obtain the DME purchase price",
+      "description": "Move to the Pricing sub-tab. In the Claim Lines section the Modifier input starts at RR (rented) — because this DME was purchased, change it to NU, or the pricing engine returns the rental rate instead of the purchase price. Then change the Billed amount to 100000 — only in this section, never on the claim itself. A billed amount far above any possible price stops the pricing engine from capping the result at what was charged, so what comes back is the true purchase price. Click Get Pricing: the purchase price appears in the Allowed column. In this scenario it is $2,000.",
+      "targetTabId": "tab_search",
+      "targetSubTabId": "subtab_search_pricing",
+      "targetSectionId": "sec_sp_claim_lines",
+      "targetFieldId": "f_sp_line1_billed",
+      "actionType": "get_pricing_purchase",
+      "actionPayload": {
+        "action": "get_pricing_purchase"
+      },
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when Get Pricing is clicked AND the Modifier is NU AND the Billed amount equals 100000. Clicking with the modifier still at RR, or with any other billed amount, does not reveal the purchase price and does not complete the step.",
+      "expectedValue": "100000",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Change the Modifier from RR to NU, set the Billed amount to 100000, then click Get Pricing. The purchase price shows under Allowed.",
+      "highlightFields": [
+        "f_sp_line1_modifier",
+        "f_sp_line1_billed",
+        "f_sp_get_pricing_purchase"
+      ],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_pricing",
+      "completesActionId": "get_pricing_purchase",
+      "checklistItem": "Purchase price obtained — $2,000 (modifier NU, billed 100000)"
+    },
+    {
+      "id": "step_006",
+      "sequenceId": 6,
+      "name": "Review history for a prior DME allowance",
+      "description": "In the Search tab itself,go to the Claims sub-tab and review the member's claim history for this provider. Check whether the same procedure code was previously allowed and note the amount. Click Open claim detail on the history claim: its Claim Lines tab shows procedure code E0601 — the same code as the current claim — and its Summary shows an allowed amount of $2,000. So the entire purchase price has already been paid out.",
+      "targetTabId": "tab_search",
+      "targetSubTabId": "subtab_search_claims",
+      "targetSectionId": "sec_sc_history",
+      "targetFieldId": "f_sc_open_detail",
+      "actionType": "open_prior_claim",
+      "actionPayload": {
+        "action": "open_prior_claim"
+      },
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the history claim detail pop-up is opened.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Click Open claim detail — read the procedure code on Claim Lines and the allowed amount on Summary.",
+      "highlightFields": ["f_sc_open_detail"],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_claims",
+      "completesActionId": "open_prior_claim",
+      "checklistItem": "History claim reviewed — procedure E0601 previously allowed for $2,000"
+    },
+    {
+      "id": "step_007",
+      "sequenceId": 7,
+      "name": "Get pricing and calculate the correct allowance",
+      "description": "Return to the Pricing sub-tab, scroll down to Pricing Results, and click Get Pricing to obtain the allowed amount the system is suggesting for the current claim. In this scenario it suggests $1,000. But the claim may only pay up to the purchase price: take the amount already allowed on history for this procedure code and subtract it from the purchase price. $2,000 (purchase price) − $2,000 (history allowed) = $0. Nothing remains allowable, so the system's $1,000 suggestion would overpay and the claim cannot pay at all.",
+      "targetTabId": "tab_search",
+      "targetSubTabId": "subtab_search_pricing",
+      "targetSectionId": "sec_sp_results",
+      "targetFieldId": "f_sp_get_pricing_current",
+      "actionType": "get_pricing_current",
+      "actionPayload": {
+        "action": "get_pricing_current"
+      },
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when Get Pricing is clicked in the Pricing Results section.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "The system says $1,000 — but $2,000 − $2,000 = $0, so no further allowance can be made.",
+      "highlightFields": ["f_sp_get_pricing_current", "f_sp_current_allowed"],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_pricing",
+      "completesActionId": "get_pricing_current",
+      "checklistItem": "System allowance $1,000 obtained — correct allowance is $0"
+    },
+    {
+      "id": "step_008",
+      "sequenceId": 8,
+      "name": "Deny the claim using Reject code PX_R21650",
+      "description": "The DME purchase price of $2,000 has already been paid in full on the previous claim, so no further allowance can be made on this one. Open the Actions dropdown in the header, select Deny Claim, enter reject code PX_R21650, and click Submit on the panel.",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_line1",
+      "targetFieldId": null,
+      "actionType": "deny_claim",
+      "actionPayload": {
+        "action": "deny_claim"
+      },
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the Deny Claim panel is submitted with reject code PX_R21650.",
+      "expectedValue": "PX_R21650",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Actions → Deny, then enter reject code PX_R21650 and submit the panel.",
+      "highlightFields": ["f_cl_denial_note"],
+      "highlightTabId": "tab_claim_lines",
+      "completesActionId": "deny_claim",
+      "checklistItem": "Claim denied with reject code PX_R21650"
+    },
+    {
+      "id": "step_009",
+      "sequenceId": 9,
+      "name": "Submit Deny decision",
+      "description": "Nothing remains allowable under the DME purchase-price cap, so the claim is denied. Go to the Decision section in the header, select 'Deny' from the dropdown, and click Submit.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "submit_decision",
+      "actionPayload": {
+        "decision": "deny"
+      },
+      "completionTrigger": "decision_submitted",
+      "completionTriggerNote": "Completes only when the decision submitted is Deny.",
+      "expectedValue": "deny",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Select Deny in the header decision dropdown, then Submit.",
+      "highlightFields": [],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Deny decision submitted"
+    }
+  ],
+  "scoreBreakdown": {
+    "navigatorStepsMaxPoints": 90,
+    "decisionMaxPoints": 20,
+    "reasonCodeMaxPoints": 10,
+    "totalMaxPoints": 120,
+    "passMark": 70,
+    "weightedPassScore": 84
+  },
+  "stepSummaryForResults": [
+    {
+      "sequenceId": 1,
+      "name": "Identify the PX_DMX hard edit",
+      "points": 10
+    },
+    {
+      "sequenceId": 2,
+      "name": "Confirm the DMEMAXMET message",
+      "points": 10
+    },
+    {
+      "sequenceId": 3,
+      "name": "Check the procedure code is not E1399",
+      "points": 10
+    },
+    {
+      "sequenceId": 4,
+      "name": "Review the DME rental accumulator and modifier",
+      "points": 10
+    },
+    {
+      "sequenceId": 5,
+      "name": "Obtain the DME purchase price",
+      "points": 10
+    },
+    {
+      "sequenceId": 6,
+      "name": "Review history for a prior DME allowance",
+      "points": 10
+    },
+    {
+      "sequenceId": 7,
+      "name": "Get pricing and calculate the correct allowance",
+      "points": 10
+    },
+    {
+      "sequenceId": 8,
+      "name": "Deny the claim using Reject code PX_R21650",
+      "points": 10
+    },
+    {
+      "sequenceId": 9,
+      "name": "Submit Deny decision",
+      "points": 10
+    }
+  ]
+}

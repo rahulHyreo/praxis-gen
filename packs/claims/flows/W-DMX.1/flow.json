@@ -1,0 +1,64 @@
+{
+  "$schema": "praxis/v2/pack-flow",
+  "code": "W-DMX.1",
+  "name": "DME - Without DMX or DMY Event — DME rented with no DMX edit → cap the rental with an SPI-CLM Limited Liability record and Pay",
+  "variants": [
+    {
+      "variant": "base",
+      "variantIndex": 1,
+      "subjectRefs": ["DCN-615101"]
+    },
+    {
+      "variant": "v2",
+      "variantIndex": 2,
+      "subjectRefs": [
+        "DCN-9670200",
+        "DCN-9670201",
+        "DCN-9670202",
+        "DCN-9670203",
+        "DCN-9670204",
+        "DCN-9670205",
+        "DCN-9670206"
+      ]
+    },
+    {
+      "variant": "v3",
+      "variantIndex": 3,
+      "subjectRefs": [
+        "DCN-9670300",
+        "DCN-9670301",
+        "DCN-9670302",
+        "DCN-9670303",
+        "DCN-9670304",
+        "DCN-9670305",
+        "DCN-9670306"
+      ]
+    },
+    {
+      "variant": "v4",
+      "variantIndex": 4,
+      "subjectRefs": [
+        "DCN-9670400",
+        "DCN-9670401",
+        "DCN-9670402",
+        "DCN-9670403",
+        "DCN-9670404",
+        "DCN-9670405",
+        "DCN-9670406"
+      ]
+    },
+    {
+      "variant": "v5",
+      "variantIndex": 5,
+      "subjectRefs": [
+        "DCN-9670500",
+        "DCN-9670501",
+        "DCN-9670502",
+        "DCN-9670503",
+        "DCN-9670504",
+        "DCN-9670505",
+        "DCN-9670506"
+      ]
+    }
+  ]
+}

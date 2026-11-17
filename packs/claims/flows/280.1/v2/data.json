@@ -1,0 +1,1152 @@
+{
+  "$schema": "training-platform/v1/workspace-data",
+  "$version": "2.0.0",
+  "id": "claim_data_280_1_v2_dcn_9830200",
+  "claimId": "claim_280_1_v2_001",
+  "dcn": "DCN-9830200",
+  "flowId": "flow_new_born_280_1",
+  "navigatorSchemaId": "nav_280_1_newborn_within_enrolment_window_bypass_pay",
+  "claim": {
+    "dcn": "DCN-9830200",
+    "patient": "Marlowe J Prescott",
+    "serviceFrom": "09/15/2026",
+    "billedAmount": "$2,789.05"
+  },
+  "header": {
+    "dcn": "DCN-9830200",
+    "edits": "PX_280",
+    "billed": "$2,789.05",
+    "claimAllowed": "$2,231.24",
+    "paid": "$2,231.24",
+    "writeOff": "$557.81",
+    "deductible": "$0.00",
+    "coinsurance": "$0.00",
+    "copay": "$0.00",
+    "actionCode": "PX_P10000",
+    "receiptDate": "09/20/2026",
+    "serviceFrom": "09/15/2026",
+    "serviceTo": "09/15/2026"
+  },
+  "eventResolution": {
+    "edits": [
+      {
+        "code": "PX_280",
+        "label": "NEWBORN W/I 31/60/61 DAYS",
+        "active": true
+      },
+      {
+        "code": "PX_SPS",
+        "label": "USE PA MENU OPTION TO VIEW PRV",
+        "active": false
+      },
+      {
+        "code": "PX_DGX",
+        "label": "CLAIM RECEIVED AT ECP",
+        "active": false
+      },
+      {
+        "code": "PX_RFP",
+        "label": "Digital RFAI Provider",
+        "active": false
+      },
+      {
+        "code": "PX_NIP",
+        "label": "NATIONAL INTRAPLAN CLAIM",
+        "active": false
+      },
+      {
+        "code": "PX_MCO",
+        "label": "NEWBORN MEMBER CODE ASSIGNED",
+        "active": false
+      },
+      {
+        "code": "PX_LUM",
+        "label": "CDHP CLAIM",
+        "active": false
+      },
+      {
+        "code": "PX_UMN",
+        "label": "CLAIM HITS UM EXCLUSION RULE",
+        "active": false
+      }
+    ],
+    "editCode": "PX_280",
+    "editLabel": "NEWBORN W/I 31/60/61 DAYS",
+    "severity": "Hard Edit",
+    "bypassCode": "",
+    "bypassStatus": "Pending validation",
+    "validationMessage": ""
+  },
+  "memberInfo": {
+    "patient": {
+      "firstName": "MARLOWE",
+      "middleName": "J",
+      "lastName": "PRESCOTT",
+      "dob": "9/14/2026",
+      "sex": "F",
+      "memberPrefix": "Q4M",
+      "hcid": "417K22948",
+      "relationship": "—",
+      "memberCode": "72",
+      "memberCodeMessage": "",
+      "contractType": "F",
+      "erisa": "Y",
+      "pcp": "—",
+      "pcpState": "—",
+      "pcpRelationship": "—",
+      "programCode": "—",
+      "state": "NH"
+    },
+    "subscriber": {
+      "firstName": "DEREK",
+      "middleName": "T",
+      "lastName": "PRESCOTT",
+      "subscriberId": "530184762",
+      "address": "48 Winnipesaukee Drive, Laconia, NH 03246"
+    },
+    "group": {
+      "groupName": "—",
+      "groupId": "R02755M014",
+      "groupContract": "—",
+      "detailContractCode": "83RK",
+      "product": "LOCAL",
+      "networkId": "NHPPO214",
+      "networkName": "NH PPO/EPO BLUE ACCESS LOCAL/NATL"
+    }
+  },
+  "claimImage": {
+    "memberDetails": {
+      "patient": {
+        "firstName": "MARLOWE",
+        "middleName": "J",
+        "lastName": "PRESCOTT",
+        "dob": "9/14/2026",
+        "sex": "M",
+        "memberPrefix": "Q4M",
+        "hcid": "417K22948",
+        "relationship": "",
+        "memberCode": "",
+        "detailContractCode": "83RK",
+        "contractType": "C",
+        "groupId": "R02755M014",
+        "groupContract": "83RK",
+        "product": "BCBI",
+        "erisa": "Y",
+        "pcp": "—",
+        "pcpState": "—",
+        "pcpRelationship": "—"
+      },
+      "subscriber": {
+        "firstName": "DEREK",
+        "middleName": "T",
+        "lastName": "PRESCOTT",
+        "subscriberId": "530184762",
+        "address": "48 Winnipesaukee Drive, Laconia, NH 03246"
+      },
+      "totalClaimLines": "1"
+    },
+    "additional": {
+      "claimSource": {
+        "mediaType": "-",
+        "pricingSource": "-",
+        "pricingSystem": "-",
+        "mixerPar": "-",
+        "receiverId": "NH",
+        "receivedAtEdi": "-",
+        "providerError": "-",
+        "authNumber": "-",
+        "authExcln": "-",
+        "vendorIndicator": "-",
+        "receivedDate": "-",
+        "originalReferenceNumber": "-"
+      },
+      "ancillaryProvider": {
+        "type": "-",
+        "zip": "-",
+        "state": "-"
+      },
+      "ambulance": {
+        "pickupZip": "-",
+        "dropoffZip": "-"
+      },
+      "miscellaneous": {
+        "epsdt": "-",
+        "familyPlanning": "-",
+        "gtessDate": "-",
+        "dateOfIllness": "-",
+        "dateOfInjury": "-",
+        "lastMenstrualDate": "-",
+        "consultationDate": "-"
+      },
+      "stopData": {
+        "stopEdit": "-",
+        "lobParentRule": "-",
+        "lobChildRule": "-",
+        "lobSequence": "-",
+        "medBusinessParentRule": "-",
+        "medBusinessChildRule": "-",
+        "medSequence": "-"
+      },
+      "refundData": {
+        "correspondenceNumber": "-",
+        "refundAmount": "-",
+        "adjustmentReason": "-",
+        "vendorName": "-",
+        "delayReason": "-",
+        "carveOut": "-",
+        "adjustmentReceiptDate": "-"
+      },
+      "highDollar": {
+        "riskOutcome": "-"
+      },
+      "its": {
+        "account": {
+          "deliveryMethod": "—",
+          "accountType": "—",
+          "aso": "—",
+          "stateId": "—",
+          "originalCertificate": "—",
+          "originalGroup": "—"
+        },
+        "pricing": {
+          "primarySop": "—",
+          "secondarySop": "—",
+          "tertiarySop": "—",
+          "cobCalMethod": "—"
+        },
+        "providers": {
+          "mppqAssignUnassigned": "—",
+          "ppoNetworkAvailability": "—",
+          "ppoProviderAvailability": "—",
+          "eft835": "—",
+          "serviceZip": "—"
+        }
+      },
+      "sfdf": {
+        "sfMessage": "—",
+        "dfMessage": "—",
+        "primacy": "—",
+        "autoOtherAccident": "—",
+        "totalDaysVisits": "—"
+      },
+      "claimLineDetail": [
+        {
+          "lineNum": "1",
+          "blankDateInd": "—",
+          "approvedDenyInd": "—"
+        }
+      ]
+    }
+  },
+  "providerInfo": {
+    "rendering": {
+      "npi": "1483027915",
+      "name": "LAKES REGION PEDIATRICS",
+      "address": "80 Highland St, Laconia, NH 03246",
+      "pricingState": "NH",
+      "pricingZip": "03246-1180",
+      "providerSps": "7418203655",
+      "providerEpin": "—",
+      "license": "02741630B",
+      "networkOption": "N",
+      "specialty": "037",
+      "specialtyDescription": "PEDIATRICS",
+      "taxonomy": "208000000X"
+    },
+    "billing": {
+      "taxId": "274619083",
+      "npi": "1483027915",
+      "name": "LAKES REGION PEDIATRICS",
+      "facilityType": "—",
+      "providerSps": "6520741338",
+      "providerEpin": "—",
+      "medicareId": "—",
+      "address": "80 Highland St, Laconia, NH 03246",
+      "nationalState": "NH",
+      "locationCode": "—",
+      "bhaProviderIndicator": "N",
+      "taxonomy": "208000000X",
+      "timelyFilingLimit": "—"
+    },
+    "referring": {
+      "referringPhysician": "—",
+      "npi": "—"
+    },
+    "serviceFacility": {
+      "facilityTier": "N",
+      "type": "N",
+      "npi": "1483027915"
+    },
+    "miscellaneous": {
+      "supportingOrderingNpi": "—",
+      "nsbIndicator": "None",
+      "alternateFacilityNpi": "—"
+    }
+  },
+  "paymentInfo": {
+    "claim": {
+      "deductible": "0.00",
+      "copay": "0.00",
+      "coins": "0.00",
+      "patientLiab": "0.00",
+      "memberSurcharge": "0.00",
+      "nonElg": "0.00",
+      "hraPaid": "0.00",
+      "claimPaid": "158.00",
+      "pricingAllowedAmount": "158.00",
+      "totalCharge": "210.00",
+      "finalizationCode": "PX_P10000"
+    },
+    "provider": {
+      "providerDisc": "52.00",
+      "providerLiab": "52.00",
+      "providerRiskWithhold": "0.00",
+      "providerSurcharge": "0.00",
+      "interest": "0.00",
+      "penalty": "0.00",
+      "lr": "L",
+      "systemInterest": "0.00"
+    },
+    "drg": {
+      "keyed": "-",
+      "priced": "—",
+      "original": "—"
+    },
+    "check": {
+      "accountNumber": "1234512345",
+      "checkNumber": "—",
+      "checkDate": "—",
+      "amount": "0.00",
+      "paymentSystem": "D",
+      "checkMailedTo": "—",
+      "eftCheckDate": "—",
+      "checkStatus": "CHECK NOT FOUND ON RECON DB",
+      "checkStatusDate": "09/20/2026",
+      "paidTo": "LAKES REGION PEDIATRICS",
+      "finalized": "—"
+    },
+    "payeeDetails": {
+      "flipPayee": "N"
+    }
+  },
+  "claimHeader": {
+    "general": {
+      "serviceFromThrough": "09/15/2026 - 09/15/2026",
+      "assignmentOfBenefits": "Y - Benefit assigned to provider",
+      "providerParticipation": "PAR",
+      "providerContract": "INP00000",
+      "treatmentAuth": "—",
+      "patientAccount": "W000000000",
+      "emergency": "No",
+      "employment": "No",
+      "coveredZipRadius": "-",
+      "frequency": "1",
+      "bbiIndicator": "-",
+      "pciIndicator": "-",
+      "fsbInd": "None",
+      "fsbExclusion": "X"
+    },
+    "benefitIndicators": {
+      "cob": "0",
+      "cobRule": "-",
+      "medInd": "No",
+      "medRule": "-",
+      "medicareAdvantage": "No",
+      "cdhp": "N",
+      "planPayer": "N",
+      "cobPercent": "0"
+    },
+    "diagnosisCodes": {
+      "dx1": "Z00110"
+    },
+    "conditionCodes": {
+      "code": "-"
+    }
+  },
+  "claimLines": [
+    {
+      "lineNum": "1",
+      "fromDate": "09/15/2026",
+      "toDate": "09/15/2026",
+      "pos": "21",
+      "revCode": "170",
+      "service": "RAB",
+      "procedure": "—",
+      "modifiers": "—",
+      "units": "1",
+      "diagnosis": "Z3800",
+      "billed": "2,762.00",
+      "dedInd": "NO",
+      "coinsPercent": "100",
+      "stoploss": "No",
+      "eobTy": "—",
+      "writeoffEobTy": "$552.40",
+      "noncoveredUnit": "0",
+      "deductible": "—",
+      "otherUnit": "0",
+      "copay": "—",
+      "eobTyLast": "PX_MP",
+      "payment": "2,209.60"
+    },
+    {
+      "lineNum": "2",
+      "fromDate": "09/15/2026",
+      "toDate": "09/15/2026",
+      "pos": "21",
+      "revCode": "250",
+      "service": "ANC",
+      "procedure": "—",
+      "modifiers": "—",
+      "units": "1",
+      "diagnosis": "Z3800",
+      "billed": "27.05",
+      "dedInd": "NO",
+      "coinsPercent": "100",
+      "stoploss": "No",
+      "eobTy": "—",
+      "writeoffEobTy": "$5.41",
+      "noncoveredUnit": "0",
+      "deductible": "—",
+      "otherUnit": "0",
+      "copay": "—",
+      "eobTyLast": "PX_MP",
+      "payment": "21.64"
+    }
+  ],
+  "claimLineSummary": {
+    "lineNum": "1",
+    "fromDate": "09/15/2026",
+    "toDate": "09/15/2026",
+    "pos": "21",
+    "revCode": "170",
+    "service": "RAB",
+    "procedure": "—",
+    "modifiers": "—",
+    "units": "1",
+    "diagnosis": "Z3800",
+    "billed": "$2,762.00",
+    "dedInd": "NO",
+    "coinsPercent": "100",
+    "stoploss": "No",
+    "eobTy": "—",
+    "writeoffEobTy": "$552.40",
+    "noncoveredUnit": "0",
+    "deductible": "—",
+    "otherUnit": "0",
+    "copay": "—",
+    "eobTyLast": "PX_MP",
+    "payment": "$2,209.60"
+  },
+  "notes": {
+    "research": "—",
+    "mainframe": "251907",
+    "wgs": "—",
+    "taskManagement": {
+      "routedTo": "-",
+      "urgency": "65",
+      "skills": "CT-Professional",
+      "csPg": "GS-National",
+      "benNonspider": "SPIDER",
+      "regCa": "-",
+      "resUnrestricted": "-",
+      "totalAge": "4",
+      "homeAge": "4",
+      "ageAdjusted": "N",
+      "baselineUrgency": "45",
+      "urgencyModifiers": "PG Modifer(0)"
+    }
+  },
+  "search": {
+    "claims": {
+      "dcnKernalClaim": "",
+      "claimId": "",
+      "subscriberOrHcid": "417K22948",
+      "sccf": "",
+      "procedure": "",
+      "serviceFrom": "09/15/2026",
+      "serviceTo": "09/15/2026",
+      "code": "",
+      "totalCharge": "",
+      "status": "ALL",
+      "providerTaxId": "274619083",
+      "providerNpi": "",
+      "renderingLicenseId": "",
+      "billType": ""
+    },
+    "claimsResultCount": "1",
+    "claimsResults": [
+      {
+        "code": "—",
+        "name": "MARLOWE PRESCOTT",
+        "from": "09/15/2026",
+        "to": "09/15/2026",
+        "type": "P",
+        "provider": "LAKES REGION PEDIATRICS",
+        "billType": "-",
+        "dcn": "DCN-9830200",
+        "charged": "210.00",
+        "paid": "0.00",
+        "status": "Pending-Investigation"
+      }
+    ],
+    "codeSet": {
+      "selectCodeType": "-",
+      "enterCode": "-"
+    },
+    "auth": {
+      "search": {
+        "subscriberOrHcid": "417K22948",
+        "serviceStartDate": "9/15/2026",
+        "serviceEndDate": "9/15/2026",
+        "status": "-"
+      },
+      "members": {
+        "name": "—",
+        "dob": "—",
+        "ageAdjusted": "—",
+        "memberId": "-",
+        "mcid": "-",
+        "subscriberOrHcid": "417K22948"
+      }
+    },
+    "benefits": {
+      "planOptions": [
+        {
+          "costShare": "DEDUCTIBLE",
+          "network": "PPO",
+          "maximum": "$500",
+          "accumType": "Calendar Year"
+        },
+        {
+          "costShare": "OUT-OF-POCKET MAX",
+          "network": "PPO",
+          "maximum": "$3,000",
+          "accumType": "Calendar Year"
+        },
+        {
+          "costShare": "MEMBER CLAIM FILING DAY LIMIT",
+          "network": "—",
+          "maximum": "365 days",
+          "accumType": "—"
+        }
+      ],
+      "searchBenefits": {
+        "contractCode": "83RK",
+        "effectiveDate": "1/1/2026",
+        "endDate": "12/31/9999",
+        "effectiveEndDate": "-"
+      },
+      "general": {
+        "contractCode": "83RK",
+        "product": "BCBI",
+        "plan": "LAKES REGION FABRICATION",
+        "contractState": "NH",
+        "benefitPeriod": "-",
+        "benefitPeriodAlt": "-",
+        "fundingArrangement": "-",
+        "cdhpInd": "-",
+        "groupNumber": "R02755M014",
+        "contractId": "83RK",
+        "memberName": "DEREK PRESCOTT",
+        "caseNumber": "R02755",
+        "contractType": "-",
+        "crossAccumulation": "-"
+      },
+      "viewNic": {
+        "coverage": "MED-MEDICL COVERAGE",
+        "pricing": "IN29",
+        "network": "PPO"
+      },
+      "accumulators": {
+        "criteria": {
+          "memberId": "417K22948",
+          "memberCode": "—",
+          "fromDate": "9/15/2026",
+          "toDate": "9/15/2026",
+          "sourceSystem": "WGS"
+        },
+        "selection": {
+          "accumulatorName": "—",
+          "benefitYear": "—",
+          "accumulatorEffDate": "—",
+          "cob": "—",
+          "deductible": "—",
+          "fertilityRx": "—",
+          "lifetime": "—",
+          "other": "—",
+          "outOfPocket": "—"
+        }
+      }
+    },
+    "provider": {
+      "npiTaxId": {
+        "npi": "1483027915",
+        "orgTaxId": "274619083",
+        "fromDate": "9/15/2026",
+        "throughDate": "9/15/2026",
+        "lastUpdateDate": "12/15/2025",
+        "sourceSystem": "WGS",
+        "zipCode": "-",
+        "billingType": "-",
+        "specialty": "-",
+        "state": "-",
+        "alternateId": "-",
+        "alternateKey": "-"
+      },
+      "practitioner": {
+        "firstName": "-",
+        "lastName": "-",
+        "fromDate": "9/15/2026",
+        "throughDate": "9/15/2026",
+        "sourceSystem": "SPS",
+        "addressLine": "-",
+        "city": "-",
+        "state": "-",
+        "specialty": "-"
+      },
+      "organization": {
+        "organizationName": "-",
+        "orgTaxId": "274619083",
+        "fromDate": "9/15/2026",
+        "throughDate": "9/15/2026",
+        "sourceSystem": "SPS",
+        "addressLine": "-",
+        "city": "-",
+        "state": "-",
+        "zipCode": "-",
+        "billingType": "-",
+        "specialty": "-"
+      },
+      "pcpPmg": {
+        "pcpPmgId": "-",
+        "fromDate": "9/15/2026",
+        "throughDate": "9/15/2026",
+        "sourceSystem": "SPS",
+        "specialty": "-",
+        "state": "-"
+      },
+      "alternateId": {
+        "organizationName": "XXXXX",
+        "alternateKeyOrg": "-",
+        "individual": "8023 - Legacy provider ID",
+        "alternateKeyIndiv": "-",
+        "nonAnthem": "33-NPI",
+        "alternateKeyNonAnthem": "-"
+      }
+    },
+    "member": {
+      "autoSearch": {
+        "memberId": "417K22948",
+        "firstName": "MARLOWE",
+        "lastName": "PRESCOTT",
+        "dob": "9/14/2026"
+      },
+      "results": [],
+      "searchMember": {
+        "memberId": "",
+        "firstName": "",
+        "mi": "",
+        "lastName": "",
+        "dob": "",
+        "relationship": "",
+        "memberCode": "",
+        "gender": "",
+        "state": "",
+        "contractId": "",
+        "caseEntity": "",
+        "groupNumber": "",
+        "hcid": "",
+        "prefix": "",
+        "effectiveDate": "",
+        "endDate": "",
+        "productCode": "",
+        "contractState": "",
+        "businessUnit": ""
+      },
+      "general": {
+        "name": "",
+        "dateOfBirth": "",
+        "age": "",
+        "sex": "",
+        "memberId": "",
+        "hcid": "",
+        "relationship": "",
+        "memberCode": "",
+        "address": "",
+        "county": "",
+        "country": "",
+        "phone": "",
+        "effectiveDate": "",
+        "endDate": "",
+        "productType": "",
+        "groupType": "",
+        "cob": "",
+        "businessUnit": "",
+        "paidToDate": "",
+        "erisa": "",
+        "caseGroupSetup": "",
+        "contractStartDate": "",
+        "shortTermEndDate": "",
+        "cxlProcessDate": "",
+        "aptcIndicator": "",
+        "csdt": "",
+        "caseName": "",
+        "ncnReferralsInd": "",
+        "foi": "",
+        "roundoprd": "",
+        "conversionCode": "",
+        "medicareIndicator": ""
+      },
+      "additionalAddress": {
+        "address": "-"
+      },
+      "providerNetwork": {
+        "product": "57BC PPO INCENTIVE",
+        "providerGroupName": "-",
+        "address": "-",
+        "phone": "-"
+      },
+      "contractMembers": [
+        {
+          "memberCode": "",
+          "name": "",
+          "relationship": "",
+          "dob": "",
+          "age": "",
+          "effectiveDate": "",
+          "endDate": ""
+        },
+        {
+          "memberCode": "",
+          "name": "",
+          "relationship": "",
+          "dob": "",
+          "age": "",
+          "effectiveDate": "",
+          "endDate": ""
+        },
+        {
+          "memberCode": "",
+          "name": "",
+          "relationship": "",
+          "dob": "",
+          "age": "",
+          "effectiveDate": "",
+          "endDate": ""
+        }
+      ],
+      "group": {
+        "general": {
+          "name": "LAKES REGION FABRICATION",
+          "status": "O ACTIVE",
+          "companyCode": "123C XXXX",
+          "paidToDate": "2/1/2026",
+          "locationStateCode": "NH",
+          "locationCodeEffectiveDate": "1/1/2019",
+          "workLocation": "7003 ANTHEM NAT ACCT",
+          "workLocationPhone": "9999888899",
+          "rateMethodCode": "1 ASO BUSINESS",
+          "rmcEffectiveDate": "1/1/2019",
+          "groupType": "A ACTIVE",
+          "fundingTypeCode": "H ASC",
+          "graceDays": "30",
+          "claimGraceDays": "30"
+        },
+        "coverage": {
+          "originalEffectiveDate": "1/1/2019",
+          "groupProcessedDate": "10/9/2018",
+          "reinstateEffectiveDate": "-",
+          "reinstateProcessedDate": "-",
+          "cancelEffectiveDate": "-",
+          "cancelProcessedDate": "-",
+          "cancelReason": "-"
+        },
+        "contract": {
+          "productLine": "BC PPO INCENTIVE",
+          "claimsRoute": "PX_P-EXEC - NATIONAL ACCTS",
+          "benefitYearCalendarYear": "CY",
+          "benefitYearCalendarYearAsOfDate": "1/1/2019",
+          "contractCode": "83RK",
+          "contractCodeEffectiveDate": "1/1/2019",
+          "promptPay": "N",
+          "promptPayDate": "1/1/2019",
+          "itsHomeParticipatingCode": "E CONTROL CUSTOM",
+          "itsHomeEffectiveDate": "1/1/2019",
+          "locationLobCode": "X BC/BCLH",
+          "overAgeMailing": "S MAIL TO SUBR",
+          "networkId": "BLUECDOO",
+          "networkName": "BLUE XXXX BLUE XXXX"
+        },
+        "additional": {
+          "product": "BC PPO INC Claim Manager",
+          "mbuCode": "NAC00000",
+          "claimsServiceLocation": "COOIO/CAACOII",
+          "serviceManager": "SRVC/DARLENE",
+          "claimManager": "CLMS/M PENNER",
+          "servicePhone": "999999999",
+          "serviceAddress": "XXXX PARK Road LACONIA NH 03246",
+          "sourceSystem": "WGS 2.0"
+        }
+      }
+    },
+    "limitedLiability": {
+      "memberId": "417K22948",
+      "memberCode": "—",
+      "dob": "9/14/2026",
+      "activeRecords": "-",
+      "allRecords": "-"
+    },
+    "pricing": {
+      "member": {
+        "dob": "9/14/2026",
+        "sex": "M",
+        "groupNumber": "R02755M014",
+        "groupId": "-",
+        "networkId": "BLUECS",
+        "memberZipCode": "03246",
+        "alternateZipCode": "-",
+        "medicareInd": "N",
+        "hixInd": "-",
+        "marketType": "NTLA",
+        "memberInd": "-",
+        "ab72": "-",
+        "patientCode": "-",
+        "product": "BCBI -",
+        "variance": "IN29",
+        "coverage": "MED",
+        "groupIdentifier": "-"
+      },
+      "provider": {
+        "taxId": "274619083",
+        "renderingNumber": "77777777777",
+        "billingNumber": "6666666666",
+        "renderingNpi": "1483027915",
+        "billingNpi": "1483027915",
+        "license": "02741630B",
+        "specialty": "037",
+        "zipCode": "03246-1180",
+        "planInd": "NH",
+        "wgsp": "P",
+        "pcpState": "NP",
+        "region": "462",
+        "gbdId": "-",
+        "providerInd": "-",
+        "providerParticipation": "PAR",
+        "providerProdVar": "INP02186",
+        "networxInd": "-",
+        "finalMixer": "-",
+        "legacySpecialty": "-"
+      },
+      "claimHeader": {
+        "serviceFrom": "9/15/2026",
+        "serviceTo": "9/15/2026",
+        "placeOfService1": "1",
+        "placeOfService2": "11",
+        "cxtInd": "X",
+        "productLineCode": "57",
+        "serviceClassType": "-",
+        "emergRefInd": "-",
+        "icd9": "N",
+        "federalMandate": "-",
+        "cocInd": "-",
+        "mixerOverrideInd": "-",
+        "streetMedicineInd": "None",
+        "surpriseBillingInd": "-",
+        "cgntInd": "-",
+        "product": "INPO",
+        "variance": "2186",
+        "contractNotes": "-",
+        "overridePriceProduct": "-",
+        "contractHierarchy": "-",
+        "bundleStatus": "-",
+        "clusterId": "-"
+      },
+      "diagnosisCodes": {
+        "a": "Z00110",
+        "b": "-",
+        "c": "-",
+        "d": "-",
+        "e": "-"
+      },
+      "lineSummary": {
+        "procedure": "99381",
+        "modifier": "—",
+        "uo": "1",
+        "cxPercent": "100",
+        "allowed": "158",
+        "billedAmount": "210",
+        "writeoff": "52"
+      }
+    }
+  },
+  "system": {
+    "benefitRecommendation": {
+      "contractCode": "83RK",
+      "effectiveDate": "1/1/2026",
+      "endDate": "12/31/9999",
+      "planState": "NH",
+      "planDescription": "Lakes Region Fabrication 01/01/2026 PPO 83RK"
+    }
+  },
+  "attachment": {
+    "pwk": {
+      "type": "—",
+      "documentNumber": "—"
+    }
+  },
+  "claimData": {
+    "details": {
+      "claimType": "Professional",
+      "itsHome": "No",
+      "claimSource": {
+        "mediaType": "PC",
+        "pricingSource": "W",
+        "pricingSystem": "WP",
+        "mixerPar": "Y",
+        "receiverId": "WGSGA",
+        "receivedAtEdi": "9/20/2026",
+        "providerError": "I000",
+        "imageControlNumber": "CI26027110348931562",
+        "authNumber": "—",
+        "authExcln": "—",
+        "vendorIndicator": "—",
+        "receivedDate": "9/20/2026",
+        "splitInd": "—",
+        "epactPlm": "—",
+        "gnyhaInd": "—",
+        "imrIndicator": "—",
+        "cliaId": "—",
+        "cliaQualifier": "—"
+      },
+      "ancillaryProvider": {
+        "type": "—",
+        "zip": "—",
+        "state": "—"
+      },
+      "ambulance": {
+        "pickupZip": "—",
+        "dropoffZip": "—"
+      },
+      "miscellaneous": {
+        "epsdt": "—",
+        "familyPlanning": "No",
+        "gtessDate": "—",
+        "dateOfIllness": "—",
+        "dateOfInjury": "—",
+        "lastMenstrualDate": "—",
+        "consultationDate": "—",
+        "eruDecision": "—",
+        "jaaErrorCode": "No"
+      },
+      "stopData": {
+        "stopEdit": "No",
+        "lobParentRule": "—",
+        "lobChildRule": "ALL WGS",
+        "lobSequence": "1",
+        "medBusinessParentRule": "NA",
+        "medBusinessChildRule": "656881",
+        "medSequence": "51"
+      },
+      "refundData": {
+        "correspondenceNumber": "—",
+        "refundAmount": "$0.00",
+        "adjustmentReasonCode": "PX_4",
+        "correctedClaimDcn": "—",
+        "vendorName": "—",
+        "delayReason": "—",
+        "carveOut": "—",
+        "adjustmentReceipt": "—"
+      },
+      "highDollar": {
+        "riskOutcome": "—"
+      }
+    },
+    "editing": {
+      "claimXten": {
+        "originalLine": {
+          "lineNum": "1",
+          "serviceDate": "9/15/2026",
+          "procedure": "99381",
+          "mod": "—",
+          "units": "1",
+          "billedAmount": "$210.00"
+        },
+        "proposedLine": {
+          "lineNum": "1",
+          "procedure": "99381",
+          "mod": "—",
+          "units": "1",
+          "supportCode": "—",
+          "payPercent": "100",
+          "billedAmount": "$210.00"
+        }
+      },
+      "ihealth": {
+        "originalLine": {
+          "lineNum": "1",
+          "serviceDate": "9/15/2026",
+          "procedure": "99381",
+          "mod": "—",
+          "units": "1",
+          "allowedAmount": "$158.00",
+          "savingsAmount": "$52.00"
+        },
+        "proposedLine": {
+          "procedure": "99381",
+          "mod": "—",
+          "units": "1",
+          "payPercent": "100",
+          "status": "PX_P"
+        }
+      }
+    },
+    "benefits": {
+      "accumulator1": {
+        "type": "MARLOWEYTD",
+        "fromDate": "1/1/2026",
+        "toDate": "12/31/2026",
+        "unit": "Dollar",
+        "status": "Accrued"
+      },
+      "accumulator2": {
+        "type": "MMCYTD",
+        "fromDate": "1/1/2026",
+        "toDate": "12/31/2026",
+        "unit": "Dollar",
+        "status": "Accrued"
+      }
+    },
+    "promptPay": {
+      "claim": {
+        "status": "PX_WGS",
+        "state": "—",
+        "ruleId": "—",
+        "systemInterest": "$0.00",
+        "penaltyAmount": "$0.00",
+        "manualInterestAmount": "—"
+      },
+      "calculation": {
+        "calculationFromDate": "9/20/2026",
+        "carveoutDate": "—",
+        "lastProcessedDate": "9/20/2026",
+        "baseAmount": "$0.00",
+        "calculatedInterestAmount": "$0.00",
+        "processedInDays": "0",
+        "mailingDays": "0",
+        "disburseDays": "0",
+        "allowedDays": "0",
+        "carveoutDays": "0",
+        "lateByDays": "0",
+        "dailyInterest": "$0.00"
+      },
+      "miscellaneous": {
+        "carveoutReasonCode": "PX_0",
+        "dayIndicator": "0",
+        "receiptMethod": "—",
+        "productFundType": "W",
+        "interestRate": "—",
+        "penalty": "—",
+        "minimumPayAmount": "—",
+        "erMinimumPay": "—",
+        "annualMonthlyPenalty": "—",
+        "mlhDate": "26027",
+        "ppStopDate": "—",
+        "additionalInformationRequestDate": "—",
+        "tdiInterestAmount": "—",
+        "tdiPenaltyAmount": "—"
+      }
+    },
+    "review": {
+      "utilization": {
+        "service": {
+          "lineNum": "1",
+          "procedure": "99381",
+          "revenueCodeDate": "—",
+          "ruleId": "—",
+          "caseNumber": "—"
+        }
+      },
+      "cdhp": {
+        "claim": {
+          "litesClaim": "—",
+          "rsnEobCode": "—",
+          "hraPaidTotal": "$0.00",
+          "hraEndingBalance": "$0.00",
+          "paymentCode": "—",
+          "cdhpAdmin": "—",
+          "acknowledgementRcvd": "—",
+          "requeryCount": "—"
+        },
+        "lineSummary": {
+          "lineNum": "1",
+          "procedure": "99381",
+          "billed": "$210.00",
+          "patientResp": "—",
+          "hraPaid": "—",
+          "rsnCode": "—"
+        }
+      },
+      "dofr": {
+        "meta": {
+          "inzip": "—",
+          "providerNetworkCode": "—",
+          "dofrId1": "—",
+          "dofrName1": "—",
+          "relationship": "—",
+          "pgmId": "—",
+          "pgId": "—",
+          "umDelegationIndicator": "—",
+          "effectiveDate": "—",
+          "endDate": "—"
+        },
+        "lineSummary": {
+          "lineNum": "1",
+          "procedure": "99381",
+          "revenueCode": "—",
+          "serviceCategory": "—",
+          "event": "—",
+          "capIndicator": "—",
+          "risk": "—",
+          "groupCode": "—",
+          "hc": "PP"
+        }
+      }
+    },
+    "relatedSummary": {
+      "code": "—",
+      "name": "—",
+      "fromDate": "—",
+      "toDate": "—",
+      "type": "—",
+      "provider": "—",
+      "dcn": "—",
+      "charged": "—",
+      "paid": "—",
+      "status": "—"
+    }
+  },
+  "claimLineSummary2": {
+    "lineNum": "2",
+    "fromDate": "09/15/2026",
+    "toDate": "09/15/2026",
+    "pos": "21",
+    "revCode": "250",
+    "service": "ANC",
+    "procedure": "—",
+    "modifiers": "—",
+    "units": "1",
+    "diagnosis": "Z3800",
+    "billed": "$27.05",
+    "dedInd": "NO",
+    "coinsPercent": "100",
+    "stoploss": "No",
+    "eobTy": "—",
+    "writeoffEobTy": "$5.41",
+    "noncoveredUnit": "0",
+    "deductible": "—",
+    "otherUnit": "0",
+    "copay": "—",
+    "eobTyLast": "PX_MP",
+    "payment": "$21.64"
+  }
+}

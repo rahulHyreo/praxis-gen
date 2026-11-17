@@ -1,0 +1,106 @@
+{
+  "$schema": "training-platform/v1/flow-state",
+  "$version": "1.0.0",
+  "id": "state_wdmx_3_dme_limits",
+  "initial": {
+    "defaultActiveTabId": "tab_claim_lines",
+    "defaultActiveSubTabIds": {
+      "tab_search": "subtab_search_pricing",
+      "tab_claim_data": "subtab_claim_data_details"
+    },
+    "defaultCollapsedSections": {},
+    "defaultDecision": "",
+    "decisionRequired": true
+  },
+  "modeConfig": {
+    "training": {
+      "id": "training",
+      "label": "Training mode",
+      "badgeIcon": "graduation-cap",
+      "showNavigator": true,
+      "timerType": "count_up",
+      "timerPosition": "navigator_header",
+      "timeLimitSeconds": null,
+      "timeLockEnabled": false,
+      "showHints": true,
+      "showMarkCompleteButton": true,
+      "allowTabClose": true
+    },
+    "practice": {
+      "id": "practice",
+      "label": "Practice mode",
+      "badgeIcon": "target",
+      "showNavigator": false,
+      "timerType": "count_up",
+      "timerPosition": "topbar",
+      "timeLimitSeconds": null,
+      "timeLockEnabled": false,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": true
+    },
+    "assessment": {
+      "id": "assessment",
+      "label": "Assessment mode",
+      "badgeIcon": "clipboard-check",
+      "showNavigator": false,
+      "timerType": "count_down",
+      "timerPosition": "topbar",
+      "timeLimitSeconds": 900,
+      "timeLockEnabled": true,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": false,
+      "beforeUnloadWarning": "Leaving this page will end your assessment attempt."
+    }
+  },
+  "actions": {
+    "get_pricing_purchase": {
+      "label": "Get Pricing — surface the DME purchase price",
+      "latencyMs": 400,
+      "guard": {
+        "all": [
+          {
+            "dataKey": "search.pricing.claimLines.line1.modifier",
+            "equals": "NU"
+          },
+          {
+            "dataKey": "search.pricing.claimLines.line1.billedAmount",
+            "equals": "100000"
+          }
+        ],
+        "elseWrites": {
+          "search.pricing.purchasePriceNote": "No purchase price returned. Two things must both be true before the pricing engine will quote a purchase: the Modifier must be NU (it already is on this claim — this line is billed as a purchase), and the Billed amount in this section must be 100000 so the quote is not capped at the billed charge. Set the Billed amount, then click Get Pricing again."
+        }
+      },
+      "writes": {
+        "search.pricing.claimLines.line1.allowed": "500.00",
+        "search.pricing.purchasePriceNote": "Purchase price for E0601 is $500.00. That is what the plan pays to own this equipment outright — once. Check the member's history for this provider before allowing any of it: if the purchase price has already been paid, nothing remains to allow on this claim."
+      },
+      "completesStepId": "step_006"
+    },
+    "open_prior_claim": {
+      "label": "Open claim detail — the history claim",
+      "latencyMs": 200,
+      "writes": {},
+      "completesStepId": "step_007"
+    },
+    "open_ll_record_notes": {
+      "label": "View record notes — the SPI-CLM record on file",
+      "latencyMs": 250,
+      "writes": {},
+      "completesStepId": "step_008"
+    },
+    "deny_claim": {
+      "label": "Reject / Deny claim — enter reject code PX_R11100",
+      "latencyMs": 0,
+      "writes": {},
+      "completesStepId": "step_009"
+    }
+  },
+  "persistence": {
+    "persistKey": null,
+    "autosave": false,
+    "resetOnSubmit": false
+  }
+}

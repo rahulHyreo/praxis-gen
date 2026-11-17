@@ -1,0 +1,64 @@
+{
+  "$schema": "praxis/v2/pack-flow",
+  "code": "846.1",
+  "name": "Medicare — 846 no limited-liability record on file for the date of service: clear the COVA and MED LL checks, then route to E-COB and Submit without a decision",
+  "variants": [
+    {
+      "variant": "base",
+      "variantIndex": 1,
+      "subjectRefs": ["DCN-620102"]
+    },
+    {
+      "variant": "v2",
+      "variantIndex": 2,
+      "subjectRefs": [
+        "DCN-9920200",
+        "DCN-9920201",
+        "DCN-9920202",
+        "DCN-9920203",
+        "DCN-9920204",
+        "DCN-9920205",
+        "DCN-9920206"
+      ]
+    },
+    {
+      "variant": "v3",
+      "variantIndex": 3,
+      "subjectRefs": [
+        "DCN-9920300",
+        "DCN-9920301",
+        "DCN-9920302",
+        "DCN-9920303",
+        "DCN-9920304",
+        "DCN-9920305",
+        "DCN-9920306"
+      ]
+    },
+    {
+      "variant": "v4",
+      "variantIndex": 4,
+      "subjectRefs": [
+        "DCN-9920400",
+        "DCN-9920401",
+        "DCN-9920402",
+        "DCN-9920403",
+        "DCN-9920404",
+        "DCN-9920405",
+        "DCN-9920406"
+      ]
+    },
+    {
+      "variant": "v5",
+      "variantIndex": 5,
+      "subjectRefs": [
+        "DCN-9920500",
+        "DCN-9920501",
+        "DCN-9920502",
+        "DCN-9920503",
+        "DCN-9920504",
+        "DCN-9920505",
+        "DCN-9920506"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "$schema": "praxis/v2/pack-flow",
+  "code": "NBC.1",
+  "name": "New Born — NBC newborn COB event with no Limited Liability record → Request COB Update and Submit without a decision",
+  "variants": [
+    {
+      "variant": "base",
+      "variantIndex": 1,
+      "subjectRefs": ["DCN-618105"]
+    },
+    {
+      "variant": "v2",
+      "variantIndex": 2,
+      "subjectRefs": [
+        "DCN-9850200",
+        "DCN-9850201",
+        "DCN-9850202",
+        "DCN-9850203",
+        "DCN-9850204",
+        "DCN-9850205",
+        "DCN-9850206"
+      ]
+    },
+    {
+      "variant": "v3",
+      "variantIndex": 3,
+      "subjectRefs": [
+        "DCN-9850300",
+        "DCN-9850301",
+        "DCN-9850302",
+        "DCN-9850303",
+        "DCN-9850304",
+        "DCN-9850305",
+        "DCN-9850306"
+      ]
+    },
+    {
+      "variant": "v4",
+      "variantIndex": 4,
+      "subjectRefs": [
+        "DCN-9850400",
+        "DCN-9850401",
+        "DCN-9850402",
+        "DCN-9850403",
+        "DCN-9850404",
+        "DCN-9850405",
+        "DCN-9850406"
+      ]
+    },
+    {
+      "variant": "v5",
+      "variantIndex": 5,
+      "subjectRefs": [
+        "DCN-9850500",
+        "DCN-9850501",
+        "DCN-9850502",
+        "DCN-9850503",
+        "DCN-9850504",
+        "DCN-9850505",
+        "DCN-9850506"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,281 @@
+{
+  "$schema": "training-platform/v1/navigator",
+  "$version": "2.0.0",
+  "id": "nav_509_1",
+  "flowId": "flow_eligibility_509_1",
+  "name": "Eligibility 509.1 — Coverage Termination Navigator",
+  "description": "Step-by-step guide to resolve Edit 509.1 (Coverage Termination): verify the member's identity across Member Info / Claim Image, confirm on Search → Member that the keyed group is out of window, find the alternate active group that covers the service dates, click Apply Selected Member then Validate to swap the Group ID, and submit Pay.",
+  "totalSteps": 8,
+  "passMark": 70,
+  "correctDecision": "pay",
+  "correctDecisionLabel": "Pay",
+  "totalMaxPoints": 100,
+  "totalNavigatorPoints": 80,
+  "steps": [
+    {
+      "id": "step_001",
+      "sequenceId": 1,
+      "name": "Identify the PX_509 hard edit",
+      "description": "Open the Event Resolution tab. All events for the claim are listed; the PX_509 hard edit is flagged in red — that's the event you are resolving. Take note of it.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_active",
+      "targetFieldId": null,
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes as soon as the trainee clicks the Event Resolution tab.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Click the 'Event Resolution' tab. The active PX_509 edit ('Contract not in effect for the selected group for billed dates of service') is the hard edit shown in red.",
+      "highlightFields": ["f_er_edit_label", "f_er_severity", "f_er_e_509"],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Event Resolution tab opened — PX_509 hard edit identified"
+    },
+    {
+      "id": "step_002",
+      "sequenceId": 2,
+      "name": "Review member identity fields",
+      "description": "Open the Member Info tab. Note the seven identity fields — First Name, Middle Name, Last Name, Date of Birth, Sex, Group ID, and Member Prefix. They anchor the Claim Image cross-check next.",
+      "targetTabId": "tab_member_info",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_mi_patient",
+      "targetFieldId": null,
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_member_info"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens Member Info for the first time.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open the 'Member Info' tab. Note all seven highlighted identity fields — you'll cross-check them on Claim Image next.",
+      "highlightFields": [
+        "f_mi_p_first",
+        "f_mi_p_middle",
+        "f_mi_p_last",
+        "f_mi_p_dob",
+        "f_mi_p_sex",
+        "f_mi_g_id",
+        "f_mi_p_prefix"
+      ],
+      "highlightTabId": "tab_member_info",
+      "checklistItem": "Seven identity fields noted on Member Info"
+    },
+    {
+      "id": "step_003",
+      "sequenceId": 3,
+      "name": "Cross-check member fields against the Claim Image",
+      "description": "Open the Claim Image tab and verify that the seven identity fields — First Name, Middle Name, Last Name, Date of Birth, Sex, Group ID, and Member Prefix — match the Member Information tab exactly.",
+      "targetTabId": "tab_claim_image",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_ci_m_patient",
+      "targetFieldId": null,
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_image"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens Claim Image.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Click the 'Claim Image' tab. Compare the seven highlighted identity fields against what you noted on Member Info — they must match.",
+      "highlightFields": [
+        "f_ci_p_first",
+        "f_ci_p_middle",
+        "f_ci_p_last",
+        "f_ci_p_dob",
+        "f_ci_p_sex",
+        "f_ci_p_group_id",
+        "f_ci_p_prefix"
+      ],
+      "highlightTabId": "tab_claim_image",
+      "checklistItem": "Claim Image identity fields verified against Member Info"
+    },
+    {
+      "id": "step_004",
+      "sequenceId": 4,
+      "name": "Look up the contract on Search",
+      "description": "Navigate to the Search tab, select the Member sub-tab, and open the Member General Information section. Review the Business Unit field to determine the contract type. The available Business Unit values are Large Group, Small Group, and Individual. Large Group cases should be handled according to the dedicated SOP-defined process, while Small Group and Individual follow the standard shared process. Since the current value is 'Individual,' record the Group ID, Member Prefix, Effective Date, and Termination Date.",
+      "targetTabId": "tab_search",
+      "targetSubTabId": "subtab_search_member",
+      "targetSectionId": "sec_sc_m_general",
+      "targetFieldId": "f_smg_business",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_search",
+        "subTabId": "subtab_search_member"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Member sub-tab inside Search.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Click 'Search', then the 'Member' sub-tab. Business Unit reads 'Individual' here — note the Group ID, Prefix, Effective Date and Termination Date.",
+      "highlightFields": [
+        "f_smg_business",
+        "f_sm_group",
+        "f_sm_prefix",
+        "f_sm_eff",
+        "f_sm_end"
+      ],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_member",
+      "checklistItem": "Business Unit confirmed as Individual; Group ID / Prefix / dates noted on Search → Member"
+    },
+    {
+      "id": "step_005",
+      "sequenceId": 5,
+      "name": "Confirm Group ID and Prefix",
+      "description": "Return to Member Info and confirm its Group ID and Member Prefix align with the Search → Member panel — they match here, so the claim was keyed under this Group ID.",
+      "targetTabId": "tab_member_info",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_mi_group",
+      "targetFieldId": null,
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_member_info"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes as soon as the trainee selects the Member Info tab.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Return to Member Info and confirm Group ID and Member Prefix match the Search → Member panel.",
+      "highlightFields": ["f_mi_g_id", "f_mi_p_prefix"],
+      "highlightTabId": "tab_member_info",
+      "checklistItem": "Group ID and Member Prefix cross-checked"
+    },
+    {
+      "id": "step_006",
+      "sequenceId": 6,
+      "name": "Check service dates against coverage range",
+      "description": "Open the claim lines. Both lines have From/To dates that fall outside the keyed group's Effective–Termination range — this is what triggers edit PX_509. Go to Search → Member and look for a different group that is active and effective for these service dates.",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_summary",
+      "targetFieldId": null,
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_lines"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes on first visit to Claim Lines tab.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Lines'. Both lines' From / To dates fall outside the keyed group's Effective – Termination window — head back to Search → Member to find the alternate active group.",
+      "highlightFields": ["f_cl_from", "f_cl_to", "f_cl2_from", "f_cl2_to"],
+      "highlightTabId": "tab_claim_lines",
+      "checklistItem": "Both claim lines confirmed outside the keyed group's coverage window"
+    },
+    {
+      "id": "step_007",
+      "sequenceId": 7,
+      "name": "Select the correct group and apply",
+      "description": "Navigate to the Search tab, then the Member sub-tab, where two contract groups are listed. The currently-keyed group does not cover the service dates. Select the alternate active group that does, click Apply Selected Member on it, then click Validate in the claim summary — the selected Group ID is written back to the Group ID on the Member Info tab.",
+      "targetTabId": "tab_search",
+      "targetSubTabId": "subtab_search_member",
+      "targetSectionId": "sec_sc_m_group_alt",
+      "targetFieldId": null,
+      "actionType": "validate_member_group",
+      "actionPayload": {
+        "actionId": "validate_member_group"
+      },
+      "completesActionId": "validate_member_group",
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the trainee clicks the claim summary Validate button (after applying the alternate group), which dispatches the validate_member_group action and updates Member Info → Group ID.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Return to Search → Member. Click 'Apply Selected Member' on the alternate active group (the one that covers the service dates), then click 'Validate' in the claim summary.",
+      "highlightFields": [
+        "f_smga_group_id",
+        "f_smga_eff",
+        "f_smga_end",
+        "f_smga_apply"
+      ],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_member",
+      "checklistItem": "Alternate group applied and validated — Group ID updated on Member Info"
+    },
+    {
+      "id": "step_008",
+      "sequenceId": 8,
+      "name": "Submit Pay decision",
+      "description": "Open the Action menu, select 'Pay', then click the Submit button. The attempt finalizes and your time is recorded.",
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "submit_decision",
+      "actionPayload": {
+        "type": "submit_decision",
+        "expectedDecision": "pay"
+      },
+      "completionTrigger": "decision_submitted",
+      "completionTriggerNote": "Completes when the trainee submits the Pay decision with the Submit button.",
+      "expectedValue": "pay",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Action menu → Pay, then click Submit.",
+      "highlightFields": [],
+      "checklistItem": "Pay decision submitted — attempt complete"
+    }
+  ],
+  "scoreBreakdown": {
+    "navigatorStepsMaxPoints": 80,
+    "decisionMaxPoints": 20,
+    "reasonCodeMaxPoints": 0,
+    "totalMaxPoints": 100,
+    "passMark": 70,
+    "weightedPassScore": 70
+  },
+  "stepSummaryForResults": [
+    {
+      "sequenceId": 1,
+      "name": "PX_509 hard edit identified",
+      "points": 10
+    },
+    {
+      "sequenceId": 2,
+      "name": "Seven identity fields noted",
+      "points": 10
+    },
+    {
+      "sequenceId": 3,
+      "name": "Claim Image cross-checked",
+      "points": 10
+    },
+    {
+      "sequenceId": 4,
+      "name": "Business Unit = Individual; contract looked up",
+      "points": 10
+    },
+    {
+      "sequenceId": 5,
+      "name": "Group ID & Prefix matched",
+      "points": 10
+    },
+    {
+      "sequenceId": 6,
+      "name": "Both claim lines out of window",
+      "points": 10
+    },
+    {
+      "sequenceId": 7,
+      "name": "Alternate group applied & validated",
+      "points": 10
+    },
+    {
+      "sequenceId": 8,
+      "name": "Pay decision submitted",
+      "points": 10
+    }
+  ]
+}

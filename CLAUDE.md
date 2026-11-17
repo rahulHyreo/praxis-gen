@@ -55,6 +55,10 @@ pnpm db:push | db:seed | db:migrate | db:studio
 tooling suite. `pnpm test:db` runs the api's database suites against an
 in-memory PGlite — no Docker, no Postgres, no `TEST_DATABASE_URL` needed.
 
+`pnpm packs:convert-v1 <v1>/apps/api/src/data/flows` imports v1's flow bundles
+into `packs/claims/`. Idempotent, verifies its own output, and writes a
+`conversion-report.md` recording what it carried and dropped.
+
 `pnpm packs:validate` and `pnpm packs:sync` are specified in §42 but **not yet
 declared**: the pack validator does not exist, and a script that resolves to
 nothing is worse than an absent one.
@@ -66,7 +70,15 @@ stack runs Postgres, MinIO and Redis; the api answers `GET /api/health` and the
 web app renders a shell.
 
 There is **no** schema (§40 starts fresh at `0000_init`), no authentication, no
-content, no progression and no trainee-facing behaviour. There is also no
+progression and no trainee-facing behaviour.
+
+`packs/claims/` now holds content: v1's 92 flow bundles, imported as pack data
+with the pack manifest, glossary and a conversion report. Nothing reads it yet —
+the bundle loader is phase C. Two things that change land it must honour are
+recorded in that change's `design.md` handoff section: §13's variant-navigator
+rule is **narrowed** (reject a variant navigator that duplicates its base,
+permit one that is semantically distinct, or `507.3` and `W-DMX.2` lose their
+grading), and a missing variant file resolves to the base one. There is also no
 deployment path of any kind — no CI, provisioning, registry or Swarm. §42 still
 describes the eventual deployment target; it is deferred, not abandoned.
 

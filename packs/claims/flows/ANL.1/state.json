@@ -1,0 +1,130 @@
+{
+  "$schema": "training-platform/v1/flow-state",
+  "$version": "1.0.0",
+  "id": "state_anl_1_provider_data_mismatch",
+  "initial": {
+    "defaultActiveTabId": "tab_event_resolution",
+    "defaultActiveSubTabIds": {
+      "tab_search": "subtab_search_provider_anl",
+      "tab_claim_data": "subtab_claim_data_details",
+      "tab_attachment": "subtab_attachment_attachments"
+    },
+    "defaultCollapsedSections": {},
+    "defaultDecision": "",
+    "decisionRequired": false
+  },
+  "modeConfig": {
+    "training": {
+      "id": "training",
+      "label": "Training mode",
+      "badgeIcon": "graduation-cap",
+      "showNavigator": true,
+      "timerType": "count_up",
+      "timerPosition": "navigator_header",
+      "timeLockEnabled": false,
+      "showHints": true,
+      "showMarkCompleteButton": true,
+      "allowTabClose": true
+    },
+    "practice": {
+      "id": "practice",
+      "label": "Practice mode",
+      "badgeIcon": "dumbbell",
+      "showNavigator": false,
+      "timerType": "count_up",
+      "timerPosition": "topbar",
+      "timeLockEnabled": false,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": true
+    },
+    "assessment": {
+      "id": "assessment",
+      "label": "Assessment Mode",
+      "badgeIcon": "graduation-cap",
+      "showNavigator": false,
+      "timerType": "count_down",
+      "timerPosition": "topbar_right",
+      "timeLimitSeconds": 600,
+      "timeLockEnabled": true,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": false,
+      "beforeUnloadWarning": "Assessment in progress. Leaving will lose your progress."
+    }
+  },
+  "actions": {
+    "search_provider": {
+      "label": "Search provider",
+      "latencyMs": 500,
+      "completesStepId": "step_008",
+      "guard": {
+        "all": [
+          {
+            "dataKey": "search.provider.form.npi",
+            "equals": "12345678910"
+          },
+          {
+            "dataKey": "search.provider.form.sourceSystem",
+            "equals": "SPS"
+          },
+          {
+            "dataKey": "search.provider.form.orgTaxId",
+            "equals": ""
+          },
+          {
+            "dataKey": "search.provider.form.zipCode",
+            "equals": ""
+          },
+          {
+            "dataKey": "search.provider.form.billingType",
+            "equals": ""
+          },
+          {
+            "dataKey": "search.provider.form.specialty",
+            "equals": ""
+          },
+          {
+            "dataKey": "search.provider.form.state",
+            "equals": ""
+          },
+          {
+            "dataKey": "search.provider.form.alternateId",
+            "equals": ""
+          },
+          {
+            "dataKey": "search.provider.form.alternateKey",
+            "equals": ""
+          },
+          {
+            "dataKey": "search.provider.form.lob",
+            "equals": ""
+          },
+          {
+            "dataKey": "search.provider.form.billingOrg",
+            "equals": ""
+          }
+        ],
+        "elseWrites": {
+          "search.provider.searchStatus": "Search not run. Enter the referring provider's NPI in the NPI box, leave Source system on SPS, and clear every other filter box except the From and Through dates.",
+          "search.provider.results": []
+        }
+      },
+      "writes": {
+        "search.provider.searchStatus": "No matching records found with the given search criteria",
+        "search.provider.results": []
+      }
+    },
+    "deny_claim": {
+      "label": "Submit deny",
+      "latencyMs": 600,
+      "writes": {},
+      "completesStepId": "step_009"
+    }
+  },
+  "persistence": {
+    "persistKey": null,
+    "autosave": false,
+    "resetOnSubmit": false
+  }
+}

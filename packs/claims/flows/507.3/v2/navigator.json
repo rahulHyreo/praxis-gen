@@ -1,0 +1,211 @@
+{
+  "$schema": "training-platform/v1/navigator",
+  "$version": "2.0.0",
+  "id": "nav_507_3_member_mismatch",
+  "flowId": "flow_eligibility_507_member_mismatch",
+  "name": "Eligibility 507.3 — Member Details Mismatch Navigator",
+  "description": "Resolve Edit PX_507 by correcting mismatched member identity data: identify the PX_507 hard edit, review the Member Info identity fields, cross-check them against the Claim Image, correct the mismatched First Name on Member Info, click Validate, then submit Pay.",
+  "totalSteps": 6,
+  "passMark": 70,
+  "correctDecision": "pay",
+  "correctDecisionLabel": "Pay",
+  "totalMaxPoints": 80,
+  "totalNavigatorPoints": 60,
+  "steps": [
+    {
+      "id": "step_001",
+      "sequenceId": 1,
+      "name": "Identify the PX_507 hard edit",
+      "description": "Navigate to the Event Resolution tab. All applicable edits for the claim will be displayed here. A hard-edit card for Event PX_507 will be highlighted with an error indication. This is the current event you need to resolve.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_active",
+      "targetFieldId": null,
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes as soon as the trainee opens the Event Resolution tab.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Click the 'Event Resolution' tab. The active Edit PX_507 (member coverage terminated) is highlighted in red.",
+      "highlightFields": ["f_er_edit_label"],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Identify the PX_507 hard edit"
+    },
+    {
+      "id": "step_002",
+      "sequenceId": 2,
+      "name": "Review member identity fields",
+      "description": "Open the Member Information tab and take note of the seven identity fields: First Name, Middle Name, Last Name, Date of Birth, Sex, Group ID, and Member Prefix. These values will be cross-checked against the Claim Image in the next step.",
+      "targetTabId": "tab_member_info",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_mi_patient",
+      "targetFieldId": null,
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_member_info"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens Member Info.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open the 'Member Info' tab and note the seven highlighted identity fields — you'll cross-check them on Claim Image next.",
+      "highlightFields": [
+        "f_mi_p_first",
+        "f_mi_p_middle",
+        "f_mi_p_last",
+        "f_mi_p_dob",
+        "f_mi_p_sex",
+        "f_mi_g_id",
+        "f_mi_p_prefix"
+      ],
+      "highlightTabId": "tab_member_info",
+      "checklistItem": "Review member identity fields"
+    },
+    {
+      "id": "step_003",
+      "sequenceId": 3,
+      "name": "Cross-check member fields against the Claim Image",
+      "description": "Verify that all seven identity fields on the Member Information tab — First Name, Middle Name, Last Name, Date of Birth, Sex, Group ID, and Member Prefix — match the corresponding details on the Claim Image tab exactly. In this scenario, the First Name field does not match the value on the Member Information tab and needs to be corrected.",
+      "targetTabId": "tab_claim_image",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_ci_m_patient",
+      "targetFieldId": null,
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_image"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Claim Image tab.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Click the 'Claim Image' tab and compare the seven highlighted fields against what you noted on Member Info. The First Name will not match.",
+      "highlightFields": [
+        "f_ci_p_first",
+        "f_ci_p_middle",
+        "f_ci_p_last",
+        "f_ci_p_dob",
+        "f_ci_p_sex",
+        "f_ci_p_group_id",
+        "f_ci_p_prefix"
+      ],
+      "highlightTabId": "tab_claim_image",
+      "checklistItem": "Cross-check member fields against the Claim Image"
+    },
+    {
+      "id": "step_004",
+      "sequenceId": 4,
+      "name": "Correct the mismatched First Name",
+      "description": "To correct the mismatched First Name, return to the Member Information tab and click the First Name value text box to make the field editable. Update the First Name so that it matches the value shown on the Claim Image tab.",
+      "targetTabId": "tab_member_info",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_mi_patient",
+      "targetFieldId": "f_mi_p_first",
+      "actionType": "field_edit",
+      "actionPayload": {
+        "fieldId": "f_mi_p_first"
+      },
+      "completionTrigger": "field_value_set",
+      "completionTriggerNote": "Completes on change or blur when the trainee types the value shown on the Claim Image tab (RAUL).",
+      "expectedValue": "RAUL",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Return to 'Member Info', click the First Name input, replace the current value with the First Name shown on the Claim Image tab (RAUL).",
+      "highlightFields": ["f_mi_p_first"],
+      "highlightTabId": "tab_member_info",
+      "checklistItem": "Correct the mismatched First Name"
+    },
+    {
+      "id": "step_005",
+      "sequenceId": 5,
+      "name": "Validate the corrected data",
+      "description": "After correcting the First Name, click the Validate button in the claim summary — the same button used to validate the PX_CB bypass code — to confirm that the updated member data is accepted.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "validate_bypass",
+      "actionPayload": {
+        "type": "validate_bypass"
+      },
+      "completesActionId": "validate_bypass",
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the trainee clicks the claim summary Validate button after correcting the First Name.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Click the 'Validate' button in the claim summary to confirm the corrected member data.",
+      "highlightFields": ["f_er_bypass_code"],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Validate the corrected data"
+    },
+    {
+      "id": "step_006",
+      "sequenceId": 6,
+      "name": "Submit Pay decision",
+      "description": "Open the Action menu, select 'Pay', then click the Submit button to pay the claim.",
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "submit_decision",
+      "actionPayload": {
+        "type": "submit_decision",
+        "expectedDecision": "pay"
+      },
+      "completionTrigger": "decision_submitted",
+      "completionTriggerNote": "Completes when the trainee submits the Pay decision with the Submit button.",
+      "expectedValue": "pay",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Action menu → Pay, then click Submit.",
+      "highlightFields": [],
+      "checklistItem": "Submit Pay decision"
+    }
+  ],
+  "scoreBreakdown": {
+    "navigatorStepsMaxPoints": 60,
+    "decisionMaxPoints": 20,
+    "reasonCodeMaxPoints": 0,
+    "totalMaxPoints": 80,
+    "passMark": 70,
+    "weightedPassScore": 56
+  },
+  "stepSummaryForResults": [
+    {
+      "sequenceId": 1,
+      "name": "PX_507 hard edit identified",
+      "points": 10
+    },
+    {
+      "sequenceId": 2,
+      "name": "Member identity fields reviewed",
+      "points": 10
+    },
+    {
+      "sequenceId": 3,
+      "name": "Claim Image cross-checked",
+      "points": 10
+    },
+    {
+      "sequenceId": 4,
+      "name": "First Name corrected",
+      "points": 10
+    },
+    {
+      "sequenceId": 5,
+      "name": "Corrected data validated",
+      "points": 10
+    },
+    {
+      "sequenceId": 6,
+      "name": "Pay decision submitted",
+      "points": 10
+    }
+  ]
+}

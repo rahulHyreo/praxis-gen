@@ -1,0 +1,191 @@
+{
+  "$schema": "training-platform/v1/flow-state",
+  "$version": "1.0.0",
+  "id": "state_ret_1_medicare_opt_out",
+  "initial": {
+    "defaultActiveTabId": "tab_event_resolution",
+    "defaultActiveSubTabIds": {
+      "tab_search": "subtab_search_benefits",
+      "tab_claim_data": "subtab_claim_data_details",
+      "tab_attachment": "subtab_attachment_attachments"
+    },
+    "defaultCollapsedSections": {},
+    "defaultDecision": "",
+    "decisionRequired": true
+  },
+  "modeConfig": {
+    "training": {
+      "id": "training",
+      "label": "Training mode",
+      "badgeIcon": "graduation-cap",
+      "showNavigator": true,
+      "timerType": "count_up",
+      "timerPosition": "navigator_header",
+      "timeLockEnabled": false,
+      "showHints": true,
+      "showMarkCompleteButton": true,
+      "allowTabClose": true
+    },
+    "practice": {
+      "id": "practice",
+      "label": "Practice mode",
+      "badgeIcon": "dumbbell",
+      "showNavigator": false,
+      "timerType": "count_up",
+      "timerPosition": "topbar",
+      "timeLockEnabled": false,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": true
+    },
+    "assessment": {
+      "id": "assessment",
+      "label": "Assessment Mode",
+      "badgeIcon": "graduation-cap",
+      "showNavigator": false,
+      "timerType": "count_down",
+      "timerPosition": "topbar_right",
+      "timeLimitSeconds": 600,
+      "timeLockEnabled": true,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": false,
+      "beforeUnloadWarning": "Assessment in progress. Leaving will lose your progress."
+    }
+  },
+  "actions": {
+    "expand_plan_level": {
+      "label": "Expand Plan Level",
+      "latencyMs": 300,
+      "writes": {
+        "search.benefits.planLevelOpen": true
+      },
+      "completesStepId": "step_008"
+    },
+    "get_pricing": {
+      "label": "Get Pricing",
+      "latencyMs": 600,
+      "writes": {
+        "search.pricing.applyAvailable": true,
+        "search.pricing.pricingNote": "Medicare pricing retrieved for product RBRV, variance 0000. Apply Pricing to bring the allowance onto the claim."
+      },
+      "completesStepId": "step_014",
+      "guard": {
+        "all": [
+          {
+            "dataKey": "search.pricing.member.product",
+            "equalsIgnoreCase": "RBRV"
+          },
+          {
+            "dataKey": "search.pricing.member.variance",
+            "equalsIgnoreCase": "0000"
+          }
+        ],
+        "elseWrites": {
+          "search.pricing.pricingNote": "Pricing not retrieved. Set Product to RBRV and Variance to 0000 before clicking Get Pricing."
+        }
+      }
+    },
+    "apply_pricing": {
+      "label": "Apply Pricing",
+      "latencyMs": 600,
+      "writes": {
+        "search.pricing.lineSummary.allowed": "$120.00",
+        "search.pricing.lineSummary.writeoff": "$80.00",
+        "search.pricing.applyNote": "Medicare pricing applied. Billed $200.00, Allowed $120.00, Write-off $80.00.",
+        "claimLineSummary.allowed": "$120.00",
+        "claimLineSummary.writeoffAmount": "$80.00",
+        "header.claimAllowed": "$120.00",
+        "header.writeOff": "$80.00",
+        "costShare.allowed": "$120.00"
+      },
+      "completesStepId": "step_015"
+    },
+    "reset_pricing": {
+      "label": "Reset pricing",
+      "latencyMs": 0,
+      "writes": {}
+    },
+    "fully_manual": {
+      "label": "Fully Manual",
+      "latencyMs": 500,
+      "writes": {
+        "costShare.note": "Medicare as primary cost share. Medicare pays its percentage of the allowed amount; the balance is our liability."
+      },
+      "completesStepId": ["step_017", "step_023"],
+      "writesByStep": {
+        "step_023": {
+          "costShare.holdApplied": true,
+          "costShare.hold": "EOB 00055 non-covered $96.00 held. Payment recalculated and retained at $24.00.",
+          "claimLineSummary.costShareNote": "Amounts held successfully — EOB 00055 $96.00 held, payment $24.00 retained."
+        }
+      }
+    },
+    "get_secondary_benefits": {
+      "label": "Get Secondary Benefits",
+      "latencyMs": 700,
+      "writes": {
+        "secondaryBenefits.writeoffEob": "00066",
+        "secondaryBenefits.writeoff": "$80.00",
+        "secondaryBenefits.noncoveredEob": "00055",
+        "secondaryBenefits.noncovered": "$96.00",
+        "secondaryBenefits.payment": "$24.00",
+        "secondaryBenefits.note": "Secondary benefits calculated. Medicare pays 80% of the $120.00 allowance ($96.00); our liability is the $24.00 balance.",
+        "claimLineSummary.writeoffEob": "00066",
+        "claimLineSummary.writeoffAmount": "$80.00",
+        "claimLineSummary.noncoveredEob": "00055",
+        "claimLineSummary.noncoveredAmount": "$96.00",
+        "claimLineSummary.paymentAmount": "$24.00",
+        "claimLineSummary.payment": "$24.00",
+        "header.paid": "$24.00",
+        "costShare.medicarePayPercent": "80",
+        "costShare.medicareLiability": "$96.00",
+        "costShare.ourLiability": "$24.00"
+      },
+      "completesStepId": "step_022",
+      "guard": {
+        "all": [
+          {
+            "dataKey": "claimLineSummary.medicarePayPercent",
+            "equalsIgnoreCase": "80"
+          },
+          {
+            "dataKey": "claimLineSummary.ourInsuranceOopMet",
+            "equalsIgnoreCase": "No"
+          }
+        ],
+        "elseWrites": {
+          "claimLineSummary.costShareNote": "Secondary benefits not calculated. Enter the Medicare pay % determined from the service class (80) and set Our Insurance OOP Met to No first."
+        }
+      }
+    },
+    "validate": {
+      "label": "Validate",
+      "latencyMs": 400,
+      "writes": {
+        "eventResolution.validationMessage": "Validation completed."
+      },
+      "completesStepId": ["step_010", "step_019", "step_025"],
+      "guardByStep": {
+        "step_025": {
+          "dataKey": "eventResolution.bypassCode",
+          "equalsIgnoreCase": "PX_RY",
+          "elseWrites": {
+            "eventResolution.bypassStatus": "Bypass not applied. Select the PX_RY bypass code for edit PX_RET, then Validate again."
+          }
+        }
+      },
+      "writesByStep": {
+        "step_025": {
+          "eventResolution.bypassStatus": "Validated — PX_RY bypass applied to PX_RET.",
+          "eventResolution.validationMessage": "PX_RET bypassed. The claim is ready to submit."
+        }
+      }
+    }
+  },
+  "persistence": {
+    "persistKey": null,
+    "autosave": false,
+    "resetOnSubmit": false
+  }
+}

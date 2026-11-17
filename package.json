@@ -12,7 +12,7 @@
     "format:check": "prettier --check .",
     "typecheck": "turbo typecheck",
     "test": "turbo test --concurrency=1 && pnpm test:root",
-    "test:root": "vitest run --project root-tooling",
+    "test:root": "vitest run --project root-tooling --coverage",
     "test:db": "turbo test:db",
     "db:push": "turbo db:push",
     "db:generate": "turbo db:generate",
@@ -21,6 +21,7 @@
     "db:deploy": "turbo db:deploy",
     "db:seed": "turbo db:seed",
     "db:studio": "turbo db:studio",
+    "packs:convert-v1": "node scripts/convert-v1-flows/index.mjs",
     "dev:setup": "turbo dev:setup --filter=@platform/db",
     "prepare": "husky"
   },

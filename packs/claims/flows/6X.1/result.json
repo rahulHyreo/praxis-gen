@@ -1,0 +1,63 @@
+{
+  "$schema": "training-platform/v1/flow-result",
+  "$version": "1.0.0",
+  "id": "result_6x_1_contract_exclusion_limit_dollar_cob",
+  "rubric": {
+    "expectedDecision": "pay",
+    "expectedReasonCode": null,
+    "requiredStepIds": [
+      "step_001",
+      "step_002",
+      "step_003",
+      "step_004",
+      "step_005",
+      "step_006",
+      "step_007"
+    ],
+    "weights": {
+      "navigator": 70,
+      "decision": 20,
+      "reasonCode": 0
+    },
+    "deductions": {
+      "perMissedRequiredStep": 0,
+      "wrongDecision": 20,
+      "wrongReasonCode": 0
+    }
+  },
+  "resultConfig": {
+    "passLabel": "Passed!",
+    "failLabel": "You did not meet the pass mark.",
+    "passDescription": "Good work — you resolved the events on the claim, identified PX_6X among them and confirmed that RB2 was not setting, so the standard guidelines applied. On Claim Data → COB you checked the other insurer's EOB against its Group Reason Codes and found the sub-tab was not coded correctly: PR-3 COPAY read 15 while the Copay field read 10.00, and the EOB's own Paid of 185.00 against an Allowed of 200.00 only balances at 15.00. You opened the EOB and EOMB Reason Codes reference and established that PR is the member's responsibility, so the amount belonged in Copay; opened the COB table with the pen icon; corrected the Copay to 15.00; validated the claim and read back that the 6X event had cleared; and paid the claim under the current established unit guidelines.",
+    "failDescription": "Pass mark is {passMark}%. Review the steps below to see where you can improve.",
+    "scoreCircle": {
+      "radius": 40,
+      "strokeWidth": 8,
+      "passColor": "#3B6D11",
+      "failColor": "#A32D2D",
+      "trackColor": "#E5E7EB"
+    },
+    "statBoxes": [
+      {
+        "id": "navigator_score",
+        "label": "Navigator",
+        "dataKey": "navigatorScore",
+        "max": 70
+      },
+      {
+        "id": "decision_score",
+        "label": "Decision",
+        "dataKey": "decisionScore",
+        "max": 20
+      },
+      {
+        "id": "time_taken",
+        "label": "Time Taken",
+        "dataKey": "timeTakenSeconds",
+        "format": "duration"
+      }
+    ],
+    "retakeButton": true,
+    "backToClaimsButton": true
+  }
+}

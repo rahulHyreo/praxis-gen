@@ -1,0 +1,429 @@
+{
+  "$schema": "training-platform/v1/navigator",
+  "$version": "2.0.0",
+  "id": "nav_590_2_provider_tf_pay",
+  "flowId": "flow_timely_filing_590_2",
+  "name": "Timely Filing 590.2 — Provider Timely Filing (PX_TF Bypass & Pay) Navigator",
+  "description": "Walk the Provider Timely Filing SOP for a late claim that is nonetheless payable: review the Timely filing pop-up criteria and Exclusion indicator, compare State and CFT and determine the 90-day rule applies, walk the Non-ITS Home / corrected-claim / Sutter / participation gates, confirm a prior deleted claim within the TFL and a provider update within the TFL, then apply the PX_TF bypass code and submit Pay.",
+  "totalSteps": 14,
+  "passMark": 70,
+  "correctDecision": "pay",
+  "correctDecisionLabel": "Pay",
+  "totalMaxPoints": 160,
+  "totalNavigatorPoints": 140,
+  "steps": [
+    {
+      "id": "step_001",
+      "sequenceId": 1,
+      "name": "Identify the PX_590 hard edit on Event Resolution",
+      "description": "Open the Event Resolution tab. All edits on the claim are listed; Edit PX_590 ('Claim submit time limit exceeded') is the active Hard Edit, flagged in red. That is the current event you are resolving.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_active",
+      "targetFieldId": null,
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes as soon as the trainee opens the Event Resolution tab.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Click the 'Event Resolution' tab. The Active Edit panel shows PX_590 — 'Claim submit time limit exceeded' flagged as a Hard Edit (red). That is the event you must resolve.",
+      "highlightFields": ["f_er_edit_label", "f_er_severity", "f_er_e_590"],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Event Resolution tab opened — PX_590 hard edit identified"
+    },
+    {
+      "id": "step_002",
+      "sequenceId": 2,
+      "name": "Open the Provider Information tab",
+      "description": "Review the timely filing limit for the claim by opening the claim and scrolling to the Provider Information tab. The timely filing reference is located in the Billing section.",
+      "targetTabId": "tab_provider_info",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_pi_billing",
+      "targetFieldId": "f_pi_b_filing_limit",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_provider_info"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Provider Information tab.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open the 'Provider Info' tab and scroll to the Billing section — the Timely Filing Limit field is here.",
+      "highlightFields": ["f_pi_b_filing_limit"],
+      "highlightTabId": "tab_provider_info",
+      "checklistItem": "Open the Provider Information tab"
+    },
+    {
+      "id": "step_003",
+      "sequenceId": 3,
+      "name": "Open the Timely filing pop-up",
+      "description": "Navigate to the Provider Information tab, then the Billing section, and click the question mark (?) icon next to the Timely Filing Limit field label. The Timely Filing pop-up window will open, with the provider's Tax ID and State fields automatically populated.",
+      "targetTabId": "tab_provider_info",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_pi_billing",
+      "targetFieldId": "f_pi_b_tf_popup",
+      "actionType": "open_tf_popup",
+      "actionPayload": {
+        "type": "open_tf_popup"
+      },
+      "completesActionId": "open_tf_popup",
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the trainee clicks the '?' icon, which dispatches the open_tf_popup action.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Click the '?' icon next to 'Timely Filing Limit' in the Billing section — the Timely filing pop-up opens with the Tax ID and State auto-populated.",
+      "highlightFields": ["f_pi_b_tf_popup"],
+      "highlightTabId": "tab_provider_info",
+      "checklistItem": "Open the Timely filing pop-up"
+    },
+    {
+      "id": "step_004",
+      "sequenceId": 4,
+      "name": "Look up TFL criteria and Exclusion indicator",
+      "description": "In the Timely filing pop-up, click the Search button. A row of filing criteria will appear with the fields State, CFT, Contract/LOB, Par, Effective, End date, and TFL. Note the values: State CA, CFT 52, Contract/LOB Commercial, Effective, End date, and TFL 365. Then interpret the Exclusion indicator: if Exclusion ind = No, the provider is not excluded from the 90-day rule and must submit the claim within 90 days from the date of service; if Exclusion ind = Yes, the provider is excluded and a custom timely filing limit may apply, but only if every field in the pop-up matches the corresponding value on the claim. In this scenario, the Exclusion indicator is Yes, so each field must be compared against the claim before applying the custom limit.Also compare the State displayed in the Timely Filing pop-up with the Pricing State by navigating to the Provider Information tab, then the Rendering section. Confirm that the values match. In this scenario, both fields display CA, indicating that the State requirement has been satisfied.",
+      "targetTabId": "tab_provider_info",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_tf_search",
+      "targetFieldId": null,
+      "actionType": "tf_search",
+      "actionPayload": {
+        "type": "tf_search"
+      },
+      "completesActionId": "tf_search",
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the trainee clicks Search inside the Timely filing pop-up, which dispatches the tf_search action and reveals the filing-criteria rows.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "In the Timely filing pop-up, click 'Search'. The filing-criteria rows appear — note State CA, CFT 52, Contract/LOB Commercial, TFL 365, and read the Exclusion ind. Here Exclusion ind = Yes, so every field must match the claim before the custom TFL applies.",
+      "highlightFields": ["f_tf_search_btn"],
+      "highlightTabId": "tab_provider_info",
+      "checklistItem": "Look up TFL criteria and Exclusion indicator"
+    },
+    {
+      "id": "step_006",
+      "sequenceId": 5,
+      "name": "Compare CFT against claim type",
+      "description": "Compare the CFT (Claim File Type) value from the Timely Filing pop-up with the claim type by navigating to the Claim Data tab, then the Details sub-tab, and reviewing the claim information. The CFT value must be 52 for a Professional claim and 53 for an Outpatient claim. In this scenario, the claim type is Professional; therefore, the CFT value is 52. The Contract/LOB value is treated as Commercial in this scenario and requires no further validation. Note the Receipt Date from the claim summary, along with the Billed, Allowed, Paid, and Action Code values. Compare the Receipt Date to the Effective Date and End Date displayed in the Timely Filing pop-up to determine whether it falls within the applicable date range. If Exclusion Ind = Yes and all applicable fields match the corresponding claim values, the provider must submit the claim within the timely filing limit shown in the TFL field. If Exclusion Ind = Yes but any required field does not match, the provider is subject to the 90-day filing rule. If Exclusion Ind = No, the provider is also subject to the 90-day filing requirement. In this scenario, the Receipt Date does not fall within the Effective Date and End Date range shown in the Timely Filing pop-up; therefore, the provider must follow the 90-day filing rule. Also determine whether the claim is ITS Home by navigating to the Claim Data tab, then the Details sub-tab, and reviewing the Additional Claim Data section. If the claim type is identified as ITS Home, follow the alternate SOP steps. If the claim type is Non-ITS Home, proceed to the next step. In this scenario, the claim type is Professional, which is classified as Non-ITS Home. Therefore, the trainee may proceed to the next step.",
+      "targetTabId": "tab_claim_data",
+      "targetSubTabId": "subtab_claim_data_details",
+      "targetSectionId": "sec_cd_d_source",
+      "targetFieldId": "f_cdd_type",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_data",
+        "subTabId": "subtab_claim_data_details"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Details sub-tab inside Claim Data to read the claim type (CFT 52 for Professional).",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Data' → 'Details'. Claim type is Professional → CFT 52, which matches the pop-up. Contract/LOB is Commercial, so no further check.",
+      "highlightFields": ["f_cdd_type"],
+      "highlightTabId": "tab_claim_data",
+      "highlightSubTabId": "subtab_claim_data_details",
+      "checklistItem": "Compare CFT against claim type"
+    },
+    {
+      "id": "step_009",
+      "sequenceId": 6,
+      "name": "Check for the PX_PAJ event",
+      "description": "Determine whether the claim contains a corrected claim event by looking for the PX_PAJ event in the Event Resolution tab. In this scenario, the PX_PAJ event is present, so the next condition (the Frequency value) must also be checked before concluding whether the claim is a corrected claim.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_all_edits",
+      "targetFieldId": "f_er_e_paj",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Event Resolution tab to look for the PX_PAJ event.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Event Resolution' and look in the All Edits section — the PX_PAJ event is present. Check the Claim Header's Frequency next.",
+      "highlightFields": ["f_er_e_paj"],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Check for the PX_PAJ event"
+    },
+    {
+      "id": "step_010",
+      "sequenceId": 7,
+      "name": "Confirm the Frequency value",
+      "description": "Confirm the Frequency value by navigating to the Claim Header tab, then the General Claim Data section. A claim is considered a corrected claim when a PX_PAJ event is present and the Frequency field is set to 7. When both conditions are met, the alternate SOP for corrected claims must be followed. If either condition is not met, the claim is not considered a corrected claim, and the trainee may proceed with the next step.In this scenario, the Frequency value is not 7. Therefore, the claim is not a corrected claim, and the trainee may proceed with the next step.",
+      "targetTabId": "tab_claim_header",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_ch_general",
+      "targetFieldId": "f_ch_g_frequency",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_header"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Claim Header tab to confirm the Frequency value.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Header' and check the Frequency field under General Claim Data. It is not 7 — so even with the PX_PAJ event this is not a corrected claim, and the trainee proceeds.",
+      "highlightFields": ["f_ch_g_frequency"],
+      "highlightTabId": "tab_claim_header",
+      "checklistItem": "Confirm the Frequency value"
+    },
+    {
+      "id": "step_011",
+      "sequenceId": 8,
+      "name": "Check for the PX_SUT event",
+      "description": "Determine whether the provider is Sutter by looking for the PX_SUT event in the Event Resolution tab. If the PX_SUT event is present, follow the Sutter procedure; if it is absent, the provider is not Sutter and the trainee proceeds. In this scenario, the PX_SUT event is absent, so the trainee proceeds.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_all_edits",
+      "targetFieldId": null,
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Event Resolution tab again to look for the PX_SUT event.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Event Resolution' again and scan the All Edits section for a PX_SUT event — there is none, so the provider is not Sutter and the trainee proceeds.",
+      "highlightFields": [],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Check for the PX_SUT event"
+    },
+    {
+      "id": "step_012",
+      "sequenceId": 9,
+      "name": "Verify provider participation status",
+      "description": "Verify the claim type and provider status by navigating to the Claim Header tab, then the General Claim Data section, and reviewing the Provider Participation field. The claim type has already been confirmed as Professional. To proceed, the Provider Participation field must display PAR, indicating that the provider is participating. If the claim type is Professional and the provider status is PAR, proceed to the next step. Otherwise, follow the alternate SOP steps. In this scenario, the claim type is Professional and the provider status is PAR; therefore, the trainee may proceed to the next step.",
+      "targetTabId": "tab_claim_header",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_ch_general",
+      "targetFieldId": "f_ch_g_participation",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_header"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Claim Header tab again to verify the Provider participation field.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Header' again and check the Provider participation field under General Claim Data. It reads PAR — the claim is Professional and the provider is Participating, so proceed.",
+      "highlightFields": ["f_ch_g_participation"],
+      "highlightTabId": "tab_claim_header",
+      "checklistItem": "Verify provider participation status"
+    },
+    {
+      "id": "step_013",
+      "sequenceId": 10,
+      "name": "Look up prior deleted claims",
+      "description": "Review the member's claim history to check whether the same claim was previously deleted because it was submitted with incorrect data or because the provider data was not loaded at the time. Navigate to the Search tab → Claims sub-tab — the Service from date, HCID, and Provider Tax ID are auto-populated. Enter the Service to date and click Search. Two matching claims are listed — one active claim with status Pending-Investigation and one with status Resolved-Cancelled. Open the Resolved-Cancelled claim's member information; if the Finalization code field shows PX_RDELEP, the claim was previously deleted.",
+      "targetTabId": "tab_search",
+      "targetSubTabId": "subtab_search_claims",
+      "targetSectionId": "sec_sc_claims_search",
+      "targetFieldId": "f_scq_search_btn",
+      "actionType": "claims_search",
+      "actionPayload": {
+        "type": "claims_search"
+      },
+      "completesActionId": "claims_search",
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the trainee clicks Search on the Search → Claims sub-tab, which dispatches the claims_search action and reveals the two matching claims.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Search' → 'Claims', enter the Service to date, and click 'Search'. Two claims appear — open the Resolved-Cancelled claim's member information; the Finalization code PX_RDELEP shows it was previously deleted.",
+      "highlightFields": ["f_scq_search_btn"],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_claims",
+      "checklistItem": "Look up prior deleted claims"
+    },
+    {
+      "id": "step_014",
+      "sequenceId": 11,
+      "name": "Verify the deleted claim's filing window",
+      "description": "To verify whether a deleted claim was filed within the timely filing limit, select View Member Information from the applicable deleted claim record, then click Open Claim Detail. Review the deleted claim details, which are displayed in the same format as the current claim. Locate the Service From Date and the Receipt Date, then calculate the difference between these dates. If the filing period falls within the 90 days, the deleted claim qualifies as being filed within the TFL.If a deleted claim is found and is within the TFL, proceed; if there is no deleted claim or it is outside the TFL, follow the alternate SOP steps. In this scenario, the deleted claim was filed within the TFL, so the trainee proceeds.",
+      "targetTabId": "tab_search",
+      "targetSubTabId": "subtab_search_claims",
+      "targetSectionId": "sec_sc_claims_result_cancelled",
+      "targetFieldId": null,
+      "actionType": "open_prior_claim",
+      "actionPayload": {
+        "type": "open_prior_claim"
+      },
+      "completesActionId": "open_prior_claim",
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the trainee clicks 'Open claim detail' on the Resolved-Cancelled claim, which dispatches the open_prior_claim action. The 90-day calculation is on trust (the engine has no date primitive).",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Click 'View member information' on the Resolved-Cancelled claim, then 'Open claim detail' in the dialog. The gap between its claim line's Service from date and Receipt date is within 90 days — the deleted claim was within the TFL, so the trainee proceeds.",
+      "highlightFields": ["f_sc_view_member", "f_sc_open_detail"],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_claims",
+      "checklistItem": "Verify the deleted claim's filing window"
+    },
+    {
+      "id": "step_015",
+      "sequenceId": 12,
+      "name": "Verify the provider update window against the Receipt date",
+      "description": "Calculate the TFL based on the Provider update date and the Claim receipt date. Navigate to the Search tab → Provider sub-tab, locate the provider, and note the date shown in the Last update date field. Using the Receipt date identified earlier from the claim summary, calculate the difference between the Last update date and the Receipt date. If the difference is within the TFL, click PX_TF and continue processing; if it exceeds the TFL, proceed. In this scenario, the difference is within the TFL, so the trainee proceeds to apply the PX_TF bypass code.",
+      "targetTabId": "tab_search",
+      "targetSubTabId": "subtab_search_provider",
+      "targetSectionId": "sec_sc_p_npi",
+      "targetFieldId": "f_sc_pn_last_update",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_search",
+        "subTabId": "subtab_search_provider"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Search → Provider sub-tab to read the Last update date. The within-TFL comparison is on trust (the engine has no date primitive).",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Search' → 'Provider' and read the Last update date. Its gap from the claim summary Receipt date is within the TFL — so the trainee proceeds to apply the PX_TF bypass.",
+      "highlightFields": ["f_sc_pn_last_update"],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_provider",
+      "checklistItem": "Verify the provider update window against the Receipt date"
+    },
+    {
+      "id": "step_016",
+      "sequenceId": 13,
+      "name": "Apply the PX_TF bypass code and validate",
+      "description": "In the Bypass Codes section of the Event Resolution tab, select PX_TF in the Bypass code field and click the Validate button in the claim summary to apply the bypass.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_bypass",
+      "targetFieldId": "f_er_bypass_code",
+      "actionType": "validate_bypass",
+      "actionPayload": {
+        "type": "validate_bypass"
+      },
+      "completesActionId": "validate_bypass",
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes only when the trainee clicks the claim summary Validate button while the selected bypass code is 'PX_TF' (PX_TF — Timely filing bypass). Any other code does not complete the step.",
+      "expectedValue": "PX_TF",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Event Resolution' → Bypass Codes, select 'PX_TF — Timely filing bypass', then click the claim summary 'Validate' button.",
+      "highlightFields": ["f_er_bypass_code"],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Apply the PX_TF bypass code and validate"
+    },
+    {
+      "id": "step_017",
+      "sequenceId": 14,
+      "name": "Submit Pay decision",
+      "description": "Navigate to the Decision section in the header, select 'Pay' from the dropdown menu and click Submit.",
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "submit_decision",
+      "actionPayload": {
+        "type": "submit_decision",
+        "expectedDecision": "pay"
+      },
+      "completionTrigger": "decision_submitted",
+      "completionTriggerNote": "Completes when the trainee confirms the Pay decision in the submit dialog.",
+      "expectedValue": "pay",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Pick 'Pay' from the Decision dropdown in the claim header, then click Submit and confirm in the dialog.",
+      "highlightFields": [],
+      "checklistItem": "Submit Pay decision"
+    }
+  ],
+  "scoreBreakdown": {
+    "navigatorStepsMaxPoints": 140,
+    "decisionMaxPoints": 20,
+    "reasonCodeMaxPoints": 0,
+    "totalMaxPoints": 160,
+    "passMark": 70,
+    "weightedPassScore": 112
+  },
+  "stepSummaryForResults": [
+    {
+      "sequenceId": 1,
+      "name": "Event Resolution tab opened — PX_590 hard edit identified",
+      "points": 10
+    },
+    {
+      "sequenceId": 2,
+      "name": "Provider Information tab opened",
+      "points": 10
+    },
+    {
+      "sequenceId": 3,
+      "name": "Timely filing pop-up opened",
+      "points": 10
+    },
+    {
+      "sequenceId": 4,
+      "name": "TFL criteria & Exclusion indicator reviewed",
+      "points": 10
+    },
+    {
+      "sequenceId": 5,
+      "name": "CFT matched (52), 90-day rule & Non-ITS Home confirmed",
+      "points": 10
+    },
+    {
+      "sequenceId": 6,
+      "name": "PX_PAJ event identified",
+      "points": 10
+    },
+    {
+      "sequenceId": 7,
+      "name": "Frequency not 7 — not a corrected claim",
+      "points": 10
+    },
+    {
+      "sequenceId": 8,
+      "name": "PX_SUT event absent — provider is not Sutter",
+      "points": 10
+    },
+    {
+      "sequenceId": 9,
+      "name": "Provider confirmed Professional & PAR",
+      "points": 10
+    },
+    {
+      "sequenceId": 10,
+      "name": "Prior deleted claim found (PX_RDELEP)",
+      "points": 10
+    },
+    {
+      "sequenceId": 11,
+      "name": "Deleted claim confirmed within the TFL",
+      "points": 10
+    },
+    {
+      "sequenceId": 12,
+      "name": "Provider update window within the TFL",
+      "points": 10
+    },
+    {
+      "sequenceId": 13,
+      "name": "PX_TF bypass code applied and validated",
+      "points": 10
+    },
+    {
+      "sequenceId": 14,
+      "name": "Pay decision submitted",
+      "points": 10
+    }
+  ]
+}

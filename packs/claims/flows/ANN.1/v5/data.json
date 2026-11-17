@@ -1,0 +1,1133 @@
+{
+  "$schema": "training-platform/v1/workspace-data",
+  "$version": "2.0.0",
+  "id": "data_ann_1_v5",
+  "claimId": "claim_ann_1_v5_001",
+  "dcn": "DCN-9960500",
+  "flowId": "flow_provider_data_mismatch_ann_1",
+  "navigatorSchemaId": "nav_and_1_provider_data_mismatch",
+  "claim": {
+    "dcn": "DCN-9960500",
+    "patient": "Priya S Venkataraman",
+    "serviceFrom": "09/15/2026",
+    "billedAmount": "$229.80"
+  },
+  "header": {
+    "dcn": "DCN-9960500",
+    "edits": "PX_ANN",
+    "billed": "$229.80",
+    "claimAllowed": "$0.00",
+    "paid": "$0.00",
+    "writeOff": "$0.00",
+    "deductible": "$0.00",
+    "coinsurance": "$0.00",
+    "copay": "$0.00",
+    "actionCode": "—",
+    "receiptDate": "09/22/2026",
+    "serviceFrom": "09/15/2026",
+    "serviceTo": "09/15/2026"
+  },
+  "eventResolution": {
+    "edits": [
+      {
+        "code": "PX_SPS",
+        "label": "USE PA MENU OPTION TO VIEW PRV",
+        "severity": "Informational",
+        "active": false
+      },
+      {
+        "code": "PX_DGX",
+        "label": "CLAIM RECEIVED AT ECP",
+        "severity": "Informational",
+        "active": false
+      },
+      {
+        "code": "PX_ANN",
+        "label": "REFERRING/ORDERING NPI MISSING",
+        "severity": "Informational",
+        "active": true
+      },
+      {
+        "code": "PX_ANC",
+        "label": "ANCILLARY SERVICE CLAIM",
+        "severity": "Informational",
+        "active": false
+      },
+      {
+        "code": "PX_RFP",
+        "label": "Digital RFAI Provider",
+        "severity": "Informational",
+        "active": false
+      },
+      {
+        "code": "PX_LUM",
+        "label": "CDHP CLAIM",
+        "severity": "Informational",
+        "active": false
+      },
+      {
+        "code": "PX_TR2",
+        "label": "TIER CLAIM EMPLOYEE PLUS 1",
+        "severity": "Informational",
+        "active": false
+      }
+    ],
+    "editCode": "PX_ANN",
+    "editLabel": "REFERRING/ORDERING NPI MISSING",
+    "severity": "Informational",
+    "validationMessage": ""
+  },
+  "memberInfo": {
+    "patient": {
+      "firstName": "PRIYA",
+      "middleName": "S",
+      "lastName": "VENKATARAMAN",
+      "dob": "06/12/1990",
+      "sex": "F",
+      "memberPrefix": "CTX",
+      "hcid": "205F93748",
+      "relationship": "SUB - Subscriber",
+      "memberCode": "20",
+      "memberCodeMessage": "",
+      "contractType": "B",
+      "erisa": "Y",
+      "pcp": "—",
+      "pcpState": "—",
+      "pcpRelationship": "—",
+      "programCode": "—",
+      "state": "NC"
+    },
+    "subscriber": {
+      "firstName": "PRIYA",
+      "middleName": "S",
+      "lastName": "VENKATARAMAN",
+      "subscriberId": "731560924",
+      "address": "55 BRIARFIELD WAY, CARY, NC 27513"
+    },
+    "group": {
+      "groupName": "CARY TRIANGLE TECH ALLIANCE",
+      "groupId": "00731560",
+      "groupContract": "—",
+      "detailContractCode": "W05Y",
+      "product": "LOCAL",
+      "networkId": "CAPFHS00",
+      "networkName": "NC PPO ANCILLARY NETWORK 1-TR"
+    }
+  },
+  "claimImage": {
+    "memberDetails": {
+      "patient": {
+        "firstName": "PRIYA",
+        "middleName": "S",
+        "lastName": "VENKATARAMAN",
+        "dob": "06/12/1990",
+        "sex": "F",
+        "memberPrefix": "CTX",
+        "hcid": "205F93748",
+        "relationship": "SUB - Subscriber",
+        "memberCode": "20",
+        "detailContractCode": "W05Y",
+        "contractType": "B",
+        "groupId": "00731560",
+        "groupContract": "—",
+        "product": "LOCAL",
+        "erisa": "Y",
+        "pcp": "—",
+        "pcpState": "—",
+        "pcpRelationship": "—"
+      },
+      "subscriber": {
+        "firstName": "PRIYA",
+        "middleName": "S",
+        "lastName": "VENKATARAMAN",
+        "subscriberId": "731560924",
+        "address": "55 BRIARFIELD WAY, CARY, NC 27513"
+      },
+      "totalClaimLines": "1"
+    },
+    "additional": {
+      "claimSource": {
+        "mediaType": "-",
+        "pricingSource": "-",
+        "pricingSystem": "-",
+        "mixerPar": "-",
+        "receiverId": "OH",
+        "receivedAtEdi": "-",
+        "providerError": "-",
+        "authNumber": "-",
+        "authExcln": "-",
+        "vendorIndicator": "-",
+        "receivedDate": "-",
+        "originalReferenceNumber": "-"
+      },
+      "ancillaryProvider": {
+        "type": "-",
+        "zip": "-",
+        "state": "-"
+      },
+      "ambulance": {
+        "pickupZip": "-",
+        "dropoffZip": "-"
+      },
+      "miscellaneous": {
+        "epsdt": "-",
+        "familyPlanning": "-",
+        "gtessDate": "-",
+        "dateOfIllness": "-",
+        "dateOfInjury": "-",
+        "lastMenstrualDate": "-",
+        "consultationDate": "-"
+      },
+      "stopData": {
+        "stopEdit": "-",
+        "lobParentRule": "-",
+        "lobChildRule": "-",
+        "lobSequence": "-",
+        "medBusinessParentRule": "-",
+        "medBusinessChildRule": "-",
+        "medSequence": "-"
+      },
+      "refundData": {
+        "correspondenceNumber": "-",
+        "refundAmount": "-",
+        "adjustmentReason": "-",
+        "vendorName": "-",
+        "delayReason": "-",
+        "carveOut": "-",
+        "adjustmentReceiptDate": "-"
+      },
+      "highDollar": {
+        "riskOutcome": "-"
+      },
+      "its": {
+        "account": {
+          "deliveryMethod": "—",
+          "accountType": "—",
+          "aso": "—",
+          "stateId": "—",
+          "originalCertificate": "—",
+          "originalGroup": "—"
+        },
+        "pricing": {
+          "primarySop": "—",
+          "secondarySop": "—",
+          "tertiarySop": "—",
+          "cobCalMethod": "—"
+        },
+        "providers": {
+          "mppqAssignUnassigned": "—",
+          "ppoNetworkAvailability": "—",
+          "ppoProviderAvailability": "—",
+          "eft835": "—",
+          "serviceZip": "—"
+        }
+      },
+      "sfdf": {
+        "sfMessage": "—",
+        "dfMessage": "—",
+        "primacy": "—",
+        "autoOtherAccident": "—",
+        "totalDaysVisits": "—"
+      },
+      "claimLineDetail": [
+        {
+          "lineNum": "1",
+          "blankDateInd": "—",
+          "approvedDenyInd": "—"
+        }
+      ]
+    },
+    "provider": {
+      "billing": {
+        "taxId": "562748301",
+        "npi": "1573086429",
+        "name": "PIEDMONT ANALYTIC LABORATORY",
+        "facilityName": "—",
+        "providerNumber": "—",
+        "medicareId": "—",
+        "address": "104 EDINBURGH DR STE 220, CARY, NC 27511",
+        "nationalState": "—",
+        "locationCode": "—",
+        "bhaProviderIndicator": "—",
+        "taxonomy": "—"
+      },
+      "referring": {
+        "referringPhysician": "A",
+        "npi": "—",
+        "supportingOrderingNpi": "—",
+        "payToAddress": "—"
+      },
+      "serviceFacility": {
+        "svcNpi": "—",
+        "submitterProviderName": "Availity (B1)"
+      }
+    }
+  },
+  "providerInfo": {
+    "rendering": {
+      "npi": "1573086429",
+      "name": "PIEDMONT ANALYTIC LABORATORY",
+      "address": "104 EDINBURGH DR STE 220, CARY, NC 27511",
+      "pricingState": "NC",
+      "pricingZip": "27511-6640",
+      "providerSps": "6006483715",
+      "providerEpin": "—",
+      "license": "—",
+      "networkOption": "N",
+      "specialty": "L02",
+      "specialtyDescription": "L02 - INDEPENDENT LABORATORY",
+      "taxonomy": "—"
+    },
+    "billing": {
+      "taxId": "562748301",
+      "npi": "1573086429",
+      "name": "PIEDMONT ANALYTIC LABORATORY",
+      "facilityType": "—",
+      "providerSps": "6006483715",
+      "providerEpin": "—",
+      "medicareId": "—",
+      "address": "104 EDINBURGH DR STE 220, CARY, NC 27511",
+      "nationalState": "NC",
+      "locationCode": "—",
+      "bhaProviderIndicator": "YN",
+      "taxonomy": "—",
+      "timelyFilingLimit": "—"
+    },
+    "referring": {
+      "referringPhysician": "A",
+      "npi": "—"
+    },
+    "serviceFacility": {
+      "facilityTier": "—",
+      "type": "—",
+      "npi": "—"
+    },
+    "miscellaneous": {
+      "supportingOrderingNpi": "—",
+      "nsbIndicator": "None",
+      "alternateFacilityNpi": "—"
+    }
+  },
+  "paymentInfo": {
+    "claim": {
+      "deductible": "0.00",
+      "copay": "0.00",
+      "coins": "0.00",
+      "patientLiab": "0.00",
+      "memberSurcharge": "0.00",
+      "nonElg": "0.00",
+      "hraPaid": "0.00",
+      "claimPaid": "0.00",
+      "pricingAllowedAmount": "0.00",
+      "totalCharge": "4,318.00",
+      "finalizationCode": "—"
+    },
+    "provider": {
+      "providerDisc": "0.00",
+      "providerLiab": "0.00",
+      "providerRiskWithhold": "0.00",
+      "providerSurcharge": "0.00",
+      "interest": "0.00",
+      "penalty": "0.00",
+      "lr": "L",
+      "systemInterest": "0.00"
+    },
+    "drg": {
+      "keyed": "-",
+      "priced": "—",
+      "original": "—"
+    },
+    "check": {
+      "accountNumber": "1234512345",
+      "checkNumber": "—",
+      "checkDate": "—",
+      "amount": "0.00",
+      "paymentSystem": "D",
+      "checkMailedTo": "—",
+      "eftCheckDate": "—",
+      "checkStatus": "CHECK NOT FOUND ON RECON DB",
+      "checkStatusDate": "09/28/2026",
+      "paidTo": "SPRINGFIELD REGIONAL MEDICAL CENTER",
+      "finalized": "—"
+    },
+    "payeeDetails": {
+      "flipPayee": "N"
+    }
+  },
+  "claimHeader": {
+    "general": {
+      "serviceFromThrough": "09/21/2026 - 09/21/2026",
+      "assignmentOfBenefits": "Y - Benefit assigned to provider",
+      "providerParticipation": "PAR",
+      "providerContract": "INP00000",
+      "treatmentAuth": "—",
+      "patientAccount": "W000000000",
+      "emergency": "No",
+      "employment": "No",
+      "coveredZipRadius": "-",
+      "frequency": "1",
+      "bbiIndicator": "-",
+      "pciIndicator": "-",
+      "fsbInd": "None",
+      "fsbExclusion": "X"
+    },
+    "benefitIndicators": {
+      "cob": "0",
+      "cobRule": "-",
+      "medInd": "No",
+      "medRule": "-",
+      "medicareAdvantage": "No",
+      "cdhp": "N",
+      "planPayer": "N",
+      "cobPercent": "0"
+    },
+    "diagnosisCodes": {
+      "dx1": "M1711"
+    },
+    "conditionCodes": {
+      "code": "-"
+    }
+  },
+  "claimLines": [
+    {
+      "lineNum": "1",
+      "fromDate": "09/15/2026",
+      "toDate": "09/15/2026",
+      "pos": "81",
+      "revCode": "—",
+      "service": "LAB",
+      "procedure": "80053",
+      "modifiers": "—",
+      "units": "1",
+      "diagnosis": "R7301",
+      "billed": "$229.80",
+      "dedInd": "NO",
+      "coinsPercent": "100",
+      "stoploss": "No",
+      "eobTy": "—",
+      "writeoffEobTy": "$0.00",
+      "noncoveredUnit": "0",
+      "deductible": "—",
+      "otherUnit": "0",
+      "copay": "—",
+      "eobTyLast": "—",
+      "payment": "$0.00"
+    }
+  ],
+  "claimLineSummary": {
+    "lineNum": "1",
+    "fromDate": "09/15/2026",
+    "toDate": "09/15/2026",
+    "pos": "81",
+    "revCode": "—",
+    "service": "LAB",
+    "procedure": "80053",
+    "modifiers": "—",
+    "units": "1",
+    "diagnosis": "R7301",
+    "billed": "$229.80",
+    "dedInd": "NO",
+    "coinsPercent": "100",
+    "stoploss": "No",
+    "eobTy": "—",
+    "writeoffEobTy": "$0.00",
+    "noncoveredUnit": "0",
+    "deductible": "—",
+    "otherUnit": "0",
+    "copay": "—",
+    "eobTyLast": "—",
+    "payment": "$0.00"
+  },
+  "notes": {
+    "research": "—",
+    "mainframe": "251907",
+    "wgs": "—",
+    "taskManagement": {
+      "routedTo": "-",
+      "urgency": "65",
+      "skills": "CT-Professional",
+      "csPg": "GS-National",
+      "benNonspider": "SPIDER",
+      "regCa": "-",
+      "resUnrestricted": "-",
+      "totalAge": "4",
+      "homeAge": "4",
+      "ageAdjusted": "N",
+      "baselineUrgency": "45",
+      "urgencyModifiers": "PG Modifer(0)"
+    }
+  },
+  "search": {
+    "claims": {
+      "dcnKernalClaim": "",
+      "claimId": "",
+      "subscriberOrHcid": "742M55108",
+      "sccf": "",
+      "procedure": "",
+      "serviceFrom": "09/21/2026",
+      "serviceTo": "09/21/2026",
+      "code": "",
+      "totalCharge": "",
+      "status": "ALL",
+      "providerTaxId": "020418365",
+      "providerNpi": "",
+      "renderingLicenseId": "",
+      "billType": ""
+    },
+    "claimsResultCount": "1",
+    "claimsResults": [
+      {
+        "code": "—",
+        "name": "GLADYS WHITFIELD",
+        "from": "09/21/2026",
+        "to": "09/21/2026",
+        "type": "P",
+        "provider": "SPRINGFIELD REGIONAL MEDICAL CENTER",
+        "billType": "-",
+        "dcn": "DCN-620101",
+        "charged": "4,318.00",
+        "paid": "0.00",
+        "status": "Pending"
+      }
+    ],
+    "codeSet": {
+      "selectCodeType": "-",
+      "enterCode": "-"
+    },
+    "auth": {
+      "search": {
+        "subscriberOrHcid": "742M55108",
+        "serviceStartDate": "9/18/2026",
+        "serviceEndDate": "9/18/2026",
+        "status": "-"
+      },
+      "members": {
+        "name": "—",
+        "dob": "—",
+        "ageAdjusted": "—",
+        "memberId": "-",
+        "mcid": "-",
+        "subscriberOrHcid": "742M55108"
+      }
+    },
+    "benefits": {
+      "planOptions": [
+        {
+          "costShare": "DEDUCTIBLE",
+          "network": "PPO",
+          "maximum": "$500",
+          "accumType": "Calendar Year"
+        },
+        {
+          "costShare": "OUT-OF-POCKET MAX",
+          "network": "PPO",
+          "maximum": "$3,000",
+          "accumType": "Calendar Year"
+        },
+        {
+          "costShare": "MEMBER CLAIM FILING DAY LIMIT",
+          "network": "—",
+          "maximum": "365 days",
+          "accumType": "—"
+        }
+      ],
+      "searchBenefits": {
+        "contractCode": "72HN",
+        "effectiveDate": "1/1/2026",
+        "endDate": "12/31/9999",
+        "effectiveEndDate": "-"
+      },
+      "general": {
+        "contractCode": "72HN",
+        "product": "BCBI",
+        "plan": "MAD RIVER TOOLWORKS COOPERATIVE",
+        "contractState": "OH",
+        "benefitPeriod": "-",
+        "benefitPeriodAlt": "-",
+        "fundingArrangement": "-",
+        "cdhpInd": "-",
+        "groupNumber": "L02417M003",
+        "contractId": "72HN",
+        "memberName": "GLADYS WHITFIELD",
+        "caseNumber": "L02417",
+        "contractType": "-",
+        "crossAccumulation": "-"
+      },
+      "viewNic": {
+        "coverage": "MED-MEDICL COVERAGE",
+        "pricing": "IN29",
+        "network": "PPO"
+      },
+      "accumulators": {
+        "criteria": {
+          "memberId": "742M55108",
+          "memberCode": "70",
+          "fromDate": "9/18/2026",
+          "toDate": "9/18/2026",
+          "sourceSystem": "WGS"
+        },
+        "selection": {
+          "accumulatorName": "—",
+          "benefitYear": "—",
+          "accumulatorEffDate": "—",
+          "cob": "—",
+          "deductible": "—",
+          "fertilityRx": "—",
+          "lifetime": "—",
+          "other": "—",
+          "outOfPocket": "—"
+        }
+      }
+    },
+    "provider": {
+      "npiTaxId": {
+        "npi": "1548273906",
+        "orgTaxId": "020418365",
+        "fromDate": "9/18/2026",
+        "throughDate": "9/18/2026",
+        "lastUpdateDate": "12/15/2025",
+        "sourceSystem": "WGS",
+        "zipCode": "-",
+        "billingType": "-",
+        "specialty": "-",
+        "state": "-",
+        "alternateId": "-",
+        "alternateKey": "-"
+      },
+      "practitioner": {
+        "firstName": "-",
+        "lastName": "-",
+        "fromDate": "9/18/2026",
+        "throughDate": "9/18/2026",
+        "sourceSystem": "SPS",
+        "addressLine": "-",
+        "city": "-",
+        "state": "-",
+        "specialty": "-"
+      },
+      "organization": {
+        "organizationName": "-",
+        "orgTaxId": "020418365",
+        "fromDate": "9/18/2026",
+        "throughDate": "9/18/2026",
+        "sourceSystem": "SPS",
+        "addressLine": "-",
+        "city": "-",
+        "state": "-",
+        "zipCode": "-",
+        "billingType": "-",
+        "specialty": "-"
+      },
+      "pcpPmg": {
+        "pcpPmgId": "-",
+        "fromDate": "9/18/2026",
+        "throughDate": "9/18/2026",
+        "sourceSystem": "SPS",
+        "specialty": "-",
+        "state": "-"
+      },
+      "alternateId": {
+        "organizationName": "XXXXX",
+        "alternateKeyOrg": "-",
+        "individual": "8023 - Legacy provider ID",
+        "alternateKeyIndiv": "-",
+        "nonAnthem": "33-NPI",
+        "alternateKeyNonAnthem": "-"
+      }
+    },
+    "member": {
+      "results": [],
+      "searchMember": {
+        "memberId": "742055108",
+        "firstName": "Gladys",
+        "mi": "M",
+        "lastName": "Whitfield",
+        "dob": "3/18/1952",
+        "relationship": "SUB - Subscriber",
+        "memberCode": "70",
+        "gender": "F",
+        "state": "OH",
+        "contractId": "72HN",
+        "caseEntity": "L02417",
+        "groupNumber": "L02417M003",
+        "hcid": "742M55108",
+        "prefix": "VZT",
+        "effectiveDate": "1/1/2020",
+        "endDate": "12/31/9999",
+        "productCode": "Local",
+        "contractState": "OH",
+        "businessUnit": "Group"
+      },
+      "general": {
+        "name": "Gladys R Whitfield",
+        "dateOfBirth": "3/18/1952",
+        "age": "0",
+        "sex": "F",
+        "memberId": "742055108",
+        "hcid": "742M55108",
+        "relationship": "SUB - Subscriber",
+        "memberCode": "70",
+        "address": "118 Bayard Ave  SPRINGFIELD OH 45504",
+        "county": "—",
+        "country": "US",
+        "phone": "—",
+        "effectiveDate": "1/1/2020",
+        "endDate": "12/31/9999",
+        "productType": "BCPI - BC INCENTIVE PPO",
+        "groupType": "A -ACTIVE",
+        "cob": "",
+        "businessUnit": "Group",
+        "paidToDate": "9/1/2026",
+        "erisa": "Y",
+        "caseGroupSetup": "Y",
+        "contractStartDate": "-",
+        "shortTermEndDate": "-",
+        "cxlProcessDate": "-",
+        "aptcIndicator": "-",
+        "csdt": "-",
+        "caseName": "Mad River Toolworks Cooperative",
+        "ncnReferralsInd": "—",
+        "foi": "G",
+        "roundoprd": "12",
+        "conversionCode": "0",
+        "medicareIndicator": "—"
+      },
+      "additionalAddress": {
+        "address": "-"
+      },
+      "providerNetwork": {
+        "product": "57BC PPO INCENTIVE",
+        "providerGroupName": "-",
+        "address": "-",
+        "phone": "-"
+      },
+      "contractMembers": [
+        {
+          "memberCode": "00",
+          "name": "Gladys R Whitfield",
+          "relationship": "SUB - Subscriber",
+          "dob": "3/18/1952",
+          "age": "74",
+          "effectiveDate": "1/1/2020",
+          "endDate": "12/31/9999"
+        },
+        {
+          "memberCode": "01",
+          "name": "Harold J Whitfield",
+          "relationship": "SPS - Spouse",
+          "dob": "7/2/1949",
+          "age": "77",
+          "effectiveDate": "1/1/2020",
+          "endDate": "12/31/9999"
+        },
+        {
+          "memberCode": "—",
+          "name": "—",
+          "relationship": "—",
+          "dob": "—",
+          "age": "—",
+          "effectiveDate": "—",
+          "endDate": "—"
+        }
+      ],
+      "group": {
+        "general": {
+          "name": "MAD RIVER TOOLWORKS COOPERATIVE",
+          "status": "O ACTIVE",
+          "companyCode": "123C XXXX",
+          "paidToDate": "2/1/2026",
+          "locationStateCode": "OH",
+          "locationCodeEffectiveDate": "1/1/2019",
+          "workLocation": "7003 ANTHEM NAT ACCT",
+          "workLocationPhone": "9999888899",
+          "rateMethodCode": "1 ASO BUSINESS",
+          "rmcEffectiveDate": "1/1/2019",
+          "groupType": "A ACTIVE",
+          "fundingTypeCode": "H ASC",
+          "graceDays": "30",
+          "claimGraceDays": "30"
+        },
+        "coverage": {
+          "originalEffectiveDate": "1/1/2019",
+          "groupProcessedDate": "10/9/2018",
+          "reinstateEffectiveDate": "-",
+          "reinstateProcessedDate": "-",
+          "cancelEffectiveDate": "-",
+          "cancelProcessedDate": "-",
+          "cancelReason": "-"
+        },
+        "contract": {
+          "productLine": "BC PPO INCENTIVE",
+          "claimsRoute": "PX_P-EXEC - NATIONAL ACCTS",
+          "benefitYearCalendarYear": "CY",
+          "benefitYearCalendarYearAsOfDate": "1/1/2019",
+          "contractCode": "72HN",
+          "contractCodeEffectiveDate": "1/1/2019",
+          "promptPay": "N",
+          "promptPayDate": "1/1/2019",
+          "itsHomeParticipatingCode": "E CONTROL CUSTOM",
+          "itsHomeEffectiveDate": "1/1/2019",
+          "locationLobCode": "X BC/BCLH",
+          "overAgeMailing": "S MAIL TO SUBR",
+          "networkId": "BLUECDOO",
+          "networkName": "BLUE XXXX BLUE XXXX"
+        },
+        "additional": {
+          "product": "BC PPO INC Claim Manager",
+          "mbuCode": "NAC00000",
+          "claimsServiceLocation": "COOIO/CAACOII",
+          "serviceManager": "SRVC/DARLENE",
+          "claimManager": "CLMS/M PENNER",
+          "servicePhone": "999999999",
+          "serviceAddress": "XXXX PARK Road COLUMBUS OH 43215",
+          "sourceSystem": "WGS 2.0"
+        }
+      }
+    },
+    "limitedLiability": {
+      "memberId": "742M55108",
+      "memberCode": "00",
+      "dob": "3/18/1952",
+      "activeRecords": "Active records",
+      "allRecords": "1",
+      "resultsNote": "1 active record found. The limited liability record on file has not been updated with the Medicare processing information.",
+      "results": [
+        {
+          "type": "cob",
+          "effectiveDate": "01/01/2026",
+          "endDate": "—",
+          "orderOfBenefits": "M - Medicare is primary",
+          "description": "MEDICARE LIMITED LIABILITY RECORD — NOT UPDATED"
+        }
+      ]
+    },
+    "pricing": {
+      "member": {
+        "dob": "3/18/1952",
+        "sex": "F",
+        "groupNumber": "L02417M003",
+        "groupId": "-",
+        "networkId": "BLUECS",
+        "memberZipCode": "45504",
+        "alternateZipCode": "-",
+        "medicareInd": "N",
+        "hixInd": "-",
+        "marketType": "NTLA",
+        "memberInd": "-",
+        "ab72": "-",
+        "patientCode": "-",
+        "product": "BCBI -",
+        "variance": "IN29",
+        "coverage": "MED",
+        "groupIdentifier": "-"
+      },
+      "provider": {
+        "taxId": "020418365",
+        "renderingNumber": "77777777777",
+        "billingNumber": "6666666666",
+        "renderingNpi": "1548273906",
+        "billingNpi": "1548273906",
+        "license": "01082547A",
+        "specialty": "037",
+        "zipCode": "45503-1140",
+        "planInd": "OH",
+        "wgsp": "P",
+        "pcpState": "NP",
+        "region": "462",
+        "gbdId": "-",
+        "providerInd": "-",
+        "providerParticipation": "PAR",
+        "providerProdVar": "INP02186",
+        "networxInd": "-",
+        "finalMixer": "-",
+        "legacySpecialty": "-"
+      },
+      "claimHeader": {
+        "serviceFrom": "9/18/2026",
+        "serviceTo": "9/18/2026",
+        "placeOfService1": "2",
+        "placeOfService2": "21",
+        "cxtInd": "X",
+        "productLineCode": "57",
+        "serviceClassType": "-",
+        "emergRefInd": "-",
+        "icd9": "N",
+        "federalMandate": "-",
+        "cocInd": "-",
+        "mixerOverrideInd": "-",
+        "streetMedicineInd": "None",
+        "surpriseBillingInd": "-",
+        "cgntInd": "-",
+        "product": "INPO",
+        "variance": "2186",
+        "contractNotes": "-",
+        "overridePriceProduct": "-",
+        "contractHierarchy": "-",
+        "bundleStatus": "-",
+        "clusterId": "-"
+      },
+      "diagnosisCodes": {
+        "a": "M1711",
+        "b": "-",
+        "c": "-",
+        "d": "-",
+        "e": "-"
+      },
+      "lineSummary": {
+        "procedure": "—",
+        "modifier": "—",
+        "uo": "1",
+        "cxPercent": "100",
+        "allowed": "0",
+        "billedAmount": "12762",
+        "writeoff": "0"
+      }
+    }
+  },
+  "system": {
+    "benefitRecommendation": {
+      "contractCode": "72HN",
+      "effectiveDate": "1/1/2026",
+      "endDate": "12/31/9999",
+      "planState": "OH",
+      "planDescription": "Mad River Toolworks Cooperative 01/01/2026 PPO 72HN"
+    }
+  },
+  "attachment": {
+    "pwk": {
+      "type": "—",
+      "documentNumber": "—"
+    }
+  },
+  "claimData": {
+    "details": {
+      "claimType": "Professional",
+      "itsHome": "No",
+      "claimSource": {
+        "mediaType": "PC",
+        "pricingSource": "W",
+        "pricingSystem": "WP",
+        "mixerPar": "Y",
+        "receiverId": "WGSGA",
+        "receivedAtEdi": "9/24/2026",
+        "providerError": "I000",
+        "imageControlNumber": "CI26027110348931562",
+        "authNumber": "—",
+        "authExcln": "—",
+        "vendorIndicator": "—",
+        "receivedDate": "9/24/2026",
+        "splitInd": "—",
+        "epactPlm": "—",
+        "gnyhaInd": "—",
+        "imrIndicator": "—",
+        "cliaId": "—",
+        "cliaQualifier": "—"
+      },
+      "ancillaryProvider": {
+        "type": "—",
+        "zip": "—",
+        "state": "—"
+      },
+      "ambulance": {
+        "pickupZip": "—",
+        "dropoffZip": "—"
+      },
+      "miscellaneous": {
+        "epsdt": "—",
+        "familyPlanning": "No",
+        "gtessDate": "—",
+        "dateOfIllness": "—",
+        "dateOfInjury": "—",
+        "lastMenstrualDate": "—",
+        "consultationDate": "—",
+        "eruDecision": "—",
+        "jaaErrorCode": "No"
+      },
+      "stopData": {
+        "stopEdit": "No",
+        "lobParentRule": "—",
+        "lobChildRule": "ALL WGS",
+        "lobSequence": "1",
+        "medBusinessParentRule": "NA",
+        "medBusinessChildRule": "656881",
+        "medSequence": "51"
+      },
+      "refundData": {
+        "correspondenceNumber": "—",
+        "refundAmount": "$0.00",
+        "adjustmentReasonCode": "PX_4",
+        "correctedClaimDcn": "—",
+        "vendorName": "—",
+        "delayReason": "—",
+        "carveOut": "—",
+        "adjustmentReceipt": "—"
+      },
+      "highDollar": {
+        "riskOutcome": "—"
+      }
+    },
+    "editing": {
+      "claimXten": {
+        "originalLine": {
+          "lineNum": "1",
+          "serviceDate": "9/18/2026",
+          "procedure": "—",
+          "mod": "—",
+          "units": "1",
+          "billedAmount": "$4,318.00"
+        },
+        "proposedLine": {
+          "lineNum": "1",
+          "procedure": "—",
+          "mod": "—",
+          "units": "1",
+          "supportCode": "—",
+          "payPercent": "100",
+          "billedAmount": "$4,318.00"
+        }
+      },
+      "ihealth": {
+        "originalLine": {
+          "lineNum": "1",
+          "serviceDate": "9/18/2026",
+          "procedure": "—",
+          "mod": "—",
+          "units": "1",
+          "allowedAmount": "$0.00",
+          "savingsAmount": "$0.00"
+        },
+        "proposedLine": {
+          "procedure": "—",
+          "mod": "—",
+          "units": "1",
+          "payPercent": "100",
+          "status": "PX_P"
+        }
+      }
+    },
+    "benefits": {
+      "accumulator1": {
+        "type": "INDYTD",
+        "fromDate": "1/1/2026",
+        "toDate": "12/31/2026",
+        "unit": "Dollar",
+        "status": "Accrued"
+      },
+      "accumulator2": {
+        "type": "MMCYTD",
+        "fromDate": "1/1/2026",
+        "toDate": "12/31/2026",
+        "unit": "Dollar",
+        "status": "Accrued"
+      }
+    },
+    "promptPay": {
+      "claim": {
+        "status": "PX_WGS",
+        "state": "—",
+        "ruleId": "—",
+        "systemInterest": "$0.00",
+        "penaltyAmount": "$0.00",
+        "manualInterestAmount": "—"
+      },
+      "calculation": {
+        "calculationFromDate": "9/24/2026",
+        "carveoutDate": "—",
+        "lastProcessedDate": "9/24/2026",
+        "baseAmount": "$0.00",
+        "calculatedInterestAmount": "$0.00",
+        "processedInDays": "0",
+        "mailingDays": "0",
+        "disburseDays": "0",
+        "allowedDays": "0",
+        "carveoutDays": "0",
+        "lateByDays": "0",
+        "dailyInterest": "$0.00"
+      },
+      "miscellaneous": {
+        "carveoutReasonCode": "PX_0",
+        "dayIndicator": "0",
+        "receiptMethod": "—",
+        "productFundType": "W",
+        "interestRate": "—",
+        "penalty": "—",
+        "minimumPayAmount": "—",
+        "erMinimumPay": "—",
+        "annualMonthlyPenalty": "—",
+        "mlhDate": "26027",
+        "ppStopDate": "—",
+        "additionalInformationRequestDate": "—",
+        "tdiInterestAmount": "—",
+        "tdiPenaltyAmount": "—"
+      }
+    },
+    "review": {
+      "utilization": {
+        "service": {
+          "lineNum": "1",
+          "procedure": "—",
+          "revenueCodeDate": "170",
+          "ruleId": "—",
+          "caseNumber": "—"
+        }
+      },
+      "cdhp": {
+        "claim": {
+          "litesClaim": "—",
+          "rsnEobCode": "—",
+          "hraPaidTotal": "$0.00",
+          "hraEndingBalance": "$0.00",
+          "paymentCode": "—",
+          "cdhpAdmin": "—",
+          "acknowledgementRcvd": "—",
+          "requeryCount": "—"
+        },
+        "lineSummary": {
+          "lineNum": "1",
+          "procedure": "—",
+          "billed": "$4,318.00",
+          "patientResp": "—",
+          "hraPaid": "—",
+          "rsnCode": "—"
+        }
+      },
+      "dofr": {
+        "meta": {
+          "inzip": "—",
+          "providerNetworkCode": "—",
+          "dofrId1": "—",
+          "dofrName1": "—",
+          "relationship": "—",
+          "pgmId": "—",
+          "pgId": "—",
+          "umDelegationIndicator": "—",
+          "effectiveDate": "—",
+          "endDate": "—"
+        },
+        "lineSummary": {
+          "lineNum": "1",
+          "procedure": "—",
+          "revenueCode": "170",
+          "serviceCategory": "—",
+          "event": "—",
+          "capIndicator": "—",
+          "risk": "—",
+          "groupCode": "—",
+          "hc": "PP"
+        }
+      }
+    },
+    "relatedSummary": {
+      "code": "—",
+      "name": "—",
+      "fromDate": "—",
+      "toDate": "—",
+      "type": "—",
+      "provider": "—",
+      "dcn": "—",
+      "charged": "—",
+      "paid": "—",
+      "status": "—"
+    }
+  }
+}

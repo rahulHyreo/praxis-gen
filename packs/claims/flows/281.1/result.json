@@ -1,0 +1,71 @@
+{
+  "$schema": "training-platform/v1/flow-result",
+  "$version": "1.0.0",
+  "id": "result_281_1_newborn_beyond_31_day_window",
+  "rubric": {
+    "expectedDecision": "deny",
+    "expectedReasonCode": "PX_RNBE00",
+    "requiredStepIds": [
+      "step_001",
+      "step_002",
+      "step_003",
+      "step_004",
+      "step_005",
+      "step_006",
+      "step_007",
+      "step_008",
+      "step_009"
+    ],
+    "weights": {
+      "navigator": 90,
+      "decision": 20,
+      "reasonCode": 10
+    },
+    "deductions": {
+      "perMissedRequiredStep": 0,
+      "wrongDecision": 20,
+      "wrongReasonCode": 10
+    }
+  },
+  "resultConfig": {
+    "passLabel": "Passed!",
+    "failLabel": "You did not meet the pass mark.",
+    "passDescription": "Great work — you identified the PX_281 hard edit, verified the patient's NH state, confirmed no other event precedes 281 in the hierarchy, noted the 10/20/2026 date of service and the 09/14/2026 date of birth, found no member record for the newborn on Search → Member, measured the service date at 36 days past birth and so outside the 31-day newborn window, and correctly denied the claim.",
+    "failDescription": "Pass mark is {passMark}%. Review the steps below to see where you can improve.",
+    "scoreCircle": {
+      "radius": 40,
+      "strokeWidth": 8,
+      "passColor": "#3B6D11",
+      "failColor": "#A32D2D",
+      "trackColor": "#E5E7EB"
+    },
+    "statBoxes": [
+      {
+        "id": "navigator_score",
+        "label": "Navigator",
+        "dataKey": "navigatorScore",
+        "max": 90
+      },
+      {
+        "id": "decision_score",
+        "label": "Decision",
+        "dataKey": "decisionScore",
+        "max": 20
+      },
+      {
+        "id": "reason_code_score",
+        "label": "Reason code",
+        "dataKey": "reasonCodeScore",
+        "max": 10
+      },
+      {
+        "id": "time_taken",
+        "label": "Time Taken",
+        "dataKey": "timeTakenSeconds",
+        "format": "duration"
+      }
+    ],
+    "retakeButton": true,
+    "backToClaimsButton": true
+  }
+}

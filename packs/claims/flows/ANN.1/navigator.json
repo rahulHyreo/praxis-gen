@@ -1,0 +1,181 @@
+{
+  "$schema": "training-platform/v1/flow-navigator",
+  "$version": "1.0.0",
+  "id": "nav_ann_1_provider_data_mismatch",
+  "name": "Provider Data Mis-match — ANN.1 referring/ordering NPI missing",
+  "description": "Seven steps. Confirm the ANN event, establish that the provider is an ancillary service and that the claim meets the ancillary filing requirement for its service type, then establish that no referring or ordering provider NPI is present on the claim record or on the claim image, and deny with PX_RANNPI.",
+  "flowId": "flow_provider_data_mismatch_ann_1",
+  "passMark": 70,
+  "totalSteps": 7,
+  "totalNavigatorPoints": 70,
+  "totalMaxPoints": 100,
+  "steps": [
+    {
+      "timeLimitSeconds": null,
+      "highlightTabId": "tab_event_resolution",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_active",
+      "targetFieldId": null,
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTriggerNote": "Completes as soon as the trainee opens the Event Resolution tab.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "hint": "Click the 'Event Resolution' tab. The Active Edit panel shows PX_ANN. The All Edits list below shows it among the claim's other events.",
+      "highlightFields": ["f_er_edit_code", "f_er_edit_label", "f_er_severity"],
+      "id": "step_001",
+      "sequenceId": 1,
+      "name": "Identify the ANN event",
+      "description": "Open the Event Resolution tab and look through the claim's edits for an ANN event. The ANN event means a referring or ordering provider NPI that this claim requires is missing or invalid. The event says one of them is wrong; it does not say which, and it does not say whether the identifier is absent altogether or simply unusable. PX_ANN is present here, so work through the claim and establish what is actually missing.",
+      "completionTrigger": "tab_visited",
+      "checklistItem": "Event Resolution tab opened — PX_ANN event identified"
+    },
+    {
+      "timeLimitSeconds": null,
+      "highlightTabId": "tab_provider_info",
+      "targetTabId": "tab_provider_info",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_pi_rendering",
+      "targetFieldId": "f_pi_r_specialty_desc",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_provider_info"
+      },
+      "completionTriggerNote": "Completes as soon as the trainee opens the Provider Information tab.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "hint": "Provider Information tab → Rendering section → Speciality description. It reads L02 - INDEPENDENT LABORATORY.",
+      "highlightFields": ["f_pi_r_specialty", "f_pi_r_specialty_desc"],
+      "id": "step_002",
+      "sequenceId": 2,
+      "name": "Verify the provider is an ancillary service",
+      "description": "Before the NPI rule applies at all, establish that this claim is one it applies to. Open the Provider Information tab and read the Speciality description field in the Rendering section. It reads L02 - INDEPENDENT LABORATORY, so the provider is an ancillary service and the ancillary filing rules are in scope.",
+      "completionTrigger": "tab_visited",
+      "checklistItem": "Verify the provider is an ancillary service"
+    },
+    {
+      "timeLimitSeconds": null,
+      "highlightTabId": "tab_claim_lines",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_summary",
+      "targetFieldId": "f_cl_pos",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_lines"
+      },
+      "completionTriggerNote": "Completes as soon as the trainee opens the Claim Lines tab.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "hint": "Claim Lines tab → Line 1 → POS. It reads 81.",
+      "highlightFields": ["f_cl_pos"],
+      "id": "step_003",
+      "sequenceId": 3,
+      "name": "Verify the Place of Service is 81 (Lab)",
+      "description": "Now check that the claim meets the ancillary filing requirement for its service type. Open the Claim Lines tab and read the POS field. It reads 81, which is the place of service for an independent laboratory, so this is a laboratory claim and it is filed as the ancillary rules require.",
+      "completionTrigger": "tab_visited",
+      "checklistItem": "Verify the Place of Service is 81 (Lab)"
+    },
+    {
+      "timeLimitSeconds": null,
+      "highlightTabId": "tab_provider_info",
+      "targetTabId": "tab_provider_info",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_pi_referring",
+      "targetFieldId": "f_pi_ref_npi",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_provider_info"
+      },
+      "completionTriggerNote": "Marks a deliberate RETURN to the Provider Information tab, which step 2 also opened. Completes on a visit recorded while this step is active.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "hint": "Provider Information tab → Referring section (Referring Physician, NPI) and Miscellaneous Data section (Supporting ordering NPI). Both NPI fields are blank.",
+      "highlightFields": ["f_pi_ref_phys", "f_pi_ref_npi", "f_pi_m_supporting"],
+      "id": "step_004",
+      "sequenceId": 4,
+      "name": "Check the referring/ordering NPI on the claim",
+      "description": "Go back to the Provider Information tab and find the referring and ordering provider identifiers. In the Referring section the Referring Physician field reads A and the NPI field beside it is blank. In the Miscellaneous Data section the Supporting ordering NPI field is blank as well. Neither identifier is on the claim record. That is half of the finding — the other half is whether the provider submitted one at all.",
+      "completionTrigger": "tab_visited_after_activation",
+      "checklistItem": "Check the referring/ordering NPI on the claim"
+    },
+    {
+      "timeLimitSeconds": null,
+      "highlightTabId": "tab_claim_image",
+      "targetTabId": "tab_claim_image",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_ci_p_referring",
+      "targetFieldId": "f_ci_p_ref_supporting",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_image"
+      },
+      "completionTriggerNote": "Completes as soon as the trainee opens the Claim Image tab.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "hint": "Claim Image tab → Claim Image — Provider Information: Referring. Check 17b. NPI and 44. Ordering NPI. Both are blank.",
+      "highlightFields": [
+        "f_ci_p_ref_phys",
+        "f_ci_p_ref_npi",
+        "f_ci_p_ref_supporting"
+      ],
+      "id": "step_005",
+      "sequenceId": 5,
+      "name": "Confirm no NPI on the claim image",
+      "description": "The claim record is a keyed-in copy of the form the provider submitted, so a missing identifier there may only mean it was never keyed. Open the Claim Image tab and read the Referring section of the Provider Information block: field 17b, NPI, and field 44, Ordering NPI. Both are blank on the submitted form too. The provider never supplied a referring or ordering NPI, so there is nothing to key in and nothing to correct.",
+      "completionTrigger": "tab_visited",
+      "checklistItem": "Confirm no NPI on the claim image"
+    },
+    {
+      "timeLimitSeconds": null,
+      "highlightTabId": null,
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "deny_claim",
+      "actionPayload": {
+        "type": "deny_claim"
+      },
+      "completionTriggerNote": "Completes when the trainee submits the Deny Claim panel (which dispatches the deny_claim action).",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "hint": "Action menu → Deny claim. Enter reject code PX_RANNPI in the Deny Claim section, click Submit, then confirm the pop-up.",
+      "highlightFields": [],
+      "id": "step_006",
+      "sequenceId": 6,
+      "name": "Deny the claim using Reject code PX_RANNPI",
+      "completesActionId": "deny_claim",
+      "description": "The identifier the ANN event asks about is absent from the claim record and from the claim image alike, so the provider never submitted one and the claim is rejected for what it is missing. From the Action menu select Deny claim. A Deny Claim section appears below the header. Enter reject code PX_RANNPI in the input box — the matching code appears in a dropdown list — select it and click Submit.",
+      "completionTrigger": "action_triggered",
+      "checklistItem": "Deny the claim using Reject code PX_RANNPI"
+    },
+    {
+      "timeLimitSeconds": null,
+      "highlightTabId": null,
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "submit_decision",
+      "actionPayload": {
+        "type": "submit_decision",
+        "expectedDecision": "deny"
+      },
+      "completionTriggerNote": "Completes when the claim is submitted with the Deny decision selected. Submitting Pay does not complete it.",
+      "expectedValue": "deny",
+      "scorePoints": 10,
+      "hint": "In the header's Decision dropdown pick 'Deny', then click Submit on the claim summary bar.",
+      "highlightFields": [],
+      "id": "step_007",
+      "sequenceId": 7,
+      "name": "Submit Deny decision",
+      "description": "Finish the claim. In the Decision section of the claim summary header, select 'Deny' from the dropdown and click Submit.",
+      "completionTrigger": "decision_submitted",
+      "checklistItem": "Submit Deny decision"
+    }
+  ]
+}

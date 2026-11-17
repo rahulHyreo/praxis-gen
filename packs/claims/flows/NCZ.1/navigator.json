@@ -1,0 +1,199 @@
+{
+  "$schema": "training-platform/v1/navigator",
+  "$version": "2.0.0",
+  "id": "nav_ncz_1_manual_pricing_loaded_validate_pay",
+  "flowId": "flow_pricing_ncz_1",
+  "name": "Pricing NCZ.1 — Manual Pricing Loaded by PX_NCN (Validate & Pay) Navigator",
+  "description": "Walk the Pricing SOP for the PX_NCZ event — PX_NCN has already returned the negotiated pricing and loaded the allowed amount onto the claim, so the adjudicator performs no pricing calculation: only validate and process (no major action needed). Identify the PX_NCZ soft edit on the Event Resolution tab (highlighted with an error indication) and confirm the event hierarchy is clear; review the benefits on the Search → Benefit sub-tab and confirm there is no indication to process at billed charges (benefits are applied directly — verify them in the CI&W system); confirm no other hard events on Event Resolution; note the PX_NCN ID (D1) in the Claim Data → Pricing Manual Pricing section; confirm the auto-populated Write-off EOB/TY (PX_00838/D1) on Claim Lines Line 1 matches the EOB-code chart for D1; click the claim summary Validate button; then pay the claim.",
+  "totalSteps": 6,
+  "passMark": 70,
+  "correctDecision": "pay",
+  "correctDecisionLabel": "Pay",
+  "totalMaxPoints": 80,
+  "totalNavigatorPoints": 60,
+  "steps": [
+    {
+      "id": "step_001",
+      "sequenceId": 1,
+      "name": "Identify the PX_NCZ soft edit and check the event hierarchy",
+      "description": "Review all edits in the Event Resolution tab. The PX_NCZ soft edit is highlighted with an error indication — this is the current event to resolve. PX_NCZ indicates that pricing has been manually loaded by PX_NCN; the action required is to validate and process (no major action needed). Verify the events list for any other events that need to be resolved first per the event hierarchy. If other events are present, resolve those that come before PX_NCZ as per the hierarchy; if no other events are present, proceed. In this scenario, the claim has no other events, so the trainee proceeds.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_all_edits",
+      "targetFieldId": "f_er_e_ncz",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Event Resolution tab and reviews the events list, where the active PX_NCZ soft edit is highlighted with an error indication and no other events are present.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Event Resolution' and review the events list. PX_NCZ (Manual Pricing Loaded by PX_NCN) is the active soft edit, highlighted with an error indication, and there are no other events, so proceed.",
+      "highlightFields": ["f_er_edit_code", "f_er_e_ncz"],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Identify the PX_NCZ soft edit and check the event hierarchy"
+    },
+    {
+      "id": "step_002",
+      "sequenceId": 2,
+      "name": "Review benefits and confirm no billed-charge processing",
+      "description": "Review the benefits to check whether the account suggests processing the claim at the billed charge. Navigate to the Search tab and open the Benefit sub-tab; select the correct benefits per the claim information. If the account indicates processing at billed charges, follow those guidelines; if there is no such indication, proceed. In this scenario, the benefits are applied directly (the trainee is directed to verify they are applied correctly in the CI&W system) and there is no indication to process at billed charges, so the trainee proceeds.",
+      "targetTabId": "tab_search",
+      "targetSubTabId": "subtab_search_benefits",
+      "targetSectionId": "sec_sc_b_ciw",
+      "targetFieldId": "f_sc_b_ciw_msg",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_search",
+        "subTabId": "subtab_search_benefits"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Search → Benefit sub-tab, reviews the benefits, and confirms there is no indication to process at billed charges (benefits applied directly — verify in CI&W).",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Search' → 'Benefit'. The benefits are applied directly — verify them in the CI&W system. There is no indication to process at billed charges, so proceed.",
+      "highlightFields": ["f_sc_b_ciw_msg", "f_sc_bg_state"],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_benefits",
+      "checklistItem": "Review benefits and confirm no billed-charge processing"
+    },
+    {
+      "id": "step_003",
+      "sequenceId": 3,
+      "name": "Confirm no other hard events",
+      "description": "Determine whether the claim contains any other hard events by reviewing the Event Resolution tab. If other hard events are present, follow the PSCCR events guidelines; if absent, proceed. In this scenario, the claim does not contain any other events, so the trainee proceeds.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_all_edits",
+      "targetFieldId": "f_er_edit_label",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee re-reviews the Event Resolution events list and confirms no other hard events are present (only the PX_NCZ soft edit is active).",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Back on 'Event Resolution', scan the events list for any other hard events. None are present, so proceed.",
+      "highlightFields": ["f_er_e_ncz"],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Confirm no other hard events"
+    },
+    {
+      "id": "step_004",
+      "sequenceId": 4,
+      "name": "Note the PX_NCN ID from Manual Pricing",
+      "description": "Obtain the allowed amount provided by PX_NCN from the Manual Pricing section. Navigate to the Claim Data tab ,then Pricing sub-tab, locate the Manual Pricing section, and note the value in the PX_NCN ID field. In this scenario, the PX_NCN ID is D1, so the trainee notes it and proceeds.",
+      "targetTabId": "tab_claim_data",
+      "targetSubTabId": "subtab_claim_data_pricing",
+      "targetSectionId": "sec_cd_pr_mp_header",
+      "targetFieldId": "f_mp_h_ncn",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_data",
+        "subTabId": "subtab_claim_data_pricing"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Claim Data → Pricing sub-tab and notes the PX_NCN ID field (D1) in the Manual Pricing section.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Data' → 'Pricing' and read the PX_NCN ID field in the Manual Pricing section. It reads 'D1' — note it for the Claim Lines check.",
+      "highlightFields": ["f_mp_h_ncn"],
+      "highlightTabId": "tab_claim_data",
+      "highlightSubTabId": "subtab_claim_data_pricing",
+      "checklistItem": "Note the PX_NCN ID from Manual Pricing"
+    },
+    {
+      "id": "step_005",
+      "sequenceId": 5,
+      "name": "Verify the auto-populated EOB/TY code (PX_00838/D1)",
+      "description": "Review the Write-off EOB/TY code on Line 1 of the Claim Lines tab and compare it against the PX_NCN ID noted earlier (D1). The Type code matches the PX_NCN ID, and the corresponding EOB code is determined by the chart: NW → PX_00329, D3 → PX_00837, D1 → PX_00838, D0 → PX_00838, 5D → PX_00AVB, 6D → PX_00AVB — so for PX_NCN ID D1 the correct codes are EOB PX_00838 and Type code D1. In this scenario, the Write-off EOB/TY field on Line 1 is already auto-populated with 'PX_00838/D1', which matches the chart, so the codes are correct. Click the claim summary Validate button to confirm, then proceed to Submit. (If the code were not correct, update the TY/EOB code per the chart before validating.)",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_summary",
+      "targetFieldId": "f_cl_writeoff_eobty",
+      "actionType": "validate",
+      "actionPayload": {
+        "type": "validate"
+      },
+      "completesActionId": "validate",
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the trainee confirms the auto-populated Write-off EOB/TY (PX_00838/D1) on Claim Lines Line 1 matches the chart for PX_NCN ID D1 and clicks the claim summary Validate button, which surfaces the 'Validated' confirmation.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Lines' and read the Write-off EOB/TY on Line 1 — it is auto-populated as 'PX_00838/D1', the chart value for PX_NCN ID D1 (Type code = PX_NCN ID). It is correct, so click the claim summary 'Validate' button, then proceed to Submit.",
+      "highlightFields": ["f_cl_writeoff_eobty", "f_er_benefits_status"],
+      "highlightTabId": "tab_claim_lines",
+      "checklistItem": "Verify the auto-populated EOB/TY code (PX_00838/D1)"
+    },
+    {
+      "id": "step_006",
+      "sequenceId": 6,
+      "name": "Submit Pay decision",
+      "description": "Navigate to the Decision section in the header, select 'Pay' from the dropdown menu and click Submit.",
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "submit_decision",
+      "actionPayload": {
+        "type": "submit_decision",
+        "expectedDecision": "pay"
+      },
+      "completionTrigger": "decision_submitted",
+      "completionTriggerNote": "Completes when the trainee confirms the Pay decision in the submit dialog.",
+      "expectedValue": "pay",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Pick 'Pay' from the Decision dropdown in the claim header, then click Submit and confirm in the dialog.",
+      "highlightFields": [],
+      "checklistItem": "Submit Pay decision"
+    }
+  ],
+  "scoreBreakdown": {
+    "navigatorStepsMaxPoints": 60,
+    "decisionMaxPoints": 20,
+    "reasonCodeMaxPoints": 0,
+    "totalMaxPoints": 80,
+    "passMark": 70,
+    "weightedPassScore": 56
+  },
+  "stepSummaryForResults": [
+    {
+      "sequenceId": 1,
+      "name": "PX_NCZ soft edit identified; event hierarchy clear",
+      "points": 10
+    },
+    {
+      "sequenceId": 2,
+      "name": "Benefits reviewed (applied directly; no billed-charge processing)",
+      "points": 10
+    },
+    {
+      "sequenceId": 3,
+      "name": "No other hard events confirmed",
+      "points": 10
+    },
+    {
+      "sequenceId": 4,
+      "name": "PX_NCN ID noted from Manual Pricing (D1)",
+      "points": 10
+    },
+    {
+      "sequenceId": 5,
+      "name": "Auto-populated EOB/TY verified (PX_00838/D1) and validated",
+      "points": 10
+    },
+    {
+      "sequenceId": 6,
+      "name": "Pay decision submitted",
+      "points": 10
+    }
+  ]
+}

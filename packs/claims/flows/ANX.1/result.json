@@ -1,0 +1,67 @@
+{
+  "$schema": "training-platform/v1/flow-result",
+  "$version": "1.0.0",
+  "id": "result_anx_1_provider_data_mismatch",
+  "rubric": {
+    "expectedDecision": "deny",
+    "expectedReasonCode": "PX_RANSRX",
+    "requiredStepIds": [
+      "step_005",
+      "step_006",
+      "step_007",
+      "step_008",
+      "step_009"
+    ],
+    "weights": {
+      "navigator": 90,
+      "decision": 20,
+      "reasonCode": 10
+    },
+    "deductions": {
+      "perMissedRequiredStep": 0,
+      "wrongDecision": 20,
+      "wrongReasonCode": 10
+    }
+  },
+  "resultConfig": {
+    "passLabel": "Passed!",
+    "failLabel": "You did not meet the pass mark.",
+    "passDescription": "Good work — you established something the claim itself never states. You confirmed the rule was in scope, reading V13 – Pharmacy on Provider Information, and you noted the referring provider's Ancillary details: Type R, ZIP 12345, State NH. You read the referring NPI 12345678910 off the claim record and checked it against field 17b of the claim image, where it matched — so the NPI was present and correctly keyed and there was nothing to re-key. Then you searched the provider database by that NPI and it returned no matching records, so the referring provider is not on file. With no record there and none in the NPI Registry either, the correct address to use on the claim cannot be determined and the claim cannot be routed to the plan where the referring provider sits. You denied with PX_RANSRX, which is the code for exactly that.",
+    "failDescription": "Pass mark is {passMark}%. Review the steps below to see where you can improve.",
+    "scoreCircle": {
+      "radius": 40,
+      "strokeWidth": 8,
+      "passColor": "#3B6D11",
+      "failColor": "#A32D2D",
+      "trackColor": "#E5E7EB"
+    },
+    "statBoxes": [
+      {
+        "id": "navigator_score",
+        "label": "Navigator",
+        "dataKey": "navigatorScore",
+        "max": 90
+      },
+      {
+        "id": "decision_score",
+        "label": "Decision",
+        "dataKey": "decisionScore",
+        "max": 20
+      },
+      {
+        "id": "reason_code_score",
+        "label": "Reason Code",
+        "dataKey": "reasonCodeScore",
+        "max": 10
+      },
+      {
+        "id": "time_taken",
+        "label": "Time Taken",
+        "dataKey": "timeTakenSeconds",
+        "format": "duration"
+      }
+    ],
+    "retakeButton": true,
+    "backToClaimsButton": true
+  }
+}

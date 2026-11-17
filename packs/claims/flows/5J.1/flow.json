@@ -1,0 +1,64 @@
+{
+  "$schema": "praxis/v2/pack-flow",
+  "code": "5J.1",
+  "name": "One Claim Line Exceeded the TFL — Deny with PX_00169",
+  "variants": [
+    {
+      "variant": "base",
+      "variantIndex": 1,
+      "subjectRefs": ["DCN-604101"]
+    },
+    {
+      "variant": "v2",
+      "variantIndex": 2,
+      "subjectRefs": [
+        "DCN-9210200",
+        "DCN-9210201",
+        "DCN-9210202",
+        "DCN-9210203",
+        "DCN-9210204",
+        "DCN-9210205",
+        "DCN-9210206"
+      ]
+    },
+    {
+      "variant": "v3",
+      "variantIndex": 3,
+      "subjectRefs": [
+        "DCN-9210300",
+        "DCN-9210301",
+        "DCN-9210302",
+        "DCN-9210303",
+        "DCN-9210304",
+        "DCN-9210305",
+        "DCN-9210306"
+      ]
+    },
+    {
+      "variant": "v4",
+      "variantIndex": 4,
+      "subjectRefs": [
+        "DCN-9210400",
+        "DCN-9210401",
+        "DCN-9210402",
+        "DCN-9210403",
+        "DCN-9210404",
+        "DCN-9210405",
+        "DCN-9210406"
+      ]
+    },
+    {
+      "variant": "v5",
+      "variantIndex": 5,
+      "subjectRefs": [
+        "DCN-9210500",
+        "DCN-9210501",
+        "DCN-9210502",
+        "DCN-9210503",
+        "DCN-9210504",
+        "DCN-9210505",
+        "DCN-9210506"
+      ]
+    }
+  ]
+}

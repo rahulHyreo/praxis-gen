@@ -1,0 +1,72 @@
+{
+  "$schema": "training-platform/v1/flow-result",
+  "$version": "1.0.0",
+  "id": "result_wdmx_3_dme_limits",
+  "rubric": {
+    "expectedDecision": "deny",
+    "expectedReasonCode": "PX_R11100",
+    "requiredStepIds": [
+      "step_001",
+      "step_002",
+      "step_003",
+      "step_004",
+      "step_005",
+      "step_006",
+      "step_007",
+      "step_008",
+      "step_009",
+      "step_010"
+    ],
+    "weights": {
+      "navigator": 100,
+      "decision": 20,
+      "reasonCode": 10
+    },
+    "deductions": {
+      "perMissedRequiredStep": 0,
+      "wrongDecision": 20,
+      "wrongReasonCode": 10
+    }
+  },
+  "resultConfig": {
+    "passLabel": "Passed!",
+    "failLabel": "You did not meet the pass mark.",
+    "passDescription": "Well done — you proved the record before you acted on it. You cleared E0601 against the Continuous Rental List and the ventilator codes, read the UM event as meaning an authorization was required and verified it on file, and recognised the NU modifier as a purchase rather than a rental. Then you checked the SPI-CLM record's claim of PTD $500 / REM $0 against the evidence: the purchase price priced at $500, and the history claim — also NU — had already been allowed the full $500. Nothing remained allowable, so you denied with PX_R11100. A Limited Liability record that says a benefit is exhausted is still a claim somebody made; the purchase price and the history claim are what make it true.",
+    "failDescription": "Pass mark is {passMark}%. Review the steps below to see where you can improve.",
+    "scoreCircle": {
+      "radius": 40,
+      "strokeWidth": 8,
+      "passColor": "#3B6D11",
+      "failColor": "#A32D2D",
+      "trackColor": "#E5E7EB"
+    },
+    "statBoxes": [
+      {
+        "id": "navigator_score",
+        "label": "Navigator",
+        "dataKey": "navigatorScore",
+        "max": 100
+      },
+      {
+        "id": "decision_score",
+        "label": "Decision",
+        "dataKey": "decisionScore",
+        "max": 20
+      },
+      {
+        "id": "reason_code_score",
+        "label": "Reject code",
+        "dataKey": "reasonCodeScore",
+        "max": 10
+      },
+      {
+        "id": "time_taken",
+        "label": "Time Taken",
+        "dataKey": "timeTakenSeconds",
+        "format": "duration"
+      }
+    ],
+    "retakeButton": true,
+    "backToClaimsButton": true
+  }
+}

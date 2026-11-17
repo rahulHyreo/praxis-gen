@@ -1,0 +1,95 @@
+{
+  "$schema": "training-platform/v1/flow-state",
+  "$version": "1.0.0",
+  "id": "state_clm_1_ll_review_spi_clm_applies",
+  "initial": {
+    "defaultActiveTabId": "tab_event_resolution",
+    "defaultActiveSubTabIds": {
+      "tab_search": "subtab_search_benefits",
+      "tab_claim_data": "subtab_claim_data_details",
+      "tab_attachment": "subtab_attachment_attachments"
+    },
+    "defaultCollapsedSections": {},
+    "defaultDecision": ""
+  },
+  "modeConfig": {
+    "training": {
+      "id": "training",
+      "label": "Training mode",
+      "badgeIcon": "graduation-cap",
+      "showNavigator": true,
+      "timerType": "count_up",
+      "timerPosition": "navigator_header",
+      "timeLockEnabled": false,
+      "showHints": true,
+      "showMarkCompleteButton": true,
+      "allowTabClose": true
+    },
+    "practice": {
+      "id": "practice",
+      "label": "Practice mode",
+      "badgeIcon": "dumbbell",
+      "showNavigator": false,
+      "timerType": "count_up",
+      "timerPosition": "topbar",
+      "timeLockEnabled": false,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": true
+    },
+    "assessment": {
+      "id": "assessment",
+      "label": "Assessment Mode",
+      "badgeIcon": "graduation-cap",
+      "showNavigator": false,
+      "timerType": "count_down",
+      "timerPosition": "topbar_right",
+      "timeLimitSeconds": 600,
+      "timeLockEnabled": true,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": false,
+      "beforeUnloadWarning": "Assessment in progress. Leaving will lose your progress."
+    }
+  },
+  "actions": {
+    "validate": {
+      "label": "Validate",
+      "latencyMs": 400,
+      "writes": {
+        "eventResolution.bypassStatus": "Validated — PX_VA bypass applied to PX_CLM",
+        "eventResolution.validationMessage": "PX_CLM BYPASSED — SPI-CLM SPECIAL INSTRUCTION APPLIED"
+      },
+      "completesStepId": "step_007",
+      "guard": {
+        "dataKey": "eventResolution.bypassCode",
+        "equals": "PX_VA",
+        "elseWrites": {
+          "eventResolution.bypassStatus": "Bypass code not accepted for this event — review the bypass code and select again"
+        }
+      }
+    },
+    "open_ll_record_clm": {
+      "label": "Open record — SPI-CLM 01/01/2026 – 03/31/2026",
+      "latencyMs": 0,
+      "writes": {
+        "search.limitedLiability.selectedRecord.notes": "Pay provider 100% of the allowed amount. Provider name City Hospital, Provider Tax ID 98765656",
+        "search.limitedLiability.selectedRecord.status": "This SPI-CLM record's 01/01/2026 – 03/31/2026 range covers the claim's date of service. Check the provider name and Tax ID in its Notes against the Billing section of the Provider Info tab."
+      },
+      "completesStepId": "step_004"
+    },
+    "open_ll_record_clm_expired": {
+      "label": "Open record — SPI-CLM 07/01/2025 – 12/31/2025",
+      "latencyMs": 0,
+      "writes": {
+        "search.limitedLiability.selectedRecord.notes": "Pay provider 80% of the allowed amount. Provider name City Hospital, Provider Tax ID 98765656",
+        "search.limitedLiability.selectedRecord.status": "This SPI-CLM record's 07/01/2025 – 12/31/2025 range ends before the claim's 01/15/2026 date of service, so it does not apply to this claim."
+      }
+    }
+  },
+  "persistence": {
+    "persistKey": null,
+    "autosave": false,
+    "resetOnSubmit": false
+  }
+}

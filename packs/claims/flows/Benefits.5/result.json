@@ -1,0 +1,76 @@
+{
+  "$schema": "training-platform/v1/flow-result",
+  "$version": "1.0.0",
+  "id": "result_benefits_5_par_surgery_oop_met",
+  "rubric": {
+    "expectedDecision": "pay",
+    "expectedReasonCode": null,
+    "requiredStepIds": [
+      "step_001",
+      "step_002",
+      "step_003",
+      "step_004",
+      "step_005",
+      "step_006",
+      "step_007",
+      "step_008",
+      "step_009",
+      "step_010",
+      "step_011",
+      "step_012",
+      "step_013",
+      "step_014",
+      "step_015",
+      "step_016",
+      "step_017",
+      "step_018",
+      "step_019",
+      "step_020"
+    ],
+    "weights": {
+      "navigator": 200,
+      "decision": 20,
+      "reasonCode": 0
+    },
+    "deductions": {
+      "perMissedRequiredStep": 0,
+      "wrongDecision": 20,
+      "wrongReasonCode": 0
+    }
+  },
+  "resultConfig": {
+    "passLabel": "Passed!",
+    "failLabel": "You did not meet the pass mark.",
+    "passDescription": "Great work — you priced the line, worked through the 5Ws of Benefit (a PAR Ambulatory Surgery Center, procedure 21933 on 02/23/2026, a PA - Professional claim at POS 24 Home, diagnosis R222), found the Surgery Service → Professional benefit for the PAR Ambulatory Surgical Center option, checked the out-of-pocket limits and the accumulators, worked out that with the deductible and the out-of-pocket maximum both met nothing goes to the member, so the $700.00 write-off takes EOB PX_00066, the $0.00 deductible takes EOB PX_00038 and the full $800.00 allowed amount is paid, validated the benefits and correctly paid the claim.",
+    "failDescription": "Pass mark is {passMark}%. Review the steps below to see where you can improve.",
+    "scoreCircle": {
+      "radius": 40,
+      "strokeWidth": 8,
+      "passColor": "#3B6D11",
+      "failColor": "#A32D2D",
+      "trackColor": "#E5E7EB"
+    },
+    "statBoxes": [
+      {
+        "id": "navigator_score",
+        "label": "Navigator",
+        "dataKey": "navigatorScore",
+        "max": 200
+      },
+      {
+        "id": "decision_score",
+        "label": "Decision",
+        "dataKey": "decisionScore",
+        "max": 20
+      },
+      {
+        "id": "time_taken",
+        "label": "Time Taken",
+        "dataKey": "timeTakenSeconds",
+        "format": "duration"
+      }
+    ],
+    "retakeButton": true,
+    "backToClaimsButton": true
+  }
+}

@@ -23,6 +23,9 @@ packs/<pack-id>/
   glossary.md           domain terms
   modules/<module-id>/  module metadata, content item refs, quizzes
   flows/<code>/         base bundle + v2–v5 variant folders (§13)
+    flow.json           flow name, and per variant its index and the subject
+                        refs it populates — the subject routing index (§46)
+  conversion-report.md  where imported content came from and what was dropped
 ```
 
 Two rules that are easy to get wrong:
@@ -42,12 +45,21 @@ Two rules that are easy to get wrong:
 | `foundations/`       | Block 1, weeks 1–4  | US health-system literacy, checkpoint quizzes                      | the Foundations content change (§4.3) |
 | `compliance/`        | Block 2, weeks 5–6  | HIPAA, FWA, security awareness, conduct; exam blueprints           | the Compliance Passport change (§27)  |
 | `reasoning-generic/` | Block 2, weeks 7–8  | Reasoning Core activities, DRI baseline flow bank                  | the Reasoning Core change (§20, §21)  |
-| `claims/`            | Block 3, weeks 9–12 | v1's 93 flows migrated, plus new AI-assisted and integration flows | the v1 import (§46) and §14.3         |
+| `claims/`            | Block 3, weeks 9–12 | v1's 92 flows migrated, plus new AI-assisted and integration flows | the v1 import (§46) and §14.3         |
 
-Each directory is empty but for its README until then. `pnpm packs:validate` and
-`pnpm packs:sync` (§42) are **not** declared yet either — the validator that
-would back them does not exist, and a script name that resolves to nothing is
-worse than an absent one.
+`claims/` is populated: 92 flow groups imported from v1, with `pack.json`,
+`glossary.md` and a `conversion-report.md` that records how. The other three
+directories are empty but for their README until their change lands.
+
+`pnpm packs:convert-v1 <v1>/apps/api/src/data/flows` runs that import. It is
+idempotent and verifies its own output, re-reading every written file from disk,
+because the general validator does not exist yet. It also writes pack JSON
+through Prettier's own formatter, since `.prettierignore` leaves `packs/` to
+Prettier and `pnpm format:check` is part of the gate.
+
+`pnpm packs:validate` and `pnpm packs:sync` (§42) are still **not** declared —
+the validator that would back them does not exist, and a script name that
+resolves to nothing is worse than an absent one.
 
 ## Future packs the engine must support without core changes (§5)
 

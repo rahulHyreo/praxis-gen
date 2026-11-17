@@ -1,0 +1,113 @@
+{
+  "$schema": "training-platform/v1/flow-state",
+  "$version": "1.0.0",
+  "id": "state_mr_2_modifier_reprice_pay",
+  "initial": {
+    "defaultActiveTabId": "tab_event_resolution",
+    "defaultActiveSubTabIds": {
+      "tab_search": "subtab_search_codeset",
+      "tab_notes": "subtab_notes_claim_notes"
+    },
+    "defaultCollapsedSections": {},
+    "defaultDecision": ""
+  },
+  "modeConfig": {
+    "training": {
+      "id": "training",
+      "label": "Training mode",
+      "badgeIcon": "graduation-cap",
+      "showNavigator": true,
+      "timerType": "count_up",
+      "timerPosition": "navigator_header",
+      "timeLockEnabled": false,
+      "showHints": true,
+      "showMarkCompleteButton": true,
+      "allowTabClose": true
+    },
+    "practice": {
+      "id": "practice",
+      "label": "Practice mode",
+      "badgeIcon": "dumbbell",
+      "showNavigator": false,
+      "timerType": "count_up",
+      "timerPosition": "topbar",
+      "timeLockEnabled": false,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": true
+    },
+    "assessment": {
+      "id": "assessment",
+      "label": "Assessment Mode",
+      "badgeIcon": "graduation-cap",
+      "showNavigator": false,
+      "timerType": "count_down",
+      "timerPosition": "topbar_right",
+      "timeLimitSeconds": 600,
+      "timeLockEnabled": true,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": false,
+      "beforeUnloadWarning": "Assessment in progress. Leaving will lose your progress."
+    }
+  },
+  "actions": {
+    "confirm_code_set": {
+      "completesStepId": "step_003",
+      "writes": {
+        "search.codeSet.confirmStatus": "Confirmed — both billed modifiers QX and P3 carry a Procedure pricing change of 'D – Decrease', so both decrease the procedure's pricing allowance. Proceed to manually re-price the line."
+      }
+    },
+    "get_pricing": {
+      "completesStepId": "step_005",
+      "writes": {
+        "search.pricing.pricingResult.status": "Pricing applied — Billed $30, Allowed $24, Write-off $6.",
+        "search.pricing.pricingResult.allowed": "$24",
+        "search.pricing.pricingResult.writeOff": "$6"
+      },
+      "guard": {
+        "all": [
+          {
+            "dataKey": "search.pricing.modifier1",
+            "equalsIgnoreCase": "QX"
+          },
+          {
+            "dataKey": "search.pricing.modifier2",
+            "equalsIgnoreCase": "P3"
+          }
+        ],
+        "elseWrites": {
+          "search.pricing.pricingResult.status": "No pricing returned. Enter the decrease modifier with the highest allowable amount (QX) in Modifier 1 and P3 in Modifier 2, then click Get Pricing again."
+        }
+      }
+    },
+    "submit_note": {
+      "completesStepId": "step_006",
+      "writes": {
+        "notes.submitStatus": "Comment submitted — 'As per modifier QX & P3' recorded on the claim notes."
+      },
+      "guard": {
+        "all": [
+          {
+            "dataKey": "notes.newComment",
+            "nonEmpty": true
+          }
+        ],
+        "elseWrites": {
+          "notes.submitStatus": "Enter the pricing-calculation comment before clicking Submit."
+        }
+      }
+    },
+    "confirm_eob": {
+      "completesStepId": "step_007",
+      "writes": {
+        "claimLineVerify.status": "Verified — Line 1 Write-off is updated ($6) and the EOB code PX_00AWD is auto-populated. Proceed to pay."
+      }
+    }
+  },
+  "persistence": {
+    "persistKey": null,
+    "autosave": false,
+    "resetOnSubmit": false
+  }
+}

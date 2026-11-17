@@ -1,0 +1,1232 @@
+{
+  "$schema": "training-platform/v1/workspace-data",
+  "$version": "2.0.0",
+  "id": "claim_data_687_1_dcn_616101",
+  "claimId": "claim_687_1_001",
+  "dcn": "DCN-616101",
+  "flowId": "flow_ll_review_687_1",
+  "navigatorSchemaId": "nav_687_1_ll_review_oonr_hold_harmless_n",
+  "correctDecision": "pay",
+  "correctDecisionLabel": "Pay",
+  "correctReasonCode": "",
+  "claim": {
+    "dcn": "DCN-616101",
+    "patient": "Marcus D Whitfield",
+    "serviceFrom": "01/15/2026",
+    "billedAmount": "$45.00"
+  },
+  "header": {
+    "dcn": "DCN-616101",
+    "edits": "PX_ONR, PX_687",
+    "billed": "$45.00",
+    "claimAllowed": "$45.00",
+    "paid": "$45.00",
+    "writeOff": "$0.00",
+    "deductible": "$0.00",
+    "coinsurance": "$0.00",
+    "copay": "$0.00",
+    "actionCode": "PX_P10000",
+    "receiptDate": "01/20/2026",
+    "serviceFrom": "01/15/2026",
+    "serviceTo": "01/15/2026",
+    "recordNumber": "999"
+  },
+  "eventResolution": {
+    "editCode": "PX_687",
+    "editLabel": "Limited liability review required — an out-of-network review record may limit the member's liability on this claim",
+    "severity": "Hard Edit",
+    "benefitsStatus": "",
+    "validationMessage": "",
+    "edits": [
+      {
+        "code": "PX_ONR",
+        "label": "Out-of-network review — hold-harmless indicator present in the claim notes",
+        "active": false
+      },
+      {
+        "code": "PX_687",
+        "label": "Limited liability review required — an out-of-network review record may limit the member's liability on this claim",
+        "active": true
+      },
+      {
+        "code": "PX_RNB",
+        "label": "Edit PX_RNB description",
+        "active": false
+      },
+      {
+        "code": "PX_PLP",
+        "label": "Edit PX_PLP description",
+        "active": false
+      }
+    ],
+    "bypassCode": "",
+    "companionCode": "PX_ONR",
+    "companionLabel": "Out-of-network review (OONR) — check the claim notes for the hold-harmless indicator before resolving PX_687",
+    "guidedResolutionNote": "Guided resolution is available for this event. Tick Skip guided Resolution to resolve PX_687 manually.",
+    "skipGuidedResolution": false,
+    "bypassStatus": "Pending validation"
+  },
+  "memberInfo": {
+    "patient": {
+      "firstName": "Marcus",
+      "middleName": "D",
+      "lastName": "Whitfield",
+      "dob": "5/22/1979",
+      "sex": "M",
+      "memberPrefix": "RDX",
+      "hcid": "482W11790",
+      "relationship": "SUB - Subscriber",
+      "memberCode": "61",
+      "contractType": "C",
+      "erisa": "Y",
+      "pcp": "",
+      "pcpState": "",
+      "pcpRelationship": "",
+      "programCode": ""
+    },
+    "subscriber": {
+      "firstName": "Marcus",
+      "middleName": "D",
+      "lastName": "Whitfield",
+      "subscriberId": "482011790",
+      "address": "88 Cypress Lane  AUSTIN TX 78704"
+    },
+    "group": {
+      "groupName": "Kestrel Logistics",
+      "groupId": "5210KL",
+      "groupContract": "K000",
+      "detailContractCode": "KLRN",
+      "product": "Local",
+      "networkId": "",
+      "networkName": ""
+    }
+  },
+  "claimImage": {
+    "memberDetails": {
+      "patient": {
+        "firstName": "Marcus",
+        "middleName": "D",
+        "lastName": "Whitfield",
+        "dob": "5/22/1979",
+        "sex": "M",
+        "memberPrefix": "RDX",
+        "hcid": "482W11790",
+        "relationship": "SUB - Subscriber",
+        "memberCode": "61",
+        "detailContractCode": "KLRN",
+        "contractType": "C",
+        "groupId": "5210KL",
+        "groupContract": "K000",
+        "product": "Local",
+        "erisa": "Y",
+        "pcp": "",
+        "pcpState": "",
+        "pcpRelationship": ""
+      },
+      "subscriber": {
+        "firstName": "Marcus",
+        "middleName": "D",
+        "lastName": "Whitfield",
+        "subscriberId": "482011790",
+        "address": "88 Cypress Lane  AUSTIN TX 78704"
+      },
+      "totalClaimLines": "1"
+    },
+    "additional": {
+      "claimSource": {
+        "mediaType": "-",
+        "pricingSource": "-",
+        "pricingSystem": "-",
+        "mixerPar": "-",
+        "receiverId": "TX",
+        "receivedAtEdi": "-",
+        "providerError": "-",
+        "authNumber": "-",
+        "authExcln": "-",
+        "vendorIndicator": "-",
+        "receivedDate": "-",
+        "originalReferenceNumber": "-"
+      },
+      "ancillaryProvider": {
+        "type": "-",
+        "zip": "-",
+        "state": "-"
+      },
+      "ambulance": {
+        "pickupZip": "-",
+        "dropoffZip": "-"
+      },
+      "miscellaneous": {
+        "epsdt": "-",
+        "familyPlanning": "-",
+        "gtessDate": "-",
+        "dateOfIllness": "-",
+        "dateOfInjury": "-",
+        "lastMenstrualDate": "-",
+        "consultationDate": "-"
+      },
+      "stopData": {
+        "stopEdit": "-",
+        "lobParentRule": "-",
+        "lobChildRule": "-",
+        "lobSequence": "-",
+        "medBusinessParentRule": "-",
+        "medBusinessChildRule": "-",
+        "medSequence": "-"
+      },
+      "refundData": {
+        "correspondenceNumber": "-",
+        "refundAmount": "-",
+        "adjustmentReason": "-",
+        "vendorName": "-",
+        "delayReason": "-",
+        "carveOut": "-",
+        "adjustmentReceiptDate": "-"
+      },
+      "highDollar": {
+        "riskOutcome": "-"
+      },
+      "its": {
+        "account": {
+          "deliveryMethod": "—",
+          "accountType": "—",
+          "aso": "—",
+          "stateId": "—",
+          "originalCertificate": "—",
+          "originalGroup": "—"
+        },
+        "pricing": {
+          "primarySop": "—",
+          "secondarySop": "—",
+          "tertiarySop": "—",
+          "cobCalMethod": "—"
+        },
+        "providers": {
+          "mppqAssignUnassigned": "—",
+          "ppoNetworkAvailability": "—",
+          "ppoProviderAvailability": "—",
+          "eft835": "—",
+          "serviceZip": "—"
+        }
+      },
+      "sfdf": {
+        "sfMessage": "—",
+        "dfMessage": "—",
+        "primacy": "—",
+        "autoOtherAccident": "—",
+        "totalDaysVisits": "—"
+      },
+      "claimLineDetail": [
+        {
+          "lineNum": "—",
+          "blankDateInd": "—",
+          "approvedDenyInd": "—"
+        }
+      ]
+    }
+  },
+  "providerInfo": {
+    "rendering": {
+      "npi": "1730294857",
+      "name": "Lakeview Family Practice",
+      "address": "412 Lakeview Drive  AUSTIN TX 78701",
+      "pricingState": "TX",
+      "pricingZip": "78701-2210",
+      "providerSps": "7000000000",
+      "providerEpin": "",
+      "license": "1111111111",
+      "networkOption": "Y",
+      "specialty": "207Q00000X",
+      "specialtyDescription": "Family Medicine",
+      "taxonomy": "0000R0000X"
+    },
+    "billing": {
+      "taxId": "842019473",
+      "npi": "1730294857",
+      "name": "Lakeview Family Practice",
+      "facilityType": "",
+      "providerSps": "6667778888",
+      "providerEpin": "",
+      "medicareId": "",
+      "address": "412 Lakeview Drive  AUSTIN TX 78701",
+      "nationalState": "TX",
+      "locationCode": "",
+      "bhaProviderIndicator": "YN",
+      "taxonomy": "100000000X",
+      "timelyFilingLimit": "—"
+    },
+    "referring": {
+      "referringPhysician": "A",
+      "npi": "1730294857"
+    },
+    "serviceFacility": {
+      "facilityTier": "N",
+      "type": "N",
+      "npi": ""
+    },
+    "miscellaneous": {
+      "supportingOrderingNpi": "1730294857",
+      "nsbIndicator": "None",
+      "alternateFacilityNpi": ""
+    }
+  },
+  "paymentInfo": {
+    "claim": {
+      "deductible": "0.00",
+      "copay": "0.00",
+      "coins": "0.00",
+      "patientLiab": "0.00",
+      "memberSurcharge": "0.00",
+      "nonElg": "0.00",
+      "hraPaid": "0.00",
+      "claimPaid": "45.00",
+      "pricingAllowedAmount": "45.00",
+      "totalCharge": "45.00",
+      "finalizationCode": "PX_P10000",
+      "recordNumber": "999"
+    },
+    "provider": {
+      "providerDisc": "0.00",
+      "providerLiab": "0.00",
+      "providerRiskWithhold": "—",
+      "providerSurcharge": "0.00",
+      "interest": "0.00",
+      "penalty": "0.00",
+      "systemInterest": "0.00",
+      "lrIndicator": ""
+    },
+    "drg": {
+      "keyed": "—",
+      "priced": "—",
+      "original": "—"
+    },
+    "check": {
+      "accountNumber": "1234512345",
+      "checkNumber": "—",
+      "checkDate": "—",
+      "amount": "0.00",
+      "paymentSystem": "D",
+      "checkMailedTo": "\"PO BOX 00000 MILWAUKEE",
+      "eftCheckDate": "—",
+      "checkStatus": "CHECK NOT FOUND ON RECON DB",
+      "checkStatusDate": "01/20/2026",
+      "paidTo": "Lakeview Family Practice",
+      "finalized": "—"
+    },
+    "payeeDetails": {
+      "flipPayee": ""
+    }
+  },
+  "claimHeader": {
+    "general": {
+      "serviceFromThrough": "01/15/2026 - 01/15/2026",
+      "assignmentOfBenefits": "Y - Benefit assigned to provider",
+      "providerParticipation": "PAR",
+      "providerContract": "TXP00000",
+      "treatmentAuth": "—",
+      "patientAccount": "M000000000",
+      "emergency": "No",
+      "employment": "No",
+      "coveredZipRadius": "-",
+      "frequency": "1",
+      "bbiIndicator": "-",
+      "pciIndicator": "-",
+      "fsbInd": "None",
+      "fsbExclusion": "X"
+    },
+    "benefitIndicators": {
+      "cob": "0",
+      "cobRule": "-",
+      "medInd": "No",
+      "medRule": "-",
+      "medicareAdvantage": "No",
+      "cdhp": "N",
+      "planPayer": "N",
+      "cobPercent": "0"
+    },
+    "diagnosisCodes": {
+      "dx1": "Z0000"
+    },
+    "conditionCodes": {
+      "code": "-"
+    }
+  },
+  "claimLines": [
+    {
+      "lineNum": "1",
+      "fromDate": "01/15/2026",
+      "toDate": "01/15/2026",
+      "pos": "11",
+      "service": "MED",
+      "procedure": "36415",
+      "modifiers": "—",
+      "units": "1",
+      "diagnosis": "Z0000",
+      "billed": "$45.00",
+      "dedInd": "NO",
+      "coinsPercent": "100",
+      "stoploss": "No",
+      "eobTy": "—",
+      "writeoffEobTy": "$0.00",
+      "noncoveredUnit": "0",
+      "deductible": "—",
+      "otherUnit": "0",
+      "copay": "—",
+      "eobTyLast": "—",
+      "priorAuthPassInd": "—",
+      "payment": "$45.00"
+    }
+  ],
+  "claimLineSummary": {
+    "lineNum": "1",
+    "fromDate": "01/15/2026",
+    "toDate": "01/15/2026",
+    "pos": "11",
+    "service": "MED",
+    "procedure": "36415",
+    "modifiers": "—",
+    "units": "1",
+    "diagnosis": "Z0000",
+    "billed": "$45.00",
+    "dedInd": "NO",
+    "coinsPercent": "100",
+    "stoploss": "No",
+    "eobTy": "—",
+    "writeoffEobTy": "$0.00",
+    "noncoveredUnit": "0",
+    "deductible": "—",
+    "otherUnit": "0",
+    "copay": "—",
+    "eobTyLast": "—",
+    "priorAuthPassInd": "—",
+    "payment": "$45.00"
+  },
+  "notes": {
+    "mainframe": "217099",
+    "taskManagement": {
+      "routedTo": "-",
+      "urgency": "65",
+      "skills": "CT-Professional",
+      "csPg": "GS-National",
+      "benNonspider": "SPIDER",
+      "regCa": "-",
+      "resUnrestricted": "-",
+      "totalAge": "59",
+      "homeAge": "59",
+      "ageAdjusted": "N",
+      "baselineUrgency": "45",
+      "urgencyModifiers": "\"PG Modifer(0)"
+    },
+    "researchNotes": [
+      {
+        "text": "All detail line allowable amounts match"
+      },
+      {
+        "text": "System recommendation for Manual Adjudication processing - Manually Applied"
+      },
+      {
+        "text": "Sent to infinity from Intake process"
+      }
+    ],
+    "wgsNotes": [
+      {
+        "text": "CHUB-ELG:N | ELG-IND: | PRCS-NM:PRECCA | BSI-STS: | BSI-ERR:"
+      },
+      {
+        "text": "OONR HOLD HARMLESS N"
+      },
+      {
+        "text": "CHUB-ELG:N | ELG-IND:N | PRCS-NM:PRECCA | BSI-STS:OK | BSI-ERR:"
+      }
+    ]
+  },
+  "search": {
+    "claims": {
+      "dcnKernalClaim": "",
+      "claimId": "",
+      "subscriberOrHcid": "482W11790",
+      "sccf": "",
+      "procedure": "",
+      "serviceFrom": "01/15/2026",
+      "serviceTo": "01/15/2026",
+      "code": "",
+      "totalCharge": "",
+      "status": "ALL",
+      "providerTaxId": "842019473",
+      "providerNpi": "",
+      "renderingLicenseId": "",
+      "billType": ""
+    },
+    "claimsResultCount": "",
+    "claimsResults": [
+      {
+        "code": "",
+        "name": "",
+        "from": "",
+        "to": "",
+        "type": "",
+        "provider": "",
+        "billType": "",
+        "dcn": "",
+        "charged": "",
+        "paid": "",
+        "status": ""
+      },
+      {
+        "code": "",
+        "name": "",
+        "from": "",
+        "to": "",
+        "type": "",
+        "provider": "",
+        "billType": "",
+        "dcn": "",
+        "charged": "",
+        "paid": "",
+        "status": ""
+      }
+    ],
+    "codeSet": {
+      "selectCodeType": "-",
+      "enterCode": "-"
+    },
+    "auth": {
+      "search": {
+        "subscriberOrHcid": "482W11790",
+        "serviceStartDate": "4/25/2025",
+        "serviceEndDate": "4/20/2026",
+        "status": "-"
+      },
+      "members": {
+        "name": "Marcus D Whitfield",
+        "dob": "5/22/1979",
+        "ageAdjusted": "\"65\"\"\"",
+        "memberId": "482011790",
+        "mcid": "",
+        "subscriberOrHcid": "482W11790"
+      }
+    },
+    "benefits": {
+      "planOptions": [
+        {
+          "costShare": "DEDUCTIBLE",
+          "network": "PPO",
+          "maximum": "$500",
+          "accumType": "Calendar Year"
+        },
+        {
+          "costShare": "OUT-OF-POCKET MAX",
+          "network": "PPO",
+          "maximum": "$3,000",
+          "accumType": "Calendar Year"
+        },
+        {
+          "costShare": "MEMBER CLAIM FILING DAY LIMIT",
+          "network": "—",
+          "maximum": "365 days",
+          "accumType": "—"
+        }
+      ],
+      "searchBenefits": {
+        "contractCode": "KLRN",
+        "effectiveDate": "1/1/2026",
+        "endDate": "12/31/9999",
+        "effectiveEndDate": "1/1/2026 - 12/31/9999"
+      },
+      "general": {
+        "contractCode": "KLRN",
+        "product": "Local",
+        "plan": "PPO",
+        "contractState": "TX",
+        "benefitPeriod": "Calendar Year",
+        "benefitPeriodAlt": "—",
+        "fundingArrangement": "ASO",
+        "cdhpInd": "N",
+        "groupNumber": "5210KL",
+        "contractId": "K210",
+        "memberName": "Marcus D Whitfield",
+        "caseNumber": "C48201",
+        "contractType": "C",
+        "crossAccumulation": "—"
+      },
+      "viewNic": {
+        "coverage": "MED-MEDICL COVERAGE",
+        "pricing": "CA29",
+        "network": "PPO"
+      },
+      "accumulators": {
+        "criteria": {
+          "memberId": "482011790",
+          "memberCode": "61",
+          "fromDate": "1/15/2026",
+          "toDate": "1/15/2026",
+          "sourceSystem": "WGS"
+        },
+        "selection": {
+          "accumulatorName": "—",
+          "benefitYear": "—",
+          "accumulatorEffDate": "—",
+          "cob": "—",
+          "deductible": "—",
+          "fertilityRx": "—",
+          "lifetime": "—",
+          "other": "—",
+          "outOfPocket": "—"
+        }
+      }
+    },
+    "provider": {
+      "npiTaxId": {
+        "npi": "1730294857",
+        "orgTaxId": "842019473",
+        "fromDate": "1/15/2026",
+        "throughDate": "1/15/2026",
+        "sourceSystem": "WGS",
+        "zipCode": "-",
+        "billingType": "-",
+        "specialty": "-",
+        "state": "-",
+        "alternateId": "-",
+        "alternateKey": "-"
+      },
+      "practitioner": {
+        "firstName": "-",
+        "lastName": "-",
+        "fromDate": "1/15/2026",
+        "throughDate": "1/15/2026",
+        "sourceSystem": "SPS",
+        "addressLine": "-",
+        "city": "-",
+        "state": "-",
+        "specialty": "-"
+      },
+      "organization": {
+        "organizationName": "Lakeview Family Practice",
+        "orgTaxId": "842019473",
+        "fromDate": "1/15/2026",
+        "throughDate": "1/15/2026",
+        "sourceSystem": "SPS",
+        "addressLine": "-",
+        "city": "-",
+        "state": "TX",
+        "zipCode": "78701-2210",
+        "billingType": "-",
+        "specialty": "Family Medicine"
+      },
+      "pcpPmg": {
+        "pcpPmgId": "-",
+        "fromDate": "1/15/2026",
+        "throughDate": "1/15/2026",
+        "sourceSystem": "SPS",
+        "specialty": "-",
+        "state": "-"
+      },
+      "alternateId": {
+        "organizationName": "Lakeview Family Practice",
+        "alternateKeyOrg": "-",
+        "individual": "8023 - Legacy provider ID",
+        "alternateKeyIndiv": "-",
+        "nonAnthem": "33-NPI",
+        "alternateKeyNonAnthem": "-"
+      }
+    },
+    "member": {
+      "searchMember": {
+        "memberId": "482011790",
+        "firstName": "Marcus",
+        "mi": "D",
+        "lastName": "Whitfield",
+        "dob": "5/22/1979",
+        "relationship": "SUB - Subscriber",
+        "memberCode": "61",
+        "gender": "M",
+        "state": "TX",
+        "contractId": "K210",
+        "caseEntity": "C48201",
+        "groupNumber": "5210KL",
+        "hcid": "482W11790",
+        "prefix": "RDX",
+        "effectiveDate": "1/1/2026",
+        "endDate": "12/31/9999",
+        "productCode": "Local",
+        "contractState": "TX",
+        "businessUnit": "Individual"
+      },
+      "general": {
+        "name": "Marcus D Whitfield",
+        "dateOfBirth": "5/22/1979",
+        "age": "—",
+        "sex": "M",
+        "memberId": "482011790",
+        "hcid": "482W11790",
+        "relationship": "SUB - Subscriber",
+        "memberCode": "61",
+        "address": "88 Cypress Lane  AUSTIN TX 78704",
+        "county": "79",
+        "country": "US",
+        "phone": "30000000000023",
+        "effectiveDate": "1/1/2026",
+        "endDate": "12/31/9999",
+        "productType": "BCPI - BC INCENTIVE PPO",
+        "groupType": "A -ACTIVE",
+        "cob": "Y",
+        "businessUnit": "Individual",
+        "paidToDate": "1/1/2026",
+        "erisa": "Y",
+        "caseGroupSetup": "Y",
+        "contractStartDate": "-",
+        "shortTermEndDate": "-",
+        "cxlProcessDate": "-",
+        "aptcIndicator": "-",
+        "csdt": "-",
+        "caseName": "Kestrel Logistics",
+        "ncnReferralsInd": "—",
+        "foi": "G",
+        "roundoprd": "12",
+        "conversionCode": "0",
+        "medicareIndicator": "\"Part -A : G"
+      },
+      "additionalAddress": {
+        "address": "-"
+      },
+      "providerNetwork": {
+        "product": "57BC PPO INCENTIVE",
+        "providerGroupName": "-",
+        "address": "-",
+        "phone": "-"
+      },
+      "contractMembers": [
+        {
+          "memberCode": "61",
+          "name": "Marcus D Whitfield",
+          "relationship": "SUB - Subscriber",
+          "dob": "5/22/1979",
+          "age": "—",
+          "effectiveDate": "1/1/2026",
+          "endDate": "12/31/9999"
+        },
+        {
+          "memberCode": "—",
+          "name": "—",
+          "relationship": "—",
+          "dob": "—",
+          "age": "—",
+          "effectiveDate": "—",
+          "endDate": "—"
+        }
+      ],
+      "group": {
+        "general": {
+          "name": "Kestrel Logistics",
+          "status": "O ACTIVE",
+          "companyCode": "123C XXXX",
+          "paidToDate": "4/1/2026",
+          "locationStateCode": "TX",
+          "locationCodeEffectiveDate": "1/1/2019",
+          "workLocation": "7003 ANTHEM NAT ACCT",
+          "workLocationPhone": "9999888899",
+          "rateMethodCode": "1 ASO BUSINESS",
+          "rmcEffectiveDate": "1/1/2019",
+          "groupType": "A ACTIVE",
+          "fundingTypeCode": "H ASC",
+          "graceDays": "30",
+          "claimGraceDays": "30"
+        },
+        "coverage": {
+          "originalEffectiveDate": "1/1/2019",
+          "groupProcessedDate": "10/9/2018",
+          "reinstateEffectiveDate": "-",
+          "reinstateProcessedDate": "-",
+          "cancelEffectiveDate": "-",
+          "cancelProcessedDate": "-",
+          "cancelReason": "-"
+        },
+        "contract": {
+          "productLine": "BC PPO INCENTIVE",
+          "claimsRoute": "PX_P-EXEC - NATIONAL ACCTS",
+          "benefitYearCalendarYear": "CY",
+          "benefitYearCalendarYearAsOfDate": "1/1/2019",
+          "contractCode": "K210",
+          "contractCodeEffectiveDate": "1/1/2019",
+          "promptPay": "N",
+          "promptPayDate": "1/1/2019",
+          "itsHomeParticipatingCode": "E CONTROL CUSTOM",
+          "itsHomeEffectiveDate": "1/1/2019",
+          "locationLobCode": "X BC/BCLH",
+          "overAgeMailing": "S MAIL TO SUBR",
+          "networkId": "BLUECDOO",
+          "networkName": "BLUE XXXX BLUE XXXX"
+        },
+        "additional": {
+          "product": "BC PPO INC Claim Manager",
+          "mbuCode": "NAC00000",
+          "claimsServiceLocation": "COOIO/CAACOII",
+          "serviceManager": "SRVC/DARLENE",
+          "claimManager": "CLMS/M PENNER",
+          "servicePhone": "999999999",
+          "serviceAddress": "XXXX PARK Road WAUWATOSA WI 53213",
+          "sourceSystem": "WGS 2.0"
+        }
+      }
+    },
+    "limitedLiability": {
+      "memberId": "482011790",
+      "memberCode": "61",
+      "dob": "5/22/1979",
+      "activeRecords": "Active records",
+      "allRecords": "—",
+      "resultsNote": "2 limited liability records found for this member. Review any SPI-NOA / SPI-CLM record whose date range covers the claim's date of service.",
+      "results": [
+        {
+          "type": "SPI - NOA",
+          "effectiveDate": "1/1/2026",
+          "endDate": "1/31/2026",
+          "orderOfBenefits": "—",
+          "description": "PROCESS PER LL AGREEMENT — SEE NOTES FOR THE PROCEDURE-LEVEL INSTRUCTION. IFO AUTH#UM91252400…"
+        },
+        {
+          "type": "SPI - MMS",
+          "effectiveDate": "12/16/2024",
+          "endDate": "12/15/2025",
+          "orderOfBenefits": "—",
+          "description": "UM#:UM91252400 SEQ:01 PR:OA PAY: HMO:"
+        }
+      ],
+      "selectedRecord": {
+        "notes": "",
+        "status": ""
+      }
+    },
+    "pricing": {
+      "member": {
+        "dob": "5/22/1979",
+        "sex": "M",
+        "groupNumber": "5210KL",
+        "groupId": "-",
+        "networkId": "BLUECS",
+        "memberZipCode": "53213",
+        "alternateZipCode": "-",
+        "medicareInd": "Y",
+        "hixInd": "-",
+        "marketType": "NTLA",
+        "memberInd": "-",
+        "ab72": "-",
+        "patientCode": "-",
+        "product": "Local",
+        "variance": "CA29",
+        "coverage": "MED",
+        "groupIdentifier": "-"
+      },
+      "provider": {
+        "taxId": "842019473",
+        "renderingNumber": "77777777777",
+        "billingNumber": "6666666666",
+        "renderingNpi": "1730294857",
+        "billingNpi": "1730294857",
+        "license": "11111222233",
+        "specialty": "676",
+        "zipCode": "78701-2210",
+        "planInd": "TX",
+        "wgsp": "P",
+        "pcpState": "TX",
+        "region": "532",
+        "gbdId": "-",
+        "providerInd": "-",
+        "providerParticipation": "-",
+        "providerProdVar": "WIP02186",
+        "networxInd": "-",
+        "finalMixer": "-",
+        "legacySpecialty": "-"
+      },
+      "claimHeader": {
+        "serviceFrom": "01/15/2026",
+        "serviceTo": "01/15/2026",
+        "placeOfService1": "1",
+        "placeOfService2": "11",
+        "cxtInd": "X",
+        "productLineCode": "57",
+        "serviceClassType": "-",
+        "emergRefInd": "-",
+        "icd9": "N",
+        "federalMandate": "-",
+        "cocInd": "-",
+        "mixerOverrideInd": "-",
+        "streetMedicineInd": "None",
+        "surpriseBillingInd": "-",
+        "cgntInd": "-",
+        "product": "WIPO",
+        "variance": "2186",
+        "contractNotes": "-",
+        "overridePriceProduct": "-",
+        "contractHierarchy": "-",
+        "bundleStatus": "-",
+        "clusterId": "-"
+      },
+      "diagnosisCodes": {
+        "a": "Z0000",
+        "b": "-",
+        "c": "-",
+        "d": "-",
+        "e": "-"
+      },
+      "lineSummary": {
+        "procedure": "36415",
+        "modifier": "—",
+        "uo": "1",
+        "cxPercent": "100",
+        "allowed": "45",
+        "billedAmount": "45",
+        "writeoff": "0"
+      }
+    }
+  },
+  "priorClaim": {
+    "dcn": "—",
+    "receiptDate": "—",
+    "memberInfo": {
+      "subscriberId": "—",
+      "hcid": "—",
+      "subscriberName": "—",
+      "patientDob": "—"
+    },
+    "providerInfo": {
+      "providerTaxId": "—",
+      "renderingProvider": "—",
+      "billingNpi": "—"
+    },
+    "paymentInfo": {
+      "nonElg": "—",
+      "providerDisc": "—",
+      "coins": "—",
+      "processDate": "—",
+      "finalizationCode": "—"
+    },
+    "serviceInfo": {
+      "primaryDx": "—",
+      "px1": "—"
+    },
+    "researchNotes": "—",
+    "researchNotesMore": "—",
+    "lines": [
+      {
+        "lineNum": "—",
+        "serviceFrom": "—",
+        "toDate": "—",
+        "procedure": "—",
+        "billed": "—"
+      }
+    ]
+  },
+  "system": {
+    "benefitRecommendation": {
+      "contractCode": "K210",
+      "effectiveDate": "1/1/2026",
+      "endDate": "12/31/9999",
+      "planState": "TX",
+      "planDescription": "Kestrel Logistics 2026/01/01 PPO K210"
+    }
+  },
+  "attachment": {
+    "pwk": {
+      "type": "—",
+      "documentNumber": "—"
+    }
+  },
+  "claimData": {
+    "details": {
+      "claimType": "Professional",
+      "itsHome": "No",
+      "claimSource": {
+        "mediaType": "PC",
+        "pricingSource": "W",
+        "pricingSystem": "WP",
+        "mixerPar": "Y",
+        "receiverId": "WGSGA",
+        "receivedAtEdi": "2026-01-18",
+        "providerError": "I000",
+        "imageControlNumber": "CI25281103489293491",
+        "authNumber": "—",
+        "authExcln": "—",
+        "vendorIndicator": "—",
+        "receivedDate": "2026-01-18",
+        "splitInd": "—",
+        "epactPlm": "—",
+        "gnyhaInd": "—",
+        "imrIndicator": "—",
+        "cliaId": "—",
+        "cliaQualifier": "—"
+      },
+      "ancillaryProvider": {
+        "type": "—",
+        "zip": "—",
+        "state": "—"
+      },
+      "ambulance": {
+        "pickupZip": "—",
+        "dropoffZip": "—"
+      },
+      "miscellaneous": {
+        "epsdt": "—",
+        "familyPlanning": "No",
+        "gtessDate": "—",
+        "dateOfIllness": "—",
+        "dateOfInjury": "—",
+        "lastMenstrualDate": "—",
+        "consultationDate": "—",
+        "eruDecision": "—",
+        "jaaErrorCode": "No"
+      },
+      "stopData": {
+        "stopEdit": "No",
+        "lobParentRule": "—",
+        "lobChildRule": "ALL WGS",
+        "lobSequence": "1",
+        "medBusinessParentRule": "NA",
+        "medBusinessChildRule": "656881",
+        "medSequence": "51"
+      },
+      "refundData": {
+        "correspondenceNumber": "—",
+        "refundAmount": "$0.00",
+        "adjustmentReasonCode": "PX_4",
+        "correctedClaimDcn": "—",
+        "vendorName": "—",
+        "delayReason": "—",
+        "carveOut": "—",
+        "adjustmentReceipt": "—"
+      },
+      "highDollar": {
+        "riskOutcome": "—"
+      }
+    },
+    "editing": {
+      "claimXten": {
+        "originalLine": {
+          "lineNum": "1",
+          "serviceDate": "01/15/2026",
+          "procedure": "36415",
+          "mod": "—",
+          "units": "1",
+          "billedAmount": "$45.00"
+        },
+        "proposedLine": {
+          "lineNum": "1",
+          "procedure": "—",
+          "mod": "—",
+          "units": "1",
+          "supportCode": "—",
+          "payPercent": "—",
+          "billedAmount": "—"
+        }
+      },
+      "ihealth": {
+        "originalLine": {
+          "lineNum": "1",
+          "serviceDate": "01/15/2026",
+          "procedure": "36415",
+          "mod": "—",
+          "units": "1",
+          "allowedAmount": "$45.00",
+          "savingsAmount": "$0.00"
+        },
+        "proposedLine": {
+          "procedure": "—",
+          "mod": "—",
+          "units": "1",
+          "payPercent": "—",
+          "status": "—"
+        }
+      }
+    },
+    "benefits": {
+      "accumulator1": {
+        "type": "BENYTD",
+        "fromDate": "2026-01-01",
+        "toDate": "2026-12-31",
+        "unit": "Dollar",
+        "status": "Accrued"
+      },
+      "accumulator2": {
+        "type": "MMCYTD",
+        "fromDate": "2026-01-01",
+        "toDate": "2026-12-31",
+        "unit": "Dollar",
+        "status": "Accrued"
+      }
+    },
+    "promptPay": {
+      "claim": {
+        "status": "PX_WGS",
+        "state": "—",
+        "ruleId": "—",
+        "systemInterest": "$0.00",
+        "penaltyAmount": "$0.00",
+        "manualInterestAmount": "—"
+      },
+      "calculation": {
+        "calculationFromDate": "2026-01-20",
+        "carveoutDate": "—",
+        "lastProcessedDate": "2026-01-20",
+        "baseAmount": "$0.00",
+        "calculatedInterestAmount": "$0.00",
+        "processedInDays": "0",
+        "mailingDays": "0",
+        "disburseDays": "0",
+        "allowedDays": "0",
+        "carveoutDays": "0",
+        "lateByDays": "0",
+        "dailyInterest": "$0.00"
+      },
+      "miscellaneous": {
+        "carveoutReasonCode": "PX_0",
+        "dayIndicator": "0",
+        "receiptMethod": "—",
+        "productFundType": "W",
+        "interestRate": "—",
+        "penalty": "—",
+        "minimumPayAmount": "—",
+        "erMinimumPay": "—",
+        "annualMonthlyPenalty": "—",
+        "mlhDate": "26020",
+        "ppStopDate": "—",
+        "additionalInformationRequestDate": "—",
+        "tdiInterestAmount": "—",
+        "tdiPenaltyAmount": "—"
+      }
+    },
+    "review": {
+      "utilization": {
+        "service": {
+          "lineNum": "1",
+          "procedure": "36415",
+          "revenueCode": "—",
+          "date": "01/15/2026",
+          "ruleId": "—",
+          "caseNumber": "NO MATCH"
+        }
+      },
+      "cdhp": {
+        "claim": {
+          "litesClaim": "—",
+          "rsnEobCode": "—",
+          "hraPaidTotal": "$0.00",
+          "hraEndingBalance": "$0.00",
+          "paymentCode": "—",
+          "cdhpAdmin": "—",
+          "acknowledgementRcvd": "—",
+          "requeryCount": "—"
+        },
+        "lineSummary": {
+          "lineNum": "1",
+          "procedure": "36415",
+          "billed": "$45.00",
+          "patientResp": "—",
+          "hraPaid": "—",
+          "rsnCode": "—"
+        }
+      },
+      "dofr": {
+        "meta": {
+          "inzip": "—",
+          "providerNetworkCode": "—",
+          "dofrId1": "—",
+          "dofrName1": "—",
+          "relationship": "—",
+          "pgmId": "—",
+          "pgId": "—",
+          "umDelegationIndicator": "—",
+          "effectiveDate": "—",
+          "endDate": "—"
+        },
+        "lineSummary": {
+          "lineNum": "1",
+          "procedure": "36415",
+          "revenueCode": "—",
+          "serviceCategory": "—",
+          "event": "—",
+          "capIndicator": "—",
+          "risk": "—",
+          "groupCode": "—",
+          "hc": "—"
+        }
+      }
+    },
+    "pricing": {
+      "mp": {
+        "header": {
+          "multiPlanIndicator": "—",
+          "caseNumber": "—",
+          "systemCode": "N",
+          "claimNumber": "—",
+          "externalNetworkClaimNumber": "—",
+          "networkId": "—",
+          "orgId": "0",
+          "providerStatus": "—",
+          "providerName": "Lakeview Family Practice",
+          "networkStatus": "—",
+          "primaryCare": "—",
+          "parNonPar": "—",
+          "paidNetworkId": "—",
+          "exceptionReason": "—",
+          "gatekeeperPfPnf": "—",
+          "neutralBenefit": "—",
+          "productType": "Local",
+          "receiptInd": "—",
+          "gbdId": "—",
+          "promptPay": "—",
+          "ncnId": "—",
+          "urDays": "0",
+          "priceSheet": "—",
+          "externalProviderInd": "—",
+          "claimLevelError": "—",
+          "qpaSplitInd": "—",
+          "qpaUpdate": "—",
+          "qpaProduct": "—",
+          "qpaPricingVariance": "—",
+          "claimLevelQpa": "0.00",
+          "finalProduct": "—",
+          "zelisNcnGrossSavings": "0.00",
+          "ncnAnthemCost": "0.00",
+          "ncnExclInd": "—",
+          "jaaPayor": "—",
+          "clusterId": "—"
+        },
+        "line1": {
+          "no": "1",
+          "service": "MED",
+          "billed": "45.00",
+          "allowed": "45.00",
+          "reasonAmount": "—",
+          "units": "1",
+          "reason": "—",
+          "priceReasonCode": "—",
+          "qpaAmount": "0.00"
+        },
+        "line2": {
+          "no": "—",
+          "service": "—",
+          "billed": "—",
+          "allowed": "—",
+          "reasonAmount": "—",
+          "units": "—",
+          "reason": "—",
+          "priceReasonCode": "—",
+          "qpaAmount": "—"
+        },
+        "qpaTotalAmount": "0.00"
+      }
+    },
+    "relatedSummary": {
+      "code": "—",
+      "name": "—",
+      "fromDate": "—",
+      "toDate": "—",
+      "type": "—",
+      "provider": "—",
+      "dcn": "—",
+      "charged": "—",
+      "paid": "—",
+      "status": "—"
+    }
+  }
+}

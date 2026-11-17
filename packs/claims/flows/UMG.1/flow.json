@@ -1,0 +1,64 @@
+{
+  "$schema": "praxis/v2/pack-flow",
+  "code": "UMG.1",
+  "name": "Grouper/Cluster Tagged Authorization — Verify & Pay",
+  "variants": [
+    {
+      "variant": "base",
+      "variantIndex": 1,
+      "subjectRefs": ["DCN-605107"]
+    },
+    {
+      "variant": "v2",
+      "variantIndex": 2,
+      "subjectRefs": [
+        "DCN-9320200",
+        "DCN-9320201",
+        "DCN-9320202",
+        "DCN-9320203",
+        "DCN-9320204",
+        "DCN-9320205",
+        "DCN-9320206"
+      ]
+    },
+    {
+      "variant": "v3",
+      "variantIndex": 3,
+      "subjectRefs": [
+        "DCN-9320300",
+        "DCN-9320301",
+        "DCN-9320302",
+        "DCN-9320303",
+        "DCN-9320304",
+        "DCN-9320305",
+        "DCN-9320306"
+      ]
+    },
+    {
+      "variant": "v4",
+      "variantIndex": 4,
+      "subjectRefs": [
+        "DCN-9320400",
+        "DCN-9320401",
+        "DCN-9320402",
+        "DCN-9320403",
+        "DCN-9320404",
+        "DCN-9320405",
+        "DCN-9320406"
+      ]
+    },
+    {
+      "variant": "v5",
+      "variantIndex": 5,
+      "subjectRefs": [
+        "DCN-9320500",
+        "DCN-9320501",
+        "DCN-9320502",
+        "DCN-9320503",
+        "DCN-9320504",
+        "DCN-9320505",
+        "DCN-9320506"
+      ]
+    }
+  ]
+}

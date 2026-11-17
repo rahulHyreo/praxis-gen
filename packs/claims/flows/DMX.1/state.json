@@ -1,0 +1,126 @@
+{
+  "$schema": "training-platform/v1/flow-state",
+  "$version": "1.0.0",
+  "id": "state_dmx_1_dme_limits",
+  "initial": {
+    "defaultActiveTabId": "tab_event_resolution",
+    "defaultActiveSubTabIds": {
+      "tab_search": "subtab_search_benefits_dmx"
+    },
+    "defaultCollapsedSections": {},
+    "defaultDecision": "",
+    "decisionRequired": true
+  },
+  "modeConfig": {
+    "training": {
+      "id": "training",
+      "label": "Training mode",
+      "badgeIcon": "graduation-cap",
+      "showNavigator": true,
+      "timerType": "count_up",
+      "timerPosition": "navigator_header",
+      "timeLimitSeconds": null,
+      "timeLockEnabled": false,
+      "showHints": true,
+      "showMarkCompleteButton": true,
+      "allowTabClose": true
+    },
+    "practice": {
+      "id": "practice",
+      "label": "Practice mode",
+      "badgeIcon": "target",
+      "showNavigator": false,
+      "timerType": "count_up",
+      "timerPosition": "topbar",
+      "timeLimitSeconds": null,
+      "timeLockEnabled": false,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": true
+    },
+    "assessment": {
+      "id": "assessment",
+      "label": "Assessment mode",
+      "badgeIcon": "clipboard-check",
+      "showNavigator": false,
+      "timerType": "count_down",
+      "timerPosition": "topbar",
+      "timeLimitSeconds": 900,
+      "timeLockEnabled": true,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": false,
+      "beforeUnloadWarning": "Leaving this page will end your assessment attempt."
+    }
+  },
+  "actions": {
+    "view_accumulators": {
+      "label": "Expand the OTHER accumulator group — reveals DMERNTMX",
+      "latencyMs": 0,
+      "writes": {},
+      "completesStepId": "step_004"
+    },
+    "get_pricing_purchase": {
+      "label": "Get Pricing — surface the DME purchase price",
+      "latencyMs": 400,
+      "guard": {
+        "all": [
+          {
+            "dataKey": "search.pricing.claimLines.line1.modifier",
+            "equals": "NU"
+          },
+          {
+            "dataKey": "search.pricing.claimLines.line1.billedAmount",
+            "equals": "100000"
+          }
+        ],
+        "elseWrites": {
+          "search.pricing.purchasePriceNote": "No purchase price returned. The DME was purchased, not rented, so set the Modifier to NU; and set the Billed amount in this section to 100000 so the pricing engine does not cap the result at the billed charge. Then click Get Pricing again."
+        }
+      },
+      "writes": {
+        "search.pricing.claimLines.line1.allowed": "5000.00",
+        "search.pricing.claimLines.line1.writeOff": "95000.00",
+        "search.pricing.purchasePriceNote": "Purchase price for this DME is $5,000.00 (shown in the Allowed column)."
+      },
+      "completesStepId": "step_006"
+    },
+    "get_pricing_current": {
+      "label": "Get Pricing — the current claim's suggested allowed amount",
+      "latencyMs": 400,
+      "writes": {
+        "search.pricing.results.currentAllowed": "4000.00",
+        "search.pricing.results.currentAllowedHint": "The system suggests an allowed amount of $4,000.00 for this claim. Compare it against the purchase price less what history already allowed: $5,000 − $3,000 = $2,000."
+      },
+      "completesStepId": "step_008"
+    },
+    "open_prior_claim": {
+      "label": "Open the history claim detail",
+      "latencyMs": 0,
+      "writes": {},
+      "completesStepId": "step_007"
+    },
+    "validate_bypass": {
+      "label": "Validate the PX_DX bypass code and settle the repriced amounts",
+      "latencyMs": 400,
+      "guard": {
+        "dataKey": "eventResolution.bypassCode",
+        "equals": "PX_DX",
+        "elseWrites": {
+          "eventResolution.bypassStatus": "Invalid bypass code — select PX_DX to bypass the PX_DMX (DME maximum met) event."
+        }
+      },
+      "writes": {
+        "eventResolution.bypassStatus": "Validated — PX_DX bypass applied to PX_DMX.",
+        "claimLines.line1.allowed": "2000.00",
+        "claimLines.line1.writeOff": "3000.00"
+      },
+      "completesStepId": "step_011"
+    }
+  },
+  "persistence": {
+    "persistKey": null,
+    "autosave": false,
+    "resetOnSubmit": false
+  }
+}

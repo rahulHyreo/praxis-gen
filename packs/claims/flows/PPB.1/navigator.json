@@ -1,0 +1,140 @@
+{
+  "$schema": "training-platform/v1/navigator",
+  "$version": "2.0.0",
+  "id": "nav_ppb_1_partial_prior_auth_pass",
+  "flowId": "flow_authorization_ppb_1",
+  "name": "Authorization PPB.1 — Partial Prior Auth Pass Navigator",
+  "description": "Walk the Authorization SOP for the PX_PPB event — the claim partially meets the prior-authorization pass criteria, where some claim lines qualify while others may still require authorization review. Identify the informational PX_PPB and PX_GCB events and rule out PX_NMF/PX_PAM, confirm the authorization is denied (single-row UM Detail Service Case Number NO MATCH), expand each of the two claim lines and confirm Line 1 carries a Prior Auth Pass ind of Y while Line 2 is blank (no authorization needed), then pay the claim.",
+  "totalSteps": 4,
+  "passMark": 70,
+  "correctDecision": "pay",
+  "correctDecisionLabel": "Pay",
+  "totalMaxPoints": 60,
+  "totalNavigatorPoints": 40,
+  "steps": [
+    {
+      "id": "step_001",
+      "sequenceId": 1,
+      "name": "Identify the PX_PPB and PX_GCB events and rule out PX_NMF/PX_PAM",
+      "description": "Review all events in the Event Resolution tab. The events list will display both the PX_PPB event (possible prior auth pass claim) and the PX_GCB event (claim meets prior auth pass) — PX_PPB is the active informational event indicating the claim partially meets the prior authorization pass criteria, where some claim lines qualify while others may still require authorization review. Verify that no PX_NMF or PX_PAM events are present on the list. If PX_NMF or PX_PAM is present, follow the alternate SOP steps; otherwise, proceed. In this scenario, no PX_NMF or PX_PAM events are present, so the trainee proceeds.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_all_edits",
+      "targetFieldId": "f_er_e_ppb",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Event Resolution tab and reviews the events list, where the active PX_PPB and companion PX_GCB events are shown and no PX_NMF/PX_PAM events are present.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Event Resolution' and review the events list. The active PX_PPB (possible prior auth pass claim) and companion PX_GCB (claim meets prior auth pass) informational events are shown, and no PX_NMF/PX_PAM events are present, so proceed.",
+      "highlightFields": ["f_er_edit_code", "f_er_e_ppb", "f_er_e_gcb"],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Identify the PX_PPB and PX_GCB events and rule out PX_NMF/PX_PAM"
+    },
+    {
+      "id": "step_002",
+      "sequenceId": 2,
+      "name": "Verify denied authorization (NO MATCH)",
+      "description": "Determine whether a denied authorization exists by navigating to the Claim Data tab, then the Review sub-tab, and expanding the Utilization Management section. Review the UM Detail Service table, which contains the Line #, Procedure, Revenue Code, Date, Rule ID, and Case Number columns. Although the claim contains two claim lines, only claim lines requiring authorization are displayed in this table. In this scenario, the table contains a single row for Line # 1, showing Procedure 92928, Date 04/28/2025, Rule ID INPAT001, and Case Number NO MATCH. A value of NO MATCH in the Case Number field indicates that an authorization exists but does not match the billed service, resulting in a denied authorization. Therefore, the trainee may proceed to the next step. If no authorization exists and the Case Number field is blank, follow the alternate guidelines, which require identifying the claim lines with a Prior Auth Pass Ind value of Y.",
+      "targetTabId": "tab_claim_data",
+      "targetSubTabId": "subtab_claim_data_review",
+      "targetSectionId": "sec_cd_r_um",
+      "targetFieldId": "f_cdr_um_case",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_data",
+        "subTabId": "subtab_claim_data_review"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Review sub-tab inside Claim Data and reads the UM Detail Service table's Case Number (NO MATCH).",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Data' → 'Review' and expand Utilization management. The UM Detail Service Case Number is NO MATCH, which means the authorization is denied, so proceed.",
+      "highlightFields": ["f_cdr_um_rule", "f_cdr_um_case"],
+      "highlightTabId": "tab_claim_data",
+      "highlightSubTabId": "subtab_claim_data_review",
+      "checklistItem": "Verify denied authorization (NO MATCH)"
+    },
+    {
+      "id": "step_003",
+      "sequenceId": 3,
+      "name": "Verify Prior Auth Pass ind on each claim line",
+      "description": "Review the claim lines (Navigate to Claim lines tab) and expand each of the two lines to inspect the Prior Auth Pass ind field. In this scenario, expanding Line 1 shows Prior Auth Pass ind = Y (this line requires authorization and meets the prior auth pass criteria), and expanding Line 2 shows Prior Auth Pass ind blank (this line does not require authorization). With Line 1 confirmed as a prior auth pass line and Line 2 not requiring authorization, the claim is payable and the trainee proceeds.",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_summary",
+      "targetFieldId": "f_cl_prior_auth_pass",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_lines"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Claim Lines tab and inspects the Prior Auth Pass ind field on both claim lines (Line 1 = Y, Line 2 = blank).",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Lines' and expand each line. Line 1's Prior Auth Pass ind shows Y and Line 2's is blank (no authorization needed), so the claim is payable — proceed to pay.",
+      "highlightFields": ["f_cl_prior_auth_pass", "f_cl2_prior_auth_pass"],
+      "highlightTabId": "tab_claim_lines",
+      "checklistItem": "Verify Prior Auth Pass ind on each claim line"
+    },
+    {
+      "id": "step_004",
+      "sequenceId": 4,
+      "name": "Submit Pay decision",
+      "description": "Navigate to the Decision section in the header, select 'Pay' from the dropdown menu and click Submit.",
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "submit_decision",
+      "actionPayload": {
+        "type": "submit_decision",
+        "expectedDecision": "pay"
+      },
+      "completionTrigger": "decision_submitted",
+      "completionTriggerNote": "Completes when the trainee confirms the Pay decision in the submit dialog.",
+      "expectedValue": "pay",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Pick 'Pay' from the Decision dropdown in the claim header, then click Submit and confirm in the dialog.",
+      "highlightFields": [],
+      "checklistItem": "Submit Pay decision"
+    }
+  ],
+  "scoreBreakdown": {
+    "navigatorStepsMaxPoints": 40,
+    "decisionMaxPoints": 20,
+    "reasonCodeMaxPoints": 0,
+    "totalMaxPoints": 60,
+    "passMark": 70,
+    "weightedPassScore": 42
+  },
+  "stepSummaryForResults": [
+    {
+      "sequenceId": 1,
+      "name": "PX_PPB and PX_GCB events identified; PX_NMF/PX_PAM ruled out",
+      "points": 10
+    },
+    {
+      "sequenceId": 2,
+      "name": "Denied authorization confirmed (single-row NO MATCH)",
+      "points": 10
+    },
+    {
+      "sequenceId": 3,
+      "name": "Prior Auth Pass ind confirmed (Line 1 Y, Line 2 blank)",
+      "points": 10
+    },
+    {
+      "sequenceId": 4,
+      "name": "Pay decision submitted",
+      "points": 10
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "$schema": "praxis/v2/pack-flow",
+  "code": "UM2.1",
+  "name": "Multiple Authorizations 100% Match — Tag Correct & Pay",
+  "variants": [
+    {
+      "variant": "base",
+      "variantIndex": 1,
+      "subjectRefs": ["DCN-605103"]
+    },
+    {
+      "variant": "v2",
+      "variantIndex": 2,
+      "subjectRefs": [
+        "DCN-9280200",
+        "DCN-9280201",
+        "DCN-9280202",
+        "DCN-9280203",
+        "DCN-9280204",
+        "DCN-9280205",
+        "DCN-9280206"
+      ]
+    },
+    {
+      "variant": "v3",
+      "variantIndex": 3,
+      "subjectRefs": [
+        "DCN-9280300",
+        "DCN-9280301",
+        "DCN-9280302",
+        "DCN-9280303",
+        "DCN-9280304",
+        "DCN-9280305",
+        "DCN-9280306"
+      ]
+    },
+    {
+      "variant": "v4",
+      "variantIndex": 4,
+      "subjectRefs": [
+        "DCN-9280400",
+        "DCN-9280401",
+        "DCN-9280402",
+        "DCN-9280403",
+        "DCN-9280404",
+        "DCN-9280405",
+        "DCN-9280406"
+      ]
+    },
+    {
+      "variant": "v5",
+      "variantIndex": 5,
+      "subjectRefs": [
+        "DCN-9280500",
+        "DCN-9280501",
+        "DCN-9280502",
+        "DCN-9280503",
+        "DCN-9280504",
+        "DCN-9280505",
+        "DCN-9280506"
+      ]
+    }
+  ]
+}

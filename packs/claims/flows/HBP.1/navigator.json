@@ -1,0 +1,253 @@
+{
+  "$schema": "training-platform/v1/navigator",
+  "$version": "2.0.0",
+  "id": "nav_hbp_1_hospital_based_physician",
+  "flowId": "flow_authorization_hbp_1",
+  "name": "Authorization HBP.1 — Hospital Based Physician (PX_BB Bypass) Navigator",
+  "description": "Walk the Authorization (UM) SOP for the PX_HBP event — the claim is related to a Hospital Based Physician. Identify the PX_HBP event, confirm the UM Rule ID is not one of the four flagged IDs, confirm the rendering provider IS a Hospital Based Physician (Radiology), verify the Place of Service is one of 21/22/23/24/51/52, confirm the provider participation is PAR, then return to the Event Resolution tab, select the PX_BB bypass code, click Validate, and pay the claim.",
+  "totalSteps": 8,
+  "passMark": 70,
+  "correctDecision": "pay",
+  "correctDecisionLabel": "Pay",
+  "totalMaxPoints": 100,
+  "totalNavigatorPoints": 80,
+  "steps": [
+    {
+      "id": "step_001",
+      "sequenceId": 1,
+      "name": "Review all events and identify the PX_HBP event",
+      "description": "Review all events in the Event Resolution tab, including informational events, before paying, denying, or routing the claim when multiple events are set. The PX_HBP event will be displayed in the events list — this Authorization event occurs when the claim is related to a Hospital Based Physician.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_all_edits",
+      "targetFieldId": "f_er_e_hbp",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Event Resolution tab and reviews the events list, where the PX_HBP event is shown.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Event Resolution' and review the events list. The active PX_HBP event is shown — the claim is related to a Hospital Based Physician.",
+      "highlightFields": ["f_er_edit_code", "f_er_e_hbp"],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Review all events and identify the PX_HBP event"
+    },
+    {
+      "id": "step_002",
+      "sequenceId": 2,
+      "name": "Check the UM Rule ID",
+      "description": "Determine whether the UM Rule ID is one of MMS001, PSYCH001, ASCRULE01, or NYSTATE02 by navigating to the Claim Data tab, then the Review sub-tab, and expanding the Utilization Management section. Review the UM Detail Service table, which contains the Line #, Procedure, Revenue Code, Date, Rule ID, and Case Number columns, and identify the value displayed in the Rule ID column. If the Rule ID matches any of the specified values (MMS001, PSYCH001, ASCRULE01, or NYSTATE02), follow the alternate SOP steps. If none of these Rule IDs are present, proceed to the next step. In this scenario, the Rule ID is INPAT001, which does not match any of the specified values; therefore, the trainee may proceed to the next step.",
+      "targetTabId": "tab_claim_data",
+      "targetSubTabId": "subtab_claim_data_review",
+      "targetSectionId": "sec_cd_r_um",
+      "targetFieldId": "f_cdr_um_rule",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_data",
+        "subTabId": "subtab_claim_data_review"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Review sub-tab inside Claim Data and reads the UM Detail Service table's Rule ID.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Data' → 'Review' and expand Utilization management. The UM Detail Service Rule ID is INPAT001 — not one of MMS001 / PSYCH001 / ASCRULE01 / NYSTATE02 — so proceed.",
+      "highlightFields": ["f_cdr_um_rule"],
+      "highlightTabId": "tab_claim_data",
+      "highlightSubTabId": "subtab_claim_data_review",
+      "checklistItem": "Check the UM Rule ID"
+    },
+    {
+      "id": "step_003",
+      "sequenceId": 3,
+      "name": "Confirm Hospital Based Physician",
+      "description": "Verify whether the provider billed on the claim is a Hospital Based Physician by navigating to the Provider Information tab, then the Rendering section, and reviewing the Specialty Description field. A provider is considered a Hospital Based Physician if the Specialty Description is Anesthesiology, Radiology, Emergency Room Physician, Pathology, Assistant Surgeon, Neonatology, Intensivist, or Hospitalist. For the Hospital Based Physician (PX_HBP) workflow, the provider must meet one of these specialty criteria to proceed. If the provider is not a Hospital Based Physician, follow the alternate SOP steps. In this scenario, the Specialty Description is Radiology; therefore, the provider qualifies as a Hospital Based Physician, and the trainee may proceed to the next step.",
+      "targetTabId": "tab_provider_info",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_pi_rendering",
+      "targetFieldId": "f_pi_r_specialty_desc",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_provider_info"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Provider Information tab to read the Rendering Speciality Description.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Provider Info' and read the Speciality description under Rendering — it is Radiology, a Hospital-Based-Physician specialty, so the provider is a Hospital Based Physician and you proceed.",
+      "highlightFields": ["f_pi_r_specialty_desc"],
+      "highlightTabId": "tab_provider_info",
+      "checklistItem": "Confirm Hospital Based Physician"
+    },
+    {
+      "id": "step_004",
+      "sequenceId": 4,
+      "name": "Verify the Place of Service",
+      "description": "Open the Claim Lines tab — a single claim line row is displayed with the fields From, To, POS, Service, Procedure, Modifiers, Units, Diagnosis, and Billed; the From and To dates are both 04/28/2025 and the POS is 21. Verify the Place of Service: if the POS field shows 21, 22, 23, 24, 51, or 52, proceed; otherwise, follow the alternate SOP steps. In this scenario, the POS is 21, so the trainee proceeds.",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_summary",
+      "targetFieldId": "f_cl_pos",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_lines"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Claim Lines tab to verify the Place of Service.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Lines'. The POS is 21 — one of 21/22/23/24/51/52 — so proceed.",
+      "highlightFields": ["f_cl_pos", "f_cl_from", "f_cl_to"],
+      "highlightTabId": "tab_claim_lines",
+      "checklistItem": "Verify the Place of Service"
+    },
+    {
+      "id": "step_005",
+      "sequenceId": 5,
+      "name": "Verify provider participation status",
+      "description": "Verify the provider status by navigating to the Claim Header tab, then the General Claim Data section, and reviewing the Provider Participation field. The Provider Participation value must display PAR, indicating that the provider is a participating provider. If the provider status is PAR, proceed to the next step. If the provider status is not PAR, follow the alternate SOP steps. In this scenario, the Provider Participation field displays PAR; therefore, the provider is a participating provider, and the trainee may proceed to the next step.",
+      "targetTabId": "tab_claim_header",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_ch_general",
+      "targetFieldId": "f_ch_g_participation",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_header"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Claim Header tab to read the Provider participation field.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Header' and read Provider participation in the General Claim Data section — it shows PAR (participating), so proceed.",
+      "highlightFields": ["f_ch_g_participation"],
+      "highlightTabId": "tab_claim_header",
+      "checklistItem": "Verify provider participation status"
+    },
+    {
+      "id": "step_006",
+      "sequenceId": 6,
+      "name": "Locate the PX_BB bypass code",
+      "description": "Return to the Event Resolution tab. For this PX_HBP claim, the PX_BB bypass code must be applied. Along with the PX_HBP edit card, a 'PX_BB' bypass code is displayed under the 'Bypass codes' heading.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_bypass",
+      "targetFieldId": "f_er_bypass_code",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee returns to the Event Resolution tab while this step is active.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Go back to the 'Event Resolution' tab and find the 'Bypass codes' section next to the PX_HBP card.",
+      "highlightFields": ["f_er_bypass_code"],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Locate the PX_BB bypass code"
+    },
+    {
+      "id": "step_007",
+      "sequenceId": 7,
+      "name": "Apply the PX_BB bypass code and validate",
+      "description": "In the Bypass codes section, select PX_BB and click the Validate button in the claim summary to apply the bypass.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_bypass",
+      "targetFieldId": "f_er_bypass_code",
+      "actionType": "validate_bypass",
+      "actionPayload": {
+        "type": "validate_bypass"
+      },
+      "completesActionId": "validate_bypass",
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the trainee clicks the claim summary Validate button after selecting the PX_BB bypass code.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "In the 'Bypass codes' section pick 'PX_BB — Coverage bypass', then click 'Validate' in the claim summary.",
+      "highlightFields": ["f_er_bypass_code"],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Apply the PX_BB bypass code and validate"
+    },
+    {
+      "id": "step_008",
+      "sequenceId": 8,
+      "name": "Submit Pay decision",
+      "description": "Navigate to the Decision section in the header, select 'Pay' from the dropdown menu and click Submit.",
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "submit_decision",
+      "actionPayload": {
+        "type": "submit_decision",
+        "expectedDecision": "pay"
+      },
+      "completionTrigger": "decision_submitted",
+      "completionTriggerNote": "Completes when the trainee confirms the Pay decision in the submit dialog.",
+      "expectedValue": "pay",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Pick 'Pay' from the Decision dropdown in the claim header, then click Submit and confirm in the dialog.",
+      "highlightFields": [],
+      "checklistItem": "Submit Pay decision"
+    }
+  ],
+  "scoreBreakdown": {
+    "navigatorStepsMaxPoints": 80,
+    "decisionMaxPoints": 20,
+    "reasonCodeMaxPoints": 0,
+    "totalMaxPoints": 100,
+    "passMark": 70,
+    "weightedPassScore": 70
+  },
+  "stepSummaryForResults": [
+    {
+      "sequenceId": 1,
+      "name": "PX_HBP event identified",
+      "points": 10
+    },
+    {
+      "sequenceId": 2,
+      "name": "UM Rule ID not one of the flagged IDs (INPAT001)",
+      "points": 10
+    },
+    {
+      "sequenceId": 3,
+      "name": "Provider confirmed Hospital Based Physician (Radiology)",
+      "points": 10
+    },
+    {
+      "sequenceId": 4,
+      "name": "Place of Service verified (POS 21)",
+      "points": 10
+    },
+    {
+      "sequenceId": 5,
+      "name": "Provider participation confirmed (PAR)",
+      "points": 10
+    },
+    {
+      "sequenceId": 6,
+      "name": "PX_BB bypass code located",
+      "points": 10
+    },
+    {
+      "sequenceId": 7,
+      "name": "PX_BB bypass applied and validated",
+      "points": 10
+    },
+    {
+      "sequenceId": 8,
+      "name": "Pay decision submitted",
+      "points": 10
+    }
+  ]
+}

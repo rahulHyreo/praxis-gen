@@ -1,0 +1,67 @@
+{
+  "$schema": "training-platform/v1/flow-result",
+  "$version": "1.0.0",
+  "id": "result_and_1_provider_data_mismatch",
+  "rubric": {
+    "expectedDecision": "deny",
+    "expectedReasonCode": "PX_RANNPI",
+    "requiredStepIds": [
+      "step_005",
+      "step_006",
+      "step_007",
+      "step_008",
+      "step_009"
+    ],
+    "weights": {
+      "navigator": 90,
+      "decision": 20,
+      "reasonCode": 10
+    },
+    "deductions": {
+      "perMissedRequiredStep": 0,
+      "wrongDecision": 20,
+      "wrongReasonCode": 10
+    }
+  },
+  "resultConfig": {
+    "passLabel": "Passed!",
+    "failLabel": "You did not meet the pass mark.",
+    "passDescription": "Great work — you did the part of this claim that the event itself does not tell you. You confirmed it was genuinely a DME claim on both counts, the place of service 12 and the V04 specialty agreeing with procedure code E0601, and then you went and read the subscriber's address. California is an Elevance Health state, so the claim was already filed with the right plan and the AND event's wrong-plan defect — the one that would have rejected with PX_RANDME — did not apply. That left the real defect: no ordering provider NPI on the claim record, and none in field 44 of the claim image either, so the provider never submitted one. You denied with PX_RANNPI, which is the code for what was actually wrong.",
+    "failDescription": "Pass mark is {passMark}%. Review the steps below to see where you can improve.",
+    "scoreCircle": {
+      "radius": 40,
+      "strokeWidth": 8,
+      "passColor": "#3B6D11",
+      "failColor": "#A32D2D",
+      "trackColor": "#E5E7EB"
+    },
+    "statBoxes": [
+      {
+        "id": "navigator_score",
+        "label": "Navigator",
+        "dataKey": "navigatorScore",
+        "max": 90
+      },
+      {
+        "id": "decision_score",
+        "label": "Decision",
+        "dataKey": "decisionScore",
+        "max": 20
+      },
+      {
+        "id": "reason_code_score",
+        "label": "Reason Code",
+        "dataKey": "reasonCodeScore",
+        "max": 10
+      },
+      {
+        "id": "time_taken",
+        "label": "Time Taken",
+        "dataKey": "timeTakenSeconds",
+        "format": "duration"
+      }
+    ],
+    "retakeButton": true,
+    "backToClaimsButton": true
+  }
+}

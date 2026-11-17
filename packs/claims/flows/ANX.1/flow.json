@@ -1,0 +1,64 @@
+{
+  "$schema": "praxis/v2/pack-flow",
+  "code": "ANX.1",
+  "name": "Provider Data Mis-match — ANX event on a specialty Rx claim: confirm the Pharmacy specialty, note the referring provider's Ancillary details and NPI, match it against the claim image, find no record in the provider database or the NPI Registry, and deny with PX_RANSRX",
+  "variants": [
+    {
+      "variant": "base",
+      "variantIndex": 1,
+      "subjectRefs": ["DCN-621104"]
+    },
+    {
+      "variant": "v2",
+      "variantIndex": 2,
+      "subjectRefs": [
+        "DCN-9970200",
+        "DCN-9970201",
+        "DCN-9970202",
+        "DCN-9970203",
+        "DCN-9970204",
+        "DCN-9970205",
+        "DCN-9970206"
+      ]
+    },
+    {
+      "variant": "v3",
+      "variantIndex": 3,
+      "subjectRefs": [
+        "DCN-9970300",
+        "DCN-9970301",
+        "DCN-9970302",
+        "DCN-9970303",
+        "DCN-9970304",
+        "DCN-9970305",
+        "DCN-9970306"
+      ]
+    },
+    {
+      "variant": "v4",
+      "variantIndex": 4,
+      "subjectRefs": [
+        "DCN-9970400",
+        "DCN-9970401",
+        "DCN-9970402",
+        "DCN-9970403",
+        "DCN-9970404",
+        "DCN-9970405",
+        "DCN-9970406"
+      ]
+    },
+    {
+      "variant": "v5",
+      "variantIndex": 5,
+      "subjectRefs": [
+        "DCN-9970500",
+        "DCN-9970501",
+        "DCN-9970502",
+        "DCN-9970503",
+        "DCN-9970504",
+        "DCN-9970505",
+        "DCN-9970506"
+      ]
+    }
+  ]
+}

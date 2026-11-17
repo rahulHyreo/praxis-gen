@@ -1,0 +1,329 @@
+{
+  "$schema": "praxis/v2/pack",
+  "id": "claims",
+  "version": "1.0.0",
+  "title": "Claims Operations",
+  "domain": "claims",
+  "description": "v1's claims content, generalized. Block 3 of the Claims Operations track (§4.2, §4.3). Claims is the first pack, not the architecture.",
+  "glossary": "glossary.md",
+  "decisionOptions": [
+    {
+      "key": "deny",
+      "label": "Deny"
+    },
+    {
+      "key": "pay",
+      "label": "Pay"
+    },
+    {
+      "key": "pend",
+      "label": "Pend"
+    }
+  ],
+  "allowsNoDecision": true,
+  "reasonCodes": [
+    {
+      "code": "PX_00169",
+      "label": "Claim line submission exceeded the timely filing limit"
+    },
+    {
+      "code": "PX_R01030",
+      "label": "Date of service is after the member's coverage termination date"
+    },
+    {
+      "code": "PX_R11100",
+      "label": "DME purchase price already met on a prior claim — no further allowance can be made"
+    },
+    {
+      "code": "PX_R11260",
+      "label": "Date of service is before the membership effective date"
+    },
+    {
+      "code": "PX_R11310",
+      "label": "Denial reason is coverage dependent"
+    },
+    {
+      "code": "PX_R19022",
+      "label": "Late call penalty applied at 100% — allowed amount equals billed amount, no payable balance"
+    },
+    {
+      "code": "PX_R21410",
+      "label": "Claim submission exceeded the timely filing limit"
+    },
+    {
+      "code": "PX_R21650",
+      "label": "DME purchase price already met on a prior claim — no further allowance can be made"
+    },
+    {
+      "code": "PX_R23090",
+      "label": "No authorization record found for the billed service"
+    },
+    {
+      "code": "PX_R23100",
+      "label": "Service denied as Not medically necessary (NMN)"
+    },
+    {
+      "code": "PX_R24040",
+      "label": "Member claim submitted after the timely filing limit"
+    },
+    {
+      "code": "PX_R75010",
+      "label": "No authorization record found for the billed service line"
+    },
+    {
+      "code": "PX_RADJT0",
+      "label": "Adjust original rejected claim — authorization now available"
+    },
+    {
+      "code": "PX_RANLAB",
+      "label": "Referring provider not on file — correct filing address cannot be determined"
+    },
+    {
+      "code": "PX_RANNPI",
+      "label": "Ordering provider NPI not present on the claim"
+    },
+    {
+      "code": "PX_RANSRX",
+      "label": "Referring provider not on file — correct filing address cannot be determined"
+    },
+    {
+      "code": "PX_RDUP00",
+      "label": "Exact duplicate claim/service"
+    },
+    {
+      "code": "PX_RG2400",
+      "label": "Provider state outside the plan service area — submit the claim to the local Blue Cross Blue Shield plan"
+    },
+    {
+      "code": "PX_RNBE00",
+      "label": "Newborn not enrolled — date of service beyond the state enrollment window"
+    },
+    {
+      "code": "PX_RPAIM0",
+      "label": "Carelon MBM service — claim denied at claim level"
+    }
+  ],
+  "editBypassCodes": [
+    {
+      "code": "PX_DGX",
+      "label": "PX_DGX"
+    },
+    {
+      "code": "PX_GM",
+      "label": "PX_GM"
+    },
+    {
+      "code": "PX_LUM",
+      "label": "PX_LUM"
+    },
+    {
+      "code": "PX_MCO",
+      "label": "PX_MCO"
+    },
+    {
+      "code": "PX_NIP",
+      "label": "PX_NIP"
+    },
+    {
+      "code": "PX_RFP",
+      "label": "PX_RFP"
+    },
+    {
+      "code": "PX_SPS",
+      "label": "PX_SPS"
+    },
+    {
+      "code": "PX_UMN",
+      "label": "PX_UMN"
+    },
+    {
+      "code": "PX_CB",
+      "label": "PX_CB — Coverage bypass"
+    },
+    {
+      "code": "PX_RNB",
+      "label": "PX_RNB — Edit PX_RNB"
+    },
+    {
+      "code": "PX_IAF",
+      "label": "PX_IAF — Edit PX_IAF"
+    },
+    {
+      "code": "PX_PLP",
+      "label": "PX_PLP — Edit PX_PLP"
+    },
+    {
+      "code": "PX_334",
+      "label": "PX_334 — Edit PX_334"
+    },
+    {
+      "code": "PX_REL",
+      "label": "PX_REL — Edit PX_REL"
+    },
+    {
+      "code": "PX_TF",
+      "label": "PX_TF — Timely filing bypass"
+    },
+    {
+      "code": "PX_VM",
+      "label": "PX_VM — Limited liability review verified"
+    },
+    {
+      "code": "PX_DX",
+      "label": "PX_DX"
+    },
+    {
+      "code": "PX_VA",
+      "label": "PX_VA"
+    },
+    {
+      "code": "PX_DM",
+      "label": "PX_DM — DME informational"
+    },
+    {
+      "code": "PX_IT",
+      "label": "PX_IT"
+    },
+    {
+      "code": "PX_BB",
+      "label": "PX_BB -Coverage bypass"
+    },
+    {
+      "code": "PX_RY",
+      "label": "PX_RY — Bypass the PX_RET event"
+    },
+    {
+      "code": "PX_SP",
+      "label": "PX_SP — Edit PX_SPS"
+    },
+    {
+      "code": "PX_DG",
+      "label": "PX_DG — Edit PX_DGX"
+    },
+    {
+      "code": "PX_NI",
+      "label": "PX_NI — Edit PX_NIP"
+    },
+    {
+      "code": "PX_RF",
+      "label": "PX_RF — Edit PX_RFP"
+    },
+    {
+      "code": "PX_LU",
+      "label": "PX_LU — Edit PX_LUM"
+    },
+    {
+      "code": "PX_T2",
+      "label": "PX_T2 — Edit PX_TR2"
+    }
+  ],
+  "formatSubjectRef": {
+    "prefix": "DCN-",
+    "digits": 6,
+    "example": "DCN-606101"
+  },
+  "moduleWeekMapping": {
+    "approved": false,
+    "approvalNote": "not approved — the claims flow → week mapping is an open decision (§45.3). No week is inferred from a flow code, directory name or source comment.",
+    "weeks": {},
+    "unassignedFlows": [
+      "088.1",
+      "092.1",
+      "092.2",
+      "280.1",
+      "281.1",
+      "507.1",
+      "507.2",
+      "507.3",
+      "509.1",
+      "509.2",
+      "590.1",
+      "590.2",
+      "597.1",
+      "5J.1",
+      "687.1",
+      "6X.1",
+      "843.1",
+      "846.1",
+      "AIM.1",
+      "AND.1",
+      "ANL.1",
+      "ANN.1",
+      "ANX.1",
+      "ANZ.1",
+      "BNR.1",
+      "Benefits.1",
+      "Benefits.2",
+      "Benefits.3",
+      "Benefits.4",
+      "Benefits.5",
+      "Benefits.6",
+      "Benefits.7",
+      "Benefits.8",
+      "CLM.1",
+      "CLM.2",
+      "DEMO.1",
+      "DMX.1",
+      "DMX.2",
+      "ECM.1",
+      "FSB.1",
+      "G24.1",
+      "G24.2",
+      "GCB.1",
+      "HBP.1",
+      "HBP.2",
+      "HPE.1",
+      "HPE.2",
+      "HS1.1",
+      "LPS.1",
+      "LPS.2",
+      "MN.1",
+      "MN.2",
+      "MN.3",
+      "MR.1",
+      "MR.2",
+      "MTF.1",
+      "MTF.2",
+      "NBC.1",
+      "NCN.1",
+      "NCN.2",
+      "NCR.1",
+      "NCX.1",
+      "NCZ.1",
+      "NMF.1",
+      "PAM.1",
+      "PPB.1",
+      "PPB.2",
+      "PTF.1",
+      "PTF.2",
+      "QT0.1",
+      "QT1.1",
+      "QT5.1",
+      "QT7.1",
+      "QT8.1",
+      "RB1.1",
+      "RB2.1",
+      "RET.1",
+      "UM0.1",
+      "UM1.1",
+      "UM2.1",
+      "UM6.1",
+      "UMG.1",
+      "VCB.1",
+      "W-DMX.1",
+      "W-DMX.2",
+      "W-DMX.3",
+      "X4.1",
+      "X6.1",
+      "ZEL.1",
+      "ZLL.1",
+      "ZLS.1",
+      "ZLZ.1"
+    ]
+  },
+  "examBlueprints": {
+    "approved": false,
+    "approvalNote": "not approved — blueprints depend on the unapproved flow → week mapping (§45.3).",
+    "blueprints": []
+  }
+}

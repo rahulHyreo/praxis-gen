@@ -1,0 +1,99 @@
+{
+  "$schema": "training-platform/v1/flow-state",
+  "$version": "1.0.0",
+  "id": "state_ecm_1_line_level_vs_total_mismatch_validate_pay",
+  "initial": {
+    "defaultActiveTabId": "tab_event_resolution",
+    "defaultActiveSubTabIds": {
+      "tab_search": "subtab_search_claims",
+      "tab_claim_data": "subtab_claim_data_details",
+      "tab_attachment": "subtab_attachment_attachments"
+    },
+    "defaultCollapsedSections": {},
+    "defaultDecision": ""
+  },
+  "modeConfig": {
+    "training": {
+      "id": "training",
+      "label": "Training mode",
+      "badgeIcon": "graduation-cap",
+      "showNavigator": true,
+      "timerType": "count_up",
+      "timerPosition": "navigator_header",
+      "timeLockEnabled": false,
+      "showHints": true,
+      "showMarkCompleteButton": true,
+      "allowTabClose": true
+    },
+    "practice": {
+      "id": "practice",
+      "label": "Practice mode",
+      "badgeIcon": "dumbbell",
+      "showNavigator": false,
+      "timerType": "count_up",
+      "timerPosition": "topbar",
+      "timeLockEnabled": false,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": true
+    },
+    "assessment": {
+      "id": "assessment",
+      "label": "Assessment Mode",
+      "badgeIcon": "graduation-cap",
+      "showNavigator": false,
+      "timerType": "count_down",
+      "timerPosition": "topbar_right",
+      "timeLimitSeconds": 600,
+      "timeLockEnabled": true,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": false,
+      "beforeUnloadWarning": "Assessment in progress. Leaving will lose your progress."
+    }
+  },
+  "actions": {
+    "open_eob_details": {
+      "label": "EOB (Claim form) details",
+      "latencyMs": 0,
+      "writes": {
+        "cob.eobDetailsVisible": true
+      },
+      "completesStepId": "step_003"
+    },
+    "validate": {
+      "label": "Validate",
+      "latencyMs": 400,
+      "guard": {
+        "all": [
+          {
+            "dataKey": "cob.lines.line1.disc",
+            "equalsAmount": "85.30"
+          },
+          {
+            "dataKey": "cob.lines.line2.disc",
+            "equalsAmount": "51.95"
+          },
+          {
+            "dataKey": "cob.lines.line3.disc",
+            "equalsAmount": "27.38"
+          }
+        ],
+        "elseWrites": {
+          "cob.validationMessage": "The amounts do not balance. Add up each Detail line column and compare it against the claim-level Total; the column that does not match is the one to correct. The claim form values are under \"EOB (Claim form) details\" at the bottom of this sub-tab.",
+          "eventResolution.validationMessage": ""
+        }
+      },
+      "writes": {
+        "cob.validationMessage": "Amounts balanced — the Discount column now totals 164.63 across the three detail lines.",
+        "eventResolution.validationMessage": "PX_ECM RESOLVED — LINE LEVEL AMOUNTS BALANCE TO THE CLAIM TOTAL"
+      },
+      "completesStepId": "step_005"
+    }
+  },
+  "persistence": {
+    "persistKey": null,
+    "autosave": false,
+    "resetOnSubmit": false
+  }
+}

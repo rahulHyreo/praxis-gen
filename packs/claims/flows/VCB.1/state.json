@@ -1,0 +1,125 @@
+{
+  "$schema": "training-platform/v1/flow-state",
+  "$version": "1.0.0",
+  "id": "state_vcb_1_stale_other_carrier_eob",
+  "initial": {
+    "defaultActiveTabId": "tab_event_resolution",
+    "defaultActiveSubTabIds": {
+      "tab_search": "subtab_search_claims",
+      "tab_claim_data": "subtab_claim_data_details",
+      "tab_attachment": "subtab_attachment_attachments"
+    },
+    "defaultCollapsedSections": {},
+    "defaultDecision": "",
+    "decisionRequired": false
+  },
+  "modeConfig": {
+    "training": {
+      "id": "training",
+      "label": "Training mode",
+      "badgeIcon": "graduation-cap",
+      "showNavigator": true,
+      "timerType": "count_up",
+      "timerPosition": "navigator_header",
+      "timeLockEnabled": false,
+      "showHints": true,
+      "showMarkCompleteButton": true,
+      "allowTabClose": true
+    },
+    "practice": {
+      "id": "practice",
+      "label": "Practice mode",
+      "badgeIcon": "dumbbell",
+      "showNavigator": false,
+      "timerType": "count_up",
+      "timerPosition": "topbar",
+      "timeLockEnabled": false,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": true
+    },
+    "assessment": {
+      "id": "assessment",
+      "label": "Assessment Mode",
+      "badgeIcon": "graduation-cap",
+      "showNavigator": false,
+      "timerType": "count_down",
+      "timerPosition": "topbar_right",
+      "timeLimitSeconds": 600,
+      "timeLockEnabled": true,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": false,
+      "beforeUnloadWarning": "Assessment in progress. Leaving will lose your progress."
+    }
+  },
+  "actions": {
+    "claims_search": {
+      "label": "Search claim history",
+      "latencyMs": 300,
+      "writes": {
+        "search.claimsSearched": true
+      },
+      "completesStepId": "step_002"
+    },
+    "claims_search_clear": {
+      "label": "Clear the claim search",
+      "latencyMs": 0,
+      "writes": {}
+    },
+    "open_delete_popup": {
+      "label": "Open Delete Popup",
+      "latencyMs": 0,
+      "writes": {},
+      "completesStepId": "step_005"
+    },
+    "submit_delete_popup": {
+      "label": "Submit — delete the selected popup",
+      "latencyMs": 300,
+      "guard": {
+        "dataKey": "deletePopup.popup",
+        "equals": "CB-Commercial",
+        "elseWrites": {
+          "deletePopup.status": "No popup was submitted. Select CB-Commercial in the dropdown, then click Submit again."
+        }
+      },
+      "writes": {
+        "deletePopup.confirmPending": true,
+        "deletePopup.status": ""
+      },
+      "completesStepId": "step_007"
+    },
+    "confirm_delete_popup": {
+      "label": "Yes — confirm the deletion",
+      "latencyMs": 400,
+      "writes": {
+        "cob.popupDeleted": true,
+        "deletePopup.confirmPending": false,
+        "deletePopup.status": "The CB - Commercial popup has been deleted. Continue processing the claim under all current established unit guidelines.",
+        "header.edits": "—",
+        "eventResolution.validationMessage": "CB - COMMERCIAL POPUP DELETED — COB DATA REMOVED FROM THE CLAIM"
+      },
+      "completesStepId": "step_008"
+    },
+    "validate": {
+      "label": "Validate",
+      "latencyMs": 400,
+      "writes": {
+        "eventResolution.validationMessage": "CLAIM VALIDATED — PROCESSED UNDER ALL CURRENT ESTABLISHED UNIT GUIDELINES"
+      },
+      "completesStepId": "step_009"
+    },
+    "cancel_delete_popup": {
+      "label": "No — leave the popup in place",
+      "latencyMs": 0,
+      "writes": {
+        "deletePopup.confirmPending": false
+      }
+    }
+  },
+  "persistence": {
+    "persistKey": null,
+    "autosave": false,
+    "resetOnSubmit": false
+  }
+}

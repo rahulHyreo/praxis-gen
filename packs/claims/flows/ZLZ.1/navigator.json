@@ -1,0 +1,111 @@
+{
+  "$schema": "training-platform/v1/navigator",
+  "$version": "2.0.0",
+  "id": "nav_zlz_1_vendor_pricing_enter_claim_pay",
+  "flowId": "flow_pricing_zlz_1",
+  "name": "Pricing ZLZ.1 — Vendor Pricing (PX_ZLZ) Enter Zelis Claim # & Pay Navigator",
+  "description": "Walk the Pricing SOP for a claim carrying a PX_ZLL/PX_ZLZ informational edit — a vendor pricing reference / linkage event signalling the claim has gone through the external/vendor (Zelis/PX_NCN) pricing flow. Identify the PX_ZLL and PX_ZLZ informational edits on the Event Resolution tab and check the event hierarchy (no other events such as PX_ZLS present, so nothing precedes PX_ZLL/PX_ZLZ — proceed), open the Claim Data → Pricing sub-tab and type the Zelis claim number into the editable NTWK CLAIM# field under the Manual Pricing Network group, then pay the claim.",
+  "totalSteps": 3,
+  "passMark": 70,
+  "correctDecision": "pay",
+  "correctDecisionLabel": "Pay",
+  "totalMaxPoints": 50,
+  "totalNavigatorPoints": 30,
+  "steps": [
+    {
+      "id": "step_001",
+      "sequenceId": 1,
+      "name": "Identify the PX_ZLL and PX_ZLZ informational edits and check the event hierarchy",
+      "description": "Review all edits in the Event Resolution tab. The PX_ZLL and PX_ZLZ informational edits are highlighted with an error indication — these are the current events to resolve. The PX_ZLL/PX_ZLZ events indicate the claim has a link/reference to external vendor pricing (Zelis/PX_NCN) that needs validation, and they typically appear together. Verify the events list for any other related events such as PX_ZLS. If other events are present, resolve those that come before PX_ZLL and PX_ZLZ first per the event hierarchy; if no other events are present, proceed. In this scenario, no other events are present, so the trainee proceeds.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_all_edits",
+      "targetFieldId": "f_er_e_zll",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Event Resolution tab and reviews the events list, where the active PX_ZLL and PX_ZLZ informational edits are highlighted with an error indication and no other events (e.g. PX_ZLS) are present.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Event Resolution' and review the events list. PX_ZLL and PX_ZLZ are the active informational edits, highlighted with an error indication, and no other events such as PX_ZLS are present, so proceed.",
+      "highlightFields": ["f_er_e_zll", "f_er_e_zlz", "f_er_edit_code"],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Identify the PX_ZLL and PX_ZLZ informational edits and check the event hierarchy"
+    },
+    {
+      "id": "step_002",
+      "sequenceId": 2,
+      "name": "Enter the Zelis claim number in NTWK CLAIM#",
+      "description": "Obtain the Zelis claim number and record it on the claim. Normally the trainee views the claim on the Zelis portal or follows the existing unit guidelines to contact the Team Lead (TL) or Operations Expert (OE) to obtain the Zelis claim number — however, since the Zelis portal is not available at this time, that lookup step is out of scope in training and the app supplies the number. Navigate to the Claim Data tab, then the Pricing sub-tab, click the NTWK CLAIM# input box under the Manual Pricing Network group, and enter the Zelis claim number (9087654321) to cross-reference the claim with the vendor pricing system.",
+      "targetTabId": "tab_claim_data",
+      "targetSubTabId": "subtab_claim_data_pricing",
+      "targetSectionId": "sec_cd_pr_mp_network",
+      "targetFieldId": "f_mp_network_claim",
+      "actionType": "field_edit",
+      "actionPayload": {
+        "fieldId": "f_mp_network_claim"
+      },
+      "completionTrigger": "field_value_set",
+      "completionTriggerNote": "Completes when the trainee opens the Claim Data → Pricing sub-tab and types the Zelis claim number (9087654321) into the NTWK CLAIM# field of the Manual Pricing Network group.",
+      "expectedValue": "9087654321",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Data' → 'Pricing', click the NTWK CLAIM# box under the Network group, and type the Zelis claim number 9087654321.",
+      "highlightFields": ["f_mp_network_claim"],
+      "highlightTabId": "tab_claim_data",
+      "highlightSubTabId": "subtab_claim_data_pricing",
+      "checklistItem": "Enter the Zelis claim number in NTWK CLAIM#"
+    },
+    {
+      "id": "step_003",
+      "sequenceId": 3,
+      "name": "Submit Pay decision",
+      "description": "Navigate to the Decision section in the header, select 'Pay' from the dropdown menu and click Submit. With the Zelis claim number recorded in NTWK CLAIM# and the vendor pricing reference validated, the claim is paid.",
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "submit_decision",
+      "actionPayload": {
+        "type": "submit_decision",
+        "expectedDecision": "pay"
+      },
+      "completionTrigger": "decision_submitted",
+      "completionTriggerNote": "Completes when the trainee confirms the Pay decision in the submit dialog.",
+      "expectedValue": "pay",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Pick 'Pay' from the Decision dropdown in the claim header, then click Submit and confirm in the dialog.",
+      "highlightFields": [],
+      "checklistItem": "Submit Pay decision"
+    }
+  ],
+  "scoreBreakdown": {
+    "navigatorStepsMaxPoints": 30,
+    "decisionMaxPoints": 20,
+    "reasonCodeMaxPoints": 0,
+    "totalMaxPoints": 50,
+    "passMark": 70,
+    "weightedPassScore": 35
+  },
+  "stepSummaryForResults": [
+    {
+      "sequenceId": 1,
+      "name": "PX_ZLL and PX_ZLZ informational edits identified; event hierarchy clear (no other events)",
+      "points": 10
+    },
+    {
+      "sequenceId": 2,
+      "name": "Zelis claim number entered in NTWK CLAIM#",
+      "points": 10
+    },
+    {
+      "sequenceId": 3,
+      "name": "Pay decision submitted",
+      "points": 10
+    }
+  ]
+}

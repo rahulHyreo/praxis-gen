@@ -1,0 +1,372 @@
+{
+  "id": "nav_mtf_1_within_tfl",
+  "name": "Timely Filing MTF.1 — Within TFL Navigator",
+  "steps": [
+    {
+      "id": "step_001",
+      "hint": "Click the 'Event Resolution' tab. The Active Edit panel shows PX_MTF — 'Member timely filing' flagged as a Hard Edit (red). That is the event you must resolve.",
+      "name": "Identify the PX_MTF hard edit on Event Resolution",
+      "actionType": "tab_open",
+      "sequenceId": 1,
+      "description": "Open the Event Resolution tab. All edits on the claim are listed; the PX_MTF edit ('Member timely filing') is the active Hard Edit, flagged in red. That is the current event you are resolving.",
+      "scorePoints": 10,
+      "targetTabId": "tab_event_resolution",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "checklistItem": "Event Resolution tab opened — PX_MTF hard edit identified",
+      "expectedValue": null,
+      "targetFieldId": null,
+      "highlightTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "highlightFields": ["f_er_edit_label", "f_er_severity", "f_er_e_mtf"],
+      "targetSectionId": "sec_er_active",
+      "timeLimitSeconds": null,
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes as soon as the trainee opens the Event Resolution tab."
+    },
+    {
+      "id": "step_002",
+      "hint": "Open the 'Notes' tab and check the BEN field under Task Management. Here it reads SPIDER — proceed.",
+      "name": "Identify the benefit type",
+      "actionType": "tab_open",
+      "sequenceId": 2,
+      "description": "Review the timely filing limit by determining the benefit type. Open the Notes tab and navigate to the Task Management section, then check the BEN field to identify the benefit. If the benefit is SPIDER, proceed; if it is WPD, follow the alternate SOP steps. In this scenario, the benefit is SPIDER, so the trainee proceeds.",
+      "scorePoints": 10,
+      "targetTabId": "tab_notes",
+      "actionPayload": {
+        "tabId": "tab_notes"
+      },
+      "checklistItem": "Identify the benefit type",
+      "expectedValue": null,
+      "targetFieldId": "f_n_t_ben",
+      "highlightTabId": "tab_notes",
+      "targetSubTabId": null,
+      "highlightFields": ["f_n_t_ben"],
+      "targetSectionId": "sec_n_task",
+      "timeLimitSeconds": null,
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Notes tab."
+    },
+    {
+      "id": "step_003",
+      "hint": "Click 'Search' → 'Benefits' sub-tab. In the Plan options section, find the MEMBER CLAIM FILING DAY LIMIT row — the Maximum column shows 365 days.",
+      "name": "Look up the Timely Filing Limit",
+      "actionType": "subtab_open",
+      "sequenceId": 3,
+      "description": "Navigate to the Search tab and open the Benefits sub-tab. Scroll to the Plan Level row. The Plan options table will be displayed with the columns Cost share, Network, Maximum, and Accum Type. Scroll through the Plan options to the MEMBER CLAIM FILING DAY LIMIT entry under the Cost share column and read the timely filing limit from the Maximum column. In this scenario, the TFL value is 365 days.",
+      "scorePoints": 10,
+      "targetTabId": "tab_search",
+      "actionPayload": {
+        "tabId": "tab_search",
+        "subTabId": "subtab_search_benefits"
+      },
+      "checklistItem": "Look up the Timely Filing Limit",
+      "expectedValue": null,
+      "targetFieldId": null,
+      "highlightTabId": "tab_search",
+      "targetSubTabId": "subtab_search_benefits",
+      "highlightFields": [
+        "f_sb_po_2_cost",
+        "f_sb_po_2_net",
+        "f_sb_po_2_max",
+        "f_sb_po_2_acc"
+      ],
+      "targetSectionId": "sec_sb_plan_options",
+      "timeLimitSeconds": null,
+      "completionTrigger": "subtab_visited",
+      "highlightSubTabId": "subtab_search_benefits",
+      "completionTriggerNote": "Completes when the trainee opens the Benefits sub-tab inside Search."
+    },
+    {
+      "id": "step_004",
+      "hint": "Click 'Claim Data' → 'Details' sub-tab. In Additional Claim Data, confirm Claim type is Professional and ITS Home is No — proceed.",
+      "name": "Verify the claim is Non-ITS Home",
+      "actionType": "subtab_open",
+      "sequenceId": 4,
+      "description": "Navigate to the Claim Data tab, select the Details sub-tab, and review the Additional Claim Data section to determine whether the claim type  is classified as ITS Home. If the claim type  is identified as ITS Home, follow the alternate SOP-defined process. If the claim type  is Non-ITS Home, continue with the standard workflow. In this scenario, the claim type is Professional, which is classified as Non-ITS Home; therefore, proceed with the standard process.",
+      "scorePoints": 10,
+      "targetTabId": "tab_claim_data",
+      "actionPayload": {
+        "tabId": "tab_claim_data",
+        "subTabId": "subtab_claim_data_details"
+      },
+      "checklistItem": "Verify the claim is Non-ITS Home",
+      "expectedValue": null,
+      "targetFieldId": "f_cdd_type",
+      "highlightTabId": "tab_claim_data",
+      "targetSubTabId": "subtab_claim_data_details",
+      "highlightFields": ["f_cdd_type", "f_cdd_its_home"],
+      "targetSectionId": "sec_cd_d_source",
+      "timeLimitSeconds": null,
+      "completionTrigger": "subtab_visited",
+      "highlightSubTabId": "subtab_claim_data_details",
+      "completionTriggerNote": "Completes when the trainee opens the Details sub-tab inside Claim Data."
+    },
+    {
+      "id": "step_005",
+      "hint": "Click 'Event Resolution' and look in the All Edits section — the PX_PAJ event is present here. Check the Claim Header next.",
+      "name": "Check for the PX_PAJ event",
+      "actionType": "tab_open",
+      "sequenceId": 5,
+      "description": "Determine whether the claim contains a corrected claim event by looking for the PX_PAJ event in the Event Resolution tab. In this scenario, the PX_PAJ event is present, so the next condition must also be checked before concluding whether the claim is a corrected claim.",
+      "scorePoints": 10,
+      "targetTabId": "tab_event_resolution",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "checklistItem": "Check for the PX_PAJ event",
+      "expectedValue": null,
+      "targetFieldId": "f_er_e_paj",
+      "highlightTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "highlightFields": ["f_er_e_paj"],
+      "targetSectionId": "sec_er_all_edits",
+      "timeLimitSeconds": null,
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Event Resolution tab to look for the PX_PAJ event."
+    },
+    {
+      "id": "step_006",
+      "hint": "Click 'Claim Header' and check the Frequency field under General Claim Data. Here it reads 1 (not 7) — not a corrected claim, so proceed.",
+      "name": "Confirm the Frequency value",
+      "actionType": "tab_open",
+      "sequenceId": 6,
+      "description": "Confirm the Frequency value in the General Claim Data section of the Claim Header tab. If the PX_PAJ event is present and the Frequency field is 7, the claim is a corrected claim and the alternate SOP steps must be followed. If either condition is absent, the claim is not a corrected claim and the trainee proceeds. In this scenario, the Frequency is not 7, so the claim is not a corrected claim and the trainee proceeds.",
+      "scorePoints": 10,
+      "targetTabId": "tab_claim_header",
+      "actionPayload": {
+        "tabId": "tab_claim_header"
+      },
+      "checklistItem": "Confirm the Frequency value",
+      "expectedValue": null,
+      "targetFieldId": "f_ch_g_frequency",
+      "highlightTabId": "tab_claim_header",
+      "targetSubTabId": null,
+      "highlightFields": ["f_ch_g_frequency"],
+      "targetSectionId": "sec_ch_general",
+      "timeLimitSeconds": null,
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Claim Header tab to confirm the Frequency value."
+    },
+    {
+      "id": "step_007",
+      "hint": "Go back to 'Event Resolution' and look for a PX_SUT event in the All Edits section. It's absent — the provider is not Sutter, so proceed.",
+      "name": "Check for the PX_SUT event",
+      "actionType": "tab_open",
+      "sequenceId": 7,
+      "description": "Determine whether the provider is Sutter by looking for the PX_SUT event in the Event Resolution tab. If the PX_SUT event is present, follow the Sutter procedure; if it is absent, the provider is not Sutter and the trainee proceeds. In this scenario, the PX_SUT event is absent, so the trainee proceeds.",
+      "scorePoints": 10,
+      "targetTabId": "tab_event_resolution",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "checklistItem": "Check for the PX_SUT event",
+      "expectedValue": null,
+      "targetFieldId": null,
+      "highlightTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "highlightFields": [],
+      "targetSectionId": "sec_er_all_edits",
+      "timeLimitSeconds": null,
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee revisits Event Resolution to verify the PX_SUT event is absent."
+    },
+    {
+      "id": "step_008",
+      "hint": "Return to 'Claim Header' and check Provider Participation under General Claim Data. Here it reads PAR — proceed.",
+      "name": "Verify provider participation status",
+      "actionType": "tab_open",
+      "sequenceId": 8,
+      "description": "Verify the claim type and provider status by navigating to the Claim Header tab, then the Provider Information section, and reviewing the Provider Participation field. The claim type has already been confirmed as Professional. To proceed, the Provider Participation field must display NPAR, indicating that the provider is non-participating. If the claim type is Professional and the provider status is NPAR, continue to the next step. Otherwise, follow the alternate SOP.",
+      "scorePoints": 10,
+      "targetTabId": "tab_claim_header",
+      "actionPayload": {
+        "tabId": "tab_claim_header"
+      },
+      "checklistItem": "Verify provider participation status",
+      "expectedValue": null,
+      "targetFieldId": "f_ch_g_participation",
+      "highlightTabId": "tab_claim_header",
+      "targetSubTabId": null,
+      "highlightFields": ["f_ch_g_participation"],
+      "targetSectionId": "sec_ch_general",
+      "timeLimitSeconds": null,
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee revisits Claim Header to verify Provider Participation = PAR."
+    },
+    {
+      "id": "step_009",
+      "hint": "Click 'Claim Lines'. Read each line's From date and the Receipt date in the claim summary bar at the top. For each line: Receipt − From should be ≤ 365 days. All 3 are within the window — proceed.",
+      "name": "Note the Service from dates & Calculate filing window against the TFL",
+      "actionType": "tab_open",
+      "sequenceId": 9,
+      "description": "Confirm that the provider is not excluded from the professional participating TFL and that the TFL value is greater than 90. The TFL was earlier determined to be 365 days, so the trainee continues. Open the Claim Lines tab and note the Service from date of each claim line. In this scenario, there are three claim lines, so three Service from dates must be recorded. Note the Receipt date from the claim summary and calculate the difference between each claim line's Service from date and the Receipt date — one calculation per claim line, three calculations in total. If the difference is within 365 days, that claim line is within the TFL; if any line falls outside, follow the alternate SOP steps. In this scenario, all three claim lines fall within 365 days, so the claim is within the TFL and the trainee proceeds.",
+      "scorePoints": 10,
+      "targetTabId": "tab_claim_lines",
+      "actionPayload": {
+        "tabId": "tab_claim_lines"
+      },
+      "checklistItem": "Note the Service from dates & Calculate filing window against the TFL",
+      "expectedValue": null,
+      "targetFieldId": null,
+      "highlightTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "highlightFields": ["f_cl_from", "f_cl2_from", "f_cl3_from"],
+      "targetSectionId": "sec_cl_summary",
+      "timeLimitSeconds": null,
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Claim Lines tab. The actual TFL math is on trust (engine has no math primitive)."
+    },
+    {
+      "id": "step_010",
+      "hint": "Return to 'Event Resolution' and scroll to the Bypass Codes section. The 'PX_TF' option is in the Bypass code dropdown.",
+      "name": "Locate the PX_TF bypass code",
+      "actionType": "tab_open",
+      "sequenceId": 10,
+      "description": "Return to the Event Resolution tab. For this PX_MTF claim, the PX_TF bypass code must be applied. Along with the PX_MTF edit card, a 'PX_TF' bypass code will be displayed under the 'Bypass codes' heading.",
+      "scorePoints": 10,
+      "targetTabId": "tab_event_resolution",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "checklistItem": "Locate the PX_TF bypass code",
+      "expectedValue": null,
+      "targetFieldId": "f_er_bypass_code",
+      "highlightTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "highlightFields": ["f_er_bypass_code"],
+      "targetSectionId": "sec_er_bypass",
+      "timeLimitSeconds": null,
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee returns to Event Resolution to find the PX_TF bypass option."
+    },
+    {
+      "id": "step_011",
+      "hint": "Pick 'PX_TF — Timely filing bypass' from the Bypass code dropdown, then click 'Validate' in the claim summary.",
+      "name": "Apply the PX_TF bypass code and validate",
+      "actionType": "validate_bypass",
+      "sequenceId": 11,
+      "description": "In the Bypass Codes section, select PX_TF and click the Validate button in the claim summary to apply the bypass.",
+      "scorePoints": 10,
+      "targetTabId": "tab_event_resolution",
+      "actionPayload": {
+        "type": "validate_bypass"
+      },
+      "checklistItem": "Apply the PX_TF bypass code and validate",
+      "expectedValue": "PX_TF",
+      "targetFieldId": "f_er_bypass_code",
+      "highlightTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "highlightFields": ["f_er_bypass_code"],
+      "targetSectionId": "sec_er_bypass",
+      "timeLimitSeconds": null,
+      "completesActionId": "validate_bypass",
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes only when the trainee clicks the claim summary Validate button while the selected bypass code is 'PX_TF' (PX_TF — Timely filing bypass). Any other code does not complete the step."
+    },
+    {
+      "id": "step_012",
+      "hint": "Pick 'Pay' from the Decision dropdown in the claim header, then click Submit and confirm in the dialog.",
+      "name": "Submit Pay decision",
+      "actionType": "submit_decision",
+      "sequenceId": 12,
+      "description": "Navigate to the Decision section in the header, select 'Pay' from the dropdown menu and click Submit.",
+      "scorePoints": 10,
+      "targetTabId": null,
+      "actionPayload": {
+        "type": "submit_decision",
+        "expectedDecision": "pay"
+      },
+      "checklistItem": "Submit Pay decision",
+      "expectedValue": "pay",
+      "targetFieldId": null,
+      "targetSubTabId": null,
+      "highlightFields": [],
+      "targetSectionId": null,
+      "timeLimitSeconds": null,
+      "completionTrigger": "decision_submitted",
+      "completionTriggerNote": "Completes when the trainee confirms the Pay decision in the submit dialog."
+    }
+  ],
+  "flowId": "flow_timely_filing_mtf_1",
+  "$schema": "training-platform/v1/navigator",
+  "$version": "2.0.0",
+  "passMark": 70,
+  "totalSteps": 12,
+  "description": "Confirm the claim was filed within the 365-day Timely Filing Limit: review benefit type (SPIDER), look up the TFL, walk the Non-ITS Home / corrected-claim / Sutter / Professional+PAR gates, verify all 3 claim lines fall within the filing window, apply the PX_TF bypass, and submit Pay.",
+  "scoreBreakdown": {
+    "passMark": 70,
+    "totalMaxPoints": 140,
+    "decisionMaxPoints": 20,
+    "weightedPassScore": 98,
+    "reasonCodeMaxPoints": 0,
+    "navigatorStepsMaxPoints": 120
+  },
+  "totalMaxPoints": 140,
+  "correctDecision": "pay",
+  "correctDecisionLabel": "Pay",
+  "totalNavigatorPoints": 120,
+  "stepSummaryForResults": [
+    {
+      "name": "Event Resolution tab opened — PX_MTF hard edit identified",
+      "points": 10,
+      "sequenceId": 1
+    },
+    {
+      "name": "Benefit type SPIDER confirmed",
+      "points": 10,
+      "sequenceId": 2
+    },
+    {
+      "name": "TFL = 365 days noted",
+      "points": 10,
+      "sequenceId": 3
+    },
+    {
+      "name": "Claim is Non-ITS Home (Professional)",
+      "points": 10,
+      "sequenceId": 4
+    },
+    {
+      "name": "PX_PAJ event identified",
+      "points": 10,
+      "sequenceId": 5
+    },
+    {
+      "name": "Frequency ≠ 7 — not corrected",
+      "points": 10,
+      "sequenceId": 6
+    },
+    {
+      "name": "PX_SUT event absent — provider not Sutter",
+      "points": 10,
+      "sequenceId": 7
+    },
+    {
+      "name": "Provider participation PAR confirmed",
+      "points": 10,
+      "sequenceId": 8
+    },
+    {
+      "name": "All 3 lines within 365-day TFL window",
+      "points": 10,
+      "sequenceId": 9
+    },
+    {
+      "name": "PX_TF bypass option located",
+      "points": 10,
+      "sequenceId": 10
+    },
+    {
+      "name": "PX_TF bypass applied & validated",
+      "points": 10,
+      "sequenceId": 11
+    },
+    {
+      "name": "Pay decision submitted",
+      "points": 10,
+      "sequenceId": 12
+    }
+  ]
+}

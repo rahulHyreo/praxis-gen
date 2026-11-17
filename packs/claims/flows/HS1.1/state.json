@@ -1,0 +1,123 @@
+{
+  "$schema": "training-platform/v1/flow-state",
+  "$version": "1.0.0",
+  "id": "state_hs1_1_hsa_cob_deductible_workaround",
+  "initial": {
+    "defaultActiveTabId": "tab_event_resolution",
+    "defaultActiveSubTabIds": {
+      "tab_search": "subtab_search_benefits",
+      "tab_claim_data": "subtab_claim_data_details",
+      "tab_attachment": "subtab_attachment_attachments"
+    },
+    "defaultCollapsedSections": {},
+    "defaultDecision": "",
+    "decisionRequired": true
+  },
+  "modeConfig": {
+    "training": {
+      "id": "training",
+      "label": "Training mode",
+      "badgeIcon": "graduation-cap",
+      "showNavigator": true,
+      "timerType": "count_up",
+      "timerPosition": "navigator_header",
+      "timeLockEnabled": false,
+      "showHints": true,
+      "showMarkCompleteButton": true,
+      "allowTabClose": true
+    },
+    "practice": {
+      "id": "practice",
+      "label": "Practice mode",
+      "badgeIcon": "dumbbell",
+      "showNavigator": false,
+      "timerType": "count_up",
+      "timerPosition": "topbar",
+      "timeLockEnabled": false,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": true
+    },
+    "assessment": {
+      "id": "assessment",
+      "label": "Assessment Mode",
+      "badgeIcon": "graduation-cap",
+      "showNavigator": false,
+      "timerType": "count_down",
+      "timerPosition": "topbar_right",
+      "timeLimitSeconds": 600,
+      "timeLockEnabled": true,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": false,
+      "beforeUnloadWarning": "Assessment in progress. Leaving will lose your progress."
+    }
+  },
+  "actions": {
+    "open_group_additional": {
+      "label": "Open Group Additional Information — reveals the Product",
+      "latencyMs": 0,
+      "writes": {},
+      "completesStepId": "step_003"
+    },
+    "validate": {
+      "label": "Validate — apply benefits",
+      "latencyMs": 400,
+      "writes": {},
+      "guardByStep": {
+        "step_010": {
+          "all": [
+            {
+              "dataKey": "claimLineSummary.noncoveredUnit",
+              "equalsIgnoreCase": "250"
+            },
+            {
+              "dataKey": "claimLineSummary.eobTyLast",
+              "equalsIgnoreCase": "00003"
+            }
+          ],
+          "elseWrites": {
+            "eventResolution.validationMessage": "Benefits not re-applied. Enter the non-covered amount of 250 and EOB code 00003 on the claim line, then Validate again."
+          }
+        }
+      },
+      "writesByStep": {
+        "step_004": {
+          "claimLineSummary.allowed": "$250.00",
+          "claimLineSummary.deductible": "$250.00",
+          "claimLineSummary.dedInd": "YES",
+          "claimLines.line1.allowed": "250.00",
+          "claimLines.line1.deductible": "250.00",
+          "header.claimAllowed": "$250.00",
+          "header.deductible": "$250.00",
+          "eventResolution.validationMessage": "BENEFITS APPLIED — ALLOWED $250.00 ACCUMULATED TO DEDUCTIBLE"
+        },
+        "step_010": {
+          "claimLineSummary.deductible": "$0.00",
+          "claimLineSummary.dedInd": "NO",
+          "claimLines.line1.deductible": "0.00",
+          "claimLines.line1.noncovered": "250.00",
+          "claimLines.line1.eobCode": "00003",
+          "header.deductible": "$0.00",
+          "eventResolution.validationMessage": "BENEFITS RE-APPLIED — $250.00 MOVED TO NON-COVERED UNDER EOB 00003, DEDUCTIBLE $0.00"
+        }
+      },
+      "completesStepId": ["step_004", "step_010"]
+    },
+    "search_member": {
+      "label": "Search member",
+      "latencyMs": 0,
+      "writes": {}
+    },
+    "search_member_clear": {
+      "label": "Clear member search",
+      "latencyMs": 0,
+      "writes": {}
+    }
+  },
+  "persistence": {
+    "persistKey": null,
+    "autosave": false,
+    "resetOnSubmit": false
+  }
+}

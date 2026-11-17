@@ -1,0 +1,255 @@
+{
+  "$schema": "training-platform/v1/navigator",
+  "$version": "2.0.0",
+  "id": "nav_mn_1_noc_grid_price_pay",
+  "flowId": "flow_pricing_mn_1",
+  "name": "Pricing MN.1 — Missing Standard Pricing / NOC (Look Up NOC Grid, Price & Pay) Navigator",
+  "description": "Walk the Pricing SOP for the PX_MN event — the procedure code billed on the claim does not have standard pricing logic in the system (Not Otherwise Classified / NOC), so the adjudicator derives the allowance from the Enterprise NOC Threshold & Default Percentage Pricing Grid. Note the Pricing state (IN) from the Provider Information Rendering section; identify the PX_MN01 soft edit on the Event Resolution tab (highlighted with an error indication) and rule out other events per the hierarchy; review benefits on the Search → Benefit sub-tab and confirm the Line-1 services are covered (verify benefits in CI&W); confirm the Claim type is Professional on Claim Data → Details; confirm the Line-1 billed amount ($200) is below $250 on Claim Lines; determine the LOB is Local on Member Information and look up the NOC grid for state IN (default 50%, threshold $1000) to calculate the allowance (50% × $200 = $100); type 100.00 into the Manual Pricing Line-1 Allowed field on Claim Data → Pricing; then pay the claim.",
+  "totalSteps": 8,
+  "passMark": 70,
+  "correctDecision": "pay",
+  "correctDecisionLabel": "Pay",
+  "totalMaxPoints": 100,
+  "totalNavigatorPoints": 80,
+  "steps": [
+    {
+      "id": "step_001",
+      "sequenceId": 1,
+      "name": "Note the Pricing state",
+      "description": "Open the Provider Information tab and note the State from the Rendering section — this value keys the NOC threshold and default-percentage lookup performed later. In this scenario the Pricing state is IN (Indiana).",
+      "targetTabId": "tab_provider_info",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_pi_rendering",
+      "targetFieldId": "f_pi_r_pricing_state",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_provider_info"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Provider Information tab and reads the Pricing state (IN) in the Rendering section.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Provider Information' and read the Pricing state in the Rendering section. It is IN (Indiana) — you'll need it for the NOC grid lookup.",
+      "highlightFields": ["f_pi_r_pricing_state"],
+      "highlightTabId": "tab_provider_info",
+      "checklistItem": "Note the Pricing state"
+    },
+    {
+      "id": "step_002",
+      "sequenceId": 2,
+      "name": "Identify the PX_MN01 soft edit and check the event hierarchy",
+      "description": "Review all edits in the Event Resolution tab. The PX_MN01 soft edit is highlighted with an error indication — this is the current event to resolve. PX_MN indicates a Not Otherwise Classified (NOC) procedure code that lacks standard pricing logic in the system. Verify the events list for any other events that need to be resolved first per the event hierarchy. If other events are present, resolve those that come before PX_MN01; if no other events are present, proceed. In this scenario, the claim has no other events, so the trainee proceeds.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_all_edits",
+      "targetFieldId": "f_er_e_mn",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Event Resolution tab and reviews the events list, where the active PX_MN01 soft edit is highlighted with an error indication and no other events are present.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Event Resolution' and review the events list. PX_MN01 is the active soft edit, highlighted with an error indication, and there are no other events, so proceed.",
+      "highlightFields": ["f_er_edit_code", "f_er_e_mn"],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Identify the PX_MN01 soft edit and check the event hierarchy"
+    },
+    {
+      "id": "step_003",
+      "sequenceId": 3,
+      "name": "Verify the services are covered",
+      "description": "Review the benefits on the claim and identify whether the services billed on Line 1 are covered. Navigate to the Search tab and open the Benefit sub-tab; the trainee is directed to review the benefits in the CI&W system. If the services are not covered, follow the alternate guidelines; if covered, proceed. In this scenario, the services billed on Line 1 are covered, so the trainee proceeds.",
+      "targetTabId": "tab_search",
+      "targetSubTabId": "subtab_search_benefits",
+      "targetSectionId": "sec_sc_b_ciw",
+      "targetFieldId": "f_sc_b_ciw_msg",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_search",
+        "subTabId": "subtab_search_benefits"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Search → Benefit sub-tab, where the CI&W message confirms the Line-1 services are covered.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Search' → 'Benefit'. Review the benefits in the CI&W system — the Line-1 services are covered, so proceed.",
+      "highlightFields": ["f_sc_b_ciw_msg"],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_benefits",
+      "checklistItem": "Verify the services are covered"
+    },
+    {
+      "id": "step_004",
+      "sequenceId": 4,
+      "name": "Confirm the claim type category",
+      "description": "Check the Claim type field by  navigating to the Claim Data tab,then Details sub-tab   and  in the Additional Claim Data section  to confirm it contains Outpatient, Inpatient, or Professional. In this scenario, the Claim type field contains 'Professional', so the trainee proceeds.",
+      "targetTabId": "tab_claim_data",
+      "targetSubTabId": "subtab_claim_data_details",
+      "targetSectionId": "sec_cd_d_source",
+      "targetFieldId": "f_cdd_type",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_data",
+        "subTabId": "subtab_claim_data_details"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Claim Data → Details sub-tab and reads the Claim type field (Professional).",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Data' → 'Details' and read the Claim type field in the Additional Claim Data section. It reads 'Professional', so proceed.",
+      "highlightFields": ["f_cdd_type"],
+      "highlightTabId": "tab_claim_data",
+      "highlightSubTabId": "subtab_claim_data_details",
+      "checklistItem": "Confirm the claim type category"
+    },
+    {
+      "id": "step_005",
+      "sequenceId": 5,
+      "name": "Check the billed amount against the $250 threshold",
+      "description": "Check the billed amount on Line 1 of the Claim Lines tab to determine whether it is less than or more than $250. If the amount is more than $250, follow the alternate guidelines; if it is less, proceed. In this scenario, the billed amount on Line 1 is $200, which is less than $250, so the trainee proceeds.",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_summary",
+      "targetFieldId": "f_cl_billed",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_lines"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Claim Lines tab and reads the Line-1 billed amount ($200), confirming it is below the $250 threshold.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Lines' and read the Line 1 Billed column. It is $200 — less than $250 — so proceed.",
+      "highlightFields": ["f_cl_billed"],
+      "highlightTabId": "tab_claim_lines",
+      "checklistItem": "Check the billed amount against the $250 threshold"
+    },
+    {
+      "id": "step_006",
+      "sequenceId": 6,
+      "name": "Look up the NOC threshold and calculate the allowed amount",
+      "description": "Determine the Line of Business by checking the Product field  by navigating to the Member Information tab ,then Group section  — the Product shows any value for ITS such as Local, National, or ACA. In this scenario the Product is Local. Then review the Enterprise NOC Threshold and Default Percentage Pricing Grid — open the Documents section in the claim header and check the NOC-Default_Pricing_Grid document — and locate the entry for the NOC code paired with the provider's state. In this scenario, for state IN (Indiana) the grid shows a threshold of $1000 with a default percentage of 50%. Because Line 1 is billed at $200 (less than the $1000 threshold), the allowed amount is calculated as 50% of $200 = $100.",
+      "targetTabId": "tab_member_info",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_mi_group",
+      "targetFieldId": "f_mi_noc_grid",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_member_info"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Member Information tab, confirms the Product is Local, and reads the NOC grid (IN → 50% / $1000) to calculate the $100 allowance.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Member Information'. The Product is Local. Use the NOC grid: state IN → 50% default, $1000 threshold. Line 1 billed $200 is below $1000, so the allowed amount is 50% × $200 = $100.",
+      "highlightFields": ["f_mi_g_product", "f_mi_noc_grid"],
+      "highlightTabId": "tab_member_info",
+      "checklistItem": "Look up the NOC threshold and calculate the allowed amount"
+    },
+    {
+      "id": "step_007",
+      "sequenceId": 7,
+      "name": "Update the MP Allowed amount to $100",
+      "description": "Apply the calculated allowance to the Manual Pricing (MP) section. Navigate to the Claim Data tab, then Pricing sub-tab ; the Manual Pricing section is present. Update the Allowed amount field on Line 1 with the calculated allowance — type (100.00) into the Allowed column of the Manual Pricing table. (If the Manual Pricing section were not present, you would navigate to the Action menu, click Create, select the MP section, and then update the Allowed amount in the same way.)",
+      "targetTabId": "tab_claim_data",
+      "targetSubTabId": "subtab_claim_data_pricing",
+      "targetSectionId": "sec_cd_pr_mp_line1",
+      "targetFieldId": "f_mp1_allowed",
+      "actionType": "field_edit",
+      "actionPayload": {
+        "fieldId": "f_mp1_allowed"
+      },
+      "completionTrigger": "field_value_set",
+      "completionTriggerNote": "Completes when the trainee types '100.00' into the Line-1 Allowed input box in the Manual Pricing section.",
+      "expectedValue": "100.00",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Data' → 'Pricing'. In the Manual Pricing section, click the Line 1 Allowed box and type: 100.00",
+      "highlightFields": ["f_mp1_allowed"],
+      "highlightTabId": "tab_claim_data",
+      "highlightSubTabId": "subtab_claim_data_pricing",
+      "checklistItem": "Update the MP Allowed amount to $100"
+    },
+    {
+      "id": "step_008",
+      "sequenceId": 8,
+      "name": "Submit Pay decision",
+      "description": "Navigate to the Decision section in the header, select 'Pay' from the dropdown menu and click Submit.",
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "submit_decision",
+      "actionPayload": {
+        "type": "submit_decision",
+        "expectedDecision": "pay"
+      },
+      "completionTrigger": "decision_submitted",
+      "completionTriggerNote": "Completes when the trainee confirms the Pay decision in the submit dialog.",
+      "expectedValue": "pay",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Pick 'Pay' from the Decision dropdown in the claim header, then click Submit and confirm in the dialog.",
+      "highlightFields": [],
+      "checklistItem": "Submit Pay decision"
+    }
+  ],
+  "scoreBreakdown": {
+    "navigatorStepsMaxPoints": 80,
+    "decisionMaxPoints": 20,
+    "reasonCodeMaxPoints": 0,
+    "totalMaxPoints": 100,
+    "passMark": 70,
+    "weightedPassScore": 70
+  },
+  "stepSummaryForResults": [
+    {
+      "sequenceId": 1,
+      "name": "Pricing state noted (IN)",
+      "points": 10
+    },
+    {
+      "sequenceId": 2,
+      "name": "PX_MN01 soft edit identified; event hierarchy checked",
+      "points": 10
+    },
+    {
+      "sequenceId": 3,
+      "name": "Services confirmed covered",
+      "points": 10
+    },
+    {
+      "sequenceId": 4,
+      "name": "Claim type confirmed Professional",
+      "points": 10
+    },
+    {
+      "sequenceId": 5,
+      "name": "Billed amount checked against $250 ($200)",
+      "points": 10
+    },
+    {
+      "sequenceId": 6,
+      "name": "NOC grid looked up; allowance calculated ($100)",
+      "points": 10
+    },
+    {
+      "sequenceId": 7,
+      "name": "MP Allowed amount updated to $100",
+      "points": 10
+    },
+    {
+      "sequenceId": 8,
+      "name": "Pay decision submitted",
+      "points": 10
+    }
+  ]
+}

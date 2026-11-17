@@ -1,0 +1,36 @@
+{
+  "$schema": "training-platform/v1/flow-result",
+  "$version": "1.0.0",
+  "id": "result_demo_workspace_sandbox",
+  "rubric": {
+    "expectedDecision": null,
+    "expectedReasonCode": null,
+    "requiredStepIds": [],
+    "weights": {
+      "navigator": 0,
+      "decision": 0,
+      "reasonCode": 0
+    },
+    "deductions": {
+      "perMissedRequiredStep": 0,
+      "wrongDecision": 0,
+      "wrongReasonCode": 0
+    }
+  },
+  "resultConfig": {
+    "passLabel": "Sandbox complete",
+    "failLabel": "Sandbox complete",
+    "passDescription": "Nothing here was scored. Close this and start your first real flow when you are ready.",
+    "failDescription": "Nothing here was scored. Close this and start your first real flow when you are ready.",
+    "scoreCircle": {
+      "radius": 40,
+      "strokeWidth": 8,
+      "passColor": "#3B6D11",
+      "failColor": "#A32D2D",
+      "trackColor": "#E5E7EB"
+    },
+    "statBoxes": [],
+    "retakeButton": false,
+    "backToClaimsButton": true
+  }
+}

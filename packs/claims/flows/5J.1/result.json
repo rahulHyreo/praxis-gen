@@ -1,0 +1,71 @@
+{
+  "$schema": "training-platform/v1/flow-result",
+  "$version": "1.0.0",
+  "id": "result_5j_1_one_claim_line_exceeded_tfl",
+  "rubric": {
+    "expectedDecision": "deny",
+    "expectedReasonCode": "PX_00169",
+    "requiredStepIds": [
+      "step_004",
+      "step_006",
+      "step_009",
+      "step_012",
+      "step_014",
+      "step_015",
+      "step_018",
+      "step_016",
+      "step_017"
+    ],
+    "weights": {
+      "navigator": 160,
+      "decision": 20,
+      "reasonCode": 10
+    },
+    "deductions": {
+      "perMissedRequiredStep": 0,
+      "wrongDecision": 20,
+      "wrongReasonCode": 10
+    }
+  },
+  "resultConfig": {
+    "passLabel": "Passed!",
+    "failLabel": "You did not meet the pass mark.",
+    "passDescription": "Great work — you reviewed the Timely filing pop-up criteria, applied the custom 222-day TFL to this Professional claim, confirmed the participating-provider gate puts it on the alternate SOP, found one of the three claim lines filed outside the window, verified the prior deleted claim was also outside the TFL with no approved proof, confirmed the benefit is SPIDER, and correctly denied the claim with line-level reject code PX_00169.",
+    "failDescription": "Pass mark is {passMark}%. Review the steps below to see where you can improve.",
+    "scoreCircle": {
+      "radius": 40,
+      "strokeWidth": 8,
+      "passColor": "#3B6D11",
+      "failColor": "#A32D2D",
+      "trackColor": "#E5E7EB"
+    },
+    "statBoxes": [
+      {
+        "id": "navigator_score",
+        "label": "Navigator",
+        "dataKey": "navigatorScore",
+        "max": 160
+      },
+      {
+        "id": "decision_score",
+        "label": "Decision",
+        "dataKey": "decisionScore",
+        "max": 20
+      },
+      {
+        "id": "reason_score",
+        "label": "Reason Code",
+        "dataKey": "reasonCodeScore",
+        "max": 10
+      },
+      {
+        "id": "time_taken",
+        "label": "Time Taken",
+        "dataKey": "timeTakenSeconds",
+        "format": "duration"
+      }
+    ],
+    "retakeButton": true,
+    "backToClaimsButton": true
+  }
+}

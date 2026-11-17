@@ -1,0 +1,426 @@
+{
+  "$schema": "training-platform/v1/navigator",
+  "$version": "2.0.0",
+  "id": "nav_088_1_pcm_ticket",
+  "flowId": "flow_pricing_088_pcm_ticket",
+  "name": "Pricing 088.1 — PCM Ticket Verify & Pay Navigator",
+  "description": "Walk the Pricing SOP for the informational PX_088 event. Review all events and identify PX_088, note the provider identifiers from Billing, confirm the Provider SPS matches the search result ID, check the LOB (Product) and the provider-submitted claim type, verify the procedure code is not Anesthesia/COVID-19/Behavioral Health and does not start with H or T, confirm no PX_PR / PX_MRU / other pricing events, note the pricing state, confirm the contract code is not MAN00000, then create a PCM ticket to obtain pricing and pay the claim.",
+  "totalSteps": 14,
+  "passMark": 70,
+  "correctDecision": "",
+  "correctDecisionLabel": "No decision",
+  "totalMaxPoints": 160,
+  "totalNavigatorPoints": 140,
+  "steps": [
+    {
+      "id": "step_001",
+      "sequenceId": 1,
+      "name": "Review all events and identify the PX_088 event",
+      "description": "Review all events in the Event Resolution tab, including informational events, before paying, denying, or routing the claim when multiple events are set. The PX_088 event will be displayed in the events list — that requires a PCM ticket to obtain pricing.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_active",
+      "targetFieldId": "f_er_edit_code",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Event Resolution tab and reviews the events list, where the active PX_088 Pricing event is shown.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Event Resolution' and review every event, including informational ones. The active PX_088 Pricing event is shown — it requires a PCM ticket to obtain pricing.",
+      "highlightFields": ["f_er_edit_code"],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Review all events and identify the PX_088 event"
+    },
+    {
+      "id": "step_002",
+      "sequenceId": 2,
+      "name": "Note provider identifiers from the Billing section",
+      "description": "Review the Provider information tab and validate the details against the claim form. From the Billing section, note the NPI, TAX ID, and Provider SPS number (the Provider SPS is a unique number that is not stored in the system, so it must be noted manually). In this scenario, the NPI is 123456, the TAX ID is 9876, and the Provider SPS is 00012345678.",
+      "targetTabId": "tab_provider_info",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_pi_billing",
+      "targetFieldId": "f_pi_b_sps",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_provider_info"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Provider Information tab and notes the Billing NPI, TAX ID, and Provider SPS.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Provider Information' and note the Billing NPI (123456), TAX ID (9876), and Provider SPS (00012345678).",
+      "highlightFields": ["f_pi_b_npi", "f_pi_b_tax_id", "f_pi_b_sps"],
+      "highlightTabId": "tab_provider_info",
+      "checklistItem": "Note provider identifiers from the Billing section"
+    },
+    {
+      "id": "step_003",
+      "sequenceId": 3,
+      "name": "Verify the Provider SPS in the search results",
+      "description": "Navigate to the Search tab, then the Provider sub-tab. The search criteria will be automatically populated with the same NPI, Tax ID, From Date, and Through Date values. Review the provider search results displayed below the search section, which include the Name, ID, NPI, Tax ID, Address, Primary Specialty, Effective Date, and End Date columns. Compare the value in the ID column with the Provider SPS Number documented from the Provider Information tab, then the Billing section. In this scenario the row shows ABC HEALTH, 00012345678, 123456, 9876, CITY, CLINICAL LAB, 01/01/2025, and 01/02/2025, confirming the Provider SPS matches.",
+      "targetTabId": "tab_search",
+      "targetSubTabId": "subtab_search_provider_pcm",
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_search",
+        "subTabId": "subtab_search_provider_pcm"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Search → Provider sub-tab and confirms the result-row ID equals the Provider SPS.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Search' → 'Provider'. The results table ID column shows 00012345678 — equal to the Provider SPS from Billing, so the provider is selected correctly.",
+      "highlightFields": [],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_provider_pcm",
+      "checklistItem": "Verify the Provider SPS in the search results"
+    },
+    {
+      "id": "step_004",
+      "sequenceId": 4,
+      "name": "Check the Line of Business via Product field",
+      "description": "Determine whether the claim is ITS-Host or another Line of Business (LOB) by navigating to the Member Information tab, then the Group section, and reviewing the Product field. If the Product value is ITS-Host, follow the alternate SOP guidelines. If the Product field displays any other value, such as Local, National, or ACA, proceed to the next step. In this scenario, the Product is Local; therefore, the claim is not ITS-Host, and the trainee may proceed to the next step.",
+      "targetTabId": "tab_member_info",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_mi_group",
+      "targetFieldId": "f_mi_g_product",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_member_info"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Member Information tab and checks the Group Product field.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Member Information' and check the Group → Product field. It is 'Local' (not ITS-Host), so proceed.",
+      "highlightFields": ["f_mi_g_product"],
+      "highlightTabId": "tab_member_info",
+      "checklistItem": "Check the Line of Business via Product field"
+    },
+    {
+      "id": "step_005",
+      "sequenceId": 5,
+      "name": "Confirm the claim is provider-submitted",
+      "description": "Check the Claim Type field by navigating to the Claim Data tab, then the Details sub-tab, and reviewing the Additional Claim Data section. The Claim Type may display MA – Medical or PA – Professional. Use the claim type to determine whether the claim was submitted by the member or the provider. If the claim is member-submitted, follow the alternate SOP guidelines. If the claim is provider-submitted, proceed to the next step. In this scenario, the Claim Type is PA – Professional, indicating a provider-submitted claim; therefore, the trainee may proceed to the next step.",
+      "targetTabId": "tab_claim_data",
+      "targetSubTabId": "subtab_claim_data_details",
+      "targetSectionId": "sec_cd_d_source",
+      "targetFieldId": "f_cdd_type",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_data",
+        "subTabId": "subtab_claim_data_details"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Claim Data → Details sub-tab and reads the Claim type field.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Data' → 'Details' and read the Additional Claim Data → Claim type field. It is 'PA - Professional' (provider-submitted), so proceed.",
+      "highlightFields": ["f_cdd_type"],
+      "highlightTabId": "tab_claim_data",
+      "highlightSubTabId": "subtab_claim_data_details",
+      "checklistItem": "Confirm the claim is provider-submitted"
+    },
+    {
+      "id": "step_006",
+      "sequenceId": 6,
+      "name": "Verify procedure code is not Anesthesia or COVID-19",
+      "description": "Verify that the procedure code on the claim line is not related to Anesthesia or COVID-19 under Claim line tab. There is one claim line (Line 1) in this scenario, and the procedure code shown is a general code unrelated to Anesthesia or COVID-19, so the trainee proceeds. (To check, click the procedure code from Line 1; the Description and service class auto-populate on the Search → Code set tab.)",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_summary",
+      "targetFieldId": "f_cl_procedure",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_lines"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Claim Lines tab and reviews the Line 1 procedure code.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Lines'. The Line 1 procedure code (99213) is a general code, not Anesthesia or COVID-19, so proceed.",
+      "highlightFields": ["f_cl_procedure"],
+      "highlightTabId": "tab_claim_lines",
+      "checklistItem": "Verify procedure code is not Anesthesia or COVID-19"
+    },
+    {
+      "id": "step_007",
+      "sequenceId": 7,
+      "name": "Check for the PX_PR event",
+      "description": "Determine whether the claim contains a PX_PR event by looking for the PX_PR event in the Event Resolution tab. If the PX_PR event is present, follow the alternate SOP steps; otherwise, proceed. In this scenario, the claim does not fire the PX_PR event, so the trainee proceeds.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_all_edits",
+      "targetFieldId": null,
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee returns to the Event Resolution tab and confirms no PX_PR event is present.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Back on 'Event Resolution', confirm there is no PX_PR event in the list, so proceed.",
+      "highlightFields": [],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Check for the PX_PR event"
+    },
+    {
+      "id": "step_008",
+      "sequenceId": 8,
+      "name": "Note the Pricing state",
+      "description": "Note the Pricing State by navigating to the Provider Information tab, then the Rendering section, and reviewing the Pricing State field. In this scenario, the Pricing State is CO (Colorado).",
+      "targetTabId": "tab_provider_info",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_pi_rendering",
+      "targetFieldId": "f_pi_r_pricing_state",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_provider_info"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Provider Information tab and notes the Rendering Pricing state.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "On 'Provider Information', note the Rendering → Pricing state. It is 'CO'.",
+      "highlightFields": ["f_pi_r_pricing_state"],
+      "highlightTabId": "tab_provider_info",
+      "checklistItem": "Note the Pricing state"
+    },
+    {
+      "id": "step_009",
+      "sequenceId": 9,
+      "name": "Verify services are not Behavioral Health and code is not H/T",
+      "description": "Verify that the services on the claim line under Claim lines tab are not related to Behavioral Health and that the procedure code does not start with the letter H or T. To check the service category, click the procedure code from Line 1 — the description auto-populates on the Search → Code set tab. In this scenario, the services are not related to Behavioral Health and the procedure code does not start with H or T, so the trainee proceeds.",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_summary",
+      "targetFieldId": "f_cl_procedure",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_lines"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee returns to the Claim Lines tab and confirms the procedure is not Behavioral Health and does not start with H or T.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "On 'Claim Lines', confirm the Line 1 procedure (99213) is not Behavioral Health and does not start with H or T, so proceed.",
+      "highlightFields": ["f_cl_procedure"],
+      "highlightTabId": "tab_claim_lines",
+      "checklistItem": "Verify services are not Behavioral Health and code is not H/T"
+    },
+    {
+      "id": "step_010",
+      "sequenceId": 10,
+      "name": "Confirm the claim type category",
+      "description": "Check the Claim Type field by navigating to the Claim Data tab, then the Details sub-tab, and reviewing the Additional Claim Data section. Confirm that the Claim Type field contains one of the valid values: Outpatient, Inpatient, or Professional. If the claim type is identified, proceed according to the applicable workflow. In this scenario, the Claim Type field displays Professional; therefore, the trainee may proceed to the next step.",
+      "targetTabId": "tab_claim_data",
+      "targetSubTabId": "subtab_claim_data_details",
+      "targetSectionId": "sec_cd_d_source",
+      "targetFieldId": "f_cdd_type",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_data",
+        "subTabId": "subtab_claim_data_details"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee returns to the Claim Data → Details sub-tab and confirms the Claim type contains 'Professional'.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "On 'Claim Data' → 'Details', confirm the Claim type contains 'Professional'.",
+      "highlightFields": ["f_cdd_type"],
+      "highlightTabId": "tab_claim_data",
+      "highlightSubTabId": "subtab_claim_data_details",
+      "checklistItem": "Confirm the claim type category"
+    },
+    {
+      "id": "step_011",
+      "sequenceId": 11,
+      "name": "Check for PX_MRU and other Pricing events",
+      "description": "Determine whether the claim contains PX_MRU events (PX_MJ, PX_MN, PX_MR) or any other Pricing events by reviewing the Event Resolution tab. If PX_MRU events are present, follow the PX_MRU events guidelines; if any other pricing events are present, follow the Pricing events guidelines. In this scenario, no PX_MRU events and no other pricing events are present, so the trainee proceeds.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_all_edits",
+      "targetFieldId": null,
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee reviews the Event Resolution events and confirms no PX_MRU (PX_MJ/PX_MN/PX_MR) and no other pricing events are present.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "On 'Event Resolution', confirm there are no PX_MRU (PX_MJ/PX_MN/PX_MR) events and no other pricing events, so proceed.",
+      "highlightFields": [],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Check for PX_MRU and other Pricing events"
+    },
+    {
+      "id": "step_012",
+      "sequenceId": 12,
+      "name": "Verify provider contract code is not MAN00000",
+      "description": "Verify the provider's contract code in the Provider contract # field of the Claim Header tab. If the contract code is MAN00000, follow the guidelines to check the provider update date; otherwise, proceed. In this scenario, the contract code is not MAN00000, so the trainee proceeds.",
+      "targetTabId": "tab_claim_header",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_ch_general",
+      "targetFieldId": "f_ch_g_contract",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_header"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Claim Header tab and confirms the Provider contract # is not MAN00000.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Header' and read the Provider contract # field. It is 'STDX0000' (not MAN00000), so proceed.",
+      "highlightFields": ["f_ch_g_contract"],
+      "highlightTabId": "tab_claim_header",
+      "checklistItem": "Verify provider contract code is not MAN00000"
+    },
+    {
+      "id": "step_013",
+      "sequenceId": 13,
+      "name": "Create the PCM ticket",
+      "description": "Because the claim has no other pricing events and the contract code is not MAN00000, submit a PCM ticket to obtain the pricing. Open the Action menu (top-right) and select Create PCM Ticket under the Request claim review group — a dialog opens with fields to complete. Confirm Reviewed standalone pricing is Yes; Type of review is Claim pend; Is Attachment present on the claim is set appropriately; Type of claim is Professional (matching this scenario); the line that requires Pricing review by PCM is Line 1; and add any additional comments in the PCM Summary field. Click Submit PCM Ticket to send the request.",
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "create_pcm_ticket",
+      "actionPayload": {
+        "type": "action",
+        "action": "create_pcm_ticket"
+      },
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the trainee opens the Request claim review → Create PCM Ticket dialog from the Action menu and clicks Submit PCM Ticket, dispatching the create_pcm_ticket action (routing Line 1 for Pricing review by PCM).",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open the Action menu (top-right), select Create PCM Ticket under Request claim review, review the fields (Line 1, Claim pend, Professional), then click Submit PCM Ticket.",
+      "highlightFields": [],
+      "highlightTabId": null,
+      "completesActionId": "create_pcm_ticket",
+      "checklistItem": "Create the PCM ticket"
+    },
+    {
+      "id": "step_014",
+      "sequenceId": 14,
+      "name": "Submit without selecting a decision",
+      "description": "Click the Submit button to complete the action and route the claim for PCM pricing review. Because pricing is still pending on the PCM ticket, submit the claim without selecting any decision (Pay, Deny, or Pend) from the header.",
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "submit_decision",
+      "actionPayload": {
+        "type": "submit_decision",
+        "expectedDecision": ""
+      },
+      "completionTrigger": "decision_submitted",
+      "completionTriggerNote": "Completes when the trainee submits the claim without selecting a decision (pricing pending on the PCM ticket).",
+      "expectedValue": "",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Leave the Decision dropdown empty (do not pick Pay, Deny, or Pend) and click Submit — pricing is still pending on the PCM ticket.",
+      "highlightFields": [],
+      "checklistItem": "Submit without selecting a decision"
+    }
+  ],
+  "scoreBreakdown": {
+    "navigatorStepsMaxPoints": 140,
+    "decisionMaxPoints": 20,
+    "reasonCodeMaxPoints": 0,
+    "totalMaxPoints": 160,
+    "passMark": 70,
+    "weightedPassScore": 112
+  },
+  "stepSummaryForResults": [
+    {
+      "sequenceId": 1,
+      "name": "All events reviewed; PX_088 event identified",
+      "points": 10
+    },
+    {
+      "sequenceId": 2,
+      "name": "Billing NPI, TAX ID, and Provider SPS noted",
+      "points": 10
+    },
+    {
+      "sequenceId": 3,
+      "name": "Provider SPS matches the search result ID",
+      "points": 10
+    },
+    {
+      "sequenceId": 4,
+      "name": "LOB confirmed via Product (Local)",
+      "points": 10
+    },
+    {
+      "sequenceId": 5,
+      "name": "Claim confirmed provider-submitted (PA - Professional)",
+      "points": 10
+    },
+    {
+      "sequenceId": 6,
+      "name": "Procedure code not Anesthesia/COVID-19",
+      "points": 10
+    },
+    {
+      "sequenceId": 7,
+      "name": "No PX_PR event",
+      "points": 10
+    },
+    {
+      "sequenceId": 8,
+      "name": "Pricing state noted (CO)",
+      "points": 10
+    },
+    {
+      "sequenceId": 9,
+      "name": "Services not Behavioral Health; code not H/T",
+      "points": 10
+    },
+    {
+      "sequenceId": 10,
+      "name": "Claim type category confirmed (Professional)",
+      "points": 10
+    },
+    {
+      "sequenceId": 11,
+      "name": "No PX_MRU or other pricing events",
+      "points": 10
+    },
+    {
+      "sequenceId": 12,
+      "name": "Provider contract code is not MAN00000",
+      "points": 10
+    },
+    {
+      "sequenceId": 13,
+      "name": "PCM ticket created",
+      "points": 10
+    },
+    {
+      "sequenceId": 14,
+      "name": "Submitted without a decision (pricing pending)",
+      "points": 10
+    }
+  ]
+}

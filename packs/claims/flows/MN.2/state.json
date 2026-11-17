@@ -1,0 +1,81 @@
+{
+  "$schema": "training-platform/v1/flow-state",
+  "$version": "1.0.0",
+  "id": "state_mn_2_psccr_route",
+  "initial": {
+    "defaultActiveTabId": "tab_provider_info",
+    "defaultActiveSubTabIds": {
+      "tab_search": "subtab_search_benefits",
+      "tab_claim_data": "subtab_claim_data_details",
+      "tab_attachment": "subtab_attachment_attachments"
+    },
+    "defaultCollapsedSections": {},
+    "defaultDecision": "",
+    "decisionRequired": false
+  },
+  "modeConfig": {
+    "training": {
+      "id": "training",
+      "label": "Training mode",
+      "badgeIcon": "graduation-cap",
+      "showNavigator": true,
+      "timerType": "count_up",
+      "timerPosition": "navigator_header",
+      "timeLockEnabled": false,
+      "showHints": true,
+      "showMarkCompleteButton": true,
+      "allowTabClose": true
+    },
+    "practice": {
+      "id": "practice",
+      "label": "Practice mode",
+      "badgeIcon": "dumbbell",
+      "showNavigator": false,
+      "timerType": "count_up",
+      "timerPosition": "topbar",
+      "timeLockEnabled": false,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": true
+    },
+    "assessment": {
+      "id": "assessment",
+      "label": "Assessment Mode",
+      "badgeIcon": "graduation-cap",
+      "showNavigator": false,
+      "timerType": "count_down",
+      "timerPosition": "topbar_right",
+      "timeLimitSeconds": 600,
+      "timeLockEnabled": true,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": false,
+      "beforeUnloadWarning": "Assessment in progress. Leaving will lose your progress."
+    }
+  },
+  "actions": {
+    "confirm_over_threshold": {
+      "completesStepId": "step_007",
+      "writes": {
+        "suspendDenyCheck.status": "Confirmed — Line-1 billed $1250.00 is at or above the Suspend/Deny threshold of $500, so the claim must be routed to PSCCR. Proceed."
+      }
+    },
+    "confirm_psccr_events": {
+      "completesStepId": "step_008",
+      "writes": {
+        "eventResolution.psccrConfirmStatus": "Confirmed — the claim carries PSCCR events (PX_MJ present), so it follows the PSCCR events guidelines and must be routed to PSCCR."
+      }
+    },
+    "submit_psccr": {
+      "completesStepId": "step_010",
+      "writes": {
+        "psccr.submitStatus": "PSCCR review request submitted — Line 1 routed to Post Service Clinical Review with Medical Record Number 25035878888 referenced for review."
+      }
+    }
+  },
+  "persistence": {
+    "persistKey": null,
+    "autosave": false,
+    "resetOnSubmit": false
+  }
+}

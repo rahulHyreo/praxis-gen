@@ -1,0 +1,1148 @@
+{
+  "$schema": "training-platform/v1/workspace-data",
+  "$version": "2.0.0",
+  "id": "claim_data_092_2_dcn_618102",
+  "claimId": "claim_092_2_001",
+  "dcn": "DCN-618102",
+  "flowId": "flow_new_born_092_2",
+  "navigatorSchemaId": "nav_092_2_newborn_enrolled_apply_member_pay",
+  "claim": {
+    "dcn": "DCN-618102",
+    "patient": "Ben M Watson",
+    "serviceFrom": "01/22/2026",
+    "billedAmount": "$210.00"
+  },
+  "header": {
+    "dcn": "DCN-618102",
+    "edits": "PX_092",
+    "billed": "$210.00",
+    "claimAllowed": "$158.00",
+    "paid": "$158.00",
+    "writeOff": "$52.00",
+    "deductible": "$0.00",
+    "coinsurance": "$0.00",
+    "copay": "$0.00",
+    "actionCode": "PX_P10000",
+    "receiptDate": "01/27/2026",
+    "serviceFrom": "01/22/2026",
+    "serviceTo": "01/22/2026"
+  },
+  "eventResolution": {
+    "editCode": "PX_092",
+    "editLabel": "Member code missing or invalid",
+    "severity": "Hard Edit",
+    "validationMessage": "",
+    "edits": [
+      {
+        "code": "PX_092",
+        "label": "Member code missing or invalid",
+        "active": true
+      }
+    ]
+  },
+  "memberInfo": {
+    "patient": {
+      "firstName": "BEN",
+      "middleName": "M",
+      "lastName": "WATSON",
+      "dob": "1/17/2026",
+      "sex": "M",
+      "memberPrefix": "KWT",
+      "hcid": "455W16003",
+      "relationship": "",
+      "memberCode": "",
+      "memberCodeMessage": "",
+      "contractType": "C",
+      "erisa": "Y",
+      "pcp": "—",
+      "pcpState": "—",
+      "pcpRelationship": "—",
+      "programCode": "—"
+    },
+    "subscriber": {
+      "firstName": "DANIEL",
+      "middleName": "R",
+      "lastName": "WATSON",
+      "subscriberId": "536184207",
+      "address": "915 Cedar Ridge Dr, Carmel, IN 46032"
+    },
+    "group": {
+      "groupName": "WABASH VALLEY MANUFACTURING",
+      "groupId": "WXX213M001",
+      "groupContract": "4HWT",
+      "detailContractCode": "4HWT",
+      "product": "BC PPO INCENTIVE",
+      "networkId": "BLUECDOO",
+      "networkName": "BLUE XXXX BLUE XXXX"
+    }
+  },
+  "claimImage": {
+    "memberDetails": {
+      "patient": {
+        "firstName": "BEN",
+        "middleName": "M",
+        "lastName": "WATSON",
+        "dob": "1/17/2026",
+        "sex": "M",
+        "memberPrefix": "KWT",
+        "hcid": "455W16003",
+        "relationship": "",
+        "memberCode": "",
+        "detailContractCode": "4HWT",
+        "contractType": "C",
+        "groupId": "WXX213M001",
+        "groupContract": "4HWT",
+        "product": "BCBI",
+        "erisa": "Y",
+        "pcp": "—",
+        "pcpState": "—",
+        "pcpRelationship": "—"
+      },
+      "subscriber": {
+        "firstName": "DANIEL",
+        "middleName": "R",
+        "lastName": "WATSON",
+        "subscriberId": "536184207",
+        "address": "915 Cedar Ridge Dr, Carmel, IN 46032"
+      },
+      "totalClaimLines": "1"
+    },
+    "additional": {
+      "claimSource": {
+        "mediaType": "-",
+        "pricingSource": "-",
+        "pricingSystem": "-",
+        "mixerPar": "-",
+        "receiverId": "IN",
+        "receivedAtEdi": "-",
+        "providerError": "-",
+        "authNumber": "-",
+        "authExcln": "-",
+        "vendorIndicator": "-",
+        "receivedDate": "-",
+        "originalReferenceNumber": "-"
+      },
+      "ancillaryProvider": {
+        "type": "-",
+        "zip": "-",
+        "state": "-"
+      },
+      "ambulance": {
+        "pickupZip": "-",
+        "dropoffZip": "-"
+      },
+      "miscellaneous": {
+        "epsdt": "-",
+        "familyPlanning": "-",
+        "gtessDate": "-",
+        "dateOfIllness": "-",
+        "dateOfInjury": "-",
+        "lastMenstrualDate": "-",
+        "consultationDate": "-"
+      },
+      "stopData": {
+        "stopEdit": "-",
+        "lobParentRule": "-",
+        "lobChildRule": "-",
+        "lobSequence": "-",
+        "medBusinessParentRule": "-",
+        "medBusinessChildRule": "-",
+        "medSequence": "-"
+      },
+      "refundData": {
+        "correspondenceNumber": "-",
+        "refundAmount": "-",
+        "adjustmentReason": "-",
+        "vendorName": "-",
+        "delayReason": "-",
+        "carveOut": "-",
+        "adjustmentReceiptDate": "-"
+      },
+      "highDollar": {
+        "riskOutcome": "-"
+      },
+      "its": {
+        "account": {
+          "deliveryMethod": "—",
+          "accountType": "—",
+          "aso": "—",
+          "stateId": "—",
+          "originalCertificate": "—",
+          "originalGroup": "—"
+        },
+        "pricing": {
+          "primarySop": "—",
+          "secondarySop": "—",
+          "tertiarySop": "—",
+          "cobCalMethod": "—"
+        },
+        "providers": {
+          "mppqAssignUnassigned": "—",
+          "ppoNetworkAvailability": "—",
+          "ppoProviderAvailability": "—",
+          "eft835": "—",
+          "serviceZip": "—"
+        }
+      },
+      "sfdf": {
+        "sfMessage": "—",
+        "dfMessage": "—",
+        "primacy": "—",
+        "autoOtherAccident": "—",
+        "totalDaysVisits": "—"
+      },
+      "claimLineDetail": [
+        {
+          "lineNum": "1",
+          "blankDateInd": "—",
+          "approvedDenyInd": "—"
+        }
+      ]
+    }
+  },
+  "providerInfo": {
+    "rendering": {
+      "npi": "1720485936",
+      "name": "MEADOWBROOK PEDIATRIC CARE",
+      "address": "4410 Allisonville Rd, Indianapolis, IN 46205",
+      "pricingState": "IN",
+      "pricingZip": "46205-2231",
+      "providerSps": "7302957714",
+      "providerEpin": "—",
+      "license": "01074582A",
+      "networkOption": "N",
+      "specialty": "037",
+      "specialtyDescription": "PEDIATRICS",
+      "taxonomy": "208000000X"
+    },
+    "billing": {
+      "taxId": "352716408",
+      "npi": "1720485936",
+      "name": "MEADOWBROOK PEDIATRIC CARE",
+      "facilityType": "—",
+      "providerSps": "6615139941",
+      "providerEpin": "—",
+      "medicareId": "—",
+      "address": "4410 Allisonville Rd, Indianapolis, IN 46205",
+      "nationalState": "IN",
+      "locationCode": "—",
+      "bhaProviderIndicator": "N",
+      "taxonomy": "208000000X",
+      "timelyFilingLimit": "—"
+    },
+    "referring": {
+      "referringPhysician": "—",
+      "npi": "—"
+    },
+    "serviceFacility": {
+      "facilityTier": "N",
+      "type": "N",
+      "npi": "1720485936"
+    },
+    "miscellaneous": {
+      "supportingOrderingNpi": "—",
+      "nsbIndicator": "None",
+      "alternateFacilityNpi": "—"
+    }
+  },
+  "paymentInfo": {
+    "claim": {
+      "deductible": "0.00",
+      "copay": "0.00",
+      "coins": "0.00",
+      "patientLiab": "0.00",
+      "memberSurcharge": "0.00",
+      "nonElg": "0.00",
+      "hraPaid": "0.00",
+      "claimPaid": "158.00",
+      "pricingAllowedAmount": "158.00",
+      "totalCharge": "210.00",
+      "finalizationCode": "PX_P10000"
+    },
+    "provider": {
+      "providerDisc": "52.00",
+      "providerLiab": "52.00",
+      "providerRiskWithhold": "0.00",
+      "providerSurcharge": "0.00",
+      "interest": "0.00",
+      "penalty": "0.00",
+      "lr": "L",
+      "systemInterest": "0.00"
+    },
+    "drg": {
+      "keyed": "-",
+      "priced": "—",
+      "original": "—"
+    },
+    "check": {
+      "accountNumber": "1234512345",
+      "checkNumber": "—",
+      "checkDate": "—",
+      "amount": "0.00",
+      "paymentSystem": "D",
+      "checkMailedTo": "—",
+      "eftCheckDate": "—",
+      "checkStatus": "CHECK NOT FOUND ON RECON DB",
+      "checkStatusDate": "01/27/2026",
+      "paidTo": "MEADOWBROOK PEDIATRIC CARE",
+      "finalized": "—"
+    },
+    "payeeDetails": {
+      "flipPayee": "N"
+    }
+  },
+  "claimHeader": {
+    "general": {
+      "serviceFromThrough": "01/22/2026 - 01/22/2026",
+      "assignmentOfBenefits": "Y - Benefit assigned to provider",
+      "providerParticipation": "PAR",
+      "providerContract": "INP00000",
+      "treatmentAuth": "—",
+      "patientAccount": "W000000000",
+      "emergency": "No",
+      "employment": "No",
+      "coveredZipRadius": "-",
+      "frequency": "1",
+      "bbiIndicator": "-",
+      "pciIndicator": "-",
+      "fsbInd": "None",
+      "fsbExclusion": "X"
+    },
+    "benefitIndicators": {
+      "cob": "0",
+      "cobRule": "-",
+      "medInd": "No",
+      "medRule": "-",
+      "medicareAdvantage": "No",
+      "cdhp": "N",
+      "planPayer": "N",
+      "cobPercent": "0"
+    },
+    "diagnosisCodes": {
+      "dx1": "Z00110"
+    },
+    "conditionCodes": {
+      "code": "-"
+    }
+  },
+  "claimLines": [
+    {
+      "lineNum": "1",
+      "fromDate": "01/22/2026",
+      "toDate": "01/22/2026",
+      "pos": "11",
+      "service": "PRV",
+      "procedure": "99381",
+      "modifiers": "—",
+      "units": "1",
+      "diagnosis": "Z00110",
+      "billed": "$210.00",
+      "dedInd": "NO",
+      "coinsPercent": "100",
+      "stoploss": "No",
+      "eobTy": "PX_MP",
+      "writeoffEobTy": "$52.00",
+      "noncoveredUnit": "0",
+      "deductible": "—",
+      "otherUnit": "0",
+      "copay": "—",
+      "eobTyLast": "PX_MP",
+      "payment": "$158.00"
+    }
+  ],
+  "claimLineSummary": {
+    "lineNum": "1",
+    "fromDate": "01/22/2026",
+    "toDate": "01/22/2026",
+    "pos": "11",
+    "service": "PRV",
+    "procedure": "99381",
+    "modifiers": "—",
+    "units": "1",
+    "diagnosis": "Z00110",
+    "billed": "$210.00",
+    "dedInd": "NO",
+    "coinsPercent": "100",
+    "stoploss": "No",
+    "eobTy": "PX_MP",
+    "writeoffEobTy": "$52.00",
+    "noncoveredUnit": "0",
+    "deductible": "—",
+    "otherUnit": "0",
+    "copay": "—",
+    "eobTyLast": "PX_MP",
+    "payment": "$158.00"
+  },
+  "notes": {
+    "research": "—",
+    "mainframe": "251907",
+    "wgs": "—",
+    "taskManagement": {
+      "routedTo": "-",
+      "urgency": "65",
+      "skills": "CT-Professional",
+      "csPg": "GS-National",
+      "benNonspider": "SPIDER",
+      "regCa": "-",
+      "resUnrestricted": "-",
+      "totalAge": "4",
+      "homeAge": "4",
+      "ageAdjusted": "N",
+      "baselineUrgency": "45",
+      "urgencyModifiers": "PG Modifer(0)"
+    }
+  },
+  "search": {
+    "claims": {
+      "dcnKernalClaim": "",
+      "claimId": "",
+      "subscriberOrHcid": "455W16003",
+      "sccf": "",
+      "procedure": "",
+      "serviceFrom": "01/22/2026",
+      "serviceTo": "01/22/2026",
+      "code": "",
+      "totalCharge": "",
+      "status": "ALL",
+      "providerTaxId": "352716408",
+      "providerNpi": "",
+      "renderingLicenseId": "",
+      "billType": ""
+    },
+    "claimsResultCount": "1",
+    "claimsResults": [
+      {
+        "code": "—",
+        "name": "BEN WATSON",
+        "from": "01/22/2026",
+        "to": "01/22/2026",
+        "type": "P",
+        "provider": "MEADOWBROOK PEDIATRIC CA",
+        "billType": "-",
+        "dcn": "DCN-618102",
+        "charged": "210.00",
+        "paid": "0.00",
+        "status": "Pending-Investigation"
+      }
+    ],
+    "codeSet": {
+      "selectCodeType": "-",
+      "enterCode": "-"
+    },
+    "auth": {
+      "search": {
+        "subscriberOrHcid": "455W16003",
+        "serviceStartDate": "1/22/2026",
+        "serviceEndDate": "1/22/2026",
+        "status": "-"
+      },
+      "members": {
+        "name": "—",
+        "dob": "—",
+        "ageAdjusted": "—",
+        "memberId": "-",
+        "mcid": "-",
+        "subscriberOrHcid": "455W16003"
+      }
+    },
+    "benefits": {
+      "planOptions": [
+        {
+          "costShare": "DEDUCTIBLE",
+          "network": "PPO",
+          "maximum": "$500",
+          "accumType": "Calendar Year"
+        },
+        {
+          "costShare": "OUT-OF-POCKET MAX",
+          "network": "PPO",
+          "maximum": "$3,000",
+          "accumType": "Calendar Year"
+        },
+        {
+          "costShare": "MEMBER CLAIM FILING DAY LIMIT",
+          "network": "—",
+          "maximum": "365 days",
+          "accumType": "—"
+        }
+      ],
+      "searchBenefits": {
+        "contractCode": "4HWT",
+        "effectiveDate": "1/1/2026",
+        "endDate": "12/31/9999",
+        "effectiveEndDate": "-"
+      },
+      "general": {
+        "contractCode": "4HWT",
+        "product": "BCBI",
+        "plan": "WABASH VALLEY MANUFACTURING",
+        "contractState": "IN",
+        "benefitPeriod": "-",
+        "benefitPeriodAlt": "-",
+        "fundingArrangement": "-",
+        "cdhpInd": "-",
+        "groupNumber": "WXX213M001",
+        "contractId": "4HWT",
+        "memberName": "DANIEL WATSON",
+        "caseNumber": "WXX213",
+        "contractType": "-",
+        "crossAccumulation": "-"
+      },
+      "viewNic": {
+        "coverage": "MED-MEDICL COVERAGE",
+        "pricing": "IN29",
+        "network": "PPO"
+      },
+      "accumulators": {
+        "criteria": {
+          "memberId": "455W16003",
+          "memberCode": "—",
+          "fromDate": "1/22/2026",
+          "toDate": "1/22/2026",
+          "sourceSystem": "WGS"
+        },
+        "selection": {
+          "accumulatorName": "—",
+          "benefitYear": "—",
+          "accumulatorEffDate": "—",
+          "cob": "—",
+          "deductible": "—",
+          "fertilityRx": "—",
+          "lifetime": "—",
+          "other": "—",
+          "outOfPocket": "—"
+        }
+      }
+    },
+    "provider": {
+      "npiTaxId": {
+        "npi": "1720485936",
+        "orgTaxId": "352716408",
+        "fromDate": "1/22/2026",
+        "throughDate": "1/22/2026",
+        "lastUpdateDate": "12/15/2025",
+        "sourceSystem": "WGS",
+        "zipCode": "-",
+        "billingType": "-",
+        "specialty": "-",
+        "state": "-",
+        "alternateId": "-",
+        "alternateKey": "-"
+      },
+      "practitioner": {
+        "firstName": "-",
+        "lastName": "-",
+        "fromDate": "1/22/2026",
+        "throughDate": "1/22/2026",
+        "sourceSystem": "SPS",
+        "addressLine": "-",
+        "city": "-",
+        "state": "-",
+        "specialty": "-"
+      },
+      "organization": {
+        "organizationName": "-",
+        "orgTaxId": "352716408",
+        "fromDate": "1/22/2026",
+        "throughDate": "1/22/2026",
+        "sourceSystem": "SPS",
+        "addressLine": "-",
+        "city": "-",
+        "state": "-",
+        "zipCode": "-",
+        "billingType": "-",
+        "specialty": "-"
+      },
+      "pcpPmg": {
+        "pcpPmgId": "-",
+        "fromDate": "1/22/2026",
+        "throughDate": "1/22/2026",
+        "sourceSystem": "SPS",
+        "specialty": "-",
+        "state": "-"
+      },
+      "alternateId": {
+        "organizationName": "XXXXX",
+        "alternateKeyOrg": "-",
+        "individual": "8023 - Legacy provider ID",
+        "alternateKeyIndiv": "-",
+        "nonAnthem": "33-NPI",
+        "alternateKeyNonAnthem": "-"
+      }
+    },
+    "member": {
+      "autoSearch": {
+        "memberId": "455W16003",
+        "firstName": "BEN",
+        "lastName": "WATSON",
+        "dob": "1/17/2026"
+      },
+      "collapseMembers": true,
+      "results": [
+        {
+          "memberId": "455W16003",
+          "firstName": "BEN",
+          "mi": "M",
+          "lastName": "WATSON",
+          "dob": "1/17/2026",
+          "relationship": "CHD - Child",
+          "memberCode": "50",
+          "gender": "M",
+          "state": "IN",
+          "rowAction": "open_patient_policies",
+          "membersInContract": [
+            {
+              "memberCode": "10",
+              "name": "DANIEL R WATSON",
+              "relationship": "SUB - Subscriber",
+              "dob": "4/9/1993",
+              "age": "32",
+              "effectiveDate": "1/1/2026",
+              "endDate": "12/31/9999"
+            },
+            {
+              "memberCode": "40",
+              "name": "CLAIRE WATSON",
+              "relationship": "SPS - Spouse",
+              "dob": "11/2/1995",
+              "age": "30",
+              "effectiveDate": "1/1/2026",
+              "endDate": "12/31/9999"
+            },
+            {
+              "memberCode": "50",
+              "name": "BEN M WATSON",
+              "relationship": "CHD - Child",
+              "dob": "1/17/2026",
+              "age": "0",
+              "effectiveDate": "1/17/2026",
+              "endDate": "12/31/9999"
+            }
+          ],
+          "contractGroups": [
+            {
+              "id": "cg_0922_pat_1",
+              "contractId": "4HWT",
+              "caseEntity": "WXX213",
+              "groupNumber": "WXX213M002",
+              "hcid": "455W16003",
+              "prefix": "KWT",
+              "effectiveDate": "1/17/2026",
+              "endDate": "12/31/9999",
+              "productCode": "BCBI",
+              "contractState": "IN",
+              "contractType": "C",
+              "cancellationDate": "—",
+              "terminationReason": "—",
+              "numberCovered": "03",
+              "updatedDate": "1/20/2026",
+              "updateById": "WMXWTS01",
+              "applyAction": "apply_other_policy"
+            },
+            {
+              "id": "cg_0922_pat_2",
+              "contractId": "4HWT",
+              "caseEntity": "WXX213",
+              "groupNumber": "WXX213M001",
+              "hcid": "455W16003",
+              "prefix": "KWT",
+              "effectiveDate": "1/17/2026",
+              "endDate": "12/31/9999",
+              "productCode": "BCBI",
+              "contractState": "IN",
+              "contractType": "C",
+              "cancellationDate": "—",
+              "terminationReason": "—",
+              "numberCovered": "03",
+              "updatedDate": "1/20/2026",
+              "updateById": "WMXWTS01",
+              "expandAction": "expand_member_group",
+              "applyAction": "apply_selected_member"
+            }
+          ]
+        }
+      ],
+      "searchMember": {
+        "memberId": "455W16003",
+        "firstName": "BEN",
+        "mi": "M",
+        "lastName": "WATSON",
+        "dob": "1/17/2026",
+        "relationship": "CHD - Child",
+        "memberCode": "50",
+        "gender": "M",
+        "state": "IN",
+        "contractId": "4HWT",
+        "caseEntity": "WXX213",
+        "groupNumber": "WXX213M001",
+        "hcid": "455W16003",
+        "prefix": "KWT",
+        "effectiveDate": "1/17/2026",
+        "endDate": "12/31/9999",
+        "productCode": "BCBI",
+        "contractState": "IN",
+        "businessUnit": "Group"
+      },
+      "general": {
+        "name": "",
+        "dateOfBirth": "",
+        "age": "",
+        "sex": "",
+        "memberId": "",
+        "hcid": "",
+        "relationship": "",
+        "memberCode": "",
+        "address": "",
+        "county": "",
+        "country": "",
+        "phone": "",
+        "effectiveDate": "",
+        "endDate": "",
+        "productType": "",
+        "groupType": "",
+        "cob": "",
+        "businessUnit": "",
+        "paidToDate": "",
+        "erisa": "",
+        "caseGroupSetup": "",
+        "contractStartDate": "",
+        "shortTermEndDate": "",
+        "cxlProcessDate": "",
+        "aptcIndicator": "",
+        "csdt": "",
+        "caseName": "",
+        "ncnReferralsInd": "",
+        "foi": "",
+        "roundoprd": "",
+        "conversionCode": "",
+        "medicareIndicator": ""
+      },
+      "additionalAddress": {
+        "address": "-"
+      },
+      "providerNetwork": {
+        "product": "57BC PPO INCENTIVE",
+        "providerGroupName": "-",
+        "address": "-",
+        "phone": "-"
+      },
+      "contractMembers": [
+        {
+          "memberCode": "10",
+          "name": "DANIEL R WATSON",
+          "relationship": "SUB - Subscriber",
+          "dob": "4/9/1993",
+          "age": "32",
+          "effectiveDate": "1/1/2026",
+          "endDate": "12/31/9999"
+        },
+        {
+          "memberCode": "40",
+          "name": "CLAIRE WATSON",
+          "relationship": "SPS - Spouse",
+          "dob": "11/2/1995",
+          "age": "30",
+          "effectiveDate": "1/1/2026",
+          "endDate": "12/31/9999"
+        },
+        {
+          "memberCode": "50",
+          "name": "BEN M WATSON",
+          "relationship": "CHD - Child",
+          "dob": "1/17/2026",
+          "age": "0",
+          "effectiveDate": "1/17/2026",
+          "endDate": "12/31/9999"
+        }
+      ],
+      "group": {
+        "general": {
+          "name": "WABASH VALLEY MANUFACTURING",
+          "status": "O ACTIVE",
+          "companyCode": "123C XXXX",
+          "paidToDate": "2/1/2026",
+          "locationStateCode": "IN",
+          "locationCodeEffectiveDate": "1/1/2019",
+          "workLocation": "7003 ANTHEM NAT ACCT",
+          "workLocationPhone": "9999888899",
+          "rateMethodCode": "1 ASO BUSINESS",
+          "rmcEffectiveDate": "1/1/2019",
+          "groupType": "A ACTIVE",
+          "fundingTypeCode": "H ASC",
+          "graceDays": "30",
+          "claimGraceDays": "30"
+        },
+        "coverage": {
+          "originalEffectiveDate": "1/1/2019",
+          "groupProcessedDate": "10/9/2018",
+          "reinstateEffectiveDate": "-",
+          "reinstateProcessedDate": "-",
+          "cancelEffectiveDate": "-",
+          "cancelProcessedDate": "-",
+          "cancelReason": "-"
+        },
+        "contract": {
+          "productLine": "BC PPO INCENTIVE",
+          "claimsRoute": "PX_P-EXEC - NATIONAL ACCTS",
+          "benefitYearCalendarYear": "CY",
+          "benefitYearCalendarYearAsOfDate": "1/1/2019",
+          "contractCode": "4HWT",
+          "contractCodeEffectiveDate": "1/1/2019",
+          "promptPay": "N",
+          "promptPayDate": "1/1/2019",
+          "itsHomeParticipatingCode": "E CONTROL CUSTOM",
+          "itsHomeEffectiveDate": "1/1/2019",
+          "locationLobCode": "X BC/BCLH",
+          "overAgeMailing": "S MAIL TO SUBR",
+          "networkId": "BLUECDOO",
+          "networkName": "BLUE XXXX BLUE XXXX"
+        },
+        "additional": {
+          "product": "BC PPO INC Claim Manager",
+          "mbuCode": "NAC00000",
+          "claimsServiceLocation": "COOIO/CAACOII",
+          "serviceManager": "SRVC/DARLENE",
+          "claimManager": "CLMS/M PENNER",
+          "servicePhone": "999999999",
+          "serviceAddress": "XXXX PARK Road INDIANAPOLIS IN 46204",
+          "sourceSystem": "WGS 2.0"
+        }
+      }
+    },
+    "limitedLiability": {
+      "memberId": "455W16003",
+      "memberCode": "—",
+      "dob": "1/17/2026",
+      "activeRecords": "-",
+      "allRecords": "-"
+    },
+    "pricing": {
+      "member": {
+        "dob": "1/17/2026",
+        "sex": "M",
+        "groupNumber": "WXX213M001",
+        "groupId": "-",
+        "networkId": "BLUECS",
+        "memberZipCode": "46032",
+        "alternateZipCode": "-",
+        "medicareInd": "N",
+        "hixInd": "-",
+        "marketType": "NTLA",
+        "memberInd": "-",
+        "ab72": "-",
+        "patientCode": "-",
+        "product": "BCBI -",
+        "variance": "IN29",
+        "coverage": "MED",
+        "groupIdentifier": "-"
+      },
+      "provider": {
+        "taxId": "352716408",
+        "renderingNumber": "77777777777",
+        "billingNumber": "6666666666",
+        "renderingNpi": "1720485936",
+        "billingNpi": "1720485936",
+        "license": "01074582A",
+        "specialty": "037",
+        "zipCode": "46205-2231",
+        "planInd": "IN",
+        "wgsp": "P",
+        "pcpState": "NP",
+        "region": "462",
+        "gbdId": "-",
+        "providerInd": "-",
+        "providerParticipation": "PAR",
+        "providerProdVar": "INP02186",
+        "networxInd": "-",
+        "finalMixer": "-",
+        "legacySpecialty": "-"
+      },
+      "claimHeader": {
+        "serviceFrom": "1/22/2026",
+        "serviceTo": "1/22/2026",
+        "placeOfService1": "1",
+        "placeOfService2": "11",
+        "cxtInd": "X",
+        "productLineCode": "57",
+        "serviceClassType": "-",
+        "emergRefInd": "-",
+        "icd9": "N",
+        "federalMandate": "-",
+        "cocInd": "-",
+        "mixerOverrideInd": "-",
+        "streetMedicineInd": "None",
+        "surpriseBillingInd": "-",
+        "cgntInd": "-",
+        "product": "INPO",
+        "variance": "2186",
+        "contractNotes": "-",
+        "overridePriceProduct": "-",
+        "contractHierarchy": "-",
+        "bundleStatus": "-",
+        "clusterId": "-"
+      },
+      "diagnosisCodes": {
+        "a": "Z00110",
+        "b": "-",
+        "c": "-",
+        "d": "-",
+        "e": "-"
+      },
+      "lineSummary": {
+        "procedure": "99381",
+        "modifier": "—",
+        "uo": "1",
+        "cxPercent": "100",
+        "allowed": "158",
+        "billedAmount": "210",
+        "writeoff": "52"
+      }
+    }
+  },
+  "system": {
+    "benefitRecommendation": {
+      "contractCode": "4HWT",
+      "effectiveDate": "1/1/2026",
+      "endDate": "12/31/9999",
+      "planState": "IN",
+      "planDescription": "Wabash Valley Manufacturing 01/01/2026 PPO 4HWT"
+    }
+  },
+  "attachment": {
+    "pwk": {
+      "type": "—",
+      "documentNumber": "—"
+    }
+  },
+  "claimData": {
+    "details": {
+      "claimType": "Professional",
+      "itsHome": "No",
+      "claimSource": {
+        "mediaType": "PC",
+        "pricingSource": "W",
+        "pricingSystem": "WP",
+        "mixerPar": "Y",
+        "receiverId": "WGSGA",
+        "receivedAtEdi": "1/27/2026",
+        "providerError": "I000",
+        "imageControlNumber": "CI26027110348931562",
+        "authNumber": "—",
+        "authExcln": "—",
+        "vendorIndicator": "—",
+        "receivedDate": "1/27/2026",
+        "splitInd": "—",
+        "epactPlm": "—",
+        "gnyhaInd": "—",
+        "imrIndicator": "—",
+        "cliaId": "—",
+        "cliaQualifier": "—"
+      },
+      "ancillaryProvider": {
+        "type": "—",
+        "zip": "—",
+        "state": "—"
+      },
+      "ambulance": {
+        "pickupZip": "—",
+        "dropoffZip": "—"
+      },
+      "miscellaneous": {
+        "epsdt": "—",
+        "familyPlanning": "No",
+        "gtessDate": "—",
+        "dateOfIllness": "—",
+        "dateOfInjury": "—",
+        "lastMenstrualDate": "—",
+        "consultationDate": "—",
+        "eruDecision": "—",
+        "jaaErrorCode": "No"
+      },
+      "stopData": {
+        "stopEdit": "No",
+        "lobParentRule": "—",
+        "lobChildRule": "ALL WGS",
+        "lobSequence": "1",
+        "medBusinessParentRule": "NA",
+        "medBusinessChildRule": "656881",
+        "medSequence": "51"
+      },
+      "refundData": {
+        "correspondenceNumber": "—",
+        "refundAmount": "$0.00",
+        "adjustmentReasonCode": "PX_4",
+        "correctedClaimDcn": "—",
+        "vendorName": "—",
+        "delayReason": "—",
+        "carveOut": "—",
+        "adjustmentReceipt": "—"
+      },
+      "highDollar": {
+        "riskOutcome": "—"
+      }
+    },
+    "editing": {
+      "claimXten": {
+        "originalLine": {
+          "lineNum": "1",
+          "serviceDate": "1/22/2026",
+          "procedure": "99381",
+          "mod": "—",
+          "units": "1",
+          "billedAmount": "$210.00"
+        },
+        "proposedLine": {
+          "lineNum": "1",
+          "procedure": "99381",
+          "mod": "—",
+          "units": "1",
+          "supportCode": "—",
+          "payPercent": "100",
+          "billedAmount": "$210.00"
+        }
+      },
+      "ihealth": {
+        "originalLine": {
+          "lineNum": "1",
+          "serviceDate": "1/22/2026",
+          "procedure": "99381",
+          "mod": "—",
+          "units": "1",
+          "allowedAmount": "$158.00",
+          "savingsAmount": "$52.00"
+        },
+        "proposedLine": {
+          "procedure": "99381",
+          "mod": "—",
+          "units": "1",
+          "payPercent": "100",
+          "status": "PX_P"
+        }
+      }
+    },
+    "benefits": {
+      "accumulator1": {
+        "type": "BENYTD",
+        "fromDate": "1/1/2026",
+        "toDate": "12/31/2026",
+        "unit": "Dollar",
+        "status": "Accrued"
+      },
+      "accumulator2": {
+        "type": "MMCYTD",
+        "fromDate": "1/1/2026",
+        "toDate": "12/31/2026",
+        "unit": "Dollar",
+        "status": "Accrued"
+      }
+    },
+    "promptPay": {
+      "claim": {
+        "status": "PX_WGS",
+        "state": "—",
+        "ruleId": "—",
+        "systemInterest": "$0.00",
+        "penaltyAmount": "$0.00",
+        "manualInterestAmount": "—"
+      },
+      "calculation": {
+        "calculationFromDate": "1/27/2026",
+        "carveoutDate": "—",
+        "lastProcessedDate": "1/27/2026",
+        "baseAmount": "$0.00",
+        "calculatedInterestAmount": "$0.00",
+        "processedInDays": "0",
+        "mailingDays": "0",
+        "disburseDays": "0",
+        "allowedDays": "0",
+        "carveoutDays": "0",
+        "lateByDays": "0",
+        "dailyInterest": "$0.00"
+      },
+      "miscellaneous": {
+        "carveoutReasonCode": "PX_0",
+        "dayIndicator": "0",
+        "receiptMethod": "—",
+        "productFundType": "W",
+        "interestRate": "—",
+        "penalty": "—",
+        "minimumPayAmount": "—",
+        "erMinimumPay": "—",
+        "annualMonthlyPenalty": "—",
+        "mlhDate": "26027",
+        "ppStopDate": "—",
+        "additionalInformationRequestDate": "—",
+        "tdiInterestAmount": "—",
+        "tdiPenaltyAmount": "—"
+      }
+    },
+    "review": {
+      "utilization": {
+        "service": {
+          "lineNum": "1",
+          "procedure": "99381",
+          "revenueCodeDate": "—",
+          "ruleId": "—",
+          "caseNumber": "—"
+        }
+      },
+      "cdhp": {
+        "claim": {
+          "litesClaim": "—",
+          "rsnEobCode": "—",
+          "hraPaidTotal": "$0.00",
+          "hraEndingBalance": "$0.00",
+          "paymentCode": "—",
+          "cdhpAdmin": "—",
+          "acknowledgementRcvd": "—",
+          "requeryCount": "—"
+        },
+        "lineSummary": {
+          "lineNum": "1",
+          "procedure": "99381",
+          "billed": "$210.00",
+          "patientResp": "—",
+          "hraPaid": "—",
+          "rsnCode": "—"
+        }
+      },
+      "dofr": {
+        "meta": {
+          "inzip": "—",
+          "providerNetworkCode": "—",
+          "dofrId1": "—",
+          "dofrName1": "—",
+          "relationship": "—",
+          "pgmId": "—",
+          "pgId": "—",
+          "umDelegationIndicator": "—",
+          "effectiveDate": "—",
+          "endDate": "—"
+        },
+        "lineSummary": {
+          "lineNum": "1",
+          "procedure": "99381",
+          "revenueCode": "—",
+          "serviceCategory": "—",
+          "event": "—",
+          "capIndicator": "—",
+          "risk": "—",
+          "groupCode": "—",
+          "hc": "PP"
+        }
+      }
+    },
+    "relatedSummary": {
+      "code": "—",
+      "name": "—",
+      "fromDate": "—",
+      "toDate": "—",
+      "type": "—",
+      "provider": "—",
+      "dcn": "—",
+      "charged": "—",
+      "paid": "—",
+      "status": "—"
+    }
+  }
+}

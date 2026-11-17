@@ -1,0 +1,278 @@
+{
+  "$schema": "training-platform/v1/navigator",
+  "$version": "2.0.0",
+  "id": "nav_597_1",
+  "flowId": "flow_eligibility_597_1",
+  "name": "Eligibility 597.1 — No Active Eligibility (Deny Claim) Navigator",
+  "description": "Resolve Edit PX_597 when the member has no active eligibility for any billed date of service: verify identity across Member Info / Claim Image, look up the contract on Search (Business Unit = Individual), confirm Group ID / Prefix, check that the claim lines fall outside every group's coverage range, deny the claim with reject code PX_R01030, then submit the Deny decision.",
+  "totalSteps": 8,
+  "passMark": 70,
+  "correctDecision": "deny",
+  "correctDecisionLabel": "Deny",
+  "totalMaxPoints": 110,
+  "totalNavigatorPoints": 80,
+  "steps": [
+    {
+      "id": "step_001",
+      "sequenceId": 1,
+      "name": "Identify the PX_597 hard edit",
+      "description": "Open the Event Resolution tab. All events for the claim are listed; the PX_597 hard edit is flagged in red — 'Member not eligible for any billed dates of service'. That's the event you are resolving.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_active",
+      "targetFieldId": null,
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes as soon as the trainee opens the Event Resolution tab.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Click the 'Event Resolution' tab. The active PX_597 edit is shown in red as a Hard Edit — 'Member not eligible for any billed dates of service'.",
+      "highlightFields": ["f_er_edit_code", "f_er_edit_label", "f_er_severity"],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "PX_597 hard edit identified on Event Resolution"
+    },
+    {
+      "id": "step_002",
+      "sequenceId": 2,
+      "name": "Review member identity fields",
+      "description": "Open the Member Info tab and review the seven identity fields — First Name, Middle Name, Last Name, Date of Birth, Sex, Group ID, and Member Prefix. They anchor the Claim Image cross-check next.",
+      "targetTabId": "tab_member_info",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_mi_patient",
+      "targetFieldId": null,
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_member_info"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens Member Info for the first time.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open the 'Member Info' tab. Note all seven highlighted identity fields — you'll cross-check them on Claim Image next.",
+      "highlightFields": [
+        "f_mi_p_first",
+        "f_mi_p_middle",
+        "f_mi_p_last",
+        "f_mi_p_dob",
+        "f_mi_p_sex",
+        "f_mi_g_id",
+        "f_mi_p_prefix"
+      ],
+      "highlightTabId": "tab_member_info",
+      "checklistItem": "Seven member identity fields reviewed on Member Info"
+    },
+    {
+      "id": "step_003",
+      "sequenceId": 3,
+      "name": "Cross-check member fields against the Claim Image",
+      "description": "Open the Claim Image tab → Member Details. Confirm First Name, Middle Name, Last Name, Date of Birth, Sex, Group ID, and Member Prefix match the Member Info tab exactly.",
+      "targetTabId": "tab_claim_image",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_ci_m_patient",
+      "targetFieldId": null,
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_image"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Claim Image tab.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Click the 'Claim Image' tab. Compare the seven highlighted identity fields against what you noted on Member Info — they must match exactly.",
+      "highlightFields": [
+        "f_ci_p_first",
+        "f_ci_p_middle",
+        "f_ci_p_last",
+        "f_ci_p_dob",
+        "f_ci_p_sex",
+        "f_ci_p_group_id",
+        "f_ci_p_prefix"
+      ],
+      "highlightTabId": "tab_claim_image",
+      "checklistItem": "Identity fields verified against the Claim Image"
+    },
+    {
+      "id": "step_004",
+      "sequenceId": 4,
+      "name": "Look up the contract on Search",
+      "description": "Navigate to the Search tab, select the Member sub-tab, and open the Member General Information section. Review the Business Unit field to determine the contract type. The available Business Unit values are Large Group, Small Group, and Individual. Large Group cases should be handled according to the dedicated SOP-defined process, while Small Group and Individual follow the standard shared process. Here it reads 'Individual'. Then record the Group ID, Member Prefix, Effective Date, and Termination Date.",
+      "targetTabId": "tab_search",
+      "targetSubTabId": "subtab_search_member",
+      "targetSectionId": "sec_sc_m_general",
+      "targetFieldId": "f_smg_business",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_search",
+        "subTabId": "subtab_search_member"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Member sub-tab inside Search.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Click 'Search', then the 'Member' sub-tab. Business Unit reads 'Individual' here — note the Group ID, Prefix, Effective Date and Termination Date for both groups.",
+      "highlightFields": [
+        "f_smg_business",
+        "f_sm_g1_id",
+        "f_sm_g1_prefix",
+        "f_sm_g1_eff",
+        "f_sm_g1_term",
+        "f_sm_g2_id",
+        "f_sm_g2_prefix",
+        "f_sm_g2_eff",
+        "f_sm_g2_term"
+      ],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_member",
+      "checklistItem": "Business Unit = Individual; both groups' Group ID / Prefix / coverage dates recorded"
+    },
+    {
+      "id": "step_005",
+      "sequenceId": 5,
+      "name": "Confirm Group ID and Prefix on Member Info",
+      "description": "Return to the Member Info tab and confirm the Group ID and Member Prefix align with the Search → Member panel.",
+      "targetTabId": "tab_member_info",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_mi_group",
+      "targetFieldId": null,
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_member_info"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes as soon as the trainee selects the Member Info tab.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Return to Member Info and confirm Group ID and Member Prefix match the Search → Member panel.",
+      "highlightFields": ["f_mi_g_id", "f_mi_p_prefix"],
+      "highlightTabId": "tab_member_info",
+      "checklistItem": "Group ID and Member Prefix confirmed against Search"
+    },
+    {
+      "id": "step_006",
+      "sequenceId": 6,
+      "name": "Check service dates against coverage range",
+      "description": "Open the Claim Lines tab and verify each line's From / To dates against the Effective – Termination range of the group on the Member sub-tab. There are two claim lines and neither falls within the group's coverage window — the group is not active and effective, so the claim must be denied.",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_summary",
+      "targetFieldId": null,
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_lines"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes on first visit to the Claim Lines tab.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Lines'. Both lines' From / To dates fall after every group's termination date — there is no active eligibility for any billed date of service.",
+      "highlightFields": ["f_cl_from", "f_cl_to", "f_cl2_from", "f_cl2_to"],
+      "highlightTabId": "tab_claim_lines",
+      "checklistItem": "Claim line dates checked — both fall outside every group's coverage window"
+    },
+    {
+      "id": "step_007",
+      "sequenceId": 7,
+      "name": "Deny the claim using a reject code",
+      "description": "Open the Action menu and select Deny claim. In the Deny Claim section, enter reject code PX_R01030 ('Date of service is after the member's coverage termination date'), then click Submit and confirm the pop-up.",
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "deny_claim",
+      "actionPayload": {
+        "type": "deny_claim"
+      },
+      "completesActionId": "deny_claim",
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the trainee submits the deny from the Deny Claim panel.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Action menu → Deny claim. Enter reject code PX_R01030 in the Deny Claim section, click 'Submit', then confirm the pop-up.",
+      "highlightFields": [],
+      "checklistItem": "Claim denied with reject code PX_R01030"
+    },
+    {
+      "id": "step_008",
+      "sequenceId": 8,
+      "name": "Submit the Deny decision",
+      "description": "After confirming the Deny Claim panel, click the Submit button to finalize the Deny decision. The attempt finalizes and your time is recorded.",
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "submit_decision",
+      "actionPayload": {
+        "type": "submit_decision",
+        "expectedDecision": "deny"
+      },
+      "completionTrigger": "decision_submitted",
+      "completionTriggerNote": "Completes when the trainee submits the Deny decision with the Submit button.",
+      "expectedValue": "deny",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Click the Submit button to finalize the Deny decision.",
+      "highlightFields": [],
+      "checklistItem": "Deny decision submitted — attempt complete"
+    }
+  ],
+  "scoreBreakdown": {
+    "navigatorStepsMaxPoints": 80,
+    "decisionMaxPoints": 20,
+    "reasonCodeMaxPoints": 10,
+    "totalMaxPoints": 110,
+    "passMark": 70,
+    "weightedPassScore": 77
+  },
+  "stepSummaryForResults": [
+    {
+      "sequenceId": 1,
+      "name": "PX_597 hard edit identified",
+      "points": 10
+    },
+    {
+      "sequenceId": 2,
+      "name": "Member identity fields reviewed",
+      "points": 10
+    },
+    {
+      "sequenceId": 3,
+      "name": "Claim Image cross-checked",
+      "points": 10
+    },
+    {
+      "sequenceId": 4,
+      "name": "Contract looked up on Search",
+      "points": 10
+    },
+    {
+      "sequenceId": 5,
+      "name": "Group ID & Prefix confirmed",
+      "points": 10
+    },
+    {
+      "sequenceId": 6,
+      "name": "Service dates checked vs coverage",
+      "points": 10
+    },
+    {
+      "sequenceId": 7,
+      "name": "Claim denied with reject code",
+      "points": 10
+    },
+    {
+      "sequenceId": 8,
+      "name": "Deny decision submitted",
+      "points": 10
+    }
+  ]
+}

@@ -1,0 +1,1170 @@
+{
+  "$schema": "training-platform/v1/flow-data",
+  "$version": "2.0.0",
+  "id": "data_hs1_1_hsa_cob_deductible_workaround",
+  "claimId": "claim_hs1_1",
+  "dcn": "DCN-618107",
+  "flowId": "flow_hs1_1_hsa_cob_deductible_workaround",
+  "navigatorSchemaId": "nav_hs1_1_hsa_cob_deductible_workaround",
+  "claim": {
+    "dcn": "DCN-618107",
+    "patient": "Eloise M Hartwell",
+    "serviceFrom": "09/18/2026",
+    "billedAmount": "$12,762.00",
+    "status": "PENDING INVESTIGATION",
+    "claimType": "Professional",
+    "receiptDate": "09/26/2026",
+    "claimAge": "18 days"
+  },
+  "header": {
+    "dcn": "DCN-618107",
+    "edits": "PX_HS1",
+    "billed": "$250.00",
+    "claimAllowed": "—",
+    "paid": "$0.00",
+    "writeOff": "$0.00",
+    "deductible": "—",
+    "coinsurance": "$0.00",
+    "copay": "$0.00",
+    "actionCode": "—",
+    "receiptDate": "09/26/2026",
+    "serviceFrom": "08/19/2026",
+    "serviceTo": "08/19/2026"
+  },
+  "eventResolution": {
+    "editCode": "PX_HS1",
+    "editLabel": "HSA COB CLAIM WITH O/C DED",
+    "severity": "Hard Edit",
+    "validationMessage": "",
+    "bypassStatus": "",
+    "edits": [
+      {
+        "code": "PX_HS1",
+        "label": "HSA COB CLAIM WITH O/C DED",
+        "severity": "Hard Edit",
+        "active": true
+      },
+      {
+        "code": "PX_SPS",
+        "label": "USE PA MENU OPTION TO VIEW PRV",
+        "severity": "Informational",
+        "active": false
+      },
+      {
+        "code": "PX_DGX",
+        "label": "CLAIM RECEIVED AT ECP",
+        "severity": "Informational",
+        "active": false
+      },
+      {
+        "code": "PX_PWK",
+        "label": "MEA ATTACHMENT PRESENT",
+        "severity": "Informational",
+        "active": false
+      },
+      {
+        "code": "PX_LUM",
+        "label": "CDHP CLAIM",
+        "severity": "Informational",
+        "active": false
+      },
+      {
+        "code": "PX_TR6",
+        "label": "TIER CLAIM EMPLOYEE + FAMILY",
+        "severity": "Informational",
+        "active": false
+      },
+      {
+        "code": "PX_DXG",
+        "label": "DX Pointers on PD Pop up",
+        "severity": "Informational",
+        "active": false
+      }
+    ]
+  },
+  "memberInfo": {
+    "patient": {
+      "firstName": "ELOISE",
+      "middleName": "M",
+      "lastName": "HARTWELL",
+      "dob": "9/14/2026",
+      "sex": "F",
+      "memberPrefix": "QKR",
+      "hcid": "614W20937",
+      "relationship": "CHD - Child",
+      "memberCode": "70",
+      "memberCodeMessage": "",
+      "contractType": "F",
+      "erisa": "Y",
+      "pcp": "—",
+      "pcpState": "—",
+      "pcpRelationship": "—",
+      "programCode": "—",
+      "state": "NH"
+    },
+    "subscriber": {
+      "firstName": "GRANT",
+      "middleName": "T",
+      "lastName": "HARTWELL",
+      "subscriberId": "461220937",
+      "address": "27 Linden St, Exeter, NH 03833"
+    },
+    "group": {
+      "groupName": "SQUAMSCOTT RIVER TIMBER COOPERATIVE",
+      "groupId": "L02417M003",
+      "groupContract": "72HN",
+      "detailContractCode": "72HN",
+      "product": "LOCAL",
+      "networkId": "NHPPO100",
+      "networkName": "NH PPO/EPO BLUE ACCESS LOCAL/NATL"
+    }
+  },
+  "claimImage": {
+    "memberDetails": {
+      "patient": {
+        "firstName": "ELOISE",
+        "middleName": "M",
+        "lastName": "HARTWELL",
+        "dob": "9/14/2026",
+        "sex": "F",
+        "memberPrefix": "QKR",
+        "hcid": "614W20937",
+        "relationship": "CHD - Child",
+        "memberCode": "70",
+        "detailContractCode": "72HN",
+        "contractType": "C",
+        "groupId": "L02417M003",
+        "groupContract": "72HN",
+        "product": "BCBI",
+        "erisa": "Y",
+        "pcp": "—",
+        "pcpState": "—",
+        "pcpRelationship": "—"
+      },
+      "subscriber": {
+        "firstName": "GRANT",
+        "middleName": "T",
+        "lastName": "HARTWELL",
+        "subscriberId": "461220937",
+        "address": "27 Linden St, Exeter, NH 03833"
+      },
+      "totalClaimLines": "1"
+    },
+    "additional": {
+      "claimSource": {
+        "mediaType": "-",
+        "pricingSource": "-",
+        "pricingSystem": "-",
+        "mixerPar": "-",
+        "receiverId": "NH",
+        "receivedAtEdi": "-",
+        "providerError": "-",
+        "authNumber": "-",
+        "authExcln": "-",
+        "vendorIndicator": "-",
+        "receivedDate": "-",
+        "originalReferenceNumber": "-"
+      },
+      "ancillaryProvider": {
+        "type": "-",
+        "zip": "-",
+        "state": "-"
+      },
+      "ambulance": {
+        "pickupZip": "-",
+        "dropoffZip": "-"
+      },
+      "miscellaneous": {
+        "epsdt": "-",
+        "familyPlanning": "-",
+        "gtessDate": "-",
+        "dateOfIllness": "-",
+        "dateOfInjury": "-",
+        "lastMenstrualDate": "-",
+        "consultationDate": "-"
+      },
+      "stopData": {
+        "stopEdit": "-",
+        "lobParentRule": "-",
+        "lobChildRule": "-",
+        "lobSequence": "-",
+        "medBusinessParentRule": "-",
+        "medBusinessChildRule": "-",
+        "medSequence": "-"
+      },
+      "refundData": {
+        "correspondenceNumber": "-",
+        "refundAmount": "-",
+        "adjustmentReason": "-",
+        "vendorName": "-",
+        "delayReason": "-",
+        "carveOut": "-",
+        "adjustmentReceiptDate": "-"
+      },
+      "highDollar": {
+        "riskOutcome": "-"
+      },
+      "its": {
+        "account": {
+          "deliveryMethod": "—",
+          "accountType": "—",
+          "aso": "—",
+          "stateId": "—",
+          "originalCertificate": "—",
+          "originalGroup": "—"
+        },
+        "pricing": {
+          "primarySop": "—",
+          "secondarySop": "—",
+          "tertiarySop": "—",
+          "cobCalMethod": "—"
+        },
+        "providers": {
+          "mppqAssignUnassigned": "—",
+          "ppoNetworkAvailability": "—",
+          "ppoProviderAvailability": "—",
+          "eft835": "—",
+          "serviceZip": "—"
+        }
+      },
+      "sfdf": {
+        "sfMessage": "—",
+        "dfMessage": "—",
+        "primacy": "—",
+        "autoOtherAccident": "—",
+        "totalDaysVisits": "—"
+      },
+      "claimLineDetail": [
+        {
+          "lineNum": "1",
+          "blankDateInd": "—",
+          "approvedDenyInd": "—"
+        }
+      ]
+    }
+  },
+  "providerInfo": {
+    "rendering": {
+      "npi": "1548273906",
+      "name": "SQUAMSCOTT WOMEN AND INFANTS CENTER",
+      "address": "64 Epping Rd, Exeter, NH 03833",
+      "pricingState": "NH",
+      "pricingZip": "03833-2117",
+      "providerSps": "7418205563",
+      "providerEpin": "—",
+      "license": "01082547A",
+      "networkOption": "N",
+      "specialty": "037",
+      "specialtyDescription": "PEDIATRICS",
+      "taxonomy": "208000000X"
+    },
+    "billing": {
+      "taxId": "020418365",
+      "npi": "1548273906",
+      "name": "SQUAMSCOTT WOMEN AND INFANTS CENTER",
+      "facilityType": "—",
+      "providerSps": "6630947128",
+      "providerEpin": "—",
+      "medicareId": "—",
+      "address": "64 Epping Rd, Exeter, NH 03833",
+      "nationalState": "NH",
+      "locationCode": "—",
+      "bhaProviderIndicator": "N",
+      "taxonomy": "208000000X",
+      "timelyFilingLimit": "—"
+    },
+    "referring": {
+      "referringPhysician": "—",
+      "npi": "—"
+    },
+    "serviceFacility": {
+      "facilityTier": "N",
+      "type": "N",
+      "npi": "1548273906"
+    },
+    "miscellaneous": {
+      "supportingOrderingNpi": "—",
+      "nsbIndicator": "None",
+      "alternateFacilityNpi": "—"
+    }
+  },
+  "paymentInfo": {
+    "claim": {
+      "deductible": "0.00",
+      "copay": "0.00",
+      "coins": "0.00",
+      "patientLiab": "0.00",
+      "memberSurcharge": "0.00",
+      "nonElg": "0.00",
+      "hraPaid": "0.00",
+      "claimPaid": "0.00",
+      "pricingAllowedAmount": "0.00",
+      "totalCharge": "12,762.00",
+      "finalizationCode": "—"
+    },
+    "provider": {
+      "providerDisc": "0.00",
+      "providerLiab": "0.00",
+      "providerRiskWithhold": "0.00",
+      "providerSurcharge": "0.00",
+      "interest": "0.00",
+      "penalty": "0.00",
+      "lr": "L",
+      "systemInterest": "0.00"
+    },
+    "drg": {
+      "keyed": "-",
+      "priced": "—",
+      "original": "—"
+    },
+    "check": {
+      "accountNumber": "1234512345",
+      "checkNumber": "—",
+      "checkDate": "—",
+      "amount": "0.00",
+      "paymentSystem": "D",
+      "checkMailedTo": "—",
+      "eftCheckDate": "—",
+      "checkStatus": "CHECK NOT FOUND ON RECON DB",
+      "checkStatusDate": "09/24/2026",
+      "paidTo": "SQUAMSCOTT WOMEN AND INFANTS CENTER",
+      "finalized": "—"
+    },
+    "payeeDetails": {
+      "flipPayee": "N"
+    }
+  },
+  "claimHeader": {
+    "general": {
+      "serviceFromThrough": "09/18/2026 - 09/18/2026",
+      "assignmentOfBenefits": "Y - Benefit assigned to provider",
+      "providerParticipation": "PAR",
+      "providerContract": "INP00000",
+      "treatmentAuth": "—",
+      "patientAccount": "W000000000",
+      "emergency": "No",
+      "employment": "No",
+      "coveredZipRadius": "-",
+      "frequency": "1",
+      "bbiIndicator": "-",
+      "pciIndicator": "-",
+      "fsbInd": "None",
+      "fsbExclusion": "X"
+    },
+    "benefitIndicators": {
+      "cob": "0",
+      "cobRule": "-",
+      "medInd": "No",
+      "medRule": "-",
+      "medicareAdvantage": "No",
+      "cdhp": "N",
+      "planPayer": "N",
+      "cobPercent": "0"
+    },
+    "diagnosisCodes": {
+      "dx1": "Z3800"
+    },
+    "conditionCodes": {
+      "code": "-"
+    }
+  },
+  "claimLines": {
+    "totalInitialLines": "1",
+    "line1": {
+      "lineNumber": "1",
+      "serviceFrom": "08/19/2026",
+      "serviceTo": "08/19/2026",
+      "placeOfService": "11",
+      "serviceType": "PHT",
+      "procedureCode": "98940",
+      "modifier": "AT",
+      "units": "1",
+      "diagnosis": "M9901 M542",
+      "billed": "250.00",
+      "allowed": "",
+      "deductible": "",
+      "noncovered": "",
+      "eobCode": ""
+    }
+  },
+  "claimLineSummary": {
+    "lineNum": "1",
+    "fromDate": "08/19/2026",
+    "toDate": "08/19/2026",
+    "pos": "11",
+    "revCode": "—",
+    "service": "PHT",
+    "procedure": "98940",
+    "modifiers": "AT",
+    "units": "1",
+    "diagnosis": "M9901 M542",
+    "billed": "$250.00",
+    "allowed": "—",
+    "dedInd": "—",
+    "coinsPercent": "0",
+    "stoploss": "—",
+    "eobTy": "—",
+    "writeoffEobTy": "—",
+    "noncoveredUnit": "",
+    "deductible": "—",
+    "otherUnit": "—",
+    "copay": "—",
+    "eobTyLast": "",
+    "payment": "—"
+  },
+  "notes": {
+    "research": "—",
+    "mainframe": "251907",
+    "wgs": "—",
+    "taskManagement": {
+      "routedTo": "-",
+      "urgency": "65",
+      "skills": "CT-Professional",
+      "csPg": "GS-National",
+      "benNonspider": "SPIDER",
+      "regCa": "-",
+      "resUnrestricted": "-",
+      "totalAge": "4",
+      "homeAge": "4",
+      "ageAdjusted": "N",
+      "baselineUrgency": "45",
+      "urgencyModifiers": "PG Modifer(0)"
+    }
+  },
+  "search": {
+    "claims": {
+      "dcnKernalClaim": "",
+      "claimId": "",
+      "subscriberOrHcid": "614W20937",
+      "sccf": "",
+      "procedure": "",
+      "serviceFrom": "09/18/2026",
+      "serviceTo": "09/18/2026",
+      "code": "",
+      "totalCharge": "",
+      "status": "ALL",
+      "providerTaxId": "020418365",
+      "providerNpi": "",
+      "renderingLicenseId": "",
+      "billType": ""
+    },
+    "claimsResultCount": "1",
+    "claimsResults": [
+      {
+        "code": "—",
+        "name": "ELOISE HARTWELL",
+        "from": "09/18/2026",
+        "to": "09/18/2026",
+        "type": "P",
+        "provider": "SQUAMSCOTT WOMEN AND INFANTS CENTER",
+        "billType": "-",
+        "dcn": "DCN-618105",
+        "charged": "12,762.00",
+        "paid": "0.00",
+        "status": "Pending-Investigation"
+      }
+    ],
+    "codeSet": {
+      "selectCodeType": "-",
+      "enterCode": "-"
+    },
+    "auth": {
+      "search": {
+        "subscriberOrHcid": "614W20937",
+        "serviceStartDate": "9/18/2026",
+        "serviceEndDate": "9/18/2026",
+        "status": "-"
+      },
+      "members": {
+        "name": "—",
+        "dob": "—",
+        "ageAdjusted": "—",
+        "memberId": "-",
+        "mcid": "-",
+        "subscriberOrHcid": "614W20937"
+      }
+    },
+    "benefits": {
+      "planOptions": [
+        {
+          "costShare": "DEDUCTIBLE",
+          "network": "PPO",
+          "maximum": "$500",
+          "accumType": "Calendar Year"
+        },
+        {
+          "costShare": "OUT-OF-POCKET MAX",
+          "network": "PPO",
+          "maximum": "$3,000",
+          "accumType": "Calendar Year"
+        },
+        {
+          "costShare": "MEMBER CLAIM FILING DAY LIMIT",
+          "network": "—",
+          "maximum": "365 days",
+          "accumType": "—"
+        }
+      ],
+      "searchBenefits": {
+        "contractCode": "72HN",
+        "effectiveDate": "1/1/2026",
+        "endDate": "12/31/9999",
+        "effectiveEndDate": "-"
+      },
+      "general": {
+        "contractCode": "72HN",
+        "product": "BCBI",
+        "plan": "SQUAMSCOTT RIVER TIMBER COOPERATIVE",
+        "contractState": "NH",
+        "benefitPeriod": "-",
+        "benefitPeriodAlt": "-",
+        "fundingArrangement": "-",
+        "cdhpInd": "-",
+        "groupNumber": "L02417M003",
+        "contractId": "72HN",
+        "memberName": "GRANT HARTWELL",
+        "caseNumber": "L02417",
+        "contractType": "-",
+        "crossAccumulation": "-"
+      },
+      "viewNic": {
+        "coverage": "MED-MEDICL COVERAGE",
+        "pricing": "IN29",
+        "network": "PPO"
+      },
+      "accumulators": {
+        "criteria": {
+          "memberId": "614W20937",
+          "memberCode": "70",
+          "fromDate": "9/18/2026",
+          "toDate": "9/18/2026",
+          "sourceSystem": "WGS"
+        },
+        "selection": {
+          "accumulatorName": "—",
+          "benefitYear": "—",
+          "accumulatorEffDate": "—",
+          "cob": "—",
+          "deductible": "—",
+          "fertilityRx": "—",
+          "lifetime": "—",
+          "other": "—",
+          "outOfPocket": "—"
+        }
+      }
+    },
+    "provider": {
+      "npiTaxId": {
+        "npi": "1548273906",
+        "orgTaxId": "020418365",
+        "fromDate": "9/18/2026",
+        "throughDate": "9/18/2026",
+        "lastUpdateDate": "12/15/2025",
+        "sourceSystem": "WGS",
+        "zipCode": "-",
+        "billingType": "-",
+        "specialty": "-",
+        "state": "-",
+        "alternateId": "-",
+        "alternateKey": "-"
+      },
+      "practitioner": {
+        "firstName": "-",
+        "lastName": "-",
+        "fromDate": "9/18/2026",
+        "throughDate": "9/18/2026",
+        "sourceSystem": "SPS",
+        "addressLine": "-",
+        "city": "-",
+        "state": "-",
+        "specialty": "-"
+      },
+      "organization": {
+        "organizationName": "-",
+        "orgTaxId": "020418365",
+        "fromDate": "9/18/2026",
+        "throughDate": "9/18/2026",
+        "sourceSystem": "SPS",
+        "addressLine": "-",
+        "city": "-",
+        "state": "-",
+        "zipCode": "-",
+        "billingType": "-",
+        "specialty": "-"
+      },
+      "pcpPmg": {
+        "pcpPmgId": "-",
+        "fromDate": "9/18/2026",
+        "throughDate": "9/18/2026",
+        "sourceSystem": "SPS",
+        "specialty": "-",
+        "state": "-"
+      },
+      "alternateId": {
+        "organizationName": "XXXXX",
+        "alternateKeyOrg": "-",
+        "individual": "8023 - Legacy provider ID",
+        "alternateKeyIndiv": "-",
+        "nonAnthem": "33-NPI",
+        "alternateKeyNonAnthem": "-"
+      }
+    },
+    "member": {
+      "results": [
+        {
+          "memberId": "550W25881",
+          "firstName": "SHARI",
+          "mi": "",
+          "lastName": "LEWIS",
+          "dob": "01/11/1970",
+          "relationship": "SPS - Spouse",
+          "memberCode": "40",
+          "gender": "F",
+          "state": "WI",
+          "contractGroups": [
+            {
+              "id": "cg_hs1_primary",
+              "contractId": "W17N",
+              "caseEntity": "L15147",
+              "groupNumber": "L15147M006",
+              "hcid": "550W25881",
+              "prefix": "AIH",
+              "effectiveDate": "01/01/2026",
+              "endDate": "12/31/9999",
+              "productCode": "HXVQ",
+              "contractState": "WI",
+              "contractType": "F - Male sub, spouse and child(ren)",
+              "cancellationDate": "—",
+              "terminationReason": "—",
+              "numberCovered": "06",
+              "updatedDate": "12/10/2025",
+              "updateById": "WGT41W6R"
+            }
+          ]
+        }
+      ],
+      "searchMember": {
+        "memberId": "550W25881",
+        "firstName": "SHARI",
+        "mi": "",
+        "lastName": "LEWIS",
+        "dob": "01/11/1970",
+        "relationship": "SPS - Spouse",
+        "memberCode": "40",
+        "gender": "F",
+        "state": "WI",
+        "contractId": "W17N",
+        "caseEntity": "L15147",
+        "groupNumber": "L15147M006",
+        "hcid": "550W25881",
+        "prefix": "AIH",
+        "effectiveDate": "01/01/2026",
+        "endDate": "12/31/9999",
+        "productCode": "HXVQ",
+        "contractState": "WI",
+        "businessUnit": "Group"
+      },
+      "general": {
+        "name": "SHARI LEWIS",
+        "dateOfBirth": "01/11/1970",
+        "age": "0",
+        "sex": "F",
+        "memberId": "550W25881",
+        "hcid": "550W25881",
+        "relationship": "SPS - Spouse",
+        "memberCode": "40",
+        "address": "4821 Kohler Memorial Dr  SHEBOYGAN WI 53081",
+        "county": "—",
+        "country": "US",
+        "phone": "—",
+        "effectiveDate": "01/01/2026",
+        "endDate": "12/31/9999",
+        "productType": "HXVQ - POS BLUE PREFERRED",
+        "groupType": "A ACTIVE",
+        "cob": "Y",
+        "businessUnit": "Group",
+        "paidToDate": "10/01/2026",
+        "erisa": "Y",
+        "caseGroupSetup": "Y",
+        "contractStartDate": "-",
+        "shortTermEndDate": "-",
+        "cxlProcessDate": "-",
+        "aptcIndicator": "-",
+        "csdt": "-",
+        "caseName": "Discovery Energy LLC dba Rehlko",
+        "ncnReferralsInd": "—",
+        "foi": "G",
+        "roundoprd": "12",
+        "conversionCode": "0",
+        "medicareIndicator": "—"
+      },
+      "additionalAddress": {
+        "address": "-"
+      },
+      "providerNetwork": {
+        "product": "57BC PPO INCENTIVE",
+        "providerGroupName": "-",
+        "address": "-",
+        "phone": "-"
+      },
+      "contractMembers": [
+        {
+          "memberCode": "10",
+          "name": "Grant T Hartwell",
+          "relationship": "SUB - Subscriber",
+          "dob": "—",
+          "age": "—",
+          "effectiveDate": "1/1/2026",
+          "endDate": "12/31/9999"
+        },
+        {
+          "memberCode": "70",
+          "name": "Eloise M Hartwell",
+          "relationship": "CHD - Child",
+          "dob": "9/14/2026",
+          "age": "0",
+          "effectiveDate": "9/14/2026",
+          "endDate": "12/31/9999"
+        },
+        {
+          "memberCode": "—",
+          "name": "—",
+          "relationship": "—",
+          "dob": "—",
+          "age": "—",
+          "effectiveDate": "—",
+          "endDate": "—"
+        }
+      ],
+      "group": {
+        "general": {
+          "name": "DISCOVERY ENERGY LLC DBA REHLKO",
+          "status": "0 ACTIVE",
+          "companyCode": "423C ANTHEM BCBS WI",
+          "paidToDate": "10/01/2026",
+          "locationStateCode": "WI",
+          "locationCodeEffectiveDate": "01/01/2026",
+          "workLocation": "WILG LG EMPLOYER SVC",
+          "workLocationPhone": "8007706226",
+          "rateMethodCode": "1 ASO BUSINESS",
+          "rmcEffectiveDate": "01/01/2026",
+          "groupType": "A ACTIVE",
+          "fundingTypeCode": "H ASC",
+          "graceDays": "31",
+          "claimGraceDays": "31"
+        },
+        "coverage": {
+          "originalEffectiveDate": "01/01/2026",
+          "groupProcessedDate": "12/04/2025",
+          "reinstateEffectiveDate": "",
+          "reinstateProcessedDate": "",
+          "cancelEffectiveDate": "",
+          "cancelProcessedDate": "",
+          "cancelReason": ""
+        },
+        "contract": {
+          "productLine": "ANTHEM BLUE PREFERRED PLUS POS",
+          "claimsRoute": "WIAHGP - WI PG AHG",
+          "benefitYearCalendarYear": "CY",
+          "benefitYearCalendarYearAsOfDate": "01/01/2026",
+          "contractCode": "W17N",
+          "contractCodeEffectiveDate": "01/01/2026",
+          "promptPay": "N",
+          "promptPayDate": "01/01/2026",
+          "itsHomeParticipatingCode": "E CONTROL CUSTOM",
+          "itsHomeEffectiveDate": "01/01/2026",
+          "locationLobCode": "B BLUECROSS BLUESHIELD WISCONSIN",
+          "overAgeMailing": "G MAIL TO GROUP",
+          "networkId": "WISBP200",
+          "networkName": "WI POS BLUE PREFERRED"
+        },
+        "additional": {
+          "product": "HSA POS",
+          "mbuCode": "WI000000",
+          "claimsServiceLocation": "/",
+          "serviceManager": "WI LOCAL PG AHG",
+          "claimManager": "CLMS/C GARDNER",
+          "servicePhone": "8339522061",
+          "serviceAddress": "P.O BOX 105187 ATLANTA, GA. 30348-5187",
+          "sourceSystem": "WGS 2.0"
+        },
+        "openAdditionalAction": "open_group_additional"
+      },
+      "autoSearch": {
+        "memberId": "550W25881",
+        "firstName": "SHARI",
+        "lastName": "LEWIS",
+        "dob": ""
+      },
+      "showGroupInfo": true
+    },
+    "limitedLiability": {
+      "memberId": "550W25881",
+      "memberCode": "40",
+      "dob": "1/11/1970",
+      "activeRecords": "Active records",
+      "allRecords": "—",
+      "resultsNote": "1 active record found.",
+      "results": [
+        {
+          "type": "COB",
+          "effectiveDate": "01/01/2026",
+          "endDate": "",
+          "orderOfBenefits": "S - Our Insurance is secondary",
+          "description": "UMR"
+        }
+      ],
+      "recordDetail": {
+        "insuranceCode": "QCR",
+        "insuranceName": "UMR",
+        "policyType": "MED - Medical",
+        "policyNumber": "49201325",
+        "groupNumber": "76417662",
+        "cobType": "C - Other carrier",
+        "stateCarrierCode": "—",
+        "questionnaireSend": "—",
+        "questionnaireSentDate": "07/21/2026",
+        "questionnaireReceivedDate": "09/16/2026",
+        "sentCount": "—",
+        "resultsCode": "S - Our Insurance is secondary",
+        "letterTypeIndicator": "—",
+        "letterAckIndicator": "N - No",
+        "letterSendDate": "—",
+        "updatedDate": "09/21/2026",
+        "updatedById": "WMXBRN01"
+      },
+      "selectedRecord": {
+        "notes": "",
+        "status": ""
+      }
+    },
+    "pricing": {
+      "member": {
+        "dob": "9/14/2026",
+        "sex": "F",
+        "groupNumber": "L02417M003",
+        "groupId": "-",
+        "networkId": "BLUECS",
+        "memberZipCode": "03833",
+        "alternateZipCode": "-",
+        "medicareInd": "N",
+        "hixInd": "-",
+        "marketType": "NTLA",
+        "memberInd": "-",
+        "ab72": "-",
+        "patientCode": "-",
+        "product": "BCBI -",
+        "variance": "IN29",
+        "coverage": "MED",
+        "groupIdentifier": "-"
+      },
+      "provider": {
+        "taxId": "020418365",
+        "renderingNumber": "77777777777",
+        "billingNumber": "6666666666",
+        "renderingNpi": "1548273906",
+        "billingNpi": "1548273906",
+        "license": "01082547A",
+        "specialty": "037",
+        "zipCode": "03833-2117",
+        "planInd": "NH",
+        "wgsp": "P",
+        "pcpState": "NP",
+        "region": "462",
+        "gbdId": "-",
+        "providerInd": "-",
+        "providerParticipation": "PAR",
+        "providerProdVar": "INP02186",
+        "networxInd": "-",
+        "finalMixer": "-",
+        "legacySpecialty": "-"
+      },
+      "claimHeader": {
+        "serviceFrom": "9/18/2026",
+        "serviceTo": "9/18/2026",
+        "placeOfService1": "2",
+        "placeOfService2": "21",
+        "cxtInd": "X",
+        "productLineCode": "57",
+        "serviceClassType": "-",
+        "emergRefInd": "-",
+        "icd9": "N",
+        "federalMandate": "-",
+        "cocInd": "-",
+        "mixerOverrideInd": "-",
+        "streetMedicineInd": "None",
+        "surpriseBillingInd": "-",
+        "cgntInd": "-",
+        "product": "INPO",
+        "variance": "2186",
+        "contractNotes": "-",
+        "overridePriceProduct": "-",
+        "contractHierarchy": "-",
+        "bundleStatus": "-",
+        "clusterId": "-"
+      },
+      "diagnosisCodes": {
+        "a": "Z3800",
+        "b": "-",
+        "c": "-",
+        "d": "-",
+        "e": "-"
+      },
+      "lineSummary": {
+        "procedure": "—",
+        "modifier": "—",
+        "uo": "1",
+        "cxPercent": "100",
+        "allowed": "0",
+        "billedAmount": "12762",
+        "writeoff": "0"
+      }
+    }
+  },
+  "system": {
+    "benefitRecommendation": {
+      "contractCode": "72HN",
+      "effectiveDate": "1/1/2026",
+      "endDate": "12/31/9999",
+      "planState": "NH",
+      "planDescription": "Squamscott River Timber Cooperative 01/01/2026 PPO 72HN"
+    }
+  },
+  "attachment": {
+    "pwk": {
+      "type": "—",
+      "documentNumber": "—"
+    }
+  },
+  "claimData": {
+    "details": {
+      "claimType": "Professional",
+      "itsHome": "No",
+      "claimSource": {
+        "mediaType": "PC",
+        "pricingSource": "W",
+        "pricingSystem": "WP",
+        "mixerPar": "Y",
+        "receiverId": "WGSGA",
+        "receivedAtEdi": "9/24/2026",
+        "providerError": "I000",
+        "imageControlNumber": "CI26027110348931562",
+        "authNumber": "—",
+        "authExcln": "—",
+        "vendorIndicator": "—",
+        "receivedDate": "9/24/2026",
+        "splitInd": "—",
+        "epactPlm": "—",
+        "gnyhaInd": "—",
+        "imrIndicator": "—",
+        "cliaId": "—",
+        "cliaQualifier": "—"
+      },
+      "ancillaryProvider": {
+        "type": "—",
+        "zip": "—",
+        "state": "—"
+      },
+      "ambulance": {
+        "pickupZip": "—",
+        "dropoffZip": "—"
+      },
+      "miscellaneous": {
+        "epsdt": "—",
+        "familyPlanning": "No",
+        "gtessDate": "—",
+        "dateOfIllness": "—",
+        "dateOfInjury": "—",
+        "lastMenstrualDate": "—",
+        "consultationDate": "—",
+        "eruDecision": "—",
+        "jaaErrorCode": "No"
+      },
+      "stopData": {
+        "stopEdit": "No",
+        "lobParentRule": "—",
+        "lobChildRule": "ALL WGS",
+        "lobSequence": "1",
+        "medBusinessParentRule": "NA",
+        "medBusinessChildRule": "656881",
+        "medSequence": "51"
+      },
+      "refundData": {
+        "correspondenceNumber": "—",
+        "refundAmount": "$0.00",
+        "adjustmentReasonCode": "PX_4",
+        "correctedClaimDcn": "—",
+        "vendorName": "—",
+        "delayReason": "—",
+        "carveOut": "—",
+        "adjustmentReceipt": "—"
+      },
+      "highDollar": {
+        "riskOutcome": "—"
+      }
+    },
+    "editing": {
+      "claimXten": {
+        "originalLine": {
+          "lineNum": "1",
+          "serviceDate": "9/18/2026",
+          "procedure": "—",
+          "mod": "—",
+          "units": "1",
+          "billedAmount": "$12,762.00"
+        },
+        "proposedLine": {
+          "lineNum": "1",
+          "procedure": "—",
+          "mod": "—",
+          "units": "1",
+          "supportCode": "—",
+          "payPercent": "100",
+          "billedAmount": "$12,762.00"
+        }
+      },
+      "ihealth": {
+        "originalLine": {
+          "lineNum": "1",
+          "serviceDate": "9/18/2026",
+          "procedure": "—",
+          "mod": "—",
+          "units": "1",
+          "allowedAmount": "$0.00",
+          "savingsAmount": "$0.00"
+        },
+        "proposedLine": {
+          "procedure": "—",
+          "mod": "—",
+          "units": "1",
+          "payPercent": "100",
+          "status": "PX_P"
+        }
+      }
+    },
+    "benefits": {
+      "accumulator1": {
+        "type": "INDYTD",
+        "fromDate": "1/1/2026",
+        "toDate": "12/31/2026",
+        "unit": "Dollar",
+        "status": "Accrued"
+      },
+      "accumulator2": {
+        "type": "MMCYTD",
+        "fromDate": "1/1/2026",
+        "toDate": "12/31/2026",
+        "unit": "Dollar",
+        "status": "Accrued"
+      }
+    },
+    "promptPay": {
+      "claim": {
+        "status": "PX_WGS",
+        "state": "—",
+        "ruleId": "—",
+        "systemInterest": "$0.00",
+        "penaltyAmount": "$0.00",
+        "manualInterestAmount": "—"
+      },
+      "calculation": {
+        "calculationFromDate": "9/24/2026",
+        "carveoutDate": "—",
+        "lastProcessedDate": "9/24/2026",
+        "baseAmount": "$0.00",
+        "calculatedInterestAmount": "$0.00",
+        "processedInDays": "0",
+        "mailingDays": "0",
+        "disburseDays": "0",
+        "allowedDays": "0",
+        "carveoutDays": "0",
+        "lateByDays": "0",
+        "dailyInterest": "$0.00"
+      },
+      "miscellaneous": {
+        "carveoutReasonCode": "PX_0",
+        "dayIndicator": "0",
+        "receiptMethod": "—",
+        "productFundType": "W",
+        "interestRate": "—",
+        "penalty": "—",
+        "minimumPayAmount": "—",
+        "erMinimumPay": "—",
+        "annualMonthlyPenalty": "—",
+        "mlhDate": "26027",
+        "ppStopDate": "—",
+        "additionalInformationRequestDate": "—",
+        "tdiInterestAmount": "—",
+        "tdiPenaltyAmount": "—"
+      }
+    },
+    "review": {
+      "utilization": {
+        "service": {
+          "lineNum": "1",
+          "procedure": "—",
+          "revenueCodeDate": "170",
+          "ruleId": "—",
+          "caseNumber": "—"
+        }
+      },
+      "cdhp": {
+        "claim": {
+          "litesClaim": "—",
+          "rsnEobCode": "—",
+          "hraPaidTotal": "$0.00",
+          "hraEndingBalance": "$0.00",
+          "paymentCode": "—",
+          "cdhpAdmin": "—",
+          "acknowledgementRcvd": "—",
+          "requeryCount": "—"
+        },
+        "lineSummary": {
+          "lineNum": "1",
+          "procedure": "—",
+          "billed": "$12,762.00",
+          "patientResp": "—",
+          "hraPaid": "—",
+          "rsnCode": "—"
+        }
+      },
+      "dofr": {
+        "meta": {
+          "inzip": "—",
+          "providerNetworkCode": "—",
+          "dofrId1": "—",
+          "dofrName1": "—",
+          "relationship": "—",
+          "pgmId": "—",
+          "pgId": "—",
+          "umDelegationIndicator": "—",
+          "effectiveDate": "—",
+          "endDate": "—"
+        },
+        "lineSummary": {
+          "lineNum": "1",
+          "procedure": "—",
+          "revenueCode": "170",
+          "serviceCategory": "—",
+          "event": "—",
+          "capIndicator": "—",
+          "risk": "—",
+          "groupCode": "—",
+          "hc": "PP"
+        }
+      }
+    },
+    "relatedSummary": {
+      "code": "—",
+      "name": "—",
+      "fromDate": "—",
+      "toDate": "—",
+      "type": "—",
+      "provider": "—",
+      "dcn": "—",
+      "charged": "—",
+      "paid": "—",
+      "status": "—"
+    }
+  }
+}

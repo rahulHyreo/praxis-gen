@@ -1,0 +1,459 @@
+{
+  "$schema": "training-platform/v1/navigator",
+  "$version": "2.0.0",
+  "id": "nav_wdmx_2_dme_limits",
+  "flowId": "flow_dme_limits_wdmx_2",
+  "name": "DME Limits — W-DMX.2",
+  "description": "A DME rental where an SPI-CLM Limited Liability record is already on file. Screen E0601 against the continuous-rental and ventilator lists, confirm the UM event means an authorization is required and verify it on file (case number UM97608093), read the RR modifier and the $40.10 rental, obtain the $401 purchase price, confirm history holds no prior purchase, then reconcile the record’s stated $120.30 remaining against seven history rentals totalling $280.70 before amending its Notes to PTD $320.80 / REM $80.20 and paying the claim.",
+  "totalSteps": 13,
+  "passMark": 70,
+  "correctDecision": "pay",
+  "correctDecisionLabel": "Pay",
+  "totalMaxPoints": 150,
+  "totalNavigatorPoints": 130,
+  "steps": [
+    {
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_screening",
+      "targetFieldId": "f_cl_procedure_code",
+      "actionPayload": {
+        "tabId": "tab_claim_lines"
+      },
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "highlightFields": [
+        "f_cl_procedure_code",
+        "f_cl_procedure_note",
+        "f_cl_ventilator_note"
+      ],
+      "highlightTabId": "tab_claim_lines",
+      "id": "step_001",
+      "sequenceId": 1,
+      "name": "Check continuous rental and ventilator lists",
+      "description": "Before anything else, decide whether this DME belongs in this flow at all. Navigate to the Claim Lines tab and identify the procedure code from Line 1 (E0601). First, verify whether the code is included in the Continuous Rental List (Documents section). If it is not, then check whether it is included in the Ventilator Rented and Never Purchased List (E0450, E0460, E0461, E0462, E0464, E1392). In this scenario, E0601 is not present in either list; therefore, the condition is not met and proceed to the next step.",
+      "targetTabId": "tab_claim_lines",
+      "actionType": "tab_open",
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the Claim Lines tab is opened.",
+      "hint": "Line 1 reads E0601. Check it against the Continuous Rental List document, then against the six ventilator codes.",
+      "checklistItem": "E0601 cleared against the Continuous Rental List and the ventilator codes"
+    },
+    {
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_active",
+      "targetFieldId": "f_er_edit_code",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "highlightFields": ["f_er_edit_code", "f_er_description"],
+      "highlightTabId": "tab_event_resolution",
+      "id": "step_002",
+      "sequenceId": 2,
+      "name": "Check whether authorization is required",
+      "description": "Decide whether this procedure needs an authorization. Open the Event Resolution tab and look for UM, AIM or PAM events. If none of the three is present no authorization is required and the claim follows the alternate guidelines; if one is present an authorization is required and must be verified on file. In this scenario a UM event is present, so an authorization is required.",
+      "targetTabId": "tab_event_resolution",
+      "actionType": "tab_open",
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the Event Resolution tab is opened.",
+      "hint": "Look for UM, AIM or PAM. This claim carries a UM event — an authorization is required.",
+      "checklistItem": "UM event found — an authorization is required"
+    },
+    {
+      "targetSubTabId": "subtab_claim_data_review",
+      "targetSectionId": "sec_cd_r_um",
+      "targetFieldId": "f_cdr_um_case",
+      "actionPayload": {
+        "tabId": "tab_claim_data",
+        "subTabId": "subtab_claim_data_review"
+      },
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "highlightFields": ["f_cdr_um_case", "f_cdr_um_proc", "f_cdr_um_rule"],
+      "highlightTabId": "tab_claim_data",
+      "highlightSubTabId": "subtab_claim_data_review",
+      "id": "step_003",
+      "sequenceId": 3,
+      "name": "Verify authorization is on file",
+      "description": "Verify the authorization actually exists. Open the Claim Data tab, then the Review sub-tab, and expand the Utilization Management section. The UM Detail Service table shows Line # 1, Procedure E0601, Date 01/01/2026, Rule ID AIMREHAB and Case Number UM97608093. A populated Case Number is what confirms the authorization is on file; an empty one would mean none was available.",
+      "targetTabId": "tab_claim_data",
+      "actionType": "subtab_open",
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the Claim Data → Review sub-tab is opened.",
+      "hint": "Claim Data → Review → Utilization Management. The Case Number reads UM97608093.",
+      "checklistItem": "Authorization UM97608093 confirmed on file for E0601"
+    },
+    {
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_line1",
+      "targetFieldId": "f_cl_modifier",
+      "actionPayload": {
+        "tabId": "tab_claim_lines"
+      },
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "highlightFields": [
+        "f_cl_modifier",
+        "f_cl_allowed",
+        "f_cl_service_from",
+        "f_cl_service_to",
+        "f_cl_modifier_note"
+      ],
+      "highlightTabId": "tab_claim_lines",
+      "id": "step_004",
+      "sequenceId": 4,
+      "name": "Check the modifier and rental amount",
+      "description": "Return to the Claim Lines tab and read the Modifier field. RR means the DME was rented; NU would mean it was purchased. In this scenario the modifier is RR, so this is a rental: the Allowed field shows the rental amount of $40.10, and both the From and To dates are 08/05/2026. That date matters later — it is this claim’s date of service.",
+      "targetTabId": "tab_claim_lines",
+      "actionType": "tab_open",
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the Claim Lines tab is opened.",
+      "hint": "Modifier RR, Allowed $40.10, From and To both 08/05/2026.",
+      "checklistItem": "Modifier RR — a $40.10 rental dated 08/05/2026"
+    },
+    {
+      "targetSubTabId": "subtab_search_pricing",
+      "targetSectionId": "sec_sp_claim_lines",
+      "targetFieldId": "f_sp_get_pricing_purchase",
+      "actionPayload": {
+        "actionId": "get_pricing_purchase"
+      },
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "highlightFields": [
+        "f_sp_line1_modifier",
+        "f_sp_line1_billed",
+        "f_sp_get_pricing_purchase",
+        "f_sp_line1_allowed"
+      ],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_pricing",
+      "id": "step_005",
+      "sequenceId": 5,
+      "name": "Obtain the DME purchase price",
+      "description": "Open the Search tab, Pricing sub-tab, and work in the Claim lines section: change the Modifier from RR to NU, change the Billed amount in that section only to 100000, then click Get Pricing. The purchase price appears in the Allowed column. In this scenario it is $401.",
+      "targetTabId": "tab_search",
+      "actionType": "action_click",
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when Get Pricing returns a purchase price, which requires the Modifier to be NU and the Billed amount to be 100000.",
+      "hint": "Both changes are required before Get Pricing will quote a purchase: Modifier NU and Billed 100000. Change the Billed amount in the Claim lines section of the Pricing sub-tab only.",
+      "checklistItem": "Purchase price $401 obtained"
+    },
+    {
+      "targetSubTabId": "subtab_search_claims",
+      "targetSectionId": "sec_sc_history",
+      "targetFieldId": "f_sc_h1_detail",
+      "actionPayload": {
+        "actionId": "open_history_claim_1"
+      },
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "highlightFields": [
+        "f_sc_h1_detail",
+        "f_sc_h2_detail",
+        "f_sc_h3_detail",
+        "f_sc_h4_detail",
+        "f_sc_h5_detail",
+        "f_sc_h6_detail",
+        "f_sc_h7_detail",
+        "f_sc_history_note"
+      ],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_claims",
+      "id": "step_006",
+      "sequenceId": 6,
+      "name": "Review history for prior purchase",
+      "description": "Check whether this member already bought this equipment from this provider. Open the Search tab, Claims sub-tab, and review the claim history: a Modifier of NU on a history claim would mean the DME was previously purchased, which changes how this claim is handled. Click Open claim detail and read the Claim Lines tab of each history claim. In this scenario the modifier for all history claims is RR, so E0601 was rented, never purchased, and the rental logic applies.",
+      "targetTabId": "tab_search",
+      "actionType": "action_click",
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when a history claim's detail is opened.",
+      "hint": "Open claim detail for each history claim, then read the Modifier on its Claim Lines tab. RR means rented, not purchased.",
+      "checklistItem": "History shows RR — E0601 was never purchased"
+    },
+    {
+      "targetSubTabId": "subtab_search_limited",
+      "targetSectionId": "sec_sll_results",
+      "targetFieldId": "f_sll_r0_type",
+      "actionPayload": {
+        "tabId": "tab_search",
+        "subTabId": "subtab_search_limited"
+      },
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "highlightFields": [
+        "f_sll_r0_type",
+        "f_sll_r0_description",
+        "f_sll_r0_notes",
+        "f_sll_remaining_note"
+      ],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_limited",
+      "id": "step_007",
+      "sequenceId": 7,
+      "name": "Review the existing SPI-CLM LL record",
+      "description": "Look for a Limited Liability record already on file. Open the Search tab, Limited Liability sub-tab; any records appear under Limited Liability Results, where the Type field identifies them. In this scenario an SPI-CLM record is already there: Type SPI-CLM, Effective Date 01/01/2026, End Date 10/01/2026, Order of Benefits NIL, and a Description carrying NU: $401, RR: $40.10, PTD: $280.70 and REM: $120.30 with seven dates of service and seven DCNs.",
+      "targetTabId": "tab_search",
+      "actionType": "subtab_open",
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the Search → Limited Liability sub-tab is opened.",
+      "hint": "Look under Limited Liability Results for Type SPI-CLM. Its Notes state REM: $120.30 remaining.",
+      "checklistItem": "SPI-CLM record found — it states $120.30 remaining"
+    },
+    {
+      "targetSubTabId": "subtab_search_pricing",
+      "targetSectionId": "sec_sp_results",
+      "targetFieldId": "f_sp_get_pricing_allowed",
+      "actionPayload": {
+        "actionId": "get_pricing_allowed"
+      },
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "highlightFields": [
+        "f_sp_get_pricing_allowed",
+        "f_sp_results_allowed",
+        "f_sp_results_note"
+      ],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_pricing",
+      "id": "step_008",
+      "sequenceId": 8,
+      "name": "Get pricing and compare against the remaining allowance",
+      "description": "Review the SPI-CLM LL record and determine whether there is an allowed amount left to apply to this rental — it is stated in the record’s Notes section. In this scenario the allowed amount remaining in the LL record is $120.30. Then note the allowed amount for the current claim: navigate to the Search tab, select the Pricing sub-tab, scroll down to the Pricing Results section and click Get Pricing to obtain the allowed amount suggested by the system for the current claim. In this scenario the system suggests an allowed amount of $40.10. Subtract the claim’s allowed amount from the remaining amount listed in the record: $40.10 is within the $120.30 remaining, so the claim can be allowed with the full allowance of $40.10 with no reductions. Note: the allowed amount of the claim may be more than the remaining amount listed in the SPI-CLM LL record — in that case, only pay up to the purchase price.",
+      "targetTabId": "tab_search",
+      "actionType": "action_click",
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when Get Pricing in the Pricing Results section returns the allowed amount for this claim.",
+      "hint": "Scroll past the Claim lines section to Pricing Results and click Get Pricing there. $40.10 against $120.30 remaining — it pays in full.",
+      "checklistItem": "$40.10 allowed — below the $120.30 remaining, so it pays in full"
+    },
+    {
+      "targetSubTabId": "subtab_search_claims",
+      "targetSectionId": "sec_sc_history",
+      "targetFieldId": "f_sc_h1_detail",
+      "actionPayload": {
+        "actionId": "open_history_claim_1"
+      },
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "highlightFields": [
+        "f_sc_h1_detail",
+        "f_sc_h2_detail",
+        "f_sc_h3_detail",
+        "f_sc_h4_detail",
+        "f_sc_h5_detail",
+        "f_sc_h6_detail",
+        "f_sc_h7_detail",
+        "f_sc_reconcile_note"
+      ],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_claims",
+      "id": "step_009",
+      "sequenceId": 9,
+      "name": "Validate the LL record amounts against history",
+      "description": "Validate that the existing LL record has the right amounts mentioned — this ensures the correct processing of the current claim and any claims received in future. Navigate to the Search tab and select the Claims sub-tab: seven history claims are displayed. Click Open claim detail for each history claim and go to its Claim Lines tab to review the information. All seven have procedure code E0601 with an allowed amount of $40.10 each, dates of service 1/5/2026, 2/5/2026, 3/5/2026, 4/5/2026, 5/5/2026, 6/5/2026 and 7/5/2026, and DCNs DCN-619146, DCN-629106, DCN-639506, DCN-689146, DCN-612146, DCN-621136 and DCN-699506. Add the allowed amounts of all the claims to identify the total amount allowed for the DME so far: $40.10 + $40.10 + $40.10 + $40.10 + $40.10 + $40.10 + $40.10 = $280.70. Subtract the total allowance made so far from the purchase price to find the remaining allowance, then match it against the amount mentioned in the LL record. In this scenario the total allowance found from the history claims is $280.70 and the purchase price previously identified was $401, so the remaining allowance is $401 − $280.70 = $120.30. The amount mentioned in the LL record is correct and no changes are to be made, so proceed to the next step.",
+      "targetTabId": "tab_search",
+      "actionType": "action_click",
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when a history claim's detail is opened while this step is active.",
+      "hint": "7 × $40.10 = $280.70 allowed so far. $401 − $280.70 = $120.30 — which matches the record, so it needs no correction.",
+      "checklistItem": "History totals $280.70 — the record’s $120.30 is correct"
+    },
+    {
+      "targetSubTabId": "subtab_search_limited",
+      "targetSectionId": "sec_sll_add",
+      "targetFieldId": "f_sll_edit_record",
+      "actionPayload": {
+        "actionId": "open_ll_record_edit"
+      },
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "highlightFields": ["f_sll_edit_record"],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_limited",
+      "id": "step_010",
+      "sequenceId": 10,
+      "name": "Open the SPI-CLM LL record for update",
+      "description": "Open the record so this claim can be added to it, following the unit guidelines for updating an existing LL record on DME claims. Go back to the Search tab, Limited Liability sub-tab, and select the SPI-CLM record that needs updating (as of now, click Edit record). The record opens with a pen icon in its upper right-hand corner; click the pen icon to make the fields editable (for now it is already editable — just type). The Notes field opens carrying what is already on file — you are adding to it, not replacing it.",
+      "targetTabId": "tab_search",
+      "actionType": "action_click",
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the SPI-CLM record is opened for editing.",
+      "hint": "Select the SPI-CLM record and click Edit record (the pen icon in its upper right-hand corner).",
+      "checklistItem": "SPI-CLM record open for editing"
+    },
+    {
+      "targetSubTabId": "subtab_search_limited",
+      "targetSectionId": "sec_ll_edit_notes",
+      "targetFieldId": "f_lle_notes",
+      "actionPayload": {
+        "fieldId": "f_lle_notes"
+      },
+      "expectedValue": "E0601 / NU: $401, RR: $40.10, PTD: $320.80, REM: $80.20 / DOS: 1/5/2026, 2/5/2026, 3/5/2026, 4/5/2026, 5/5/2026, 6/5/2026, 7/5/2026, 8/5/2026 / DCN: DCN-619146, DCN-629106, DCN-639506, DCN-689146, DCN-612146, DCN-621136, DCN-699506, DCN-9680400",
+      "expectedTokens": [
+        "E0601",
+        "NU: $401",
+        "RR: $40.10",
+        "PTD: $320.80",
+        "REM: $80.20",
+        "DOS: 1/5/2026, 2/5/2026, 3/5/2026, 4/5/2026, 5/5/2026, 6/5/2026, 7/5/2026, 8/5/2026",
+        "DCN: DCN-619146, DCN-629106, DCN-639506, DCN-689146, DCN-612146, DCN-621136, DCN-699506, DCN-9680400"
+      ],
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "highlightFields": [
+        "f_lle_notes",
+        "f_lle_notes_format",
+        "f_lle_notes_help"
+      ],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_limited",
+      "id": "step_011",
+      "sequenceId": 11,
+      "name": "Update the LL record Notes with current claim details",
+      "description": "Complete the claim history review and write this claim into the record’s Notes. The procedure code is E0601, the purchase price $401.00 (NU) and the rental amount $40.10 (RR). Calculate the new paid-to-date by adding this claim’s allowed amount to the record’s existing total: $280.70 + $40.10 = $320.80. Calculate the new balance as purchase price less rentals allowed: $401.00 − $320.80 = $80.20. Then extend both lists with this claim’s own date of service and DCN, so the Notes carry all eight dates of service and all eight DCNs for the rentals paid against this equipment. Enter them on a single line in exactly this format: E0601 / NU: $401, RR: $40.10, PTD: $320.80, REM: $80.20 / DOS: 1/5/2026, 2/5/2026, 3/5/2026, 4/5/2026, 5/5/2026, 6/5/2026, 7/5/2026, 8/5/2026 / DCN: DCN-619146, DCN-629106, DCN-639506, DCN-689146, DCN-612146, DCN-621136, DCN-699506, DCN-9680400.",
+      "targetTabId": "tab_search",
+      "actionType": "field_edit",
+      "completionTrigger": "field_value_set",
+      "completionTriggerNote": "Completes when the Notes carry the procedure code, the NU and RR amounts, the recalculated PTD and REM, and all eight dates of service and DCNs, in the required format.",
+      "hint": "PTD is $280.70 + $40.10 = $320.80; REM is $401.00 − $320.80 = $80.20. Format: E0601 / NU: $401, RR: $40.10, PTD: $320.80, REM: $80.20 / DOS: 1/5/2026, 2/5/2026, 3/5/2026, 4/5/2026, 5/5/2026, 6/5/2026, 7/5/2026, 8/5/2026 / DCN: DCN-619146, DCN-629106, DCN-639506, DCN-689146, DCN-612146, DCN-621136, DCN-699506, DCN-9680400",
+      "checklistItem": "Notes updated — PTD $320.80, REM $80.20, eight rentals recorded"
+    },
+    {
+      "targetSubTabId": "subtab_search_limited",
+      "targetSectionId": "sec_ll_edit_notes",
+      "targetFieldId": "f_lle_update",
+      "actionPayload": {
+        "actionId": "update_ll_record"
+      },
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "highlightFields": [
+        "f_lle_update",
+        "f_lle_update_note",
+        "f_sll_r0_description"
+      ],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_limited",
+      "id": "step_012",
+      "sequenceId": 12,
+      "name": "Save the updated LL record",
+      "description": "After entering all the required details, click the Update button to save the changes to the SPI-CLM Limited Liability record. The record row in Limited Liability Results should change to show the new balance — PTD $320.80 and REM $80.20 — without you having to reopen it.",
+      "targetTabId": "tab_search",
+      "actionType": "action_click",
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the Update button saves the amended record.",
+      "hint": "Click Update. The Description on the results row should change to PTD: $320.80 | REM: $80.20.",
+      "checklistItem": "Record saved with the new balance"
+    },
+    {
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionPayload": {
+        "decision": "pay"
+      },
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "highlightFields": [],
+      "id": "step_013",
+      "sequenceId": 13,
+      "name": "Submit Pay decision",
+      "description": "The authorization is on file, the equipment was never purchased, the record has been reconciled against history and extended by this rental, and $40.10 is within the allowance that remained. Open the Decision section in the header, select Pay from the dropdown and click Submit. No reason code is required.",
+      "targetTabId": "tab_claim_lines",
+      "actionType": "decision_submit",
+      "completionTrigger": "decision_submitted",
+      "completionTriggerNote": "Completes when the Pay decision is submitted.",
+      "hint": "Select Pay in the header decision dropdown and click Submit.",
+      "checklistItem": "Pay submitted"
+    }
+  ],
+  "scoreBreakdown": {
+    "navigatorStepsMaxPoints": 130,
+    "decisionMaxPoints": 20,
+    "reasonCodeMaxPoints": 0,
+    "totalMaxPoints": 150,
+    "passMark": 70,
+    "weightedPassScore": 105
+  },
+  "stepSummaryForResults": [
+    {
+      "sequenceId": 1,
+      "name": "Check continuous rental and ventilator lists",
+      "points": 10
+    },
+    {
+      "sequenceId": 2,
+      "name": "Check whether authorization is required",
+      "points": 10
+    },
+    {
+      "sequenceId": 3,
+      "name": "Verify authorization is on file",
+      "points": 10
+    },
+    {
+      "sequenceId": 4,
+      "name": "Check the modifier and rental amount",
+      "points": 10
+    },
+    {
+      "sequenceId": 5,
+      "name": "Obtain the DME purchase price",
+      "points": 10
+    },
+    {
+      "sequenceId": 6,
+      "name": "Review history for prior purchase",
+      "points": 10
+    },
+    {
+      "sequenceId": 7,
+      "name": "Review the existing SPI-CLM LL record",
+      "points": 10
+    },
+    {
+      "sequenceId": 8,
+      "name": "Get pricing and compare against the remaining allowance",
+      "points": 10
+    },
+    {
+      "sequenceId": 9,
+      "name": "Validate the LL record amounts against history",
+      "points": 10
+    },
+    {
+      "sequenceId": 10,
+      "name": "Open the SPI-CLM LL record for update",
+      "points": 10
+    },
+    {
+      "sequenceId": 11,
+      "name": "Update the LL record Notes with current claim details",
+      "points": 10
+    },
+    {
+      "sequenceId": 12,
+      "name": "Save the updated LL record",
+      "points": 10
+    },
+    {
+      "sequenceId": 13,
+      "name": "Submit Pay decision",
+      "points": 10
+    }
+  ]
+}

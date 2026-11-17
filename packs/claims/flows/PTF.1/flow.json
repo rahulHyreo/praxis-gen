@@ -1,0 +1,64 @@
+{
+  "$schema": "praxis/v2/pack-flow",
+  "code": "PTF.1",
+  "name": "Provider Timely Filing — Deny with PX_R21410",
+  "variants": [
+    {
+      "variant": "base",
+      "variantIndex": 1,
+      "subjectRefs": ["DCN-602101"]
+    },
+    {
+      "variant": "v2",
+      "variantIndex": 2,
+      "subjectRefs": [
+        "DCN-9190200",
+        "DCN-9190201",
+        "DCN-9190202",
+        "DCN-9190203",
+        "DCN-9190204",
+        "DCN-9190205",
+        "DCN-9190206"
+      ]
+    },
+    {
+      "variant": "v3",
+      "variantIndex": 3,
+      "subjectRefs": [
+        "DCN-9190300",
+        "DCN-9190301",
+        "DCN-9190302",
+        "DCN-9190303",
+        "DCN-9190304",
+        "DCN-9190305",
+        "DCN-9190306"
+      ]
+    },
+    {
+      "variant": "v4",
+      "variantIndex": 4,
+      "subjectRefs": [
+        "DCN-9190400",
+        "DCN-9190401",
+        "DCN-9190402",
+        "DCN-9190403",
+        "DCN-9190404",
+        "DCN-9190405",
+        "DCN-9190406"
+      ]
+    },
+    {
+      "variant": "v5",
+      "variantIndex": 5,
+      "subjectRefs": [
+        "DCN-9190500",
+        "DCN-9190501",
+        "DCN-9190502",
+        "DCN-9190503",
+        "DCN-9190504",
+        "DCN-9190505",
+        "DCN-9190506"
+      ]
+    }
+  ]
+}

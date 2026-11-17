@@ -1,0 +1,64 @@
+{
+  "$schema": "praxis/v2/pack-flow",
+  "code": "X4.1",
+  "name": "Modifier 22 Clinical Coding Review (PX_X4) — CCCR",
+  "variants": [
+    {
+      "variant": "base",
+      "variantIndex": 1,
+      "subjectRefs": ["DCN-606103"]
+    },
+    {
+      "variant": "v2",
+      "variantIndex": 2,
+      "subjectRefs": [
+        "DCN-9560200",
+        "DCN-9560201",
+        "DCN-9560202",
+        "DCN-9560203",
+        "DCN-9560204",
+        "DCN-9560205",
+        "DCN-9560206"
+      ]
+    },
+    {
+      "variant": "v3",
+      "variantIndex": 3,
+      "subjectRefs": [
+        "DCN-9560300",
+        "DCN-9560301",
+        "DCN-9560302",
+        "DCN-9560303",
+        "DCN-9560304",
+        "DCN-9560305",
+        "DCN-9560306"
+      ]
+    },
+    {
+      "variant": "v4",
+      "variantIndex": 4,
+      "subjectRefs": [
+        "DCN-9560400",
+        "DCN-9560401",
+        "DCN-9560402",
+        "DCN-9560403",
+        "DCN-9560404",
+        "DCN-9560405",
+        "DCN-9560406"
+      ]
+    },
+    {
+      "variant": "v5",
+      "variantIndex": 5,
+      "subjectRefs": [
+        "DCN-9560500",
+        "DCN-9560501",
+        "DCN-9560502",
+        "DCN-9560503",
+        "DCN-9560504",
+        "DCN-9560505",
+        "DCN-9560506"
+      ]
+    }
+  ]
+}

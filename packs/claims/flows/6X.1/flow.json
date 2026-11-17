@@ -1,0 +1,64 @@
+{
+  "$schema": "praxis/v2/pack-flow",
+  "code": "6X.1",
+  "name": "COB — 6X contract-exclusion limit dollar: correct the COB sub-tab's Copay against the Group Reason Codes and Pay",
+  "variants": [
+    {
+      "variant": "base",
+      "variantIndex": 1,
+      "subjectRefs": ["DCN-618110"]
+    },
+    {
+      "variant": "v2",
+      "variantIndex": 2,
+      "subjectRefs": [
+        "DCN-9900200",
+        "DCN-9900201",
+        "DCN-9900202",
+        "DCN-9900203",
+        "DCN-9900204",
+        "DCN-9900205",
+        "DCN-9900206"
+      ]
+    },
+    {
+      "variant": "v3",
+      "variantIndex": 3,
+      "subjectRefs": [
+        "DCN-9900300",
+        "DCN-9900301",
+        "DCN-9900302",
+        "DCN-9900303",
+        "DCN-9900304",
+        "DCN-9900305",
+        "DCN-9900306"
+      ]
+    },
+    {
+      "variant": "v4",
+      "variantIndex": 4,
+      "subjectRefs": [
+        "DCN-9900400",
+        "DCN-9900401",
+        "DCN-9900402",
+        "DCN-9900403",
+        "DCN-9900404",
+        "DCN-9900405",
+        "DCN-9900406"
+      ]
+    },
+    {
+      "variant": "v5",
+      "variantIndex": 5,
+      "subjectRefs": [
+        "DCN-9900500",
+        "DCN-9900501",
+        "DCN-9900502",
+        "DCN-9900503",
+        "DCN-9900504",
+        "DCN-9900505",
+        "DCN-9900506"
+      ]
+    }
+  ]
+}

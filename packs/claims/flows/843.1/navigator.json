@@ -1,0 +1,143 @@
+{
+  "$schema": "training-platform/v1/flow-navigator",
+  "$version": "1.0.0",
+  "id": "nav_843_1_medicare_ll_event",
+  "name": "Medicare — 843 limited-liability record event: check the hierarchy, then request a COB update",
+  "description": "Five guided steps from the 843.1 document: identify the PX_843 event among the seven edits and check the severities for a hard event that would reject the claim at claim level, open Request Claim Review from the Action menu, select Request COB Update, enter the review comments and submit the request, and submit the claim without a decision.",
+  "flowId": "flow_medicare_843_1",
+  "passMark": 70,
+  "totalSteps": 5,
+  "totalNavigatorPoints": 50,
+  "totalMaxPoints": 70,
+  "steps": [
+    {
+      "timeLimitSeconds": null,
+      "highlightTabId": null,
+      "id": "step_001",
+      "sequenceId": 1,
+      "name": "Identify the 843 event and check for claim-level rejections",
+      "description": "Open the Event Resolution tab. The application displays every edit the claim hit, and PX_843 is the current event requiring review — a Medicare / Limited Liability (LL) record issue. Read down the All Edits list in hierarchy order and check the Severity beside each code to determine whether any hard event is present that would reject the claim at claim level. If one is, resolve it first in hierarchy order; if none is, carry on. Here every event is Informational, so the claim is not rejected at claim level and you proceed.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_all_edits",
+      "targetFieldId": "f_er_e_843",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the Event Resolution tab is clicked while this step is active. It is the tab the workspace opens on, so the click is a deliberate one.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "hint": "On 'Event Resolution', the All Edits list shows PX_843 marked (Active), and a Severity beside every code. Read them all before moving on.",
+      "highlightFields": [
+        "f_er_e_843",
+        "f_er_e_843_sev",
+        "f_er_e_sps_sev",
+        "f_er_e_dgx_sev",
+        "f_er_e_nip_sev",
+        "f_er_e_rfp_sev",
+        "f_er_e_lum_sev",
+        "f_er_e_tr2_sev"
+      ],
+      "checklistItem": "Identify the 843 event and check for claim-level rejections"
+    },
+    {
+      "timeLimitSeconds": null,
+      "highlightTabId": null,
+      "id": "step_002",
+      "sequenceId": 2,
+      "name": "Open the Request Claim Review action",
+      "description": "The LL record is not yours to update — it belongs to the E-COB team, and 843 resolves itself once they update it. Go to the claim summary at the top of the workspace, open the Action menu and select Request Claim Review. A dialog appears with the message \"Please select the action to perform\".",
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "open_claim_review",
+      "actionPayload": {
+        "type": "action",
+        "action": "open_claim_review"
+      },
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when Request Claim Review is chosen from the Action menu while this step is active, which opens the dialog. Chosen earlier, the dialog stays closed.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "hint": "The Action menu is on the claim summary bar. Choose 'Request Claim Review'.",
+      "highlightFields": [],
+      "completesActionId": "open_claim_review",
+      "checklistItem": "Open the Request Claim Review action"
+    },
+    {
+      "timeLimitSeconds": null,
+      "highlightTabId": null,
+      "id": "step_003",
+      "sequenceId": 3,
+      "name": "Select Request COB Update",
+      "description": "In the \"Please select the action to perform\" dropdown, select Request COB Update. The dialog then expands to show the COB update options.",
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": "sec_act_rcr_action",
+      "targetFieldId": "f_act_rcr_action",
+      "actionType": "field_set",
+      "actionPayload": {
+        "fieldId": "f_act_rcr_action"
+      },
+      "completionTrigger": "field_value_set",
+      "completionTriggerNote": "Completes only when claimReview.action is Request COB Update. Selecting any other option leaves the step open and reveals nothing.",
+      "expectedValue": "Request COB Update",
+      "scorePoints": 10,
+      "hint": "Open the dropdown in the Request Claim Review dialog and choose the option that asks COB to update the record.",
+      "highlightFields": ["f_act_rcr_action"],
+      "checklistItem": "Select Request COB Update"
+    },
+    {
+      "timeLimitSeconds": null,
+      "highlightTabId": null,
+      "id": "step_004",
+      "sequenceId": 4,
+      "name": "Submit the COB update request",
+      "description": "With the comments entered, click the Submit button in the dialog. A comment must be present in the Comments box for the submission to be accepted. The claim is thereby routed to the E-COB team to update the limited liability record.",
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": "sec_act_rcr_submit",
+      "targetFieldId": "f_act_rcr_submit",
+      "actionType": "submit_cob_update",
+      "actionPayload": {
+        "type": "action",
+        "action": "submit_cob_update"
+      },
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the dialog Submit is pressed with Request COB Update selected and a non-blank comment entered. Otherwise the press is refused and the Submit status says what is missing.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "hint": "Click 'Submit' at the bottom of the Request Claim Review dialog. If nothing happens, check that Comments is not empty.",
+      "highlightFields": ["f_act_rcr_comments"],
+      "completesActionId": "submit_cob_update",
+      "checklistItem": "Submit the COB update request"
+    },
+    {
+      "timeLimitSeconds": null,
+      "highlightTabId": null,
+      "id": "step_005",
+      "sequenceId": 5,
+      "name": "Submit without a decision",
+      "description": "Close the Request Claim Review dialog, then click Submit on the claim summary without selecting a decision. Do not choose Pay or Deny: the claim is being routed to the E-COB team for the limited liability record update rather than adjudicated, and the 843 event resolves automatically once COB updates the record.",
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "submit_decision",
+      "actionPayload": {
+        "type": "submit_decision",
+        "expectedDecision": ""
+      },
+      "completionTrigger": "decision_submitted",
+      "completionTriggerNote": "Completes when the claim is submitted with no decision selected. Submitting Pay or Deny does not complete it.",
+      "expectedValue": "",
+      "scorePoints": 10,
+      "hint": "Leave the decision empty — do not pick Pay or Deny — and click Submit on the claim summary bar.",
+      "highlightFields": [],
+      "checklistItem": "Submit without a decision"
+    }
+  ]
+}

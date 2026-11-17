@@ -1,0 +1,1115 @@
+{
+  "$schema": "training-platform/v1/workspace-data",
+  "$version": "2.0.0",
+  "id": "data_anl_1_v5_provider_data_mismatch",
+  "claimId": "DCN-9980500",
+  "dcn": "DCN-9980500",
+  "flowId": "ANL.1",
+  "navigatorSchemaId": "nav_anl_1_provider_data_mismatch",
+  "claim": {
+    "dcn": "DCN-9980500",
+    "patient": "Barnaby E Castellano",
+    "serviceFrom": "10/02/2026",
+    "billedAmount": "$157.90"
+  },
+  "header": {
+    "dcn": "DCN-9980500",
+    "edits": "PX_ANL",
+    "billed": "$157.90",
+    "claimAllowed": "$0.00",
+    "paid": "$0.00",
+    "writeOff": "$0.00",
+    "deductible": "$0.00",
+    "coinsurance": "$0.00",
+    "copay": "$0.00",
+    "actionCode": "—",
+    "receiptDate": "10/08/2026",
+    "serviceFrom": "10/02/2026",
+    "serviceTo": "10/02/2026"
+  },
+  "eventResolution": {
+    "edits": [
+      {
+        "code": "PX_SPS",
+        "label": "USE PA MENU OPTION TO VIEW PRV",
+        "severity": "Informational",
+        "active": false
+      },
+      {
+        "code": "PX_DGX",
+        "label": "CLAIM RECEIVED AT ECP",
+        "severity": "Informational",
+        "active": false
+      },
+      {
+        "code": "PX_ANL",
+        "label": "LAB FILED THRU WRONG STATE",
+        "severity": "Informational",
+        "active": true
+      },
+      {
+        "code": "PX_LAB",
+        "label": "LABORATORY CLAIM",
+        "severity": "Informational",
+        "active": false
+      },
+      {
+        "code": "PX_RFP",
+        "label": "Digital RFAI Provider",
+        "severity": "Informational",
+        "active": false
+      },
+      {
+        "code": "PX_LUM",
+        "label": "CDHP CLAIM",
+        "severity": "Informational",
+        "active": false
+      },
+      {
+        "code": "PX_PAY",
+        "label": "PRICING APPLIED",
+        "severity": "Informational",
+        "active": false
+      }
+    ],
+    "editCode": "PX_ANL",
+    "editLabel": "LAB FILED THRU WRONG STATE",
+    "severity": "Informational",
+    "validationMessage": ""
+  },
+  "memberInfo": {
+    "patient": {
+      "firstName": "BARNABY",
+      "middleName": "J",
+      "lastName": "CASTELLANO",
+      "dob": "09/30/1963",
+      "sex": "M",
+      "memberPrefix": "CSL",
+      "hcid": "278C69043",
+      "relationship": "SUB - Subscriber",
+      "memberCode": "20",
+      "memberCodeMessage": "",
+      "contractType": "B",
+      "erisa": "Y",
+      "pcp": "—",
+      "pcpState": "—",
+      "pcpRelationship": "—",
+      "programCode": "—",
+      "state": "MA"
+    },
+    "subscriber": {
+      "firstName": "BARNABY",
+      "middleName": "J",
+      "lastName": "CASTELLANO",
+      "subscriberId": "350846219",
+      "address": "182 LARKSPUR AVE, LACONIA, NH 03246"
+    },
+    "group": {
+      "groupName": "HOLLANDER GLASSWORKS COMPANY",
+      "groupId": "C69043M005",
+      "groupContract": "—",
+      "detailContractCode": "C31N",
+      "product": "LOCAL",
+      "networkId": "NHPFHG00",
+      "networkName": "NH PPO LABORATORY 3-TR"
+    }
+  },
+  "claimImage": {
+    "memberDetails": {
+      "patient": {
+        "firstName": "BARNABY",
+        "middleName": "J",
+        "lastName": "CASTELLANO",
+        "dob": "09/30/1963",
+        "sex": "M",
+        "memberPrefix": "CSL",
+        "hcid": "278C69043",
+        "relationship": "SUB - Subscriber",
+        "memberCode": "20",
+        "detailContractCode": "C31N",
+        "contractType": "B",
+        "groupId": "C69043M005",
+        "groupContract": "—",
+        "product": "LOCAL",
+        "erisa": "Y",
+        "pcp": "—",
+        "pcpState": "—",
+        "pcpRelationship": "—"
+      },
+      "subscriber": {
+        "firstName": "BARNABY",
+        "middleName": "J",
+        "lastName": "CASTELLANO",
+        "subscriberId": "350846219",
+        "address": "182 LARKSPUR AVE, LACONIA, NH 03246"
+      },
+      "totalClaimLines": "1"
+    },
+    "additional": {
+      "claimSource": {
+        "mediaType": "-",
+        "pricingSource": "-",
+        "pricingSystem": "-",
+        "mixerPar": "-",
+        "receiverId": "OH",
+        "receivedAtEdi": "-",
+        "providerError": "-",
+        "authNumber": "-",
+        "authExcln": "-",
+        "vendorIndicator": "-",
+        "receivedDate": "-",
+        "originalReferenceNumber": "-"
+      },
+      "ancillaryProvider": {
+        "type": "-",
+        "zip": "-",
+        "state": "-"
+      },
+      "ambulance": {
+        "pickupZip": "-",
+        "dropoffZip": "-"
+      },
+      "miscellaneous": {
+        "epsdt": "-",
+        "familyPlanning": "-",
+        "gtessDate": "-",
+        "dateOfIllness": "-",
+        "dateOfInjury": "-",
+        "lastMenstrualDate": "-",
+        "consultationDate": "-"
+      },
+      "stopData": {
+        "stopEdit": "-",
+        "lobParentRule": "-",
+        "lobChildRule": "-",
+        "lobSequence": "-",
+        "medBusinessParentRule": "-",
+        "medBusinessChildRule": "-",
+        "medSequence": "-"
+      },
+      "refundData": {
+        "correspondenceNumber": "-",
+        "refundAmount": "-",
+        "adjustmentReason": "-",
+        "vendorName": "-",
+        "delayReason": "-",
+        "carveOut": "-",
+        "adjustmentReceiptDate": "-"
+      },
+      "highDollar": {
+        "riskOutcome": "-"
+      },
+      "its": {
+        "account": {
+          "deliveryMethod": "—",
+          "accountType": "—",
+          "aso": "—",
+          "stateId": "—",
+          "originalCertificate": "—",
+          "originalGroup": "—"
+        },
+        "pricing": {
+          "primarySop": "—",
+          "secondarySop": "—",
+          "tertiarySop": "—",
+          "cobCalMethod": "—"
+        },
+        "providers": {
+          "mppqAssignUnassigned": "—",
+          "ppoNetworkAvailability": "—",
+          "ppoProviderAvailability": "—",
+          "eft835": "—",
+          "serviceZip": "—"
+        }
+      },
+      "sfdf": {
+        "sfMessage": "—",
+        "dfMessage": "—",
+        "primacy": "—",
+        "autoOtherAccident": "—",
+        "totalDaysVisits": "—"
+      },
+      "claimLineDetail": [
+        {
+          "lineNum": "1",
+          "blankDateInd": "—",
+          "approvedDenyInd": "—"
+        }
+      ]
+    },
+    "provider": {
+      "billing": {
+        "taxId": "934028671",
+        "npi": "1824097635",
+        "name": "SEACOAST BIOANALYTICS LABORATORY",
+        "facilityName": "—",
+        "providerNumber": "—",
+        "medicareId": "—",
+        "address": "26 TIDEWATER BLVD, ROCHESTER, NH 03867-2240",
+        "nationalState": "—",
+        "locationCode": "—",
+        "bhaProviderIndicator": "—",
+        "taxonomy": "—",
+        "providerSps": "6008913047"
+      },
+      "referring": {
+        "referringPhysician": "A",
+        "npi": "12345678910",
+        "supportingOrderingNpi": "—",
+        "payToAddress": "—"
+      },
+      "serviceFacility": {
+        "svcNpi": "—",
+        "submitterProviderName": "Ability (G4)"
+      }
+    }
+  },
+  "providerInfo": {
+    "rendering": {
+      "npi": "1824097635",
+      "name": "SEACOAST BIOANALYTICS LABORATORY",
+      "address": "26 TIDEWATER BLVD, ROCHESTER, NH 03867-2240",
+      "pricingState": "NH",
+      "pricingZip": "03063-1172",
+      "providerSps": "6008913047",
+      "providerEpin": "—",
+      "license": "—",
+      "networkOption": "N",
+      "specialty": "L02",
+      "specialtyDescription": "L02 - INDEPENDENT LABORATORY",
+      "taxonomy": "—"
+    },
+    "billing": {
+      "taxId": "934028671",
+      "npi": "1824097635",
+      "name": "SEACOAST BIOANALYTICS LABORATORY",
+      "facilityType": "—",
+      "providerSps": "6008913047",
+      "providerEpin": "—",
+      "medicareId": "—",
+      "address": "26 TIDEWATER BLVD, ROCHESTER, NH 03867-2240",
+      "nationalState": "MA",
+      "locationCode": "—",
+      "bhaProviderIndicator": "YN",
+      "taxonomy": "—",
+      "timelyFilingLimit": "—"
+    },
+    "referring": {
+      "referringPhysician": "A",
+      "npi": "12345678910"
+    },
+    "serviceFacility": {
+      "facilityTier": "—",
+      "type": "—",
+      "npi": "—"
+    },
+    "miscellaneous": {
+      "supportingOrderingNpi": "—",
+      "nsbIndicator": "None",
+      "alternateFacilityNpi": "—"
+    }
+  },
+  "paymentInfo": {
+    "claim": {
+      "deductible": "0.00",
+      "copay": "0.00",
+      "coins": "0.00",
+      "patientLiab": "0.00",
+      "memberSurcharge": "0.00",
+      "nonElg": "0.00",
+      "hraPaid": "0.00",
+      "claimPaid": "0.00",
+      "pricingAllowedAmount": "0.00",
+      "totalCharge": "612.75",
+      "finalizationCode": "—"
+    },
+    "provider": {
+      "providerDisc": "0.00",
+      "providerLiab": "0.00",
+      "providerRiskWithhold": "0.00",
+      "providerSurcharge": "0.00",
+      "interest": "0.00",
+      "penalty": "0.00",
+      "lr": "L",
+      "systemInterest": "0.00"
+    },
+    "drg": {
+      "keyed": "-",
+      "priced": "—",
+      "original": "—"
+    },
+    "check": {
+      "accountNumber": "1234512345",
+      "checkNumber": "—",
+      "checkDate": "—",
+      "amount": "0.00",
+      "paymentSystem": "D",
+      "checkMailedTo": "—",
+      "eftCheckDate": "—",
+      "checkStatus": "CHECK NOT FOUND ON RECON DB",
+      "checkStatusDate": "09/28/2026",
+      "paidTo": "SEACOAST BIOANALYTICS LABORATORY",
+      "finalized": "—"
+    },
+    "payeeDetails": {
+      "flipPayee": "N"
+    }
+  },
+  "claimHeader": {
+    "general": {
+      "serviceFromThrough": "10/02/2026 - 10/02/2026",
+      "assignmentOfBenefits": "Y - Benefit assigned to provider",
+      "providerParticipation": "PAR",
+      "providerContract": "INP00000",
+      "treatmentAuth": "—",
+      "patientAccount": "W000000000",
+      "emergency": "No",
+      "employment": "No",
+      "coveredZipRadius": "-",
+      "frequency": "1",
+      "bbiIndicator": "-",
+      "pciIndicator": "-",
+      "fsbInd": "None",
+      "fsbExclusion": "X"
+    },
+    "benefitIndicators": {
+      "cob": "0",
+      "cobRule": "-",
+      "medInd": "No",
+      "medRule": "-",
+      "medicareAdvantage": "No",
+      "cdhp": "N",
+      "planPayer": "N",
+      "cobPercent": "0"
+    },
+    "diagnosisCodes": {
+      "dx1": "M1711"
+    },
+    "conditionCodes": {
+      "code": "-"
+    }
+  },
+  "claimLines": [
+    {
+      "lineNum": "1",
+      "fromDate": "10/02/2026",
+      "toDate": "10/02/2026",
+      "pos": "81",
+      "revCode": "—",
+      "service": "LAB",
+      "procedure": "80061",
+      "modifiers": "—",
+      "units": "1",
+      "diagnosis": "E785",
+      "billed": "1284.60",
+      "dedInd": "NO",
+      "coinsPercent": "100",
+      "stoploss": "No",
+      "eobTy": "—",
+      "writeoffEobTy": "$0.00",
+      "noncoveredUnit": "0",
+      "deductible": "—",
+      "otherUnit": "0",
+      "copay": "—",
+      "eobTyLast": "—",
+      "payment": "$0.00"
+    }
+  ],
+  "claimLineSummary": {
+    "lineNum": "1",
+    "fromDate": "10/02/2026",
+    "toDate": "10/02/2026",
+    "pos": "81",
+    "revCode": "—",
+    "service": "LAB",
+    "procedure": "80061",
+    "modifiers": "—",
+    "units": "1",
+    "diagnosis": "E785",
+    "billed": "$157.90",
+    "dedInd": "NO",
+    "coinsPercent": "100",
+    "stoploss": "No",
+    "eobTy": "—",
+    "writeoffEobTy": "$0.00",
+    "noncoveredUnit": "0",
+    "deductible": "—",
+    "otherUnit": "0",
+    "copay": "—",
+    "eobTyLast": "—",
+    "payment": "$0.00"
+  },
+  "notes": {
+    "research": "—",
+    "mainframe": "251907",
+    "wgs": "—",
+    "taskManagement": {
+      "routedTo": "-",
+      "urgency": "65",
+      "skills": "CT-Professional",
+      "csPg": "GS-National",
+      "benNonspider": "SPIDER",
+      "regCa": "-",
+      "resUnrestricted": "-",
+      "totalAge": "4",
+      "homeAge": "4",
+      "ageAdjusted": "N",
+      "baselineUrgency": "45",
+      "urgencyModifiers": "PG Modifer(0)"
+    }
+  },
+  "search": {
+    "claims": {
+      "dcnKernalClaim": "",
+      "claimId": "",
+      "subscriberOrHcid": "278C69043",
+      "sccf": "",
+      "procedure": "",
+      "serviceFrom": "10/02/2026",
+      "serviceTo": "10/02/2026",
+      "code": "",
+      "totalCharge": "",
+      "status": "ALL",
+      "providerTaxId": "934028671",
+      "providerNpi": "",
+      "renderingLicenseId": "",
+      "billType": ""
+    },
+    "claimsResultCount": "1",
+    "claimsResults": [
+      {
+        "code": "—",
+        "name": "BARNABY CASTELLANO",
+        "from": "10/02/2026",
+        "to": "10/02/2026",
+        "type": "P",
+        "provider": "SEACOAST BIOANALYTICS LABORATORY",
+        "billType": "-",
+        "dcn": "DCN-620519",
+        "charged": "612.75",
+        "paid": "0.00",
+        "status": "Pending"
+      }
+    ],
+    "codeSet": {
+      "selectCodeType": "-",
+      "enterCode": "-"
+    },
+    "auth": {
+      "search": {
+        "subscriberOrHcid": "278C69043",
+        "serviceStartDate": "10/2/2026",
+        "serviceEndDate": "10/2/2026",
+        "status": "-"
+      },
+      "members": {
+        "name": "—",
+        "dob": "—",
+        "ageAdjusted": "—",
+        "memberId": "-",
+        "mcid": "-",
+        "subscriberOrHcid": "278C69043"
+      }
+    },
+    "benefits": {
+      "planOptions": [
+        {
+          "costShare": "DEDUCTIBLE",
+          "network": "PPO",
+          "maximum": "$500",
+          "accumType": "Calendar Year"
+        },
+        {
+          "costShare": "OUT-OF-POCKET MAX",
+          "network": "PPO",
+          "maximum": "$3,000",
+          "accumType": "Calendar Year"
+        },
+        {
+          "costShare": "MEMBER CLAIM FILING DAY LIMIT",
+          "network": "—",
+          "maximum": "365 days",
+          "accumType": "—"
+        }
+      ],
+      "searchBenefits": {
+        "contractCode": "94HG",
+        "effectiveDate": "1/1/2026",
+        "endDate": "12/31/9999",
+        "effectiveEndDate": "-"
+      },
+      "general": {
+        "contractCode": "94HG",
+        "product": "BCBI",
+        "plan": "HOLLANDER GLASSWORKS COMPANY",
+        "contractState": "NH",
+        "benefitPeriod": "-",
+        "benefitPeriodAlt": "-",
+        "fundingArrangement": "-",
+        "cdhpInd": "-",
+        "groupNumber": "C69043M005",
+        "contractId": "94HG",
+        "memberName": "BARNABY CASTELLANO",
+        "caseNumber": "C69043",
+        "contractType": "-",
+        "crossAccumulation": "-"
+      },
+      "viewNic": {
+        "coverage": "MED-MEDICL COVERAGE",
+        "pricing": "IN29",
+        "network": "PPO"
+      },
+      "accumulators": {
+        "criteria": {
+          "memberId": "278C69043",
+          "memberCode": "70",
+          "fromDate": "10/2/2026",
+          "toDate": "10/2/2026",
+          "sourceSystem": "WGS"
+        },
+        "selection": {
+          "accumulatorName": "—",
+          "benefitYear": "—",
+          "accumulatorEffDate": "—",
+          "cob": "—",
+          "deductible": "—",
+          "fertilityRx": "—",
+          "lifetime": "—",
+          "other": "—",
+          "outOfPocket": "—"
+        }
+      }
+    },
+    "provider": {
+      "config": {
+        "searchAction": "search_provider",
+        "fieldIds": {
+          "npi": "f_sc_pf_npi",
+          "orgTaxId": "f_sc_pf_tax",
+          "fromDate": "f_sc_pf_from",
+          "throughDate": "f_sc_pf_through",
+          "sourceSystem": "f_sc_pf_source",
+          "zipCode": "f_sc_pf_zip",
+          "billingType": "f_sc_pf_billing",
+          "specialty": "f_sc_pf_specialty",
+          "state": "f_sc_pf_state",
+          "alternateId": "f_sc_pf_alt_id",
+          "alternateKey": "f_sc_pf_alt_key",
+          "lob": "f_sc_pf_lob",
+          "billingOrg": "f_sc_pf_billing_org"
+        }
+      },
+      "form": {
+        "npi": "",
+        "orgTaxId": "",
+        "fromDate": "",
+        "throughDate": "",
+        "sourceSystem": "SPS",
+        "zipCode": "",
+        "billingType": "",
+        "specialty": "",
+        "state": "",
+        "alternateId": "",
+        "alternateKey": "",
+        "lob": "",
+        "billingOrg": ""
+      },
+      "searchStatus": "",
+      "results": []
+    },
+    "member": {
+      "results": [],
+      "searchMember": {
+        "memberId": "278069043",
+        "firstName": "Barnaby",
+        "mi": "R",
+        "lastName": "Castellano",
+        "dob": "09/30/1963",
+        "relationship": "SUB - Subscriber",
+        "memberCode": "70",
+        "gender": "M",
+        "state": "NH",
+        "contractId": "94HG",
+        "caseEntity": "C69043",
+        "groupNumber": "C69043M005",
+        "hcid": "278C69043",
+        "prefix": "VZT",
+        "effectiveDate": "1/1/2020",
+        "endDate": "12/31/9999",
+        "productCode": "Local",
+        "contractState": "NH",
+        "businessUnit": "Group"
+      },
+      "general": {
+        "name": "Barnaby E Castellano",
+        "dateOfBirth": "3/18/1952",
+        "age": "0",
+        "sex": "M",
+        "memberId": "278069043",
+        "hcid": "278C69043",
+        "relationship": "SUB - Subscriber",
+        "memberCode": "70",
+        "address": "182 Larkspur Ave  LACONIA NH 03246",
+        "county": "—",
+        "country": "US",
+        "phone": "—",
+        "effectiveDate": "1/1/2020",
+        "endDate": "12/31/9999",
+        "productType": "BCPI - BC INCENTIVE PPO",
+        "groupType": "A -ACTIVE",
+        "cob": "",
+        "businessUnit": "Group",
+        "paidToDate": "9/1/2026",
+        "erisa": "Y",
+        "caseGroupSetup": "Y",
+        "contractStartDate": "-",
+        "shortTermEndDate": "-",
+        "cxlProcessDate": "-",
+        "aptcIndicator": "-",
+        "csdt": "-",
+        "caseName": "Hollander Glassworks Company",
+        "ncnReferralsInd": "—",
+        "foi": "G",
+        "roundoprd": "12",
+        "conversionCode": "0",
+        "medicareIndicator": "—"
+      },
+      "additionalAddress": {
+        "address": "-"
+      },
+      "providerNetwork": {
+        "product": "57BC PPO INCENTIVE",
+        "providerGroupName": "-",
+        "address": "-",
+        "phone": "-"
+      },
+      "contractMembers": [
+        {
+          "memberCode": "00",
+          "name": "Barnaby E Castellano",
+          "relationship": "SUB - Subscriber",
+          "dob": "9/30/1963",
+          "age": "74",
+          "effectiveDate": "1/1/2020",
+          "endDate": "12/31/9999"
+        },
+        {
+          "memberCode": "01",
+          "name": "Marguerite A Castellano",
+          "relationship": "SPS - Spouse",
+          "dob": "7/2/1949",
+          "age": "77",
+          "effectiveDate": "1/1/2020",
+          "endDate": "12/31/9999"
+        },
+        {
+          "memberCode": "—",
+          "name": "—",
+          "relationship": "—",
+          "dob": "—",
+          "age": "—",
+          "effectiveDate": "—",
+          "endDate": "—"
+        }
+      ],
+      "group": {
+        "general": {
+          "name": "HOLLANDER GLASSWORKS COMPANY",
+          "status": "O ACTIVE",
+          "companyCode": "123C XXXX",
+          "paidToDate": "2/1/2026",
+          "locationStateCode": "OH",
+          "locationCodeEffectiveDate": "1/1/2019",
+          "workLocation": "7003 ANTHEM NAT ACCT",
+          "workLocationPhone": "9999888899",
+          "rateMethodCode": "1 ASO BUSINESS",
+          "rmcEffectiveDate": "1/1/2019",
+          "groupType": "A ACTIVE",
+          "fundingTypeCode": "H ASC",
+          "graceDays": "30",
+          "claimGraceDays": "30"
+        },
+        "coverage": {
+          "originalEffectiveDate": "1/1/2019",
+          "groupProcessedDate": "10/9/2018",
+          "reinstateEffectiveDate": "-",
+          "reinstateProcessedDate": "-",
+          "cancelEffectiveDate": "-",
+          "cancelProcessedDate": "-",
+          "cancelReason": "-"
+        },
+        "contract": {
+          "productLine": "BC PPO INCENTIVE",
+          "claimsRoute": "PX_P-EXEC - NATIONAL ACCTS",
+          "benefitYearCalendarYear": "CY",
+          "benefitYearCalendarYearAsOfDate": "1/1/2019",
+          "contractCode": "94HG",
+          "contractCodeEffectiveDate": "1/1/2019",
+          "promptPay": "N",
+          "promptPayDate": "1/1/2019",
+          "itsHomeParticipatingCode": "E CONTROL CUSTOM",
+          "itsHomeEffectiveDate": "1/1/2019",
+          "locationLobCode": "X BC/BCLH",
+          "overAgeMailing": "S MAIL TO SUBR",
+          "networkId": "BLUECDOO",
+          "networkName": "BLUE XXXX BLUE XXXX"
+        },
+        "additional": {
+          "product": "BC PPO INC Claim Manager",
+          "mbuCode": "NAC00000",
+          "claimsServiceLocation": "COOIO/CAACOII",
+          "serviceManager": "SRVC/DARLENE",
+          "claimManager": "CLMS/M PENNER",
+          "servicePhone": "999999999",
+          "serviceAddress": "XXXX PARK Road COLUMBUS OH 43215",
+          "sourceSystem": "WGS 2.0"
+        }
+      }
+    },
+    "limitedLiability": {
+      "memberId": "278C69043",
+      "memberCode": "00",
+      "dob": "9/30/1963",
+      "activeRecords": "Active records",
+      "allRecords": "1",
+      "resultsNote": "1 active record found. The limited liability record on file has not been updated with the Medicare processing information.",
+      "results": [
+        {
+          "type": "cob",
+          "effectiveDate": "01/01/2026",
+          "endDate": "—",
+          "orderOfBenefits": "M - Medicare is primary",
+          "description": "MEDICARE LIMITED LIABILITY RECORD — NOT UPDATED"
+        }
+      ]
+    },
+    "pricing": {
+      "member": {
+        "dob": "9/30/1963",
+        "sex": "M",
+        "groupNumber": "C69043M005",
+        "groupId": "-",
+        "networkId": "BLUECS",
+        "memberZipCode": "45504",
+        "alternateZipCode": "-",
+        "medicareInd": "N",
+        "hixInd": "-",
+        "marketType": "NTLA",
+        "memberInd": "-",
+        "ab72": "-",
+        "patientCode": "-",
+        "product": "BCBI -",
+        "variance": "IN29",
+        "coverage": "MED",
+        "groupIdentifier": "-"
+      },
+      "provider": {
+        "taxId": "934028671",
+        "renderingNumber": "77777777777",
+        "billingNumber": "6666666666",
+        "renderingNpi": "1548273906",
+        "billingNpi": "1548273906",
+        "license": "01082547A",
+        "specialty": "037",
+        "zipCode": "45503-1140",
+        "planInd": "OH",
+        "wgsp": "P",
+        "pcpState": "NP",
+        "region": "462",
+        "gbdId": "-",
+        "providerInd": "-",
+        "providerParticipation": "PAR",
+        "providerProdVar": "INP02186",
+        "networxInd": "-",
+        "finalMixer": "-",
+        "legacySpecialty": "-"
+      },
+      "claimHeader": {
+        "serviceFrom": "10/2/2026",
+        "serviceTo": "10/2/2026",
+        "placeOfService1": "2",
+        "placeOfService2": "21",
+        "cxtInd": "X",
+        "productLineCode": "57",
+        "serviceClassType": "-",
+        "emergRefInd": "-",
+        "icd9": "N",
+        "federalMandate": "-",
+        "cocInd": "-",
+        "mixerOverrideInd": "-",
+        "streetMedicineInd": "None",
+        "surpriseBillingInd": "-",
+        "cgntInd": "-",
+        "product": "INPO",
+        "variance": "2186",
+        "contractNotes": "-",
+        "overridePriceProduct": "-",
+        "contractHierarchy": "-",
+        "bundleStatus": "-",
+        "clusterId": "-"
+      },
+      "diagnosisCodes": {
+        "a": "M1711",
+        "b": "-",
+        "c": "-",
+        "d": "-",
+        "e": "-"
+      },
+      "lineSummary": {
+        "procedure": "—",
+        "modifier": "—",
+        "uo": "1",
+        "cxPercent": "100",
+        "allowed": "0",
+        "billedAmount": "12762",
+        "writeoff": "0"
+      }
+    }
+  },
+  "system": {
+    "benefitRecommendation": {
+      "contractCode": "94HG",
+      "effectiveDate": "1/1/2026",
+      "endDate": "12/31/9999",
+      "planState": "OH",
+      "planDescription": "Hollander Glassworks Company 01/01/2026 PPO 94HG"
+    }
+  },
+  "attachment": {
+    "pwk": {
+      "type": "—",
+      "documentNumber": "—"
+    }
+  },
+  "claimData": {
+    "details": {
+      "claimType": "Professional",
+      "itsHome": "No",
+      "claimSource": {
+        "mediaType": "PC",
+        "pricingSource": "W",
+        "pricingSystem": "WP",
+        "mixerPar": "Y",
+        "receiverId": "WGSGA",
+        "receivedAtEdi": "10/8/2026",
+        "providerError": "I000",
+        "imageControlNumber": "CI26055910678430562",
+        "authNumber": "—",
+        "authExcln": "—",
+        "vendorIndicator": "—",
+        "receivedDate": "10/8/2026",
+        "splitInd": "—",
+        "epactPlm": "—",
+        "gnyhaInd": "—",
+        "imrIndicator": "—",
+        "cliaId": "—",
+        "cliaQualifier": "—"
+      },
+      "ancillaryProvider": {
+        "type": "R",
+        "zip": "12345",
+        "state": "NH"
+      },
+      "ambulance": {
+        "pickupZip": "—",
+        "dropoffZip": "—"
+      },
+      "miscellaneous": {
+        "epsdt": "—",
+        "familyPlanning": "No",
+        "gtessDate": "—",
+        "dateOfIllness": "—",
+        "dateOfInjury": "—",
+        "lastMenstrualDate": "—",
+        "consultationDate": "—",
+        "eruDecision": "—",
+        "jaaErrorCode": "No"
+      },
+      "stopData": {
+        "stopEdit": "No",
+        "lobParentRule": "—",
+        "lobChildRule": "ALL WGS",
+        "lobSequence": "1",
+        "medBusinessParentRule": "NA",
+        "medBusinessChildRule": "656881",
+        "medSequence": "51"
+      },
+      "refundData": {
+        "correspondenceNumber": "—",
+        "refundAmount": "$0.00",
+        "adjustmentReasonCode": "PX_4",
+        "correctedClaimDcn": "—",
+        "vendorName": "—",
+        "delayReason": "—",
+        "carveOut": "—",
+        "adjustmentReceipt": "—"
+      },
+      "highDollar": {
+        "riskOutcome": "—"
+      }
+    },
+    "editing": {
+      "claimXten": {
+        "originalLine": {
+          "lineNum": "1",
+          "serviceDate": "10/2/2026",
+          "procedure": "—",
+          "mod": "—",
+          "units": "1",
+          "billedAmount": "$612.75"
+        },
+        "proposedLine": {
+          "lineNum": "1",
+          "procedure": "—",
+          "mod": "—",
+          "units": "1",
+          "supportCode": "—",
+          "payPercent": "100",
+          "billedAmount": "$612.75"
+        }
+      },
+      "ihealth": {
+        "originalLine": {
+          "lineNum": "1",
+          "serviceDate": "10/2/2026",
+          "procedure": "—",
+          "mod": "—",
+          "units": "1",
+          "allowedAmount": "$0.00",
+          "savingsAmount": "$0.00"
+        },
+        "proposedLine": {
+          "procedure": "—",
+          "mod": "—",
+          "units": "1",
+          "payPercent": "100",
+          "status": "PX_P"
+        }
+      }
+    },
+    "benefits": {
+      "accumulator1": {
+        "type": "INDYTD",
+        "fromDate": "1/1/2026",
+        "toDate": "12/31/2026",
+        "unit": "Dollar",
+        "status": "Accrued"
+      },
+      "accumulator2": {
+        "type": "MMCYTD",
+        "fromDate": "1/1/2026",
+        "toDate": "12/31/2026",
+        "unit": "Dollar",
+        "status": "Accrued"
+      }
+    },
+    "promptPay": {
+      "claim": {
+        "status": "PX_WGS",
+        "state": "—",
+        "ruleId": "—",
+        "systemInterest": "$0.00",
+        "penaltyAmount": "$0.00",
+        "manualInterestAmount": "—"
+      },
+      "calculation": {
+        "calculationFromDate": "10/8/2026",
+        "carveoutDate": "—",
+        "lastProcessedDate": "10/8/2026",
+        "baseAmount": "$0.00",
+        "calculatedInterestAmount": "$0.00",
+        "processedInDays": "0",
+        "mailingDays": "0",
+        "disburseDays": "0",
+        "allowedDays": "0",
+        "carveoutDays": "0",
+        "lateByDays": "0",
+        "dailyInterest": "$0.00"
+      },
+      "miscellaneous": {
+        "carveoutReasonCode": "PX_0",
+        "dayIndicator": "0",
+        "receiptMethod": "—",
+        "productFundType": "W",
+        "interestRate": "—",
+        "penalty": "—",
+        "minimumPayAmount": "—",
+        "erMinimumPay": "—",
+        "annualMonthlyPenalty": "—",
+        "mlhDate": "26027",
+        "ppStopDate": "—",
+        "additionalInformationRequestDate": "—",
+        "tdiInterestAmount": "—",
+        "tdiPenaltyAmount": "—"
+      }
+    },
+    "review": {
+      "utilization": {
+        "service": {
+          "lineNum": "1",
+          "procedure": "—",
+          "revenueCodeDate": "170",
+          "ruleId": "—",
+          "caseNumber": "—"
+        }
+      },
+      "cdhp": {
+        "claim": {
+          "litesClaim": "—",
+          "rsnEobCode": "—",
+          "hraPaidTotal": "$0.00",
+          "hraEndingBalance": "$0.00",
+          "paymentCode": "—",
+          "cdhpAdmin": "—",
+          "acknowledgementRcvd": "—",
+          "requeryCount": "—"
+        },
+        "lineSummary": {
+          "lineNum": "1",
+          "procedure": "—",
+          "billed": "$612.75",
+          "patientResp": "—",
+          "hraPaid": "—",
+          "rsnCode": "—"
+        }
+      },
+      "dofr": {
+        "meta": {
+          "inzip": "—",
+          "providerNetworkCode": "—",
+          "dofrId1": "—",
+          "dofrName1": "—",
+          "relationship": "—",
+          "pgmId": "—",
+          "pgId": "—",
+          "umDelegationIndicator": "—",
+          "effectiveDate": "—",
+          "endDate": "—"
+        },
+        "lineSummary": {
+          "lineNum": "1",
+          "procedure": "—",
+          "revenueCode": "170",
+          "serviceCategory": "—",
+          "event": "—",
+          "capIndicator": "—",
+          "risk": "—",
+          "groupCode": "—",
+          "hc": "PP"
+        }
+      }
+    },
+    "relatedSummary": {
+      "code": "—",
+      "name": "—",
+      "fromDate": "—",
+      "toDate": "—",
+      "type": "—",
+      "provider": "—",
+      "dcn": "—",
+      "charged": "—",
+      "paid": "—",
+      "status": "—"
+    }
+  }
+}

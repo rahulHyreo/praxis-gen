@@ -1,0 +1,218 @@
+{
+  "$schema": "training-platform/v1/navigator",
+  "$version": "1.0.0",
+  "id": "nav_clm_1_ll_review_spi_clm_applies",
+  "name": "LL Review — SPI-CLM record covers the date of service and matches the billing provider",
+  "description": "Eight guided steps, one per row of the LL Review CLM.1 step table: identify the PX_CLM hard edit, note the date of service, find the SPI-CLM limited liability records, open the record whose date range covers the date of service and read its Notes, match its provider name and Tax ID against the billing provider, select the PX_VA bypass code, validate it, and pay the claim at 100% of the allowed amount.",
+  "flowId": "flow_ll_review_clm_1",
+  "passMark": 70,
+  "totalSteps": 8,
+  "totalNavigatorPoints": 80,
+  "totalMaxPoints": 100,
+  "steps": [
+    {
+      "id": "step_001",
+      "sequenceId": 1,
+      "name": "Identify the PX_CLM hard edit",
+      "description": "Open the Event Resolution tab. It lists every edit on the claim, and PX_CLM is the Hard Edit highlighted with an error indication — the current event to resolve. PX_CLM (LIM LIB- CLM SPECIAL INSTRUCTN) is an alert that the member may have an SPI-CLM Limited Liability record containing special processing instructions. The event itself does not decide whether to pay or deny: you must review the record's Notes and decide whether they apply to this specific claim. The other events in All Edits — PX_SPS, PX_CIS, PX_DGX, PX_REL and PX_DXG — are informational, so nothing outranks PX_CLM.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_active",
+      "targetFieldId": "f_er_edit_code",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the Event Resolution tab is opened while this step is active. The workspace opens with no tab selected, so the trainee opens it deliberately.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "On 'Event Resolution', the Active Edit section shows Edit Code PX_CLM with a Hard Edit badge, and All Edits lists all six events with PX_CLM marked active.",
+      "highlightFields": ["f_er_edit_code", "f_er_severity", "f_er_e_clm"],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Identify the PX_CLM hard edit"
+    },
+    {
+      "id": "step_002",
+      "sequenceId": 2,
+      "name": "Note the date of service",
+      "description": "Open the Claim Lines tab and note the date of service billed on Line 1 from its From date and To fields — the service from and through dates. This date is used to find the Limited Liability record that applies. On this claim the date of service on Line 1 is 01/15/2026.",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_summary",
+      "targetFieldId": "f_cl_from",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_lines"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the Claim Lines tab is opened while this step is active.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "On 'Claim Lines', Line 1 shows From date 01/15/2026 and To 01/15/2026. Keep this date of service for the Limited Liability records.",
+      "highlightFields": ["f_cl_from", "f_cl_to"],
+      "highlightTabId": "tab_claim_lines",
+      "checklistItem": "Note the date of service"
+    },
+    {
+      "id": "step_003",
+      "sequenceId": 3,
+      "name": "Look up the SPI-CLM LL record",
+      "description": "Look for an SPI-CLM Limited Liability record. Open the Search tab and its Limited Liability sub-tab. The member's records appear under Limited Liability Results; check the Type column for SPI-CLM. Each row shows the record's Effective date, End date, Order of benefits and Description. This member has two SPI-CLM records. The one that runs 01/01/2026 to 03/31/2026 has no Order of benefits and the Description 'Pay provider 100% of the allowed amount. Provider name City Hospital, Provider Tax ID 98765656'.",
+      "targetTabId": "tab_search",
+      "targetSubTabId": "subtab_search_limited",
+      "targetSectionId": "sec_sll_results",
+      "targetFieldId": "f_sll_r0_type",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_search",
+        "subTabId": "subtab_search_limited"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the Search → Limited Liability sub-tab is opened while this step is active. Sub-tabs start closed, so the trainee opens it deliberately.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "On 'Search' → 'Limited Liability', read the Type column under Limited Liability Results — both records are SPI-CLM.",
+      "highlightFields": [
+        "f_sll_r0_type",
+        "f_sll_r0_description",
+        "f_sll_r1_type"
+      ],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_limited",
+      "checklistItem": "Look up the SPI-CLM LL record"
+    },
+    {
+      "id": "step_004",
+      "sequenceId": 4,
+      "name": "Open the LL record and read the Notes",
+      "description": "Identify the LL record whose date range covers the claim's date of service by comparing each record's Effective date and End date against 01/15/2026. The record that runs 07/01/2025 to 12/31/2025 ends before the date of service, so it does not apply. The record that runs 01/01/2026 to 03/31/2026 covers 01/15/2026, so click its 'Open record' button. Scroll down to the Notes section and read the instruction: 'Pay provider 100% of the allowed amount. Provider name City Hospital, Provider Tax ID 98765656'. It means 100% of the allowed amount must be paid, with no deductions or cost shares, to the provider City Hospital with Tax ID 98765656.",
+      "targetTabId": "tab_search",
+      "targetSubTabId": "subtab_search_limited",
+      "targetSectionId": "sec_sll_results",
+      "targetFieldId": "f_sll_r0_open",
+      "actionType": "open_ll_record_clm",
+      "actionPayload": {
+        "actionId": "open_ll_record_clm"
+      },
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the SPI-CLM record covering the date of service is opened. The expired record's Open record control dispatches a different action that completes no step.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Click 'Open record' on the SPI-CLM row dated 01/01/2026 – 03/31/2026 — its range covers the 01/15/2026 date of service — then scroll down to Notes.",
+      "highlightFields": [
+        "f_sll_r0_effective",
+        "f_sll_r0_end",
+        "f_sll_r1_effective",
+        "f_sll_r1_end",
+        "f_sll_r0_open"
+      ],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_limited",
+      "completesActionId": "open_ll_record_clm",
+      "checklistItem": "Open the LL record and read the Notes"
+    },
+    {
+      "id": "step_005",
+      "sequenceId": 5,
+      "name": "Match the LL criteria against the claim",
+      "description": "Check whether the LL record's criteria apply to this claim. The criteria in the record's Notes are Provider Name 'City Hospital' and Provider Tax ID 98765656. Open the Provider Info tab and, in the Billing section, check the Name field and the Tax Id field. On this claim the billing provider's Name is City Hospital and its Tax Id is 98765656, which match the LL criteria, so the special instructions apply to this claim.",
+      "targetTabId": "tab_provider_info",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_pi_billing",
+      "targetFieldId": "f_pi_b_name",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_provider_info"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the Provider Info tab is opened while this step is active.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "On 'Provider Info', the Billing section shows Name City Hospital and Tax Id 98765656 — both match the record's Notes.",
+      "highlightFields": ["f_pi_b_name", "f_pi_b_tax_id"],
+      "highlightTabId": "tab_provider_info",
+      "checklistItem": "Match the LL criteria against the claim"
+    },
+    {
+      "id": "step_006",
+      "sequenceId": 6,
+      "name": "Select the PX_VA bypass code",
+      "description": "Return to the Event Resolution tab and select the bypass code for the PX_CLM event. In the Bypass Codes section, open the Bypass code list and select PX_VA. The other codes in the list do not resolve PX_CLM.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_bypass",
+      "targetFieldId": "f_er_bypass_code",
+      "actionType": "field_set",
+      "actionPayload": {
+        "fieldId": "f_er_bypass_code"
+      },
+      "completionTrigger": "field_value_set",
+      "completionTriggerNote": "Completes only when eventResolution.bypassCode is PX_VA. Selecting any other option leaves the step open.",
+      "expectedValue": "PX_VA",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "On 'Event Resolution', open the 'Bypass code' select in the Bypass Codes section and choose PX_VA.",
+      "highlightFields": [
+        "f_er_bypass_target",
+        "f_er_bypass_code",
+        "f_er_bypass_status"
+      ],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Select the PX_VA bypass code"
+    },
+    {
+      "id": "step_007",
+      "sequenceId": 7,
+      "name": "Validate the bypass code",
+      "description": "Click the Validate button on the claim summary.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_bypass",
+      "targetFieldId": "f_er_bypass_status",
+      "actionType": "validate",
+      "actionPayload": {
+        "actionId": "validate"
+      },
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when Validate is pressed with PX_VA selected. If the bypass code has been changed to anything else, the press is refused and the Status asks for the bypass code to be reviewed.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Validate sits on the claim summary bar, next to Submit. Click it once PX_VA is selected.",
+      "highlightFields": ["f_er_bypass_status", "f_er_validation_msg"],
+      "highlightTabId": "tab_event_resolution",
+      "completesActionId": "validate",
+      "completionToast": "PX_VA bypass applied to PX_CLM.",
+      "checklistItem": "Validate the bypass code"
+    },
+    {
+      "id": "step_008",
+      "sequenceId": 8,
+      "name": "Submit Pay decision",
+      "description": "Before paying, confirm on the claim summary bar that the claim pays 100% of the allowance, as the LL record instructs: Paid equals Allowed, and Deductible, Co-insurance and Co-pay are all $0.00. Then choose Pay from the Action menu in the header and click Submit on the claim summary bar.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "decision_submit",
+      "actionPayload": {
+        "decision": "pay"
+      },
+      "completionTrigger": "decision_submitted",
+      "completionTriggerNote": "Completes when the Pay decision is submitted.",
+      "expectedValue": "pay",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "The claim summary bar shows Allowed $285.00 and Paid $285.00 with no cost shares. Choose 'Pay' from the Action menu in the header, then click Submit.",
+      "highlightFields": [],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Submit Pay decision"
+    }
+  ]
+}

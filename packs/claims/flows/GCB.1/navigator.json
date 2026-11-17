@@ -1,0 +1,140 @@
+{
+  "$schema": "training-platform/v1/navigator",
+  "$version": "2.0.0",
+  "id": "nav_gcb_1_prior_auth_pass",
+  "flowId": "flow_authorization_gcb_1",
+  "name": "Authorization GCB.1 -Claim Meets Prior Auth Pass Navigator",
+  "description": "Walk the Authorization SOP for the PX_GCB event -the claim meets the prior-authorization pass criteria because its procedure codes and provider TIN match the configured pass logic. Identify the informational PX_PPB and PX_GCB events and rule out PX_NMF/PX_PAM, confirm the authorization is denied (UM Detail Service Case Number NO MATCH), confirm the single claim line carries a Prior Auth Pass ind of Y, then pay the claim.",
+  "totalSteps": 4,
+  "passMark": 70,
+  "correctDecision": "pay",
+  "correctDecisionLabel": "Pay",
+  "totalMaxPoints": 60,
+  "totalNavigatorPoints": 40,
+  "steps": [
+    {
+      "id": "step_001",
+      "sequenceId": 1,
+      "name": "Identify the PX_PPB and PX_GCB events and rule out PX_NMF/PX_PAM",
+      "description": "Review all events in the Event Resolution tab. The events list will display both the PX_PPB event (possible prior auth pass claim) and the PX_GCB event (claim meets prior auth pass) -PX_GCB is an informational event indicating the claim meets prior authorization pass criteria based on the procedure codes and provider TIN matching the configured logic. Verify that no PX_NMF or PX_PAM events are present on the list. If PX_NMF or PX_PAM is present, follow the alternate SOP steps; otherwise, proceed. In this scenario, no PX_NMF or PX_PAM events are present, so the trainee proceeds.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_all_edits",
+      "targetFieldId": "f_er_e_gcb",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Event Resolution tab and reviews the events list, where the PX_PPB and active PX_GCB events are shown and no PX_NMF/PX_PAM events are present.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Event Resolution' and review the events list. The PX_PPB (possible prior auth pass claim) and active PX_GCB (claim meets prior auth pass) informational events are shown, and no PX_NMF/PX_PAM events are present, so proceed.",
+      "highlightFields": ["f_er_edit_code", "f_er_e_ppb", "f_er_e_gcb"],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Identify the PX_PPB and PX_GCB events and rule out PX_NMF/PX_PAM"
+    },
+    {
+      "id": "step_002",
+      "sequenceId": 2,
+      "name": "Verify denied authorization (NO MATCH)",
+      "description": "Determine whether a denied authorization exists by navigating to the Claim Data tab, then the Review sub-tab, and expanding the Utilization Management section. Review the UM Detail Service table, which contains the Line #, Procedure, Revenue Code, Date, Rule ID, and Case Number columns. A value of NO MATCH in the Case Number field indicates that an authorization exists but was denied for the billed service. In this scenario, the Case Number field displays NO MATCH; therefore, a denied authorization exists, and the trainee may proceed to the next step. If no authorization exists and the Case Number field is blank, follow the alternate guidelines, which require identifying the claim lines with a Prior Auth Pass Ind value of Y.",
+      "targetTabId": "tab_claim_data",
+      "targetSubTabId": "subtab_claim_data_review",
+      "targetSectionId": "sec_cd_r_um",
+      "targetFieldId": "f_cdr_um_case",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_data",
+        "subTabId": "subtab_claim_data_review"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Review sub-tab inside Claim Data and reads the UM Detail Service table's Case Number (NO MATCH).",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Data' → 'Review' and expand Utilization management. The UM Detail Service Case Number is NO MATCH, which means the authorization is denied, so proceed.",
+      "highlightFields": ["f_cdr_um_rule", "f_cdr_um_case"],
+      "highlightTabId": "tab_claim_data",
+      "highlightSubTabId": "subtab_claim_data_review",
+      "checklistItem": "Verify denied authorization (NO MATCH)"
+    },
+    {
+      "id": "step_003",
+      "sequenceId": 3,
+      "name": "Verify Prior Auth Pass ind on the claim line",
+      "description": "Review the claim lines (Navigate to Claim lines tab) to identify which lines have a Prior Auth Pass ind value of Y. Click each claim line to expand it and inspect the Prior Auth Pass ind field. In this scenario, there is one claim line, and the Prior Auth Pass ind field shows Y -confirming the claim meets the prior auth pass criteria, so the trainee proceeds to pay the claim.",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_summary",
+      "targetFieldId": "f_cl_prior_auth_pass",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_lines"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Claim Lines tab and inspects the Prior Auth Pass ind field on the single claim line.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Lines' and expand the line. The Prior Auth Pass ind field shows Y, confirming the claim meets the prior auth pass criteria, so proceed to pay.",
+      "highlightFields": ["f_cl_prior_auth_pass"],
+      "highlightTabId": "tab_claim_lines",
+      "checklistItem": "Verify Prior Auth Pass ind on the claim line"
+    },
+    {
+      "id": "step_004",
+      "sequenceId": 4,
+      "name": "Submit Pay decision",
+      "description": "Navigate to the Decision section in the header, select 'Pay' from the dropdown menu and click Submit.",
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "submit_decision",
+      "actionPayload": {
+        "type": "submit_decision",
+        "expectedDecision": "pay"
+      },
+      "completionTrigger": "decision_submitted",
+      "completionTriggerNote": "Completes when the trainee confirms the Pay decision in the submit dialog.",
+      "expectedValue": "pay",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Pick 'Pay' from the Decision dropdown in the claim header, then click Submit and confirm in the dialog.",
+      "highlightFields": [],
+      "checklistItem": "Submit Pay decision"
+    }
+  ],
+  "scoreBreakdown": {
+    "navigatorStepsMaxPoints": 40,
+    "decisionMaxPoints": 20,
+    "reasonCodeMaxPoints": 0,
+    "totalMaxPoints": 60,
+    "passMark": 70,
+    "weightedPassScore": 42
+  },
+  "stepSummaryForResults": [
+    {
+      "sequenceId": 1,
+      "name": "PX_PPB and PX_GCB events identified; PX_NMF/PX_PAM ruled out",
+      "points": 10
+    },
+    {
+      "sequenceId": 2,
+      "name": "Denied authorization confirmed (NO MATCH)",
+      "points": 10
+    },
+    {
+      "sequenceId": 3,
+      "name": "Prior Auth Pass ind confirmed (Y)",
+      "points": 10
+    },
+    {
+      "sequenceId": 4,
+      "name": "Pay decision submitted",
+      "points": 10
+    }
+  ]
+}

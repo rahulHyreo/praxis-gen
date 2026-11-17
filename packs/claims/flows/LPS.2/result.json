@@ -1,0 +1,69 @@
+{
+  "$schema": "training-platform/v1/flow-result",
+  "$version": "1.0.0",
+  "id": "result_lps_2_full_rejection",
+  "rubric": {
+    "expectedDecision": "deny",
+    "expectedReasonCode": "PX_R19022",
+    "requiredStepIds": [
+      "step_006",
+      "step_007",
+      "step_008",
+      "step_012",
+      "step_014",
+      "step_015",
+      "step_016"
+    ],
+    "weights": {
+      "navigator": 160,
+      "decision": 20,
+      "reasonCode": 10
+    },
+    "deductions": {
+      "perMissedRequiredStep": 0,
+      "wrongDecision": 20,
+      "wrongReasonCode": 10
+    }
+  },
+  "resultConfig": {
+    "passLabel": "Passed!",
+    "failLabel": "You did not meet the pass mark.",
+    "passDescription": "Great work — you identified the PX_LPS hard edit, verified provider participation (PAR) and the event hierarchy, confirmed the procedure was not COVID-19 related and the claim was original processing, verified the authorization was available, confirmed the Late Call indicator (L) via Pricing Details and that all dates of service preceded the Case creation date via Case Details, confirmed authorization was required by UM, determined the 100% penalty from the GA state / Local LOB / DOS, cleared the exclusion and extenuating-circumstances checks, confirmed via Get Pricing that the allowed amount ($90) equalled the billed amount ($90) so no payable balance remained, and correctly rejected the claim with reject code PX_R19022.",
+    "failDescription": "Pass mark is {passMark}%. Review the steps below to see where you can improve.",
+    "scoreCircle": {
+      "radius": 40,
+      "strokeWidth": 8,
+      "passColor": "#3B6D11",
+      "failColor": "#A32D2D",
+      "trackColor": "#E5E7EB"
+    },
+    "statBoxes": [
+      {
+        "id": "navigator_score",
+        "label": "Navigator",
+        "dataKey": "navigatorScore",
+        "max": 160
+      },
+      {
+        "id": "decision_score",
+        "label": "Decision",
+        "dataKey": "decisionScore",
+        "max": 20
+      },
+      {
+        "id": "reason_score",
+        "label": "Reason Code",
+        "dataKey": "reasonCodeScore",
+        "max": 10
+      },
+      {
+        "id": "time_taken",
+        "label": "Time Taken",
+        "dataKey": "timeTakenSeconds",
+        "format": "duration"
+      }
+    ],
+    "retakeButton": true,
+    "backToClaimsButton": true
+  }
+}

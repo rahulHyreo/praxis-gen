@@ -1,0 +1,151 @@
+{
+  "$schema": "training-platform/v1/flow-state",
+  "$version": "1.0.0",
+  "id": "state_wdmx_1_dme_limits",
+  "initial": {
+    "defaultActiveTabId": "tab_claim_lines",
+    "defaultActiveSubTabIds": {
+      "tab_search": "subtab_search_pricing",
+      "tab_claim_data": "subtab_claim_data_details"
+    },
+    "defaultCollapsedSections": {},
+    "defaultDecision": "",
+    "decisionRequired": true
+  },
+  "modeConfig": {
+    "training": {
+      "id": "training",
+      "label": "Training mode",
+      "badgeIcon": "graduation-cap",
+      "showNavigator": true,
+      "timerType": "count_up",
+      "timerPosition": "navigator_header",
+      "timeLimitSeconds": null,
+      "timeLockEnabled": false,
+      "showHints": true,
+      "showMarkCompleteButton": true,
+      "allowTabClose": true
+    },
+    "practice": {
+      "id": "practice",
+      "label": "Practice mode",
+      "badgeIcon": "target",
+      "showNavigator": false,
+      "timerType": "count_up",
+      "timerPosition": "topbar",
+      "timeLimitSeconds": null,
+      "timeLockEnabled": false,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": true
+    },
+    "assessment": {
+      "id": "assessment",
+      "label": "Assessment mode",
+      "badgeIcon": "clipboard-check",
+      "showNavigator": false,
+      "timerType": "count_down",
+      "timerPosition": "topbar",
+      "timeLimitSeconds": 900,
+      "timeLockEnabled": true,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": false,
+      "beforeUnloadWarning": "Leaving this page will end your assessment attempt."
+    }
+  },
+  "actions": {
+    "get_pricing_purchase": {
+      "label": "Get Pricing — surface the DME purchase price",
+      "latencyMs": 400,
+      "guard": {
+        "all": [
+          {
+            "dataKey": "search.pricing.claimLines.line1.modifier",
+            "equals": "NU"
+          },
+          {
+            "dataKey": "search.pricing.claimLines.line1.billedAmount",
+            "equals": "100000"
+          }
+        ],
+        "elseWrites": {
+          "search.pricing.purchasePriceNote": "No purchase price returned. Two things must both be true before the pricing engine will quote a purchase: the Modifier must be NU (this line is billed RR, a rental), and the Billed amount in this section must be 100000 so the quote is not capped at the billed charge. Set both, then click Get Pricing again."
+        }
+      },
+      "writes": {
+        "search.pricing.claimLines.line1.allowed": "500.00",
+        "search.pricing.purchasePriceNote": "Purchase price for E0601 is $500.00. At a rental of $50.00 a month, the plan buys this equipment outright after 10 rentals — that count is what the Limited Liability end date has to capture."
+      },
+      "completesStepId": "step_006"
+    },
+    "open_prior_claim": {
+      "label": "Open claim detail — the history claim",
+      "latencyMs": 200,
+      "writes": {},
+      "completesStepId": "step_007"
+    },
+    "submit_ll_record": {
+      "label": "Submit — create the SPI-CLM Limited Liability record",
+      "latencyMs": 400,
+      "guard": {
+        "all": [
+          {
+            "dataKey": "search.limitedLiability.addItem.llType",
+            "equals": "SPI"
+          },
+          {
+            "dataKey": "search.limitedLiability.addItem.subTypeCode",
+            "equals": "CLM"
+          },
+          {
+            "dataKey": "search.limitedLiability.addItem.crosswalk",
+            "equals": "No"
+          },
+          {
+            "dataKey": "search.limitedLiability.addItem.effectiveDate",
+            "equals": "2026-01-01"
+          },
+          {
+            "dataKey": "search.limitedLiability.addItem.endDate",
+            "equals": "2026-10-01"
+          },
+          {
+            "dataKey": "search.limitedLiability.addItem.dxFrom",
+            "equalsIgnoreCase": "M1711"
+          },
+          {
+            "dataKey": "search.limitedLiability.addItem.dxTo",
+            "equalsIgnoreCase": "M1711"
+          },
+          {
+            "dataKey": "search.limitedLiability.addItem.procFrom",
+            "equalsIgnoreCase": "E0601"
+          },
+          {
+            "dataKey": "search.limitedLiability.addItem.procTo",
+            "equalsIgnoreCase": "E0601"
+          }
+        ],
+        "elseWrites": {
+          "search.limitedLiability.addItem.submitNote": "The record was not created. Every required field must be set before Submit will create it: LL type SPI, Sub type code CLM, Crosswalk No, the Effective date (the first rental allowed), the End date (the expected last rental), the diagnosis code from Claim Header → DX 1 in both Dx from and Dx to, and the procedure code from Claim Lines in both Proc from and Proc to. Check each one and Submit again."
+        }
+      },
+      "writes": {
+        "search.limitedLiability.results.0.type": "SPI-CLM",
+        "search.limitedLiability.results.0.effectiveDate": "01/01/2026",
+        "search.limitedLiability.results.0.endDate": "10/01/2026",
+        "search.limitedLiability.results.0.orderOfBenefits": "NIL",
+        "search.limitedLiability.results.0.description": "E0601 | NU: $500 | RR: $50 | PTD: $50 | REM: $450 | DOS: 12/14/2025 | DCN: DCN-619106",
+        "search.limitedLiability.resultsNote": "1 active record found. The SPI-CLM Limited Liability record is now on file and caps this rental at the expected last rental month.",
+        "search.limitedLiability.addItem.submitNote": "SPI-CLM record created. The claim can now be paid — the rental is capped at 10/01/2026, the tenth and last rental month."
+      },
+      "completesStepId": "step_011"
+    }
+  },
+  "persistence": {
+    "persistKey": null,
+    "autosave": false,
+    "resetOnSubmit": false
+  }
+}

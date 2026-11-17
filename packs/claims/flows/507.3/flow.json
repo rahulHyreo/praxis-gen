@@ -1,0 +1,64 @@
+{
+  "$schema": "praxis/v2/pack-flow",
+  "code": "507.3",
+  "name": "Member Details Mismatch — Correct & Pay",
+  "variants": [
+    {
+      "variant": "base",
+      "variantIndex": 1,
+      "subjectRefs": ["DCN-507233"]
+    },
+    {
+      "variant": "v2",
+      "variantIndex": 2,
+      "subjectRefs": [
+        "DCN-9130200",
+        "DCN-9130201",
+        "DCN-9130202",
+        "DCN-9130203",
+        "DCN-9130204",
+        "DCN-9130205",
+        "DCN-9130206"
+      ]
+    },
+    {
+      "variant": "v3",
+      "variantIndex": 3,
+      "subjectRefs": [
+        "DCN-9130300",
+        "DCN-9130301",
+        "DCN-9130302",
+        "DCN-9130303",
+        "DCN-9130304",
+        "DCN-9130305",
+        "DCN-9130306"
+      ]
+    },
+    {
+      "variant": "v4",
+      "variantIndex": 4,
+      "subjectRefs": [
+        "DCN-9130400",
+        "DCN-9130401",
+        "DCN-9130402",
+        "DCN-9130403",
+        "DCN-9130404",
+        "DCN-9130405",
+        "DCN-9130406"
+      ]
+    },
+    {
+      "variant": "v5",
+      "variantIndex": 5,
+      "subjectRefs": [
+        "DCN-9130500",
+        "DCN-9130501",
+        "DCN-9130502",
+        "DCN-9130503",
+        "DCN-9130504",
+        "DCN-9130505",
+        "DCN-9130506"
+      ]
+    }
+  ]
+}

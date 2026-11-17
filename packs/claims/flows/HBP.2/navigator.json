@@ -1,0 +1,286 @@
+{
+  "$schema": "training-platform/v1/navigator",
+  "$version": "2.0.0",
+  "id": "nav_hbp_2_nonpar_facility",
+  "flowId": "flow_authorization_hbp_2",
+  "name": "Authorization HBP.2 — Hospital Based Physician NON-PAR Facility-Claim Navigator",
+  "description": "Walk the Authorization PX_HBP SOP (NON-PAR branch) — the PX_HBP event fires when the claim is related to a Hospital Based Physician. Identify the PX_HBP event, confirm the UM Rule ID is not one of the four flagged IDs, confirm the provider IS a Hospital Based Physician (specialty Radiology), confirm the Place of Service is one of 21/22/23/24/51/52, read Provider participation NON PAR on the Claim Header, then prove on the Search → Claims tab that a related Facility claim exists for the same date of service and that its provider is PAR, and pay the claim.",
+  "totalSteps": 9,
+  "passMark": 70,
+  "correctDecision": "pay",
+  "correctDecisionLabel": "Pay",
+  "totalMaxPoints": 110,
+  "totalNavigatorPoints": 90,
+  "steps": [
+    {
+      "id": "step_001",
+      "sequenceId": 1,
+      "name": "Review all events and identify the PX_HBP event",
+      "description": "Review all events in the Event Resolution tab, including informational events, before paying, denying, or routing the claim when multiple events are set. The PX_HBP event will be displayed in the events list — this Authorization event occurs when the claim is related to a Hospital Based Physician.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_all_edits",
+      "targetFieldId": "f_er_e_um1",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Event Resolution tab and reviews the events list, where the PX_HBP event is shown.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Event Resolution' and review the events list. The active PX_HBP event is shown — the claim is related to a Hospital Based Physician.",
+      "highlightFields": ["f_er_edit_code", "f_er_e_um1"],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Review all events and identify the PX_HBP event"
+    },
+    {
+      "id": "step_002",
+      "sequenceId": 2,
+      "name": "Check the UM Rule ID",
+      "description": "Determine whether the UM Rule ID is one of MMS001, PSYCH001, ASCRULE01, or NYSTATE02 by navigating to the Claim Data tab, then the Review sub-tab, and expanding the Utilization Management section. Review the UM Detail Service table, which contains the Line #, Procedure, Revenue Code, Date, Rule ID, and Case Number columns. In this scenario, the table displays Line # 1, Procedure 92928, Date 04/28/2025, Rule ID INPAT001, and Case Number NO MATCH. If any of the specified Rule IDs (MMS001, PSYCH001, ASCRULE01, or NYSTATE02) are present, follow the alternate SOP steps. If none of the specified Rule IDs are present, proceed to the next step. In this scenario, the Rule ID is INPAT001, which is not one of the listed Rule IDs; therefore, the trainee may proceed to the next step.",
+      "targetTabId": "tab_claim_data",
+      "targetSubTabId": "subtab_claim_data_review_hbp",
+      "targetSectionId": "sec_cd_r_um",
+      "targetFieldId": "f_cdr_um_rule",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_data",
+        "subTabId": "subtab_claim_data_review_hbp"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Review sub-tab inside Claim Data and reads the UM Detail Service table's Rule ID.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Data' → 'Review' and expand Utilization management. The UM Detail Service Rule ID is INPAT001 — not one of MMS001 / PSYCH001 / ASCRULE01 / NYSTATE02 — so proceed.",
+      "highlightFields": ["f_cdr_um_rule"],
+      "highlightTabId": "tab_claim_data",
+      "highlightSubTabId": "subtab_claim_data_review_hbp",
+      "checklistItem": "Check the UM Rule ID"
+    },
+    {
+      "id": "step_003",
+      "sequenceId": 3,
+      "name": "Confirm Hospital Based Physician",
+      "description": "Verify whether the provider billed on the claim is a Hospital Based Physician by navigating to the Provider Information tab, then the Rendering section, and reviewing the Specialty Description field. A provider is considered a Hospital Based Physician if the Specialty Description is Anesthesiology, Radiology, Emergency Room Physician, Pathology, Assistant Surgeon, Neonatology, Intensivist, or Hospitalist. For the Hospital Based Physician (PX_HBP) workflow, the provider must meet one of these specialty criteria to proceed. If the provider does not qualify as a Hospital Based Physician, follow the alternate SOP steps. In this scenario, the Specialty Description is Radiology; therefore, the provider qualifies as a Hospital Based Physician, and the trainee may proceed to the next step.",
+      "targetTabId": "tab_provider_info",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_pi_rendering",
+      "targetFieldId": "f_pi_r_specialty_desc",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_provider_info"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Provider Information tab to read the Rendering Speciality Description.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Provider Info' and read the Speciality description under Rendering — it is Radiology, a Hospital Based Physician specialty, so proceed.",
+      "highlightFields": ["f_pi_r_specialty_desc"],
+      "highlightTabId": "tab_provider_info",
+      "checklistItem": "Confirm Hospital Based Physician"
+    },
+    {
+      "id": "step_004",
+      "sequenceId": 4,
+      "name": "Verify the Place of Service",
+      "description": "Open the Claim Lines tab — a single claim line row is displayed with the fields From, To, POS, Service, Procedure, Modifiers, Units, Diagnosis, and Billed; the From and To dates are both 04/28/2025 and the POS is 21. Verify the Place of Service: if the POS field shows 21, 22, 23, 24, 51, or 52, proceed; otherwise, follow the alternate SOP steps. In this scenario, the POS is 21, so the trainee proceeds.",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_summary",
+      "targetFieldId": "f_cl_pos",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_lines"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Claim Lines tab to read the Place of Service (POS) field.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Lines'. The POS is 21, which is one of 21/22/23/24/51/52, so proceed.",
+      "highlightFields": ["f_cl_pos", "f_cl_from", "f_cl_procedure"],
+      "highlightTabId": "tab_claim_lines",
+      "checklistItem": "Verify the Place of Service"
+    },
+    {
+      "id": "step_005",
+      "sequenceId": 5,
+      "name": "Verify provider participation status",
+      "description": "Verify the provider status by navigating to the Claim Header tab, then the General Claim Data section, and reviewing the Provider Participation field. If the Provider Participation value is PAR, indicating a participating provider, follow the PX_HBP-PAR workflow and apply the PX_BB bypass code in accordance with the SOP. If the Provider Participation value is NON PAR, proceed to verify whether a related facility claim exists in the member's claim history. In this scenario, the Provider Participation field displays NON PAR; therefore, the trainee should proceed to the claim history review.",
+      "targetTabId": "tab_claim_header",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_ch_general",
+      "targetFieldId": "f_ch_g_participation",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_header"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Claim Header tab to read the Provider participation field.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Header' and read Provider participation under General Claim Data — it shows NON PAR, so proceed to check the member's claim history for a related facility claim.",
+      "highlightFields": ["f_ch_g_participation"],
+      "highlightTabId": "tab_claim_header",
+      "checklistItem": "Verify provider participation status"
+    },
+    {
+      "id": "step_006",
+      "sequenceId": 6,
+      "name": "Look up the related facility claim",
+      "description": "Review the member's claim history to check whether a facility claim exists with the same date of service. Navigate to the Search tab → Claims sub-tab — the Service from date, HCID, and Provider Tax ID auto-populate, and all claims from that service date are displayed. Enter the Service to date and click Search. The matching claims are listed for the trainee to inspect.",
+      "targetTabId": "tab_search",
+      "targetSubTabId": "subtab_search_claims",
+      "targetSectionId": "sec_sc_claims_search",
+      "targetFieldId": "f_scq_search_btn",
+      "actionType": "claims_search",
+      "actionPayload": {
+        "type": "claims_search"
+      },
+      "completesActionId": "claims_search",
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the trainee enters the Service to date and clicks Search on the Claims sub-tab (which dispatches the claims_search action) and the matching claims are listed.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Search' → 'Claims'. The Service from date, HCID, and Provider Tax ID are auto-populated. Enter the Service to date and click Search to list the member's claim history.",
+      "highlightFields": ["f_scq_service_to", "f_scq_search_btn"],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_claims",
+      "checklistItem": "Look up the related facility claim"
+    },
+    {
+      "id": "step_007",
+      "sequenceId": 7,
+      "name": "Confirm the related claim is a Facility claim",
+      "description": "To verify that a facility claim exists, click Open Claim Detail on the matching claim. A detail view opens displaying the selected claim's details. Navigate to the Details section and check the claim type field. If the claim type is Facility, a facility claim exists in the member's history and the trainee proceeds; otherwise, follow the alternate SOP steps. In this scenario, the claim type is Facility, so the trainee proceeds.",
+      "targetTabId": "tab_search",
+      "targetSubTabId": "subtab_search_claims",
+      "targetSectionId": "sec_sc_claims_result_facility",
+      "targetFieldId": "f_sc_open_detail",
+      "actionType": "open_facility_claim",
+      "actionPayload": {
+        "type": "open_facility_claim"
+      },
+      "completesActionId": "open_facility_claim",
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the trainee clicks Open Claim Detail on the matching facility claim (which dispatches the open_facility_claim action) and reads claim type Facility.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Click 'Open Claim Detail' on the matching claim. In the Details section, the claim type is Facility — a facility claim exists in the member's history, so proceed.",
+      "highlightFields": ["f_sc_open_detail"],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_claims",
+      "checklistItem": "Confirm the related claim is a Facility claim"
+    },
+    {
+      "id": "step_008",
+      "sequenceId": 8,
+      "name": "Verify the facility claim's provider is PAR",
+      "description": "Still on the facility claim detail, verify the provider status by navigating to the Claim Header tab, then the General Claim Data section, and reviewing the Provider Participation field. Select View Claim Header to display the facility claim header information. If the facility claim's Provider Participation value is PAR, indicating a participating provider, proceed to the next step. If the Provider Participation value is not PAR, follow the alternate SOP steps. In this scenario, the Provider Participation field on the facility claim displays PAR; therefore, the facility provider is a participating provider, and the trainee may proceed to the next step.",
+      "targetTabId": "tab_search",
+      "targetSubTabId": "subtab_search_claims",
+      "targetSectionId": "sec_fc_detail_header",
+      "targetFieldId": "f_fc_view_header",
+      "actionType": "view_facility_header",
+      "actionPayload": {
+        "type": "view_facility_header"
+      },
+      "completesActionId": "view_facility_header",
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the trainee opens View Claim Header on the facility claim detail (which dispatches the view_facility_header action) and reads Provider participation PAR.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Inside the facility claim detail, click 'View Claim Header'. Provider participation shows PAR — the facility provider is participating, so the claim is payable.",
+      "highlightFields": ["f_fc_view_header"],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_claims",
+      "checklistItem": "Verify the facility claim's provider is PAR"
+    },
+    {
+      "id": "step_009",
+      "sequenceId": 9,
+      "name": "Submit Pay decision",
+      "description": "Navigate to the Decision section in the header, select 'Pay' from the dropdown menu and click Submit.",
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "submit_decision",
+      "actionPayload": {
+        "type": "submit_decision",
+        "expectedDecision": "pay"
+      },
+      "completionTrigger": "decision_submitted",
+      "completionTriggerNote": "Completes when the trainee confirms the Pay decision in the submit dialog.",
+      "expectedValue": "pay",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Pick 'Pay' from the Decision dropdown in the claim header, then click Submit and confirm in the dialog.",
+      "highlightFields": [],
+      "checklistItem": "Submit Pay decision"
+    }
+  ],
+  "scoreBreakdown": {
+    "navigatorStepsMaxPoints": 90,
+    "decisionMaxPoints": 20,
+    "reasonCodeMaxPoints": 0,
+    "totalMaxPoints": 110,
+    "passMark": 70,
+    "weightedPassScore": 77
+  },
+  "stepSummaryForResults": [
+    {
+      "sequenceId": 1,
+      "name": "PX_HBP event identified",
+      "points": 10
+    },
+    {
+      "sequenceId": 2,
+      "name": "UM Rule ID not one of the flagged IDs (INPAT001)",
+      "points": 10
+    },
+    {
+      "sequenceId": 3,
+      "name": "Provider is a Hospital Based Physician (Radiology)",
+      "points": 10
+    },
+    {
+      "sequenceId": 4,
+      "name": "Place of Service verified (POS 21)",
+      "points": 10
+    },
+    {
+      "sequenceId": 5,
+      "name": "Provider participation NON PAR confirmed",
+      "points": 10
+    },
+    {
+      "sequenceId": 6,
+      "name": "Member claim history searched for facility claim",
+      "points": 10
+    },
+    {
+      "sequenceId": 7,
+      "name": "Related claim confirmed as Facility",
+      "points": 10
+    },
+    {
+      "sequenceId": 8,
+      "name": "Facility claim provider confirmed PAR",
+      "points": 10
+    },
+    {
+      "sequenceId": 9,
+      "name": "Pay decision submitted",
+      "points": 10
+    }
+  ]
+}

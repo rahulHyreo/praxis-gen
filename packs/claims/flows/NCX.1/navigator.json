@@ -1,0 +1,226 @@
+{
+  "$schema": "training-platform/v1/navigator",
+  "$version": "2.0.0",
+  "id": "nav_ncx_1_pricing_returned_apply_codes_pay",
+  "flowId": "flow_pricing_ncx_1",
+  "name": "Pricing NCX.1 — Returned Electronically from PX_NCN (Verify, Apply EOB/Type Codes & Pay) Navigator",
+  "description": "Walk the Pricing SOP for the PX_NCX event — PX_NCN has returned pricing electronically and loaded the allowed amount, so the adjudicator performs no pricing calculation; just verify pricing, apply the correct EOB/Type codes, and process. Identify the PX_NCX soft edit on the Event Resolution tab (highlighted with an error indication) and confirm the event hierarchy is clear; review benefits on the Search → Benefit sub-tab and confirm there is no indication to process at billed charges (verify benefits in CI&W); confirm no other hard events; note the PX_NCN ID (D1) from the Claim Data → Pricing Manual Pricing section; review the empty Write-off EOB/TY on Claim Lines Line 1 against the EOB-code chart; type PX_00838/D1 into it; then pay the claim.",
+  "totalSteps": 7,
+  "passMark": 70,
+  "correctDecision": "pay",
+  "correctDecisionLabel": "Pay",
+  "totalMaxPoints": 90,
+  "totalNavigatorPoints": 70,
+  "steps": [
+    {
+      "id": "step_001",
+      "sequenceId": 1,
+      "name": "Identify the PX_NCX soft edit and check the event hierarchy",
+      "description": "Review all edits in the Event Resolution tab. The PX_NCX soft edit is highlighted with an error indication — this is the current event to resolve. PX_NCX indicates that pricing has been returned electronically from PX_NCN and manually loaded, so the action required is to verify and process (no major action needed). Verify the events list for any other events that need to be resolved first per the event hierarchy. If other events are present, resolve those that come before PX_NCX; if no other events are present, proceed. In this scenario, the claim has no other events, so the trainee proceeds.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_all_edits",
+      "targetFieldId": "f_er_e_ncx",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Event Resolution tab and reviews the events list, where the active PX_NCX soft edit is highlighted with an error indication and no other events are present.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Event Resolution' and review the events list. PX_NCX is the active soft edit, highlighted with an error indication, and there are no other events, so proceed.",
+      "highlightFields": ["f_er_edit_code", "f_er_e_ncx"],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Identify the PX_NCX soft edit and check the event hierarchy"
+    },
+    {
+      "id": "step_002",
+      "sequenceId": 2,
+      "name": "Review benefits and confirm no billed-charge processing",
+      "description": "Review the benefits to check whether the account suggests processing the claim at the billed charge. Navigate to the Search tab and open the Benefit sub-tab; select the correct benefits per the claim information. If the account indicates processing at billed charges, follow those guidelines; if there is no such indication, proceed. In this scenario, the benefits are applied directly (the trainee is directed to verify they are applied correctly in the CI&W system) and there is no indication to process at billed charges, so the trainee proceeds.",
+      "targetTabId": "tab_search",
+      "targetSubTabId": "subtab_search_benefits",
+      "targetSectionId": "sec_sc_b_ciw",
+      "targetFieldId": "f_sc_b_ciw_msg",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_search",
+        "subTabId": "subtab_search_benefits"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Search → Benefit sub-tab, where the benefits-applied CI&W verification message confirms there is no indication to process at billed charges.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Search' → 'Benefit'. Benefits are applied directly — verify them in CI&W. There is no indication to process at billed charges, so proceed.",
+      "highlightFields": ["f_sc_b_ciw_msg"],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_benefits",
+      "checklistItem": "Review benefits and confirm no billed-charge processing"
+    },
+    {
+      "id": "step_003",
+      "sequenceId": 3,
+      "name": "Confirm no other hard events",
+      "description": "Determine whether the claim contains any other hard events by reviewing the Event Resolution tab. If other hard events are present, follow the PSCCR events guidelines; if absent, proceed. In this scenario, the claim does not contain any other events, so the trainee proceeds.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_other_events",
+      "targetFieldId": "f_er_other_hard_events",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee re-reviews the Event Resolution tab and confirms the Other hard events field shows none are present.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Back on 'Event Resolution', confirm the Other hard events field reads 'None'. No other hard events are present, so proceed.",
+      "highlightFields": ["f_er_other_hard_events"],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Confirm no other hard events"
+    },
+    {
+      "id": "step_004",
+      "sequenceId": 4,
+      "name": "Note the PX_NCN ID from Manual Pricing",
+      "description": "Obtain the allowed amount provided by PX_NCN from the Manual Pricing section. Navigate to the Claim Data tab ,then Pricing sub-tab , locate the Manual Pricing section, and note the value in the PX_NCN ID field. In this scenario, the PX_NCN ID is D1, so the trainee proceeds.",
+      "targetTabId": "tab_claim_data",
+      "targetSubTabId": "subtab_claim_data_pricing",
+      "targetSectionId": "sec_cd_pr_mp_header",
+      "targetFieldId": "f_mp_h_ncn",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_data",
+        "subTabId": "subtab_claim_data_pricing"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Claim Data → Pricing sub-tab and reads the PX_NCN ID field in the Manual Pricing section (D1).",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Data' → 'Pricing' and read the PX_NCN ID field in the Manual Pricing section. It reads 'D1' — note it for the EOB/Type code.",
+      "highlightFields": ["f_mp_h_ncn"],
+      "highlightTabId": "tab_claim_data",
+      "highlightSubTabId": "subtab_claim_data_pricing",
+      "checklistItem": "Note the PX_NCN ID from Manual Pricing"
+    },
+    {
+      "id": "step_005",
+      "sequenceId": 5,
+      "name": "Review the write-off EOB/TY against the chart",
+      "description": "Review the Write-off EOB/TY codes on Line 1 of the Claim Lines tab and compare them against the PX_NCN ID noted earlier (D1). The Type code matches the PX_NCN ID, and the corresponding EOB code is determined by the chart: NW → PX_00329, D3 → PX_00837, D1 → PX_00838, D0 → PX_00838, 5D → PX_00AVB, 6D → PX_00AVB — so for PX_NCN ID D1 the correct codes are EOB PX_00838 and Type code D1. In this scenario the Write-off EOB/TY field on Line 1 is empty, so the codes are missing and the trainee will enter them in the next step.",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_writeoff",
+      "targetFieldId": "f_cl_eob_chart",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_lines"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Claim Lines tab and reviews the Write-off EOB/TY field on Line 1 against the EOB-code chart, finding it empty.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Lines' and review the Line 1 Write-off EOB/TY field against the chart. For PX_NCN ID D1 the correct value is PX_00838/D1, and the field is empty — enter it next.",
+      "highlightFields": ["f_cl_eob_chart", "f_cl_writeoff_eob_ty"],
+      "highlightTabId": "tab_claim_lines",
+      "checklistItem": "Review the write-off EOB/TY against the chart"
+    },
+    {
+      "id": "step_006",
+      "sequenceId": 6,
+      "name": "Enter the EOB/TY code PX_00838/D1",
+      "description": "Update the Write-off EOB/TY field on Line 1 of the Claim Lines tab. The EOB/TY input box on the first claim line is empty — no TY or EOB code is currently present — so type 'PX_00838/D1' into the input box (EOB PX_00838 + Type code D1, matching the D1 PX_NCN ID per the chart).",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_writeoff",
+      "targetFieldId": "f_cl_writeoff_eob_ty",
+      "actionType": "field_edit",
+      "actionPayload": {
+        "fieldId": "f_cl_writeoff_eob_ty"
+      },
+      "completionTrigger": "field_value_set",
+      "completionTriggerNote": "Completes when the trainee types 'PX_00838/D1' into the empty Line-1 Write-off EOB/TY input box.",
+      "expectedValue": "PX_00838/D1",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "On 'Claim Lines', click the empty Line 1 Write-off EOB/TY box and type: PX_00838/D1",
+      "highlightFields": ["f_cl_writeoff_eob_ty"],
+      "highlightTabId": "tab_claim_lines",
+      "checklistItem": "Enter the EOB/TY code PX_00838/D1"
+    },
+    {
+      "id": "step_007",
+      "sequenceId": 7,
+      "name": "Submit Pay decision",
+      "description": "Navigate to the Decision section in the header, select 'Pay' from the dropdown menu and click Submit.",
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "submit_decision",
+      "actionPayload": {
+        "type": "submit_decision",
+        "expectedDecision": "pay"
+      },
+      "completionTrigger": "decision_submitted",
+      "completionTriggerNote": "Completes when the trainee confirms the Pay decision in the submit dialog.",
+      "expectedValue": "pay",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Pick 'Pay' from the Decision dropdown in the claim header, then click Submit and confirm in the dialog.",
+      "highlightFields": [],
+      "checklistItem": "Submit Pay decision"
+    }
+  ],
+  "scoreBreakdown": {
+    "navigatorStepsMaxPoints": 70,
+    "decisionMaxPoints": 20,
+    "reasonCodeMaxPoints": 0,
+    "totalMaxPoints": 90,
+    "passMark": 70,
+    "weightedPassScore": 63
+  },
+  "stepSummaryForResults": [
+    {
+      "sequenceId": 1,
+      "name": "PX_NCX soft edit identified; event hierarchy checked",
+      "points": 10
+    },
+    {
+      "sequenceId": 2,
+      "name": "Benefits reviewed (no billed-charge processing)",
+      "points": 10
+    },
+    {
+      "sequenceId": 3,
+      "name": "No other hard events confirmed",
+      "points": 10
+    },
+    {
+      "sequenceId": 4,
+      "name": "PX_NCN ID noted from Manual Pricing (D1)",
+      "points": 10
+    },
+    {
+      "sequenceId": 5,
+      "name": "Write-off EOB/TY reviewed against the chart",
+      "points": 10
+    },
+    {
+      "sequenceId": 6,
+      "name": "EOB/TY code PX_00838/D1 entered",
+      "points": 10
+    },
+    {
+      "sequenceId": 7,
+      "name": "Pay decision submitted",
+      "points": 10
+    }
+  ]
+}

@@ -1,0 +1,152 @@
+{
+  "$schema": "training-platform/v1/flow-state",
+  "$version": "1.0.0",
+  "id": "state_demo_workspace_sandbox",
+  "initial": {
+    "defaultActiveTabId": "tab_event_resolution",
+    "defaultActiveSubTabIds": {
+      "tab_search": "subtab_search_member",
+      "tab_claim_data": "subtab_claim_data_details"
+    },
+    "defaultCollapsedSections": {},
+    "defaultDecision": ""
+  },
+  "modeConfig": {
+    "training": {
+      "id": "training",
+      "label": "Training mode",
+      "badgeIcon": "graduation-cap",
+      "showNavigator": true,
+      "timerType": "count_up",
+      "timerPosition": "navigator_header",
+      "timeLockEnabled": false,
+      "showHints": true,
+      "showMarkCompleteButton": true,
+      "allowTabClose": true
+    },
+    "practice": {
+      "id": "practice",
+      "label": "Practice mode",
+      "badgeIcon": "dumbbell",
+      "showNavigator": false,
+      "timerType": "count_up",
+      "timerPosition": "topbar",
+      "timeLockEnabled": false,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": true
+    },
+    "assessment": {
+      "id": "assessment",
+      "label": "Assessment Mode",
+      "badgeIcon": "graduation-cap",
+      "showNavigator": false,
+      "timerType": "count_down",
+      "timerPosition": "topbar_right",
+      "timeLimitSeconds": 480,
+      "timeLockEnabled": true,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": false,
+      "beforeUnloadWarning": "Assessment in progress. Leaving will lose your progress."
+    },
+    "demo": {
+      "id": "demo",
+      "label": "Sandbox",
+      "badgeIcon": "dumbbell",
+      "showNavigator": false,
+      "timerType": "none",
+      "timerPosition": "topbar",
+      "timeLockEnabled": false,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": true
+    }
+  },
+  "actions": {
+    "search_member": {
+      "label": "Search member",
+      "latencyMs": 600,
+      "writes": {}
+    },
+    "search_provider": {
+      "label": "Search provider",
+      "latencyMs": 500,
+      "writes": {
+        "search.provider.result": {
+          "npi": "1487906542",
+          "orgTaxId": "94-1112233",
+          "fromDate": "2024-01-01",
+          "throughDate": "2026-12-31",
+          "sourceSystem": "NPS-2",
+          "zipCode": "94607",
+          "billingType": "Office",
+          "specialty": "Internal Medicine",
+          "state": "CA"
+        }
+      }
+    },
+    "search_claims": {
+      "label": "Search claims",
+      "latencyMs": 500,
+      "writes": {
+        "search.claims.result": {
+          "code": "77063",
+          "totalCharge": 598,
+          "status": "PEND",
+          "providerTaxId": "94-1112233",
+          "providerNpi": "1487906542",
+          "billType": "Office"
+        }
+      }
+    },
+    "search_benefits": {
+      "label": "Search benefits",
+      "latencyMs": 500,
+      "writes": {
+        "search.benefits.result": {
+          "name": "MR.X NMNM Doee",
+          "dob": "1/1/1960",
+          "memberId": "MEM-2222SG",
+          "subOrHcid": "RDX2222SG001",
+          "contractCode": "C-2222SG",
+          "effectiveDate": "1/1/2025",
+          "endDate": "6/30/2025",
+          "product": "Local",
+          "plan": "SG Local",
+          "fundingArrangement": "Fully Insured",
+          "cdhpInd": false
+        }
+      }
+    },
+    "validate_bypass": {
+      "label": "Validate bypass code",
+      "latencyMs": 400,
+      "writes": {
+        "eventResolution.bypassStatus": "Validated — PX_CB bypass applied"
+      },
+      "guard": {
+        "dataKey": "eventResolution.bypassCode",
+        "equals": "PX_CB",
+        "elseWrites": {
+          "eventResolution.bypassStatus": "Invalid bypass code — select PX_CB for Edit PX_507"
+        }
+      }
+    },
+    "split_claim": {
+      "label": "Submit claim split",
+      "latencyMs": 600,
+      "writes": {}
+    },
+    "search_member_clear": {
+      "label": "Clear search form",
+      "latencyMs": 0,
+      "writes": {}
+    }
+  },
+  "persistence": {
+    "persistKey": null,
+    "autosave": false,
+    "resetOnSubmit": true
+  }
+}

@@ -1,0 +1,349 @@
+{
+  "$schema": "training-platform/v1/navigator",
+  "$version": "2.0.0",
+  "id": "nav_ncn_1_national_care_network_bypass_pay",
+  "flowId": "flow_pricing_ncn_1",
+  "name": "Pricing NCN.1 — National Care Network (Validate, Bypass & Pay) Navigator",
+  "description": "Walk the Pricing SOP for the PX_NCN event — National Care Network is a third-party vendor that negotiates discounted pricing for (usually non-par) claims, and the PX_NCN soft edit indicates the claim is eligible for external pricing/negotiation. Identify the PX_NCN soft edit on the Event Resolution tab and rule out MRU (PX_MJ/PX_MN/PX_MR), special-pricing (Limited Liability / Attachments), and Global transplant (PX_BTD/PX_GTP/PX_BDS/PX_COE/PX_616/PX_CRP/PX_889) events; confirm the Product is Local and the contract state is not VA/CO/NV; click the claim-summary Validate to apply benefits; confirm the Finalization code is PX_R00000 (not eligible for PX_NCN review); document the rationale in Notes; bypass PX_NCN in the Claim Data → Pricing Manual Pricing section by typing NOT ELIGIBLE / CN / N and clicking Validate; then pay the claim to route it to Zelis.",
+  "totalSteps": 11,
+  "passMark": 70,
+  "correctDecision": "pay",
+  "correctDecisionLabel": "Pay",
+  "totalMaxPoints": 130,
+  "totalNavigatorPoints": 110,
+  "steps": [
+    {
+      "id": "step_001",
+      "sequenceId": 1,
+      "name": "Identify the PX_NCN soft edit and rule out MRU events",
+      "description": "Review all edits in the Event Resolution tab. The PX_NCN soft edit is highlighted with an error indication — this is the current event to resolve. The PX_NCN event indicates the claim is eligible for external pricing/negotiation and may need to be routed to PX_NCN (National Care Network). Verify the events list for any other events that need to be resolved first per the event hierarchy. Also check for PSCCR (MRU) events by looking for PX_MJ, PX_MN, or PX_MR in the Event Resolution tab — if present, follow the PSCCR events guidelines; if absent, proceed. In this scenario, the claim has no other events and no MRU events, so the trainee proceeds.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_all_edits",
+      "targetFieldId": "f_er_e_ncn",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Event Resolution tab and reviews the events list, where the active PX_NCN soft edit is highlighted with an error indication and no other events (including MRU PX_MJ/PX_MN/PX_MR) are present.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Event Resolution' and review the events list. PX_NCN (National Care Network) is the active soft edit, highlighted with an error indication, and there are no other events and no MRU events (PX_MJ/PX_MN/PX_MR), so proceed.",
+      "highlightFields": ["f_er_edit_code", "f_er_e_ncn"],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Identify the PX_NCN soft edit and rule out MRU events"
+    },
+    {
+      "id": "step_002",
+      "sequenceId": 2,
+      "name": "Check for Limited Liability records",
+      "description": "Check whether Special Pricing records (LOA and LL) apply to the claim. Navigate to the Search tab and open the Limited Liability sub-tab to review any Limited Liability (LL) records present (for example, SPI-MMS LL). In this scenario the search returns 'Limited liability information not found' and 'No active records found', so no special pricing applies and the trainee proceeds.",
+      "targetTabId": "tab_search",
+      "targetSubTabId": "subtab_search_limited",
+      "targetSectionId": "sec_sc_ll",
+      "targetFieldId": "f_sll_active",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_search",
+        "subTabId": "subtab_search_limited"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Search → Limited Liability sub-tab and confirms no active LL records are present.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Search' → 'Limited Liability' and review the records. The search shows 'Limited liability information not found' / 'No active records found', so proceed.",
+      "highlightFields": ["f_sll_active", "f_sll_all"],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_limited",
+      "checklistItem": "Check for Limited Liability records"
+    },
+    {
+      "id": "step_003",
+      "sequenceId": 3,
+      "name": "Verify no special-pricing attachments",
+      "description": "Review the Attachments tab to verify whether any attachments related to special pricing are loaded on the claim. If no attachment is loaded here, review the Claim Image to look for anything else attached. In this scenario, the PWK section shows no Type or Document number, so the claim has no other special pricing and the trainee proceeds.",
+      "targetTabId": "tab_attachment",
+      "targetSubTabId": "subtab_attachment_attachments",
+      "targetSectionId": "sec_att_pwk",
+      "targetFieldId": "f_att_type",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_attachment",
+        "subTabId": "subtab_attachment_attachments"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Attachments tab and confirms the PWK section has no loaded attachment (Type / Document number empty).",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Attachment' → 'Attachments' and review the PWK section. There is no Type or Document number, so no special-pricing attachment is loaded — proceed.",
+      "highlightFields": ["f_att_type", "f_att_doc_num"],
+      "highlightTabId": "tab_attachment",
+      "highlightSubTabId": "subtab_attachment_attachments",
+      "checklistItem": "Verify no special-pricing attachments"
+    },
+    {
+      "id": "step_004",
+      "sequenceId": 4,
+      "name": "Check for Global transplant events",
+      "description": "Determine whether the claim contains Global transplant events by looking for PX_BTD, PX_GTP, PX_BDS, PX_COE, PX_616, PX_CRP, or PX_889 in the Event Resolution tab. If transplant events are present, follow the Transplant events guidelines; if absent, proceed. In this scenario, the claim does not contain any transplant events, so the trainee proceeds.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_all_edits",
+      "targetFieldId": "f_er_edit_label",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee re-reviews the Event Resolution events list for Global transplant codes (PX_BTD/PX_GTP/PX_BDS/PX_COE/PX_616/PX_CRP/PX_889) and confirms none are present.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Back on 'Event Resolution', scan the events list for transplant codes (PX_BTD, PX_GTP, PX_BDS, PX_COE, PX_616, PX_CRP, PX_889). None are present, so proceed.",
+      "highlightFields": ["f_er_e_ncn"],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Check for Global transplant events"
+    },
+    {
+      "id": "step_005",
+      "sequenceId": 5,
+      "name": "Check the Line of Business via Product field",
+      "description": "Determine whether the claim is ITS-Host or another Line of Business (LOB) by navigating to the Member Information tab, then the Group section, and reviewing the Product field. If the Product value is ITS-Host, follow the alternate SOP guidelines. If the Product field displays any other value, such as Local, National, or ACA, proceed to the next step. In this scenario, the Product is Local; therefore, the claim is not ITS-Host, and the trainee may proceed to the next step.",
+      "targetTabId": "tab_member_info",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_mi_group",
+      "targetFieldId": "f_mi_g_product",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_member_info"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Member Information tab and confirms the Product field reads Local.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Member Info' and read the Product field under the Group section. It reads 'Local' (not ITS-Host), so proceed.",
+      "highlightFields": ["f_mi_g_product"],
+      "highlightTabId": "tab_member_info",
+      "checklistItem": "Check the Line of Business via Product field"
+    },
+    {
+      "id": "step_006",
+      "sequenceId": 6,
+      "name": "Verify the contract state is not VA, CO, or NV",
+      "description": "Verify the contract state by navigating to the Search tab, then the Benefit sub-tab, and note the contract state from the Contract State field. The state must not be VA, CO, or NV; if it is one of those, follow the alternate guidelines, otherwise proceed. In this scenario, the contract state is CA, so the trainee proceeds.",
+      "targetTabId": "tab_search",
+      "targetSubTabId": "subtab_search_benefits",
+      "targetSectionId": "sec_sc_b_general",
+      "targetFieldId": "f_sc_bg_state",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_search",
+        "subTabId": "subtab_search_benefits"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Search → Benefit sub-tab and confirms the Contract state is CA (not VA/CO/NV).",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Search' → 'Benefit' and read the Contract state field. It reads 'CA' — not VA, CO, or NV — so proceed.",
+      "highlightFields": ["f_sc_bg_state"],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_benefits",
+      "checklistItem": "Verify the contract state is not VA, CO, or NV"
+    },
+    {
+      "id": "step_007",
+      "sequenceId": 7,
+      "name": "Validate to apply benefits",
+      "description": "Navigate to the claim summary and click the Validate button. When Validate is clicked, the application applies the benefits to the claim. Verify that the correct benefits have been applied before proceeding (the Validation section shows 'Benefits applied'). In this scenario, the correct benefits are applied, so the trainee proceeds.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_validation",
+      "targetFieldId": "f_er_benefits_status",
+      "actionType": "validate",
+      "actionPayload": {
+        "type": "validate"
+      },
+      "completesActionId": "validate",
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the trainee clicks the claim-summary Validate button, which applies the benefits and surfaces the 'Benefits applied' confirmation in the Validation section.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Click the 'Validate' button in the claim summary. The application applies the benefits — confirm the Validation section shows 'Benefits applied', then proceed.",
+      "highlightFields": ["f_er_benefits_status"],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Validate to apply benefits"
+    },
+    {
+      "id": "step_008",
+      "sequenceId": 8,
+      "name": "Verify Finalization code (PX_R00000 = not PX_NCN eligible)",
+      "description": "Check the Action code on the claim by navigating to the Payment Information tab and looking at the Finalization code field. If the finalization code is anything other than PX_R00000 (such as PX_D00000 or PX_P10000), the claim is eligible for PX_NCN review and the trainee must follow the PX_NCN-eligible guidelines; if the finalization code is PX_R00000, the claim is not eligible for PX_NCN review. In this scenario, the finalization code is PX_R00000, so the claim is not eligible for PX_NCN review and the trainee proceeds.",
+      "targetTabId": "tab_payment_info",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_py_claim",
+      "targetFieldId": "f_py_c_finalization",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_payment_info"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Payment Information tab and reads the Finalization code field (PX_R00000 — not eligible for PX_NCN review).",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Payment Information' and read the Finalization code field. It reads 'PX_R00000', so the claim is not eligible for PX_NCN review — proceed to bypass PX_NCN.",
+      "highlightFields": ["f_py_c_finalization"],
+      "highlightTabId": "tab_payment_info",
+      "checklistItem": "Verify Finalization code (PX_R00000 = not PX_NCN eligible)"
+    },
+    {
+      "id": "step_009",
+      "sequenceId": 9,
+      "name": "Add the PX_NCN-not-eligible note",
+      "description": "Navigate to the Notes tab and type a comment in the Comment input (for example: 'Claim is not Eligible for PX_NCN review as action code is PX_R00000'). Then click the Validate button below the textarea to submit the note. This documents the rationale for bypassing PX_NCN.",
+      "targetTabId": "tab_notes",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_n_comment",
+      "targetFieldId": "f_n_comment",
+      "actionType": "noteValidate",
+      "actionPayload": {
+        "type": "noteValidate"
+      },
+      "completesActionId": "noteValidate",
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the trainee types a comment into the Notes Comment field and clicks the Validate button, which triggers the noteValidate action.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Notes', click the Comment box and type a comment (for example: Claim is not Eligible for PX_NCN review as action code is PX_R00000) — then click the Validate button to submit the note.",
+      "highlightFields": ["f_n_comment", "f_n_comment_validate_btn"],
+      "highlightTabId": "tab_notes",
+      "checklistItem": "Add the PX_NCN-not-eligible note"
+    },
+    {
+      "id": "step_010",
+      "sequenceId": 10,
+      "name": "Bypass PX_NCN in the Manual Pricing section",
+      "description": "Bypass PX_NCN in the Manual Pricing section. Navigate to the Claim Data tab → Pricing sub-tab and look at the Manual Pricing section. Under the Network group, type NOT ELIGIBLE in the Claim # input box, type CN in the PX_NCN ID input box (which bypasses the MPI/PX_NCN process), and — because the Price sheet input box is blank — type N in it. Then click the Validate button to apply the bypass.",
+      "targetTabId": "tab_claim_data",
+      "targetSubTabId": "subtab_claim_data_pricing",
+      "targetSectionId": "sec_cd_pr_mp_network",
+      "targetFieldId": "f_mp_validate_btn",
+      "actionType": "mpValidate",
+      "actionPayload": {
+        "type": "mpValidate"
+      },
+      "completesActionId": "mpValidate",
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the trainee types NOT ELIGIBLE / CN / N into the Network-group Claim # / PX_NCN ID / Price sheet inputs and clicks the Manual-Pricing Validate button.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Data' → 'Pricing'. Under the Network group type NOT ELIGIBLE in Claim #, CN in PX_NCN ID, and N in Price sheet, then click 'Validate'.",
+      "highlightFields": [
+        "f_mp_claim_no_entry",
+        "f_mp_ncn_id_entry",
+        "f_mp_price_sheet_entry",
+        "f_mp_validate_btn"
+      ],
+      "highlightTabId": "tab_claim_data",
+      "highlightSubTabId": "subtab_claim_data_pricing",
+      "checklistItem": "Bypass PX_NCN in the Manual Pricing section"
+    },
+    {
+      "id": "step_011",
+      "sequenceId": 11,
+      "name": "Submit Pay decision",
+      "description": "Navigate to the Decision section in the header, select 'Pay' from the dropdown menu and click Submit.",
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "submit_decision",
+      "actionPayload": {
+        "type": "submit_decision",
+        "expectedDecision": "pay"
+      },
+      "completionTrigger": "decision_submitted",
+      "completionTriggerNote": "Completes when the trainee confirms the Pay decision in the submit dialog.",
+      "expectedValue": "pay",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Pick 'Pay' from the Decision dropdown in the claim header, then click Submit and confirm in the dialog.",
+      "highlightFields": [],
+      "checklistItem": "Submit Pay decision"
+    }
+  ],
+  "scoreBreakdown": {
+    "navigatorStepsMaxPoints": 110,
+    "decisionMaxPoints": 20,
+    "reasonCodeMaxPoints": 0,
+    "totalMaxPoints": 130,
+    "passMark": 70,
+    "weightedPassScore": 91
+  },
+  "stepSummaryForResults": [
+    {
+      "sequenceId": 1,
+      "name": "PX_NCN soft edit identified; MRU events ruled out",
+      "points": 10
+    },
+    {
+      "sequenceId": 2,
+      "name": "Limited Liability checked (no active records)",
+      "points": 10
+    },
+    {
+      "sequenceId": 3,
+      "name": "Attachments verified (no special-pricing attachment)",
+      "points": 10
+    },
+    {
+      "sequenceId": 4,
+      "name": "Global transplant events ruled out",
+      "points": 10
+    },
+    {
+      "sequenceId": 5,
+      "name": "Line of Business confirmed (Product Local)",
+      "points": 10
+    },
+    {
+      "sequenceId": 6,
+      "name": "Contract state verified (CA — not VA/CO/NV)",
+      "points": 10
+    },
+    {
+      "sequenceId": 7,
+      "name": "Validated to apply benefits",
+      "points": 10
+    },
+    {
+      "sequenceId": 8,
+      "name": "Finalization code verified (PX_R00000 — not PX_NCN eligible)",
+      "points": 10
+    },
+    {
+      "sequenceId": 9,
+      "name": "PX_NCN-not-eligible note added",
+      "points": 10
+    },
+    {
+      "sequenceId": 10,
+      "name": "PX_NCN bypassed in Manual Pricing",
+      "points": 10
+    },
+    {
+      "sequenceId": 11,
+      "name": "Pay decision submitted",
+      "points": 10
+    }
+  ]
+}

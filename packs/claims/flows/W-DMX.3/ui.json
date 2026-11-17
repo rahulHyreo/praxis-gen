@@ -1,0 +1,3624 @@
+{
+  "$schema": "training-platform/v1/flow-ui",
+  "$version": "2.0.0",
+  "id": "ui_wdmx_3_dme_limits",
+  "name": "DME Limits — W-DMX.3",
+  "description": "A DME purchase line (modifier NU) with no DMX or DMY edit. Screen E0601 against the continuous-rental and ventilator lists, verify the authorization behind the UM event, read the NU modifier, find the SPI-CLM Limited Liability record already on file, obtain the $500 purchase price, confirm from history that the equipment was already purchased and allowed at $500, read the record's disposition — no allowance due to maximum benefits — and Deny with reject code PX_R11100.",
+  "validateAction": null,
+  "claimContext": {
+    "fields": [
+      {
+        "id": "ctx_dcn",
+        "label": "DCN",
+        "dataKey": "header.dcn"
+      },
+      {
+        "id": "ctx_member",
+        "label": "Member",
+        "dataKey": "header.memberName"
+      },
+      {
+        "id": "ctx_provider",
+        "label": "Provider",
+        "dataKey": "header.providerName"
+      },
+      {
+        "id": "ctx_billed",
+        "label": "Billed",
+        "dataKey": "header.billed"
+      }
+    ]
+  },
+  "tabs": [
+    {
+      "id": "tab_event_resolution",
+      "label": "Event Resolution",
+      "renderType": "sections",
+      "sections": [
+        {
+          "id": "sec_er_active",
+          "title": "Active Event",
+          "columns": 3,
+          "fields": [
+            {
+              "id": "f_er_edit_code",
+              "type": "readonly_label",
+              "label": "Event Code",
+              "dataKey": "eventResolution.editCode",
+              "navigatorHighlight": true
+            },
+            {
+              "id": "f_er_severity",
+              "type": "badge",
+              "label": "Type",
+              "dataKey": "eventResolution.severity"
+            },
+            {
+              "id": "f_er_status",
+              "type": "readonly_label",
+              "label": "Status",
+              "dataKey": "eventResolution.status"
+            },
+            {
+              "id": "f_er_description",
+              "type": "alert",
+              "label": "UM — authorization required",
+              "dataKey": "eventResolution.description",
+              "variant": "info",
+              "width": "full"
+            },
+            {
+              "id": "f_er_hierarchy",
+              "type": "readonly_label",
+              "label": "Authorization check",
+              "dataKey": "eventResolution.hierarchyNote",
+              "width": "full"
+            }
+          ]
+        },
+        {
+          "id": "sec_er_all_edits",
+          "title": "All Events on this Claim",
+          "columns": 4,
+          "fields": [
+            {
+              "id": "f_er_e1_code",
+              "type": "readonly_label",
+              "label": "Event",
+              "dataKey": "eventResolution.edits.0.code",
+              "navigatorHighlight": true
+            },
+            {
+              "id": "f_er_e1_desc",
+              "type": "readonly_label",
+              "label": "Description",
+              "dataKey": "eventResolution.edits.0.description"
+            },
+            {
+              "id": "f_er_e1_type",
+              "type": "badge",
+              "label": "Type",
+              "dataKey": "eventResolution.edits.0.type"
+            },
+            {
+              "id": "f_er_e1_status",
+              "type": "readonly_label",
+              "label": "Status",
+              "dataKey": "eventResolution.edits.0.status"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tab_member_info",
+      "label": "Member Info",
+      "sections": [
+        {
+          "id": "sec_mi_patient",
+          "title": "Patient",
+          "fields": [
+            {
+              "id": "f_mi_p_first",
+              "type": "readonly_label",
+              "label": "First Name",
+              "dataKey": "memberInfo.patient.firstName",
+              "navigatorHighlight": true
+            },
+            {
+              "id": "f_mi_p_middle",
+              "type": "readonly_label",
+              "label": "Middle Name",
+              "dataKey": "memberInfo.patient.middleName",
+              "navigatorHighlight": true
+            },
+            {
+              "id": "f_mi_p_last",
+              "type": "readonly_label",
+              "label": "Last Name",
+              "dataKey": "memberInfo.patient.lastName",
+              "navigatorHighlight": true
+            },
+            {
+              "id": "f_mi_p_dob",
+              "type": "readonly_label",
+              "label": "Date Of Birth (DOB)",
+              "dataKey": "memberInfo.patient.dob",
+              "navigatorHighlight": true
+            },
+            {
+              "id": "f_mi_p_sex",
+              "type": "readonly_label",
+              "label": "Sex",
+              "dataKey": "memberInfo.patient.sex",
+              "navigatorHighlight": true
+            },
+            {
+              "id": "f_mi_p_prefix",
+              "type": "readonly_label",
+              "label": "Member prefix",
+              "dataKey": "memberInfo.patient.memberPrefix",
+              "navigatorHighlight": true
+            },
+            {
+              "id": "f_mi_p_hcid",
+              "type": "readonly_label",
+              "label": "HCID",
+              "dataKey": "memberInfo.patient.hcid"
+            },
+            {
+              "id": "f_mi_p_relationship",
+              "type": "readonly_label",
+              "label": "Relationship",
+              "dataKey": "memberInfo.patient.relationship"
+            },
+            {
+              "id": "f_mi_p_member_code",
+              "type": "readonly_label",
+              "label": "Member Code",
+              "dataKey": "memberInfo.patient.memberCode"
+            },
+            {
+              "id": "f_mi_p_contract_type",
+              "type": "readonly_label",
+              "label": "Contract Type",
+              "dataKey": "memberInfo.patient.contractType"
+            },
+            {
+              "id": "f_mi_p_erisa",
+              "type": "readonly_label",
+              "label": "Erisa",
+              "dataKey": "memberInfo.patient.erisa"
+            },
+            {
+              "id": "f_mi_p_pcp",
+              "type": "readonly_label",
+              "label": "PCP",
+              "dataKey": "memberInfo.patient.pcp"
+            },
+            {
+              "id": "f_mi_p_pcp_state",
+              "type": "readonly_label",
+              "label": "PCP State",
+              "dataKey": "memberInfo.patient.pcpState"
+            },
+            {
+              "id": "f_mi_p_pcp_relationship",
+              "type": "readonly_label",
+              "label": "PCP Relationship",
+              "dataKey": "memberInfo.patient.pcpRelationship"
+            },
+            {
+              "id": "f_mi_p_program_code",
+              "type": "readonly_label",
+              "label": "Program Code",
+              "dataKey": "memberInfo.patient.programCode"
+            }
+          ],
+          "columns": 4
+        },
+        {
+          "id": "sec_mi_subscriber",
+          "title": "Subscriber",
+          "fields": [
+            {
+              "id": "f_mi_s_first",
+              "type": "readonly_label",
+              "label": "First Name",
+              "dataKey": "memberInfo.subscriber.firstName"
+            },
+            {
+              "id": "f_mi_s_middle",
+              "type": "readonly_label",
+              "label": "Middle Name",
+              "dataKey": "memberInfo.subscriber.middleName"
+            },
+            {
+              "id": "f_mi_s_last",
+              "type": "readonly_label",
+              "label": "Last Name",
+              "dataKey": "memberInfo.subscriber.lastName"
+            },
+            {
+              "id": "f_mi_s_id",
+              "type": "readonly_label",
+              "label": "Subscriber Id",
+              "dataKey": "memberInfo.subscriber.subscriberId"
+            },
+            {
+              "id": "f_mi_s_address",
+              "type": "readonly_label",
+              "label": "Address",
+              "dataKey": "memberInfo.subscriber.address"
+            }
+          ],
+          "columns": 4
+        },
+        {
+          "id": "sec_mi_group",
+          "title": "Group Information",
+          "fields": [
+            {
+              "id": "f_mi_g_name",
+              "type": "readonly_label",
+              "label": "Group Name",
+              "dataKey": "memberInfo.group.groupName"
+            },
+            {
+              "id": "f_mi_g_id",
+              "type": "readonly_label",
+              "label": "Group Id",
+              "dataKey": "memberInfo.group.groupId",
+              "navigatorHighlight": true
+            },
+            {
+              "id": "f_mi_g_contract",
+              "type": "readonly_label",
+              "label": "Group Contract",
+              "dataKey": "memberInfo.group.groupContract"
+            },
+            {
+              "id": "f_mi_g_detail_contract",
+              "type": "readonly_label",
+              "label": "Detail Contract Code",
+              "dataKey": "memberInfo.group.detailContractCode"
+            },
+            {
+              "id": "f_mi_g_product",
+              "type": "readonly_label",
+              "label": "Product",
+              "dataKey": "memberInfo.group.product",
+              "navigatorHighlight": true
+            },
+            {
+              "id": "f_mi_g_network_id",
+              "type": "readonly_label",
+              "label": "Network Id",
+              "dataKey": "memberInfo.group.networkId"
+            },
+            {
+              "id": "f_mi_g_network_name",
+              "type": "readonly_label",
+              "label": "Network Name",
+              "dataKey": "memberInfo.group.networkName"
+            }
+          ],
+          "columns": 4
+        }
+      ],
+      "renderType": "sections"
+    },
+    {
+      "id": "tab_claim_image",
+      "label": "Claim Image",
+      "sections": [
+        {
+          "id": "sec_ci_m_patient",
+          "title": "Patient",
+          "fields": [
+            {
+              "id": "f_ci_p_first",
+              "type": "readonly_label",
+              "label": "First Name",
+              "dataKey": "claimImage.memberDetails.patient.firstName"
+            },
+            {
+              "id": "f_ci_p_middle",
+              "type": "readonly_label",
+              "label": "Middle Name",
+              "dataKey": "claimImage.memberDetails.patient.middleName"
+            },
+            {
+              "id": "f_ci_p_last",
+              "type": "readonly_label",
+              "label": "Last Name",
+              "dataKey": "claimImage.memberDetails.patient.lastName"
+            },
+            {
+              "id": "f_ci_p_dob",
+              "type": "readonly_label",
+              "label": "Date Of Birth (DOB)",
+              "dataKey": "claimImage.memberDetails.patient.dob",
+              "navigatorHighlight": true
+            },
+            {
+              "id": "f_ci_p_sex",
+              "type": "readonly_label",
+              "label": "Sex",
+              "dataKey": "claimImage.memberDetails.patient.sex"
+            },
+            {
+              "id": "f_ci_p_prefix",
+              "type": "readonly_label",
+              "label": "Member prefix",
+              "dataKey": "claimImage.memberDetails.patient.memberPrefix"
+            },
+            {
+              "id": "f_ci_p_hcid",
+              "type": "readonly_label",
+              "label": "HCID",
+              "dataKey": "claimImage.memberDetails.patient.hcid"
+            },
+            {
+              "id": "f_ci_p_relationship",
+              "type": "readonly_label",
+              "label": "Relationship",
+              "dataKey": "claimImage.memberDetails.patient.relationship"
+            },
+            {
+              "id": "f_ci_p_member_code",
+              "type": "readonly_label",
+              "label": "Member Code",
+              "dataKey": "claimImage.memberDetails.patient.memberCode"
+            },
+            {
+              "id": "f_ci_p_detail_contract",
+              "type": "readonly_label",
+              "label": "Detail Contract Code",
+              "dataKey": "claimImage.memberDetails.patient.detailContractCode"
+            },
+            {
+              "id": "f_ci_p_contract_type",
+              "type": "readonly_label",
+              "label": "Contract Type",
+              "dataKey": "claimImage.memberDetails.patient.contractType"
+            },
+            {
+              "id": "f_ci_p_group_id",
+              "type": "readonly_label",
+              "label": "Group ID",
+              "dataKey": "claimImage.memberDetails.patient.groupId"
+            },
+            {
+              "id": "f_ci_p_group_contract",
+              "type": "readonly_label",
+              "label": "Group Contract #",
+              "dataKey": "claimImage.memberDetails.patient.groupContract"
+            },
+            {
+              "id": "f_ci_p_product",
+              "type": "readonly_label",
+              "label": "Product",
+              "dataKey": "claimImage.memberDetails.patient.product"
+            },
+            {
+              "id": "f_ci_p_erisa",
+              "type": "readonly_label",
+              "label": "ERISA",
+              "dataKey": "claimImage.memberDetails.patient.erisa"
+            },
+            {
+              "id": "f_ci_p_pcp",
+              "type": "readonly_label",
+              "label": "PCP",
+              "dataKey": "claimImage.memberDetails.patient.pcp"
+            },
+            {
+              "id": "f_ci_p_pcp_state",
+              "type": "readonly_label",
+              "label": "PCP State",
+              "dataKey": "claimImage.memberDetails.patient.pcpState"
+            },
+            {
+              "id": "f_ci_p_pcp_relationship",
+              "type": "readonly_label",
+              "label": "PCP Relationship",
+              "dataKey": "claimImage.memberDetails.patient.pcpRelationship"
+            }
+          ],
+          "columns": 4
+        },
+        {
+          "id": "sec_ci_m_subscriber",
+          "title": "Subscriber",
+          "fields": [
+            {
+              "id": "f_ci_s_first",
+              "type": "readonly_label",
+              "label": "First Name",
+              "dataKey": "claimImage.memberDetails.subscriber.firstName"
+            },
+            {
+              "id": "f_ci_s_middle",
+              "type": "readonly_label",
+              "label": "Middle Name",
+              "dataKey": "claimImage.memberDetails.subscriber.middleName"
+            },
+            {
+              "id": "f_ci_s_last",
+              "type": "readonly_label",
+              "label": "Last Name",
+              "dataKey": "claimImage.memberDetails.subscriber.lastName"
+            },
+            {
+              "id": "f_ci_s_id",
+              "type": "readonly_label",
+              "label": "Subscriber ID",
+              "dataKey": "claimImage.memberDetails.subscriber.subscriberId"
+            },
+            {
+              "id": "f_ci_s_address",
+              "type": "readonly_label",
+              "label": "Address",
+              "dataKey": "claimImage.memberDetails.subscriber.address"
+            }
+          ],
+          "columns": 4
+        },
+        {
+          "id": "sec_ci_m_lines",
+          "title": "Claim Lines",
+          "fields": [
+            {
+              "id": "f_ci_total_lines",
+              "type": "readonly_label",
+              "label": "Total claim lines",
+              "dataKey": "claimImage.memberDetails.totalClaimLines"
+            }
+          ],
+          "columns": 1
+        },
+        {
+          "id": "sec_ci_a_source",
+          "title": "Additional Claim Data",
+          "fields": [
+            {
+              "id": "f_ci_cs_media",
+              "type": "readonly_label",
+              "label": "Media type",
+              "dataKey": "claimImage.additional.claimSource.mediaType"
+            },
+            {
+              "id": "f_ci_cs_pricing_src",
+              "type": "readonly_label",
+              "label": "Pricing Source",
+              "dataKey": "claimImage.additional.claimSource.pricingSource"
+            },
+            {
+              "id": "f_ci_cs_pricing_sys",
+              "type": "readonly_label",
+              "label": "Pricing System",
+              "dataKey": "claimImage.additional.claimSource.pricingSystem"
+            },
+            {
+              "id": "f_ci_cs_mixer_par",
+              "type": "readonly_label",
+              "label": "Mixer PAR",
+              "dataKey": "claimImage.additional.claimSource.mixerPar"
+            },
+            {
+              "id": "f_ci_cs_receiver",
+              "type": "readonly_label",
+              "label": "Receiver Id",
+              "dataKey": "claimImage.additional.claimSource.receiverId"
+            },
+            {
+              "id": "f_ci_cs_received_edi",
+              "type": "readonly_label",
+              "label": "Received at EDI",
+              "dataKey": "claimImage.additional.claimSource.receivedAtEdi"
+            },
+            {
+              "id": "f_ci_cs_provider_err",
+              "type": "readonly_label",
+              "label": "Provider error",
+              "dataKey": "claimImage.additional.claimSource.providerError"
+            },
+            {
+              "id": "f_ci_cs_auth_num",
+              "type": "readonly_label",
+              "label": "Auth #",
+              "dataKey": "claimImage.additional.claimSource.authNumber"
+            },
+            {
+              "id": "f_ci_cs_auth_excln",
+              "type": "readonly_label",
+              "label": "Auth Excln",
+              "dataKey": "claimImage.additional.claimSource.authExcln"
+            },
+            {
+              "id": "f_ci_cs_vendor_ind",
+              "type": "readonly_label",
+              "label": "Vendor indicator",
+              "dataKey": "claimImage.additional.claimSource.vendorIndicator"
+            },
+            {
+              "id": "f_ci_cs_received",
+              "type": "readonly_label",
+              "label": "Received date",
+              "dataKey": "claimImage.additional.claimSource.receivedDate"
+            },
+            {
+              "id": "f_ci_cs_orig_ref",
+              "type": "readonly_label",
+              "label": "Original reference number",
+              "dataKey": "claimImage.additional.claimSource.originalReferenceNumber"
+            }
+          ],
+          "columns": 4
+        },
+        {
+          "id": "sec_ci_a_ancillary",
+          "title": "Ancillary Provider",
+          "fields": [
+            {
+              "id": "f_ci_anc_type",
+              "type": "readonly_label",
+              "label": "Type",
+              "dataKey": "claimImage.additional.ancillaryProvider.type"
+            },
+            {
+              "id": "f_ci_anc_zip",
+              "type": "readonly_label",
+              "label": "ZIP",
+              "dataKey": "claimImage.additional.ancillaryProvider.zip"
+            },
+            {
+              "id": "f_ci_anc_state",
+              "type": "readonly_label",
+              "label": "State",
+              "dataKey": "claimImage.additional.ancillaryProvider.state"
+            }
+          ],
+          "columns": 4
+        },
+        {
+          "id": "sec_ci_a_ambulance",
+          "title": "Ambulance",
+          "fields": [
+            {
+              "id": "f_ci_amb_pickup",
+              "type": "readonly_label",
+              "label": "Pick-up Zip",
+              "dataKey": "claimImage.additional.ambulance.pickupZip"
+            },
+            {
+              "id": "f_ci_amb_dropoff",
+              "type": "readonly_label",
+              "label": "Drop-off Zip",
+              "dataKey": "claimImage.additional.ambulance.dropoffZip"
+            }
+          ],
+          "columns": 4
+        },
+        {
+          "id": "sec_ci_a_misc",
+          "title": "Miscellaneous Data",
+          "fields": [
+            {
+              "id": "f_ci_m_epsdt",
+              "type": "readonly_label",
+              "label": "EPSDT",
+              "dataKey": "claimImage.additional.miscellaneous.epsdt"
+            },
+            {
+              "id": "f_ci_m_family_planning",
+              "type": "readonly_label",
+              "label": "Family Planning",
+              "dataKey": "claimImage.additional.miscellaneous.familyPlanning"
+            },
+            {
+              "id": "f_ci_m_gtess",
+              "type": "readonly_label",
+              "label": "GTESS date",
+              "dataKey": "claimImage.additional.miscellaneous.gtessDate"
+            },
+            {
+              "id": "f_ci_m_illness",
+              "type": "readonly_label",
+              "label": "Date Of Illness",
+              "dataKey": "claimImage.additional.miscellaneous.dateOfIllness"
+            },
+            {
+              "id": "f_ci_m_injury",
+              "type": "readonly_label",
+              "label": "Date of injury",
+              "dataKey": "claimImage.additional.miscellaneous.dateOfInjury"
+            },
+            {
+              "id": "f_ci_m_menstrual",
+              "type": "readonly_label",
+              "label": "Last menstrual date",
+              "dataKey": "claimImage.additional.miscellaneous.lastMenstrualDate"
+            },
+            {
+              "id": "f_ci_m_consult",
+              "type": "readonly_label",
+              "label": "Consultation date",
+              "dataKey": "claimImage.additional.miscellaneous.consultationDate"
+            }
+          ],
+          "columns": 4
+        },
+        {
+          "id": "sec_ci_a_stop",
+          "title": "Stop Data",
+          "fields": [
+            {
+              "id": "f_ci_st_edit",
+              "type": "readonly_label",
+              "label": "Stop edit",
+              "dataKey": "claimImage.additional.stopData.stopEdit"
+            },
+            {
+              "id": "f_ci_st_lob_p",
+              "type": "readonly_label",
+              "label": "LOB Parent Rule",
+              "dataKey": "claimImage.additional.stopData.lobParentRule"
+            },
+            {
+              "id": "f_ci_st_lob_c",
+              "type": "readonly_label",
+              "label": "LOB Child Rule",
+              "dataKey": "claimImage.additional.stopData.lobChildRule"
+            },
+            {
+              "id": "f_ci_st_lob_seq",
+              "type": "readonly_label",
+              "label": "LOB Sequence",
+              "dataKey": "claimImage.additional.stopData.lobSequence"
+            },
+            {
+              "id": "f_ci_st_med_p",
+              "type": "readonly_label",
+              "label": "MED Business parent Rule",
+              "dataKey": "claimImage.additional.stopData.medBusinessParentRule"
+            },
+            {
+              "id": "f_ci_st_med_c",
+              "type": "readonly_label",
+              "label": "MED Business Child Rule",
+              "dataKey": "claimImage.additional.stopData.medBusinessChildRule"
+            },
+            {
+              "id": "f_ci_st_med_seq",
+              "type": "readonly_label",
+              "label": "MED Sequence",
+              "dataKey": "claimImage.additional.stopData.medSequence"
+            }
+          ],
+          "columns": 4
+        },
+        {
+          "id": "sec_ci_a_refund",
+          "title": "Refund Data",
+          "fields": [
+            {
+              "id": "f_ci_r_corr",
+              "type": "readonly_label",
+              "label": "Correspondence #",
+              "dataKey": "claimImage.additional.refundData.correspondenceNumber"
+            },
+            {
+              "id": "f_ci_r_amount",
+              "type": "readonly_label",
+              "label": "Refund amount",
+              "dataKey": "claimImage.additional.refundData.refundAmount"
+            },
+            {
+              "id": "f_ci_r_reason",
+              "type": "readonly_label",
+              "label": "Adjustment reason",
+              "dataKey": "claimImage.additional.refundData.adjustmentReason"
+            },
+            {
+              "id": "f_ci_r_vendor",
+              "type": "readonly_label",
+              "label": "Vendor Name",
+              "dataKey": "claimImage.additional.refundData.vendorName"
+            },
+            {
+              "id": "f_ci_r_delay",
+              "type": "readonly_label",
+              "label": "Delay reason",
+              "dataKey": "claimImage.additional.refundData.delayReason"
+            },
+            {
+              "id": "f_ci_r_carve",
+              "type": "readonly_label",
+              "label": "Carve-out",
+              "dataKey": "claimImage.additional.refundData.carveOut"
+            },
+            {
+              "id": "f_ci_r_receipt",
+              "type": "readonly_label",
+              "label": "Adjustment receipt date",
+              "dataKey": "claimImage.additional.refundData.adjustmentReceiptDate"
+            }
+          ],
+          "columns": 4
+        },
+        {
+          "id": "sec_ci_a_high",
+          "title": "High Dollar",
+          "fields": [
+            {
+              "id": "f_ci_hd_outcome",
+              "type": "readonly_label",
+              "label": "Risk Outcome",
+              "dataKey": "claimImage.additional.highDollar.riskOutcome"
+            }
+          ],
+          "columns": 4
+        },
+        {
+          "id": "sec_ci_a_its_account",
+          "title": "ITS — Account Information",
+          "fields": [
+            {
+              "id": "f_ci_its_a_delivery",
+              "type": "readonly_label",
+              "label": "Delivery Method",
+              "dataKey": "claimImage.additional.its.account.deliveryMethod"
+            },
+            {
+              "id": "f_ci_its_a_acc_type",
+              "type": "readonly_label",
+              "label": "Account Type",
+              "dataKey": "claimImage.additional.its.account.accountType"
+            },
+            {
+              "id": "f_ci_its_a_aso",
+              "type": "readonly_label",
+              "label": "ASO",
+              "dataKey": "claimImage.additional.its.account.aso"
+            },
+            {
+              "id": "f_ci_its_a_state_id",
+              "type": "readonly_label",
+              "label": "State ID",
+              "dataKey": "claimImage.additional.its.account.stateId"
+            },
+            {
+              "id": "f_ci_its_a_orig_cert",
+              "type": "readonly_label",
+              "label": "Original certificate #",
+              "dataKey": "claimImage.additional.its.account.originalCertificate"
+            },
+            {
+              "id": "f_ci_its_a_orig_grp",
+              "type": "readonly_label",
+              "label": "Original Group",
+              "dataKey": "claimImage.additional.its.account.originalGroup"
+            }
+          ],
+          "columns": 3
+        },
+        {
+          "id": "sec_ci_a_its_pricing",
+          "title": "ITS — Pricing",
+          "fields": [
+            {
+              "id": "f_ci_its_p_primary",
+              "type": "readonly_label",
+              "label": "Primary SOP",
+              "dataKey": "claimImage.additional.its.pricing.primarySop"
+            },
+            {
+              "id": "f_ci_its_p_secondary",
+              "type": "readonly_label",
+              "label": "Secondary SOP",
+              "dataKey": "claimImage.additional.its.pricing.secondarySop"
+            },
+            {
+              "id": "f_ci_its_p_tertiary",
+              "type": "readonly_label",
+              "label": "Tertiary SOP",
+              "dataKey": "claimImage.additional.its.pricing.tertiarySop"
+            },
+            {
+              "id": "f_ci_its_p_cob_cal",
+              "type": "readonly_label",
+              "label": "COB Cal method",
+              "dataKey": "claimImage.additional.its.pricing.cobCalMethod"
+            }
+          ],
+          "columns": 4
+        },
+        {
+          "id": "sec_ci_a_its_providers",
+          "title": "ITS — Providers",
+          "fields": [
+            {
+              "id": "f_ci_its_pr_mppq",
+              "type": "readonly_label",
+              "label": "MPPQ assign / Unassigned",
+              "dataKey": "claimImage.additional.its.providers.mppqAssignUnassigned"
+            },
+            {
+              "id": "f_ci_its_pr_ppo_net",
+              "type": "readonly_label",
+              "label": "PPO network availability",
+              "dataKey": "claimImage.additional.its.providers.ppoNetworkAvailability"
+            },
+            {
+              "id": "f_ci_its_pr_ppo_prov",
+              "type": "readonly_label",
+              "label": "PPO Provider availability",
+              "dataKey": "claimImage.additional.its.providers.ppoProviderAvailability"
+            },
+            {
+              "id": "f_ci_its_pr_eft",
+              "type": "readonly_label",
+              "label": "835/EFT",
+              "dataKey": "claimImage.additional.its.providers.eft835"
+            },
+            {
+              "id": "f_ci_its_pr_zip",
+              "type": "readonly_label",
+              "label": "Service ZIP",
+              "dataKey": "claimImage.additional.its.providers.serviceZip"
+            }
+          ],
+          "columns": 3
+        },
+        {
+          "id": "sec_ci_a_sfdf",
+          "title": "SF & DF Information",
+          "fields": [
+            {
+              "id": "f_ci_sfdf_sf",
+              "type": "readonly_label",
+              "label": "SF message",
+              "dataKey": "claimImage.additional.sfdf.sfMessage"
+            },
+            {
+              "id": "f_ci_sfdf_df",
+              "type": "readonly_label",
+              "label": "DF message",
+              "dataKey": "claimImage.additional.sfdf.dfMessage"
+            },
+            {
+              "id": "f_ci_sfdf_primacy",
+              "type": "readonly_label",
+              "label": "Primacy",
+              "dataKey": "claimImage.additional.sfdf.primacy"
+            },
+            {
+              "id": "f_ci_sfdf_accident",
+              "type": "readonly_label",
+              "label": "Auto/other accident",
+              "dataKey": "claimImage.additional.sfdf.autoOtherAccident"
+            },
+            {
+              "id": "f_ci_sfdf_total_days",
+              "type": "readonly_label",
+              "label": "Total days/visits",
+              "dataKey": "claimImage.additional.sfdf.totalDaysVisits"
+            }
+          ],
+          "columns": 4
+        },
+        {
+          "id": "sec_ci_a_line_detail_1",
+          "title": "Claim Line Detail — Line 1",
+          "fields": [
+            {
+              "id": "f_ci_cld1_num",
+              "type": "readonly_label",
+              "label": "Line #",
+              "dataKey": "claimImage.additional.claimLineDetail.0.lineNum"
+            },
+            {
+              "id": "f_ci_cld1_blank",
+              "type": "readonly_label",
+              "label": "Blank Date ind",
+              "dataKey": "claimImage.additional.claimLineDetail.0.blankDateInd"
+            },
+            {
+              "id": "f_ci_cld1_approved",
+              "type": "readonly_label",
+              "label": "Approved/Deny ind",
+              "dataKey": "claimImage.additional.claimLineDetail.0.approvedDenyInd"
+            }
+          ],
+          "columns": 3
+        },
+        {
+          "id": "sec_ci_a_line_detail_2",
+          "title": "Claim Line Detail — Line 2",
+          "fields": [
+            {
+              "id": "f_ci_cld2_num",
+              "type": "readonly_label",
+              "label": "Line #",
+              "dataKey": "claimImage.additional.claimLineDetail.1.lineNum"
+            },
+            {
+              "id": "f_ci_cld2_blank",
+              "type": "readonly_label",
+              "label": "Blank Date ind",
+              "dataKey": "claimImage.additional.claimLineDetail.1.blankDateInd"
+            },
+            {
+              "id": "f_ci_cld2_approved",
+              "type": "readonly_label",
+              "label": "Approved/Deny ind",
+              "dataKey": "claimImage.additional.claimLineDetail.1.approvedDenyInd"
+            }
+          ],
+          "columns": 3
+        }
+      ],
+      "renderType": "sections"
+    },
+    {
+      "id": "tab_provider_info",
+      "label": "Provider Info",
+      "sections": [
+        {
+          "id": "sec_pi_rendering",
+          "title": "Rendering",
+          "fields": [
+            {
+              "id": "f_pi_r_npi",
+              "type": "readonly_label",
+              "label": "NPI",
+              "dataKey": "providerInfo.rendering.npi"
+            },
+            {
+              "id": "f_pi_r_name",
+              "type": "readonly_label",
+              "label": "Name",
+              "dataKey": "providerInfo.rendering.name"
+            },
+            {
+              "id": "f_pi_r_address",
+              "type": "readonly_label",
+              "label": "Address",
+              "dataKey": "providerInfo.rendering.address"
+            },
+            {
+              "id": "f_pi_r_pricing_state",
+              "type": "readonly_label",
+              "label": "Pricing State",
+              "dataKey": "providerInfo.rendering.pricingState"
+            },
+            {
+              "id": "f_pi_r_pricing_zip",
+              "type": "readonly_label",
+              "label": "Pricing ZIP",
+              "dataKey": "providerInfo.rendering.pricingZip"
+            },
+            {
+              "id": "f_pi_r_sps",
+              "type": "readonly_label",
+              "label": "Provider SPS",
+              "dataKey": "providerInfo.rendering.providerSps"
+            },
+            {
+              "id": "f_pi_r_epin",
+              "type": "readonly_label",
+              "label": "Provider EPIN",
+              "dataKey": "providerInfo.rendering.providerEpin"
+            },
+            {
+              "id": "f_pi_r_license",
+              "type": "readonly_label",
+              "label": "License",
+              "dataKey": "providerInfo.rendering.license"
+            },
+            {
+              "id": "f_pi_r_network_opt",
+              "type": "readonly_label",
+              "label": "Network option",
+              "dataKey": "providerInfo.rendering.networkOption"
+            },
+            {
+              "id": "f_pi_r_specialty",
+              "type": "readonly_label",
+              "label": "Speciality",
+              "dataKey": "providerInfo.rendering.specialty"
+            },
+            {
+              "id": "f_pi_r_specialty_desc",
+              "type": "readonly_label",
+              "label": "Speciality description",
+              "dataKey": "providerInfo.rendering.specialtyDescription"
+            },
+            {
+              "id": "f_pi_r_taxonomy",
+              "type": "readonly_label",
+              "label": "Taxonomy",
+              "dataKey": "providerInfo.rendering.taxonomy"
+            }
+          ],
+          "columns": 4
+        },
+        {
+          "id": "sec_pi_billing",
+          "title": "Billing",
+          "fields": [
+            {
+              "id": "f_pi_b_tax_id",
+              "type": "readonly_label",
+              "label": "Tax Id",
+              "dataKey": "providerInfo.billing.taxId"
+            },
+            {
+              "id": "f_pi_b_npi",
+              "type": "readonly_label",
+              "label": "NPI",
+              "dataKey": "providerInfo.billing.npi"
+            },
+            {
+              "id": "f_pi_b_name",
+              "type": "readonly_label",
+              "label": "Name",
+              "dataKey": "providerInfo.billing.name"
+            },
+            {
+              "id": "f_pi_b_facility",
+              "type": "readonly_label",
+              "label": "Facility Type",
+              "dataKey": "providerInfo.billing.facilityType"
+            },
+            {
+              "id": "f_pi_b_sps",
+              "type": "readonly_label",
+              "label": "Provider SPS",
+              "dataKey": "providerInfo.billing.providerSps"
+            },
+            {
+              "id": "f_pi_b_epin",
+              "type": "readonly_label",
+              "label": "Provider EPIN",
+              "dataKey": "providerInfo.billing.providerEpin"
+            },
+            {
+              "id": "f_pi_b_medicare",
+              "type": "readonly_label",
+              "label": "Medicare Id",
+              "dataKey": "providerInfo.billing.medicareId"
+            },
+            {
+              "id": "f_pi_b_address",
+              "type": "readonly_label",
+              "label": "Address",
+              "dataKey": "providerInfo.billing.address"
+            },
+            {
+              "id": "f_pi_b_state",
+              "type": "readonly_label",
+              "label": "National State",
+              "dataKey": "providerInfo.billing.nationalState"
+            },
+            {
+              "id": "f_pi_b_loc_code",
+              "type": "readonly_label",
+              "label": "Location Code",
+              "dataKey": "providerInfo.billing.locationCode"
+            },
+            {
+              "id": "f_pi_b_bha",
+              "type": "readonly_label",
+              "label": "BHA provider Indicator",
+              "dataKey": "providerInfo.billing.bhaProviderIndicator"
+            },
+            {
+              "id": "f_pi_b_taxonomy",
+              "type": "readonly_label",
+              "label": "Taxonomy",
+              "dataKey": "providerInfo.billing.taxonomy"
+            },
+            {
+              "id": "f_pi_b_filing_limit",
+              "type": "readonly_label",
+              "label": "Timely Filing Limit",
+              "dataKey": "providerInfo.billing.timelyFilingLimit"
+            }
+          ],
+          "columns": 4
+        },
+        {
+          "id": "sec_pi_referring",
+          "title": "Referring",
+          "fields": [
+            {
+              "id": "f_pi_ref_phys",
+              "type": "readonly_label",
+              "label": "Referring Physician",
+              "dataKey": "providerInfo.referring.referringPhysician"
+            },
+            {
+              "id": "f_pi_ref_npi",
+              "type": "readonly_label",
+              "label": "NPI",
+              "dataKey": "providerInfo.referring.npi"
+            }
+          ],
+          "columns": 4
+        },
+        {
+          "id": "sec_pi_facility",
+          "title": "Service Facility",
+          "fields": [
+            {
+              "id": "f_pi_sf_tier",
+              "type": "readonly_label",
+              "label": "Facility tier",
+              "dataKey": "providerInfo.serviceFacility.facilityTier"
+            },
+            {
+              "id": "f_pi_sf_type",
+              "type": "readonly_label",
+              "label": "Type",
+              "dataKey": "providerInfo.serviceFacility.type"
+            },
+            {
+              "id": "f_pi_sf_npi",
+              "type": "readonly_label",
+              "label": "NPI",
+              "dataKey": "providerInfo.serviceFacility.npi"
+            }
+          ],
+          "columns": 4
+        },
+        {
+          "id": "sec_pi_misc",
+          "title": "Miscellaneous Data",
+          "fields": [
+            {
+              "id": "f_pi_m_supporting",
+              "type": "readonly_label",
+              "label": "Supporting ordering NPI",
+              "dataKey": "providerInfo.miscellaneous.supportingOrderingNpi"
+            },
+            {
+              "id": "f_pi_m_nsb",
+              "type": "readonly_label",
+              "label": "NSB Indicator",
+              "dataKey": "providerInfo.miscellaneous.nsbIndicator"
+            },
+            {
+              "id": "f_pi_m_alt_facility",
+              "type": "readonly_label",
+              "label": "Alternate Facility NPI",
+              "dataKey": "providerInfo.miscellaneous.alternateFacilityNpi"
+            }
+          ],
+          "columns": 3
+        }
+      ],
+      "renderType": "sections"
+    },
+    {
+      "id": "tab_payment_info",
+      "label": "Payment Info",
+      "sections": [
+        {
+          "id": "sec_py_claim",
+          "title": "Claim",
+          "fields": [
+            {
+              "id": "f_py_c_deductible",
+              "type": "readonly_label",
+              "label": "Deductible",
+              "dataKey": "paymentInfo.claim.deductible"
+            },
+            {
+              "id": "f_py_c_copay",
+              "type": "readonly_label",
+              "label": "Copay",
+              "dataKey": "paymentInfo.claim.copay"
+            },
+            {
+              "id": "f_py_c_coins",
+              "type": "readonly_label",
+              "label": "Coins",
+              "dataKey": "paymentInfo.claim.coins"
+            },
+            {
+              "id": "f_py_c_pat_liab",
+              "type": "readonly_label",
+              "label": "Patient liab",
+              "dataKey": "paymentInfo.claim.patientLiab"
+            },
+            {
+              "id": "f_py_c_mem_surch",
+              "type": "readonly_label",
+              "label": "Member surcharge",
+              "dataKey": "paymentInfo.claim.memberSurcharge"
+            },
+            {
+              "id": "f_py_c_non_elg",
+              "type": "readonly_label",
+              "label": "Non-elg",
+              "dataKey": "paymentInfo.claim.nonElg"
+            },
+            {
+              "id": "f_py_c_hra_paid",
+              "type": "readonly_label",
+              "label": "HRA Paid",
+              "dataKey": "paymentInfo.claim.hraPaid"
+            },
+            {
+              "id": "f_py_c_claim_paid",
+              "type": "readonly_label",
+              "label": "Claim Paid",
+              "dataKey": "paymentInfo.claim.claimPaid"
+            },
+            {
+              "id": "f_py_c_pricing_allowed",
+              "type": "readonly_label",
+              "label": "Pricing allowed amount",
+              "dataKey": "paymentInfo.claim.pricingAllowedAmount"
+            },
+            {
+              "id": "f_py_c_total_charge",
+              "type": "readonly_label",
+              "label": "Total Charge",
+              "dataKey": "paymentInfo.claim.totalCharge"
+            },
+            {
+              "id": "f_py_c_finalization",
+              "type": "readonly_label",
+              "label": "Finalization code",
+              "dataKey": "paymentInfo.claim.finalizationCode"
+            }
+          ],
+          "columns": 4
+        },
+        {
+          "id": "sec_py_provider",
+          "title": "Provider",
+          "fields": [
+            {
+              "id": "f_py_p_disc",
+              "type": "readonly_label",
+              "label": "Provider disc",
+              "dataKey": "paymentInfo.provider.providerDisc"
+            },
+            {
+              "id": "f_py_p_liab",
+              "type": "readonly_label",
+              "label": "Provider liab",
+              "dataKey": "paymentInfo.provider.providerLiab"
+            },
+            {
+              "id": "f_py_p_risk",
+              "type": "readonly_label",
+              "label": "Provider risk withhold",
+              "dataKey": "paymentInfo.provider.providerRiskWithhold"
+            },
+            {
+              "id": "f_py_p_surcharge",
+              "type": "readonly_label",
+              "label": "Provider surcharge",
+              "dataKey": "paymentInfo.provider.providerSurcharge"
+            },
+            {
+              "id": "f_py_p_interest",
+              "type": "readonly_label",
+              "label": "Interest",
+              "dataKey": "paymentInfo.provider.interest"
+            },
+            {
+              "id": "f_py_p_penalty",
+              "type": "readonly_label",
+              "label": "Penalty",
+              "dataKey": "paymentInfo.provider.penalty"
+            },
+            {
+              "id": "f_py_p_lr",
+              "type": "readonly_label",
+              "label": "L/R",
+              "dataKey": "paymentInfo.provider.lr"
+            },
+            {
+              "id": "f_py_p_sys_int",
+              "type": "readonly_label",
+              "label": "System interest",
+              "dataKey": "paymentInfo.provider.systemInterest"
+            }
+          ],
+          "columns": 4
+        },
+        {
+          "id": "sec_py_drg",
+          "title": "DRG",
+          "fields": [
+            {
+              "id": "f_py_d_keyed",
+              "type": "readonly_label",
+              "label": "Keyed",
+              "dataKey": "paymentInfo.drg.keyed"
+            },
+            {
+              "id": "f_py_d_priced",
+              "type": "readonly_label",
+              "label": "Priced",
+              "dataKey": "paymentInfo.drg.priced"
+            },
+            {
+              "id": "f_py_d_original",
+              "type": "readonly_label",
+              "label": "Original",
+              "dataKey": "paymentInfo.drg.original"
+            }
+          ],
+          "columns": 3
+        },
+        {
+          "id": "sec_py_check",
+          "title": "Check",
+          "fields": [
+            {
+              "id": "f_py_ch_account",
+              "type": "readonly_label",
+              "label": "Account #",
+              "dataKey": "paymentInfo.check.accountNumber"
+            },
+            {
+              "id": "f_py_ch_check",
+              "type": "readonly_label",
+              "label": "Check #",
+              "dataKey": "paymentInfo.check.checkNumber"
+            },
+            {
+              "id": "f_py_ch_date",
+              "type": "readonly_label",
+              "label": "Check date",
+              "dataKey": "paymentInfo.check.checkDate"
+            },
+            {
+              "id": "f_py_ch_amount",
+              "type": "readonly_label",
+              "label": "Amount",
+              "dataKey": "paymentInfo.check.amount"
+            },
+            {
+              "id": "f_py_ch_payment_sys",
+              "type": "readonly_label",
+              "label": "Payment System",
+              "dataKey": "paymentInfo.check.paymentSystem"
+            },
+            {
+              "id": "f_py_ch_mailed_to",
+              "type": "readonly_label",
+              "label": "Check mailed to",
+              "dataKey": "paymentInfo.check.checkMailedTo"
+            },
+            {
+              "id": "f_py_ch_eft_date",
+              "type": "readonly_label",
+              "label": "EFT check date",
+              "dataKey": "paymentInfo.check.eftCheckDate"
+            },
+            {
+              "id": "f_py_ch_status",
+              "type": "readonly_label",
+              "label": "Check Status",
+              "dataKey": "paymentInfo.check.checkStatus"
+            },
+            {
+              "id": "f_py_ch_status_date",
+              "type": "readonly_label",
+              "label": "Check status date",
+              "dataKey": "paymentInfo.check.checkStatusDate"
+            },
+            {
+              "id": "f_py_ch_paid_to",
+              "type": "readonly_label",
+              "label": "Paid to",
+              "dataKey": "paymentInfo.check.paidTo"
+            },
+            {
+              "id": "f_py_ch_finalized",
+              "type": "readonly_label",
+              "label": "Finalized",
+              "dataKey": "paymentInfo.check.finalized"
+            }
+          ],
+          "columns": 4
+        },
+        {
+          "id": "sec_py_payee",
+          "title": "Payee Details",
+          "fields": [
+            {
+              "id": "f_py_pe_flip",
+              "type": "readonly_label",
+              "label": "Flip Payee",
+              "dataKey": "paymentInfo.payeeDetails.flipPayee"
+            }
+          ],
+          "columns": 3
+        }
+      ],
+      "renderType": "sections"
+    },
+    {
+      "id": "tab_claim_header",
+      "label": "Claim Header",
+      "sections": [
+        {
+          "id": "sec_ch_general",
+          "title": "General Claim Data",
+          "fields": [
+            {
+              "id": "f_ch_g_service",
+              "type": "readonly_label",
+              "label": "Service from - through",
+              "dataKey": "claimHeader.general.serviceFromThrough"
+            },
+            {
+              "id": "f_ch_g_assignment",
+              "type": "readonly_label",
+              "label": "Assignment of benefits",
+              "dataKey": "claimHeader.general.assignmentOfBenefits"
+            },
+            {
+              "id": "f_ch_g_participation",
+              "type": "readonly_label",
+              "label": "Provider Participation",
+              "dataKey": "claimHeader.general.providerParticipation"
+            },
+            {
+              "id": "f_ch_g_contract",
+              "type": "readonly_label",
+              "label": "Provider Contract #",
+              "dataKey": "claimHeader.general.providerContract"
+            },
+            {
+              "id": "f_ch_g_treatment",
+              "type": "readonly_label",
+              "label": "Treatment auth #",
+              "dataKey": "claimHeader.general.treatmentAuth"
+            },
+            {
+              "id": "f_ch_g_pat_account",
+              "type": "readonly_label",
+              "label": "Patient account #",
+              "dataKey": "claimHeader.general.patientAccount"
+            },
+            {
+              "id": "f_ch_g_emergency",
+              "type": "readonly_label",
+              "label": "Emergency",
+              "dataKey": "claimHeader.general.emergency"
+            },
+            {
+              "id": "f_ch_g_employment",
+              "type": "readonly_label",
+              "label": "Employment",
+              "dataKey": "claimHeader.general.employment"
+            },
+            {
+              "id": "f_ch_g_zip_radius",
+              "type": "readonly_label",
+              "label": "Covered Zip radius",
+              "dataKey": "claimHeader.general.coveredZipRadius"
+            },
+            {
+              "id": "f_ch_g_frequency",
+              "type": "readonly_label",
+              "label": "Frequency",
+              "dataKey": "claimHeader.general.frequency"
+            },
+            {
+              "id": "f_ch_g_bbi",
+              "type": "readonly_label",
+              "label": "BBI Indicator",
+              "dataKey": "claimHeader.general.bbiIndicator"
+            },
+            {
+              "id": "f_ch_g_pci",
+              "type": "readonly_label",
+              "label": "PCI Indicator",
+              "dataKey": "claimHeader.general.pciIndicator"
+            },
+            {
+              "id": "f_ch_g_fsb_ind",
+              "type": "readonly_label",
+              "label": "FSB Ind",
+              "dataKey": "claimHeader.general.fsbInd"
+            },
+            {
+              "id": "f_ch_g_fsb_excl",
+              "type": "readonly_label",
+              "label": "FSB Exclusion",
+              "dataKey": "claimHeader.general.fsbExclusion"
+            }
+          ],
+          "columns": 4
+        },
+        {
+          "id": "sec_ch_benefit",
+          "title": "Benefit Indicators",
+          "fields": [
+            {
+              "id": "f_ch_b_cob",
+              "type": "readonly_label",
+              "label": "COB",
+              "dataKey": "claimHeader.benefitIndicators.cob"
+            },
+            {
+              "id": "f_ch_b_cob_rule",
+              "type": "readonly_label",
+              "label": "COB Rule",
+              "dataKey": "claimHeader.benefitIndicators.cobRule"
+            },
+            {
+              "id": "f_ch_b_med_ind",
+              "type": "readonly_label",
+              "label": "Med Ind",
+              "dataKey": "claimHeader.benefitIndicators.medInd"
+            },
+            {
+              "id": "f_ch_b_med_rule",
+              "type": "readonly_label",
+              "label": "Med Rule",
+              "dataKey": "claimHeader.benefitIndicators.medRule"
+            },
+            {
+              "id": "f_ch_b_med_advantage",
+              "type": "readonly_label",
+              "label": "Medicare advantage",
+              "dataKey": "claimHeader.benefitIndicators.medicareAdvantage"
+            },
+            {
+              "id": "f_ch_b_cdhp",
+              "type": "readonly_label",
+              "label": "CDHP",
+              "dataKey": "claimHeader.benefitIndicators.cdhp"
+            },
+            {
+              "id": "f_ch_b_plan_payer",
+              "type": "readonly_label",
+              "label": "Plan Payer",
+              "dataKey": "claimHeader.benefitIndicators.planPayer"
+            },
+            {
+              "id": "f_ch_b_cob_pct",
+              "type": "readonly_label",
+              "label": "COB %",
+              "dataKey": "claimHeader.benefitIndicators.cobPercent"
+            }
+          ],
+          "columns": 4
+        },
+        {
+          "id": "sec_ch_diagnosis",
+          "title": "Diagnosis Codes",
+          "fields": [
+            {
+              "id": "f_ch_dx_1",
+              "type": "readonly_label",
+              "label": "DX1",
+              "dataKey": "claimHeader.diagnosisCodes.dx1"
+            }
+          ],
+          "columns": 5
+        },
+        {
+          "id": "sec_ch_condition",
+          "title": "Condition Codes",
+          "fields": [
+            {
+              "id": "f_ch_cond_code",
+              "type": "readonly_label",
+              "label": "Code",
+              "dataKey": "claimHeader.conditionCodes.code"
+            }
+          ],
+          "columns": 5
+        }
+      ],
+      "renderType": "sections"
+    },
+    {
+      "id": "tab_claim_lines",
+      "label": "Claim Lines",
+      "renderType": "sections",
+      "sections": [
+        {
+          "id": "sec_cl_line1",
+          "title": "Line 1",
+          "columns": 4,
+          "fields": [
+            {
+              "id": "f_cl_line_number",
+              "type": "readonly_label",
+              "label": "Line",
+              "dataKey": "claimLines.line1.lineNumber"
+            },
+            {
+              "id": "f_cl_procedure_code",
+              "type": "readonly_label",
+              "label": "Procedure Code",
+              "dataKey": "claimLines.line1.procedureCode",
+              "navigatorHighlight": true
+            },
+            {
+              "id": "f_cl_modifier",
+              "type": "readonly_label",
+              "label": "Modifier",
+              "dataKey": "claimLines.line1.modifier",
+              "navigatorHighlight": true
+            },
+            {
+              "id": "f_cl_service_type",
+              "type": "readonly_label",
+              "label": "Service",
+              "dataKey": "claimLines.line1.serviceType"
+            },
+            {
+              "id": "f_cl_service_from",
+              "type": "readonly_label",
+              "label": "Service From",
+              "dataKey": "claimLines.line1.serviceFrom"
+            },
+            {
+              "id": "f_cl_service_to",
+              "type": "readonly_label",
+              "label": "Service To",
+              "dataKey": "claimLines.line1.serviceTo"
+            },
+            {
+              "id": "f_cl_pos",
+              "type": "readonly_label",
+              "label": "POS",
+              "dataKey": "claimLines.line1.placeOfService"
+            },
+            {
+              "id": "f_cl_units",
+              "type": "readonly_label",
+              "label": "Units",
+              "dataKey": "claimLines.line1.units"
+            },
+            {
+              "id": "f_cl_billed",
+              "type": "readonly_label",
+              "label": "Billed",
+              "dataKey": "claimLines.line1.billed"
+            },
+            {
+              "id": "f_cl_allowed",
+              "type": "readonly_label",
+              "label": "Allowed",
+              "dataKey": "claimLines.line1.allowed",
+              "navigatorHighlight": true
+            },
+            {
+              "id": "f_cl_writeoff",
+              "type": "readonly_label",
+              "label": "Write-off",
+              "dataKey": "claimLines.line1.writeOff",
+              "navigatorHighlight": true
+            }
+          ]
+        },
+        {
+          "id": "sec_cl_screening",
+          "title": "Continuous rental & ventilator screening",
+          "columns": 1,
+          "fields": [
+            {
+              "id": "f_cl_procedure_note",
+              "type": "alert",
+              "label": "Continuous Rental List",
+              "dataKey": "claimLines.procedureCheckNote",
+              "variant": "info",
+              "width": "full"
+            },
+            {
+              "id": "f_cl_ventilator_note",
+              "type": "alert",
+              "label": "Ventilator — rented and never purchased",
+              "dataKey": "claimLines.ventilatorCheckNote",
+              "variant": "info",
+              "width": "full"
+            },
+            {
+              "id": "f_cl_modifier_note",
+              "type": "readonly_label",
+              "label": "Rented or purchased?",
+              "dataKey": "claimLines.modifierNote",
+              "width": "full"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tab_notes",
+      "label": "Notes",
+      "renderType": "sections",
+      "sections": [
+        {
+          "id": "sec_n_wgs",
+          "title": "WGS Notes",
+          "columns": 1,
+          "fields": [
+            {
+              "id": "f_n_wgs",
+              "type": "readonly_label",
+              "label": "WGS",
+              "dataKey": "notes.wgs",
+              "navigatorHighlight": true,
+              "width": "full"
+            }
+          ]
+        },
+        {
+          "id": "sec_n_research",
+          "title": "Research Notes",
+          "columns": 1,
+          "fields": [
+            {
+              "id": "f_n_research",
+              "type": "readonly_label",
+              "label": "Research",
+              "dataKey": "notes.research",
+              "width": "full"
+            }
+          ]
+        },
+        {
+          "id": "sec_n_mainframe",
+          "title": "Mainframe Claim Notes",
+          "columns": 3,
+          "fields": [
+            {
+              "id": "f_n_mainframe",
+              "type": "readonly_label",
+              "label": "Queue Code",
+              "dataKey": "notes.mainframe"
+            },
+            {
+              "id": "f_n_task_routed",
+              "type": "readonly_label",
+              "label": "Routed to",
+              "dataKey": "notes.taskRoutedTo"
+            },
+            {
+              "id": "f_n_task_skills",
+              "type": "readonly_label",
+              "label": "Skills",
+              "dataKey": "notes.taskSkills"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tab_search",
+      "label": "Search",
+      "renderType": "sub_tabs",
+      "subTabs": [
+        {
+          "id": "subtab_search_pricing",
+          "label": "Pricing",
+          "sections": [
+            {
+              "id": "sec_sp_header",
+              "title": "Claim Header",
+              "columns": 4,
+              "fields": [
+                {
+                  "id": "f_sp_dcn",
+                  "type": "readonly_label",
+                  "label": "DCN",
+                  "dataKey": "search.pricing.claimHeader.dcn"
+                },
+                {
+                  "id": "f_sp_provider",
+                  "type": "readonly_label",
+                  "label": "Provider",
+                  "dataKey": "search.pricing.claimHeader.provider"
+                },
+                {
+                  "id": "f_sp_from",
+                  "type": "readonly_label",
+                  "label": "Service From",
+                  "dataKey": "search.pricing.claimHeader.serviceFrom"
+                },
+                {
+                  "id": "f_sp_to",
+                  "type": "readonly_label",
+                  "label": "Service To",
+                  "dataKey": "search.pricing.claimHeader.serviceTo"
+                }
+              ]
+            },
+            {
+              "id": "sec_sp_claim_lines",
+              "title": "Claim Lines — Purchase Price Lookup",
+              "columns": 4,
+              "fields": [
+                {
+                  "id": "f_sp_line1_procedure",
+                  "type": "text",
+                  "label": "Procedure",
+                  "dataKey": "search.pricing.claimLines.line1.procedureCode"
+                },
+                {
+                  "id": "f_sp_line1_modifier",
+                  "type": "select",
+                  "label": "Modifier",
+                  "dataKey": "search.pricing.claimLines.line1.modifier",
+                  "navigatorHighlight": true,
+                  "options": [
+                    {
+                      "label": "RR — DME rental",
+                      "value": "RR"
+                    },
+                    {
+                      "label": "NU — DME purchase",
+                      "value": "NU"
+                    }
+                  ],
+                  "placeholder": "Select modifier…"
+                },
+                {
+                  "id": "f_sp_line1_uo",
+                  "type": "text",
+                  "label": "U/O",
+                  "dataKey": "search.pricing.claimLines.line1.unitsOverride"
+                },
+                {
+                  "id": "f_sp_line1_cx",
+                  "type": "text",
+                  "label": "CX %",
+                  "dataKey": "search.pricing.claimLines.line1.cxPercent"
+                },
+                {
+                  "id": "f_sp_line1_billed",
+                  "type": "currency",
+                  "label": "Billed amount",
+                  "placeholder": "Enter 100000 to uncap the price",
+                  "dataKey": "search.pricing.claimLines.line1.billedAmount",
+                  "navigatorHighlight": true
+                },
+                {
+                  "id": "f_sp_line1_allowed",
+                  "type": "readonly_label",
+                  "label": "Allowed",
+                  "dataKey": "search.pricing.claimLines.line1.allowed",
+                  "navigatorHighlight": true
+                },
+                {
+                  "id": "f_sp_get_pricing_purchase",
+                  "type": "action_button",
+                  "label": "Get Pricing",
+                  "action": "get_pricing_purchase",
+                  "navigatorHighlight": true
+                },
+                {
+                  "id": "f_sp_purchase_hint",
+                  "type": "readonly_label",
+                  "label": "Obtaining the purchase price",
+                  "dataKey": "search.pricing.purchasePriceHint",
+                  "width": "full"
+                },
+                {
+                  "id": "f_sp_purchase_note",
+                  "type": "alert",
+                  "label": "Purchase price",
+                  "dataKey": "search.pricing.purchasePriceNote",
+                  "variant": "info",
+                  "width": "full"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "subtab_search_claims",
+          "label": "Claims",
+          "sections": [
+            {
+              "id": "sec_sc_criteria",
+              "title": "Search claims",
+              "columns": 3,
+              "fields": [
+                {
+                  "id": "f_sc_subscriber",
+                  "type": "readonly_label",
+                  "label": "Subscriber or HCID",
+                  "dataKey": "search.claims.searchCriteria.subscriberId"
+                },
+                {
+                  "id": "f_sc_tax_id",
+                  "type": "readonly_label",
+                  "label": "Provider tax ID",
+                  "dataKey": "search.claims.searchCriteria.providerTaxId"
+                },
+                {
+                  "id": "f_sc_status",
+                  "type": "readonly_label",
+                  "label": "Status",
+                  "dataKey": "search.claims.searchCriteria.status"
+                }
+              ]
+            },
+            {
+              "id": "sec_sc_history",
+              "title": "History Claims — prior purchase",
+              "columns": 5,
+              "fields": [
+                {
+                  "id": "f_sc_h1_dcn",
+                  "type": "readonly_label",
+                  "label": "DCN — history claim",
+                  "dataKey": "search.claims.results.0.dcn"
+                },
+                {
+                  "id": "f_sc_h1_from",
+                  "type": "readonly_label",
+                  "label": "Service date",
+                  "dataKey": "search.claims.results.0.from"
+                },
+                {
+                  "id": "f_sc_h1_proc",
+                  "type": "readonly_label",
+                  "label": "Procedure",
+                  "dataKey": "search.claims.results.0.procedureCode"
+                },
+                {
+                  "id": "f_sc_h1_mod",
+                  "type": "readonly_label",
+                  "label": "Modifier",
+                  "dataKey": "search.claims.results.0.modifier",
+                  "navigatorHighlight": true
+                },
+                {
+                  "id": "f_sc_h1_paid",
+                  "type": "readonly_label",
+                  "label": "Paid",
+                  "dataKey": "search.claims.results.0.paid"
+                },
+                {
+                  "id": "f_sc_history_note",
+                  "type": "alert",
+                  "label": "History",
+                  "dataKey": "search.claims.historyNote",
+                  "width": "full",
+                  "variant": "info"
+                },
+                {
+                  "id": "f_sc_open_detail",
+                  "type": "modal_panel",
+                  "label": "Open claim detail",
+                  "action": "open_prior_claim",
+                  "dialogTitle": "Claim detail — History claim",
+                  "navigatorHighlight": true,
+                  "sections": [
+                    {
+                      "id": "sec_hc_summary",
+                      "title": "Summary",
+                      "columns": 3,
+                      "fields": [
+                        {
+                          "id": "f_hc_note",
+                          "type": "readonly_label",
+                          "label": "Note",
+                          "dataKey": "priorClaim.note",
+                          "width": "full"
+                        },
+                        {
+                          "id": "f_hc_dcn",
+                          "type": "readonly_label",
+                          "label": "DCN",
+                          "dataKey": "priorClaim.summary.dcn"
+                        },
+                        {
+                          "id": "f_hc_member",
+                          "type": "readonly_label",
+                          "label": "Member",
+                          "dataKey": "priorClaim.summary.memberName"
+                        },
+                        {
+                          "id": "f_hc_provider",
+                          "type": "readonly_label",
+                          "label": "Provider",
+                          "dataKey": "priorClaim.summary.provider"
+                        },
+                        {
+                          "id": "f_hc_service_date",
+                          "type": "readonly_label",
+                          "label": "Service date",
+                          "dataKey": "priorClaim.summary.serviceDate"
+                        },
+                        {
+                          "id": "f_hc_status",
+                          "type": "readonly_label",
+                          "label": "Status",
+                          "dataKey": "priorClaim.summary.status"
+                        },
+                        {
+                          "id": "f_hc_billed",
+                          "type": "readonly_label",
+                          "label": "Billed",
+                          "dataKey": "priorClaim.summary.billed"
+                        },
+                        {
+                          "id": "f_hc_allowed",
+                          "type": "readonly_label",
+                          "label": "Allowed amount",
+                          "dataKey": "priorClaim.summary.allowed",
+                          "navigatorHighlight": true
+                        }
+                      ]
+                    },
+                    {
+                      "id": "sec_hc_claim_lines",
+                      "title": "Claim Lines",
+                      "columns": 4,
+                      "fields": [
+                        {
+                          "id": "f_hc_cl_line",
+                          "type": "readonly_label",
+                          "label": "Line",
+                          "dataKey": "priorClaim.claimLines.line1.lineNumber"
+                        },
+                        {
+                          "id": "f_hc_cl_procedure",
+                          "type": "readonly_label",
+                          "label": "Procedure code",
+                          "dataKey": "priorClaim.claimLines.line1.procedureCode",
+                          "navigatorHighlight": true
+                        },
+                        {
+                          "id": "f_hc_cl_modifier",
+                          "type": "readonly_label",
+                          "label": "Modifier",
+                          "dataKey": "priorClaim.claimLines.line1.modifier"
+                        },
+                        {
+                          "id": "f_hc_cl_service_from",
+                          "type": "readonly_label",
+                          "label": "Service From",
+                          "dataKey": "priorClaim.claimLines.line1.serviceFrom",
+                          "navigatorHighlight": true
+                        },
+                        {
+                          "id": "f_hc_cl_service_to",
+                          "type": "readonly_label",
+                          "label": "Service To",
+                          "dataKey": "priorClaim.claimLines.line1.serviceTo",
+                          "navigatorHighlight": true
+                        },
+                        {
+                          "id": "f_hc_cl_dcn",
+                          "type": "readonly_label",
+                          "label": "DCN",
+                          "dataKey": "priorClaim.claimLines.line1.dcn",
+                          "navigatorHighlight": true
+                        },
+                        {
+                          "id": "f_hc_cl_units",
+                          "type": "readonly_label",
+                          "label": "Units",
+                          "dataKey": "priorClaim.claimLines.line1.units"
+                        },
+                        {
+                          "id": "f_hc_cl_diagnosis",
+                          "type": "readonly_label",
+                          "label": "Diagnosis",
+                          "dataKey": "priorClaim.claimLines.line1.diagnosis"
+                        },
+                        {
+                          "id": "f_hc_cl_billed",
+                          "type": "readonly_label",
+                          "label": "Billed",
+                          "dataKey": "priorClaim.claimLines.line1.billed"
+                        },
+                        {
+                          "id": "f_hc_cl_allowed",
+                          "type": "readonly_label",
+                          "label": "Allowed",
+                          "dataKey": "priorClaim.claimLines.line1.allowed"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "subtab_search_limited",
+          "label": "Limited Liability",
+          "sections": [
+            {
+              "id": "sec_sll_search",
+              "title": "Search Limited Liability",
+              "columns": 4,
+              "fields": [
+                {
+                  "id": "f_sll_member_id",
+                  "type": "readonly_label",
+                  "label": "Member Id",
+                  "dataKey": "search.limitedLiability.memberId"
+                },
+                {
+                  "id": "f_sll_member_code",
+                  "type": "readonly_label",
+                  "label": "Member Code",
+                  "dataKey": "search.limitedLiability.memberCode"
+                },
+                {
+                  "id": "f_sll_dob",
+                  "type": "readonly_label",
+                  "label": "Date of birth",
+                  "dataKey": "search.limitedLiability.dob"
+                },
+                {
+                  "id": "f_sll_active",
+                  "type": "readonly_label",
+                  "label": "Active records",
+                  "dataKey": "search.limitedLiability.activeRecords"
+                },
+                {
+                  "id": "f_sll_all",
+                  "type": "readonly_label",
+                  "label": "All records",
+                  "dataKey": "search.limitedLiability.allRecords"
+                }
+              ]
+            },
+            {
+              "id": "sec_sll_results",
+              "title": "Limited Liability Results",
+              "columns": 5,
+              "fields": [
+                {
+                  "id": "f_sll_results_note",
+                  "type": "alert",
+                  "label": "Records",
+                  "dataKey": "search.limitedLiability.resultsNote",
+                  "variant": "info",
+                  "width": "full"
+                },
+                {
+                  "id": "f_sll_r0_type",
+                  "type": "readonly_label",
+                  "label": "Type",
+                  "dataKey": "search.limitedLiability.results.0.type",
+                  "navigatorHighlight": true
+                },
+                {
+                  "id": "f_sll_r0_effective",
+                  "type": "readonly_label",
+                  "label": "Effective date",
+                  "dataKey": "search.limitedLiability.results.0.effectiveDate"
+                },
+                {
+                  "id": "f_sll_r0_end",
+                  "type": "readonly_label",
+                  "label": "End date",
+                  "dataKey": "search.limitedLiability.results.0.endDate"
+                },
+                {
+                  "id": "f_sll_r0_oob",
+                  "type": "readonly_label",
+                  "label": "Order of benefits",
+                  "dataKey": "search.limitedLiability.results.0.orderOfBenefits"
+                },
+                {
+                  "id": "f_sll_r0_description",
+                  "type": "readonly_label",
+                  "label": "Description",
+                  "dataKey": "search.limitedLiability.results.0.description",
+                  "width": "full"
+                },
+                {
+                  "id": "f_sll_r0_notes",
+                  "type": "readonly_label",
+                  "label": "Notes",
+                  "dataKey": "search.limitedLiability.recordNotes",
+                  "width": "full",
+                  "navigatorHighlight": true
+                },
+                {
+                  "id": "f_sll_disposition_note",
+                  "type": "alert",
+                  "label": "Disposition",
+                  "dataKey": "search.limitedLiability.dispositionNote",
+                  "variant": "info",
+                  "width": "full"
+                }
+              ]
+            },
+            {
+              "id": "sec_sll_review",
+              "title": "Review the SPI-CLM Limited Liability record",
+              "columns": 1,
+              "fields": [
+                {
+                  "id": "f_sll_view_notes",
+                  "type": "modal_panel",
+                  "label": "View record notes",
+                  "icon": "file-text",
+                  "action": "open_ll_record_notes",
+                  "dialogTitle": "SPI-CLM Limited Liability record — Notes",
+                  "navigatorHighlight": true,
+                  "sections": [
+                    {
+                      "id": "sec_llv_identity",
+                      "title": "Record",
+                      "columns": 4,
+                      "fields": [
+                        {
+                          "id": "f_llv_type",
+                          "type": "readonly_label",
+                          "label": "Type",
+                          "dataKey": "search.limitedLiability.results.0.type"
+                        },
+                        {
+                          "id": "f_llv_effective",
+                          "type": "readonly_label",
+                          "label": "Effective date",
+                          "dataKey": "search.limitedLiability.results.0.effectiveDate"
+                        },
+                        {
+                          "id": "f_llv_end",
+                          "type": "readonly_label",
+                          "label": "End date",
+                          "dataKey": "search.limitedLiability.results.0.endDate"
+                        },
+                        {
+                          "id": "f_llv_oob",
+                          "type": "readonly_label",
+                          "label": "Order of benefits",
+                          "dataKey": "search.limitedLiability.results.0.orderOfBenefits"
+                        }
+                      ]
+                    },
+                    {
+                      "id": "sec_llv_notes",
+                      "title": "Notes",
+                      "columns": 1,
+                      "fields": [
+                        {
+                          "id": "f_llv_notes",
+                          "type": "readonly_label",
+                          "label": "Notes",
+                          "dataKey": "search.limitedLiability.recordNotes",
+                          "width": "full",
+                          "navigatorHighlight": true
+                        },
+                        {
+                          "id": "f_llv_disposition",
+                          "type": "alert",
+                          "label": "Disposition",
+                          "dataKey": "search.limitedLiability.dispositionNote",
+                          "variant": "warning",
+                          "width": "full"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tab_system",
+      "label": "System",
+      "sections": [
+        {
+          "id": "sec_sys_recommendation",
+          "title": "Benefit Recommendation — General",
+          "fields": [
+            {
+              "id": "f_sys_contract",
+              "type": "readonly_label",
+              "label": "Contract code",
+              "dataKey": "system.benefitRecommendation.contractCode"
+            },
+            {
+              "id": "f_sys_eff",
+              "type": "readonly_label",
+              "label": "Effective date",
+              "dataKey": "system.benefitRecommendation.effectiveDate"
+            },
+            {
+              "id": "f_sys_end",
+              "type": "readonly_label",
+              "label": "End Date",
+              "dataKey": "system.benefitRecommendation.endDate"
+            },
+            {
+              "id": "f_sys_state",
+              "type": "readonly_label",
+              "label": "Plan state",
+              "dataKey": "system.benefitRecommendation.planState"
+            },
+            {
+              "id": "f_sys_desc",
+              "type": "readonly_label",
+              "label": "Plan description",
+              "dataKey": "system.benefitRecommendation.planDescription"
+            }
+          ],
+          "columns": 3
+        }
+      ],
+      "renderType": "sections"
+    },
+    {
+      "id": "tab_attachment",
+      "label": "Attachment",
+      "sections": [
+        {
+          "id": "sec_att_pwk",
+          "title": "PWK",
+          "fields": [
+            {
+              "id": "f_att_type",
+              "type": "readonly_label",
+              "label": "Type",
+              "dataKey": "attachment.pwk.type"
+            },
+            {
+              "id": "f_att_view",
+              "type": "readonly_label",
+              "label": "View",
+              "dataKey": "attachment.pwk.view"
+            }
+          ],
+          "columns": 3
+        }
+      ],
+      "renderType": "sections"
+    },
+    {
+      "id": "tab_claim_data",
+      "label": "Claim Data",
+      "subTabs": [
+        {
+          "id": "subtab_claim_data_details",
+          "label": "Details",
+          "sections": [
+            {
+              "id": "sec_cd_d_source",
+              "title": "Additional Claim Data",
+              "fields": [
+                {
+                  "id": "f_cdd_type",
+                  "type": "readonly_label",
+                  "label": "Claim type",
+                  "dataKey": "claimData.details.claimType",
+                  "navigatorHighlight": true
+                },
+                {
+                  "id": "f_cdd_media",
+                  "type": "readonly_label",
+                  "label": "Media type",
+                  "dataKey": "claimData.details.claimSource.mediaType"
+                },
+                {
+                  "id": "f_cdd_pricing_src",
+                  "type": "readonly_label",
+                  "label": "Pricing Source",
+                  "dataKey": "claimData.details.claimSource.pricingSource"
+                },
+                {
+                  "id": "f_cdd_pricing_sys",
+                  "type": "readonly_label",
+                  "label": "Pricing System",
+                  "dataKey": "claimData.details.claimSource.pricingSystem"
+                },
+                {
+                  "id": "f_cdd_mixer",
+                  "type": "readonly_label",
+                  "label": "Mixer PAR",
+                  "dataKey": "claimData.details.claimSource.mixerPar"
+                },
+                {
+                  "id": "f_cdd_receiver",
+                  "type": "readonly_label",
+                  "label": "Receiver Id",
+                  "dataKey": "claimData.details.claimSource.receiverId"
+                },
+                {
+                  "id": "f_cdd_received_edi",
+                  "type": "readonly_label",
+                  "label": "Received at EDI",
+                  "dataKey": "claimData.details.claimSource.receivedAtEdi"
+                },
+                {
+                  "id": "f_cdd_provider_err",
+                  "type": "readonly_label",
+                  "label": "Provider error",
+                  "dataKey": "claimData.details.claimSource.providerError"
+                },
+                {
+                  "id": "f_cdd_image_ctrl",
+                  "type": "readonly_label",
+                  "label": "Image control #",
+                  "dataKey": "claimData.details.claimSource.imageControlNumber"
+                },
+                {
+                  "id": "f_cdd_auth",
+                  "type": "readonly_label",
+                  "label": "Auth #",
+                  "dataKey": "claimData.details.claimSource.authNumber"
+                },
+                {
+                  "id": "f_cdd_auth_excln",
+                  "type": "readonly_label",
+                  "label": "Auth Excln",
+                  "dataKey": "claimData.details.claimSource.authExcln"
+                },
+                {
+                  "id": "f_cdd_vendor",
+                  "type": "readonly_label",
+                  "label": "Vendor indicator",
+                  "dataKey": "claimData.details.claimSource.vendorIndicator"
+                },
+                {
+                  "id": "f_cdd_received",
+                  "type": "readonly_label",
+                  "label": "Received date",
+                  "dataKey": "claimData.details.claimSource.receivedDate"
+                },
+                {
+                  "id": "f_cdd_split",
+                  "type": "readonly_label",
+                  "label": "Split ind",
+                  "dataKey": "claimData.details.claimSource.splitInd"
+                },
+                {
+                  "id": "f_cdd_epact",
+                  "type": "readonly_label",
+                  "label": "EPACT/PLM #",
+                  "dataKey": "claimData.details.claimSource.epactPlm"
+                },
+                {
+                  "id": "f_cdd_gnyha",
+                  "type": "readonly_label",
+                  "label": "GNYHA ind",
+                  "dataKey": "claimData.details.claimSource.gnyhaInd"
+                },
+                {
+                  "id": "f_cdd_imr",
+                  "type": "readonly_label",
+                  "label": "IMR Indicator",
+                  "dataKey": "claimData.details.claimSource.imrIndicator"
+                },
+                {
+                  "id": "f_cdd_clia_id",
+                  "type": "readonly_label",
+                  "label": "CLIA ID",
+                  "dataKey": "claimData.details.claimSource.cliaId"
+                },
+                {
+                  "id": "f_cdd_clia_q",
+                  "type": "readonly_label",
+                  "label": "CLIA Qualifier",
+                  "dataKey": "claimData.details.claimSource.cliaQualifier"
+                }
+              ],
+              "columns": 4
+            },
+            {
+              "id": "sec_cd_d_ancillary",
+              "title": "Ancillary Provider",
+              "fields": [
+                {
+                  "id": "f_cdd_anc_type",
+                  "type": "readonly_label",
+                  "label": "Type",
+                  "dataKey": "claimData.details.ancillaryProvider.type"
+                },
+                {
+                  "id": "f_cdd_anc_zip",
+                  "type": "readonly_label",
+                  "label": "ZIP",
+                  "dataKey": "claimData.details.ancillaryProvider.zip"
+                },
+                {
+                  "id": "f_cdd_anc_state",
+                  "type": "readonly_label",
+                  "label": "State",
+                  "dataKey": "claimData.details.ancillaryProvider.state"
+                }
+              ],
+              "columns": 4
+            },
+            {
+              "id": "sec_cd_d_ambulance",
+              "title": "Ambulance",
+              "fields": [
+                {
+                  "id": "f_cdd_amb_pickup",
+                  "type": "readonly_label",
+                  "label": "Pick-up Zip",
+                  "dataKey": "claimData.details.ambulance.pickupZip"
+                },
+                {
+                  "id": "f_cdd_amb_dropoff",
+                  "type": "readonly_label",
+                  "label": "Drop-off Zip",
+                  "dataKey": "claimData.details.ambulance.dropoffZip"
+                }
+              ],
+              "columns": 4
+            },
+            {
+              "id": "sec_cd_d_misc",
+              "title": "Miscellaneous Data",
+              "fields": [
+                {
+                  "id": "f_cdd_m_epsdt",
+                  "type": "readonly_label",
+                  "label": "EPSDT",
+                  "dataKey": "claimData.details.miscellaneous.epsdt"
+                },
+                {
+                  "id": "f_cdd_m_family",
+                  "type": "readonly_label",
+                  "label": "Family Planning",
+                  "dataKey": "claimData.details.miscellaneous.familyPlanning"
+                },
+                {
+                  "id": "f_cdd_m_gtess",
+                  "type": "readonly_label",
+                  "label": "GTESS date",
+                  "dataKey": "claimData.details.miscellaneous.gtessDate"
+                },
+                {
+                  "id": "f_cdd_m_illness",
+                  "type": "readonly_label",
+                  "label": "Date Of Illness",
+                  "dataKey": "claimData.details.miscellaneous.dateOfIllness"
+                },
+                {
+                  "id": "f_cdd_m_injury",
+                  "type": "readonly_label",
+                  "label": "Date of injury",
+                  "dataKey": "claimData.details.miscellaneous.dateOfInjury"
+                },
+                {
+                  "id": "f_cdd_m_menstrual",
+                  "type": "readonly_label",
+                  "label": "Last menstrual date",
+                  "dataKey": "claimData.details.miscellaneous.lastMenstrualDate"
+                },
+                {
+                  "id": "f_cdd_m_consult",
+                  "type": "readonly_label",
+                  "label": "Consultation date",
+                  "dataKey": "claimData.details.miscellaneous.consultationDate"
+                },
+                {
+                  "id": "f_cdd_m_eru",
+                  "type": "readonly_label",
+                  "label": "ERU Decision",
+                  "dataKey": "claimData.details.miscellaneous.eruDecision"
+                },
+                {
+                  "id": "f_cdd_m_jaa",
+                  "type": "readonly_label",
+                  "label": "JAA error code",
+                  "dataKey": "claimData.details.miscellaneous.jaaErrorCode"
+                }
+              ],
+              "columns": 4
+            },
+            {
+              "id": "sec_cd_d_stop",
+              "title": "Stop Data",
+              "fields": [
+                {
+                  "id": "f_cdd_st_edit",
+                  "type": "readonly_label",
+                  "label": "Stop edit",
+                  "dataKey": "claimData.details.stopData.stopEdit"
+                },
+                {
+                  "id": "f_cdd_st_lob_p",
+                  "type": "readonly_label",
+                  "label": "LOB Parent Rule",
+                  "dataKey": "claimData.details.stopData.lobParentRule"
+                },
+                {
+                  "id": "f_cdd_st_lob_c",
+                  "type": "readonly_label",
+                  "label": "LOB Child Rule",
+                  "dataKey": "claimData.details.stopData.lobChildRule"
+                },
+                {
+                  "id": "f_cdd_st_lob_seq",
+                  "type": "readonly_label",
+                  "label": "LOB Sequence",
+                  "dataKey": "claimData.details.stopData.lobSequence"
+                },
+                {
+                  "id": "f_cdd_st_med_p",
+                  "type": "readonly_label",
+                  "label": "MED Business parent Rule",
+                  "dataKey": "claimData.details.stopData.medBusinessParentRule"
+                },
+                {
+                  "id": "f_cdd_st_med_c",
+                  "type": "readonly_label",
+                  "label": "MED Business child Rule",
+                  "dataKey": "claimData.details.stopData.medBusinessChildRule"
+                },
+                {
+                  "id": "f_cdd_st_med_seq",
+                  "type": "readonly_label",
+                  "label": "MED Sequence",
+                  "dataKey": "claimData.details.stopData.medSequence"
+                }
+              ],
+              "columns": 4
+            },
+            {
+              "id": "sec_cd_d_refund",
+              "title": "Refund Data",
+              "fields": [
+                {
+                  "id": "f_cdd_r_corr",
+                  "type": "readonly_label",
+                  "label": "Correspondence #",
+                  "dataKey": "claimData.details.refundData.correspondenceNumber"
+                },
+                {
+                  "id": "f_cdd_r_amount",
+                  "type": "readonly_label",
+                  "label": "Refund amount",
+                  "dataKey": "claimData.details.refundData.refundAmount"
+                },
+                {
+                  "id": "f_cdd_r_reason",
+                  "type": "readonly_label",
+                  "label": "Adjustment Reason Code",
+                  "dataKey": "claimData.details.refundData.adjustmentReasonCode"
+                },
+                {
+                  "id": "f_cdd_r_corrected",
+                  "type": "readonly_label",
+                  "label": "Corrected claim DCN",
+                  "dataKey": "claimData.details.refundData.correctedClaimDcn"
+                },
+                {
+                  "id": "f_cdd_r_vendor",
+                  "type": "readonly_label",
+                  "label": "Vendor name",
+                  "dataKey": "claimData.details.refundData.vendorName"
+                },
+                {
+                  "id": "f_cdd_r_delay",
+                  "type": "readonly_label",
+                  "label": "Delay reason",
+                  "dataKey": "claimData.details.refundData.delayReason"
+                },
+                {
+                  "id": "f_cdd_r_carve",
+                  "type": "readonly_label",
+                  "label": "Carve-out",
+                  "dataKey": "claimData.details.refundData.carveOut"
+                },
+                {
+                  "id": "f_cdd_r_receipt",
+                  "type": "readonly_label",
+                  "label": "Adjustment receipt",
+                  "dataKey": "claimData.details.refundData.adjustmentReceipt"
+                }
+              ],
+              "columns": 4
+            },
+            {
+              "id": "sec_cd_d_high",
+              "title": "High Dollar",
+              "fields": [
+                {
+                  "id": "f_cdd_hd",
+                  "type": "readonly_label",
+                  "label": "Risk Outcome",
+                  "dataKey": "claimData.details.highDollar.riskOutcome"
+                }
+              ],
+              "columns": 3
+            }
+          ]
+        },
+        {
+          "id": "subtab_claim_data_editing",
+          "label": "Editing",
+          "sections": [
+            {
+              "id": "sec_cd_e_xten_orig",
+              "title": "Claim Xten — Original Line",
+              "fields": [
+                {
+                  "id": "f_cdex_ol_num",
+                  "type": "readonly_label",
+                  "label": "Line #",
+                  "dataKey": "claimData.editing.claimXten.originalLine.lineNum"
+                },
+                {
+                  "id": "f_cdex_ol_date",
+                  "type": "readonly_label",
+                  "label": "Service date",
+                  "dataKey": "claimData.editing.claimXten.originalLine.serviceDate"
+                },
+                {
+                  "id": "f_cdex_ol_proc",
+                  "type": "readonly_label",
+                  "label": "Procedure",
+                  "dataKey": "claimData.editing.claimXten.originalLine.procedure"
+                },
+                {
+                  "id": "f_cdex_ol_mod",
+                  "type": "readonly_label",
+                  "label": "Mod",
+                  "dataKey": "claimData.editing.claimXten.originalLine.mod"
+                },
+                {
+                  "id": "f_cdex_ol_units",
+                  "type": "readonly_label",
+                  "label": "Units",
+                  "dataKey": "claimData.editing.claimXten.originalLine.units"
+                },
+                {
+                  "id": "f_cdex_ol_billed",
+                  "type": "readonly_label",
+                  "label": "Billed Amount",
+                  "dataKey": "claimData.editing.claimXten.originalLine.billedAmount"
+                }
+              ],
+              "columns": 4
+            },
+            {
+              "id": "sec_cd_e_xten_prop",
+              "title": "Claim Xten — Proposed Line",
+              "fields": [
+                {
+                  "id": "f_cdex_pl_num",
+                  "type": "readonly_label",
+                  "label": "Line #",
+                  "dataKey": "claimData.editing.claimXten.proposedLine.lineNum"
+                },
+                {
+                  "id": "f_cdex_pl_proc",
+                  "type": "readonly_label",
+                  "label": "Procedure",
+                  "dataKey": "claimData.editing.claimXten.proposedLine.procedure"
+                },
+                {
+                  "id": "f_cdex_pl_mod",
+                  "type": "readonly_label",
+                  "label": "Mod",
+                  "dataKey": "claimData.editing.claimXten.proposedLine.mod"
+                },
+                {
+                  "id": "f_cdex_pl_units",
+                  "type": "readonly_label",
+                  "label": "Units",
+                  "dataKey": "claimData.editing.claimXten.proposedLine.units"
+                },
+                {
+                  "id": "f_cdex_pl_support",
+                  "type": "readonly_label",
+                  "label": "Support code",
+                  "dataKey": "claimData.editing.claimXten.proposedLine.supportCode"
+                },
+                {
+                  "id": "f_cdex_pl_pay",
+                  "type": "readonly_label",
+                  "label": "Pay %",
+                  "dataKey": "claimData.editing.claimXten.proposedLine.payPercent"
+                },
+                {
+                  "id": "f_cdex_pl_billed",
+                  "type": "readonly_label",
+                  "label": "Billed Amount",
+                  "dataKey": "claimData.editing.claimXten.proposedLine.billedAmount"
+                }
+              ],
+              "columns": 4
+            },
+            {
+              "id": "sec_cd_e_ihealth_orig",
+              "title": "iHealth — Original Line",
+              "fields": [
+                {
+                  "id": "f_cdih_ol_num",
+                  "type": "readonly_label",
+                  "label": "Line #",
+                  "dataKey": "claimData.editing.ihealth.originalLine.lineNum"
+                },
+                {
+                  "id": "f_cdih_ol_date",
+                  "type": "readonly_label",
+                  "label": "Service date",
+                  "dataKey": "claimData.editing.ihealth.originalLine.serviceDate"
+                },
+                {
+                  "id": "f_cdih_ol_proc",
+                  "type": "readonly_label",
+                  "label": "Procedure",
+                  "dataKey": "claimData.editing.ihealth.originalLine.procedure"
+                },
+                {
+                  "id": "f_cdih_ol_mod",
+                  "type": "readonly_label",
+                  "label": "Mod",
+                  "dataKey": "claimData.editing.ihealth.originalLine.mod"
+                },
+                {
+                  "id": "f_cdih_ol_units",
+                  "type": "readonly_label",
+                  "label": "Units",
+                  "dataKey": "claimData.editing.ihealth.originalLine.units"
+                },
+                {
+                  "id": "f_cdih_ol_allowed",
+                  "type": "readonly_label",
+                  "label": "Allowed amount",
+                  "dataKey": "claimData.editing.ihealth.originalLine.allowedAmount"
+                },
+                {
+                  "id": "f_cdih_ol_savings",
+                  "type": "readonly_label",
+                  "label": "Savings amount",
+                  "dataKey": "claimData.editing.ihealth.originalLine.savingsAmount"
+                }
+              ],
+              "columns": 4
+            },
+            {
+              "id": "sec_cd_e_ihealth_prop",
+              "title": "iHealth — Proposed Line",
+              "fields": [
+                {
+                  "id": "f_cdih_pl_proc",
+                  "type": "readonly_label",
+                  "label": "Procedure",
+                  "dataKey": "claimData.editing.ihealth.proposedLine.procedure"
+                },
+                {
+                  "id": "f_cdih_pl_mod",
+                  "type": "readonly_label",
+                  "label": "Mod",
+                  "dataKey": "claimData.editing.ihealth.proposedLine.mod"
+                },
+                {
+                  "id": "f_cdih_pl_units",
+                  "type": "readonly_label",
+                  "label": "Units",
+                  "dataKey": "claimData.editing.ihealth.proposedLine.units"
+                },
+                {
+                  "id": "f_cdih_pl_pay",
+                  "type": "readonly_label",
+                  "label": "Pay %",
+                  "dataKey": "claimData.editing.ihealth.proposedLine.payPercent"
+                },
+                {
+                  "id": "f_cdih_pl_status",
+                  "type": "readonly_label",
+                  "label": "Status",
+                  "dataKey": "claimData.editing.ihealth.proposedLine.status"
+                }
+              ],
+              "columns": 4
+            }
+          ]
+        },
+        {
+          "id": "subtab_claim_data_benefits",
+          "label": "Benefits",
+          "sections": [
+            {
+              "id": "sec_cd_b_acc1",
+              "title": "Accumulators Delta — BENYTD",
+              "fields": [
+                {
+                  "id": "f_cdba1_type",
+                  "type": "readonly_label",
+                  "label": "Type",
+                  "dataKey": "claimData.benefits.accumulator1.type"
+                },
+                {
+                  "id": "f_cdba1_from",
+                  "type": "readonly_label",
+                  "label": "From",
+                  "dataKey": "claimData.benefits.accumulator1.fromDate"
+                },
+                {
+                  "id": "f_cdba1_to",
+                  "type": "readonly_label",
+                  "label": "To",
+                  "dataKey": "claimData.benefits.accumulator1.toDate"
+                },
+                {
+                  "id": "f_cdba1_unit",
+                  "type": "readonly_label",
+                  "label": "Unit",
+                  "dataKey": "claimData.benefits.accumulator1.unit"
+                },
+                {
+                  "id": "f_cdba1_status",
+                  "type": "readonly_label",
+                  "label": "Status",
+                  "dataKey": "claimData.benefits.accumulator1.status"
+                }
+              ],
+              "columns": 5
+            },
+            {
+              "id": "sec_cd_b_acc2",
+              "title": "Accumulators Delta — MMCYTD",
+              "fields": [
+                {
+                  "id": "f_cdba2_type",
+                  "type": "readonly_label",
+                  "label": "Type",
+                  "dataKey": "claimData.benefits.accumulator2.type"
+                },
+                {
+                  "id": "f_cdba2_from",
+                  "type": "readonly_label",
+                  "label": "From",
+                  "dataKey": "claimData.benefits.accumulator2.fromDate"
+                },
+                {
+                  "id": "f_cdba2_to",
+                  "type": "readonly_label",
+                  "label": "To",
+                  "dataKey": "claimData.benefits.accumulator2.toDate"
+                },
+                {
+                  "id": "f_cdba2_unit",
+                  "type": "readonly_label",
+                  "label": "Unit",
+                  "dataKey": "claimData.benefits.accumulator2.unit"
+                },
+                {
+                  "id": "f_cdba2_status",
+                  "type": "readonly_label",
+                  "label": "Status",
+                  "dataKey": "claimData.benefits.accumulator2.status"
+                }
+              ],
+              "columns": 5
+            }
+          ]
+        },
+        {
+          "id": "subtab_claim_data_promptpay",
+          "label": "Prompt Pay",
+          "sections": [
+            {
+              "id": "sec_cd_pp_claim",
+              "title": "Claim Details",
+              "fields": [
+                {
+                  "id": "f_cdp_status",
+                  "type": "readonly_label",
+                  "label": "Status",
+                  "dataKey": "claimData.promptPay.claim.status"
+                },
+                {
+                  "id": "f_cdp_state",
+                  "type": "readonly_label",
+                  "label": "State",
+                  "dataKey": "claimData.promptPay.claim.state"
+                },
+                {
+                  "id": "f_cdp_rule",
+                  "type": "readonly_label",
+                  "label": "Rule Id",
+                  "dataKey": "claimData.promptPay.claim.ruleId"
+                },
+                {
+                  "id": "f_cdp_sys_int",
+                  "type": "readonly_label",
+                  "label": "System interest",
+                  "dataKey": "claimData.promptPay.claim.systemInterest"
+                },
+                {
+                  "id": "f_cdp_penalty",
+                  "type": "readonly_label",
+                  "label": "Penalty amount",
+                  "dataKey": "claimData.promptPay.claim.penaltyAmount"
+                },
+                {
+                  "id": "f_cdp_manual",
+                  "type": "readonly_label",
+                  "label": "Manual interest amount",
+                  "dataKey": "claimData.promptPay.claim.manualInterestAmount"
+                }
+              ],
+              "columns": 3
+            },
+            {
+              "id": "sec_cd_pp_calc",
+              "title": "Calculation Details",
+              "fields": [
+                {
+                  "id": "f_cdpc_from",
+                  "type": "readonly_label",
+                  "label": "Calculation from date",
+                  "dataKey": "claimData.promptPay.calculation.calculationFromDate"
+                },
+                {
+                  "id": "f_cdpc_carve",
+                  "type": "readonly_label",
+                  "label": "Carveout date",
+                  "dataKey": "claimData.promptPay.calculation.carveoutDate"
+                },
+                {
+                  "id": "f_cdpc_last",
+                  "type": "readonly_label",
+                  "label": "Last processed date",
+                  "dataKey": "claimData.promptPay.calculation.lastProcessedDate"
+                },
+                {
+                  "id": "f_cdpc_base",
+                  "type": "readonly_label",
+                  "label": "Base amount",
+                  "dataKey": "claimData.promptPay.calculation.baseAmount"
+                },
+                {
+                  "id": "f_cdpc_calc",
+                  "type": "readonly_label",
+                  "label": "Calculated interest amount",
+                  "dataKey": "claimData.promptPay.calculation.calculatedInterestAmount"
+                },
+                {
+                  "id": "f_cdpc_proc_days",
+                  "type": "readonly_label",
+                  "label": "Processed in days",
+                  "dataKey": "claimData.promptPay.calculation.processedInDays"
+                },
+                {
+                  "id": "f_cdpc_mailing",
+                  "type": "readonly_label",
+                  "label": "Mailing days",
+                  "dataKey": "claimData.promptPay.calculation.mailingDays"
+                },
+                {
+                  "id": "f_cdpc_disburse",
+                  "type": "readonly_label",
+                  "label": "Disburse days",
+                  "dataKey": "claimData.promptPay.calculation.disburseDays"
+                },
+                {
+                  "id": "f_cdpc_allowed_d",
+                  "type": "readonly_label",
+                  "label": "Allowed days",
+                  "dataKey": "claimData.promptPay.calculation.allowedDays"
+                },
+                {
+                  "id": "f_cdpc_carve_d",
+                  "type": "readonly_label",
+                  "label": "Carveout days",
+                  "dataKey": "claimData.promptPay.calculation.carveoutDays"
+                },
+                {
+                  "id": "f_cdpc_late",
+                  "type": "readonly_label",
+                  "label": "Late by days",
+                  "dataKey": "claimData.promptPay.calculation.lateByDays"
+                },
+                {
+                  "id": "f_cdpc_daily",
+                  "type": "readonly_label",
+                  "label": "Daily interest",
+                  "dataKey": "claimData.promptPay.calculation.dailyInterest"
+                }
+              ],
+              "columns": 4
+            },
+            {
+              "id": "sec_cd_pp_misc",
+              "title": "Miscellaneous Data",
+              "fields": [
+                {
+                  "id": "f_cdpm_carve_reason",
+                  "type": "readonly_label",
+                  "label": "Carveout reason code",
+                  "dataKey": "claimData.promptPay.miscellaneous.carveoutReasonCode"
+                },
+                {
+                  "id": "f_cdpm_day",
+                  "type": "readonly_label",
+                  "label": "Day indicator",
+                  "dataKey": "claimData.promptPay.miscellaneous.dayIndicator"
+                },
+                {
+                  "id": "f_cdpm_receipt",
+                  "type": "readonly_label",
+                  "label": "Receipt Method",
+                  "dataKey": "claimData.promptPay.miscellaneous.receiptMethod"
+                },
+                {
+                  "id": "f_cdpm_product_fund",
+                  "type": "readonly_label",
+                  "label": "Product/fund type",
+                  "dataKey": "claimData.promptPay.miscellaneous.productFundType"
+                },
+                {
+                  "id": "f_cdpm_int_rate",
+                  "type": "readonly_label",
+                  "label": "Interest rate",
+                  "dataKey": "claimData.promptPay.miscellaneous.interestRate"
+                },
+                {
+                  "id": "f_cdpm_penalty",
+                  "type": "readonly_label",
+                  "label": "Penalty",
+                  "dataKey": "claimData.promptPay.miscellaneous.penalty"
+                },
+                {
+                  "id": "f_cdpm_min_pay",
+                  "type": "readonly_label",
+                  "label": "Minimum pay amount",
+                  "dataKey": "claimData.promptPay.miscellaneous.minimumPayAmount"
+                },
+                {
+                  "id": "f_cdpm_er_min",
+                  "type": "readonly_label",
+                  "label": "ER minimum pay",
+                  "dataKey": "claimData.promptPay.miscellaneous.erMinimumPay"
+                },
+                {
+                  "id": "f_cdpm_annual",
+                  "type": "readonly_label",
+                  "label": "Annual/Monthly Penalty",
+                  "dataKey": "claimData.promptPay.miscellaneous.annualMonthlyPenalty"
+                },
+                {
+                  "id": "f_cdpm_mlh",
+                  "type": "readonly_label",
+                  "label": "MLH date",
+                  "dataKey": "claimData.promptPay.miscellaneous.mlhDate"
+                },
+                {
+                  "id": "f_cdpm_pp_stop",
+                  "type": "readonly_label",
+                  "label": "PP stop date",
+                  "dataKey": "claimData.promptPay.miscellaneous.ppStopDate"
+                },
+                {
+                  "id": "f_cdpm_addl_info",
+                  "type": "readonly_label",
+                  "label": "Additional information request date",
+                  "dataKey": "claimData.promptPay.miscellaneous.additionalInformationRequestDate"
+                },
+                {
+                  "id": "f_cdpm_tdi_int",
+                  "type": "readonly_label",
+                  "label": "TDI interest amount",
+                  "dataKey": "claimData.promptPay.miscellaneous.tdiInterestAmount"
+                },
+                {
+                  "id": "f_cdpm_tdi_pen",
+                  "type": "readonly_label",
+                  "label": "TDI Penalty amount",
+                  "dataKey": "claimData.promptPay.miscellaneous.tdiPenaltyAmount"
+                }
+              ],
+              "columns": 4
+            }
+          ]
+        },
+        {
+          "id": "subtab_claim_data_review",
+          "label": "Review",
+          "sections": [
+            {
+              "id": "sec_cd_r_um",
+              "title": "Utilization Management — UM Detail Service",
+              "fields": [
+                {
+                  "id": "f_cdr_um_line",
+                  "type": "readonly_label",
+                  "label": "Line #",
+                  "dataKey": "claimData.review.umDetailService.lineNum",
+                  "navigatorHighlight": true
+                },
+                {
+                  "id": "f_cdr_um_proc",
+                  "type": "readonly_label",
+                  "label": "Procedure",
+                  "dataKey": "claimData.review.umDetailService.procedure",
+                  "navigatorHighlight": true
+                },
+                {
+                  "id": "f_cdr_um_date",
+                  "type": "readonly_label",
+                  "label": "Date",
+                  "dataKey": "claimData.review.umDetailService.date"
+                },
+                {
+                  "id": "f_cdr_um_rule",
+                  "type": "readonly_label",
+                  "label": "Rule Id",
+                  "dataKey": "claimData.review.umDetailService.ruleId"
+                },
+                {
+                  "id": "f_cdr_um_case",
+                  "type": "readonly_label",
+                  "label": "Case number",
+                  "dataKey": "claimData.review.umDetailService.caseNumber",
+                  "navigatorHighlight": true
+                },
+                {
+                  "id": "f_cdr_um_note",
+                  "type": "alert",
+                  "label": "Authorization on file",
+                  "dataKey": "claimData.review.umDetailService.authNote",
+                  "variant": "info",
+                  "width": "full"
+                }
+              ],
+              "columns": 4
+            },
+            {
+              "id": "sec_cd_r_cdhp_claim",
+              "title": "CDHP — Claim Details",
+              "fields": [
+                {
+                  "id": "f_cdr_cdhp_lites",
+                  "type": "readonly_label",
+                  "label": "Lites claim #",
+                  "dataKey": "claimData.review.cdhp.claim.litesClaim"
+                },
+                {
+                  "id": "f_cdr_cdhp_rsn",
+                  "type": "readonly_label",
+                  "label": "RSN/EOB code",
+                  "dataKey": "claimData.review.cdhp.claim.rsnEobCode"
+                },
+                {
+                  "id": "f_cdr_cdhp_total",
+                  "type": "readonly_label",
+                  "label": "HRA paid total",
+                  "dataKey": "claimData.review.cdhp.claim.hraPaidTotal"
+                },
+                {
+                  "id": "f_cdr_cdhp_balance",
+                  "type": "readonly_label",
+                  "label": "HRA ending balance",
+                  "dataKey": "claimData.review.cdhp.claim.hraEndingBalance"
+                },
+                {
+                  "id": "f_cdr_cdhp_payment",
+                  "type": "readonly_label",
+                  "label": "Payment code",
+                  "dataKey": "claimData.review.cdhp.claim.paymentCode"
+                },
+                {
+                  "id": "f_cdr_cdhp_admin",
+                  "type": "readonly_label",
+                  "label": "CDHP admin",
+                  "dataKey": "claimData.review.cdhp.claim.cdhpAdmin"
+                },
+                {
+                  "id": "f_cdr_cdhp_ack",
+                  "type": "readonly_label",
+                  "label": "Acknowledgement rcvd",
+                  "dataKey": "claimData.review.cdhp.claim.acknowledgementRcvd"
+                },
+                {
+                  "id": "f_cdr_cdhp_requery",
+                  "type": "readonly_label",
+                  "label": "Re-query count",
+                  "dataKey": "claimData.review.cdhp.claim.requeryCount"
+                }
+              ],
+              "columns": 4
+            },
+            {
+              "id": "sec_cd_r_cdhp_lines",
+              "title": "CDHP — Claim Line",
+              "fields": [
+                {
+                  "id": "f_cdr_cdhpl_num",
+                  "type": "readonly_label",
+                  "label": "Line #",
+                  "dataKey": "claimData.review.cdhp.lineSummary.lineNum"
+                },
+                {
+                  "id": "f_cdr_cdhpl_proc",
+                  "type": "readonly_label",
+                  "label": "Procedure",
+                  "dataKey": "claimData.review.cdhp.lineSummary.procedure"
+                },
+                {
+                  "id": "f_cdr_cdhpl_billed",
+                  "type": "readonly_label",
+                  "label": "Billed",
+                  "dataKey": "claimData.review.cdhp.lineSummary.billed"
+                },
+                {
+                  "id": "f_cdr_cdhpl_resp",
+                  "type": "readonly_label",
+                  "label": "Patient resp",
+                  "dataKey": "claimData.review.cdhp.lineSummary.patientResp"
+                },
+                {
+                  "id": "f_cdr_cdhpl_hra",
+                  "type": "readonly_label",
+                  "label": "HRA paid",
+                  "dataKey": "claimData.review.cdhp.lineSummary.hraPaid"
+                },
+                {
+                  "id": "f_cdr_cdhpl_rsn",
+                  "type": "readonly_label",
+                  "label": "Rsn code",
+                  "dataKey": "claimData.review.cdhp.lineSummary.rsnCode"
+                }
+              ],
+              "columns": 4
+            },
+            {
+              "id": "sec_cd_r_dofr",
+              "title": "DOFR — Data",
+              "fields": [
+                {
+                  "id": "f_cdr_d_inzip",
+                  "type": "readonly_label",
+                  "label": "INZIP",
+                  "dataKey": "claimData.review.dofr.meta.inzip"
+                },
+                {
+                  "id": "f_cdr_d_net",
+                  "type": "readonly_label",
+                  "label": "Provider Network code",
+                  "dataKey": "claimData.review.dofr.meta.providerNetworkCode"
+                },
+                {
+                  "id": "f_cdr_d_id1",
+                  "type": "readonly_label",
+                  "label": "DOFR-ID1",
+                  "dataKey": "claimData.review.dofr.meta.dofrId1"
+                },
+                {
+                  "id": "f_cdr_d_name1",
+                  "type": "readonly_label",
+                  "label": "DOFR-Name1",
+                  "dataKey": "claimData.review.dofr.meta.dofrName1"
+                },
+                {
+                  "id": "f_cdr_d_relationship",
+                  "type": "readonly_label",
+                  "label": "Relationship",
+                  "dataKey": "claimData.review.dofr.meta.relationship"
+                },
+                {
+                  "id": "f_cdr_d_pgm",
+                  "type": "readonly_label",
+                  "label": "PGM-ID",
+                  "dataKey": "claimData.review.dofr.meta.pgmId"
+                },
+                {
+                  "id": "f_cdr_d_pg",
+                  "type": "readonly_label",
+                  "label": "PG-ID",
+                  "dataKey": "claimData.review.dofr.meta.pgId"
+                },
+                {
+                  "id": "f_cdr_d_um",
+                  "type": "readonly_label",
+                  "label": "UM-Delegation indicator",
+                  "dataKey": "claimData.review.dofr.meta.umDelegationIndicator"
+                },
+                {
+                  "id": "f_cdr_d_eff",
+                  "type": "readonly_label",
+                  "label": "Effective date",
+                  "dataKey": "claimData.review.dofr.meta.effectiveDate"
+                },
+                {
+                  "id": "f_cdr_d_end",
+                  "type": "readonly_label",
+                  "label": "End date",
+                  "dataKey": "claimData.review.dofr.meta.endDate"
+                }
+              ],
+              "columns": 3
+            },
+            {
+              "id": "sec_cd_r_dofr_lines",
+              "title": "DOFR — Claim Line",
+              "fields": [
+                {
+                  "id": "f_cdr_dl_num",
+                  "type": "readonly_label",
+                  "label": "Line #",
+                  "dataKey": "claimData.review.dofr.lineSummary.lineNum"
+                },
+                {
+                  "id": "f_cdr_dl_proc",
+                  "type": "readonly_label",
+                  "label": "Procedure",
+                  "dataKey": "claimData.review.dofr.lineSummary.procedure"
+                },
+                {
+                  "id": "f_cdr_dl_rev",
+                  "type": "readonly_label",
+                  "label": "Revenue code",
+                  "dataKey": "claimData.review.dofr.lineSummary.revenueCode"
+                },
+                {
+                  "id": "f_cdr_dl_cat",
+                  "type": "readonly_label",
+                  "label": "Service category",
+                  "dataKey": "claimData.review.dofr.lineSummary.serviceCategory"
+                },
+                {
+                  "id": "f_cdr_dl_event",
+                  "type": "readonly_label",
+                  "label": "Event",
+                  "dataKey": "claimData.review.dofr.lineSummary.event"
+                },
+                {
+                  "id": "f_cdr_dl_cap",
+                  "type": "readonly_label",
+                  "label": "Cap indicator",
+                  "dataKey": "claimData.review.dofr.lineSummary.capIndicator"
+                },
+                {
+                  "id": "f_cdr_dl_risk",
+                  "type": "readonly_label",
+                  "label": "Risk",
+                  "dataKey": "claimData.review.dofr.lineSummary.risk"
+                },
+                {
+                  "id": "f_cdr_dl_grp",
+                  "type": "readonly_label",
+                  "label": "Group code",
+                  "dataKey": "claimData.review.dofr.lineSummary.groupCode"
+                },
+                {
+                  "id": "f_cdr_dl_hc",
+                  "type": "readonly_label",
+                  "label": "HC",
+                  "dataKey": "claimData.review.dofr.lineSummary.hc"
+                }
+              ],
+              "columns": 4
+            }
+          ]
+        },
+        {
+          "id": "subtab_claim_data_related",
+          "label": "Related",
+          "sections": [
+            {
+              "id": "sec_cd_related",
+              "title": "Related Claim",
+              "fields": [
+                {
+                  "id": "f_cdrl_code",
+                  "type": "readonly_label",
+                  "label": "Code",
+                  "dataKey": "claimData.relatedSummary.code"
+                },
+                {
+                  "id": "f_cdrl_name",
+                  "type": "readonly_label",
+                  "label": "Name",
+                  "dataKey": "claimData.relatedSummary.name"
+                },
+                {
+                  "id": "f_cdrl_from",
+                  "type": "readonly_label",
+                  "label": "From",
+                  "dataKey": "claimData.relatedSummary.fromDate"
+                },
+                {
+                  "id": "f_cdrl_to",
+                  "type": "readonly_label",
+                  "label": "To",
+                  "dataKey": "claimData.relatedSummary.toDate"
+                },
+                {
+                  "id": "f_cdrl_type",
+                  "type": "readonly_label",
+                  "label": "Type",
+                  "dataKey": "claimData.relatedSummary.type"
+                },
+                {
+                  "id": "f_cdrl_provider",
+                  "type": "readonly_label",
+                  "label": "Provider",
+                  "dataKey": "claimData.relatedSummary.provider"
+                },
+                {
+                  "id": "f_cdrl_dcn",
+                  "type": "readonly_label",
+                  "label": "DCN",
+                  "dataKey": "claimData.relatedSummary.dcn"
+                },
+                {
+                  "id": "f_cdrl_charged",
+                  "type": "readonly_label",
+                  "label": "Charged",
+                  "dataKey": "claimData.relatedSummary.charged"
+                },
+                {
+                  "id": "f_cdrl_paid",
+                  "type": "readonly_label",
+                  "label": "Paid",
+                  "dataKey": "claimData.relatedSummary.paid"
+                },
+                {
+                  "id": "f_cdrl_status",
+                  "type": "readonly_label",
+                  "label": "Status",
+                  "dataKey": "claimData.relatedSummary.status"
+                }
+              ],
+              "columns": 4
+            }
+          ]
+        }
+      ],
+      "renderType": "sub_tabs"
+    }
+  ],
+  "decisionConfig": {
+    "label": "Decision",
+    "placeholder": "Select decision",
+    "required": true,
+    "disablesSubmit": true,
+    "options": [
+      {
+        "value": "pay",
+        "label": "Pay",
+        "icon": "check-circle"
+      },
+      {
+        "value": "deny",
+        "label": "Deny",
+        "icon": "x-circle"
+      }
+    ]
+  },
+  "submitConfig": {
+    "buttonLabel": "Submit decision",
+    "confirmDialog": {
+      "title": "Confirm decision",
+      "description": "You are about to submit your decision for {dcn}. This will end the attempt.",
+      "confirmLabel": "Submit",
+      "cancelLabel": "Cancel"
+    }
+  },
+  "denyConfig": {
+    "rejectCodes": [
+      {
+        "code": "PX_R11100",
+        "label": "DME purchase price already met on a prior claim — no further allowance can be made"
+      }
+    ],
+    "actionId": "deny_claim",
+    "confirmationTitle": "Claim rejected",
+    "confirmationBody": "The claim has been rejected with reject code PX_R11100. Confirm the Deny decision in the header to finish."
+  }
+}

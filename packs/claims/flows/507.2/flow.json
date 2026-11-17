@@ -1,0 +1,64 @@
+{
+  "$schema": "praxis/v2/pack-flow",
+  "code": "507.2",
+  "name": "Member Coverage Terminated — Split & Pay",
+  "variants": [
+    {
+      "variant": "base",
+      "variantIndex": 1,
+      "subjectRefs": ["DCN-507232"]
+    },
+    {
+      "variant": "v2",
+      "variantIndex": 2,
+      "subjectRefs": [
+        "DCN-9120200",
+        "DCN-9120201",
+        "DCN-9120202",
+        "DCN-9120203",
+        "DCN-9120204",
+        "DCN-9120205",
+        "DCN-9120206"
+      ]
+    },
+    {
+      "variant": "v3",
+      "variantIndex": 3,
+      "subjectRefs": [
+        "DCN-9120300",
+        "DCN-9120301",
+        "DCN-9120302",
+        "DCN-9120303",
+        "DCN-9120304",
+        "DCN-9120305",
+        "DCN-9120306"
+      ]
+    },
+    {
+      "variant": "v4",
+      "variantIndex": 4,
+      "subjectRefs": [
+        "DCN-9120400",
+        "DCN-9120401",
+        "DCN-9120402",
+        "DCN-9120403",
+        "DCN-9120404",
+        "DCN-9120405",
+        "DCN-9120406"
+      ]
+    },
+    {
+      "variant": "v5",
+      "variantIndex": 5,
+      "subjectRefs": [
+        "DCN-9120500",
+        "DCN-9120501",
+        "DCN-9120502",
+        "DCN-9120503",
+        "DCN-9120504",
+        "DCN-9120505",
+        "DCN-9120506"
+      ]
+    }
+  ]
+}

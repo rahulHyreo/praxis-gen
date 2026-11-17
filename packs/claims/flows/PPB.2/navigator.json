@@ -1,0 +1,231 @@
+{
+  "$schema": "training-platform/v1/navigator",
+  "$version": "2.0.0",
+  "id": "nav_ppb_2_partial_prior_auth_pass_line_reject",
+  "flowId": "flow_authorization_ppb_2",
+  "name": "Authorization PPB.2 — Partial Prior Auth Pass (Line-Level Reject) Navigator",
+  "description": "Walk the Authorization SOP for the PX_PPB event where both billed lines require authorization but only one passes. Identify the informational PX_PPB and PX_GCB events and rule out PX_NMF/PX_PAM, confirm the authorization is denied for both lines (two-row UM Detail Service — Line 1 INPAT001/NO MATCH, Line 2 CENTRAL1/<100% MATCH), confirm Line 1 carries a Prior Auth Pass ind of Y while Line 2 is blank, look up the EOB code by pricing state (VA → PX_00182), reject Line 2 at the line level by setting its Non-covered amount equal to its Billed amount and entering EOB PX_00182, then pay the claim — Line 1 is paid and Line 2 is rejected at the line level.",
+  "totalSteps": 7,
+  "passMark": 70,
+  "correctDecision": "pay",
+  "correctDecisionLabel": "Pay",
+  "totalMaxPoints": 90,
+  "totalNavigatorPoints": 70,
+  "steps": [
+    {
+      "id": "step_001",
+      "sequenceId": 1,
+      "name": "Identify the PX_PPB and PX_GCB events and rule out PX_NMF/PX_PAM",
+      "description": "Review all events in the Event Resolution tab. The events list will display both the PX_PPB event (possible prior auth pass claim) and the PX_GCB event (claim meets prior auth pass) — PX_PPB is the active informational event indicating the claim partially meets the prior authorization pass criteria. Verify that no PX_NMF or PX_PAM events are present on the list. If PX_NMF or PX_PAM is present, follow the alternate SOP steps; otherwise, proceed. In this scenario, no PX_NMF or PX_PAM events are present, so the trainee proceeds.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_all_edits",
+      "targetFieldId": "f_er_e_ppb",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Event Resolution tab and reviews the events list, where the active PX_PPB and companion PX_GCB events are shown and no PX_NMF/PX_PAM events are present.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Event Resolution' and review the events list. The active PX_PPB (possible prior auth pass claim) and companion PX_GCB (claim meets prior auth pass) informational events are shown, and no PX_NMF/PX_PAM events are present, so proceed.",
+      "highlightFields": ["f_er_edit_code", "f_er_e_ppb", "f_er_e_gcb"],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Identify the PX_PPB and PX_GCB events and rule out PX_NMF/PX_PAM"
+    },
+    {
+      "id": "step_002",
+      "sequenceId": 2,
+      "name": "Verify denied authorization for both claim lines",
+      "description": "Determine whether a denied authorization exists for the claim lines by navigating to the Claim Data tab, then the Review sub-tab, and expanding the Utilization Management section. Review the UM Detail Service table, which contains the Line #, Procedure, Revenue Code, Date, Rule ID, and Case Number columns. Because both claim lines require authorization, the table displays two rows. In this scenario, Line #1 shows Procedure 92928, Date 04/28/2025, Rule ID INPAT001, and Case Number NO MATCH. Line #2 shows Procedure 83990, Date 04/28/2025, Rule ID CENTRAL1, and Case Number <100% MATCH. A valid case number indicates that a matching authorization exists. A value of NO MATCH indicates that an authorization exists but does not match the billed service, while <100% MATCH indicates that an authorization exists but does not fully match the services billed. A blank Case Number field indicates that no authorization exists. In this scenario, neither claim line has a fully matching authorization; therefore, the trainee may proceed to the next step.",
+      "targetTabId": "tab_claim_data",
+      "targetSubTabId": "subtab_claim_data_review",
+      "targetSectionId": "sec_cd_r_um",
+      "targetFieldId": "f_cdr_um_case",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_data",
+        "subTabId": "subtab_claim_data_review"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Review sub-tab inside Claim Data and reads the two-row UM Detail Service table (Line 1 NO MATCH, Line 2 <100% MATCH).",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Data' → 'Review' and expand Utilization management. The UM Detail Service shows two rows — Line 1 (INPAT001 / NO MATCH) and Line 2 (CENTRAL1 / <100% MATCH) — neither a full authorization match, so proceed.",
+      "highlightFields": [
+        "f_cdr_um_rule",
+        "f_cdr_um_case",
+        "f_cdr_um2_rule",
+        "f_cdr_um2_case"
+      ],
+      "highlightTabId": "tab_claim_data",
+      "highlightSubTabId": "subtab_claim_data_review",
+      "checklistItem": "Verify denied authorization for both claim lines"
+    },
+    {
+      "id": "step_003",
+      "sequenceId": 3,
+      "name": "Verify Prior Auth Pass ind on each claim line",
+      "description": "Review the claim lines (Navigate to Claim lines tab) and expand each of the two lines to inspect the Prior Auth Pass ind field. In this scenario, expanding Line 1 shows Prior Auth Pass ind = Y (this line met the prior auth pass criteria and will be paid), and expanding Line 2 shows Prior Auth Pass ind blank (this line did not meet the prior auth pass criteria and must be rejected at the line level). The trainee proceeds to determine the EOB code needed to reject Line 2.",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_summary",
+      "targetFieldId": "f_cl_prior_auth_pass",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_lines"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Claim Lines tab and inspects the Prior Auth Pass ind field on both claim lines (Line 1 = Y, Line 2 = blank).",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Lines' and expand each line. Line 1's Prior Auth Pass ind shows Y (it will be paid) and Line 2's is blank (it must be rejected at the line level).",
+      "highlightFields": ["f_cl_prior_auth_pass", "f_cl2_prior_auth_pass"],
+      "highlightTabId": "tab_claim_lines",
+      "checklistItem": "Verify Prior Auth Pass ind on each claim line"
+    },
+    {
+      "id": "step_004",
+      "sequenceId": 4,
+      "name": "Look up the EOB code by pricing state",
+      "description": "Identify the appropriate EOB code by navigating to the Provider Information tab, then the Rendering section, and reviewing the Pricing State field. The EOB code is determined based on the provider's Pricing State. In this scenario, the Pricing State is VA (Virginia). Therefore, the appropriate EOB code to apply to Line 2 is PX_00182.",
+      "targetTabId": "tab_provider_info",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_pi_rendering",
+      "targetFieldId": "f_pi_r_pricing_state",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_provider_info"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Provider Information tab and reads the Pricing state (VA) under the Rendering section.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Provider Info' and read the Pricing State under the Rendering section. It shows VA (Virginia) — for VA the EOB code is PX_00182.",
+      "highlightFields": ["f_pi_r_pricing_state"],
+      "highlightTabId": "tab_provider_info",
+      "checklistItem": "Look up the EOB code by pricing state"
+    },
+    {
+      "id": "step_005",
+      "sequenceId": 5,
+      "name": "Reject Line 2 — set Non-covered equal to the Billed amount",
+      "description": "Reject Line 2 at the line level. On the Claim Lines tab, expand the second claim line (the line where Prior Auth Pass ind is blank) and make it editable. Copy the total Billed amount ($50.00) and paste it into the Non-covered column — the non-covered amount is the portion that will not be paid to the provider, so setting it equal to the total Billed amount denies the entire line.",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_line2",
+      "targetFieldId": "f_cl2_noncovered",
+      "actionType": "correct_field",
+      "actionPayload": {
+        "fieldId": "f_cl2_noncovered"
+      },
+      "completionTrigger": "field_corrected",
+      "completionTriggerNote": "Completes when the trainee edits Line 2's Non-covered field to equal the line's Billed amount ($50.00).",
+      "mismatchFieldId": "mismatch_cl2_noncovered",
+      "expectedValue": "$50.00",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Expand Line 2 on the Claim Lines tab, then enter the line's Billed amount ($50.00) into the Non-covered field to deny the entire line.",
+      "highlightFields": ["f_cl2_billed", "f_cl2_noncovered"],
+      "highlightTabId": "tab_claim_lines",
+      "checklistItem": "Reject Line 2 — Non-covered = Billed amount"
+    },
+    {
+      "id": "step_006",
+      "sequenceId": 6,
+      "name": "Reject Line 2 — enter EOB code PX_00182",
+      "description": "Complete the Line 2 rejection by entering the EOB code in the EOB column. The EOB code is determined by the pricing state; for VA (Virginia) the EOB code is PX_00182. Enter PX_00182 in Line 2's EOB field.",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_line2",
+      "targetFieldId": "f_cl2_eob",
+      "actionType": "correct_field",
+      "actionPayload": {
+        "fieldId": "f_cl2_eob"
+      },
+      "completionTrigger": "field_corrected",
+      "completionTriggerNote": "Completes when the trainee enters EOB code PX_00182 in Line 2's EOB field.",
+      "mismatchFieldId": "mismatch_cl2_eob",
+      "expectedValue": "PX_00182",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Enter EOB code PX_00182 (the code for pricing state VA) into Line 2's EOB field.",
+      "highlightFields": ["f_cl2_eob"],
+      "highlightTabId": "tab_claim_lines",
+      "checklistItem": "Reject Line 2 — EOB code PX_00182"
+    },
+    {
+      "id": "step_007",
+      "sequenceId": 7,
+      "name": "Submit Pay decision",
+      "description": "Navigate to the Decision section in the header, select 'Pay' from the dropdown menu and click Submit. With the Pay action submitted, Line 1 is paid normally and Line 2 is rejected at the line level via the non-covered amount and EOB code PX_00182.",
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "submit_decision",
+      "actionPayload": {
+        "type": "submit_decision",
+        "expectedDecision": "pay"
+      },
+      "completionTrigger": "decision_submitted",
+      "completionTriggerNote": "Completes when the trainee confirms the Pay decision in the submit dialog.",
+      "expectedValue": "pay",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Pick 'Pay' from the Decision dropdown in the claim header, then click Submit and confirm in the dialog.",
+      "highlightFields": [],
+      "checklistItem": "Submit Pay decision"
+    }
+  ],
+  "scoreBreakdown": {
+    "navigatorStepsMaxPoints": 70,
+    "decisionMaxPoints": 20,
+    "reasonCodeMaxPoints": 0,
+    "totalMaxPoints": 90,
+    "passMark": 70,
+    "weightedPassScore": 63
+  },
+  "stepSummaryForResults": [
+    {
+      "sequenceId": 1,
+      "name": "PX_PPB and PX_GCB events identified; PX_NMF/PX_PAM ruled out",
+      "points": 10
+    },
+    {
+      "sequenceId": 2,
+      "name": "Denied authorization confirmed for both lines (two-row UM)",
+      "points": 10
+    },
+    {
+      "sequenceId": 3,
+      "name": "Prior Auth Pass ind confirmed (Line 1 Y, Line 2 blank)",
+      "points": 10
+    },
+    {
+      "sequenceId": 4,
+      "name": "EOB code looked up by pricing state (VA → PX_00182)",
+      "points": 10
+    },
+    {
+      "sequenceId": 5,
+      "name": "Line 2 Non-covered set to Billed amount",
+      "points": 10
+    },
+    {
+      "sequenceId": 6,
+      "name": "Line 2 EOB code PX_00182 entered",
+      "points": 10
+    },
+    {
+      "sequenceId": 7,
+      "name": "Pay decision submitted",
+      "points": 10
+    }
+  ]
+}

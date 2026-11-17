@@ -1,0 +1,65 @@
+{
+  "$schema": "training-platform/v1/flow-result",
+  "$version": "1.0.0",
+  "id": "result_rb1_1_cob_dual_membership_primary",
+  "rubric": {
+    "expectedDecision": "pay",
+    "expectedReasonCode": null,
+    "requiredStepIds": [
+      "step_001",
+      "step_002",
+      "step_003",
+      "step_004",
+      "step_005",
+      "step_006",
+      "step_007",
+      "step_008",
+      "step_009"
+    ],
+    "weights": {
+      "navigator": 90,
+      "decision": 20,
+      "reasonCode": 0
+    },
+    "deductions": {
+      "perMissedRequiredStep": 0,
+      "wrongDecision": 20,
+      "wrongReasonCode": 0
+    }
+  },
+  "resultConfig": {
+    "passLabel": "Passed!",
+    "failLabel": "You did not meet the pass mark.",
+    "passDescription": "Great work — you read PX_DIS, PX_DMM, PX_897 and PX_RB1 as one coordination-of-benefits situation rather than four claims to work, confirmed no higher-priority event preceded them, established dual membership under one Member ID with the 09/26/2026 receipt date inside the primary policy's 01/01/2025–12/31/2028 dates, confirmed from Product line PPO PB INCENTIVE that the group is not a Non-Medical Plan, reviewed the Limited Liability record, confirmed the claim is keyed correctly because the Member ID matches the HCID, determined the claim is in the Primary position, confirmed PX_RB1 (Eligible Dup In Service Split) on the primary claim, validated, and paid. Once RB1 is processed, CI&W generates a claim with the secondary policy details carrying the RB2 event after 24 hours.",
+    "failDescription": "Pass mark is {passMark}%. Review the steps below to see where you can improve.",
+    "scoreCircle": {
+      "radius": 40,
+      "strokeWidth": 8,
+      "passColor": "#3B6D11",
+      "failColor": "#A32D2D",
+      "trackColor": "#E5E7EB"
+    },
+    "statBoxes": [
+      {
+        "id": "navigator_score",
+        "label": "Navigator",
+        "dataKey": "navigatorScore",
+        "max": 90
+      },
+      {
+        "id": "decision_score",
+        "label": "Decision",
+        "dataKey": "decisionScore",
+        "max": 20
+      },
+      {
+        "id": "time_taken",
+        "label": "Time Taken",
+        "dataKey": "timeTakenSeconds",
+        "format": "duration"
+      }
+    ],
+    "retakeButton": true,
+    "backToClaimsButton": true
+  }
+}

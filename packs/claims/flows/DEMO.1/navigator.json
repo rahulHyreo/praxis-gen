@@ -1,0 +1,12 @@
+{
+  "$schema": "training-platform/v1/navigator",
+  "$version": "2.0.0",
+  "id": "navigator_demo_workspace_sandbox",
+  "name": "Workspace Sandbox",
+  "description": "Deliberately empty. A step would imply an order, and an ordered step would have actionOrderBlocker refuse the very buttons this sandbox exists to let a trainee press.",
+  "steps": [],
+  "passMark": 0,
+  "totalSteps": 0,
+  "totalNavigatorPoints": 0,
+  "totalMaxPoints": 0
+}

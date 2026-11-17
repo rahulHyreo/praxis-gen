@@ -1,0 +1,64 @@
+{
+  "$schema": "praxis/v2/pack-flow",
+  "code": "597.1",
+  "name": "No Active Eligibility — Deny Claim",
+  "variants": [
+    {
+      "variant": "base",
+      "variantIndex": 1,
+      "subjectRefs": ["DCN-597101"]
+    },
+    {
+      "variant": "v2",
+      "variantIndex": 2,
+      "subjectRefs": [
+        "DCN-9170200",
+        "DCN-9170201",
+        "DCN-9170202",
+        "DCN-9170203",
+        "DCN-9170204",
+        "DCN-9170205",
+        "DCN-9170206"
+      ]
+    },
+    {
+      "variant": "v3",
+      "variantIndex": 3,
+      "subjectRefs": [
+        "DCN-9170300",
+        "DCN-9170301",
+        "DCN-9170302",
+        "DCN-9170303",
+        "DCN-9170304",
+        "DCN-9170305",
+        "DCN-9170306"
+      ]
+    },
+    {
+      "variant": "v4",
+      "variantIndex": 4,
+      "subjectRefs": [
+        "DCN-9170400",
+        "DCN-9170401",
+        "DCN-9170402",
+        "DCN-9170403",
+        "DCN-9170404",
+        "DCN-9170405",
+        "DCN-9170406"
+      ]
+    },
+    {
+      "variant": "v5",
+      "variantIndex": 5,
+      "subjectRefs": [
+        "DCN-9170500",
+        "DCN-9170501",
+        "DCN-9170502",
+        "DCN-9170503",
+        "DCN-9170504",
+        "DCN-9170505",
+        "DCN-9170506"
+      ]
+    }
+  ]
+}

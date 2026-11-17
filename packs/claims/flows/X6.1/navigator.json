@@ -1,0 +1,262 @@
+{
+  "$schema": "training-platform/v1/navigator",
+  "$version": "2.0.0",
+  "id": "nav_x6_1_modifier_22_no_records_100_pay",
+  "flowId": "flow_pricing_x6_1",
+  "name": "Pricing X6.1 — Modifier 22 No Records & Pay at 100% Navigator",
+  "description": "Walk the Pricing SOP for a claim billed with modifier 22 when no medical records are on the claim. Review the active PX_X6 hard edit on the Event Resolution tab, confirm the claim was not already reviewed by the Provider Edits Team (Notes carry no Editing/Bundling/CCCR keyword), confirm no medical records are present (Attachments shows no document number), Get Pricing to surface the 100% allowance ($80), confirm the Claim Data → Pricing sub-tab has no Manual Pricing pop-up, confirm the line of business is Local (Member Information Product field), calculate and enter the write-off ($200 billed − $80 allowance = $120) on the Claim Lines tab, then pay the claim at 100% of the allowance.",
+  "totalSteps": 8,
+  "passMark": 70,
+  "correctDecision": "pay",
+  "correctDecisionLabel": "Pay",
+  "totalMaxPoints": 100,
+  "totalNavigatorPoints": 80,
+  "steps": [
+    {
+      "id": "step_008",
+      "sequenceId": 1,
+      "name": "Review the active edit on Event Resolution",
+      "description": "Navigate to the Event Resolution tab and review all edits set on the claim. The active PX_X6 edit — Pricing, modifier 22, no medical records, process at 100% — is shown as a hard edit and is highlighted in red. This is the event you need to resolve.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_active",
+      "targetFieldId": "f_er_edit_code",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Event Resolution tab and reviews the active PX_X6 hard edit, shown in red with a Hard Edit severity.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Event Resolution'. The Active Edit section shows Edit Code PX_X6 with a red Hard Edit badge, and All Edits lists it as the active row.",
+      "highlightFields": [
+        "f_er_edit_code",
+        "f_er_edit_label",
+        "f_er_severity",
+        "f_er_e_x4"
+      ],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Review the active edit on Event Resolution"
+    },
+    {
+      "id": "step_001",
+      "sequenceId": 2,
+      "name": "Check for prior Provider Edits review",
+      "description": "Open the Notes tab and review the comments currently available, looking for words such as Editing, Bundling, or CCCR. If the claim has already been reviewed by the Provider Edits Team, process it per the team's recommendations; if it has not been reviewed, proceed. In this scenario, the comments contain none of those keywords, so the claim has not been reviewed by the Provider Edits Team and the trainee proceeds.",
+      "targetTabId": "tab_notes",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_n_comments",
+      "targetFieldId": "f_n_comments",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_notes"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Notes tab and reviews the comments, which contain no Editing/Bundling/CCCR keyword.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Notes' and read the comments. None contain Editing, Bundling, or CCCR, so the claim was not previously reviewed by the Provider Edits Team — proceed.",
+      "highlightFields": ["f_n_comments"],
+      "highlightTabId": "tab_notes",
+      "checklistItem": "Check for prior Provider Edits review"
+    },
+    {
+      "id": "step_002",
+      "sequenceId": 3,
+      "name": "Check for medical records on the claim",
+      "description": "Determine whether medical records are available on the claim. Open the Attachments sub-tab of the Attachment tab and check whether a document number is present in the Attachments section. View the claim image (DCN) and confirm there is nothing other than the claim form. In this scenario no document number is present and no medical records have been received, so the claim is not routed for a Clinical Coding Review — instead it is processed at 100% of the $80 allowance per operational guidelines.",
+      "targetTabId": "tab_attachment",
+      "targetSubTabId": "subtab_attachment_attachments",
+      "targetSectionId": "sec_att_pwk",
+      "targetFieldId": "f_att_doc_num",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_attachment",
+        "subTabId": "subtab_attachment_attachments"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Attachments sub-tab and confirms no document number / no medical records are present.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Attachment' → 'Attachments'. No document number is present and no medical records were received, so process the claim at 100% of the $80 allowance.",
+      "highlightFields": ["f_att_type", "f_att_doc_num"],
+      "highlightTabId": "tab_attachment",
+      "highlightSubTabId": "subtab_attachment_attachments",
+      "checklistItem": "Check for medical records on the claim"
+    },
+    {
+      "id": "step_003",
+      "sequenceId": 4,
+      "name": "Get the 100% allowance",
+      "description": "Identify the 100% allowance by navigating to the Search tab, then the Pricing sub-tab, and scrolling to the Claim Lines section. Click Get Pricing to generate the pricing details for the claim. The application will display the 100% allowance associated with the claim. In this scenario, the 100% allowance is $80.00.",
+      "targetTabId": "tab_search",
+      "targetSubTabId": "subtab_search_pricing",
+      "targetSectionId": "sec_sc_pr_get",
+      "targetFieldId": "f_spl1_get_pricing",
+      "actionType": "get_pricing",
+      "actionPayload": {
+        "type": "action",
+        "action": "get_pricing"
+      },
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the trainee opens the Search → Pricing sub-tab and clicks Get Pricing, dispatching the get_pricing action (which reveals the $80 100% allowance on the pricing line).",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Search' → 'Pricing', scroll to the claim-lines section, and click Get Pricing. The application shows the 100% allowance of $80.",
+      "highlightFields": ["f_spl1_get_pricing", "f_spl1_allowed"],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_pricing",
+      "checklistItem": "Get the 100% allowance"
+    },
+    {
+      "id": "step_004",
+      "sequenceId": 5,
+      "name": "Verify the MP pop-up is not present",
+      "description": "Check whether the Manual Pricing (MP) section is available by navigating to the Claim Data tab, then the Pricing sub-tab. If the MP section is present, open the Manual Pricing (MP) pop-up and update the pricing information using the previously identified allowance amount. If the MP section is not available, no pricing update is required and processing may continue. In this scenario, the claim does not contain a Manual Pricing (MP) pop-up; therefore, the trainee may proceed to the next step.",
+      "targetTabId": "tab_claim_data",
+      "targetSubTabId": "subtab_claim_data_pricing",
+      "targetSectionId": "sec_cd_pr_mp",
+      "targetFieldId": "f_cd_pr_note",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_data",
+        "subTabId": "subtab_claim_data_pricing"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Claim Data → Pricing sub-tab and confirms there is no Manual Pricing pop-up.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Data' → 'Pricing'. There is no Manual Pricing pop-up for this claim — proceed.",
+      "highlightFields": ["f_cd_pr_note"],
+      "highlightTabId": "tab_claim_data",
+      "highlightSubTabId": "subtab_claim_data_pricing",
+      "checklistItem": "Verify the MP pop-up is not present"
+    },
+    {
+      "id": "step_005",
+      "sequenceId": 6,
+      "name": "Check the Line of Business via Product field",
+      "description": "Determine whether the claim is ITS-Host or another Line of Business (LOB) by navigating to the Member Information tab, then the Group section, and reviewing the Product field. If the Product value is ITS-Host, follow the alternate SOP guidelines. If the Product field displays any other value, such as Local, National, or ACA, proceed to the next step. In this scenario, the Product is Local; therefore, the claim is not ITS-Host, and the trainee may proceed to the next step.",
+      "targetTabId": "tab_member_info",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_mi_group",
+      "targetFieldId": "f_mi_g_product",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_member_info"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Member Information tab and reads the Product field (Local).",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Member Info' and check the Product field under Group. It reads 'Local' (not ITS-Host), so proceed.",
+      "highlightFields": ["f_mi_g_product"],
+      "highlightTabId": "tab_member_info",
+      "checklistItem": "Check the Line of Business via Product field"
+    },
+    {
+      "id": "step_006",
+      "sequenceId": 7,
+      "name": "Calculate and enter the write-off",
+      "description": "Ensure the correct write-off populates on the claim. Calculate the write-off by subtracting the $80 allowance from the Bill Charge — the Bill Charge ($200.00) can be identified from the Billed field within the Claim Lines tab — and enter the result ($120) in the write-off value field. Once the write-off is updated, the trainee proceeds.",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_summary",
+      "targetFieldId": "f_cl_writeoff",
+      "actionType": "correct_field",
+      "actionPayload": {
+        "fieldId": "f_cl_writeoff"
+      },
+      "completionTrigger": "field_corrected",
+      "completionTriggerNote": "Completes when the trainee edits the Claim Lines write-off field to the calculated write-off of 120 ($200 billed − $80 allowance).",
+      "mismatchFieldId": "mismatch_writeoff_line1",
+      "expectedValue": "120",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Lines'. The Billed field reads $200.00; subtract the $80 allowance and enter the write-off 120 in the write-off field.",
+      "highlightFields": ["f_cl_billed", "f_cl_writeoff"],
+      "highlightTabId": "tab_claim_lines",
+      "checklistItem": "Calculate and enter the write-off"
+    },
+    {
+      "id": "step_007",
+      "sequenceId": 8,
+      "name": "Submit Pay decision",
+      "description": "Navigate to the Decision section in the header, select 'Pay' from the dropdown menu and click Submit. With no medical records on the claim, the claim is processed and paid at 100% of the $80 allowance.",
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "submit_decision",
+      "actionPayload": {
+        "type": "submit_decision",
+        "expectedDecision": "pay"
+      },
+      "completionTrigger": "decision_submitted",
+      "completionTriggerNote": "Completes when the trainee confirms the Pay decision in the submit dialog.",
+      "expectedValue": "pay",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Pick 'Pay' from the Decision dropdown in the claim header, then click Submit and confirm in the dialog.",
+      "highlightFields": [],
+      "checklistItem": "Submit Pay decision"
+    }
+  ],
+  "scoreBreakdown": {
+    "navigatorStepsMaxPoints": 80,
+    "decisionMaxPoints": 20,
+    "reasonCodeMaxPoints": 0,
+    "totalMaxPoints": 100,
+    "passMark": 70,
+    "weightedPassScore": 70
+  },
+  "stepSummaryForResults": [
+    {
+      "sequenceId": 1,
+      "name": "Active PX_X6 hard edit reviewed on Event Resolution",
+      "points": 10
+    },
+    {
+      "sequenceId": 2,
+      "name": "Prior Provider Edits review checked (no CCCR keyword)",
+      "points": 10
+    },
+    {
+      "sequenceId": 3,
+      "name": "No medical records confirmed on the claim",
+      "points": 10
+    },
+    {
+      "sequenceId": 4,
+      "name": "Get Pricing run — 100% allowance ($80) surfaced",
+      "points": 10
+    },
+    {
+      "sequenceId": 5,
+      "name": "Manual Pricing pop-up confirmed absent",
+      "points": 10
+    },
+    {
+      "sequenceId": 6,
+      "name": "Line of business confirmed Local via Product field",
+      "points": 10
+    },
+    {
+      "sequenceId": 7,
+      "name": "Write-off calculated and entered (120)",
+      "points": 10
+    },
+    {
+      "sequenceId": 8,
+      "name": "Pay decision submitted",
+      "points": 10
+    }
+  ]
+}

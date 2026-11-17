@@ -1,0 +1,64 @@
+{
+  "$schema": "praxis/v2/pack-flow",
+  "code": "509.2",
+  "name": "Contract Not In Effect for Group — Deny with PX_R01030",
+  "variants": [
+    {
+      "variant": "base",
+      "variantIndex": 1,
+      "subjectRefs": ["DCN-509102"]
+    },
+    {
+      "variant": "v2",
+      "variantIndex": 2,
+      "subjectRefs": [
+        "DCN-9150200",
+        "DCN-9150201",
+        "DCN-9150202",
+        "DCN-9150203",
+        "DCN-9150204",
+        "DCN-9150205",
+        "DCN-9150206"
+      ]
+    },
+    {
+      "variant": "v3",
+      "variantIndex": 3,
+      "subjectRefs": [
+        "DCN-9150300",
+        "DCN-9150301",
+        "DCN-9150302",
+        "DCN-9150303",
+        "DCN-9150304",
+        "DCN-9150305",
+        "DCN-9150306"
+      ]
+    },
+    {
+      "variant": "v4",
+      "variantIndex": 4,
+      "subjectRefs": [
+        "DCN-9150400",
+        "DCN-9150401",
+        "DCN-9150402",
+        "DCN-9150403",
+        "DCN-9150404",
+        "DCN-9150405",
+        "DCN-9150406"
+      ]
+    },
+    {
+      "variant": "v5",
+      "variantIndex": 5,
+      "subjectRefs": [
+        "DCN-9150500",
+        "DCN-9150501",
+        "DCN-9150502",
+        "DCN-9150503",
+        "DCN-9150504",
+        "DCN-9150505",
+        "DCN-9150506"
+      ]
+    }
+  ]
+}

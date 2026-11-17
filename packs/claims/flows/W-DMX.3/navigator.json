@@ -1,0 +1,345 @@
+{
+  "$schema": "training-platform/v1/navigator",
+  "$version": "2.0.0",
+  "id": "nav_wdmx_3_dme_limits",
+  "flowId": "flow_dme_limits_wdmx_3",
+  "name": "DME Limits — W-DMX.3",
+  "description": "A DME purchase where the SPI-CLM Limited Liability record on file already shows the purchase price fully consumed. Screen E0601 against the continuous-rental and ventilator lists, confirm the UM event means an authorization is required and verify it on file (case number UM97608093), read the NU modifier as a purchase, find the SPI-CLM record showing PTD $500 and REM $0, obtain the $500 purchase price, confirm from history that E0601 was already purchased and allowed at $500, read the record's disposition — no allowance due to maximum benefits — and deny the claim with reject code PX_R11100.",
+  "totalSteps": 10,
+  "passMark": 70,
+  "correctDecision": "deny",
+  "correctDecisionLabel": "Deny",
+  "totalMaxPoints": 130,
+  "totalNavigatorPoints": 100,
+  "steps": [
+    {
+      "id": "step_001",
+      "sequenceId": 1,
+      "name": "Check continuous rental and ventilator lists",
+      "description": "Before anything else, decide whether this DME belongs in this flow at all. Navigate to the Claim Lines tab and identify the procedure code from Line 1 (E0601). First, verify whether the code is included in the Continuous Rental List (Documents section). If it is not, then check whether it is included in the Ventilator Rented and Never Purchased List (E0450, E0460, E0461, E0462, E0464, E1392). In this scenario, E0601 is not present in either list; therefore, the condition is not met and proceed to the next step.",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_screening",
+      "targetFieldId": "f_cl_procedure_code",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_lines"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the Claim Lines tab is opened.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Line 1 reads E0601. Check it against the Continuous Rental List document, then against the six ventilator codes.",
+      "highlightFields": [
+        "f_cl_procedure_code",
+        "f_cl_procedure_note",
+        "f_cl_ventilator_note"
+      ],
+      "highlightTabId": "tab_claim_lines",
+      "checklistItem": "E0601 cleared against the Continuous Rental List and the ventilator codes"
+    },
+    {
+      "id": "step_002",
+      "sequenceId": 2,
+      "name": "Check whether authorization is required",
+      "description": "Decide whether this procedure needs an authorization at all. Open the Event Resolution tab and look for a UM, AIM or PAM event. If none of the three is present no authorization is required and the claim follows the alternate guidelines. In this scenario a UM event is present, which means an authorization IS required — and it now has to be verified on file.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_active",
+      "targetFieldId": "f_er_edit_code",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the Event Resolution tab is opened.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Look for UM, AIM or PAM in the events list. A UM event is present here.",
+      "highlightFields": ["f_er_edit_code", "f_er_description", "f_er_e1_code"],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "UM event found — an authorization is required"
+    },
+    {
+      "id": "step_003",
+      "sequenceId": 3,
+      "name": "Verify authorization is on file",
+      "description": "An authorization being required is not the same as one being on file. Open the Claim Data tab, go to the Review sub-tab and expand the Utilization Management section. The UM Detail Service table shows Line # 1, Procedure E0601, Date 01/05/2026, Rule ID AIMREHAB and Case Number UM97608093. A populated Case Number confirms the authorization is available for E0601; an empty one would send the claim to the alternate guidelines. Here it is populated, so continue.",
+      "targetTabId": "tab_claim_data",
+      "targetSubTabId": "subtab_claim_data_review",
+      "targetSectionId": "sec_cd_r_um",
+      "targetFieldId": "f_cdr_um_case",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_data",
+        "subTabId": "subtab_claim_data_review"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the Claim Data → Review sub-tab is opened.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Claim Data → Review → Utilization Management. The Case Number reads UM97608093.",
+      "highlightFields": [
+        "f_cdr_um_line",
+        "f_cdr_um_proc",
+        "f_cdr_um_date",
+        "f_cdr_um_rule",
+        "f_cdr_um_case"
+      ],
+      "highlightTabId": "tab_claim_data",
+      "checklistItem": "Case number UM97608093 confirms the authorization"
+    },
+    {
+      "id": "step_004",
+      "sequenceId": 4,
+      "name": "Check the modifier on the claim",
+      "description": "Return to the Claim Lines tab and read the Modifier field. RR means the DME was rented by the month; NU means it was purchased outright. In this scenario the modifier is NU, so this claim is billing the equipment as a purchase — which makes the only question that matters whether the purchase price has already been paid.",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_line1",
+      "targetFieldId": "f_cl_modifier",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_lines"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the Claim Lines tab is opened again.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Modifier NU = purchased, RR = rented. This line is NU.",
+      "highlightFields": [
+        "f_cl_modifier",
+        "f_cl_modifier_note",
+        "f_cl_billed",
+        "f_cl_service_from"
+      ],
+      "highlightTabId": "tab_claim_lines",
+      "checklistItem": "Modifier NU — the DME was purchased"
+    },
+    {
+      "id": "step_005",
+      "sequenceId": 5,
+      "name": "Review the existing SPI-CLM LL record",
+      "description": "Look for a Limited Liability record before doing any arithmetic. Go to the Search tab and open the Limited Liability sub-tab; any records appear under Limited Liability Results, where the Type field identifies them. In this scenario an SPI-CLM record is already on file, and its Notes read: E0601 / NU: $500, PTD: $500, REM: $0 / DOS: 1/5/2026 / DCN: DCN-619106 / No allowance due to Maximum benefits. Note what it claims — the next three steps are about proving it.",
+      "targetTabId": "tab_search",
+      "targetSubTabId": "subtab_search_limited",
+      "targetSectionId": "sec_sll_results",
+      "targetFieldId": "f_sll_r0_type",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_search",
+        "subTabId": "subtab_search_limited"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the Search → Limited Liability sub-tab is opened.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Search → Limited Liability. Look for Type SPI-CLM in the results.",
+      "highlightFields": [
+        "f_sll_r0_type",
+        "f_sll_r0_description",
+        "f_sll_r0_notes"
+      ],
+      "highlightTabId": "tab_search",
+      "checklistItem": "SPI-CLM record found — PTD $500, REM $0"
+    },
+    {
+      "id": "step_006",
+      "sequenceId": 6,
+      "name": "Obtain the DME purchase price",
+      "description": "Find out what this equipment costs to buy. Go to the Search tab, open the Pricing sub-tab and work in the Claim Lines section: the Modifier must be NU (it already is on this claim — if it were RR you would change it), and the Billed amount in THIS section must be changed to 100000 so the quote is not capped at the billed charge. Click Get Pricing and read the purchase price from the Allowed column. In this scenario the purchase price for the DME is $500.",
+      "targetTabId": "tab_search",
+      "targetSubTabId": "subtab_search_pricing",
+      "targetSectionId": "sec_sp_claim_lines",
+      "targetFieldId": null,
+      "actionType": "get_pricing_purchase",
+      "actionPayload": {
+        "action": "get_pricing_purchase"
+      },
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when Get Pricing returns the purchase price — Modifier NU and Billed 100000 must both be set.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Modifier is already NU. Change the Billed amount in this section to 100000, then click Get Pricing. The Allowed column shows $500.00.",
+      "highlightFields": [
+        "f_sp_line1_modifier",
+        "f_sp_line1_billed",
+        "f_sp_get_pricing_purchase",
+        "f_sp_line1_allowed"
+      ],
+      "highlightTabId": "tab_search",
+      "completesActionId": "get_pricing_purchase",
+      "checklistItem": "Purchase price $500.00 obtained"
+    },
+    {
+      "id": "step_007",
+      "sequenceId": 7,
+      "name": "Review history for prior purchase",
+      "description": "Check whether the same procedure code was already purchased. Go to the Search tab, open the Claims sub-tab and review the member's claim history for this provider. A Modifier NU on a history claim means the DME was previously purchased; RR would mean it was only rented. Click Open claim detail: the history claim's Claim Lines tab shows procedure E0601 with modifier NU, service date 1/5/2026 and DCN-619106, and it was allowed $500.00. That is the entire $500 purchase price — nothing of it remains.",
+      "targetTabId": "tab_search",
+      "targetSubTabId": "subtab_search_claims",
+      "targetSectionId": "sec_sc_history",
+      "targetFieldId": null,
+      "actionType": "open_prior_claim",
+      "actionPayload": {
+        "action": "open_prior_claim"
+      },
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the history claim's detail is opened.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Search → Claims → Open claim detail. The history claim shows modifier NU, allowed $500.00.",
+      "highlightFields": [
+        "f_sc_h1_dcn",
+        "f_sc_h1_mod",
+        "f_sc_h1_paid",
+        "f_sc_open_detail"
+      ],
+      "highlightTabId": "tab_search",
+      "completesActionId": "open_prior_claim",
+      "checklistItem": "History shows E0601 purchased (NU) and allowed $500.00"
+    },
+    {
+      "id": "step_008",
+      "sequenceId": 8,
+      "name": "Confirm no allowance remains on the LL record",
+      "description": "Confirm the record's disposition before denying. Go back to the Search tab, open the Limited Liability sub-tab, select the SPI-CLM record and read the comments under its Notes section. In this scenario the record reads PTD: $500 against a $500 purchase price, leaving REM: $0, with the comment “No allowance due to Maximum benefits.” Everything you obtained agrees with it: the purchase price is $500 and the history claim already consumed all of it. No additional allowance can be made, so the claim must be denied.",
+      "targetTabId": "tab_search",
+      "targetSubTabId": "subtab_search_limited",
+      "targetSectionId": "sec_sll_review",
+      "targetFieldId": null,
+      "actionType": "open_ll_record_notes",
+      "actionPayload": {
+        "action": "open_ll_record_notes"
+      },
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the SPI-CLM record's Notes are opened. Returning to the sub-tab is not enough — the record has to be opened.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Search → Limited Liability → select the SPI-CLM record → View record notes.",
+      "highlightFields": [
+        "f_sll_view_notes",
+        "f_sll_r0_notes",
+        "f_sll_disposition_note"
+      ],
+      "highlightTabId": "tab_search",
+      "completesActionId": "open_ll_record_notes",
+      "checklistItem": "SPI-CLM record confirms no allowance due to maximum benefits"
+    },
+    {
+      "id": "step_009",
+      "sequenceId": 9,
+      "name": "Deny the claim using Reject code PX_R11100",
+      "description": "The full $500 purchase price was already applied on the history claim and no additional allowance is available, so this claim cannot be paid. Open the Actions menu in the header, select Deny Claim, enter rejection code PX_R11100 in the rejection code field, and click Submit on the panel.",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_line1",
+      "targetFieldId": null,
+      "actionType": "deny_claim",
+      "actionPayload": {
+        "action": "deny_claim"
+      },
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the Deny Claim panel is submitted. The reject code itself is graded by the rubric, not by this step.",
+      "expectedValue": "PX_R11100",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Actions → Deny Claim, then enter reject code PX_R11100 and submit the panel.",
+      "highlightFields": ["f_cl_modifier", "f_cl_allowed"],
+      "highlightTabId": "tab_claim_lines",
+      "completesActionId": "deny_claim",
+      "checklistItem": "Claim denied with reject code PX_R11100"
+    },
+    {
+      "id": "step_010",
+      "sequenceId": 10,
+      "name": "Submit Deny decision",
+      "description": "The authorization was on file, but the equipment was already purchased and the SPI-CLM record shows the whole $500 purchase price consumed with no allowance remaining. Open the Decision section in the header, select Deny from the dropdown and click Submit.",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "decision_submit",
+      "actionPayload": {
+        "decision": "deny"
+      },
+      "completionTrigger": "decision_submitted",
+      "completionTriggerNote": "Completes only when the decision submitted is Deny.",
+      "expectedValue": "deny",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Select Deny in the header decision dropdown and click Submit.",
+      "highlightFields": [],
+      "highlightTabId": "tab_claim_lines",
+      "checklistItem": "Deny decision submitted"
+    }
+  ],
+  "scoreBreakdown": {
+    "navigatorStepsMaxPoints": 100,
+    "decisionMaxPoints": 20,
+    "reasonCodeMaxPoints": 10,
+    "totalMaxPoints": 130,
+    "passMark": 70,
+    "weightedPassScore": 91
+  },
+  "stepSummaryForResults": [
+    {
+      "sequenceId": 1,
+      "name": "Check continuous rental and ventilator lists",
+      "points": 10
+    },
+    {
+      "sequenceId": 2,
+      "name": "Check whether authorization is required",
+      "points": 10
+    },
+    {
+      "sequenceId": 3,
+      "name": "Verify authorization is on file",
+      "points": 10
+    },
+    {
+      "sequenceId": 4,
+      "name": "Check the modifier on the claim",
+      "points": 10
+    },
+    {
+      "sequenceId": 5,
+      "name": "Review the existing SPI-CLM LL record",
+      "points": 10
+    },
+    {
+      "sequenceId": 6,
+      "name": "Obtain the DME purchase price",
+      "points": 10
+    },
+    {
+      "sequenceId": 7,
+      "name": "Review history for prior purchase",
+      "points": 10
+    },
+    {
+      "sequenceId": 8,
+      "name": "Confirm no allowance remains on the LL record",
+      "points": 10
+    },
+    {
+      "sequenceId": 9,
+      "name": "Deny the claim using Reject code PX_R11100",
+      "points": 10
+    },
+    {
+      "sequenceId": 10,
+      "name": "Submit Deny decision",
+      "points": 10
+    }
+  ]
+}

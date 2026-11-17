@@ -1,0 +1,501 @@
+{
+  "$schema": "training-platform/v1/navigator",
+  "$version": "2.0.0",
+  "id": "nav_lps_2_late_call_penalty_full_rejection",
+  "flowId": "flow_late_call_penalty_lps_2",
+  "name": "Late Call Penalty LPS.2 — 100% Penalty & Full Rejection Navigator",
+  "description": "Walk the Late Call Penalty SOP for the PX_LPS event through its full-rejection branch: identify the PX_LPS hard edit, verify provider participation (PAR), check the event hierarchy, confirm the procedure is not COVID-19 related (83516) and the claim is original processing (record 999), verify an authorization is available, check the Late Call indicator via Pricing Details (L → penalty applies) and confirm the dates of service precede the Case creation date via Case Details, confirm authorization is required by UM (Rule ID VIRGINIA1, not AIM), determine the penalty percentage from the National state (GA) / Line of Business (Local) / DOS (1/1/2026) → 100%, clear the penalty-exclusion and extenuating-circumstances checks, click Get Pricing to confirm the allowed amount ($90) equals the billed amount ($90) so the 100% penalty leaves nothing payable, reject the claim with code PX_R19022, and submit the Deny decision.",
+  "totalSteps": 16,
+  "passMark": 70,
+  "correctDecision": "deny",
+  "correctDecisionLabel": "Deny",
+  "totalMaxPoints": 190,
+  "totalNavigatorPoints": 160,
+  "steps": [
+    {
+      "id": "step_001",
+      "sequenceId": 1,
+      "name": "Identify the PX_LPS hard edit",
+      "description": "Open the Event Resolution tab. All edits for the claim are listed; the PX_LPS edit is flagged as a hard edit with an error indication — that is the event you are resolving. Take note of it.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_active",
+      "targetFieldId": "f_er_e_lps",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes as soon as the trainee opens the Event Resolution tab, where the PX_LPS hard edit is shown in red.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Click the 'Event Resolution' tab. The active PX_LPS edit ('Late Call Penalty — authorization on file with Late Call indicator') is the hard edit shown with an error indication.",
+      "highlightFields": ["f_er_edit_code", "f_er_severity", "f_er_e_lps"],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Event Resolution tab opened — PX_LPS hard edit identified"
+    },
+    {
+      "id": "step_002",
+      "sequenceId": 2,
+      "name": "Verify provider participation status",
+      "description": "Open the Claim Header tab and check the Provider Participation field to confirm whether the provider is PAR or NPAR. In this scenario, the provider is PAR.",
+      "targetTabId": "tab_claim_header",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_ch_general",
+      "targetFieldId": "f_ch_g_participation",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_header"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Claim Header tab and reads the Provider Participation field (PAR).",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Header'. The Provider Participation field reads 'PAR'.",
+      "highlightFields": ["f_ch_g_participation"],
+      "highlightTabId": "tab_claim_header",
+      "checklistItem": "Provider participation confirmed as PAR"
+    },
+    {
+      "id": "step_003",
+      "sequenceId": 3,
+      "name": "Check the event hierarchy",
+      "description": "Return to the Event Resolution tab and review the events list for any other events that must be resolved before PX_LPS per the event hierarchy. If other events are present, resolve those that come before PX_LPS first; if none are present, proceed. In this scenario, no other events are present, so continue with the PX_LPS event.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_all_edits",
+      "targetFieldId": null,
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee revisits the Event Resolution tab to check the event hierarchy — no other events precede PX_LPS.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Return to 'Event Resolution' and scan the All Edits list. No other events precede PX_LPS in the hierarchy, so continue with PX_LPS.",
+      "highlightFields": [
+        "f_er_e_rnb",
+        "f_er_e_iaf",
+        "f_er_e_plp",
+        "f_er_e_lps"
+      ],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Event hierarchy checked — no events precede PX_LPS"
+    },
+    {
+      "id": "step_004",
+      "sequenceId": 4,
+      "name": "Check whether services are COVID-19 related",
+      "description": "Open the Claim Lines tab and check the procedure code on Line 1 to determine whether the services are related to COVID-19. In this scenario, the procedure code is 83516, which is not related to COVID-19, so proceed.",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_summary",
+      "targetFieldId": "f_cl_procedure",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_lines"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Claim Lines tab and reads the Line-1 procedure code (83516).",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Lines'. Line 1 carries procedure 83516 — not a COVID-19 code — so proceed.",
+      "highlightFields": ["f_cl_procedure"],
+      "highlightTabId": "tab_claim_lines",
+      "checklistItem": "Procedure 83516 confirmed not COVID-19 related"
+    },
+    {
+      "id": "step_005",
+      "sequenceId": 5,
+      "name": "Note the code description and confirm original processing",
+      "description": "Open the Search tab, Code Set sub-tab. The application has already searched Code Type Procedure Code (Px) and Code 83516; in the General Information section, note the description (unrelated to COVID-19). Then check the claim summary Record number next to the DCN — 999 indicates original processing, anything else indicates an adjustment. In this scenario, the record number is 999 (original processing), so proceed.",
+      "targetTabId": "tab_search",
+      "targetSubTabId": "subtab_search_codeset_lps",
+      "targetSectionId": "sec_sc_codeset_general",
+      "targetFieldId": "f_sc_cs_desc",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_search",
+        "subTabId": "subtab_search_codeset_lps"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Code Set sub-tab, reads the 83516 description, and confirms record number 999 (original processing).",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Search' → 'Code Set'. Note the 83516 General Information description, then confirm the Record number is 999 (original processing).",
+      "highlightFields": ["f_sc_cs_desc", "f_sc_cs_record"],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_codeset_lps",
+      "checklistItem": "Code description noted; record 999 = original processing"
+    },
+    {
+      "id": "step_006",
+      "sequenceId": 6,
+      "name": "Verify authorization is available",
+      "description": "Navigate to Claim Data tab then Review sub-tab and expand the Utilization Management section  . The UM Detail Service table shows Line # 1, Procedure 97530, Date 01/01/2026, Rule ID AIMREHAB, and Case Number UM97608093. A populated Case Number confirms an authorization is available, so proceed.",
+      "targetTabId": "tab_claim_data",
+      "targetSubTabId": "subtab_claim_data_review_lps",
+      "targetSectionId": "sec_cd_r_um",
+      "targetFieldId": "f_cdr_um_case",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_data",
+        "subTabId": "subtab_claim_data_review_lps"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Review sub-tab and reads the UM Detail Service Case Number (UM97608093), confirming an authorization is available.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Data' → 'Review' and expand Utilization Management. The Case Number UM97608093 confirms an authorization is available.",
+      "highlightFields": ["f_cdr_um_case"],
+      "highlightTabId": "tab_claim_data",
+      "highlightSubTabId": "subtab_claim_data_review_lps",
+      "checklistItem": "Authorization available — Case Number UM97608093"
+    },
+    {
+      "id": "step_007",
+      "sequenceId": 7,
+      "name": "Check the Late call indicator (Pricing Details)",
+      "description": "Expand the Authorization section under the Review sub-tab (fields: Authorization #, Date Range, Procedure, Provider, Status, Svc type, Score — UM97608093, 01/01/2026–01/01/2026, 97110, Hailey, Approved, Medical, 65%). Click the Case number to expand the authorization, then select the Pricing Details radio and check the 'Late call ind' field. If the value is 'L' the late call penalty applies; if it is blank or 'N' it does not. In this scenario, the indicator is L, so the late call penalty will be applied.",
+      "targetTabId": "tab_claim_data",
+      "targetSubTabId": "subtab_claim_data_review_lps",
+      "targetSectionId": "sec_cd_r_auth",
+      "targetFieldId": null,
+      "actionType": "select_pricing_details",
+      "actionPayload": {
+        "type": "select_pricing_details"
+      },
+      "completesActionId": "select_pricing_details",
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the trainee expands the authorization and selects the Pricing Details radio (dispatching select_pricing_details), revealing Late call ind = L.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "On 'Claim Data' → 'Review', expand the authorization row, click the 'Pricing Details' radio, and read 'Late call ind' — it shows L, so the late call penalty applies.",
+      "highlightFields": ["f_cdr_auth_num"],
+      "highlightTabId": "tab_claim_data",
+      "highlightSubTabId": "subtab_claim_data_review_lps",
+      "checklistItem": "Late call indicator L confirmed via Pricing Details"
+    },
+    {
+      "id": "step_008",
+      "sequenceId": 8,
+      "name": "Verify dates of service precede the Case creation date",
+      "description": "Select the Case Details radio on the expanded authorization and read the Case creation date. Late penalties apply only to dates of service prior to the Case creation date: dates before it apply the penalty, dates after it do not, and for a mix the penalty applies only to lines before it. In this scenario, all dates of service fall before the Case creation date, so continue to apply the penalty.",
+      "targetTabId": "tab_claim_data",
+      "targetSubTabId": "subtab_claim_data_review_lps",
+      "targetSectionId": "sec_cd_r_auth",
+      "targetFieldId": null,
+      "actionType": "select_case_details",
+      "actionPayload": {
+        "type": "select_case_details"
+      },
+      "completesActionId": "select_case_details",
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the trainee selects the Case Details radio (dispatching select_case_details), revealing the Case creation date; all dates of service precede it.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Click the 'Case Details' radio on the expanded authorization and read the Case creation date. All dates of service fall before it, so continue to apply the penalty.",
+      "highlightFields": ["f_cdr_auth_num"],
+      "highlightTabId": "tab_claim_data",
+      "highlightSubTabId": "subtab_claim_data_review_lps",
+      "checklistItem": "All dates of service precede the Case creation date"
+    },
+    {
+      "id": "step_009",
+      "sequenceId": 9,
+      "name": "Determine authorization source (CMBM vs UM)",
+      "description": "Navigate to  Claim Data tab then open the Details sub-tab  and scroll to the Additional Rule Data section. Check the UM Rule ID — if the Rule ID contains 'AIM' authorization is required by CMBM; anything else means it is required by UM. In this scenario, the UM Rule ID is VIRGINIA1 (does not contain AIM), so authorization is required by UM and the trainee proceeds.",
+      "targetTabId": "tab_claim_data",
+      "targetSubTabId": "subtab_claim_data_details",
+      "targetSectionId": "sec_cd_d_addl_rule",
+      "targetFieldId": "f_cdd_ar_2_id",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_data",
+        "subTabId": "subtab_claim_data_details"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Details sub-tab and reads the Additional Rule Data UM Rule ID (VIRGINIA1) — not AIM, so authorization is required by UM.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Data' → 'Details' and scroll to Additional Rule Data. The UMRULE Rule ID is VIRGINIA1 — no 'AIM', so authorization is required by UM.",
+      "highlightFields": ["f_cdd_ar_2_id"],
+      "highlightTabId": "tab_claim_data",
+      "highlightSubTabId": "subtab_claim_data_details",
+      "checklistItem": "Authorization source = UM (Rule ID VIRGINIA1, not AIM)"
+    },
+    {
+      "id": "step_010",
+      "sequenceId": 10,
+      "name": "Note the National state for penalty percentage",
+      "description": "Open the Provider Information tab and check the National State field to determine the applicable penalty percentage. In this scenario, the National state is GA (Georgia).",
+      "targetTabId": "tab_provider_info",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_pi_billing",
+      "targetFieldId": "f_pi_b_state",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_provider_info"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Provider Information tab and reads the National State (GA).",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Provider Info' and read the National State — it is GA (Georgia).",
+      "highlightFields": ["f_pi_b_state"],
+      "highlightTabId": "tab_provider_info",
+      "checklistItem": "National state noted — GA"
+    },
+    {
+      "id": "step_011",
+      "sequenceId": 11,
+      "name": "Check the Line of Business via Product field",
+      "description": "Open the Member Info tab and check the Product field under the Group Information section to determine the Line of Business. In this scenario, the Product is Local.",
+      "targetTabId": "tab_member_info",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_mi_group",
+      "targetFieldId": "f_mi_g_product",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_member_info"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Member Info tab and reads the Product field (Local).",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Member Info' and read the Product field under Group Information — it is Local.",
+      "highlightFields": ["f_mi_g_product"],
+      "highlightTabId": "tab_member_info",
+      "checklistItem": "Line of Business confirmed — Product Local"
+    },
+    {
+      "id": "step_012",
+      "sequenceId": 12,
+      "name": "Determine the penalty percentage from DOS and state",
+      "description": "Open the Claim Lines tab and check the Date of Service in the From/To fields, then determine the penalty percentage per the identified state and Line of Business (refer to the SOP document). In this scenario, the Product is Local and the DOS is 1/1/2026-02/28/2026, so per the SOP for GA the penalty to be applied is 100%.",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_summary",
+      "targetFieldId": "f_cl_from",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_lines"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee revisits the Claim Lines tab and reads the Date of Service (1/1/2026) to determine the 100% GA penalty.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Return to 'Claim Lines' and read the DOS (1/1/2026). Per the SOP for GA / Local, the penalty to apply is 100%.",
+      "highlightFields": ["f_cl_from", "f_cl_to"],
+      "highlightTabId": "tab_claim_lines",
+      "checklistItem": "Penalty percentage determined — 100% (GA, Local, DOS 1/1/2026)"
+    },
+    {
+      "id": "step_013",
+      "sequenceId": 13,
+      "name": "Check penalty exclusion and extenuating circumstances",
+      "description": "Return to the Provider Information tab and review the Late Call Penalty exclusion checks. Look up the claim's Tax ID (97887835) on the Provider Penalty Exclusion List to determine whether the provider is excluded or has a negotiated lower percentage (30% / 50%), verifying the DOS falls within any 'End dated' window; then check the Extenuating Circumstances Approval List. In this scenario, the Tax ID is not on the exclusion list and the claim is not an extenuating-circumstances case, so the full 100% penalty stands and the trainee proceeds.",
+      "targetTabId": "tab_provider_info",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_pi_penalty_checks",
+      "targetFieldId": "f_pi_pen_exclusion",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_provider_info"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee revisits the Provider Information tab and reviews the penalty-exclusion and extenuating-circumstances checks — both clear.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Return to 'Provider Info' → Late Call Penalty checks. Tax ID 97887835 is not on the Provider Penalty Exclusion List and no extenuating circumstance applies, so the full 100% penalty stands.",
+      "highlightFields": [
+        "f_pi_pen_taxid",
+        "f_pi_pen_exclusion",
+        "f_pi_pen_extenuating"
+      ],
+      "highlightTabId": "tab_provider_info",
+      "checklistItem": "No exclusion or extenuating circumstance — 100% penalty applies"
+    },
+    {
+      "id": "step_014",
+      "sequenceId": 14,
+      "name": "Confirm the 100% penalty applies",
+      "description": "Navigate to Search tab, then open the Pricing sub-tab and  scroll down to the Claim Lines line summary, and click Get Pricing to identify the 100% allowance. Determine whether all lines are applicable for the 100% penalty — this applies when a late or missing authorization is on file, the UM authorization has been tagged to all service lines, and the allowed amount equals the charge amount on all lines. In this scenario the allowed amount ($90) equals the billed amount ($90), so the 100% penalty consumes the entire allowance and the claim must be rejected with code PX_R19022.",
+      "targetTabId": "tab_search",
+      "targetSubTabId": "subtab_search_pricing",
+      "targetSectionId": "sec_sc_pr_lines",
+      "targetFieldId": "f_sc_p_getpricing",
+      "actionType": "get_pricing",
+      "actionPayload": {
+        "type": "action",
+        "action": "get_pricing"
+      },
+      "completesActionId": "get_pricing",
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the trainee clicks Get Pricing on the Pricing sub-tab (dispatching get_pricing), revealing the $90 allowance equal to the $90 billed amount.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Search' → 'Pricing' and click 'Get Pricing'. The 100% allowance is $90 and the billed amount is $90 — billed equals allowed, so the claim is rejected rather than penalized and paid.",
+      "highlightFields": [
+        "f_sc_p_getpricing",
+        "f_sc_pr_allowed",
+        "f_sc_pr_billed",
+        "f_sc_pr_penalty"
+      ],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_pricing",
+      "checklistItem": "100% penalty confirmed — allowed $90 equals billed $90"
+    },
+    {
+      "id": "step_015",
+      "sequenceId": 15,
+      "name": "Deny the claim using Reject code PX_R19022",
+      "description": "Apply reject code PX_R19022 as defined in the SOP for a 100% late call penalty where the allowed amount equals the billed amount. From the Action menu, select Reject / Deny Claim. A new Deny Claim section will appear below the header. Enter reject code PX_R19022 in the input box — the matching code will appear in a dropdown list — select it and click Submit.",
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "deny_claim",
+      "actionPayload": {
+        "type": "deny_claim"
+      },
+      "completesActionId": "deny_claim",
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the trainee opens the Deny Claim panel from the Action menu, enters reject code PX_R19022 and submits it (dispatching deny_claim).",
+      "expectedValue": "PX_R19022",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open the Action menu → 'Reject / Deny Claim'. In the Deny Claim panel, type PX_R19022, pick it from the dropdown and click Submit.",
+      "highlightFields": [],
+      "checklistItem": "Claim rejected with reject code PX_R19022"
+    },
+    {
+      "id": "step_016",
+      "sequenceId": 16,
+      "name": "Submit Deny decision",
+      "description": "Navigate to the Decision section in the header, select 'Deny' from the dropdown menu, and click Submit. The 100% late-call penalty leaves no payable amount, so the claim is denied with reject code PX_R19022.",
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "submit_decision",
+      "actionPayload": {
+        "type": "submit_decision",
+        "expectedDecision": "deny"
+      },
+      "completionTrigger": "decision_submitted",
+      "completionTriggerNote": "Completes when the trainee confirms the Deny decision in the submit dialog.",
+      "expectedValue": "deny",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Pick 'Deny' from the Decision dropdown in the claim header, then click Submit and confirm in the dialog.",
+      "highlightFields": [],
+      "checklistItem": "Deny decision submitted — attempt complete"
+    }
+  ],
+  "scoreBreakdown": {
+    "navigatorStepsMaxPoints": 160,
+    "decisionMaxPoints": 20,
+    "reasonCodeMaxPoints": 10,
+    "totalMaxPoints": 190,
+    "passMark": 70,
+    "weightedPassScore": 133
+  },
+  "stepSummaryForResults": [
+    {
+      "sequenceId": 1,
+      "name": "PX_LPS hard edit identified",
+      "points": 10
+    },
+    {
+      "sequenceId": 2,
+      "name": "Provider participation PAR verified",
+      "points": 10
+    },
+    {
+      "sequenceId": 3,
+      "name": "Event hierarchy checked — none precede PX_LPS",
+      "points": 10
+    },
+    {
+      "sequenceId": 4,
+      "name": "Procedure 83516 not COVID-19 related",
+      "points": 10
+    },
+    {
+      "sequenceId": 5,
+      "name": "Code description noted; record 999 = original processing",
+      "points": 10
+    },
+    {
+      "sequenceId": 6,
+      "name": "Authorization available (Case Number UM97608093)",
+      "points": 10
+    },
+    {
+      "sequenceId": 7,
+      "name": "Late call indicator L confirmed (Pricing Details)",
+      "points": 10
+    },
+    {
+      "sequenceId": 8,
+      "name": "Dates of service precede Case creation date (Case Details)",
+      "points": 10
+    },
+    {
+      "sequenceId": 9,
+      "name": "Authorization required by UM (VIRGINIA1, not AIM)",
+      "points": 10
+    },
+    {
+      "sequenceId": 10,
+      "name": "National state noted — GA",
+      "points": 10
+    },
+    {
+      "sequenceId": 11,
+      "name": "Line of Business confirmed — Local",
+      "points": 10
+    },
+    {
+      "sequenceId": 12,
+      "name": "Penalty percentage determined — 100%",
+      "points": 10
+    },
+    {
+      "sequenceId": 13,
+      "name": "No exclusion or extenuating circumstance",
+      "points": 10
+    },
+    {
+      "sequenceId": 14,
+      "name": "100% penalty confirmed — allowed $90 equals billed $90",
+      "points": 10
+    },
+    {
+      "sequenceId": 15,
+      "name": "Claim rejected with reject code PX_R19022",
+      "points": 10
+    },
+    {
+      "sequenceId": 16,
+      "name": "Deny decision submitted",
+      "points": 10
+    }
+  ]
+}

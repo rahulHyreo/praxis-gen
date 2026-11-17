@@ -1,0 +1,378 @@
+{
+  "$schema": "training-platform/v1/navigator",
+  "$version": "2.0.0",
+  "id": "nav_bnr_1_benefit_review_non_par",
+  "flowId": "flow_benefit_review_non_par_bnr_1",
+  "name": "Benefit Review Non Par — BNR.1",
+  "description": "Resolve the PX_BNR hard edit: clear the benefit, member, and provider special-condition gates, confirm the provider specialties match on the related claim, reprice the claim against the already-paid related claim, correct the allowed amount and write-off, and pay.",
+  "totalSteps": 12,
+  "passMark": 70,
+  "correctDecision": "pay",
+  "correctDecisionLabel": "Pay",
+  "totalMaxPoints": 140,
+  "totalNavigatorPoints": 120,
+  "steps": [
+    {
+      "id": "step_001",
+      "sequenceId": 1,
+      "name": "Identify the PX_BNR hard edit and check the event hierarchy",
+      "description": "The Event Resolution tab lists every edit on the claim. PX_BNR is the hard edit highlighted with an error indication — this is the current event to resolve. Check the events list for any event that must be resolved before PX_BNR per the event hierarchy. If other events come first, resolve those; if none do, proceed.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_active",
+      "targetFieldId": "f_er_edit_code",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the Event Resolution tab is opened.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "PX_BNR is the only hard edit. PX_RNB, PX_RNI and PX_RNO are informational and need no claim action, so nothing precedes PX_BNR.",
+      "highlightFields": [
+        "f_er_edit_code",
+        "f_er_severity",
+        "f_er_active_alert"
+      ],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Event Resolution opened — PX_BNR hard edit identified, no event precedes it"
+    },
+    {
+      "id": "step_002",
+      "sequenceId": 2,
+      "name": "Review benefits and confirm services are covered",
+      "description": "Open the Benefits sub-tab under the Search tab. Benefits are applied directly on this claim — verify they were applied correctly in the CI&W system. Review the benefits and identify whether the services billed on Line 1 are covered. In this scenario they are covered, so proceed.",
+      "targetTabId": "tab_search",
+      "targetSubTabId": "subtab_search_benefits",
+      "targetSectionId": "sec_sb_line",
+      "targetFieldId": "f_sb_coverage_status",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_search",
+        "subTabId": "subtab_search_benefits"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the Search → Benefits sub-tab is opened.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Coverage Status on Line 1 reads Covered.",
+      "highlightFields": ["f_sb_advisory", "f_sb_coverage_status"],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_benefits",
+      "checklistItem": "Benefits reviewed — Line 1 services are covered"
+    },
+    {
+      "id": "step_003",
+      "sequenceId": 3,
+      "name": "Check for special conditions on the Member sub-tab",
+      "description": "Identify whether the claim meets any of the special conditions that trigger alternate handling. Navigate to the Member sub-tab under the Search tab and check for Case 197115.",
+      "targetTabId": "tab_search",
+      "targetSubTabId": "subtab_search_member",
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_search",
+        "subTabId": "subtab_search_member"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the Search → Member sub-tab is opened.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Expand the member's contract group row to see the Case entity — 197115.",
+      "highlightFields": [],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_member",
+      "checklistItem": "Member sub-tab opened — Case 197115 surfaced"
+    },
+    {
+      "id": "step_004",
+      "sequenceId": 4,
+      "name": "Check the Group ID and Detail contract code",
+      "description": "Navigate to Member information tab ,then note the Group ID number under the Group section along with the Detail contract code, and check them against the special-condition combinations 197111M001/521W, 197111M002/521X, 197111M603/524S and 197111M604/524T. If the claim matches any of these, follow the alternate guidelines; otherwise proceed.",
+      "targetTabId": "tab_member_info",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_mi_group",
+      "targetFieldId": "f_mi_group_id",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_member_info"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the Member Information tab is opened.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "The claim's Group ID / detail contract code combination is not on the list — this claim is not a special condition.",
+      "highlightFields": ["f_mi_group_id", "f_mi_detail_contract_code"],
+      "highlightTabId": "tab_member_info",
+      "checklistItem": "Group ID and Detail contract code checked — no special condition"
+    },
+    {
+      "id": "step_005",
+      "sequenceId": 5,
+      "name": "Check the provider name and Tax ID / NPI list",
+      "description": "Navigate to the Provider Information tab and check whether the provider Name is Jim's Body Shop, Zeno Sport & Spine or Colorado Physical Therapy Inc, and whether the NPI is listed under the applicable Tax Identification Numbers in the Provider Tax ID's and NPI's list. If the claim matches any of these, follow the alternate guidelines; otherwise proceed. In this scenario the claim meets none of the criteria.",
+      "targetTabId": "tab_provider_info",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_pi_provider",
+      "targetFieldId": "f_pi_name",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_provider_info"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the Provider Information tab is opened.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "The claim's provider name and NPI do not appear on the special-condition list.",
+      "highlightFields": ["f_pi_name", "f_pi_npi"],
+      "highlightTabId": "tab_provider_info",
+      "checklistItem": "Provider name and NPI checked — not on the special-condition list"
+    },
+    {
+      "id": "step_006",
+      "sequenceId": 6,
+      "name": "Compare the current claim against the related claim",
+      "description": "Navigate to the Claim Data tab,then open the Related sub-tab, select the related claim line, and click Compare Claim. A Claim compare results section appears below.",
+      "targetTabId": "tab_claim_data",
+      "targetSubTabId": "subtab_claim_data_related_bnr",
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "compare_claim",
+      "actionPayload": {
+        "action": "compare_claim"
+      },
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the Compare Claim button dispatches the compare_claim action.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Select the radio on the related claim row first — Compare Claim stays disabled until a row is selected.",
+      "highlightFields": [],
+      "highlightTabId": "tab_claim_data",
+      "highlightSubTabId": "subtab_claim_data_related_bnr",
+      "completesActionId": "compare_claim",
+      "checklistItem": "Compare Claim clicked — claim compare results shown"
+    },
+    {
+      "id": "step_007",
+      "sequenceId": 7,
+      "name": "Confirm the provider specialties match",
+      "description": "Open the Provider Information accordion under Claim compare results. The provider specialty in the DCN column and the History DCN column can be compared directly. In this scenario the provider specialties match, so proceed.",
+      "targetTabId": "tab_claim_data",
+      "targetSubTabId": "subtab_claim_data_related_bnr",
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "review_duplicate",
+      "actionPayload": {
+        "action": "review_duplicate"
+      },
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the Provider Information compare accordion is opened, dispatching review_duplicate.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Both columns read Physical Therapy — the specialties match, so the rows show no difference highlight.",
+      "highlightFields": [],
+      "highlightTabId": "tab_claim_data",
+      "highlightSubTabId": "subtab_claim_data_related_bnr",
+      "completesActionId": "review_duplicate",
+      "checklistItem": "Provider Information accordion opened — provider specialties match"
+    },
+    {
+      "id": "step_009",
+      "sequenceId": 8,
+      "name": "Open the Claim Detail pop-up — review the indicators and related claim",
+      "description": "On the Claim Data → Related sub-tab, click Open Claim Detail. The pop-up shows the Indicators (E / Pricing error populated with PX_3C, confirming the related claim affects global pricing), the benefit Note, and the Related Claim (DCN 2026118BN4471, procedure 77875, billed $500.00, paid $500.00). Note the related claim's procedure code and billed amount — these values are needed for the pricing review.",
+      "targetTabId": "tab_claim_data",
+      "targetSubTabId": "subtab_claim_data_related_bnr",
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "open_claim_detail",
+      "actionPayload": {
+        "action": "open_claim_detail"
+      },
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the Open Claim Detail button dispatches the open_claim_detail action.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Click Open Claim Detail after comparing the claim — the Indicators (PX_3C) and the Related Claim (77875 / $500.00) are inside the pop-up.",
+      "highlightFields": [],
+      "highlightTabId": "tab_claim_data",
+      "highlightSubTabId": "subtab_claim_data_related_bnr",
+      "completesActionId": "open_claim_detail",
+      "checklistItem": "Claim Detail pop-up reviewed — PX_3C indicator and related claim (77875 / $500.00) noted"
+    },
+    {
+      "id": "step_010",
+      "sequenceId": 9,
+      "name": "Reprice the claim against the related claim",
+      "description": "Navigate to Search tab then Pricing sub-tab and in the Claim Lines section , enter the related claim's procedure code (77875) with its details in the Line 2 inputs so that pricing reflects the services as if the provider had not split the charges, then click Get Pricing. The correct allowed amount displays as $1000 for procedure 67876 and $0 for procedure 77875. Because $500 was already paid on the history / related claim, the correct allowed amount for the current claim is $500.",
+      "targetTabId": "tab_search",
+      "targetSubTabId": "subtab_search_pricing",
+      "targetSectionId": "sec_sp_claim_lines",
+      "targetFieldId": "f_sp_line2_proc",
+      "actionType": "get_pricing",
+      "actionPayload": {
+        "action": "get_pricing"
+      },
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when Get Pricing is clicked AND the Line 2 procedure code equals 77875. Clicking with an empty Line 2 does nothing.",
+      "expectedValue": "77875",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Type 77875 into Line 2 — Procedure Code, then click Get Pricing.",
+      "highlightFields": ["f_sp_line2_proc", "f_sp_get_pricing"],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_pricing",
+      "completesActionId": "get_pricing",
+      "checklistItem": "Procedure 77875 entered and Get Pricing clicked — package allowance is $1000"
+    },
+    {
+      "id": "step_011",
+      "sequenceId": 10,
+      "name": "Update the Allowed amount to $500",
+      "description": "On the Claim Lines tab, change the Allowed amount from $700 to $500. The $1000 package allowance is reduced by the $500 already paid on the history / related claim, leaving $500 allowable on the current claim. Keep the Billed amount at $1000.",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_line1",
+      "targetFieldId": "f_cl_allowed",
+      "actionType": "field_edit",
+      "actionPayload": {
+        "fieldId": "f_cl_allowed"
+      },
+      "completionTrigger": "field_value_set",
+      "completionTriggerNote": "Completes only when the Allowed amount input is set to 500.",
+      "expectedValue": "500",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "$1000 package allowance − $500 already paid on the related claim = $500.",
+      "highlightFields": ["f_cl_allowed"],
+      "highlightTabId": "tab_claim_lines",
+      "checklistItem": "Allowed amount corrected to $500"
+    },
+    {
+      "id": "step_012",
+      "sequenceId": 11,
+      "name": "Update the Write-off to $500",
+      "description": "Change the Write-off from $300 to $500 so the line balances: Billed $1000 − Allowed $500 = Write-off $500. The allowed amount is displayed here, but in actual processing it will either be paid or applied toward member cost shares as per the benefit.",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_line1",
+      "targetFieldId": "f_cl_writeoff",
+      "actionType": "field_edit",
+      "actionPayload": {
+        "fieldId": "f_cl_writeoff"
+      },
+      "completionTrigger": "field_value_set",
+      "completionTriggerNote": "Completes only when the Write-off input is set to 500.",
+      "expectedValue": "500",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Billed $1000 − Allowed $500 = Write-off $500.",
+      "highlightFields": ["f_cl_writeoff"],
+      "highlightTabId": "tab_claim_lines",
+      "checklistItem": "Write-off corrected to $500"
+    },
+    {
+      "id": "step_013",
+      "sequenceId": 12,
+      "name": "Submit the Pay decision",
+      "description": "Select Pay from the decision menu in the header and click Submit.",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "submit_decision",
+      "actionPayload": {
+        "decision": "pay"
+      },
+      "completionTrigger": "decision_submitted",
+      "completionTriggerNote": "Completes when the Pay decision is submitted.",
+      "expectedValue": "pay",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "The claim is priced correctly now — pay it.",
+      "highlightFields": [],
+      "highlightTabId": "tab_claim_lines",
+      "checklistItem": "Pay decision submitted"
+    }
+  ],
+  "scoreBreakdown": {
+    "navigatorStepsMaxPoints": 120,
+    "decisionMaxPoints": 20,
+    "reasonCodeMaxPoints": 0,
+    "totalMaxPoints": 140,
+    "passMark": 70,
+    "weightedPassScore": 98
+  },
+  "stepSummaryForResults": [
+    {
+      "sequenceId": 1,
+      "name": "Identify the PX_BNR hard edit and check the event hierarchy",
+      "points": 10
+    },
+    {
+      "sequenceId": 2,
+      "name": "Review benefits and confirm services are covered",
+      "points": 10
+    },
+    {
+      "sequenceId": 3,
+      "name": "Check for special conditions on the Member sub-tab",
+      "points": 10
+    },
+    {
+      "sequenceId": 4,
+      "name": "Check the Group ID and Detail contract code",
+      "points": 10
+    },
+    {
+      "sequenceId": 5,
+      "name": "Check the provider name and Tax ID / NPI list",
+      "points": 10
+    },
+    {
+      "sequenceId": 6,
+      "name": "Compare the current claim against the related claim",
+      "points": 10
+    },
+    {
+      "sequenceId": 7,
+      "name": "Confirm the provider specialties match",
+      "points": 10
+    },
+    {
+      "sequenceId": 8,
+      "name": "Open the Claim Detail pop-up — review the indicators and related claim",
+      "points": 10
+    },
+    {
+      "sequenceId": 9,
+      "name": "Reprice the claim against the related claim",
+      "points": 10
+    },
+    {
+      "sequenceId": 10,
+      "name": "Update the Allowed amount to $500",
+      "points": 10
+    },
+    {
+      "sequenceId": 11,
+      "name": "Update the Write-off to $500",
+      "points": 10
+    },
+    {
+      "sequenceId": 12,
+      "name": "Submit the Pay decision",
+      "points": 10
+    }
+  ]
+}

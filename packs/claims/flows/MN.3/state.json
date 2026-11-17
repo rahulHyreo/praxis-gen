@@ -1,0 +1,90 @@
+{
+  "$schema": "training-platform/v1/flow-state",
+  "$version": "1.0.0",
+  "id": "state_mn_3_noc_review_pay",
+  "initial": {
+    "defaultActiveTabId": "tab_provider_info",
+    "defaultActiveSubTabIds": {
+      "tab_search": "subtab_search_pricing",
+      "tab_claim_data": "subtab_claim_data_review",
+      "tab_attachment": "subtab_attachment_attachments",
+      "tab_notes": "subtab_notes_claim_notes"
+    },
+    "defaultCollapsedSections": {},
+    "defaultDecision": ""
+  },
+  "modeConfig": {
+    "training": {
+      "id": "training",
+      "label": "Training mode",
+      "badgeIcon": "graduation-cap",
+      "showNavigator": true,
+      "timerType": "count_up",
+      "timerPosition": "navigator_header",
+      "timeLockEnabled": false,
+      "showHints": true,
+      "showMarkCompleteButton": true,
+      "allowTabClose": true
+    },
+    "practice": {
+      "id": "practice",
+      "label": "Practice mode",
+      "badgeIcon": "dumbbell",
+      "showNavigator": false,
+      "timerType": "count_up",
+      "timerPosition": "topbar",
+      "timeLockEnabled": false,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": true
+    },
+    "assessment": {
+      "id": "assessment",
+      "label": "Assessment Mode",
+      "badgeIcon": "graduation-cap",
+      "showNavigator": false,
+      "timerType": "count_down",
+      "timerPosition": "topbar_right",
+      "timeLimitSeconds": 600,
+      "timeLockEnabled": true,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": false,
+      "beforeUnloadWarning": "Assessment in progress. Leaving will lose your progress."
+    }
+  },
+  "actions": {
+    "confirm_special_processing": {
+      "completesStepId": "step_004",
+      "writes": {
+        "memberInfo.specialProcessingCheck.status": "Confirmed — no special processing conditions apply to this claim. Proceed."
+      }
+    },
+    "confirm_review": {
+      "completesStepId": "step_005",
+      "writes": {
+        "claimData.review.medicalReview.status": "Confirmed — no authorization (UM Detail Service table is empty) and no PSCCR response on file ($100 < $250, so PSCCR does not price this NOC code). Proceed to request a NOC Review for pricing."
+      }
+    },
+    "submit_noc_review": {
+      "completesStepId": "step_008",
+      "writes": {
+        "nocReview.submitStatus": "NOC Review request submitted — Line 1 / HCPC 20999 referenced with medical record 25035878888; awaiting a comparable code from the NOC team.",
+        "notes.nocResponse": "Consider Response received from NOC — NOC team provided comparable code 42699 for pricing."
+      }
+    },
+    "get_pricing": {
+      "completesStepId": "step_010",
+      "writes": {
+        "search.pricing.pricingResult.status": "Pricing applied — Billed $5000, Allowed $350, Write-off $4650.",
+        "search.pricing.pricingResult.allowed": "$350",
+        "search.pricing.pricingResult.writeOff": "$4650"
+      }
+    }
+  },
+  "persistence": {
+    "persistKey": null,
+    "autosave": false,
+    "resetOnSubmit": false
+  }
+}

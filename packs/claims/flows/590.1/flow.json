@@ -1,0 +1,64 @@
+{
+  "$schema": "praxis/v2/pack-flow",
+  "code": "590.1",
+  "name": "Claim Submit Time Limit Exceeded — Deny with PX_R21410",
+  "variants": [
+    {
+      "variant": "base",
+      "variantIndex": 1,
+      "subjectRefs": ["DCN-590101"]
+    },
+    {
+      "variant": "v2",
+      "variantIndex": 2,
+      "subjectRefs": [
+        "DCN-9160200",
+        "DCN-9160201",
+        "DCN-9160202",
+        "DCN-9160203",
+        "DCN-9160204",
+        "DCN-9160205",
+        "DCN-9160206"
+      ]
+    },
+    {
+      "variant": "v3",
+      "variantIndex": 3,
+      "subjectRefs": [
+        "DCN-9160300",
+        "DCN-9160301",
+        "DCN-9160302",
+        "DCN-9160303",
+        "DCN-9160304",
+        "DCN-9160305",
+        "DCN-9160306"
+      ]
+    },
+    {
+      "variant": "v4",
+      "variantIndex": 4,
+      "subjectRefs": [
+        "DCN-9160400",
+        "DCN-9160401",
+        "DCN-9160402",
+        "DCN-9160403",
+        "DCN-9160404",
+        "DCN-9160405",
+        "DCN-9160406"
+      ]
+    },
+    {
+      "variant": "v5",
+      "variantIndex": 5,
+      "subjectRefs": [
+        "DCN-9160500",
+        "DCN-9160501",
+        "DCN-9160502",
+        "DCN-9160503",
+        "DCN-9160504",
+        "DCN-9160505",
+        "DCN-9160506"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "$schema": "training-platform/v1/flow-result",
+  "$version": "1.0.0",
+  "id": "result_wdmx_2_dme_limits",
+  "rubric": {
+    "expectedDecision": "pay",
+    "expectedReasonCode": null,
+    "requiredStepIds": [
+      "step_001",
+      "step_002",
+      "step_003",
+      "step_004",
+      "step_005",
+      "step_006",
+      "step_007",
+      "step_008",
+      "step_009",
+      "step_010",
+      "step_011",
+      "step_012",
+      "step_013"
+    ],
+    "weights": {
+      "navigator": 130,
+      "decision": 20,
+      "reasonCode": 0
+    },
+    "deductions": {
+      "perMissedRequiredStep": 0,
+      "wrongDecision": 20,
+      "wrongReasonCode": 0
+    }
+  },
+  "resultConfig": {
+    "passLabel": "Passed!",
+    "failLabel": "You did not meet the pass mark.",
+    "passDescription": "Well done — you did not take the record on file at its word. You cleared E0601 against the Continuous Rental List and the ventilator codes, read the UM event as meaning an authorization was required and verified it on file, recognised the RR modifier as a $40.10 rental rather than a purchase, obtained the $401 purchase price, and confirmed history held no prior purchase. Then the part that matters: you reconciled the SPI-CLM record’s claimed $120.30 remaining against seven history rentals totalling $280.70, confirmed it was correct, and extended it — PTD $320.80, REM $80.20 — before paying. A Limited Liability record is a claim somebody made, not a fact. Check it against history before you rely on it.",
+    "failDescription": "Pass mark is {passMark}%. Review the steps below to see where you can improve.",
+    "scoreCircle": {
+      "radius": 40,
+      "strokeWidth": 8,
+      "passColor": "#3B6D11",
+      "failColor": "#A32D2D",
+      "trackColor": "#E5E7EB"
+    },
+    "statBoxes": [
+      {
+        "id": "navigator_score",
+        "label": "Navigator",
+        "dataKey": "navigatorScore",
+        "max": 130
+      },
+      {
+        "id": "decision_score",
+        "label": "Decision",
+        "dataKey": "decisionScore",
+        "max": 20
+      },
+      {
+        "id": "time_taken",
+        "label": "Time Taken",
+        "dataKey": "timeTakenSeconds",
+        "format": "duration"
+      }
+    ],
+    "retakeButton": true,
+    "backToClaimsButton": true
+  }
+}

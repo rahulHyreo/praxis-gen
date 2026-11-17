@@ -1,0 +1,171 @@
+{
+  "$schema": "training-platform/v1/navigator",
+  "$version": "2.0.0",
+  "id": "nav_ncr_1_billed_charge_verify_benefits_pay",
+  "flowId": "flow_pricing_ncr_1",
+  "name": "Pricing NCR.1 — Pricing at Billed Charge (Verify Benefits & Pay) Navigator",
+  "description": "Walk the Pricing SOP for the PX_NCR event — pricing is based on bill charge / benefits logic, so the adjudicator performs no pricing calculation; just verify the benefits and process accordingly. Identify the PX_NCR soft edit on the Event Resolution tab (highlighted with an error indication) and rule out other events; review benefits on the Search → Benefit sub-tab and confirm the account indicates processing at the billed charges in the CI&W system; open the Claim Data → Pricing Manual Pricing section and confirm the MPI/PX_NCN NTWK field is empty, so no MPI/PX_NCN discount has been applied by the system; click the pen icon on the Manual Pricing section and clear the D0/D1 type code from the PX_NCN ID field, which retains CI&W pricing at the billed charge; then pay the claim at the billed charge.",
+  "totalSteps": 5,
+  "passMark": 70,
+  "correctDecision": "pay",
+  "correctDecisionLabel": "Pay",
+  "totalMaxPoints": 70,
+  "totalNavigatorPoints": 50,
+  "steps": [
+    {
+      "id": "step_001",
+      "sequenceId": 1,
+      "name": "Identify the PX_NCR soft edit and rule out other events",
+      "description": "Review all edits in the Event Resolution tab. The PX_NCR soft edit is highlighted with an error indication — this is the current event to resolve. PX_NCR indicates that pricing is based on bill charge / benefits logic; the action is to verify the benefits and process accordingly. Verify the events list for any other events that need to be resolved first per the event hierarchy, and also check for any other hard events present on the claim. If other events are present, resolve them before PX_NCR per the hierarchy or follow the PSCCR events guidelines as applicable; if no other events are present, proceed. In this scenario, the claim has no other events, so the trainee proceeds.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_all_edits",
+      "targetFieldId": "f_er_e_ncr",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Event Resolution tab and reviews the events list, where the active PX_NCR soft edit is highlighted with an error indication and no other events are present.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Event Resolution' and review the events list. PX_NCR is the active soft edit, highlighted with an error indication, and there are no other events, so proceed.",
+      "highlightFields": ["f_er_e_ncr", "f_er_other_hard_events"],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Identify the PX_NCR soft edit and rule out other events"
+    },
+    {
+      "id": "step_002",
+      "sequenceId": 2,
+      "name": "Verify the account processes at billed charges",
+      "description": "Review the benefits to check whether the account suggests processing the claim at the billed charge. Navigate to the Search tab and open the Benefit sub-tab; select the correct benefits per the claim information. If the account indicates processing at billed charges, follow those guidelines and process the claim at the billed charges; if there is no such indication, follow the alternate guidelines. In this scenario, the claim has indications to be processed at billed charges in the CI&W system, so the trainee proceeds to verify the Manual Pricing setup and pay at billed charges.",
+      "targetTabId": "tab_search",
+      "targetSubTabId": "subtab_search_benefits",
+      "targetSectionId": "sec_sc_b_ciw",
+      "targetFieldId": "f_sc_b_ciw_msg",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_search",
+        "subTabId": "subtab_search_benefits"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Search → Benefit sub-tab, where the CI&W message confirms the claim has indications to be processed at the billed charges.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Search' → 'Benefit'. The CI&W message indicates the claim should be processed at the billed charges, so process at billed charge and proceed.",
+      "highlightFields": ["f_sc_b_ciw_msg"],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_benefits",
+      "checklistItem": "Verify the account processes at billed charges"
+    },
+    {
+      "id": "step_003",
+      "sequenceId": 3,
+      "name": "Verify the MPI/PX_NCN NTWK field is empty",
+      "description": "Confirm the claim is paid at billed charge by reviewing the Manual Pricing section. Navigate to the Claim Data tab, then  Pricing sub-tab  and locate the Manual Pricing section. Check the MPI/PX_NCN NTWK field: on a Data iSight claim it would carry the network pricing result, and here it is empty, so no MPI/PX_NCN discount has been applied by the system. The PX_NCN ID field beside it still carries its D1 type code, which the next step clears. In this scenario the MPI/PX_NCN NTWK field is empty, so the trainee proceeds to clear the type code from PX_NCN ID.",
+      "targetTabId": "tab_claim_data",
+      "targetSubTabId": "subtab_claim_data_pricing",
+      "targetSectionId": "sec_cd_pr_mp_header",
+      "targetFieldId": "f_mp_h_mpi_ncn_ntwk",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_data",
+        "subTabId": "subtab_claim_data_pricing"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Claim Data → Pricing sub-tab and confirms the MPI/PX_NCN NTWK field in the Manual Pricing section is empty.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Data' → 'Pricing' and check the MPI/PX_NCN NTWK field in the Manual Pricing section. It is empty, so no MPI/PX_NCN discount has been applied by the system.",
+      "highlightFields": ["f_mp_h_mpi_ncn_ntwk"],
+      "highlightTabId": "tab_claim_data",
+      "highlightSubTabId": "subtab_claim_data_pricing",
+      "checklistItem": "Verify the MPI/PX_NCN NTWK field is empty"
+    },
+    {
+      "id": "step_005",
+      "sequenceId": 4,
+      "name": "Clear the type code from the PX_NCN ID field",
+      "description": "Remove the Data iSight type code from the PX_NCN ID field so the claim stays priced at the billed charge. On the Claim Data tab, Pricing sub-tab, click the pen icon on the Manual Pricing section to make the header editable, then clear the D1 type code out of the PX_NCN ID field and leave it empty. With the D0/D1 type code removed, CI&W pricing is retained and no MPI/PX_NCN discount is applied, so the allowed amount stays at the billed charge. In this scenario the PX_NCN ID field carries D1, so the trainee clears it and proceeds to pay.",
+      "targetTabId": "tab_claim_data",
+      "targetSubTabId": "subtab_claim_data_pricing",
+      "targetSectionId": "sec_cd_pr_mp_header_edit",
+      "targetFieldId": "f_mp_h_ncn_e",
+      "actionType": "field_edit",
+      "actionPayload": {
+        "fieldId": "f_mp_h_ncn_e"
+      },
+      "completionTrigger": "field_value_set",
+      "completionTriggerNote": "Completes only when the PX_NCN ID box is left empty. Clicking the pen icon on its own completes nothing, and entering any other value in the box completes nothing.",
+      "expectedValue": "",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Click the pen icon on the Manual Pricing section of 'Claim Data' → 'Pricing', then clear D1 out of the PX_NCN ID box and leave it empty.",
+      "highlightFields": ["f_mp_h_edit", "f_mp_h_ncn_e"],
+      "highlightTabId": "tab_claim_data",
+      "highlightSubTabId": "subtab_claim_data_pricing",
+      "checklistItem": "Clear the type code from the PX_NCN ID field"
+    },
+    {
+      "id": "step_004",
+      "sequenceId": 5,
+      "name": "Submit Pay decision",
+      "description": "Navigate to the Decision section in the header, select 'Pay' from the dropdown menu and click Submit.",
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "submit_decision",
+      "actionPayload": {
+        "type": "submit_decision",
+        "expectedDecision": "pay"
+      },
+      "completionTrigger": "decision_submitted",
+      "completionTriggerNote": "Completes when the trainee confirms the Pay decision in the submit dialog.",
+      "expectedValue": "pay",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Pick 'Pay' from the Decision dropdown in the claim header, then click Submit and confirm in the dialog.",
+      "highlightFields": [],
+      "checklistItem": "Submit Pay decision"
+    }
+  ],
+  "scoreBreakdown": {
+    "navigatorStepsMaxPoints": 50,
+    "decisionMaxPoints": 20,
+    "reasonCodeMaxPoints": 0,
+    "totalMaxPoints": 70,
+    "passMark": 70,
+    "weightedPassScore": 49
+  },
+  "stepSummaryForResults": [
+    {
+      "sequenceId": 1,
+      "name": "PX_NCR soft edit identified; other events ruled out",
+      "points": 10
+    },
+    {
+      "sequenceId": 2,
+      "name": "Account confirmed to process at billed charges",
+      "points": 10
+    },
+    {
+      "sequenceId": 3,
+      "name": "MPI/PX_NCN NTWK field confirmed empty",
+      "points": 10
+    },
+    {
+      "sequenceId": 4,
+      "name": "Type code cleared from the PX_NCN ID field",
+      "points": 10
+    },
+    {
+      "sequenceId": 5,
+      "name": "Pay decision submitted",
+      "points": 10
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "$schema": "training-platform/v1/flow-state",
+  "$version": "1.0.0",
+  "id": "state_bnr_1_benefit_review_non_par",
+  "initial": {
+    "defaultActiveTabId": "tab_event_resolution",
+    "defaultActiveSubTabIds": {
+      "tab_search": "subtab_search_benefits",
+      "tab_claim_data": "subtab_claim_data_related_bnr"
+    },
+    "defaultCollapsedSections": {},
+    "defaultDecision": "",
+    "decisionRequired": true
+  },
+  "modeConfig": {
+    "training": {
+      "id": "training",
+      "label": "Training mode",
+      "badgeIcon": "graduation-cap",
+      "showNavigator": true,
+      "timerType": "count_up",
+      "timerPosition": "navigator_header",
+      "timeLimitSeconds": null,
+      "timeLockEnabled": false,
+      "showHints": true,
+      "showMarkCompleteButton": true,
+      "allowTabClose": true
+    },
+    "practice": {
+      "id": "practice",
+      "label": "Practice mode",
+      "badgeIcon": "target",
+      "showNavigator": false,
+      "timerType": "count_up",
+      "timerPosition": "topbar",
+      "timeLimitSeconds": null,
+      "timeLockEnabled": false,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": true
+    },
+    "assessment": {
+      "id": "assessment",
+      "label": "Assessment mode",
+      "badgeIcon": "clipboard-check",
+      "showNavigator": false,
+      "timerType": "count_down",
+      "timerPosition": "topbar",
+      "timeLimitSeconds": 900,
+      "timeLockEnabled": true,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": false,
+      "beforeUnloadWarning": "Leaving this page will end your assessment attempt."
+    }
+  },
+  "actions": {
+    "compare_claim": {
+      "label": "Compare Claim — show the claim compare results",
+      "latencyMs": 0,
+      "writes": {},
+      "completesStepId": "step_006"
+    },
+    "review_duplicate": {
+      "label": "Open the Provider Information compare accordion",
+      "latencyMs": 0,
+      "writes": {},
+      "completesStepId": "step_007"
+    },
+    "open_claim_detail": {
+      "label": "Open Claim Detail — review the indicators, note and related claim",
+      "latencyMs": 0,
+      "writes": {},
+      "completesStepId": "step_009"
+    },
+    "get_pricing": {
+      "label": "Get Pricing — price the package with procedure 77875 added",
+      "latencyMs": 0,
+      "guard": {
+        "all": [
+          {
+            "dataKey": "search.pricing.line2.procedureCode",
+            "equals": "77875"
+          }
+        ],
+        "elseWrites": {
+          "search.pricing.pricingStatus": "No pricing returned. Enter the related claim's procedure code in Line 2 — Procedure Code, then click Get Pricing again."
+        }
+      },
+      "writes": {
+        "search.pricing.results.line2.procedureCode": "77875",
+        "search.pricing.results.line2.allowed": "$0.00",
+        "search.pricing.results.packageNote": "The bundled (global fee) allowance for this package is $1000.00. It prices to procedure 67876; procedure 77875 carries $0.00 allowance because it is included in the package.",
+        "search.pricing.historyNote": "$500.00 of the package allowance was already paid on the history / related claim DCN 2026118BN4471. The correct allowed amount for the current claim is therefore $1000.00 − $500.00 = $500.00, and the write-off becomes $500.00.",
+        "search.pricing.pricingStatus": "Priced — procedure 77875 added to the package."
+      },
+      "completesStepId": "step_010"
+    }
+  },
+  "persistence": {
+    "persistKey": null,
+    "autosave": false,
+    "resetOnSubmit": false
+  }
+}

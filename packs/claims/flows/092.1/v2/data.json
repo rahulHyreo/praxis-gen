@@ -1,0 +1,1203 @@
+{
+  "$schema": "training-platform/v1/workspace-data",
+  "$version": "2.0.0",
+  "id": "claim_data_092_1_v2_dcn_9730200",
+  "claimId": "claim_092_1_v2_001",
+  "dcn": "DCN-9730200",
+  "flowId": "flow_new_born_092_1",
+  "navigatorSchemaId": "nav_092_1_newborn_not_enrolled_member_code_pay",
+  "claim": {
+    "dcn": "DCN-9730200",
+    "patient": "Hazel R Quintero",
+    "serviceFrom": "02/22/2026",
+    "billedAmount": "$185.00"
+  },
+  "header": {
+    "dcn": "DCN-9730200",
+    "edits": "PX_092",
+    "billed": "$185.00",
+    "claimAllowed": "$142.00",
+    "paid": "$142.00",
+    "writeOff": "$43.00",
+    "deductible": "$0.00",
+    "coinsurance": "$0.00",
+    "copay": "$0.00",
+    "actionCode": "PX_P10000",
+    "receiptDate": "02/27/2026",
+    "serviceFrom": "02/22/2026",
+    "serviceTo": "02/22/2026"
+  },
+  "eventResolution": {
+    "editCode": "PX_092",
+    "editLabel": "Member code missing or invalid",
+    "severity": "Hard Edit",
+    "validationMessage": "",
+    "edits": [
+      {
+        "code": "PX_092",
+        "label": "Member code missing or invalid",
+        "active": true
+      }
+    ]
+  },
+  "memberInfo": {
+    "patient": {
+      "firstName": "HAZEL",
+      "middleName": "R",
+      "lastName": "QUINTERO",
+      "dob": "2/12/2026",
+      "sex": "F",
+      "memberPrefix": "QKT",
+      "hcid": "612W40517",
+      "relationship": "",
+      "memberCode": "",
+      "memberCodeMessage": "",
+      "contractType": "C",
+      "erisa": "Y",
+      "pcp": "—",
+      "pcpState": "—",
+      "pcpRelationship": "—",
+      "programCode": "—"
+    },
+    "subscriber": {
+      "firstName": "MARCO",
+      "middleName": "—",
+      "lastName": "QUINTERO",
+      "subscriberId": "527441906",
+      "address": "418 Beacon Hill Rd, Dayton, OH 45419"
+    },
+    "group": {
+      "groupName": "OHIO VALLEY MANUFACTURING",
+      "groupId": "WZT540M001",
+      "groupContract": "3LRN",
+      "detailContractCode": "3LRN",
+      "product": "BC PPO INCENTIVE",
+      "networkId": "BLUECDOO",
+      "networkName": "BLUE XXXX BLUE XXXX"
+    }
+  },
+  "claimImage": {
+    "memberDetails": {
+      "patient": {
+        "firstName": "HAZEL",
+        "middleName": "R",
+        "lastName": "QUINTERO",
+        "dob": "2/12/2026",
+        "sex": "F",
+        "memberPrefix": "QKT",
+        "hcid": "612W40517",
+        "relationship": "",
+        "memberCode": "",
+        "detailContractCode": "3LRN",
+        "contractType": "C",
+        "groupId": "WZT540M001",
+        "groupContract": "3LRN",
+        "product": "BCBI",
+        "erisa": "Y",
+        "pcp": "—",
+        "pcpState": "—",
+        "pcpRelationship": "—"
+      },
+      "subscriber": {
+        "firstName": "MARCO",
+        "middleName": "—",
+        "lastName": "QUINTERO",
+        "subscriberId": "527441906",
+        "address": "418 Beacon Hill Rd, Dayton, OH 45419"
+      },
+      "totalClaimLines": "1"
+    },
+    "additional": {
+      "claimSource": {
+        "mediaType": "-",
+        "pricingSource": "-",
+        "pricingSystem": "-",
+        "mixerPar": "-",
+        "receiverId": "OH",
+        "receivedAtEdi": "-",
+        "providerError": "-",
+        "authNumber": "-",
+        "authExcln": "-",
+        "vendorIndicator": "-",
+        "receivedDate": "-",
+        "originalReferenceNumber": "-"
+      },
+      "ancillaryProvider": {
+        "type": "-",
+        "zip": "-",
+        "state": "-"
+      },
+      "ambulance": {
+        "pickupZip": "-",
+        "dropoffZip": "-"
+      },
+      "miscellaneous": {
+        "epsdt": "-",
+        "familyPlanning": "-",
+        "gtessDate": "-",
+        "dateOfIllness": "-",
+        "dateOfInjury": "-",
+        "lastMenstrualDate": "-",
+        "consultationDate": "-"
+      },
+      "stopData": {
+        "stopEdit": "-",
+        "lobParentRule": "-",
+        "lobChildRule": "-",
+        "lobSequence": "-",
+        "medBusinessParentRule": "-",
+        "medBusinessChildRule": "-",
+        "medSequence": "-"
+      },
+      "refundData": {
+        "correspondenceNumber": "-",
+        "refundAmount": "-",
+        "adjustmentReason": "-",
+        "vendorName": "-",
+        "delayReason": "-",
+        "carveOut": "-",
+        "adjustmentReceiptDate": "-"
+      },
+      "highDollar": {
+        "riskOutcome": "-"
+      },
+      "its": {
+        "account": {
+          "deliveryMethod": "—",
+          "accountType": "—",
+          "aso": "—",
+          "stateId": "—",
+          "originalCertificate": "—",
+          "originalGroup": "—"
+        },
+        "pricing": {
+          "primarySop": "—",
+          "secondarySop": "—",
+          "tertiarySop": "—",
+          "cobCalMethod": "—"
+        },
+        "providers": {
+          "mppqAssignUnassigned": "—",
+          "ppoNetworkAvailability": "—",
+          "ppoProviderAvailability": "—",
+          "eft835": "—",
+          "serviceZip": "—"
+        }
+      },
+      "sfdf": {
+        "sfMessage": "—",
+        "dfMessage": "—",
+        "primacy": "—",
+        "autoOtherAccident": "—",
+        "totalDaysVisits": "—"
+      },
+      "claimLineDetail": [
+        {
+          "lineNum": "1",
+          "blankDateInd": "—",
+          "approvedDenyInd": "—"
+        }
+      ]
+    }
+  },
+  "providerInfo": {
+    "rendering": {
+      "npi": "1740382956",
+      "name": "RIVERBEND CHILDRENS CLINIC",
+      "address": "2200 Far Hills Ave, Dayton, OH 45419",
+      "pricingState": "OH",
+      "pricingZip": "45419-1507",
+      "providerSps": "7301846620",
+      "providerEpin": "—",
+      "license": "3511842000",
+      "networkOption": "N",
+      "specialty": "037",
+      "specialtyDescription": "PEDIATRICS",
+      "taxonomy": "208000000X"
+    },
+    "billing": {
+      "taxId": "316604219",
+      "npi": "1740382956",
+      "name": "RIVERBEND CHILDRENS CLINIC",
+      "facilityType": "—",
+      "providerSps": "6614028830",
+      "providerEpin": "—",
+      "medicareId": "—",
+      "address": "2200 Far Hills Ave, Dayton, OH 45419",
+      "nationalState": "OH",
+      "locationCode": "—",
+      "bhaProviderIndicator": "N",
+      "taxonomy": "208000000X",
+      "timelyFilingLimit": "—"
+    },
+    "referring": {
+      "referringPhysician": "—",
+      "npi": "—"
+    },
+    "serviceFacility": {
+      "facilityTier": "N",
+      "type": "N",
+      "npi": "1740382956"
+    },
+    "miscellaneous": {
+      "supportingOrderingNpi": "—",
+      "nsbIndicator": "None",
+      "alternateFacilityNpi": "—"
+    }
+  },
+  "paymentInfo": {
+    "claim": {
+      "deductible": "0.00",
+      "copay": "0.00",
+      "coins": "0.00",
+      "patientLiab": "0.00",
+      "memberSurcharge": "0.00",
+      "nonElg": "0.00",
+      "hraPaid": "0.00",
+      "claimPaid": "142.00",
+      "pricingAllowedAmount": "142.00",
+      "totalCharge": "185.00",
+      "finalizationCode": "PX_P10000"
+    },
+    "provider": {
+      "providerDisc": "43.00",
+      "providerLiab": "43.00",
+      "providerRiskWithhold": "0.00",
+      "providerSurcharge": "0.00",
+      "interest": "0.00",
+      "penalty": "0.00",
+      "lr": "L",
+      "systemInterest": "0.00"
+    },
+    "drg": {
+      "keyed": "-",
+      "priced": "—",
+      "original": "—"
+    },
+    "check": {
+      "accountNumber": "1234512345",
+      "checkNumber": "—",
+      "checkDate": "—",
+      "amount": "0.00",
+      "paymentSystem": "D",
+      "checkMailedTo": "—",
+      "eftCheckDate": "—",
+      "checkStatus": "CHECK NOT FOUND ON RECON DB",
+      "checkStatusDate": "02/27/2026",
+      "paidTo": "RIVERBEND CHILDRENS CLINIC",
+      "finalized": "—"
+    },
+    "payeeDetails": {
+      "flipPayee": "N"
+    }
+  },
+  "claimHeader": {
+    "general": {
+      "serviceFromThrough": "02/22/2026 - 02/22/2026",
+      "assignmentOfBenefits": "Y - Benefit assigned to provider",
+      "providerParticipation": "PAR",
+      "providerContract": "OHP00000",
+      "treatmentAuth": "—",
+      "patientAccount": "M000000000",
+      "emergency": "No",
+      "employment": "No",
+      "coveredZipRadius": "-",
+      "frequency": "1",
+      "bbiIndicator": "-",
+      "pciIndicator": "-",
+      "fsbInd": "None",
+      "fsbExclusion": "X"
+    },
+    "benefitIndicators": {
+      "cob": "0",
+      "cobRule": "-",
+      "medInd": "No",
+      "medRule": "-",
+      "medicareAdvantage": "No",
+      "cdhp": "N",
+      "planPayer": "N",
+      "cobPercent": "0"
+    },
+    "diagnosisCodes": {
+      "dx1": "Z00111"
+    },
+    "conditionCodes": {
+      "code": "-"
+    }
+  },
+  "claimLines": [
+    {
+      "lineNum": "1",
+      "fromDate": "02/22/2026",
+      "toDate": "02/22/2026",
+      "pos": "11",
+      "service": "PRV",
+      "procedure": "99391",
+      "modifiers": "—",
+      "units": "1",
+      "diagnosis": "Z00111",
+      "billed": "$185.00",
+      "dedInd": "NO",
+      "coinsPercent": "100",
+      "stoploss": "No",
+      "eobTy": "PX_MP",
+      "writeoffEobTy": "$43.00",
+      "noncoveredUnit": "0",
+      "deductible": "—",
+      "otherUnit": "0",
+      "copay": "—",
+      "eobTyLast": "PX_MP",
+      "payment": "$142.00"
+    }
+  ],
+  "claimLineSummary": {
+    "lineNum": "1",
+    "fromDate": "02/22/2026",
+    "toDate": "02/22/2026",
+    "pos": "11",
+    "service": "PRV",
+    "procedure": "99391",
+    "modifiers": "—",
+    "units": "1",
+    "diagnosis": "Z00111",
+    "billed": "$185.00",
+    "dedInd": "NO",
+    "coinsPercent": "100",
+    "stoploss": "No",
+    "eobTy": "PX_MP",
+    "writeoffEobTy": "$43.00",
+    "noncoveredUnit": "0",
+    "deductible": "—",
+    "otherUnit": "0",
+    "copay": "—",
+    "eobTyLast": "PX_MP",
+    "payment": "$142.00"
+  },
+  "notes": {
+    "research": "—",
+    "mainframe": "244383",
+    "wgs": "—",
+    "taskManagement": {
+      "routedTo": "-",
+      "urgency": "65",
+      "skills": "CT-Professional",
+      "csPg": "GS-National",
+      "benNonspider": "SPIDER",
+      "regCa": "-",
+      "resUnrestricted": "-",
+      "totalAge": "4",
+      "homeAge": "4",
+      "ageAdjusted": "N",
+      "baselineUrgency": "45",
+      "urgencyModifiers": "PG Modifer(0)"
+    }
+  },
+  "search": {
+    "claims": {
+      "dcnKernalClaim": "",
+      "claimId": "",
+      "subscriberOrHcid": "612W40517",
+      "sccf": "",
+      "procedure": "",
+      "serviceFrom": "02/22/2026",
+      "serviceTo": "02/22/2026",
+      "code": "",
+      "totalCharge": "",
+      "status": "ALL",
+      "providerTaxId": "316604219",
+      "providerNpi": "",
+      "renderingLicenseId": "",
+      "billType": ""
+    },
+    "claimsResultCount": "1",
+    "claimsResults": [
+      {
+        "code": "—",
+        "name": "HAZEL QUINTERO",
+        "from": "02/22/2026",
+        "to": "02/22/2026",
+        "type": "P",
+        "provider": "RIVERBEND CHILDRENS CLIN",
+        "billType": "-",
+        "dcn": "DCN-9730200",
+        "charged": "185.00",
+        "paid": "0.00",
+        "status": "Pending-Investigation"
+      }
+    ],
+    "codeSet": {
+      "selectCodeType": "-",
+      "enterCode": "-"
+    },
+    "auth": {
+      "search": {
+        "subscriberOrHcid": "612W40517",
+        "serviceStartDate": "2/22/2026",
+        "serviceEndDate": "2/22/2026",
+        "status": "-"
+      },
+      "members": {
+        "name": "—",
+        "dob": "—",
+        "ageAdjusted": "—",
+        "memberId": "-",
+        "mcid": "-",
+        "subscriberOrHcid": "612W40517"
+      }
+    },
+    "benefits": {
+      "planOptions": [
+        {
+          "costShare": "DEDUCTIBLE",
+          "network": "PPO",
+          "maximum": "$500",
+          "accumType": "Calendar Year"
+        },
+        {
+          "costShare": "OUT-OF-POCKET MAX",
+          "network": "PPO",
+          "maximum": "$3,000",
+          "accumType": "Calendar Year"
+        },
+        {
+          "costShare": "MEMBER CLAIM FILING DAY LIMIT",
+          "network": "—",
+          "maximum": "365 days",
+          "accumType": "—"
+        }
+      ],
+      "searchBenefits": {
+        "contractCode": "3LRN",
+        "effectiveDate": "1/1/2026",
+        "endDate": "12/31/9999",
+        "effectiveEndDate": "-"
+      },
+      "general": {
+        "contractCode": "3LRN",
+        "product": "BCBI",
+        "plan": "OHIO VALLEY MANUFACTURING",
+        "contractState": "OH",
+        "benefitPeriod": "-",
+        "benefitPeriodAlt": "-",
+        "fundingArrangement": "-",
+        "cdhpInd": "-",
+        "groupNumber": "WZT540M001",
+        "contractId": "3LRN",
+        "memberName": "MARCO QUINTERO",
+        "caseNumber": "WZT540",
+        "contractType": "-",
+        "crossAccumulation": "-"
+      },
+      "viewNic": {
+        "coverage": "MED-MEDICL COVERAGE",
+        "pricing": "OH29",
+        "network": "PPO"
+      },
+      "accumulators": {
+        "criteria": {
+          "memberId": "612W40517",
+          "memberCode": "—",
+          "fromDate": "2/22/2026",
+          "toDate": "2/22/2026",
+          "sourceSystem": "WGS"
+        },
+        "selection": {
+          "accumulatorName": "—",
+          "benefitYear": "—",
+          "accumulatorEffDate": "—",
+          "cob": "—",
+          "deductible": "—",
+          "fertilityRx": "—",
+          "lifetime": "—",
+          "other": "—",
+          "outOfPocket": "—"
+        }
+      }
+    },
+    "provider": {
+      "npiTaxId": {
+        "npi": "1740382956",
+        "orgTaxId": "316604219",
+        "fromDate": "2/22/2026",
+        "throughDate": "2/22/2026",
+        "lastUpdateDate": "1/15/2026",
+        "sourceSystem": "WGS",
+        "zipCode": "-",
+        "billingType": "-",
+        "specialty": "-",
+        "state": "-",
+        "alternateId": "-",
+        "alternateKey": "-"
+      },
+      "practitioner": {
+        "firstName": "-",
+        "lastName": "-",
+        "fromDate": "2/22/2026",
+        "throughDate": "2/22/2026",
+        "sourceSystem": "SPS",
+        "addressLine": "-",
+        "city": "-",
+        "state": "-",
+        "specialty": "-"
+      },
+      "organization": {
+        "organizationName": "-",
+        "orgTaxId": "316604219",
+        "fromDate": "2/22/2026",
+        "throughDate": "2/22/2026",
+        "sourceSystem": "SPS",
+        "addressLine": "-",
+        "city": "-",
+        "state": "-",
+        "zipCode": "-",
+        "billingType": "-",
+        "specialty": "-"
+      },
+      "pcpPmg": {
+        "pcpPmgId": "-",
+        "fromDate": "2/22/2026",
+        "throughDate": "2/22/2026",
+        "sourceSystem": "SPS",
+        "specialty": "-",
+        "state": "-"
+      },
+      "alternateId": {
+        "organizationName": "XXXXX",
+        "alternateKeyOrg": "-",
+        "individual": "8023 - Legacy provider ID",
+        "alternateKeyIndiv": "-",
+        "nonAnthem": "33-NPI",
+        "alternateKeyNonAnthem": "-"
+      }
+    },
+    "member": {
+      "autoSearch": {
+        "memberId": "612W40517",
+        "firstName": "HAZEL",
+        "lastName": "QUINTERO",
+        "dob": "2/12/2026"
+      },
+      "memberIdSearchAction": "search_member_by_id",
+      "collapseMembers": true,
+      "results": [
+        {
+          "memberId": "612W40517",
+          "firstName": "MARCO",
+          "mi": "",
+          "lastName": "QUINTERO",
+          "dob": "10/3/1995",
+          "relationship": "SUB - Subscriber",
+          "memberCode": "10",
+          "gender": "M",
+          "state": "OH",
+          "rowAction": "open_subscriber_contracts",
+          "membersInContract": [
+            {
+              "memberCode": "10",
+              "name": "MARCO QUINTERO",
+              "relationship": "SUB - Subscriber",
+              "dob": "10/3/1995",
+              "age": "30",
+              "effectiveDate": "1/1/2026",
+              "endDate": "12/31/9999"
+            },
+            {
+              "memberCode": "40",
+              "name": "ELENA QUINTERO",
+              "relationship": "SPS - Spouse",
+              "dob": "8/19/1997",
+              "age": "28",
+              "effectiveDate": "1/1/2026",
+              "endDate": "12/31/9999"
+            }
+          ],
+          "contractGroups": [
+            {
+              "id": "cg_092_sub_1",
+              "contractId": "3LRN",
+              "caseEntity": "WZT540",
+              "groupNumber": "WZT540M001",
+              "hcid": "612W40517",
+              "prefix": "QKT",
+              "effectiveDate": "1/1/2026",
+              "endDate": "12/31/9999",
+              "productCode": "BCBI",
+              "contractState": "OH",
+              "contractType": "C",
+              "cancellationDate": "—",
+              "terminationReason": "—",
+              "numberCovered": "02",
+              "updatedDate": "12/15/2025",
+              "updateById": "WMXBRN01",
+              "expandAction": "expand_member_group",
+              "openDetailAction": "open_member_details",
+              "applyAction": "apply_selected_member"
+            },
+            {
+              "id": "cg_092_sub_2",
+              "contractId": "3LRN",
+              "caseEntity": "WZT540",
+              "groupNumber": "WZT540M001",
+              "hcid": "612W40517",
+              "prefix": "QKT",
+              "effectiveDate": "1/1/2025",
+              "endDate": "12/31/2025",
+              "productCode": "BCBI",
+              "contractState": "OH",
+              "contractType": "C",
+              "cancellationDate": "—",
+              "terminationReason": "—",
+              "numberCovered": "02",
+              "updatedDate": "12/16/2024",
+              "updateById": "WMXBRN01",
+              "applyAction": "apply_selected_member"
+            },
+            {
+              "id": "cg_092_sub_3",
+              "contractId": "3LRN",
+              "caseEntity": "WZT540",
+              "groupNumber": "WZT540M002",
+              "hcid": "612W40517",
+              "prefix": "QKT",
+              "effectiveDate": "1/1/2026",
+              "endDate": "12/31/9999",
+              "productCode": "BCBI",
+              "contractState": "OH",
+              "contractType": "C",
+              "cancellationDate": "—",
+              "terminationReason": "—",
+              "numberCovered": "02",
+              "updatedDate": "12/15/2025",
+              "updateById": "WMXBRN01",
+              "applyAction": "apply_selected_member"
+            }
+          ]
+        },
+        {
+          "memberId": "612W40517",
+          "firstName": "ELENA",
+          "mi": "",
+          "lastName": "QUINTERO",
+          "dob": "8/19/1997",
+          "relationship": "SPS - Spouse",
+          "memberCode": "40",
+          "gender": "F",
+          "state": "OH",
+          "membersInContract": [
+            {
+              "memberCode": "10",
+              "name": "MARCO QUINTERO",
+              "relationship": "SUB - Subscriber",
+              "dob": "10/3/1995",
+              "age": "30",
+              "effectiveDate": "1/1/2026",
+              "endDate": "12/31/9999"
+            },
+            {
+              "memberCode": "40",
+              "name": "ELENA QUINTERO",
+              "relationship": "SPS - Spouse",
+              "dob": "8/19/1997",
+              "age": "28",
+              "effectiveDate": "1/1/2026",
+              "endDate": "12/31/9999"
+            }
+          ],
+          "contractGroups": [
+            {
+              "id": "cg_092_sps_1",
+              "contractId": "3LRN",
+              "caseEntity": "WZT540",
+              "groupNumber": "WZT540M001",
+              "hcid": "612W40517",
+              "prefix": "QKT",
+              "effectiveDate": "1/1/2026",
+              "endDate": "12/31/9999",
+              "productCode": "BCBI",
+              "contractState": "OH",
+              "contractType": "C",
+              "cancellationDate": "—",
+              "terminationReason": "—",
+              "numberCovered": "02",
+              "updatedDate": "12/15/2025",
+              "updateById": "WMXBRN01",
+              "applyAction": "apply_selected_member"
+            }
+          ]
+        }
+      ],
+      "searchMember": {
+        "memberId": "612W40517",
+        "firstName": "HAZEL",
+        "mi": "R",
+        "lastName": "QUINTERO",
+        "dob": "2/12/2026",
+        "relationship": "",
+        "memberCode": "",
+        "gender": "F",
+        "state": "OH",
+        "contractId": "3LRN",
+        "caseEntity": "WZT540",
+        "groupNumber": "WZT540M001",
+        "hcid": "612W40517",
+        "prefix": "QKT",
+        "effectiveDate": "1/1/2026",
+        "endDate": "12/31/9999",
+        "productCode": "BCBI",
+        "contractState": "OH",
+        "businessUnit": "Group"
+      },
+      "general": {
+        "name": "",
+        "dateOfBirth": "",
+        "age": "",
+        "sex": "",
+        "memberId": "",
+        "hcid": "",
+        "relationship": "",
+        "memberCode": "",
+        "address": "",
+        "county": "",
+        "country": "",
+        "phone": "",
+        "effectiveDate": "",
+        "endDate": "",
+        "productType": "",
+        "groupType": "",
+        "cob": "",
+        "businessUnit": "",
+        "paidToDate": "",
+        "erisa": "",
+        "caseGroupSetup": "",
+        "contractStartDate": "",
+        "shortTermEndDate": "",
+        "cxlProcessDate": "",
+        "aptcIndicator": "",
+        "csdt": "",
+        "caseName": "",
+        "ncnReferralsInd": "",
+        "foi": "",
+        "roundoprd": "",
+        "conversionCode": "",
+        "medicareIndicator": ""
+      },
+      "additionalAddress": {
+        "address": "-"
+      },
+      "providerNetwork": {
+        "product": "57BC PPO INCENTIVE",
+        "providerGroupName": "-",
+        "address": "-",
+        "phone": "-"
+      },
+      "contractMembers": [
+        {
+          "memberCode": "10",
+          "name": "MARCO QUINTERO",
+          "relationship": "SUB - Subscriber",
+          "dob": "10/3/1995",
+          "age": "30",
+          "effectiveDate": "1/1/2026",
+          "endDate": "12/31/9999"
+        },
+        {
+          "memberCode": "40",
+          "name": "ELENA QUINTERO",
+          "relationship": "SPS - Spouse",
+          "dob": "8/19/1997",
+          "age": "28",
+          "effectiveDate": "1/1/2026",
+          "endDate": "12/31/9999"
+        }
+      ],
+      "group": {
+        "general": {
+          "name": "OHIO VALLEY MANUFACTURING",
+          "status": "O ACTIVE",
+          "companyCode": "123C XXXX",
+          "paidToDate": "3/1/2026",
+          "locationStateCode": "OH",
+          "locationCodeEffectiveDate": "1/1/2019",
+          "workLocation": "7003 ANTHEM NAT ACCT",
+          "workLocationPhone": "9999888899",
+          "rateMethodCode": "1 ASO BUSINESS",
+          "rmcEffectiveDate": "1/1/2019",
+          "groupType": "A ACTIVE",
+          "fundingTypeCode": "H ASC",
+          "graceDays": "30",
+          "claimGraceDays": "30"
+        },
+        "coverage": {
+          "originalEffectiveDate": "1/1/2019",
+          "groupProcessedDate": "10/9/2018",
+          "reinstateEffectiveDate": "-",
+          "reinstateProcessedDate": "-",
+          "cancelEffectiveDate": "-",
+          "cancelProcessedDate": "-",
+          "cancelReason": "-"
+        },
+        "contract": {
+          "productLine": "BC PPO INCENTIVE",
+          "claimsRoute": "PX_P-EXEC - NATIONAL ACCTS",
+          "benefitYearCalendarYear": "CY",
+          "benefitYearCalendarYearAsOfDate": "1/1/2019",
+          "contractCode": "3LRN",
+          "contractCodeEffectiveDate": "1/1/2019",
+          "promptPay": "N",
+          "promptPayDate": "1/1/2019",
+          "itsHomeParticipatingCode": "E CONTROL CUSTOM",
+          "itsHomeEffectiveDate": "1/1/2019",
+          "locationLobCode": "X BC/BCLH",
+          "overAgeMailing": "S MAIL TO SUBR",
+          "networkId": "BLUECDOO",
+          "networkName": "BLUE XXXX BLUE XXXX"
+        },
+        "additional": {
+          "product": "BC PPO INC Claim Manager",
+          "mbuCode": "NAC00000",
+          "claimsServiceLocation": "COOIO/CAACOII",
+          "serviceManager": "SRVC/DARLENE",
+          "claimManager": "CLMS/M PENNER",
+          "servicePhone": "999999999",
+          "serviceAddress": "XXXX PARK Road COLUMBUS OH 43215",
+          "sourceSystem": "WGS 2.0"
+        }
+      }
+    },
+    "limitedLiability": {
+      "memberId": "612W40517",
+      "memberCode": "—",
+      "dob": "2/12/2026",
+      "activeRecords": "-",
+      "allRecords": "-"
+    },
+    "pricing": {
+      "member": {
+        "dob": "2/12/2026",
+        "sex": "F",
+        "groupNumber": "WZT540M001",
+        "groupId": "-",
+        "networkId": "BLUECS",
+        "memberZipCode": "45419",
+        "alternateZipCode": "-",
+        "medicareInd": "N",
+        "hixInd": "-",
+        "marketType": "NTLA",
+        "memberInd": "-",
+        "ab72": "-",
+        "patientCode": "-",
+        "product": "BCBI -",
+        "variance": "OH29",
+        "coverage": "MED",
+        "groupIdentifier": "-"
+      },
+      "provider": {
+        "taxId": "316604219",
+        "renderingNumber": "77777777777",
+        "billingNumber": "6666666666",
+        "renderingNpi": "1740382956",
+        "billingNpi": "1740382956",
+        "license": "3511842000",
+        "specialty": "037",
+        "zipCode": "45419-1507",
+        "planInd": "OH",
+        "wgsp": "P",
+        "pcpState": "NP",
+        "region": "432",
+        "gbdId": "-",
+        "providerInd": "-",
+        "providerParticipation": "PAR",
+        "providerProdVar": "OHP02186",
+        "networxInd": "-",
+        "finalMixer": "-",
+        "legacySpecialty": "-"
+      },
+      "claimHeader": {
+        "serviceFrom": "2/22/2026",
+        "serviceTo": "2/22/2026",
+        "placeOfService1": "1",
+        "placeOfService2": "11",
+        "cxtInd": "X",
+        "productLineCode": "57",
+        "serviceClassType": "-",
+        "emergRefInd": "-",
+        "icd9": "N",
+        "federalMandate": "-",
+        "cocInd": "-",
+        "mixerOverrideInd": "-",
+        "streetMedicineInd": "None",
+        "surpriseBillingInd": "-",
+        "cgntInd": "-",
+        "product": "OHPO",
+        "variance": "2186",
+        "contractNotes": "-",
+        "overridePriceProduct": "-",
+        "contractHierarchy": "-",
+        "bundleStatus": "-",
+        "clusterId": "-"
+      },
+      "diagnosisCodes": {
+        "a": "Z00111",
+        "b": "-",
+        "c": "-",
+        "d": "-",
+        "e": "-"
+      },
+      "lineSummary": {
+        "procedure": "99391",
+        "modifier": "—",
+        "uo": "1",
+        "cxPercent": "100",
+        "allowed": "142",
+        "billedAmount": "185",
+        "writeoff": "43"
+      }
+    }
+  },
+  "system": {
+    "benefitRecommendation": {
+      "contractCode": "3LRN",
+      "effectiveDate": "1/1/2026",
+      "endDate": "12/31/9999",
+      "planState": "OH",
+      "planDescription": "Ohio Valley Manufacturing 01/01/2026 PPO 3LRN"
+    }
+  },
+  "attachment": {
+    "pwk": {
+      "type": "—",
+      "documentNumber": "—"
+    }
+  },
+  "claimData": {
+    "details": {
+      "claimType": "Professional",
+      "itsHome": "No",
+      "claimSource": {
+        "mediaType": "PC",
+        "pricingSource": "W",
+        "pricingSystem": "WP",
+        "mixerPar": "Y",
+        "receiverId": "WGSGA",
+        "receivedAtEdi": "2/27/2026",
+        "providerError": "I000",
+        "imageControlNumber": "CI26058110348929349",
+        "authNumber": "—",
+        "authExcln": "—",
+        "vendorIndicator": "—",
+        "receivedDate": "2/27/2026",
+        "splitInd": "—",
+        "epactPlm": "—",
+        "gnyhaInd": "—",
+        "imrIndicator": "—",
+        "cliaId": "—",
+        "cliaQualifier": "—"
+      },
+      "ancillaryProvider": {
+        "type": "—",
+        "zip": "—",
+        "state": "—"
+      },
+      "ambulance": {
+        "pickupZip": "—",
+        "dropoffZip": "—"
+      },
+      "miscellaneous": {
+        "epsdt": "—",
+        "familyPlanning": "No",
+        "gtessDate": "—",
+        "dateOfIllness": "—",
+        "dateOfInjury": "—",
+        "lastMenstrualDate": "—",
+        "consultationDate": "—",
+        "eruDecision": "—",
+        "jaaErrorCode": "No"
+      },
+      "stopData": {
+        "stopEdit": "No",
+        "lobParentRule": "—",
+        "lobChildRule": "ALL WGS",
+        "lobSequence": "1",
+        "medBusinessParentRule": "NA",
+        "medBusinessChildRule": "656881",
+        "medSequence": "51"
+      },
+      "refundData": {
+        "correspondenceNumber": "—",
+        "refundAmount": "$0.00",
+        "adjustmentReasonCode": "PX_4",
+        "correctedClaimDcn": "—",
+        "vendorName": "—",
+        "delayReason": "—",
+        "carveOut": "—",
+        "adjustmentReceipt": "—"
+      },
+      "highDollar": {
+        "riskOutcome": "—"
+      }
+    },
+    "editing": {
+      "claimXten": {
+        "originalLine": {
+          "lineNum": "1",
+          "serviceDate": "2/22/2026",
+          "procedure": "99391",
+          "mod": "—",
+          "units": "1",
+          "billedAmount": "$185.00"
+        },
+        "proposedLine": {
+          "lineNum": "1",
+          "procedure": "99391",
+          "mod": "—",
+          "units": "1",
+          "supportCode": "—",
+          "payPercent": "100",
+          "billedAmount": "$185.00"
+        }
+      },
+      "ihealth": {
+        "originalLine": {
+          "lineNum": "1",
+          "serviceDate": "2/22/2026",
+          "procedure": "99391",
+          "mod": "—",
+          "units": "1",
+          "allowedAmount": "$142.00",
+          "savingsAmount": "$43.00"
+        },
+        "proposedLine": {
+          "procedure": "99391",
+          "mod": "—",
+          "units": "1",
+          "payPercent": "100",
+          "status": "PX_P"
+        }
+      }
+    },
+    "benefits": {
+      "accumulator1": {
+        "type": "BENYTD",
+        "fromDate": "1/1/2026",
+        "toDate": "12/31/2026",
+        "unit": "Dollar",
+        "status": "Accrued"
+      },
+      "accumulator2": {
+        "type": "MMCYTD",
+        "fromDate": "1/1/2026",
+        "toDate": "12/31/2026",
+        "unit": "Dollar",
+        "status": "Accrued"
+      }
+    },
+    "promptPay": {
+      "claim": {
+        "status": "PX_WGS",
+        "state": "—",
+        "ruleId": "—",
+        "systemInterest": "$0.00",
+        "penaltyAmount": "$0.00",
+        "manualInterestAmount": "—"
+      },
+      "calculation": {
+        "calculationFromDate": "2/27/2026",
+        "carveoutDate": "—",
+        "lastProcessedDate": "2/27/2026",
+        "baseAmount": "$0.00",
+        "calculatedInterestAmount": "$0.00",
+        "processedInDays": "0",
+        "mailingDays": "0",
+        "disburseDays": "0",
+        "allowedDays": "0",
+        "carveoutDays": "0",
+        "lateByDays": "0",
+        "dailyInterest": "$0.00"
+      },
+      "miscellaneous": {
+        "carveoutReasonCode": "PX_0",
+        "dayIndicator": "0",
+        "receiptMethod": "—",
+        "productFundType": "W",
+        "interestRate": "—",
+        "penalty": "—",
+        "minimumPayAmount": "—",
+        "erMinimumPay": "—",
+        "annualMonthlyPenalty": "—",
+        "mlhDate": "26058",
+        "ppStopDate": "—",
+        "additionalInformationRequestDate": "—",
+        "tdiInterestAmount": "—",
+        "tdiPenaltyAmount": "—"
+      }
+    },
+    "review": {
+      "utilization": {
+        "service": {
+          "lineNum": "1",
+          "procedure": "99391",
+          "revenueCodeDate": "—",
+          "ruleId": "—",
+          "caseNumber": "—"
+        }
+      },
+      "cdhp": {
+        "claim": {
+          "litesClaim": "—",
+          "rsnEobCode": "—",
+          "hraPaidTotal": "$0.00",
+          "hraEndingBalance": "$0.00",
+          "paymentCode": "—",
+          "cdhpAdmin": "—",
+          "acknowledgementRcvd": "—",
+          "requeryCount": "—"
+        },
+        "lineSummary": {
+          "lineNum": "1",
+          "procedure": "99391",
+          "billed": "$185.00",
+          "patientResp": "—",
+          "hraPaid": "—",
+          "rsnCode": "—"
+        }
+      },
+      "dofr": {
+        "meta": {
+          "inzip": "—",
+          "providerNetworkCode": "—",
+          "dofrId1": "—",
+          "dofrName1": "—",
+          "relationship": "—",
+          "pgmId": "—",
+          "pgId": "—",
+          "umDelegationIndicator": "—",
+          "effectiveDate": "—",
+          "endDate": "—"
+        },
+        "lineSummary": {
+          "lineNum": "1",
+          "procedure": "99391",
+          "revenueCode": "—",
+          "serviceCategory": "—",
+          "event": "—",
+          "capIndicator": "—",
+          "risk": "—",
+          "groupCode": "—",
+          "hc": "PP"
+        }
+      }
+    },
+    "relatedSummary": {
+      "code": "—",
+      "name": "—",
+      "fromDate": "—",
+      "toDate": "—",
+      "type": "—",
+      "provider": "—",
+      "dcn": "—",
+      "charged": "—",
+      "paid": "—",
+      "status": "—"
+    }
+  }
+}

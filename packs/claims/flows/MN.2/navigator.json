@@ -1,0 +1,347 @@
+{
+  "$schema": "training-platform/v1/navigator",
+  "$version": "2.0.0",
+  "id": "nav_mn_2_psccr_route",
+  "flowId": "flow_pricing_mn_2",
+  "name": "Pricing MN.2 — Missing Standard Pricing / NOC (Route to PSCCR) Navigator",
+  "description": "Walk the Pricing SOP for the PX_MN event when the billed Not Otherwise Classified (NOC) procedure crosses a Suspend/Deny dollar threshold and carries medical records, so the claim is routed to Post Service Clinical Review (PSCCR) rather than priced and paid in-system. Note the Pricing state (CA) from the Provider Information Rendering section; identify the PX_MN01 soft edit on the Event Resolution tab (highlighted with an error indication) and rule out higher-hierarchy events; review benefits on the Search → Benefit sub-tab and confirm the Line-1 services are covered (verify in CI&W) and that procedure 67725 is not on the PSCCR NOC Codes Exception List (SBA Bulletin 12-050); confirm the LOB is Local on Member Information; inspect the Line-1 billed amount ($1250, more than $250) on Claim Lines and open the Code Set sub-tab via the procedure-code link; look up the Suspend/Deny dollar threshold ($500) under the Code Set Exception section (Exception Type 3 – Both, Business/State WEST (CA/CO/NV)); confirm the billed amount ($1250) is at or above the $500 threshold; confirm the claim carries PSCCR events (PX_MJ present); confirm medical records are available (25035878888, Type G); raise a PSCCR review request via Action → Request claim review (Line 1, Medical Record Number for Review 25035878888); then submit without choosing Pay/Deny, routing the claim to PSCCR.",
+  "totalSteps": 11,
+  "passMark": 70,
+  "correctDecision": "",
+  "correctDecisionLabel": "No decision",
+  "totalMaxPoints": 130,
+  "totalNavigatorPoints": 110,
+  "steps": [
+    {
+      "id": "step_001",
+      "sequenceId": 1,
+      "name": "Note the Pricing state",
+      "description": "Open the Provider Information tab and note the State from the Rendering section, comparing it with the provider State field — this value keys the Code Set Exception / Business-State lookup performed later. In this scenario the Pricing state is CA (California).",
+      "targetTabId": "tab_provider_info",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_pi_rendering",
+      "targetFieldId": "f_pi_r_pricing_state",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_provider_info"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Provider Information tab and reads the Pricing state (CA) in the Rendering section.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Provider Information' and read the Pricing state in the Rendering section. It is CA (California) — you'll need it for the Code Set Exception / Business-State lookup later.",
+      "highlightFields": ["f_pi_r_pricing_state"],
+      "highlightTabId": "tab_provider_info",
+      "checklistItem": "Note the Pricing state"
+    },
+    {
+      "id": "step_002",
+      "sequenceId": 2,
+      "name": "Identify the PX_MN01 soft edit and check the event hierarchy",
+      "description": "Review all edits in the Event Resolution tab. The PX_MN01 soft edit is highlighted with an error indication — this is the current event to resolve. PX_MN.2 is another subtype of the Not Otherwise Classified (NOC) pricing event, differing from PX_MN.1 based on threshold, records, or guidelines. Verify the events list for any other events that need to be resolved first per the event hierarchy. If other events come before PX_MN01, resolve those first; otherwise proceed. In this scenario a PX_MJ event is also present but does not precede PX_MN01 in the hierarchy, so the trainee proceeds with PX_MN01.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_all_edits",
+      "targetFieldId": "f_er_e_mn",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Event Resolution tab and reviews the events list, where the active PX_MN01 soft edit is highlighted with an error indication and no higher-hierarchy event blocks it.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Event Resolution' and review the events list. PX_MN01 is the active soft edit, highlighted with an error indication; no event precedes it in the hierarchy, so proceed.",
+      "highlightFields": ["f_er_edit_code", "f_er_e_mn"],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Identify the PX_MN01 soft edit and check the event hierarchy"
+    },
+    {
+      "id": "step_003",
+      "sequenceId": 3,
+      "name": "Verify benefits and check the NOC Codes Exception List",
+      "description": "Review the benefits on the claim and identify whether the services billed on Line 1 are covered. Navigate to the Search tab and open the Benefit sub-tab; the trainee is directed to review the benefits in the CI&W system. If the services are not covered, follow the alternate guidelines; if covered, proceed. Then review the PSCCR NOC Codes Exception List (Excel), listed on SBA Bulletin 12-050, and determine whether any NOC code billed on the claim appears on the list. If a billed NOC code is on the list, process the claim per the instructions on the list; if not, proceed. In this scenario the services are covered and the billed procedure code (67725) is not on the list, so the trainee proceeds.",
+      "targetTabId": "tab_search",
+      "targetSubTabId": "subtab_search_benefits",
+      "targetSectionId": "sec_sc_b_ciw",
+      "targetFieldId": "f_sc_b_ciw_msg",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_search",
+        "subTabId": "subtab_search_benefits"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Search → Benefit sub-tab, where the CI&W message confirms the Line-1 services are covered and the NOC Codes Exception List note confirms 67725 is not listed.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Search' → 'Benefit'. Review the benefits in CI&W — the Line-1 services are covered. Then check the PSCCR NOC Codes Exception List (SBA Bulletin 12-050): 67725 is not on the list, so proceed.",
+      "highlightFields": ["f_sc_b_ciw_msg", "f_sc_b_noc_exception"],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_benefits",
+      "checklistItem": "Verify benefits and check the NOC Codes Exception List"
+    },
+    {
+      "id": "step_004",
+      "sequenceId": 4,
+      "name": "Check the Line of Business via the Product field",
+      "description": "Determine the Line of Business by checking the Product field   by navigating to the Member Information tab then Group section— the Product shows any value such as Local, National, or ACA (any value other than ITS). In this scenario the Product is Local, so the trainee proceeds.",
+      "targetTabId": "tab_member_info",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_mi_group",
+      "targetFieldId": "f_mi_g_product",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_member_info"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Member Information tab and confirms the Product is Local in the Group section.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Member Information'. In the Group section, read the Product field — it is Local (any value other than ITS), so proceed.",
+      "highlightFields": ["f_mi_g_product"],
+      "highlightTabId": "tab_member_info",
+      "checklistItem": "Check the Line of Business via the Product field"
+    },
+    {
+      "id": "step_005",
+      "sequenceId": 5,
+      "name": "Inspect the billed amount and open the Code Set lookup",
+      "description": "Look at the billed amount on Line 1 of the Claim Lines tab and determine whether it is less than or more than $250 — this controls which threshold lookup path to follow. In this scenario the Line-1 billed amount is $1250, which is more than $250. Then click the procedure code on Line 1 (67725); the system redirects to the Code Set sub-tab of the Search tab to look up the suspend/deny threshold.",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_summary",
+      "targetFieldId": "f_cl_billed",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_lines"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Claim Lines tab and reads the Line-1 billed amount ($1250) and procedure code (67725).",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Lines'. The Line-1 Billed column is $1250 (more than $250). Click the procedure code (67725) to open the Code Set lookup next.",
+      "highlightFields": ["f_cl_billed", "f_cl_procedure"],
+      "highlightTabId": "tab_claim_lines",
+      "checklistItem": "Inspect the billed amount and open the Code Set lookup"
+    },
+    {
+      "id": "step_006",
+      "sequenceId": 6,
+      "name": "Look up the Suspend/Deny dollar threshold",
+      "description": "Navigate to  of the Search tab ,then Code Set sub-tab and  scroll down to the Exception section. The Exception Type is set to 3 – Both and the Business/State is set to the state identified earlier (CA, shown as WEST (CA/CO/NV)); the search returns the matching criteria in the Suspend/Deny section. Select the line that matches the claim criteria — in this scenario the first line, with criteria 1-STATE EQ CA — to populate the Suspend/Deny fields. Read the value in the Dollar threshold field. In this scenario the dollar threshold is $500.",
+      "targetTabId": "tab_search",
+      "targetSubTabId": "subtab_search_codeset",
+      "targetSectionId": "sec_sc_cs_suspend",
+      "targetFieldId": "f_sc_cs_sd_threshold",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_search",
+        "subTabId": "subtab_search_codeset"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Search → Code Set sub-tab and reads the Suspend/Deny Dollar threshold ($500) under the Exception section.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Search' → 'Code Set'. Under Exception, the Type is '3 – Both' and Business/State is WEST (CA/CO/NV); the first Suspend/Deny line (1-STATE EQ CA) shows a Dollar threshold of $500.",
+      "highlightFields": [
+        "f_sc_cs_ex_type",
+        "f_sc_cs_ex_state",
+        "f_sc_cs_sd_threshold"
+      ],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_codeset",
+      "checklistItem": "Look up the Suspend/Deny dollar threshold"
+    },
+    {
+      "id": "step_007",
+      "sequenceId": 7,
+      "name": "Compare billed amount against the Suspend/Deny threshold",
+      "description": "Return to the Claim Lines tab and compare the Line-1 billed amount against the Suspend/Deny threshold identified in the previous step. If the billed amount is below the threshold, follow the alternate guidelines; if it is at or above the threshold, proceed. In this scenario the billed amount is $1250, which is above the $500 threshold, so the trainee proceeds. Click 'Confirm billed exceeds threshold' to record the comparison.",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_threshold",
+      "targetFieldId": "f_cl_threshold_confirm",
+      "actionType": "confirm_over_threshold",
+      "actionPayload": {
+        "type": "action",
+        "action": "confirm_over_threshold"
+      },
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the trainee clicks 'Confirm billed exceeds threshold' on the Claim Lines tab, dispatching the confirm_over_threshold action ($1250 ≥ $500).",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Back on 'Claim Lines', the billed amount $1250 is above the $500 threshold. Click 'Confirm billed exceeds threshold' to proceed.",
+      "highlightFields": ["f_cl_threshold_note", "f_cl_threshold_confirm"],
+      "highlightTabId": "tab_claim_lines",
+      "checklistItem": "Compare billed amount against the Suspend/Deny threshold"
+    },
+    {
+      "id": "step_008",
+      "sequenceId": 8,
+      "name": "Confirm PSCCR events are present",
+      "description": "Return to the Event Resolution tab and determine whether the claim has PSCCR events by looking for PX_MJ, PX_MN, or PX_MR. If PSCCR events are present, the claim must follow the PSCCR events guidelines and be routed to PSCCR; if absent, proceed with the alternate path. In this scenario the claim contains PX_MJ events, so the trainee proceeds toward routing the claim to PSCCR. Click 'Confirm PSCCR events present' to record the determination.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_psccr",
+      "targetFieldId": "f_er_psccr_confirm",
+      "actionType": "confirm_psccr_events",
+      "actionPayload": {
+        "type": "action",
+        "action": "confirm_psccr_events"
+      },
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the trainee clicks 'Confirm PSCCR events present' on the Event Resolution tab, dispatching the confirm_psccr_events action (PX_MJ present).",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Back on 'Event Resolution', look for PX_MJ/PX_MN/PX_MR. The claim contains PX_MJ events, so click 'Confirm PSCCR events present' to proceed toward routing to PSCCR.",
+      "highlightFields": ["f_er_psccr_events", "f_er_psccr_confirm"],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Confirm PSCCR events are present"
+    },
+    {
+      "id": "step_009",
+      "sequenceId": 9,
+      "name": "Confirm medical records are available",
+      "description": "Open the Attachments sub-tab of the Attachment tab and check for medical records on the claim. Validate whether a medical records number is present (for example 25035878888, Type G). If no number is visible, view the claim form and check whether medical records are attached there by opening the claim image via the DCN number — look for anything other than the claim form. If medical records are available, route the claim to PSCCR; if not, follow the alternate guidelines. In this scenario medical records are available (25035878888, Type G), so the claim must be routed to PSCCR.",
+      "targetTabId": "tab_attachment",
+      "targetSubTabId": "subtab_attachment_attachments",
+      "targetSectionId": "sec_att_pwk",
+      "targetFieldId": "f_att_doc_num",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_attachment",
+        "subTabId": "subtab_attachment_attachments"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Attachment → Attachments sub-tab and confirms the medical-records document number (25035878888, Type G) is present.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Attachment' → 'Attachments'. The medical-records document number 25035878888 (Type G) is present, so the claim must be routed to PSCCR.",
+      "highlightFields": ["f_att_type", "f_att_doc_num"],
+      "highlightTabId": "tab_attachment",
+      "highlightSubTabId": "subtab_attachment_attachments",
+      "checklistItem": "Confirm medical records are available"
+    },
+    {
+      "id": "step_010",
+      "sequenceId": 10,
+      "name": "Submit the PSCCR review request",
+      "description": "Route the claim to PSCCR. Open the Action menu (top-right) and select Post Service Clinical Review (PSCCR) under the Request claim review group. The Request claim review dialog opens showing the lines to be routed to PSCCR (here, Line 1) and the Medical Record Number for Review (25035878888) identified earlier. Click Submit to send the PSCCR review request.",
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "submit_psccr",
+      "actionPayload": {
+        "type": "action",
+        "action": "submit_psccr"
+      },
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the trainee opens the Action menu → Request claim review → Post Service Clinical Review (PSCCR) dialog and clicks Submit, dispatching the submit_psccr action (routing Line 1 to Post Service Clinical Review).",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open the Action menu (top-right), select Post Service Clinical Review (PSCCR) under Request claim review, confirm Line 1 / Medical Record Number 25035878888, then click Submit.",
+      "highlightFields": [],
+      "completesActionId": "submit_psccr",
+      "checklistItem": "Submit the PSCCR review request"
+    },
+    {
+      "id": "step_011",
+      "sequenceId": 11,
+      "name": "Submit to complete the action",
+      "description": "Click the Submit button to complete the action. Submit without selecting a decision (do not pick Pay or Deny) — the claim has already been routed to PSCCR via the Request claim review action, so it is held/routed for PSCCR review.",
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "submit_decision",
+      "actionPayload": {
+        "type": "submit_decision",
+        "expectedDecision": ""
+      },
+      "completionTrigger": "decision_submitted",
+      "completionTriggerNote": "Completes when the trainee submits without selecting a decision, recording the claim as routed/held for PSCCR.",
+      "expectedValue": "",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Submit without selecting Pay or Deny (the claim is routed to PSCCR, not paid or denied), then click Submit and confirm in the dialog.",
+      "highlightFields": [],
+      "checklistItem": "Submit to complete the action"
+    }
+  ],
+  "scoreBreakdown": {
+    "navigatorStepsMaxPoints": 110,
+    "decisionMaxPoints": 20,
+    "reasonCodeMaxPoints": 0,
+    "totalMaxPoints": 130,
+    "passMark": 70,
+    "weightedPassScore": 91
+  },
+  "stepSummaryForResults": [
+    {
+      "sequenceId": 1,
+      "name": "Pricing state noted (CA)",
+      "points": 10
+    },
+    {
+      "sequenceId": 2,
+      "name": "PX_MN01 soft edit identified; event hierarchy checked",
+      "points": 10
+    },
+    {
+      "sequenceId": 3,
+      "name": "Benefits covered; 67725 not on NOC Exception List",
+      "points": 10
+    },
+    {
+      "sequenceId": 4,
+      "name": "Line of Business confirmed Local",
+      "points": 10
+    },
+    {
+      "sequenceId": 5,
+      "name": "Billed amount inspected ($1250 > $250); Code Set opened",
+      "points": 10
+    },
+    {
+      "sequenceId": 6,
+      "name": "Suspend/Deny dollar threshold looked up ($500)",
+      "points": 10
+    },
+    {
+      "sequenceId": 7,
+      "name": "Billed ($1250) confirmed above threshold ($500)",
+      "points": 10
+    },
+    {
+      "sequenceId": 8,
+      "name": "PSCCR events confirmed present (PX_MJ)",
+      "points": 10
+    },
+    {
+      "sequenceId": 9,
+      "name": "Medical records confirmed available (25035878888)",
+      "points": 10
+    },
+    {
+      "sequenceId": 10,
+      "name": "PSCCR review request submitted",
+      "points": 10
+    },
+    {
+      "sequenceId": 11,
+      "name": "Submitted — claim routed to PSCCR (no decision)",
+      "points": 10
+    }
+  ]
+}

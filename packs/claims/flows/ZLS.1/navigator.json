@@ -1,0 +1,203 @@
+{
+  "$schema": "training-platform/v1/navigator",
+  "$version": "2.0.0",
+  "id": "nav_zls_1_vendor_pricing_returned_pay",
+  "flowId": "flow_pricing_zls_1",
+  "name": "Pricing ZLS.1 — Vendor Pricing Returned Navigator",
+  "description": "Walk the Pricing SOP for the PX_ZLS event — the claim was sent to an external pricing vendor (Zelis) and the allowed amount has already been returned electronically. Identify the PX_ZLS soft edit on the Event Resolution tab and confirm the event hierarchy is clear (no PX_ZLU/PX_ZLZ or other events present), open the Claim Data → Pricing sub-tab to verify the Zelis-returned Manual Pricing (Allowed $50) together with the NCN ID (ZA) and ORG (00) on its header, derive the write-off type code PX_00ASC that the NCN ID and ORG pair identifies, enter it on Claim Lines Line 1 and click Validate on the claim summary, then pay the claim. The allowed amount is never calculated.",
+  "totalSteps": 6,
+  "passMark": 70,
+  "correctDecision": "pay",
+  "correctDecisionLabel": "Pay",
+  "totalMaxPoints": 80,
+  "totalNavigatorPoints": 60,
+  "steps": [
+    {
+      "id": "step_001",
+      "sequenceId": 1,
+      "name": "Identify the PX_ZLS soft edit and check the event hierarchy",
+      "description": "Review all edits in the Event Resolution tab. The PX_ZLS soft edit is highlighted with an error indication — this is the current event to resolve. The PX_ZLS event indicates that the claim was sent to an external pricing vendor (Zelis) and the pricing has been returned, so unlike the PX_088 flow the pricing does not need to be calculated manually. Verify the events list for any other related events such as PX_ZLU or PX_ZLZ. If other events are present, resolve them first as per the event hierarchy before PX_ZLS; if no other events are present, proceed. In this scenario, the claim has no other events, so the trainee proceeds.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_all_edits",
+      "targetFieldId": "f_er_e_zls",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Event Resolution tab and reviews the events list, where the active PX_ZLS soft edit is highlighted with an error indication and no other events (PX_ZLU/PX_ZLZ) are present.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Event Resolution' and review the events list. PX_ZLS (vendor pricing returned) is the active soft edit, highlighted with an error indication, and no other events (PX_ZLU/PX_ZLZ) are present, so proceed.",
+      "highlightFields": ["f_er_edit_code", "f_er_e_zls"],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Identify the PX_ZLS soft edit and check the event hierarchy"
+    },
+    {
+      "id": "step_002",
+      "sequenceId": 2,
+      "name": "Verify the Zelis-returned pricing, NCN ID and ORG in the MP section",
+      "description": "Obtain the allowed amount provided by Zelis by navigating to the Claim Data tab, then the Pricing sub-tab, and reviewing the Manual Pricing section. The Manual Pricing section is present because Zelis has electronically returned the pricing and the system has updated the section automatically. The table on this sub-tab displays columns No., Service, Billed, Allowed, Reason amount, Units, Reason, Price reason code, and QPA amount, with the first row values 1, PHT, 55, 50, -, 1, -, PX_3C, and 0.00 — meaning the allowed amount is $50. Read the Manual Pricing header above the table alongside it: the NCN ID is ZA and the ORG is 00. All three values matter — the allowed amount settles what is paid, and the NCN ID and ORG pair together identify the write-off type code you will put on the claim line.",
+      "targetTabId": "tab_claim_data",
+      "targetSubTabId": "subtab_claim_data_pricing",
+      "targetSectionId": "sec_cd_pr_mp_line1",
+      "targetFieldId": "f_mp1_allowed",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_data",
+        "subTabId": "subtab_claim_data_pricing"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Pricing sub-tab inside Claim Data and reads the Zelis-returned Manual Pricing row (Allowed $50) together with the NCN ID (ZA) and ORG (00) on the section header.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Data' → 'Pricing'. Read Allowed 50 ($50) on the Manual Pricing row, then NCN ID (ZA) and ORG (00) on the header above it.",
+      "highlightFields": [
+        "f_mp1_billed",
+        "f_mp1_allowed",
+        "f_mp_h_ncn",
+        "f_mp_h_org"
+      ],
+      "highlightTabId": "tab_claim_data",
+      "highlightSubTabId": "subtab_claim_data_pricing",
+      "checklistItem": "Verify the Zelis pricing, NCN ID and ORG in the MP section"
+    },
+    {
+      "id": "step_004",
+      "sequenceId": 3,
+      "name": "Derive the write-off type code and open Claim Lines",
+      "description": "The NCN ID and the ORG value together identify the write-off type code — also called the EOB code — that the write-off on this claim must carry. This claim returned NCN ID ZA with ORG 00, and that pair gives write-off type code PX_00ASC. Navigate to the Claim Lines tab, where Line 1 carries the empty entry box the code goes into.",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_writeoff",
+      "targetFieldId": "f_cl_writeoff_type_code",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_lines"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Claim Lines tab, where the Line-1 write-off type code entry box is shown.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "NCN ID ZA with ORG 00 gives write-off type code PX_00ASC. Open the 'Claim Lines' tab and find the empty box under 'Line 1 — Write-off type code'.",
+      "highlightFields": ["f_cl_writeoff_type_code"],
+      "highlightTabId": "tab_claim_lines",
+      "checklistItem": "Derive the write-off type code and open Claim Lines"
+    },
+    {
+      "id": "step_005",
+      "sequenceId": 4,
+      "name": "Enter the write-off type code PX_00ASC on Line 1",
+      "description": "Type the write-off type code / EOB code into the entry box under 'Line 1 — Write-off type code' on the Claim Lines tab. The box is empty — no code is on the line yet — so type 'PX_00ASC', the value the NCN ID (ZA) and ORG (00) pair identifies. Enter it exactly as written: the claim is validated against this code in the next step, and any other value leaves the write-off unapplied.",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_writeoff",
+      "targetFieldId": "f_cl_writeoff_type_code",
+      "actionType": "field_edit",
+      "actionPayload": {
+        "fieldId": "f_cl_writeoff_type_code"
+      },
+      "completionTrigger": "field_value_set",
+      "completionTriggerNote": "Completes when the trainee types 'PX_00ASC' into the empty Line-1 write-off type code input box.",
+      "expectedValue": "PX_00ASC",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "On 'Claim Lines', click the empty 'Write-off type code / EOB code (Line 1)' box and type: PX_00ASC",
+      "highlightFields": ["f_cl_writeoff_type_code"],
+      "highlightTabId": "tab_claim_lines",
+      "checklistItem": "Enter the write-off type code PX_00ASC on Line 1"
+    },
+    {
+      "id": "step_006",
+      "sequenceId": 5,
+      "name": "Validate the claim",
+      "description": "With the write-off type code on the line, run the claim through validation before deciding anything. Click Validate on the claim summary bar. The claim is processed again with the code you entered, and the Validation section on the Event Resolution tab reports what came back — read it and confirm the PX_ZLS event has cleared rather than taking your own entry on trust. Validate is held back until the code is in, so what it reports describes the claim as you have left it.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_validation",
+      "targetFieldId": "f_er_validation_msg",
+      "actionType": "validate",
+      "actionPayload": {
+        "type": "action",
+        "action": "validate"
+      },
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when Validate is pressed while this step is active and the Line-1 write-off type code entry holds PX_00ASC. The action's guard rejects the press otherwise, so clearing the box after the previous step cannot bank this one.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Click 'Validate' on the claim summary bar, then read the System message under 'Event Resolution → Validation'.",
+      "highlightFields": ["f_er_validation_msg"],
+      "highlightTabId": "tab_event_resolution",
+      "completesActionId": "validate",
+      "checklistItem": "Validate the claim"
+    },
+    {
+      "id": "step_003",
+      "sequenceId": 6,
+      "name": "Submit Pay decision",
+      "description": "Navigate to the Decision section in the header, select 'Pay' from the dropdown menu and click Submit.",
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "submit_decision",
+      "actionPayload": {
+        "type": "submit_decision",
+        "expectedDecision": "pay"
+      },
+      "completionTrigger": "decision_submitted",
+      "completionTriggerNote": "Completes when the trainee confirms the Pay decision in the submit dialog.",
+      "expectedValue": "pay",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Pick 'Pay' from the Decision dropdown in the claim header, then click Submit and confirm in the dialog.",
+      "highlightFields": [],
+      "checklistItem": "Submit Pay decision"
+    }
+  ],
+  "scoreBreakdown": {
+    "navigatorStepsMaxPoints": 60,
+    "decisionMaxPoints": 20,
+    "reasonCodeMaxPoints": 0,
+    "totalMaxPoints": 80,
+    "passMark": 70,
+    "weightedPassScore": 56
+  },
+  "stepSummaryForResults": [
+    {
+      "sequenceId": 1,
+      "name": "PX_ZLS soft edit identified; event hierarchy clear (no other events)",
+      "points": 10
+    },
+    {
+      "sequenceId": 2,
+      "name": "Zelis-returned pricing verified (Allowed $50, NCN ID ZA, ORG 00)",
+      "points": 10
+    },
+    {
+      "sequenceId": 3,
+      "name": "Write-off type code PX_00ASC derived from the NCN ID and ORG pair",
+      "points": 10
+    },
+    {
+      "sequenceId": 4,
+      "name": "Write-off type code PX_00ASC entered on Claim Lines Line 1",
+      "points": 10
+    },
+    {
+      "sequenceId": 5,
+      "name": "Claim validated; PX_ZLS reported as resolved",
+      "points": 10
+    },
+    {
+      "sequenceId": 6,
+      "name": "Pay decision submitted",
+      "points": 10
+    }
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "$schema": "training-platform/v1/navigator",
+  "$version": "1.0.0",
+  "id": "nav_g24_1_g17_g24_handle_direct",
+  "name": "Provider Data Mis-match — G17 and G24 events: WGS note directs handle-direct, bypass PX_G24 with PX_IT and pay",
+  "description": "Five guided steps, one per row of the requester's G24.1 step table: identify the PX_G17 and PX_G24 events among all the events set on the claim, read the WGS notes for a comment directing the claim be handled directly, select the PX_IT bypass code against PX_G24, validate it, and pay the claim.",
+  "flowId": "flow_g24_1",
+  "passMark": 70,
+  "totalSteps": 5,
+  "totalNavigatorPoints": 50,
+  "totalMaxPoints": 70,
+  "steps": [
+    {
+      "id": "step_001",
+      "sequenceId": 1,
+      "name": "Identify the PX_G17 and PX_G24 events",
+      "description": "Open the Event Resolution tab and review all events set on this claim, informational ones included, before paying, denying or routing it. Look for PX_G17 and PX_G24. PX_G24 fires when the provider is in a state outside the 17 states Elevance handles, and PX_G17 and PX_G24 are the pair seen most often. If you need assistance on the order events are worked in, refer to the Hierarchy of Events document. Here PX_G24 is the only Hard Edit — PX_G17, PX_SPS, PX_CIS and PX_REL are all Informational — so no other priority event stands ahead of it and you proceed.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_all_edits",
+      "targetFieldId": null,
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes as soon as the trainee opens the Event Resolution tab.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Click the 'Event Resolution' tab and read the All Edits list. PX_G24 is the active Hard Edit; PX_G17 sits directly beneath it.",
+      "highlightFields": ["f_er_e_g24", "f_er_e_g17"],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Identify the PX_G17 and PX_G24 events"
+    },
+    {
+      "id": "step_002",
+      "sequenceId": 2,
+      "name": "Review the WGS notes for handle-direct comments",
+      "description": "Open the Notes tab, then the Claim Notes sub-tab, and read the WGS Notes sub-section under Mainframe Claim Notes to determine whether there are comments indicating the claim should be handled directly. Here the comment reads 'Local plan cannot key, please handle directly.', so the claim is to be handled direct and you continue to process it according to operational guidelines.",
+      "targetTabId": "tab_notes",
+      "targetSubTabId": "subtab_notes_claim_notes",
+      "targetSectionId": "sec_n_wgs",
+      "targetFieldId": "f_n_wgs",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_notes",
+        "subTabId": "subtab_notes_claim_notes"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Claim Notes sub-tab. Opening the Notes tab alone is not enough -- the sub-tab starts closed and its sections are not rendered until it is selected.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Click the 'Notes' tab, then the 'Claim Notes' sub-tab, and scroll to WGS Notes under Mainframe Claim Notes.",
+      "highlightFields": ["f_n_wgs"],
+      "highlightTabId": "tab_notes",
+      "highlightSubTabId": "subtab_notes_claim_notes",
+      "checklistItem": "Review the WGS notes for handle-direct comments"
+    },
+    {
+      "id": "step_003",
+      "sequenceId": 3,
+      "name": "Apply the PX_IT bypass code",
+      "description": "Complete the final PX_G24 event processing. Return to the Event Resolution tab and, in the Bypass Codes section, open the Bypass code list and select PX_IT to bypass the PX_G24 event. The other codes in the list belong to other events and do not resolve PX_G24.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_bypass",
+      "targetFieldId": "f_er_bypass_code",
+      "actionType": "field_set",
+      "actionPayload": {
+        "fieldId": "f_er_bypass_code"
+      },
+      "completionTrigger": "field_value_set",
+      "completionTriggerNote": "Completes only when eventResolution.bypassCode is PX_IT. Selecting any other option leaves the step open.",
+      "expectedValue": "PX_IT",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "On 'Event Resolution', open the 'Bypass code' select in the Bypass Codes section and choose PX_IT.",
+      "highlightFields": [
+        "f_er_bypass_target",
+        "f_er_bypass_code",
+        "f_er_bypass_status"
+      ],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Apply the PX_IT bypass code"
+    },
+    {
+      "id": "step_004",
+      "sequenceId": 4,
+      "name": "Validate the bypass code",
+      "description": "Click the Validate button on the claim summary to apply the bypass code. The Status and the System message confirm that PX_G24 has been bypassed.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_bypass",
+      "targetFieldId": "f_er_bypass_status",
+      "actionType": "validate",
+      "actionPayload": {
+        "actionId": "validate"
+      },
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when Validate is pressed with PX_IT selected. If the bypass code is anything else, the press is refused and the Status asks for the bypass code to be reviewed.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Validate sits on the claim summary bar, next to Submit. Click it once PX_IT is selected.",
+      "highlightFields": ["f_er_bypass_status", "f_er_validation_msg"],
+      "highlightTabId": "tab_event_resolution",
+      "completesActionId": "validate",
+      "completionToast": "Bypass applied to PX_G24.",
+      "checklistItem": "Validate the bypass code"
+    },
+    {
+      "id": "step_005",
+      "sequenceId": 5,
+      "name": "Submit Pay decision",
+      "description": "Once the correct details are updated, go to the Decision section in the header, select 'Pay' from the dropdown and click Submit.",
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "submit_decision",
+      "actionPayload": {
+        "decision": "pay"
+      },
+      "completionTrigger": "decision_submitted",
+      "completionTriggerNote": "Completes when the claim is submitted. Pay is the correct decision; Deny scores zero for the decision component.",
+      "expectedValue": "pay",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open the Decision dropdown in the header, choose 'Pay', then click Submit.",
+      "highlightFields": [],
+      "highlightTabId": null,
+      "checklistItem": "Submit Pay decision"
+    }
+  ]
+}

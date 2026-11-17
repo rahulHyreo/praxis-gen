@@ -1,0 +1,247 @@
+{
+  "$schema": "training-platform/v1/flow-navigator",
+  "$version": "1.0.0",
+  "id": "nav_rb2_1_secondary_policy_cob_split",
+  "name": "COB — RB2.1 — DIS/RB2 secondary-policy split",
+  "description": "Nine steps mapping onto the RB2.1 source document: identify the DIS/RB2 events and check the hierarchy, review the primary policy information on the Limited Liability record, confirm from claims history that the primary claim is Resolved-Paid, read the WGS note's original DCN, open the primary claim's processing detail, verify the COB sub-tab against it, then run the COB worksheet, apply its values to the claim lines and pay.",
+  "flowId": "flow_cob_rb2_1",
+  "passMark": 70,
+  "totalSteps": 9,
+  "totalNavigatorPoints": 90,
+  "totalMaxPoints": 110,
+  "steps": [
+    {
+      "id": "step_001",
+      "sequenceId": 1,
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_all_edits",
+      "targetFieldId": "f_er_e_rb2",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "highlightFields": ["f_er_edit_code", "f_er_e_dis", "f_er_e_rb2"],
+      "highlightTabId": "tab_event_resolution",
+      "name": "Identify the DIS/RB2 events and check the hierarchy",
+      "description": "Open the Event Resolution tab. The application displays all edits set on the claim, and DIS and RB2 (Duplication of Service) are identified among them as informational events. RB2 is the secondary-policy claim event that follows RB1: once the primary claim is finalised, the application creates a similar claim for the member's other policy after about 24 hours, under a different policy ID and carrying an RB2 event. That is the claim in front of you. Read the rest of the list to determine whether any event must be resolved before DIS/RB2, following the established event hierarchy. If no other priority events are present, proceed. In this scenario none is, so you proceed.",
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the Event Resolution tab is opened while this step is active. Visits only fire on a user click, so the trainee opens it deliberately.",
+      "hint": "On 'Event Resolution', All Edits lists PX_DIS and PX_RB2 among the edits, with PX_RB2 active. Nothing in the list is a hard edit, so no event blocks the review.",
+      "checklistItem": "Identify the DIS/RB2 events and check the hierarchy"
+    },
+    {
+      "id": "step_002",
+      "sequenceId": 2,
+      "targetTabId": "tab_search",
+      "targetSubTabId": "subtab_search_limited",
+      "targetSectionId": "sec_sll_results",
+      "targetFieldId": "f_sll_r0_policy_number",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_search",
+        "subTabId": "subtab_search_limited"
+      },
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "highlightFields": [
+        "f_sll_r0_policy_number",
+        "f_sll_r0_type",
+        "f_sll_r0_oob"
+      ],
+      "highlightTabId": "tab_search",
+      "name": "Review the primary policy information",
+      "description": "Open the Search tab's Limited Liability sub-tab and read the Policy# field in the Limited Liability Results section. That is the member's primary policy ID — the policy the first claim of this pair was processed on. Note it down: the next step searches the claims history with it. Nothing else on this record is being graded; you are here for the policy number.",
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when Search → Limited Liability is opened while this step is active. It is not the default Search sub-tab, so the trainee opens it deliberately.",
+      "hint": "On 'Search → Limited Liability', the Limited Liability Results section carries a Policy# field. That value is the primary policy ID.",
+      "checklistItem": "Review the primary policy information"
+    },
+    {
+      "id": "step_003",
+      "sequenceId": 3,
+      "targetTabId": "tab_search",
+      "targetSubTabId": "subtab_search_claims",
+      "targetSectionId": "sec_sc_claims_search",
+      "targetFieldId": "f_scq_search_btn",
+      "actionType": "claims_search",
+      "actionPayload": {
+        "type": "action",
+        "action": "claims_search"
+      },
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "highlightFields": ["f_scq_search_btn", "f_scr_count", "f_scr0_status"],
+      "highlightTabId": "tab_search",
+      "name": "Confirm the primary claim is Resolved-Paid",
+      "description": "Review the claims history for the primary group/member ID to determine whether the primary claim has already been processed. Open the Search tab's Claims sub-tab, clear the search criteria and search with the primary policy ID you noted in the last step. One claim comes back: the primary claim, with its HCID, the member's name, its date of service, bill type, DCN, charged amount and paid amount. Read the Status field. If it shows Resolved-Paid the primary claim has been processed and you proceed; if it has not been processed yet, this claim waits.",
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes on the Search press. The results stay off screen until then, so the answer is produced by the trainee rather than read on arrival.",
+      "hint": "On 'Search → Claims', press Clear and then Search. The row that comes back shows Status Resolved-Paid.",
+      "checklistItem": "Confirm the primary claim is Resolved-Paid"
+    },
+    {
+      "id": "step_004",
+      "sequenceId": 4,
+      "targetTabId": "tab_notes",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_n_wgs",
+      "targetFieldId": "f_n_wgs",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_notes"
+      },
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "highlightFields": ["f_n_wgs", "f_n_mainframe"],
+      "highlightTabId": "tab_notes",
+      "name": "Review the primary claim's processing details",
+      "description": "Review the processing details of the primary claim and determine the outcome of its adjudication. The original Claim Number is on the Notes tab, under Mainframe Claim Notes → WGS Notes: the note reads DUP-IN-SERVICE SYSTEMATIC SPLIT and gives the ORIGINAL DCN. That note is the application telling you this pair of claims came from one systematic split. If the primary claim paid, or applied amounts toward the member's cost share — copay, deductible or coinsurance — proceed to coordinate this one.",
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the Notes tab is opened while this step is active. The step is graded here rather than on Search → Claims because the evidence it names — the WGS note — lives on this tab, and step 3 has just left the trainee standing on Search → Claims.",
+      "hint": "Open the 'Notes' tab and read WGS Notes under Mainframe Claim Notes. It reads DUP-IN-SERVICE SYSTEMATIC SPLIT with the ORIGINAL DCN beneath it.",
+      "checklistItem": "Review the primary claim's processing details"
+    },
+    {
+      "id": "step_005",
+      "sequenceId": 5,
+      "targetTabId": "tab_search",
+      "targetSubTabId": "subtab_search_claims",
+      "targetSectionId": "sec_sc_claims_result_active",
+      "targetFieldId": "f_sc_open_primary",
+      "actionType": "open_primary_claim",
+      "actionPayload": {
+        "type": "action",
+        "action": "open_primary_claim"
+      },
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "highlightFields": [
+        "f_sc_open_primary",
+        "f_pc_billed",
+        "f_pc_discount",
+        "f_pc_payment"
+      ],
+      "highlightTabId": "tab_search",
+      "name": "Open the primary claim's processing details",
+      "description": "Go back to Search → Claims and click the claim to display the primary processing. The detail opens with the amounts the primary plan settled on: the billed amount, the provider discount, the co-insurance and the payment, which is the same figure the Paid field on the row carries. These primary-claim amounts are what the secondary claim is coordinated against, so read them before moving on.",
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes on opening the claim detail. The affordance sits inside the result section, so it is unreachable until step 3's search has returned the row.",
+      "hint": "On 'Search → Claims', open the claim detail on the row that came back. It shows Billed amt, Provider discount, Co-insurance and Payment.",
+      "checklistItem": "Open the primary claim's processing details"
+    },
+    {
+      "id": "step_006",
+      "sequenceId": 6,
+      "targetTabId": "tab_claim_data",
+      "targetSubTabId": "subtab_claim_data_cob",
+      "targetSectionId": "sec_cd_cob_amounts",
+      "targetFieldId": null,
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_data",
+        "subTabId": "subtab_claim_data_cob"
+      },
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "highlightFields": [
+        "f_cd_cob_allowed",
+        "f_cd_cob_coins",
+        "f_cd_cob_disc",
+        "f_cd_cob_paid"
+      ],
+      "highlightTabId": "tab_claim_data",
+      "name": "Verify the COB sub-tab against the primary amounts",
+      "description": "Review the secondary claim to determine whether a COB sub-tab exists. If it does, you have the other insurer's Explanation of Benefits on the claim and can coordinate from it. Open Claim Data → COB: the Commercial section carries the other insurer's name, policy and EOB date, and the amount row carries the allowed amount, the coinsurance, the discount and the paid amount. Compare them against the primary claim you just opened — they match, so the EOB on this claim describes the same adjudication and you proceed to coordination processing.",
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when Claim Data → COB is opened while this step is active. COB is not the default Claim Data sub-tab, so the trainee opens it deliberately.",
+      "hint": "On 'Claim Data → COB', read the Allowed, Coins, Disc and Paid amounts and check them against the primary claim's billed, discount, co-insurance and payment.",
+      "checklistItem": "Verify the COB sub-tab against the primary amounts"
+    },
+    {
+      "id": "step_007",
+      "sequenceId": 7,
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": "sec_act_cw_primary",
+      "targetFieldId": "f_act_cw",
+      "actionType": "open_cob_worksheet",
+      "actionPayload": {
+        "type": "action",
+        "action": "open_cob_worksheet"
+      },
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "highlightFields": ["f_act_cw_submit"],
+      "highlightTabId": null,
+      "name": "Open the COB worksheet",
+      "description": "Open the Actions menu on the claim and select COB worksheet from the options it offers. Several other options are listed beside it; the one you want is COB worksheet. The system calculates the coordination from the worksheet details and displays the result as a table — the primary insurance figures, the primary coverage payment, and the secondary payment calculation derived from the two.",
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes on opening the COB worksheet panel. The other Actions-menu items are inert: they render disabled and dispatch nothing, so pressing one completes nothing.",
+      "hint": "Open the Actions menu on the claim summary bar and choose 'COB worksheet'.",
+      "checklistItem": "Open the COB worksheet"
+    },
+    {
+      "id": "step_008",
+      "sequenceId": 8,
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": "sec_act_cw_secondary",
+      "targetFieldId": "f_act_cw_submit",
+      "actionType": "submit_cob_worksheet",
+      "actionPayload": {
+        "type": "action",
+        "action": "submit_cob_worksheet"
+      },
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "highlightFields": [
+        "f_cl_c_discount",
+        "f_cl_c_paid",
+        "f_cl_c_copay",
+        "f_cl_c_noncovered"
+      ],
+      "highlightTabId": null,
+      "name": "Submit the COB worksheet and apply the values",
+      "description": "Click Submit on the COB worksheet. The calculated values are applied to the Claim Lines tab: the provider discount with its EOB code, the paid amount, the deductible, the copay with its EOB code, the coinsurance, and the non-covered amount with its EOB code. The secondary claim is thereby adjudicated using the primary claim's processing and payment information, applying the appropriate Coordination of Benefits methodology per COB processing guidelines. Open Claim Lines afterwards to see the applied values.",
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes on the Submit press. The coordinated values are absent from Claim Lines until then, so the trainee's press is what puts them on screen.",
+      "hint": "Press 'Submit' on the COB worksheet, then open the Claim Lines tab to read the applied values.",
+      "checklistItem": "Submit the COB worksheet and apply the values"
+    },
+    {
+      "id": "step_009",
+      "sequenceId": 9,
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "submit_decision",
+      "actionPayload": {
+        "type": "submit_decision",
+        "expectedDecision": "pay"
+      },
+      "expectedValue": "pay",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "highlightFields": [],
+      "highlightTabId": null,
+      "name": "Submit the Pay decision",
+      "description": "The secondary claim has been coordinated against the primary claim's processing and payment information and the calculated values are on the claim lines, so it can be processed. Navigate to the Decision section in the claim summary, select Pay from the dropdown and click Submit.",
+      "completionTrigger": "decision_submitted",
+      "completionTriggerNote": "Completes only when the claim is submitted with Pay. Deny or Pend does not complete it.",
+      "hint": "Choose 'Pay' from the Decision dropdown on the claim summary bar and click Submit.",
+      "checklistItem": "Submit the Pay decision"
+    }
+  ]
+}

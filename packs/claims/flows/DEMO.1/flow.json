@@ -1,0 +1,12 @@
+{
+  "$schema": "praxis/v2/pack-flow",
+  "code": "DEMO.1",
+  "name": "Workspace Sandbox",
+  "variants": [
+    {
+      "variant": "base",
+      "variantIndex": 1,
+      "subjectRefs": ["DCN-990001"]
+    }
+  ]
+}

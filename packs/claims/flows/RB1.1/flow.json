@@ -1,0 +1,64 @@
+{
+  "$schema": "praxis/v2/pack-flow",
+  "code": "RB1.1",
+  "name": "COB — DIS/DMM/897 dual membership with RB1 on the primary claim → Validate and Pay",
+  "variants": [
+    {
+      "variant": "base",
+      "variantIndex": 1,
+      "subjectRefs": ["DCN-618106"]
+    },
+    {
+      "variant": "v2",
+      "variantIndex": 2,
+      "subjectRefs": [
+        "DCN-9860200",
+        "DCN-9860201",
+        "DCN-9860202",
+        "DCN-9860203",
+        "DCN-9860204",
+        "DCN-9860205",
+        "DCN-9860206"
+      ]
+    },
+    {
+      "variant": "v3",
+      "variantIndex": 3,
+      "subjectRefs": [
+        "DCN-9860300",
+        "DCN-9860301",
+        "DCN-9860302",
+        "DCN-9860303",
+        "DCN-9860304",
+        "DCN-9860305",
+        "DCN-9860306"
+      ]
+    },
+    {
+      "variant": "v4",
+      "variantIndex": 4,
+      "subjectRefs": [
+        "DCN-9860400",
+        "DCN-9860401",
+        "DCN-9860402",
+        "DCN-9860403",
+        "DCN-9860404",
+        "DCN-9860405",
+        "DCN-9860406"
+      ]
+    },
+    {
+      "variant": "v5",
+      "variantIndex": 5,
+      "subjectRefs": [
+        "DCN-9860500",
+        "DCN-9860501",
+        "DCN-9860502",
+        "DCN-9860503",
+        "DCN-9860504",
+        "DCN-9860505",
+        "DCN-9860506"
+      ]
+    }
+  ]
+}

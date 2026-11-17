@@ -1,0 +1,1213 @@
+{
+  "$schema": "training-platform/v1/workspace-data",
+  "$version": "2.0.0",
+  "id": "data_g24_2_g17_g24_exception_sweep_reject",
+  "claimId": "claim_g24_2",
+  "dcn": "DCN-8100400",
+  "flowId": "flow_g24_2",
+  "navigatorSchemaId": "nav_g24_2_g17_g24_exception_sweep_reject",
+  "claim": {
+    "dcn": "DCN-8100400",
+    "patient": "Maureen P Delacroix",
+    "serviceFrom": "10/22/2025",
+    "billedAmount": "$398.75"
+  },
+  "header": {
+    "dcn": "DCN-8100400",
+    "edits": "PX_G24",
+    "billed": "$398.75",
+    "claimAllowed": "$398.75",
+    "paid": "$398.75",
+    "writeOff": "$0.00",
+    "deductible": "$0.00",
+    "coinsurance": "$0.00",
+    "copay": "$0.00",
+    "actionCode": "PX_P10000",
+    "receiptDate": "10/29/2025",
+    "serviceFrom": "10/22/2025",
+    "serviceTo": "10/22/2025",
+    "recordNumber": "287"
+  },
+  "eventResolution": {
+    "editCode": "PX_G24",
+    "editLabel": "PRV STATE OUTSIDE PLAN SERVICE AREA",
+    "severity": "Hard Edit",
+    "edits": [
+      {
+        "code": "PX_G24",
+        "label": "PRV STATE OUTSIDE PLAN SERVICE AREA",
+        "severity": "Hard Edit",
+        "active": true
+      },
+      {
+        "code": "PX_G17",
+        "label": "ITS HOME PLAN TO KEY CLAIM",
+        "severity": "Informational",
+        "active": false
+      },
+      {
+        "code": "PX_SPS",
+        "label": "USE PA MENU OPTION TO VIEW PRV",
+        "severity": "Informational",
+        "active": false
+      },
+      {
+        "code": "PX_CIS",
+        "label": "CLAIM ELIGIBLE FOR CIA",
+        "severity": "Informational",
+        "active": false
+      }
+    ]
+  },
+  "memberInfo": {
+    "patient": {
+      "firstName": "Maureen",
+      "middleName": "D",
+      "lastName": "Delacroix",
+      "dob": "05/16/1992",
+      "sex": "M",
+      "memberPrefix": "LRC",
+      "hcid": "508W23744",
+      "relationship": "SUB - Subscriber",
+      "memberCode": "10",
+      "contractType": "C",
+      "erisa": "Y",
+      "pcp": "",
+      "pcpState": "",
+      "pcpRelationship": "",
+      "programCode": ""
+    },
+    "subscriber": {
+      "firstName": "Maureen",
+      "middleName": "D",
+      "lastName": "Delacroix",
+      "subscriberId": "508023744",
+      "address": "68 Tanglewood Row  LAKE ELMO DC 20019"
+    },
+    "group": {
+      "groupName": "Ironwood Cabinetry LLC",
+      "groupId": "F4T0825",
+      "groupContract": "H000",
+      "detailContractCode": "PPON",
+      "product": "Local",
+      "networkId": "",
+      "networkName": ""
+    }
+  },
+  "claimImage": {
+    "memberDetails": {
+      "patient": {
+        "firstName": "Maureen",
+        "middleName": "R",
+        "lastName": "Delacroix",
+        "dob": "3/14/1972",
+        "sex": "F",
+        "memberPrefix": "LRC",
+        "hcid": "508W23744",
+        "relationship": "SUB - Subscriber",
+        "memberCode": "10",
+        "detailContractCode": "PPON",
+        "contractType": "C",
+        "groupId": "9452PP",
+        "groupContract": "H000",
+        "product": "Local",
+        "erisa": "Y",
+        "pcp": "",
+        "pcpState": "",
+        "pcpRelationship": ""
+      },
+      "subscriber": {
+        "firstName": "Maureen",
+        "middleName": "R",
+        "lastName": "Delacroix",
+        "subscriberId": "508023744",
+        "address": "1417 Birchwood Terrace  NEWARK DC 07104"
+      },
+      "totalClaimLines": "1"
+    },
+    "additional": {
+      "claimSource": {
+        "mediaType": "-",
+        "pricingSource": "-",
+        "pricingSystem": "-",
+        "mixerPar": "-",
+        "receiverId": "DC",
+        "receivedAtEdi": "-",
+        "providerError": "-",
+        "authNumber": "-",
+        "authExcln": "-",
+        "vendorIndicator": "-",
+        "receivedDate": "-",
+        "originalReferenceNumber": "-"
+      },
+      "ancillaryProvider": {
+        "type": "-",
+        "zip": "-",
+        "state": "-"
+      },
+      "ambulance": {
+        "pickupZip": "-",
+        "dropoffZip": "-"
+      },
+      "miscellaneous": {
+        "epsdt": "-",
+        "familyPlanning": "-",
+        "gtessDate": "-",
+        "dateOfIllness": "-",
+        "dateOfInjury": "-",
+        "lastMenstrualDate": "-",
+        "consultationDate": "-"
+      },
+      "stopData": {
+        "stopEdit": "-",
+        "lobParentRule": "-",
+        "lobChildRule": "-",
+        "lobSequence": "-",
+        "medBusinessParentRule": "-",
+        "medBusinessChildRule": "-",
+        "medSequence": "-"
+      },
+      "refundData": {
+        "correspondenceNumber": "-",
+        "refundAmount": "-",
+        "adjustmentReason": "-",
+        "vendorName": "-",
+        "delayReason": "-",
+        "carveOut": "-",
+        "adjustmentReceiptDate": "-"
+      },
+      "highDollar": {
+        "riskOutcome": "-"
+      },
+      "its": {
+        "account": {
+          "deliveryMethod": "—",
+          "accountType": "—",
+          "aso": "—",
+          "stateId": "—",
+          "originalCertificate": "—",
+          "originalGroup": "—"
+        },
+        "pricing": {
+          "primarySop": "—",
+          "secondarySop": "—",
+          "tertiarySop": "—",
+          "cobCalMethod": "—"
+        },
+        "providers": {
+          "mppqAssignUnassigned": "—",
+          "ppoNetworkAvailability": "—",
+          "ppoProviderAvailability": "—",
+          "eft835": "—",
+          "serviceZip": "—"
+        }
+      },
+      "sfdf": {
+        "sfMessage": "—",
+        "dfMessage": "—",
+        "primacy": "—",
+        "autoOtherAccident": "—",
+        "totalDaysVisits": "—"
+      },
+      "claimLineDetail": [
+        {
+          "lineNum": "—",
+          "blankDateInd": "—",
+          "approvedDenyInd": "—"
+        }
+      ]
+    },
+    "provider": {
+      "rendering": {
+        "npi": "1471268053",
+        "name": "KENJI NAKASHIMA",
+        "address": "3511 LAKE ELMO AVE N STE, LAKE ELMO, DC",
+        "pricingState": "DC",
+        "pricingZip": "12345-9998",
+        "providerNumber": "—",
+        "license": "—",
+        "networkOption": "—",
+        "specialty": "—",
+        "taxonomy": "—"
+      },
+      "billing": {
+        "taxId": "31-9452708",
+        "npi": "1663209478",
+        "name": "UNITED HEALTH CLINIC",
+        "facilityName": "—",
+        "providerNumber": "—",
+        "medicareId": "—",
+        "address": "3511 LAKE ELMO AVE N STE 100, LAKE ELMO, DC 20019",
+        "nationalState": "DC",
+        "locationCode": "—",
+        "bhaProviderIndicator": "NN",
+        "taxonomy": "—"
+      },
+      "serviceFacility": {
+        "svcNpi": "—",
+        "submitterProviderName": "Ability (G4)"
+      }
+    }
+  },
+  "providerInfo": {
+    "rendering": {
+      "npi": "1471268053",
+      "name": "NAKASHIMA, KENJI T",
+      "address": "3511 LAKE ELMO AVE N STE 100  LAKE ELMO DC",
+      "pricingState": "DC",
+      "pricingZip": "12345-9998",
+      "providerSps": "7000000000",
+      "providerEpin": "",
+      "license": "1111111111",
+      "networkOption": "Y",
+      "specialty": "207R00000X",
+      "specialtyDescription": "Internal Medicine",
+      "taxonomy": "0000R0000X"
+    },
+    "billing": {
+      "taxId": "31-9452708",
+      "npi": "1663209478",
+      "name": "UNITED HEALTH CLINIC",
+      "facilityType": "",
+      "providerSps": "7729054183",
+      "providerEpin": "",
+      "medicareId": "",
+      "address": "3511 LAKE ELMO AVE N STE 100  LAKE ELMO DC 20019",
+      "nationalState": "DC",
+      "locationCode": "",
+      "bhaProviderIndicator": "NN",
+      "taxonomy": "261QP2300X",
+      "timelyFilingLimit": "—"
+    },
+    "referring": {
+      "referringPhysician": "A",
+      "npi": "1227840695"
+    },
+    "serviceFacility": {
+      "facilityTier": "N",
+      "type": "N",
+      "npi": ""
+    },
+    "miscellaneous": {
+      "supportingOrderingNpi": "1227840695",
+      "nsbIndicator": "None",
+      "alternateFacilityNpi": ""
+    }
+  },
+  "paymentInfo": {
+    "claim": {
+      "deductible": "0.00",
+      "copay": "0.00",
+      "coins": "0.00",
+      "patientLiab": "0.00",
+      "memberSurcharge": "0.00",
+      "nonElg": "0.00",
+      "hraPaid": "0.00",
+      "claimPaid": "285.00",
+      "pricingAllowedAmount": "285.00",
+      "totalCharge": "285.00",
+      "finalizationCode": "PX_P10000",
+      "recordNumber": "999"
+    },
+    "provider": {
+      "providerDisc": "0.00",
+      "providerLiab": "0.00",
+      "providerRiskWithhold": "—",
+      "providerSurcharge": "0.00",
+      "interest": "0.00",
+      "penalty": "0.00",
+      "systemInterest": "0.00"
+    },
+    "drg": {
+      "keyed": "—",
+      "priced": "—",
+      "original": "—"
+    },
+    "check": {
+      "accountNumber": "1234512345",
+      "checkNumber": "—",
+      "checkDate": "—",
+      "amount": "0.00",
+      "paymentSystem": "D",
+      "checkMailedTo": "\"PO BOX 00000 MILWAUKEE",
+      "eftCheckDate": "—",
+      "checkStatus": "CHECK NOT FOUND ON RECON DB",
+      "checkStatusDate": "01/20/2026",
+      "paidTo": "UNITED HEALTH CLINIC",
+      "finalized": "—"
+    },
+    "payeeDetails": {
+      "flipPayee": ""
+    }
+  },
+  "claimHeader": {
+    "general": {
+      "serviceFromThrough": "10/22/2025 - 10/22/2025",
+      "assignmentOfBenefits": "Y - Benefit assigned to provider",
+      "providerParticipation": "PAR",
+      "providerContract": "NJP00000",
+      "treatmentAuth": "—",
+      "patientAccount": "M000000000",
+      "emergency": "No",
+      "employment": "No",
+      "coveredZipRadius": "-",
+      "frequency": "1",
+      "bbiIndicator": "-",
+      "pciIndicator": "-",
+      "fsbInd": "None",
+      "fsbExclusion": "X"
+    },
+    "benefitIndicators": {
+      "cob": "0",
+      "cobRule": "-",
+      "medInd": "No",
+      "medRule": "-",
+      "medicareAdvantage": "No",
+      "cdhp": "N",
+      "planPayer": "N",
+      "cobPercent": "0"
+    },
+    "diagnosisCodes": {
+      "dx1": "M62838"
+    },
+    "conditionCodes": {
+      "code": "-"
+    }
+  },
+  "claimLines": [
+    {
+      "lineNum": "1",
+      "fromDate": "10/22/2025",
+      "toDate": "10/22/2025",
+      "pos": "22",
+      "service": "MED",
+      "procedure": "97110",
+      "modifiers": "—",
+      "units": "1",
+      "diagnosis": "M62838",
+      "billed": "$285.00",
+      "dedInd": "NO",
+      "coinsPercent": "100",
+      "stoploss": "No",
+      "eobTy": "—",
+      "writeoffEobTy": "$0.00",
+      "noncoveredUnit": "0",
+      "deductible": "—",
+      "otherUnit": "0",
+      "copay": "—",
+      "eobTyLast": "—",
+      "priorAuthPassInd": "—",
+      "payment": "$285.00"
+    }
+  ],
+  "claimLineSummary": {
+    "lineNum": "1",
+    "fromDate": "10/22/2025",
+    "toDate": "10/22/2025",
+    "pos": "11",
+    "service": "PHT",
+    "procedure": "97110",
+    "modifiers": "—",
+    "units": "1",
+    "diagnosis": "M62838",
+    "billed": "$398.75",
+    "dedInd": "NO",
+    "coinsPercent": "100",
+    "stoploss": "No",
+    "eobTy": "—",
+    "writeoffEobTy": "$0.00",
+    "noncoveredUnit": "0",
+    "deductible": "—",
+    "otherUnit": "0",
+    "copay": "—",
+    "eobTyLast": "—",
+    "priorAuthPassInd": "—",
+    "payment": "$0.00"
+  },
+  "notes": {
+    "mainframe": "2D96XF",
+    "taskManagement": {
+      "routedTo": "-",
+      "urgency": "65",
+      "skills": "CT-Professional",
+      "csPg": "GS-National",
+      "benNonspider": "SPIDER",
+      "regCa": "-",
+      "resUnrestricted": "-",
+      "totalAge": "59",
+      "homeAge": "59",
+      "ageAdjusted": "N",
+      "baselineUrgency": "45",
+      "urgencyModifiers": "\"PG Modifer(0)"
+    },
+    "researchNotes": [
+      {
+        "text": "All detail line allowable amounts match"
+      },
+      {
+        "text": "System recommendation for Manual Adjudication processing - Manually Applied"
+      },
+      {
+        "text": "Sent to infinity from Intake process"
+      }
+    ],
+    "wgs": ""
+  },
+  "search": {
+    "claims": {
+      "dcnKernalClaim": "",
+      "claimId": "",
+      "subscriberOrHcid": "508W23744",
+      "sccf": "",
+      "procedure": "",
+      "serviceFrom": "10/22/2025",
+      "serviceTo": "10/22/2025",
+      "code": "",
+      "totalCharge": "",
+      "status": "ALL",
+      "providerTaxId": "31-9452708",
+      "providerNpi": "",
+      "renderingLicenseId": "",
+      "billType": ""
+    },
+    "claimsResultCount": "No claims found for the search criteria entered.",
+    "claimsResults": [],
+    "codeSet": {
+      "selectCodeType": "-",
+      "enterCode": "-"
+    },
+    "auth": {
+      "search": {
+        "subscriberOrHcid": "508W23744",
+        "serviceStartDate": "4/25/2025",
+        "serviceEndDate": "4/20/2026",
+        "status": "-"
+      },
+      "members": {
+        "name": "Maureen P Delacroix",
+        "dob": "3/14/1972",
+        "ageAdjusted": "\"65\"\"\"",
+        "memberId": "508023744",
+        "mcid": "",
+        "subscriberOrHcid": "508W23744"
+      }
+    },
+    "benefits": {
+      "planOptions": [
+        {
+          "costShare": "PHYSICAL THERAPY - OFFICE",
+          "network": "PPO",
+          "maximum": "Covered - 60 visits per Calendar Year",
+          "accumType": "Calendar Year"
+        },
+        {
+          "costShare": "DEDUCTIBLE",
+          "network": "PPO",
+          "maximum": "$500",
+          "accumType": "Calendar Year"
+        },
+        {
+          "costShare": "OUT-OF-POCKET MAX",
+          "network": "PPO",
+          "maximum": "$3,000",
+          "accumType": "Calendar Year"
+        },
+        {
+          "costShare": "MEMBER CLAIM FILING DAY LIMIT",
+          "network": "—",
+          "maximum": "365 days",
+          "accumType": "—"
+        }
+      ],
+      "searchBenefits": {
+        "contractCode": "PPON",
+        "effectiveDate": "1/1/2026",
+        "endDate": "12/31/9999",
+        "effectiveEndDate": "1/1/2026 - 12/31/9999"
+      },
+      "general": {
+        "contractCode": "PPON",
+        "product": "Local",
+        "plan": "PPO",
+        "contractState": "DC",
+        "benefitPeriod": "Calendar Year",
+        "benefitPeriodAlt": "—",
+        "fundingArrangement": "ASO",
+        "cdhpInd": "N",
+        "groupNumber": "9452PP",
+        "contractId": "P945",
+        "memberName": "Maureen P Delacroix",
+        "caseNumber": "C94527",
+        "contractType": "C",
+        "crossAccumulation": "—"
+      },
+      "viewNic": {
+        "coverage": "MED-MEDICL COVERAGE",
+        "pricing": "DC33",
+        "network": "PPO"
+      },
+      "accumulators": {
+        "criteria": {
+          "memberId": "508023744",
+          "memberCode": "10",
+          "fromDate": "10/22/2025",
+          "toDate": "10/22/2025",
+          "sourceSystem": "WGS"
+        },
+        "selection": {
+          "accumulatorName": "—",
+          "benefitYear": "—",
+          "accumulatorEffDate": "—",
+          "cob": "—",
+          "deductible": "—",
+          "fertilityRx": "—",
+          "lifetime": "—",
+          "other": "—",
+          "outOfPocket": "—"
+        }
+      }
+    },
+    "provider": {
+      "npiTaxId": {
+        "npi": "1663209478",
+        "orgTaxId": "31-9452708",
+        "fromDate": "10/22/2025",
+        "throughDate": "10/22/2025",
+        "sourceSystem": "WGS",
+        "zipCode": "-",
+        "billingType": "-",
+        "specialty": "-",
+        "state": "-",
+        "alternateId": "-",
+        "alternateKey": "-"
+      },
+      "practitioner": {
+        "firstName": "-",
+        "lastName": "-",
+        "fromDate": "10/22/2025",
+        "throughDate": "10/22/2025",
+        "sourceSystem": "SPS",
+        "addressLine": "-",
+        "city": "-",
+        "state": "-",
+        "specialty": "-"
+      },
+      "organization": {
+        "organizationName": "UNITED HEALTH CLINIC",
+        "orgTaxId": "31-9452708",
+        "fromDate": "10/22/2025",
+        "throughDate": "10/22/2025",
+        "sourceSystem": "SPS",
+        "addressLine": "-",
+        "city": "-",
+        "state": "DC",
+        "zipCode": "20024-1908",
+        "billingType": "-",
+        "specialty": "Physical Therapy Clinic"
+      },
+      "pcpPmg": {
+        "pcpPmgId": "-",
+        "fromDate": "10/22/2025",
+        "throughDate": "10/22/2025",
+        "sourceSystem": "SPS",
+        "specialty": "-",
+        "state": "-"
+      },
+      "alternateId": {
+        "organizationName": "UNITED HEALTH CLINIC",
+        "alternateKeyOrg": "-",
+        "individual": "8023 - Legacy provider ID",
+        "alternateKeyIndiv": "-",
+        "nonAnthem": "33-NPI",
+        "alternateKeyNonAnthem": "-"
+      }
+    },
+    "member": {
+      "searchMember": {
+        "memberId": "508023744",
+        "firstName": "Maureen",
+        "mi": "R",
+        "lastName": "Delacroix",
+        "dob": "3/14/1972",
+        "relationship": "SUB - Subscriber",
+        "memberCode": "10",
+        "gender": "F",
+        "state": "DC",
+        "contractId": "P945",
+        "caseEntity": "C94527",
+        "groupNumber": "9452PP",
+        "hcid": "508W23744",
+        "prefix": "LRC",
+        "effectiveDate": "1/1/2026",
+        "endDate": "12/31/9999",
+        "productCode": "Local",
+        "contractState": "DC",
+        "businessUnit": "Individual"
+      },
+      "general": {
+        "name": "Maureen P Delacroix",
+        "dateOfBirth": "3/14/1972",
+        "age": "—",
+        "sex": "F",
+        "memberId": "508023744",
+        "hcid": "508W23744",
+        "relationship": "SUB - Subscriber",
+        "memberCode": "10",
+        "address": "1417 Birchwood Terrace  NEWARK DC 07104",
+        "county": "79",
+        "country": "US",
+        "phone": "30000000000023",
+        "effectiveDate": "1/1/2026",
+        "endDate": "12/31/9999",
+        "productType": "BCPI - BC INCENTIVE PPO",
+        "groupType": "A -ACTIVE",
+        "cob": "Y",
+        "businessUnit": "Individual",
+        "paidToDate": "1/1/2026",
+        "erisa": "Y",
+        "caseGroupSetup": "Y",
+        "contractStartDate": "-",
+        "shortTermEndDate": "-",
+        "cxlProcessDate": "-",
+        "aptcIndicator": "-",
+        "csdt": "-",
+        "caseName": "Harborline Manufacturing",
+        "ncnReferralsInd": "—",
+        "foi": "G",
+        "roundoprd": "12",
+        "conversionCode": "0",
+        "medicareIndicator": "\"Part -A : G"
+      },
+      "additionalAddress": {
+        "address": "-"
+      },
+      "providerNetwork": {
+        "product": "57BC PPO INCENTIVE",
+        "providerGroupName": "-",
+        "address": "-",
+        "phone": "-"
+      },
+      "contractMembers": [
+        {
+          "memberCode": "10",
+          "name": "Maureen P Delacroix",
+          "relationship": "SUB - Subscriber",
+          "dob": "3/14/1972",
+          "age": "—",
+          "effectiveDate": "1/1/2026",
+          "endDate": "12/31/9999"
+        },
+        {
+          "memberCode": "—",
+          "name": "—",
+          "relationship": "—",
+          "dob": "—",
+          "age": "—",
+          "effectiveDate": "—",
+          "endDate": "—"
+        }
+      ],
+      "group": {
+        "general": {
+          "name": "Harborline Manufacturing",
+          "status": "O ACTIVE",
+          "companyCode": "123C XXXX",
+          "paidToDate": "4/1/2026",
+          "locationStateCode": "DC",
+          "locationCodeEffectiveDate": "1/1/2019",
+          "workLocation": "7003 ANTHEM NAT ACCT",
+          "workLocationPhone": "9999888899",
+          "rateMethodCode": "1 ASO BUSINESS",
+          "rmcEffectiveDate": "1/1/2019",
+          "groupType": "A ACTIVE",
+          "fundingTypeCode": "H ASC",
+          "graceDays": "30",
+          "claimGraceDays": "30"
+        },
+        "coverage": {
+          "originalEffectiveDate": "1/1/2019",
+          "groupProcessedDate": "10/9/2018",
+          "reinstateEffectiveDate": "-",
+          "reinstateProcessedDate": "-",
+          "cancelEffectiveDate": "-",
+          "cancelProcessedDate": "-",
+          "cancelReason": "-"
+        },
+        "contract": {
+          "productLine": "BC PPO INCENTIVE",
+          "claimsRoute": "PX_P-EXEC - NATIONAL ACCTS",
+          "benefitYearCalendarYear": "CY",
+          "benefitYearCalendarYearAsOfDate": "1/1/2019",
+          "contractCode": "P945",
+          "contractCodeEffectiveDate": "1/1/2019",
+          "promptPay": "N",
+          "promptPayDate": "1/1/2019",
+          "itsHomeParticipatingCode": "E CONTROL CUSTOM",
+          "itsHomeEffectiveDate": "1/1/2019",
+          "locationLobCode": "X BC/BCLH",
+          "overAgeMailing": "S MAIL TO SUBR",
+          "networkId": "BLUECDOO",
+          "networkName": "BLUE XXXX BLUE XXXX"
+        },
+        "additional": {
+          "product": "BC PPO INC Claim Manager",
+          "mbuCode": "NAC00000",
+          "claimsServiceLocation": "COOIO/CAACOII",
+          "serviceManager": "SRVC/DARLENE",
+          "claimManager": "CLMS/M PENNER",
+          "servicePhone": "999999999",
+          "serviceAddress": "XXXX PARK Road WAUWATOSA WI 53213",
+          "sourceSystem": "WGS 2.0"
+        }
+      }
+    },
+    "limitedLiability": {
+      "memberId": "508023744",
+      "memberCode": "10",
+      "dob": "05/16/1992",
+      "activeRecords": "—",
+      "allRecords": "All records",
+      "resultsNote": "1 limited liability record found for this member.",
+      "results": [
+        {
+          "type": "COB",
+          "effectiveDate": "01/01/2024",
+          "endDate": "",
+          "orderOfBenefits": "P – Our Insurance is primary",
+          "description": "Coordination of benefits record. Our Insurance pays as primary on this member's claims."
+        }
+      ]
+    },
+    "pricing": {
+      "member": {
+        "dob": "3/14/1972",
+        "sex": "F",
+        "groupNumber": "9452PP",
+        "groupId": "-",
+        "networkId": "BLUECS",
+        "memberZipCode": "53213",
+        "alternateZipCode": "-",
+        "medicareInd": "Y",
+        "hixInd": "-",
+        "marketType": "NTLA",
+        "memberInd": "-",
+        "ab72": "-",
+        "patientCode": "-",
+        "product": "Local",
+        "variance": "DC33",
+        "coverage": "MED",
+        "groupIdentifier": "-"
+      },
+      "provider": {
+        "taxId": "31-9452708",
+        "renderingNumber": "77777777777",
+        "billingNumber": "6666666666",
+        "renderingNpi": "1227840695",
+        "billingNpi": "1663209478",
+        "license": "22233344455",
+        "specialty": "676",
+        "zipCode": "20024-1908",
+        "planInd": "DC",
+        "wgsp": "P",
+        "pcpState": "DC",
+        "region": "532",
+        "gbdId": "-",
+        "providerInd": "-",
+        "providerParticipation": "-",
+        "providerProdVar": "WIP02186",
+        "networxInd": "-",
+        "finalMixer": "-",
+        "legacySpecialty": "-"
+      },
+      "claimHeader": {
+        "serviceFrom": "10/22/2025",
+        "serviceTo": "10/22/2025",
+        "placeOfService1": "1",
+        "placeOfService2": "22",
+        "cxtInd": "X",
+        "productLineCode": "57",
+        "serviceClassType": "-",
+        "emergRefInd": "-",
+        "icd9": "N",
+        "federalMandate": "-",
+        "cocInd": "-",
+        "mixerOverrideInd": "-",
+        "streetMedicineInd": "None",
+        "surpriseBillingInd": "-",
+        "cgntInd": "-",
+        "product": "WIPO",
+        "variance": "2186",
+        "contractNotes": "-",
+        "overridePriceProduct": "-",
+        "contractHierarchy": "-",
+        "bundleStatus": "-",
+        "clusterId": "-"
+      },
+      "diagnosisCodes": {
+        "a": "M62838",
+        "b": "-",
+        "c": "-",
+        "d": "-",
+        "e": "-"
+      },
+      "lineSummary": {
+        "procedure": "97110",
+        "modifier": "—",
+        "uo": "1",
+        "cxPercent": "100",
+        "allowed": "285",
+        "billedAmount": "285",
+        "writeoff": "0"
+      }
+    }
+  },
+  "priorClaim": {
+    "dcn": "—",
+    "receiptDate": "—",
+    "memberInfo": {
+      "subscriberId": "—",
+      "hcid": "—",
+      "subscriberName": "—",
+      "patientDob": "—"
+    },
+    "providerInfo": {
+      "providerTaxId": "—",
+      "renderingProvider": "—",
+      "billingNpi": "—"
+    },
+    "paymentInfo": {
+      "nonElg": "—",
+      "providerDisc": "—",
+      "coins": "—",
+      "processDate": "—",
+      "finalizationCode": "—"
+    },
+    "serviceInfo": {
+      "primaryDx": "—",
+      "px1": "—"
+    },
+    "researchNotes": "—",
+    "researchNotesMore": "—",
+    "lines": [
+      {
+        "lineNum": "—",
+        "serviceFrom": "—",
+        "toDate": "—",
+        "procedure": "—",
+        "billed": "—"
+      }
+    ]
+  },
+  "system": {
+    "benefitRecommendation": {
+      "contractCode": "P945",
+      "effectiveDate": "1/1/2026",
+      "endDate": "12/31/9999",
+      "planState": "DC",
+      "planDescription": "Harborline Manufacturing 2026/01/01 PPO P945"
+    }
+  },
+  "attachment": {
+    "pwk": {
+      "type": "—",
+      "documentNumber": "—"
+    }
+  },
+  "claimData": {
+    "details": {
+      "claimType": "PA - Professional",
+      "itsHome": "No",
+      "claimSource": {
+        "mediaType": "PC",
+        "pricingSource": "W",
+        "pricingSystem": "WP",
+        "mixerPar": "Y",
+        "receiverId": "WGSGA",
+        "receivedAtEdi": "2026-01-18",
+        "providerError": "I000",
+        "imageControlNumber": "CI25281103489293491",
+        "authNumber": "—",
+        "authExcln": "—",
+        "vendorIndicator": "—",
+        "receivedDate": "2026-01-18",
+        "splitInd": "—",
+        "epactPlm": "—",
+        "gnyhaInd": "—",
+        "imrIndicator": "—",
+        "cliaId": "—",
+        "cliaQualifier": "—"
+      },
+      "ancillaryProvider": {
+        "type": "",
+        "zip": "",
+        "state": ""
+      },
+      "ambulance": {
+        "pickupZip": "—",
+        "dropoffZip": "—"
+      },
+      "miscellaneous": {
+        "epsdt": "—",
+        "familyPlanning": "No",
+        "gtessDate": "—",
+        "dateOfIllness": "—",
+        "dateOfInjury": "—",
+        "lastMenstrualDate": "—",
+        "consultationDate": "—",
+        "eruDecision": "—",
+        "jaaErrorCode": "No"
+      },
+      "stopData": {
+        "stopEdit": "No",
+        "lobParentRule": "—",
+        "lobChildRule": "ALL WGS",
+        "lobSequence": "1",
+        "medBusinessParentRule": "NA",
+        "medBusinessChildRule": "656881",
+        "medSequence": "51"
+      },
+      "refundData": {
+        "correspondenceNumber": "—",
+        "refundAmount": "$0.00",
+        "adjustmentReasonCode": "PX_4",
+        "correctedClaimDcn": "—",
+        "vendorName": "—",
+        "delayReason": "—",
+        "carveOut": "—",
+        "adjustmentReceipt": "—"
+      },
+      "highDollar": {
+        "riskOutcome": "—"
+      }
+    },
+    "editing": {
+      "claimXten": {
+        "originalLine": {
+          "lineNum": "1",
+          "serviceDate": "10/22/2025",
+          "procedure": "97110",
+          "mod": "—",
+          "units": "1",
+          "billedAmount": "$285.00"
+        },
+        "proposedLine": {
+          "lineNum": "1",
+          "procedure": "—",
+          "mod": "—",
+          "units": "1",
+          "supportCode": "—",
+          "payPercent": "—",
+          "billedAmount": "—"
+        }
+      },
+      "ihealth": {
+        "originalLine": {
+          "lineNum": "1",
+          "serviceDate": "10/22/2025",
+          "procedure": "97110",
+          "mod": "—",
+          "units": "1",
+          "allowedAmount": "$285.00",
+          "savingsAmount": "$0.00"
+        },
+        "proposedLine": {
+          "procedure": "—",
+          "mod": "—",
+          "units": "1",
+          "payPercent": "—",
+          "status": "—"
+        }
+      }
+    },
+    "benefits": {
+      "accumulator1": {
+        "type": "BENYTD",
+        "fromDate": "2026-01-01",
+        "toDate": "2026-12-31",
+        "unit": "Dollar",
+        "status": "Accrued"
+      },
+      "accumulator2": {
+        "type": "MMCYTD",
+        "fromDate": "2026-01-01",
+        "toDate": "2026-12-31",
+        "unit": "Dollar",
+        "status": "Accrued"
+      }
+    },
+    "promptPay": {
+      "claim": {
+        "status": "PX_WGS",
+        "state": "—",
+        "ruleId": "—",
+        "systemInterest": "$0.00",
+        "penaltyAmount": "$0.00",
+        "manualInterestAmount": "—"
+      },
+      "calculation": {
+        "calculationFromDate": "2026-01-20",
+        "carveoutDate": "—",
+        "lastProcessedDate": "2026-01-20",
+        "baseAmount": "$0.00",
+        "calculatedInterestAmount": "$0.00",
+        "processedInDays": "0",
+        "mailingDays": "0",
+        "disburseDays": "0",
+        "allowedDays": "0",
+        "carveoutDays": "0",
+        "lateByDays": "0",
+        "dailyInterest": "$0.00"
+      },
+      "miscellaneous": {
+        "carveoutReasonCode": "PX_0",
+        "dayIndicator": "0",
+        "receiptMethod": "—",
+        "productFundType": "W",
+        "interestRate": "—",
+        "penalty": "—",
+        "minimumPayAmount": "—",
+        "erMinimumPay": "—",
+        "annualMonthlyPenalty": "—",
+        "mlhDate": "26020",
+        "ppStopDate": "—",
+        "additionalInformationRequestDate": "—",
+        "tdiInterestAmount": "—",
+        "tdiPenaltyAmount": "—"
+      }
+    },
+    "review": {
+      "utilization": {
+        "service": {
+          "lineNum": "1",
+          "procedure": "97110",
+          "revenueCode": "—",
+          "date": "10/22/2025",
+          "ruleId": "—",
+          "caseNumber": "NO MATCH"
+        }
+      },
+      "cdhp": {
+        "claim": {
+          "litesClaim": "—",
+          "rsnEobCode": "—",
+          "hraPaidTotal": "$0.00",
+          "hraEndingBalance": "$0.00",
+          "paymentCode": "—",
+          "cdhpAdmin": "—",
+          "acknowledgementRcvd": "—",
+          "requeryCount": "—"
+        },
+        "lineSummary": {
+          "lineNum": "1",
+          "procedure": "97110",
+          "billed": "$285.00",
+          "patientResp": "—",
+          "hraPaid": "—",
+          "rsnCode": "—"
+        }
+      },
+      "dofr": {
+        "meta": {
+          "inzip": "—",
+          "providerNetworkCode": "—",
+          "dofrId1": "—",
+          "dofrName1": "—",
+          "relationship": "—",
+          "pgmId": "—",
+          "pgId": "—",
+          "umDelegationIndicator": "—",
+          "effectiveDate": "—",
+          "endDate": "—"
+        },
+        "lineSummary": {
+          "lineNum": "1",
+          "procedure": "97110",
+          "revenueCode": "—",
+          "serviceCategory": "—",
+          "event": "—",
+          "capIndicator": "—",
+          "risk": "—",
+          "groupCode": "—",
+          "hc": "—"
+        }
+      }
+    },
+    "pricing": {
+      "mp": {
+        "header": {
+          "multiPlanIndicator": "—",
+          "caseNumber": "—",
+          "systemCode": "N",
+          "claimNumber": "—",
+          "externalNetworkClaimNumber": "—",
+          "networkId": "—",
+          "orgId": "0",
+          "providerStatus": "—",
+          "providerName": "UNITED HEALTH CLINIC",
+          "networkStatus": "—",
+          "primaryCare": "—",
+          "parNonPar": "—",
+          "paidNetworkId": "—",
+          "exceptionReason": "—",
+          "gatekeeperPfPnf": "—",
+          "neutralBenefit": "—",
+          "productType": "Local",
+          "receiptInd": "—",
+          "gbdId": "—",
+          "promptPay": "—",
+          "ncnId": "—",
+          "urDays": "0",
+          "priceSheet": "—",
+          "externalProviderInd": "—",
+          "claimLevelError": "—",
+          "qpaSplitInd": "—",
+          "qpaUpdate": "—",
+          "qpaProduct": "—",
+          "qpaPricingVariance": "—",
+          "claimLevelQpa": "0.00",
+          "finalProduct": "—",
+          "zelisNcnGrossSavings": "0.00",
+          "ncnAnthemCost": "0.00",
+          "ncnExclInd": "—",
+          "jaaPayor": "—",
+          "clusterId": "—"
+        },
+        "line1": {
+          "no": "1",
+          "service": "MED",
+          "billed": "285.00",
+          "allowed": "285.00",
+          "reasonAmount": "—",
+          "units": "1",
+          "reason": "—",
+          "priceReasonCode": "—",
+          "qpaAmount": "0.00"
+        },
+        "line2": {
+          "no": "—",
+          "service": "—",
+          "billed": "—",
+          "allowed": "—",
+          "reasonAmount": "—",
+          "units": "—",
+          "reason": "—",
+          "priceReasonCode": "—",
+          "qpaAmount": "—"
+        },
+        "qpaTotalAmount": "0.00"
+      }
+    },
+    "relatedSummary": {
+      "code": "—",
+      "name": "—",
+      "fromDate": "—",
+      "toDate": "—",
+      "type": "—",
+      "provider": "—",
+      "dcn": "—",
+      "charged": "—",
+      "paid": "—",
+      "status": "—"
+    }
+  }
+}

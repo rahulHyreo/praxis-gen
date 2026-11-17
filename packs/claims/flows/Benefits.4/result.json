@@ -1,0 +1,76 @@
+{
+  "$schema": "training-platform/v1/flow-result",
+  "$version": "1.0.0",
+  "id": "result_benefits_4_par_urgent_care_coinsurance",
+  "rubric": {
+    "expectedDecision": "pay",
+    "expectedReasonCode": null,
+    "requiredStepIds": [
+      "step_001",
+      "step_002",
+      "step_003",
+      "step_004",
+      "step_005",
+      "step_006",
+      "step_007",
+      "step_008",
+      "step_009",
+      "step_010",
+      "step_011",
+      "step_012",
+      "step_013",
+      "step_014",
+      "step_015",
+      "step_016",
+      "step_017",
+      "step_018",
+      "step_019",
+      "step_020"
+    ],
+    "weights": {
+      "navigator": 200,
+      "decision": 20,
+      "reasonCode": 0
+    },
+    "deductions": {
+      "perMissedRequiredStep": 0,
+      "wrongDecision": 20,
+      "wrongReasonCode": 0
+    }
+  },
+  "resultConfig": {
+    "passLabel": "Passed!",
+    "failLabel": "You did not meet the pass mark.",
+    "passDescription": "Great work — you priced the line, worked through the 5Ws of Benefit (a PAR nurse practitioner, new-patient visit 99204 on 01/15/2026, a PA - Professional claim at POS 20 Urgent Care, diagnosis J209), found the Urgent Care → Professional benefit for the PAR Urgent Care Centre option, checked the out-of-pocket limits and the accumulators, worked out that with the deductible met and only $30.00 left before the out-of-pocket maximum the 15% coinsurance of $41.36 is capped at $30.00 with EOB PX_00067, beside the $235.25 write-off with EOB PX_00066, so $245.75 is paid, validated the benefits and correctly paid the claim.",
+    "failDescription": "Pass mark is {passMark}%. Review the steps below to see where you can improve.",
+    "scoreCircle": {
+      "radius": 40,
+      "strokeWidth": 8,
+      "passColor": "#3B6D11",
+      "failColor": "#A32D2D",
+      "trackColor": "#E5E7EB"
+    },
+    "statBoxes": [
+      {
+        "id": "navigator_score",
+        "label": "Navigator",
+        "dataKey": "navigatorScore",
+        "max": 200
+      },
+      {
+        "id": "decision_score",
+        "label": "Decision",
+        "dataKey": "decisionScore",
+        "max": 20
+      },
+      {
+        "id": "time_taken",
+        "label": "Time Taken",
+        "dataKey": "timeTakenSeconds",
+        "format": "duration"
+      }
+    ],
+    "retakeButton": true,
+    "backToClaimsButton": true
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "$schema": "praxis/v2/pack-flow",
+  "code": "NCN.1",
+  "name": "National Care Network (PX_NCN) — Validate, Bypass & Pay",
+  "variants": [
+    {
+      "variant": "base",
+      "variantIndex": 1,
+      "subjectRefs": ["DCN-606109"]
+    },
+    {
+      "variant": "v2",
+      "variantIndex": 2,
+      "subjectRefs": [
+        "DCN-9460200",
+        "DCN-9460201",
+        "DCN-9460202",
+        "DCN-9460203",
+        "DCN-9460204",
+        "DCN-9460205",
+        "DCN-9460206"
+      ]
+    },
+    {
+      "variant": "v3",
+      "variantIndex": 3,
+      "subjectRefs": [
+        "DCN-9460300",
+        "DCN-9460301",
+        "DCN-9460302",
+        "DCN-9460303",
+        "DCN-9460304",
+        "DCN-9460305",
+        "DCN-9460306"
+      ]
+    },
+    {
+      "variant": "v4",
+      "variantIndex": 4,
+      "subjectRefs": [
+        "DCN-9460400",
+        "DCN-9460401",
+        "DCN-9460402",
+        "DCN-9460403",
+        "DCN-9460404",
+        "DCN-9460405",
+        "DCN-9460406"
+      ]
+    },
+    {
+      "variant": "v5",
+      "variantIndex": 5,
+      "subjectRefs": [
+        "DCN-9460500",
+        "DCN-9460501",
+        "DCN-9460502",
+        "DCN-9460503",
+        "DCN-9460504",
+        "DCN-9460505",
+        "DCN-9460506"
+      ]
+    }
+  ]
+}

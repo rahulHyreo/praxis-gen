@@ -1,0 +1,69 @@
+{
+  "$schema": "training-platform/v1/flow-result",
+  "$version": "1.0.0",
+  "id": "result_um0_1_no_um_record",
+  "rubric": {
+    "expectedDecision": "deny",
+    "expectedReasonCode": "PX_R75010",
+    "requiredStepIds": [
+      "step_001",
+      "step_002",
+      "step_005",
+      "step_006",
+      "step_010",
+      "step_011",
+      "step_012"
+    ],
+    "weights": {
+      "navigator": 120,
+      "decision": 20,
+      "reasonCode": 10
+    },
+    "deductions": {
+      "perMissedRequiredStep": 0,
+      "wrongDecision": 20,
+      "wrongReasonCode": 10
+    }
+  },
+  "resultConfig": {
+    "passLabel": "Passed!",
+    "failLabel": "You did not meet the pass mark.",
+    "passDescription": "Great work — you identified the PX_UM0 event, confirmed the UM Rule ID was not one of the flagged IDs, ruled out a Hospital Based Physician, cleared the eight Claim-Lines exclusion checks, confirmed the claim type, verified the authorization was NO MATCH, ruled out the PX_IUS/PX_LP/PX_LPF/PX_LPS and PAM/NMF events, verified the Line of Business, confirmed no medical records were attached, and correctly denied the claim with reject code PX_R75010.",
+    "failDescription": "Pass mark is {passMark}%. Review the steps below to see where you can improve.",
+    "scoreCircle": {
+      "radius": 40,
+      "strokeWidth": 8,
+      "passColor": "#3B6D11",
+      "failColor": "#A32D2D",
+      "trackColor": "#E5E7EB"
+    },
+    "statBoxes": [
+      {
+        "id": "navigator_score",
+        "label": "Navigator",
+        "dataKey": "navigatorScore",
+        "max": 120
+      },
+      {
+        "id": "decision_score",
+        "label": "Decision",
+        "dataKey": "decisionScore",
+        "max": 20
+      },
+      {
+        "id": "reason_score",
+        "label": "Reason Code",
+        "dataKey": "reasonCodeScore",
+        "max": 10
+      },
+      {
+        "id": "time_taken",
+        "label": "Time Taken",
+        "dataKey": "timeTakenSeconds",
+        "format": "duration"
+      }
+    ],
+    "retakeButton": true,
+    "backToClaimsButton": true
+  }
+}

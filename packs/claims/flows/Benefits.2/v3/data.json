@@ -1,0 +1,3611 @@
+{
+  "$schema": "training-platform/v1/workspace-data",
+  "$version": "2.0.0",
+  "id": "claim_data_benefits_2_v3_dcn_976300",
+  "claimId": "claim_benefits_2_v3_001",
+  "dcn": "DCN-976300",
+  "flowId": "flow_benefits_2",
+  "navigatorSchemaId": "nav_benefits_2_par_independent_lab_coinsurance",
+  "claim": {
+    "dcn": "DCN-976300",
+    "patient": "Anthony D Ferrante",
+    "serviceFrom": "01/15/2026",
+    "billedAmount": "$400.00"
+  },
+  "header": {
+    "dcn": "DCN-976300",
+    "billed": "$400.00",
+    "claimAllowed": "$0.00",
+    "paid": "$0.00",
+    "writeOff": "$0.00",
+    "deductible": "$0.00",
+    "coinsurance": "$0.00",
+    "copay": "$0.00",
+    "actionCode": "PX_P10000",
+    "receiptDate": "01/28/2026",
+    "serviceFrom": "01/15/2026",
+    "serviceTo": "01/15/2026"
+  },
+  "eventResolution": {
+    "editCode": "None",
+    "editLabel": "Benefits — no edits are pending on this claim."
+  },
+  "memberInfo": {
+    "patient": {
+      "firstName": "ANTHONY",
+      "middleName": "D",
+      "lastName": "FERRANTE",
+      "dob": "9/27/1958",
+      "sex": "M",
+      "memberPrefix": "WSH",
+      "hcid": "639P15428",
+      "relationship": "SUB - Subscriber",
+      "memberCode": "10",
+      "contractType": "C",
+      "erisa": "Y",
+      "pcp": "—",
+      "pcpState": "—",
+      "pcpRelationship": "—",
+      "programCode": "—"
+    },
+    "subscriber": {
+      "firstName": "ANTHONY",
+      "middleName": "D",
+      "lastName": "FERRANTE",
+      "subscriberId": "590127648",
+      "address": "2604 Brookfield Ave, Westerville, OH 43081"
+    },
+    "group": {
+      "groupName": "MAPLE CREST HEALTH SYSTEM",
+      "groupId": "WSH731M001",
+      "groupContract": "6N31",
+      "detailContractCode": "6N31",
+      "product": "PPO2",
+      "networkId": "BLUECDOO",
+      "networkName": "BLUE XXXX BLUE XXXX"
+    }
+  },
+  "claimImage": {
+    "memberDetails": {
+      "patient": {
+        "firstName": "ANTHONY",
+        "middleName": "D",
+        "lastName": "FERRANTE",
+        "dob": "9/27/1958",
+        "sex": "M",
+        "memberPrefix": "WSH",
+        "hcid": "639P15428",
+        "relationship": "SUB - Subscriber",
+        "memberCode": "10",
+        "detailContractCode": "6N31",
+        "contractType": "C",
+        "groupId": "WSH731M001",
+        "groupContract": "6N31",
+        "product": "PPO2",
+        "erisa": "Y",
+        "pcp": "—",
+        "pcpState": "—",
+        "pcpRelationship": "—"
+      },
+      "subscriber": {
+        "firstName": "ANTHONY",
+        "middleName": "D",
+        "lastName": "FERRANTE",
+        "subscriberId": "590127648",
+        "address": "2604 Brookfield Ave, Westerville, OH 43081"
+      },
+      "totalClaimLines": "1"
+    },
+    "additional": {
+      "claimSource": {
+        "mediaType": "-",
+        "pricingSource": "-",
+        "pricingSystem": "-",
+        "mixerPar": "-",
+        "receiverId": "IN",
+        "receivedAtEdi": "-",
+        "providerError": "-",
+        "authNumber": "-",
+        "authExcln": "-",
+        "vendorIndicator": "-",
+        "receivedDate": "-",
+        "originalReferenceNumber": "-"
+      },
+      "ancillaryProvider": {
+        "type": "-",
+        "zip": "-",
+        "state": "-"
+      },
+      "ambulance": {
+        "pickupZip": "-",
+        "dropoffZip": "-"
+      },
+      "miscellaneous": {
+        "epsdt": "-",
+        "familyPlanning": "-",
+        "gtessDate": "-",
+        "dateOfIllness": "-",
+        "dateOfInjury": "-",
+        "lastMenstrualDate": "-",
+        "consultationDate": "-"
+      },
+      "stopData": {
+        "stopEdit": "-",
+        "lobParentRule": "-",
+        "lobChildRule": "-",
+        "lobSequence": "-",
+        "medBusinessParentRule": "-",
+        "medBusinessChildRule": "-",
+        "medSequence": "-"
+      },
+      "refundData": {
+        "correspondenceNumber": "-",
+        "refundAmount": "-",
+        "adjustmentReason": "-",
+        "vendorName": "-",
+        "delayReason": "-",
+        "carveOut": "-",
+        "adjustmentReceiptDate": "-"
+      },
+      "highDollar": {
+        "riskOutcome": "-"
+      },
+      "its": {
+        "account": {
+          "deliveryMethod": "—",
+          "accountType": "—",
+          "aso": "—",
+          "stateId": "—",
+          "originalCertificate": "—",
+          "originalGroup": "—"
+        },
+        "pricing": {
+          "primarySop": "—",
+          "secondarySop": "—",
+          "tertiarySop": "—",
+          "cobCalMethod": "—"
+        },
+        "providers": {
+          "mppqAssignUnassigned": "—",
+          "ppoNetworkAvailability": "—",
+          "ppoProviderAvailability": "—",
+          "eft835": "—",
+          "serviceZip": "—"
+        }
+      },
+      "sfdf": {
+        "sfMessage": "—",
+        "dfMessage": "—",
+        "primacy": "—",
+        "autoOtherAccident": "—",
+        "totalDaysVisits": "—"
+      },
+      "claimLineDetail": [
+        {
+          "lineNum": "1",
+          "blankDateInd": "—",
+          "approvedDenyInd": "—"
+        }
+      ]
+    }
+  },
+  "providerInfo": {
+    "rendering": {
+      "npi": "1063958247",
+      "name": "GENOMIC INSIGHT LABORATORIES",
+      "address": "500 Polaris Pkwy, Westerville, OH 43082",
+      "pricingState": "OH",
+      "pricingZip": "43228-1502",
+      "providerSps": "7301846620",
+      "providerEpin": "—",
+      "license": "3511842000",
+      "networkOption": "N",
+      "specialty": "069",
+      "specialtyDescription": "069 - INDEPENDENT LABORATORY",
+      "taxonomy": "291U00000X"
+    },
+    "billing": {
+      "taxId": "317850294",
+      "npi": "1851046392",
+      "name": "GENOMIC INSIGHT LABORATORIES LLC",
+      "facilityType": "—",
+      "providerSps": "6614028830",
+      "providerEpin": "—",
+      "medicareId": "—",
+      "address": "500 Polaris Pkwy, Westerville, OH 43082",
+      "nationalState": "OH",
+      "locationCode": "—",
+      "bhaProviderIndicator": "N",
+      "taxonomy": "291U00000X",
+      "timelyFilingLimit": "—"
+    },
+    "referring": {
+      "referringPhysician": "—",
+      "npi": "—"
+    },
+    "serviceFacility": {
+      "facilityTier": "N",
+      "type": "N",
+      "npi": "1851046392"
+    },
+    "miscellaneous": {
+      "supportingOrderingNpi": "—",
+      "nsbIndicator": "None",
+      "alternateFacilityNpi": "—"
+    }
+  },
+  "paymentInfo": {
+    "claim": {
+      "deductible": "0.00",
+      "copay": "0.00",
+      "coins": "0.00",
+      "patientLiab": "0.00",
+      "memberSurcharge": "0.00",
+      "nonElg": "0.00",
+      "hraPaid": "0.00",
+      "claimPaid": "0.00",
+      "pricingAllowedAmount": "0.00",
+      "totalCharge": "400.00",
+      "finalizationCode": "PX_P10000"
+    },
+    "provider": {
+      "providerDisc": "0.00",
+      "providerLiab": "0.00",
+      "providerRiskWithhold": "0.00",
+      "providerSurcharge": "0.00",
+      "interest": "0.00",
+      "penalty": "0.00",
+      "lr": "L",
+      "systemInterest": "0.00"
+    },
+    "drg": {
+      "keyed": "-",
+      "priced": "—",
+      "original": "—"
+    },
+    "check": {
+      "accountNumber": "1234512345",
+      "checkNumber": "—",
+      "checkDate": "—",
+      "amount": "0.00",
+      "paymentSystem": "D",
+      "checkMailedTo": "—",
+      "eftCheckDate": "—",
+      "checkStatus": "CHECK NOT FOUND ON RECON DB",
+      "checkStatusDate": "01/28/2026",
+      "paidTo": "GENOMIC INSIGHT LABORATORIES LLC",
+      "finalized": "—"
+    },
+    "payeeDetails": {
+      "flipPayee": "N"
+    }
+  },
+  "claimHeader": {
+    "general": {
+      "serviceFromThrough": "01/15/2026 - 01/15/2026",
+      "assignmentOfBenefits": "Y - Benefit assigned to provider",
+      "providerParticipation": "PAR",
+      "providerContract": "INP00000",
+      "treatmentAuth": "—",
+      "patientAccount": "M000000000",
+      "emergency": "No",
+      "employment": "No",
+      "coveredZipRadius": "-",
+      "frequency": "1",
+      "bbiIndicator": "-",
+      "pciIndicator": "-",
+      "fsbInd": "None",
+      "fsbExclusion": "X"
+    },
+    "benefitIndicators": {
+      "cob": "0",
+      "cobRule": "-",
+      "medInd": "No",
+      "medRule": "-",
+      "medicareAdvantage": "No",
+      "cdhp": "N",
+      "planPayer": "N",
+      "cobPercent": "0"
+    },
+    "diagnosisCodes": {
+      "dx1": "Z940"
+    },
+    "conditionCodes": {
+      "code": "-"
+    }
+  },
+  "claimLineSummary": {
+    "lineNum": "1",
+    "fromDate": "1/15/2026",
+    "toDate": "1/15/2026",
+    "pos": "81",
+    "service": "—",
+    "procedure": "81479",
+    "modifiers": "—",
+    "units": "1",
+    "diagnosis": "Z940",
+    "billed": "$400.00",
+    "allowed": "$0.00",
+    "writeOffEob": "",
+    "writeOff": "$0.00",
+    "deductibleEob": "",
+    "deductible": "$0.00",
+    "coinsuranceEob": "",
+    "coinsurance": "$0.00",
+    "copay": "$0.00",
+    "paid": "$0.00",
+    "benefitRule": ""
+  },
+  "notes": {
+    "research": "—",
+    "mainframe": "244383",
+    "wgs": "—",
+    "taskManagement": {
+      "routedTo": "-",
+      "urgency": "65",
+      "skills": "CT-Professional",
+      "csPg": "GS-National",
+      "benNonspider": "SPIDER",
+      "regCa": "-",
+      "resUnrestricted": "-",
+      "totalAge": "4",
+      "homeAge": "4",
+      "ageAdjusted": "N",
+      "baselineUrgency": "45",
+      "urgencyModifiers": "PG Modifer(0)"
+    }
+  },
+  "search": {
+    "claims": {
+      "dcnKernalClaim": "",
+      "claimId": "",
+      "subscriberOrHcid": "639P15428",
+      "sccf": "",
+      "procedure": "",
+      "serviceFrom": "01/15/2026",
+      "serviceTo": "01/15/2026",
+      "code": "",
+      "totalCharge": "",
+      "status": "ALL",
+      "providerTaxId": "317850294",
+      "providerNpi": "",
+      "renderingLicenseId": "",
+      "billType": ""
+    },
+    "claimsResultCount": "1",
+    "claimsResults": [
+      {
+        "code": "—",
+        "name": "ANTHONY FERRANTE",
+        "from": "01/15/2026",
+        "to": "01/15/2026",
+        "type": "P",
+        "provider": "GENOMIC INSIGHT LABORATO",
+        "billType": "-",
+        "dcn": "DCN-976300",
+        "charged": "400.00",
+        "paid": "0.00",
+        "status": "Pending-Investigation"
+      }
+    ],
+    "codeSet": {
+      "codeTypes": [
+        {
+          "value": "px",
+          "label": "Procedure Code (Px)"
+        },
+        {
+          "value": "dx",
+          "label": "Diagnosis Code (Dx - ICD-10)"
+        },
+        {
+          "value": "pos",
+          "label": "Place of Service (POS)"
+        }
+      ],
+      "defaultCodeType": "px",
+      "serviceFrom": "1/15/2026",
+      "serviceTo": "1/15/2026",
+      "lookups": [
+        {
+          "codeType": "px",
+          "code": "81479",
+          "fromClaimLine": true,
+          "action": "",
+          "general": [
+            {
+              "label": "Code",
+              "value": "81479"
+            },
+            {
+              "label": "Description",
+              "value": "UNLISTED MOLECULAR PATHOLOGY PROCEDURE;"
+            }
+          ],
+          "tables": [
+            {
+              "title": "Service class",
+              "columns": ["Service class"],
+              "rows": [
+                ["CA5 -"],
+                ["SU3 - SUTTER GENETIC TEST"],
+                ["VA1 - VA HMO LAB CORP"],
+                ["20A - LAB"],
+                ["20I - SOS LAB PROC"],
+                ["39 - NY BUNDLE CODE"],
+                ["99S - SUTTER AUTH WAIVED"],
+                ["99Z - HMO OFFICE SERVICE"]
+              ]
+            }
+          ]
+        },
+        {
+          "codeType": "pos",
+          "code": "81",
+          "fromClaimLine": true,
+          "action": "lookup_pos_code",
+          "general": [
+            {
+              "label": "Code",
+              "value": "81"
+            },
+            {
+              "label": "Description",
+              "value": "INDEPENDENT LAB"
+            }
+          ]
+        },
+        {
+          "codeType": "dx",
+          "code": "Z940",
+          "fromClaimLine": true,
+          "action": "lookup_dx_code",
+          "general": [
+            {
+              "label": "Code",
+              "value": "Z940"
+            },
+            {
+              "label": "Description",
+              "value": "KIDNEY TRANSPLANT STATUS"
+            },
+            {
+              "label": "Limit class",
+              "value": "055 - EXEMPT DX FOR POA"
+            }
+          ]
+        }
+      ]
+    },
+    "auth": {
+      "search": {
+        "subscriberOrHcid": "639P15428",
+        "serviceStartDate": "1/15/2026",
+        "serviceEndDate": "1/15/2026",
+        "status": "-"
+      },
+      "members": {
+        "name": "—",
+        "dob": "—",
+        "ageAdjusted": "—",
+        "memberId": "-",
+        "mcid": "-",
+        "subscriberOrHcid": "639P15428"
+      }
+    },
+    "benefits": {
+      "searchBenefits": {
+        "contractCode": "6N31",
+        "effectiveDate": "1/1/2026",
+        "endDate": "12/31/9999",
+        "periods": [
+          {
+            "effectiveDate": "1/1/2026",
+            "endDate": "12/31/9999"
+          }
+        ]
+      },
+      "general": [
+        {
+          "label": "Contract code",
+          "value": "6N31"
+        },
+        {
+          "label": "Product",
+          "value": "PPO2"
+        },
+        {
+          "label": "Plan",
+          "value": "PPO"
+        },
+        {
+          "label": "Contract state",
+          "value": "OH"
+        },
+        {
+          "label": "Benefit period",
+          "value": "CY"
+        },
+        {
+          "label": "Benefit period",
+          "value": "CY"
+        },
+        {
+          "label": "Funding arrangement",
+          "value": "ASO"
+        },
+        {
+          "label": "CDHP Ind",
+          "value": "N"
+        }
+      ],
+      "coverage": [
+        {
+          "coverage": "MED - MEDICAL COVERAGE",
+          "pricing": "PPO",
+          "network": "PPO - PREFERRED PROVIDER ORG"
+        }
+      ],
+      "planLevel": {
+        "openAction": "open_plan_level",
+        "groups": [
+          {
+            "id": "deductible",
+            "label": "Deductible",
+            "rows": [
+              {
+                "costShare": "IN NETWORK INDIVIDUAL DEDUCTIBLE",
+                "network": "PAR",
+                "maximum": "$1,500.00",
+                "accumType": "PINDED"
+              },
+              {
+                "costShare": "OUT OF NETWORK INDIVIDUAL DEDUCTIBL",
+                "network": "NPAR",
+                "maximum": "$2,000.00",
+                "accumType": "NINDED"
+              },
+              {
+                "costShare": "IN NETWORK FAMILY DEDUCTIBLE",
+                "network": "PAR",
+                "maximum": "$3,000.00",
+                "accumType": "PFMDED"
+              },
+              {
+                "costShare": "OUT OF NETWORK FAMILY DEDUCTIBLE",
+                "network": "NPAR",
+                "maximum": "$3,500.00",
+                "accumType": "NFMDED"
+              }
+            ]
+          },
+          {
+            "id": "out_of_pocket",
+            "label": "Out-of-pocket",
+            "rows": [
+              {
+                "costShare": "IN NETWORK OUT OF POCKET MAXIMUM IN",
+                "network": "PAR",
+                "maximum": "$3,000.00",
+                "accumType": "IINOOP"
+              },
+              {
+                "costShare": "OUT OF POCKET MAXIMUM OUT OF NETWOR",
+                "network": "NPAR",
+                "maximum": "$5,500.00",
+                "accumType": "OINOOP"
+              },
+              {
+                "costShare": "IN NETWORK OUT OF POCKET MAXIMUM FA",
+                "network": "PAR",
+                "maximum": "$6,000.00",
+                "accumType": "FOOPPBOC"
+              },
+              {
+                "costShare": "OUT OF POCKET MAXIMUM OUT OF NETWOR",
+                "network": "NPAR",
+                "maximum": "$11,000.00",
+                "accumType": "FOOPNPOC"
+              },
+              {
+                "costShare": "OUT OF POCKET MAXIMUM REFUND",
+                "network": "ALL",
+                "maximum": "Y",
+                "accumType": ""
+              },
+              {
+                "costShare": "IND DEDUCTIBLE INCLUDED IN OOP",
+                "network": "ALL",
+                "maximum": "Y",
+                "accumType": ""
+              },
+              {
+                "costShare": "FAMILY DEDUCTIBLE INCLUDED IN OOP",
+                "network": "ALL",
+                "maximum": "Y",
+                "accumType": ""
+              },
+              {
+                "costShare": "OUT OF POCKET MAXIMUM CROSS ACCUMUL",
+                "network": "ALL",
+                "maximum": "Y",
+                "accumType": ""
+              },
+              {
+                "costShare": "OUT OF POCKET MAX EMBEDED",
+                "network": "ALL",
+                "maximum": "N",
+                "accumType": ""
+              }
+            ]
+          }
+        ]
+      },
+      "serviceLevel": {
+        "searchLabel": "Benefits Category",
+        "categories": [
+          {
+            "name": "Acupuncture",
+            "ruleId": "ACUPUNCTR",
+            "hasBenefits": false
+          },
+          {
+            "name": "Alternative/ Complimentary Medicine",
+            "ruleId": "ALTCOMPMD",
+            "hasBenefits": false,
+            "children": [
+              {
+                "name": "Ayurvedic"
+              },
+              {
+                "name": "Biofeedback"
+              },
+              {
+                "name": "Herbology"
+              },
+              {
+                "name": "Homeopathy"
+              },
+              {
+                "name": "Hypnosis"
+              },
+              {
+                "name": "Manual Healing"
+              },
+              {
+                "name": "Mind and Body Interventions"
+              },
+              {
+                "name": "Naturopath"
+              },
+              {
+                "name": "Reflexology"
+              },
+              {
+                "name": "Spiritual Counseling"
+              }
+            ]
+          },
+          {
+            "name": "Ambulance",
+            "ruleId": "AMBULANCE",
+            "children": [
+              {
+                "name": "Air Ambulance"
+              },
+              {
+                "name": "Other Medical Transport"
+              },
+              {
+                "name": "Surface Ambulance",
+                "children": [
+                  {
+                    "name": "Ground",
+                    "children": [
+                      {
+                        "name": "Cabulance"
+                      },
+                      {
+                        "name": "Ground Ambulance"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Water"
+                  }
+                ]
+              },
+              {
+                "name": "Wait Time"
+              }
+            ]
+          },
+          {
+            "name": "Durable Medical Equipment",
+            "ruleId": "DURMEDEQP",
+            "children": [
+              {
+                "name": "Lease/Rental",
+                "children": [
+                  {
+                    "name": "Blood Glucose Meter",
+                    "children": [
+                      {
+                        "name": "New"
+                      },
+                      {
+                        "name": "Used"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Breast Pump",
+                    "children": [
+                      {
+                        "name": "New"
+                      },
+                      {
+                        "name": "Used"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Chronic Renal Disease Equipment",
+                    "children": [
+                      {
+                        "name": "New"
+                      },
+                      {
+                        "name": "Used"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Commode",
+                    "children": [
+                      {
+                        "name": "New"
+                      },
+                      {
+                        "name": "Used"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "CPAP",
+                    "children": [
+                      {
+                        "name": "New"
+                      },
+                      {
+                        "name": "Used"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Hospital Bed",
+                    "children": [
+                      {
+                        "name": "New"
+                      },
+                      {
+                        "name": "Used"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Humidifier",
+                    "children": [
+                      {
+                        "name": "New"
+                      },
+                      {
+                        "name": "Used"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Infusion Pump",
+                    "children": [
+                      {
+                        "name": "New"
+                      },
+                      {
+                        "name": "Used"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Insulin Pump",
+                    "children": [
+                      {
+                        "name": "New"
+                      },
+                      {
+                        "name": "Used"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Lift",
+                    "children": [
+                      {
+                        "name": "New"
+                      },
+                      {
+                        "name": "Used"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Suction Pump",
+                    "children": [
+                      {
+                        "name": "New"
+                      },
+                      {
+                        "name": "Used"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Walker",
+                    "children": [
+                      {
+                        "name": "New"
+                      },
+                      {
+                        "name": "Used"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Wheelchair",
+                    "children": [
+                      {
+                        "name": "New"
+                      },
+                      {
+                        "name": "Used"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Purchase",
+                "children": [
+                  {
+                    "name": "Blood Glucose Meter",
+                    "children": [
+                      {
+                        "name": "New"
+                      },
+                      {
+                        "name": "Used"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Breast Pump",
+                    "children": [
+                      {
+                        "name": "New"
+                      },
+                      {
+                        "name": "Used"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Chronic Renal Disease Equipment",
+                    "children": [
+                      {
+                        "name": "New"
+                      },
+                      {
+                        "name": "Used"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Commode",
+                    "children": [
+                      {
+                        "name": "New"
+                      },
+                      {
+                        "name": "Used"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "CPAP",
+                    "children": [
+                      {
+                        "name": "New"
+                      },
+                      {
+                        "name": "Used"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Hospital Bed",
+                    "children": [
+                      {
+                        "name": "New"
+                      },
+                      {
+                        "name": "Used"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Humidifier",
+                    "children": [
+                      {
+                        "name": "New"
+                      },
+                      {
+                        "name": "Used"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Infusion Pump",
+                    "children": [
+                      {
+                        "name": "New"
+                      },
+                      {
+                        "name": "Used"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Insulin Pump",
+                    "children": [
+                      {
+                        "name": "New"
+                      },
+                      {
+                        "name": "Used"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Lift",
+                    "children": [
+                      {
+                        "name": "New"
+                      },
+                      {
+                        "name": "Used"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Suction Pump",
+                    "children": [
+                      {
+                        "name": "New"
+                      },
+                      {
+                        "name": "Used"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Walker",
+                    "children": [
+                      {
+                        "name": "New"
+                      },
+                      {
+                        "name": "Used"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Wheelchair",
+                    "children": [
+                      {
+                        "name": "New"
+                      },
+                      {
+                        "name": "Used"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Repair",
+                "children": [
+                  {
+                    "name": "Blood Glucose Meter"
+                  },
+                  {
+                    "name": "Chronic Renal Disease Equipment"
+                  },
+                  {
+                    "name": "Breast Pump"
+                  },
+                  {
+                    "name": "Commode"
+                  },
+                  {
+                    "name": "CPAP"
+                  },
+                  {
+                    "name": "Hospital Bed"
+                  },
+                  {
+                    "name": "Humidifier"
+                  },
+                  {
+                    "name": "Infusion Pump"
+                  },
+                  {
+                    "name": "Insulin Pump"
+                  },
+                  {
+                    "name": "Lift"
+                  },
+                  {
+                    "name": "Suction Pump"
+                  },
+                  {
+                    "name": "Walker"
+                  },
+                  {
+                    "name": "Wheelchair"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Emergency Room Care",
+            "ruleId": "EMERGCARE",
+            "children": [
+              {
+                "name": "Emergency Room & Ancillary",
+                "children": [
+                  {
+                    "name": "Emergency Accident"
+                  }
+                ]
+              },
+              {
+                "name": "Emergency Professionals",
+                "children": [
+                  {
+                    "name": "Anesthesiologist"
+                  },
+                  {
+                    "name": "ER Physician"
+                  },
+                  {
+                    "name": "Pathologist"
+                  },
+                  {
+                    "name": "Radiologist"
+                  },
+                  {
+                    "name": "Surgeon"
+                  }
+                ]
+              },
+              {
+                "name": "Emergency Supply"
+              }
+            ]
+          },
+          {
+            "name": "Health Education Classes",
+            "ruleId": "HLTHEDCLS",
+            "hasBenefits": false,
+            "children": [
+              {
+                "name": "Disease Management",
+                "children": [
+                  {
+                    "name": "Asthma Education"
+                  },
+                  {
+                    "name": "Diabetic Management",
+                    "children": [
+                      {
+                        "name": "Dietician Visit"
+                      },
+                      {
+                        "name": "Initial Diagnosis"
+                      },
+                      {
+                        "name": "Subsequent Visit"
+                      },
+                      {
+                        "name": "Nurse Visit"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Heart Health"
+                  },
+                  {
+                    "name": "Obesity"
+                  }
+                ]
+              },
+              {
+                "name": "Injury Prevention"
+              },
+              {
+                "name": "Lifestyle Management",
+                "children": [
+                  {
+                    "name": "Exercise Classes"
+                  },
+                  {
+                    "name": "Health Club"
+                  },
+                  {
+                    "name": "Healthy Weight Management"
+                  },
+                  {
+                    "name": "Smoking Cessation"
+                  },
+                  {
+                    "name": "Stress Management"
+                  }
+                ]
+              },
+              {
+                "name": "Maternity/Newborn",
+                "children": [
+                  {
+                    "name": "Delivery",
+                    "children": [
+                      {
+                        "name": "C-Section Prep"
+                      },
+                      {
+                        "name": "VBAC Classes"
+                      },
+                      {
+                        "name": "Childbirth Prep Class"
+                      },
+                      {
+                        "name": "Childbirth Refresher"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Infant Safety"
+                  },
+                  {
+                    "name": "Lactation Classes"
+                  },
+                  {
+                    "name": "Lamaze"
+                  },
+                  {
+                    "name": "Parenting Classes"
+                  },
+                  {
+                    "name": "Pre-conception Planning"
+                  }
+                ]
+              },
+              {
+                "name": "Nutrition Education",
+                "children": [
+                  {
+                    "name": "Nutrition Classes"
+                  },
+                  {
+                    "name": "Nutrition Counseling"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Home Health Care",
+            "ruleId": "HOMEHLTH",
+            "children": [
+              {
+                "name": "Custodial Care Services"
+              },
+              {
+                "name": "Skilled Nursing Services"
+              }
+            ]
+          },
+          {
+            "name": "Hospice",
+            "ruleId": "HOSPICE",
+            "children": [
+              {
+                "name": "Bereavement"
+              },
+              {
+                "name": "Home Hospice"
+              },
+              {
+                "name": "Inpatient Hospice"
+              },
+              {
+                "name": "Respite Care"
+              }
+            ]
+          },
+          {
+            "name": "Inpatient & Institutional Care",
+            "ruleId": "INPTINST",
+            "children": [
+              {
+                "name": "Bariatric"
+              },
+              {
+                "name": "Behavioral Health",
+                "children": [
+                  {
+                    "name": "Mental Health",
+                    "children": [
+                      {
+                        "name": "Intensive Outpatient Program"
+                      },
+                      {
+                        "name": "Partial Hospitalization Program"
+                      },
+                      {
+                        "name": "Residential Treatment Center"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Substance Abuse",
+                    "children": [
+                      {
+                        "name": "Intensive Outpatient Program"
+                      },
+                      {
+                        "name": "Partial Hospitalization Program"
+                      },
+                      {
+                        "name": "Residential Treatment Center"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Detoxification"
+              },
+              {
+                "name": "Maternity",
+                "children": [
+                  {
+                    "name": "Delivery",
+                    "children": [
+                      {
+                        "name": "C-Section"
+                      },
+                      {
+                        "name": "Vaginal"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Newborn Care"
+                  }
+                ]
+              },
+              {
+                "name": "Physical Rehabilitation"
+              },
+              {
+                "name": "Skilled Nursing Facility"
+              }
+            ]
+          },
+          {
+            "name": "Orthotics",
+            "ruleId": "ORTHOTICS",
+            "children": [
+              {
+                "name": "Custom made",
+                "children": [
+                  {
+                    "name": "Braces"
+                  },
+                  {
+                    "name": "Cranial Helmet"
+                  },
+                  {
+                    "name": "Footwear"
+                  },
+                  {
+                    "name": "Shoe Inserts"
+                  }
+                ]
+              },
+              {
+                "name": "Pre-fabricated",
+                "children": [
+                  {
+                    "name": "Braces"
+                  },
+                  {
+                    "name": "Cranial Helmet"
+                  },
+                  {
+                    "name": "Footwear"
+                  },
+                  {
+                    "name": "Shoe Inserts"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Pain Management",
+            "ruleId": "PAINMGMT",
+            "children": [
+              {
+                "name": "Artificial Device"
+              },
+              {
+                "name": "Conscious Sedation",
+                "children": [
+                  {
+                    "name": "Dental"
+                  },
+                  {
+                    "name": "Maternity"
+                  },
+                  {
+                    "name": "Routine"
+                  }
+                ]
+              },
+              {
+                "name": "General Anesthesia",
+                "children": [
+                  {
+                    "name": "Dental"
+                  },
+                  {
+                    "name": "Maternity"
+                  }
+                ]
+              },
+              {
+                "name": "Local Anesthesia",
+                "children": [
+                  {
+                    "name": "Dental"
+                  },
+                  {
+                    "name": "Maternity"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Physician Services",
+            "ruleId": "PHYSSVCS",
+            "children": [
+              {
+                "name": "Consultation"
+              },
+              {
+                "name": "Counseling",
+                "children": [
+                  {
+                    "name": "Family Planning"
+                  },
+                  {
+                    "name": "Marriage/Family"
+                  },
+                  {
+                    "name": "Nutritional"
+                  },
+                  {
+                    "name": "Behavioral Health",
+                    "children": [
+                      {
+                        "name": "Mental Health",
+                        "children": [
+                          {
+                            "name": "Group"
+                          },
+                          {
+                            "name": "Individual"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Substance Abuse",
+                        "children": [
+                          {
+                            "name": "Group"
+                          },
+                          {
+                            "name": "Individual"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Exam/Visit",
+                "children": [
+                  {
+                    "name": "Foot Care"
+                  },
+                  {
+                    "name": "Infertility"
+                  },
+                  {
+                    "name": "Maternity",
+                    "children": [
+                      {
+                        "name": "Prenatal",
+                        "children": [
+                          {
+                            "name": "1st Visit"
+                          },
+                          {
+                            "name": "Antenatal Care"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Postpartum"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Newborn Care"
+                  },
+                  {
+                    "name": "Routine",
+                    "children": [
+                      {
+                        "name": "Administrative",
+                        "children": [
+                          {
+                            "name": "Camp"
+                          },
+                          {
+                            "name": "Employment"
+                          },
+                          {
+                            "name": "School"
+                          },
+                          {
+                            "name": "Sports"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Well Women",
+                        "children": [
+                          {
+                            "name": "Clinical Breast Exam"
+                          },
+                          {
+                            "name": "Gyne Exam"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Well Baby"
+                      },
+                      {
+                        "name": "Colorectal Exam"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Injection",
+                "children": [
+                  {
+                    "name": "Immunization",
+                    "children": [
+                      {
+                        "name": "Administration"
+                      },
+                      {
+                        "name": "Routine",
+                        "children": [
+                          {
+                            "name": "Administration"
+                          },
+                          {
+                            "name": "Flu"
+                          },
+                          {
+                            "name": "Pneumonia"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Travel"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Foot Care"
+                  }
+                ]
+              },
+              {
+                "name": "Second Opinions",
+                "children": [
+                  {
+                    "name": "Third Opinion"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Private Duty Nursing",
+            "ruleId": "PVTNURSE"
+          },
+          {
+            "name": "Prosthetics",
+            "ruleId": "PRSTHETIC",
+            "children": [
+              {
+                "name": "Breast"
+              },
+              {
+                "name": "Eye"
+              },
+              {
+                "name": "Limb (Arm & Leg)"
+              },
+              {
+                "name": "Wig"
+              }
+            ]
+          },
+          {
+            "name": "Rehabilitation Therapies",
+            "ruleId": "REHABTHER",
+            "children": [
+              {
+                "name": "Applied Behavioral Analysis (ABA)"
+              },
+              {
+                "name": "Cardiac Rehab"
+              },
+              {
+                "name": "Chiropractic/Spinal Manipulation",
+                "children": [
+                  {
+                    "name": "Chiropractic Office Visit"
+                  }
+                ]
+              },
+              {
+                "name": "Cognitive Therapy"
+              },
+              {
+                "name": "Hippotherapy"
+              },
+              {
+                "name": "Massage Therapy"
+              },
+              {
+                "name": "Occupational Therapy"
+              },
+              {
+                "name": "Physical Therapy"
+              },
+              {
+                "name": "Pulmonary Rehab"
+              },
+              {
+                "name": "Speech Therapy"
+              },
+              {
+                "name": "Vision Therapy"
+              }
+            ]
+          },
+          {
+            "name": "Supply",
+            "ruleId": "SUPPLY",
+            "children": [
+              {
+                "name": "Allergy Serum"
+              },
+              {
+                "name": "Ambulance Supply",
+                "children": [
+                  {
+                    "name": "Oxygen"
+                  }
+                ]
+              },
+              {
+                "name": "Blood"
+              },
+              {
+                "name": "Garments",
+                "children": [
+                  {
+                    "name": "Compression Girdle"
+                  },
+                  {
+                    "name": "Compression Stockings"
+                  },
+                  {
+                    "name": "Surgical Bra"
+                  }
+                ]
+              },
+              {
+                "name": "Hearing Aid",
+                "children": [
+                  {
+                    "name": "1st ear"
+                  },
+                  {
+                    "name": "2nd ear"
+                  },
+                  {
+                    "name": "Batteries"
+                  },
+                  {
+                    "name": "Repair"
+                  }
+                ]
+              },
+              {
+                "name": "Medical Foods",
+                "children": [
+                  {
+                    "name": "Enteral Nutrition"
+                  },
+                  {
+                    "name": "Total Parental Nutrition (TPN)"
+                  }
+                ]
+              },
+              {
+                "name": "Medical Supply",
+                "children": [
+                  {
+                    "name": "Breast pump supplies"
+                  },
+                  {
+                    "name": "Diabetic"
+                  },
+                  {
+                    "name": "Ostomy"
+                  },
+                  {
+                    "name": "Renal"
+                  },
+                  {
+                    "name": "Therapy"
+                  }
+                ]
+              },
+              {
+                "name": "Over-the-Counter Supply"
+              },
+              {
+                "name": "Oxygen"
+              },
+              {
+                "name": "Surgical Implant",
+                "children": [
+                  {
+                    "name": "Cochlear"
+                  }
+                ]
+              },
+              {
+                "name": "Tobacco Cessation Aids"
+              },
+              {
+                "name": "Vision Hardware",
+                "children": [
+                  {
+                    "name": "Post-Cataract Eyewear"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Surgery Service",
+            "ruleId": "SURGSVC",
+            "children": [
+              {
+                "name": "Facility",
+                "children": [
+                  {
+                    "name": "Bariatric"
+                  },
+                  {
+                    "name": "Biopsy"
+                  },
+                  {
+                    "name": "Endoscopic Surgery",
+                    "children": [
+                      {
+                        "name": "Colonoscopy",
+                        "children": [
+                          {
+                            "name": "Screening/Routine"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Eye Surgery",
+                    "children": [
+                      {
+                        "name": "Cataract Surgery"
+                      },
+                      {
+                        "name": "Radial Keratotomy"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Foot Care",
+                    "children": [
+                      {
+                        "name": "Foot Surgery",
+                        "children": [
+                          {
+                            "name": "Bunion Surgery"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Oral Surgery",
+                    "children": [
+                      {
+                        "name": "Extractions",
+                        "children": [
+                          {
+                            "name": "Full Bony"
+                          },
+                          {
+                            "name": "Partial Bony"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Injury",
+                        "children": [
+                          {
+                            "name": "Natural tooth"
+                          },
+                          {
+                            "name": "Synthetic structure"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Disease"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Reproductive Surgery",
+                    "children": [
+                      {
+                        "name": "Sterilization",
+                        "children": [
+                          {
+                            "name": "Elective",
+                            "children": [
+                              {
+                                "name": "Female"
+                              },
+                              {
+                                "name": "Male"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Reversal"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Infertility",
+                        "children": [
+                          {
+                            "name": "Artificial Insemination"
+                          },
+                          {
+                            "name": "Intra Fallopian Transfer",
+                            "children": [
+                              {
+                                "name": "Gamete"
+                              },
+                              {
+                                "name": "Zygote"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "InVitro Fertilization"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Abortion",
+                        "children": [
+                          {
+                            "name": "Elective",
+                            "children": [
+                              {
+                                "name": "Hospital"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Therapeutic"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Hysterectomy"
+                      },
+                      {
+                        "name": "Contraceptive",
+                        "children": [
+                          {
+                            "name": "Intra Uterine Device",
+                            "children": [
+                              {
+                                "name": "Insertion"
+                              },
+                              {
+                                "name": "Removal"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Norplant",
+                            "children": [
+                              {
+                                "name": "Insertion"
+                              },
+                              {
+                                "name": "Removal"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Diaphragm Fitting"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Reconstructive Surgery",
+                    "children": [
+                      {
+                        "name": "Blepharoplasty"
+                      },
+                      {
+                        "name": "Breast",
+                        "children": [
+                          {
+                            "name": "Reduction"
+                          },
+                          {
+                            "name": "Restoration"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Panniculectomy"
+                      },
+                      {
+                        "name": "Penile Implant"
+                      },
+                      {
+                        "name": "Rhinoplasty"
+                      },
+                      {
+                        "name": "Septoplasty"
+                      },
+                      {
+                        "name": "Sex Reassignment"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Transplants",
+                    "children": [
+                      {
+                        "name": "Donor"
+                      },
+                      {
+                        "name": "Experimental"
+                      },
+                      {
+                        "name": "Organ",
+                        "children": [
+                          {
+                            "name": "Heart"
+                          },
+                          {
+                            "name": "Lung"
+                          },
+                          {
+                            "name": "Kidney"
+                          },
+                          {
+                            "name": "Liver"
+                          },
+                          {
+                            "name": "Pancreas"
+                          },
+                          {
+                            "name": "Small Bowel"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Tissue",
+                        "children": [
+                          {
+                            "name": "Bone Marrow"
+                          },
+                          {
+                            "name": "Stem Cell"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "TMJ"
+                  }
+                ]
+              },
+              {
+                "name": "Professional",
+                "children": [
+                  {
+                    "name": "Assistant Surgeon"
+                  },
+                  {
+                    "name": "Bariatric"
+                  },
+                  {
+                    "name": "Biopsy"
+                  },
+                  {
+                    "name": "Endoscopic Surgery",
+                    "children": [
+                      {
+                        "name": "Colonoscopy",
+                        "children": [
+                          {
+                            "name": "Screening/Routine"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Eye Surgery",
+                    "children": [
+                      {
+                        "name": "Cataract Surgery"
+                      },
+                      {
+                        "name": "Radial Keratotomy"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Foot Care",
+                    "children": [
+                      {
+                        "name": "Foot Surgery",
+                        "children": [
+                          {
+                            "name": "Bunion Surgery"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Oral Surgery",
+                    "children": [
+                      {
+                        "name": "Extractions",
+                        "children": [
+                          {
+                            "name": "Full Bony"
+                          },
+                          {
+                            "name": "Partial Bony"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Injury",
+                        "children": [
+                          {
+                            "name": "Natural tooth"
+                          },
+                          {
+                            "name": "Synthetic structure"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Disease"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Reproductive Surgery",
+                    "children": [
+                      {
+                        "name": "Sterilization",
+                        "children": [
+                          {
+                            "name": "Elective",
+                            "children": [
+                              {
+                                "name": "Female"
+                              },
+                              {
+                                "name": "Male"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Reversal"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Infertility",
+                        "children": [
+                          {
+                            "name": "Artificial Insemination"
+                          },
+                          {
+                            "name": "Intra Fallopian Transfer",
+                            "children": [
+                              {
+                                "name": "Gamete"
+                              },
+                              {
+                                "name": "Zygote"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "InVitro Fertilization"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Abortion",
+                        "children": [
+                          {
+                            "name": "Elective"
+                          },
+                          {
+                            "name": "Therapeutic"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Hysterectomy"
+                      },
+                      {
+                        "name": "Contraceptive",
+                        "children": [
+                          {
+                            "name": "Diaphragm Fitting"
+                          },
+                          {
+                            "name": "Intra Uterine Device",
+                            "children": [
+                              {
+                                "name": "Insertion"
+                              },
+                              {
+                                "name": "Removal"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "Norplant",
+                            "children": [
+                              {
+                                "name": "Insertion"
+                              },
+                              {
+                                "name": "Removal"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Delivery",
+                        "children": [
+                          {
+                            "name": "C-section"
+                          },
+                          {
+                            "name": "Vaginal"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Reconstructive Surgery",
+                    "children": [
+                      {
+                        "name": "Blepharoplasty"
+                      },
+                      {
+                        "name": "Breast",
+                        "children": [
+                          {
+                            "name": "Reduction"
+                          },
+                          {
+                            "name": "Restoration"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Panniculectomy"
+                      },
+                      {
+                        "name": "Penile Implant"
+                      },
+                      {
+                        "name": "Rhinoplasty"
+                      },
+                      {
+                        "name": "Septoplasmy"
+                      },
+                      {
+                        "name": "Sex Reassignment"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Transplants",
+                    "children": [
+                      {
+                        "name": "Donor"
+                      },
+                      {
+                        "name": "Experimental"
+                      },
+                      {
+                        "name": "Organ",
+                        "children": [
+                          {
+                            "name": "Heart"
+                          },
+                          {
+                            "name": "Lung"
+                          },
+                          {
+                            "name": "Kidney"
+                          },
+                          {
+                            "name": "Liver"
+                          },
+                          {
+                            "name": "Pancreas"
+                          },
+                          {
+                            "name": "Small Bowel"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Tissue",
+                        "children": [
+                          {
+                            "name": "Bone Marrow"
+                          },
+                          {
+                            "name": "Stem Cell"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "TMJ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Testing Services",
+            "ruleId": "TESTSVCS",
+            "children": [
+              {
+                "name": "Facility",
+                "children": [
+                  {
+                    "name": "Diagnostic Imaging",
+                    "children": [
+                      {
+                        "name": "Advanced Imaging",
+                        "children": [
+                          {
+                            "name": "CAT Scan"
+                          },
+                          {
+                            "name": "MRI"
+                          },
+                          {
+                            "name": "Nuclear Medicine Scan"
+                          },
+                          {
+                            "name": "PET"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Radiology/Xray"
+                      },
+                      {
+                        "name": "Ultrasound"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Infertility"
+                  },
+                  {
+                    "name": "Lab"
+                  },
+                  {
+                    "name": "Maternity",
+                    "children": [
+                      {
+                        "name": "Diagnostic Imaging",
+                        "children": [
+                          {
+                            "name": "Ultrasound"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Lab",
+                        "children": [
+                          {
+                            "name": "Diabetes"
+                          },
+                          {
+                            "name": "Genetics"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Other Studies",
+                        "children": [
+                          {
+                            "name": "Amniocentisis"
+                          },
+                          {
+                            "name": "Non-stress Test (NST)"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Other Studies",
+                    "children": [
+                      {
+                        "name": "Allergy Testing"
+                      },
+                      {
+                        "name": "EKG"
+                      },
+                      {
+                        "name": "Sleep Studies"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Pathology"
+                  },
+                  {
+                    "name": "Pre-Admit Testing"
+                  },
+                  {
+                    "name": "Routine",
+                    "children": [
+                      {
+                        "name": "Lab",
+                        "children": [
+                          {
+                            "name": "Hemoccult"
+                          },
+                          {
+                            "name": "Prostate Specifc Antigen"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Radiology/Xray",
+                        "children": [
+                          {
+                            "name": "Bone Density Scan"
+                          },
+                          {
+                            "name": "Mammogram"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Pathology",
+                        "children": [
+                          {
+                            "name": "Pap"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Other Studies"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Professional",
+                "expandAction": "expand_testing_professional",
+                "children": [
+                  {
+                    "name": "Diagnostic Imaging",
+                    "children": [
+                      {
+                        "name": "Advanced Imaging",
+                        "children": [
+                          {
+                            "name": "CAT Scan"
+                          },
+                          {
+                            "name": "MRI"
+                          },
+                          {
+                            "name": "Nuclear Medicine Scan"
+                          },
+                          {
+                            "name": "PET"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Radiology/Xray"
+                      },
+                      {
+                        "name": "Ultrasound"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Infertility"
+                  },
+                  {
+                    "name": "Lab",
+                    "detailsId": "professional_lab"
+                  },
+                  {
+                    "name": "Maternity",
+                    "children": [
+                      {
+                        "name": "Diagnostic Imaging",
+                        "children": [
+                          {
+                            "name": "Ultrasound"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Labs",
+                        "children": [
+                          {
+                            "name": "Diabetes"
+                          },
+                          {
+                            "name": "Genetics"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Other Studies",
+                        "children": [
+                          {
+                            "name": "Amniocentisis"
+                          },
+                          {
+                            "name": "Non-stress Test (NST)"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Other Studies",
+                    "children": [
+                      {
+                        "name": "Allergy Testing"
+                      },
+                      {
+                        "name": "Audiology"
+                      },
+                      {
+                        "name": "EKG"
+                      },
+                      {
+                        "name": "Sleep Studies"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Pathology"
+                  },
+                  {
+                    "name": "Pre-Admit Testing"
+                  },
+                  {
+                    "name": "Routine",
+                    "children": [
+                      {
+                        "name": "Lab",
+                        "children": [
+                          {
+                            "name": "Hemoccult"
+                          },
+                          {
+                            "name": "Prostate Specifc Antigen"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Radiology/Xray",
+                        "children": [
+                          {
+                            "name": "Bone Density Scan"
+                          },
+                          {
+                            "name": "Mammogram"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Pathology",
+                        "children": [
+                          {
+                            "name": "Pap"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Other Studies"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Travel",
+            "ruleId": "TRAVEL",
+            "children": [
+              {
+                "name": "Bariatric",
+                "children": [
+                  {
+                    "name": "Companion",
+                    "children": [
+                      {
+                        "name": "Lodging"
+                      },
+                      {
+                        "name": "Meals"
+                      },
+                      {
+                        "name": "Other Expenses"
+                      },
+                      {
+                        "name": "Transportation"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Recipient",
+                    "children": [
+                      {
+                        "name": "Lodging"
+                      },
+                      {
+                        "name": "Meals"
+                      },
+                      {
+                        "name": "Other Expenses"
+                      },
+                      {
+                        "name": "Transportation"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Cardiac"
+              },
+              {
+                "name": "Complex/Rare Cancer",
+                "children": [
+                  {
+                    "name": "Companion",
+                    "children": [
+                      {
+                        "name": "Lodging"
+                      },
+                      {
+                        "name": "Meals"
+                      },
+                      {
+                        "name": "Other Expenses"
+                      },
+                      {
+                        "name": "Transportation"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Recipient",
+                    "children": [
+                      {
+                        "name": "Lodging"
+                      },
+                      {
+                        "name": "Meals"
+                      },
+                      {
+                        "name": "Other Expenses"
+                      },
+                      {
+                        "name": "Transportation"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Repatriation"
+              },
+              {
+                "name": "Transplant / HOTT",
+                "children": [
+                  {
+                    "name": "Companion",
+                    "children": [
+                      {
+                        "name": "Lodging"
+                      },
+                      {
+                        "name": "Meals"
+                      },
+                      {
+                        "name": "Other Expenses"
+                      },
+                      {
+                        "name": "Transportation"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Donor",
+                    "children": [
+                      {
+                        "name": "Lodging"
+                      },
+                      {
+                        "name": "Meals"
+                      },
+                      {
+                        "name": "Other Expenses"
+                      },
+                      {
+                        "name": "Transportation"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Recipient",
+                    "children": [
+                      {
+                        "name": "Lodging"
+                      },
+                      {
+                        "name": "Meals"
+                      },
+                      {
+                        "name": "Other Expenses"
+                      },
+                      {
+                        "name": "Transportation"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Treatment Therapies",
+            "ruleId": "TRTMTTHER",
+            "children": [
+              {
+                "name": "Chemotherapy"
+              },
+              {
+                "name": "Hyperbaric Oxygen Therapy"
+              },
+              {
+                "name": "Infusion Therapy"
+              },
+              {
+                "name": "Nutrition Therapy"
+              },
+              {
+                "name": "Radiation Therapy"
+              },
+              {
+                "name": "Renal Dialysis",
+                "children": [
+                  {
+                    "name": "Hemodialysis"
+                  },
+                  {
+                    "name": "Continuous Ambulatory Peritoneal Dialysis (CAPD)/"
+                  },
+                  {
+                    "name": "Continuous Cycling Peritoneal Dialysis (CCPD)"
+                  }
+                ]
+              },
+              {
+                "name": "Respiratory Therapy"
+              },
+              {
+                "name": "UV Light Therapy"
+              }
+            ]
+          },
+          {
+            "name": "Urgent Care",
+            "ruleId": "URGNTCARE",
+            "children": [
+              {
+                "name": "Facility"
+              },
+              {
+                "name": "Professional"
+              },
+              {
+                "name": "Supply"
+              }
+            ]
+          }
+        ],
+        "details": {
+          "professional_lab": {
+            "heading": "LAB",
+            "claimType": "Professional",
+            "options": [
+              {
+                "id": "unless_otherwise_specified_1",
+                "label": "UNLESS OTHERWISE SPECIFIED",
+                "tier": "TIER - 1"
+              },
+              {
+                "id": "unless_otherwise_specified_2",
+                "label": "UNLESS OTHERWISE SPECIFIED",
+                "tier": "TIER - 1"
+              },
+              {
+                "id": "home_1",
+                "label": "HOME",
+                "tier": "TIER - 1"
+              },
+              {
+                "id": "home_2",
+                "label": "HOME",
+                "tier": "TIER - 1"
+              },
+              {
+                "id": "home_3",
+                "label": "HOME",
+                "tier": "TIER - 1"
+              },
+              {
+                "id": "independent_lab_par",
+                "label": "INDEPENDENT LAB",
+                "tier": "TIER - 1",
+                "expandAction": "open_par_lab_benefits",
+                "costShares": [
+                  {
+                    "costShare": "IN NETWORK INDIVIDUAL DEDUCTIBLE",
+                    "network": "PAR",
+                    "maximum": "$1,500.00",
+                    "accumType": "PINDED"
+                  },
+                  {
+                    "costShare": "IN NETWORK FAMILY DEDUCTIBLE",
+                    "network": "PAR",
+                    "maximum": "$3,000.00",
+                    "accumType": "PFMDED"
+                  },
+                  {
+                    "costShare": "OUT OF NETWORK COINSURANCE",
+                    "network": "PAR",
+                    "maximum": "70.00%",
+                    "accumType": ""
+                  },
+                  {
+                    "costShare": "IND DEDUCTIBLE INCLUDED IN OOP",
+                    "network": "PAR",
+                    "maximum": "Y",
+                    "accumType": ""
+                  },
+                  {
+                    "costShare": "FAMILY DEDUCTIBLE INCLUDED IN OOP",
+                    "network": "PAR",
+                    "maximum": "Y",
+                    "accumType": ""
+                  },
+                  {
+                    "costShare": "ADJUDICATION ON/OFF INDICATOR",
+                    "network": "PAR",
+                    "maximum": "Y",
+                    "accumType": ""
+                  },
+                  {
+                    "costShare": "BENEFIT COVERED INDICATOR FOR NPAR",
+                    "network": "PAR",
+                    "maximum": "Y",
+                    "accumType": ""
+                  },
+                  {
+                    "costShare": "COINSURANCE INCLUDED IN OOP",
+                    "network": "PAR",
+                    "maximum": "Y",
+                    "accumType": ""
+                  }
+                ]
+              },
+              {
+                "id": "independent_lab_npar",
+                "label": "INDEPENDENT LAB",
+                "tier": "TIER - 1",
+                "costShares": [
+                  {
+                    "costShare": "IN NETWORK INDIVIDUAL DEDUCTIBLE",
+                    "network": "NPAR",
+                    "maximum": "$2,000.00",
+                    "accumType": "PINDED"
+                  },
+                  {
+                    "costShare": "IN NETWORK FAMILY DEDUCTIBLE",
+                    "network": "NPAR",
+                    "maximum": "$3,500.00",
+                    "accumType": "PFMDED"
+                  },
+                  {
+                    "costShare": "OUT OF NETWORK COINSURANCE",
+                    "network": "NPAR",
+                    "maximum": "60.00%",
+                    "accumType": ""
+                  },
+                  {
+                    "costShare": "IND DEDUCTIBLE INCLUDED IN OOP",
+                    "network": "NPAR",
+                    "maximum": "Y",
+                    "accumType": ""
+                  },
+                  {
+                    "costShare": "FAMILY DEDUCTIBLE INCLUDED IN OOP",
+                    "network": "NPAR",
+                    "maximum": "Y",
+                    "accumType": ""
+                  },
+                  {
+                    "costShare": "ADJUDICATION ON/OFF INDICATOR",
+                    "network": "NPAR",
+                    "maximum": "Y",
+                    "accumType": ""
+                  },
+                  {
+                    "costShare": "BENEFIT COVERED INDICATOR FOR NPAR",
+                    "network": "NPAR",
+                    "maximum": "Y",
+                    "accumType": ""
+                  },
+                  {
+                    "costShare": "COINSURANCE INCLUDED IN OOP",
+                    "network": "NPAR",
+                    "maximum": "Y",
+                    "accumType": ""
+                  }
+                ]
+              },
+              {
+                "id": "inpatient_place_of_service_1",
+                "label": "INPATIENT PLACE OF SERVICE",
+                "tier": "TIER - 1"
+              },
+              {
+                "id": "inpatient_place_of_service_2",
+                "label": "INPATIENT PLACE OF SERVICE",
+                "tier": "TIER - 1"
+              },
+              {
+                "id": "office",
+                "label": "OFFICE",
+                "tier": "TIER - 1"
+              },
+              {
+                "id": "office_primary_care_physician",
+                "label": "OFFICE BY A PRIMARY CARE PHYSICIAN",
+                "tier": "TIER - 1"
+              },
+              {
+                "id": "office_specialist",
+                "label": "OFFICE BY A SPECIALIST",
+                "tier": "TIER - 1"
+              },
+              {
+                "id": "office_chiropractor_1",
+                "label": "OFFICE BY A CHIROPRACTOR",
+                "tier": "TIER - 1"
+              },
+              {
+                "id": "office_chiropractor_2",
+                "label": "OFFICE BY A CHIROPRACTOR",
+                "tier": "TIER - 1"
+              },
+              {
+                "id": "outpatient_1",
+                "label": "OUTPATIENT",
+                "tier": "TIER - 1"
+              },
+              {
+                "id": "outpatient_2",
+                "label": "OUTPATIENT",
+                "tier": "TIER - 1"
+              },
+              {
+                "id": "urgent_care_centre",
+                "label": "Urgent Care Centre",
+                "tier": "TIER - 1"
+              },
+              {
+                "id": "ambulatory_surgical_center_1",
+                "label": "Ambulatory Surgical Center",
+                "tier": ""
+              },
+              {
+                "id": "ambulatory_surgical_center_2",
+                "label": "Ambulatory Surgical Center",
+                "tier": ""
+              }
+            ]
+          }
+        }
+      },
+      "accumulators": {
+        "generalInformation": {
+          "Member ID": "639P15428",
+          "Member name": "ANTHONY FERRANTE",
+          "Contract code": "6N31",
+          "Benefit year": "2026"
+        },
+        "groups": [
+          {
+            "id": "deductible",
+            "label": "DEDUCTIBLE",
+            "actionId": "view_deductible_accumulators",
+            "rows": [
+              {
+                "id": "pinded",
+                "accumulator": "PINDED",
+                "description": "INDIVIDUAL DED PAR",
+                "fromThru": "01/01/2026 - 12/31/2026",
+                "unit": "Dollars",
+                "accrued": "1500.00",
+                "overAppInd": ""
+              },
+              {
+                "id": "ninded",
+                "accumulator": "NINDED",
+                "description": "INDIVIDUAL DED NONPAR",
+                "fromThru": "01/01/2026 - 12/31/2026",
+                "unit": "Dollars",
+                "accrued": "1120.00",
+                "overAppInd": ""
+              },
+              {
+                "id": "pfmded",
+                "accumulator": "PFMDED",
+                "description": "FAMILY DEDUCTIBLE PAR",
+                "fromThru": "01/01/2026 - 12/31/2026",
+                "unit": "Dollars",
+                "accrued": "2650.00",
+                "overAppInd": ""
+              },
+              {
+                "id": "nfmded",
+                "accumulator": "NFMDED",
+                "description": "FAMILY DEDUCTIBLE NONPAR",
+                "fromThru": "01/01/2026 - 12/31/2026",
+                "unit": "Dollars",
+                "accrued": "2010.00",
+                "overAppInd": ""
+              }
+            ]
+          },
+          {
+            "id": "other",
+            "label": "OTHER",
+            "rows": []
+          },
+          {
+            "id": "out_of_pocket",
+            "label": "OUT OF POCKET",
+            "actionId": "view_oop_accumulators",
+            "rows": [
+              {
+                "id": "iinoop",
+                "accumulator": "IINOOP",
+                "description": "INDIVIDUAL OOP PAR",
+                "fromThru": "01/01/2026 - 12/31/2026",
+                "unit": "Dollars",
+                "accrued": "2400.00",
+                "overAppInd": ""
+              },
+              {
+                "id": "oinoop",
+                "accumulator": "OINOOP",
+                "description": "INDIVIDUAL OOP NONPAR",
+                "fromThru": "01/01/2026 - 12/31/2026",
+                "unit": "Dollars",
+                "accrued": "1780.00",
+                "overAppInd": ""
+              },
+              {
+                "id": "fooppboc",
+                "accumulator": "FOOPPBOC",
+                "description": "FAMILY OOP PAR",
+                "fromThru": "01/01/2026 - 12/31/2026",
+                "unit": "Dollars",
+                "accrued": "4200.00",
+                "overAppInd": ""
+              },
+              {
+                "id": "foopnpoc",
+                "accumulator": "FOOPNPOC",
+                "description": "FAMILY OOP NONPAR",
+                "fromThru": "01/01/2026 - 12/31/2026",
+                "unit": "Dollars",
+                "accrued": "3250.00",
+                "overAppInd": ""
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "provider": {
+      "npiTaxId": {
+        "npi": "1851046392",
+        "orgTaxId": "317850294",
+        "fromDate": "1/15/2026",
+        "throughDate": "1/15/2026",
+        "lastUpdateDate": "12/1/2025",
+        "sourceSystem": "WGS",
+        "zipCode": "-",
+        "billingType": "-",
+        "specialty": "-",
+        "state": "-",
+        "alternateId": "-",
+        "alternateKey": "-"
+      },
+      "practitioner": {
+        "firstName": "-",
+        "lastName": "-",
+        "fromDate": "1/15/2026",
+        "throughDate": "1/15/2026",
+        "sourceSystem": "SPS",
+        "addressLine": "-",
+        "city": "-",
+        "state": "-",
+        "specialty": "-"
+      },
+      "organization": {
+        "organizationName": "-",
+        "orgTaxId": "317850294",
+        "fromDate": "1/15/2026",
+        "throughDate": "1/15/2026",
+        "sourceSystem": "SPS",
+        "addressLine": "-",
+        "city": "-",
+        "state": "-",
+        "zipCode": "-",
+        "billingType": "-",
+        "specialty": "-"
+      },
+      "pcpPmg": {
+        "pcpPmgId": "-",
+        "fromDate": "1/15/2026",
+        "throughDate": "1/15/2026",
+        "sourceSystem": "SPS",
+        "specialty": "-",
+        "state": "-"
+      },
+      "alternateId": {
+        "organizationName": "XXXXX",
+        "alternateKeyOrg": "-",
+        "individual": "8023 - Legacy provider ID",
+        "alternateKeyIndiv": "-",
+        "nonAnthem": "33-NPI",
+        "alternateKeyNonAnthem": "-"
+      }
+    },
+    "member": {
+      "results": [
+        {
+          "memberId": "639P15428",
+          "firstName": "ANTHONY",
+          "mi": "D",
+          "lastName": "FERRANTE",
+          "dob": "9/27/1958",
+          "relationship": "SUB - Subscriber",
+          "memberCode": "10",
+          "gender": "M",
+          "state": "OH",
+          "contractGroups": [
+            {
+              "id": "cg_ben_2_sub_1",
+              "contractId": "6N31",
+              "caseEntity": "WSH731",
+              "groupNumber": "WSH731M001",
+              "hcid": "639P15428",
+              "prefix": "WSH",
+              "effectiveDate": "1/1/2026",
+              "endDate": "12/31/9999",
+              "productCode": "PPO2",
+              "contractState": "OH",
+              "contractType": "F",
+              "cancellationDate": "—",
+              "terminationReason": "—",
+              "numberCovered": "04",
+              "updatedDate": "12/15/2025",
+              "updateById": "WMXCLW01"
+            }
+          ]
+        }
+      ],
+      "searchMember": {
+        "memberId": "639P15428",
+        "firstName": "ANTHONY",
+        "mi": "D",
+        "lastName": "FERRANTE",
+        "dob": "9/27/1958",
+        "relationship": "SUB - Subscriber",
+        "memberCode": "10",
+        "gender": "M",
+        "state": "OH",
+        "contractId": "6N31",
+        "caseEntity": "WSH731",
+        "groupNumber": "WSH731M001",
+        "hcid": "639P15428",
+        "prefix": "WSH",
+        "effectiveDate": "1/1/2026",
+        "endDate": "12/31/9999",
+        "productCode": "PPO2",
+        "contractState": "OH",
+        "businessUnit": "Group"
+      },
+      "general": {
+        "name": "ANTHONY D FERRANTE",
+        "dateOfBirth": "9/27/1958",
+        "age": "67",
+        "sex": "M",
+        "memberId": "639P15428",
+        "hcid": "639P15428",
+        "relationship": "SUB - Subscriber",
+        "memberCode": "10",
+        "address": "2604 Brookfield Ave, Westerville, OH 43081",
+        "county": "—",
+        "country": "USA",
+        "phone": "—",
+        "effectiveDate": "1/1/2026",
+        "endDate": "12/31/9999",
+        "productType": "PPO",
+        "groupType": "Group",
+        "cob": "N",
+        "businessUnit": "Group",
+        "paidToDate": "—",
+        "erisa": "Y",
+        "caseGroupSetup": "—",
+        "contractStartDate": "—",
+        "shortTermEndDate": "—",
+        "cxlProcessDate": "—",
+        "aptcIndicator": "—",
+        "csdt": "—",
+        "caseName": "—",
+        "ncnReferralsInd": "—",
+        "foi": "—",
+        "roundoprd": "—",
+        "conversionCode": "—",
+        "medicareIndicator": "—"
+      },
+      "additionalAddress": {
+        "address": "-"
+      },
+      "providerNetwork": {
+        "product": "PPO2 PPO",
+        "providerGroupName": "-",
+        "address": "-",
+        "phone": "-"
+      },
+      "contractMembers": [
+        {
+          "memberCode": "10",
+          "name": "ANTHONY FERRANTE",
+          "relationship": "SUB - Subscriber",
+          "dob": "9/27/1958",
+          "age": "67",
+          "effectiveDate": "1/1/2026",
+          "endDate": "12/31/9999"
+        },
+        {
+          "memberCode": "40",
+          "name": "MARIA FERRANTE",
+          "relationship": "SPS - Spouse",
+          "dob": "4/3/1960",
+          "age": "65",
+          "effectiveDate": "1/1/2026",
+          "endDate": "12/31/9999"
+        }
+      ],
+      "group": {
+        "general": {
+          "name": "MAPLE CREST HEALTH SYSTEM",
+          "status": "O ACTIVE",
+          "companyCode": "123C XXXX",
+          "paidToDate": "3/1/2026",
+          "locationStateCode": "OH",
+          "locationCodeEffectiveDate": "1/1/2019",
+          "workLocation": "7003 ANTHEM NAT ACCT",
+          "workLocationPhone": "9999888899",
+          "rateMethodCode": "1 ASO BUSINESS",
+          "rmcEffectiveDate": "1/1/2019",
+          "groupType": "A ACTIVE",
+          "fundingTypeCode": "H ASC",
+          "graceDays": "30",
+          "claimGraceDays": "30"
+        },
+        "coverage": {
+          "originalEffectiveDate": "1/1/2019",
+          "groupProcessedDate": "10/9/2018",
+          "reinstateEffectiveDate": "-",
+          "reinstateProcessedDate": "-",
+          "cancelEffectiveDate": "-",
+          "cancelProcessedDate": "-",
+          "cancelReason": "-"
+        },
+        "contract": {
+          "productLine": "BC PPO INCENTIVE",
+          "claimsRoute": "PX_P-EXEC - NATIONAL ACCTS",
+          "benefitYearCalendarYear": "CY",
+          "benefitYearCalendarYearAsOfDate": "1/1/2019",
+          "contractCode": "6N31",
+          "contractCodeEffectiveDate": "1/1/2019",
+          "promptPay": "N",
+          "promptPayDate": "1/1/2019",
+          "itsHomeParticipatingCode": "E CONTROL CUSTOM",
+          "itsHomeEffectiveDate": "1/1/2019",
+          "locationLobCode": "X BC/BCLH",
+          "overAgeMailing": "S MAIL TO SUBR",
+          "networkId": "BLUECDOO",
+          "networkName": "BLUE XXXX BLUE XXXX"
+        },
+        "additional": {
+          "product": "BC PPO INC Claim Manager",
+          "mbuCode": "NAC00000",
+          "claimsServiceLocation": "COOIO/CAACOII",
+          "serviceManager": "SRVC/DARLENE",
+          "claimManager": "CLMS/M PENNER",
+          "servicePhone": "999999999",
+          "serviceAddress": "XXXX PARK Road COLUMBUS OH 43215",
+          "sourceSystem": "WGS 2.0"
+        }
+      }
+    },
+    "limitedLiability": {
+      "memberId": "639P15428",
+      "memberCode": "—",
+      "dob": "9/27/1958",
+      "activeRecords": "-",
+      "allRecords": "-"
+    },
+    "pricing": {
+      "member": {
+        "dob": "9/27/1958",
+        "sex": "M",
+        "groupNumber": "WSH731M001",
+        "groupId": "-",
+        "networkId": "BLUECS",
+        "memberZipCode": "43081",
+        "alternateZipCode": "-",
+        "medicareInd": "N",
+        "hixInd": "-",
+        "marketType": "NTLA",
+        "memberInd": "-",
+        "ab72": "-",
+        "patientCode": "-",
+        "product": "PPO2 -",
+        "variance": "IN29",
+        "coverage": "MED",
+        "groupIdentifier": "-"
+      },
+      "provider": {
+        "taxId": "317850294",
+        "renderingNumber": "77777777777",
+        "billingNumber": "6666666666",
+        "renderingNpi": "1063958247",
+        "billingNpi": "1851046392",
+        "license": "01072659A",
+        "specialty": "069",
+        "zipCode": "43228-1502",
+        "planInd": "IN",
+        "wgsp": "P",
+        "pcpState": "NP",
+        "region": "432",
+        "gbdId": "-",
+        "providerInd": "-",
+        "providerParticipation": "PAR",
+        "providerProdVar": "INP02186",
+        "networxInd": "-",
+        "finalMixer": "-",
+        "legacySpecialty": "-"
+      },
+      "claimHeader": {
+        "serviceFrom": "1/15/2026",
+        "serviceTo": "1/15/2026",
+        "placeOfService1": "1",
+        "placeOfService2": "81",
+        "cxtInd": "X",
+        "productLineCode": "57",
+        "serviceClassType": "-",
+        "emergRefInd": "-",
+        "icd9": "N",
+        "federalMandate": "-",
+        "cocInd": "-",
+        "mixerOverrideInd": "-",
+        "streetMedicineInd": "None",
+        "surpriseBillingInd": "-",
+        "cgntInd": "-",
+        "product": "INPO",
+        "variance": "2186",
+        "contractNotes": "-",
+        "overridePriceProduct": "-",
+        "contractHierarchy": "-",
+        "bundleStatus": "-",
+        "clusterId": "-"
+      },
+      "diagnosisCodes": {
+        "a": "Z940",
+        "b": "-",
+        "c": "-",
+        "d": "-",
+        "e": "-"
+      },
+      "lineSummary": {
+        "procedure": "81479",
+        "modifier": "—",
+        "uo": "1",
+        "cxPercent": "0",
+        "billedAmount": "400.00",
+        "allowed": "0.00",
+        "writeoff": "0.00"
+      },
+      "pricingNote": ""
+    }
+  },
+  "system": {
+    "benefitRecommendation": {
+      "contractCode": "6N31",
+      "effectiveDate": "1/1/2026",
+      "endDate": "12/31/9999",
+      "planState": "OH",
+      "planDescription": "Maple Crest Health System 01/01/2026 PPO 6N31"
+    }
+  },
+  "attachment": {
+    "pwk": {
+      "type": "—",
+      "documentNumber": "—"
+    }
+  },
+  "claimData": {
+    "details": {
+      "claimType": "PA - Professional",
+      "itsHome": "No",
+      "claimSource": {
+        "mediaType": "PC",
+        "pricingSource": "W",
+        "pricingSystem": "WP",
+        "mixerPar": "Y",
+        "receiverId": "WGSGA",
+        "receivedAtEdi": "1/28/2026",
+        "providerError": "I000",
+        "imageControlNumber": "CI26028110351184402",
+        "authNumber": "—",
+        "authExcln": "—",
+        "vendorIndicator": "—",
+        "receivedDate": "1/28/2026",
+        "splitInd": "—",
+        "epactPlm": "—",
+        "gnyhaInd": "—",
+        "imrIndicator": "—",
+        "cliaId": "—",
+        "cliaQualifier": "—"
+      },
+      "ancillaryProvider": {
+        "type": "—",
+        "zip": "—",
+        "state": "—"
+      },
+      "ambulance": {
+        "pickupZip": "—",
+        "dropoffZip": "—"
+      },
+      "miscellaneous": {
+        "epsdt": "—",
+        "familyPlanning": "No",
+        "gtessDate": "—",
+        "dateOfIllness": "—",
+        "dateOfInjury": "—",
+        "lastMenstrualDate": "—",
+        "consultationDate": "—",
+        "eruDecision": "—",
+        "jaaErrorCode": "No"
+      },
+      "stopData": {
+        "stopEdit": "No",
+        "lobParentRule": "—",
+        "lobChildRule": "ALL WGS",
+        "lobSequence": "1",
+        "medBusinessParentRule": "NA",
+        "medBusinessChildRule": "656881",
+        "medSequence": "51"
+      },
+      "refundData": {
+        "correspondenceNumber": "—",
+        "refundAmount": "$0.00",
+        "adjustmentReasonCode": "PX_4",
+        "correctedClaimDcn": "—",
+        "vendorName": "—",
+        "delayReason": "—",
+        "carveOut": "—",
+        "adjustmentReceipt": "—"
+      },
+      "highDollar": {
+        "riskOutcome": "—"
+      }
+    },
+    "editing": {
+      "claimXten": {
+        "originalLine": {
+          "lineNum": "1",
+          "serviceDate": "1/15/2026",
+          "procedure": "81479",
+          "mod": "—",
+          "units": "1",
+          "billedAmount": "$400.00"
+        },
+        "proposedLine": {
+          "lineNum": "1",
+          "procedure": "81479",
+          "mod": "—",
+          "units": "1",
+          "supportCode": "—",
+          "payPercent": "100",
+          "billedAmount": "$400.00"
+        }
+      },
+      "ihealth": {
+        "originalLine": {
+          "lineNum": "1",
+          "serviceDate": "1/15/2026",
+          "procedure": "81479",
+          "mod": "—",
+          "units": "1",
+          "allowedAmount": "—",
+          "savingsAmount": "—"
+        },
+        "proposedLine": {
+          "procedure": "81479",
+          "mod": "—",
+          "units": "1",
+          "payPercent": "100",
+          "status": "PX_P"
+        }
+      }
+    },
+    "benefits": {
+      "accumulator1": {
+        "type": "BENYTD",
+        "fromDate": "1/1/2026",
+        "toDate": "12/31/2026",
+        "unit": "Dollar",
+        "status": "Accrued"
+      },
+      "accumulator2": {
+        "type": "MMCYTD",
+        "fromDate": "1/1/2026",
+        "toDate": "12/31/2026",
+        "unit": "Dollar",
+        "status": "Accrued"
+      }
+    },
+    "promptPay": {
+      "claim": {
+        "status": "PX_WGS",
+        "state": "—",
+        "ruleId": "—",
+        "systemInterest": "$0.00",
+        "penaltyAmount": "$0.00",
+        "manualInterestAmount": "—"
+      },
+      "calculation": {
+        "calculationFromDate": "1/28/2026",
+        "carveoutDate": "—",
+        "lastProcessedDate": "1/28/2026",
+        "baseAmount": "$0.00",
+        "calculatedInterestAmount": "$0.00",
+        "processedInDays": "0",
+        "mailingDays": "0",
+        "disburseDays": "0",
+        "allowedDays": "0",
+        "carveoutDays": "0",
+        "lateByDays": "0",
+        "dailyInterest": "$0.00"
+      },
+      "miscellaneous": {
+        "carveoutReasonCode": "PX_0",
+        "dayIndicator": "0",
+        "receiptMethod": "—",
+        "productFundType": "W",
+        "interestRate": "—",
+        "penalty": "—",
+        "minimumPayAmount": "—",
+        "erMinimumPay": "—",
+        "annualMonthlyPenalty": "—",
+        "mlhDate": "26028",
+        "ppStopDate": "—",
+        "additionalInformationRequestDate": "—",
+        "tdiInterestAmount": "—",
+        "tdiPenaltyAmount": "—"
+      }
+    },
+    "review": {
+      "utilization": {
+        "service": {
+          "lineNum": "1",
+          "procedure": "81479",
+          "revenueCodeDate": "—",
+          "ruleId": "—",
+          "caseNumber": "—"
+        }
+      },
+      "cdhp": {
+        "claim": {
+          "litesClaim": "—",
+          "rsnEobCode": "—",
+          "hraPaidTotal": "$0.00",
+          "hraEndingBalance": "$0.00",
+          "paymentCode": "—",
+          "cdhpAdmin": "—",
+          "acknowledgementRcvd": "—",
+          "requeryCount": "—"
+        },
+        "lineSummary": {
+          "lineNum": "1",
+          "procedure": "81479",
+          "billed": "$400.00",
+          "patientResp": "—",
+          "hraPaid": "—",
+          "rsnCode": "—"
+        }
+      },
+      "dofr": {
+        "meta": {
+          "inzip": "—",
+          "providerNetworkCode": "—",
+          "dofrId1": "—",
+          "dofrName1": "—",
+          "relationship": "—",
+          "pgmId": "—",
+          "pgId": "—",
+          "umDelegationIndicator": "—",
+          "effectiveDate": "—",
+          "endDate": "—"
+        },
+        "lineSummary": {
+          "lineNum": "1",
+          "procedure": "81479",
+          "revenueCode": "—",
+          "serviceCategory": "—",
+          "event": "—",
+          "capIndicator": "—",
+          "risk": "—",
+          "groupCode": "—",
+          "hc": "PP"
+        }
+      }
+    },
+    "relatedSummary": {
+      "code": "—",
+      "name": "—",
+      "fromDate": "—",
+      "toDate": "—",
+      "type": "—",
+      "provider": "—",
+      "dcn": "—",
+      "charged": "—",
+      "paid": "—",
+      "status": "—"
+    }
+  }
+}

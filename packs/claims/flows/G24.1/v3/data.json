@@ -1,0 +1,1212 @@
+{
+  "$schema": "training-platform/v1/workspace-data",
+  "$version": "2.0.0",
+  "id": "data_g24_1_g17_g24_handle_direct_v3",
+  "claimId": "claim_g24_1_v3",
+  "dcn": "DCN-9100300",
+  "flowId": "flow_g24_1",
+  "navigatorSchemaId": "nav_g24_1_g17_g24_handle_direct",
+  "claim": {
+    "dcn": "DCN-9100300",
+    "patient": "Dwayne F Okoro",
+    "serviceFrom": "01/22/2026",
+    "billedAmount": "$364.20"
+  },
+  "header": {
+    "dcn": "DCN-9100300",
+    "edits": "PX_G24",
+    "billed": "$364.20",
+    "claimAllowed": "$364.20",
+    "paid": "$364.20",
+    "writeOff": "$0.00",
+    "deductible": "$0.00",
+    "coinsurance": "$0.00",
+    "copay": "$0.00",
+    "actionCode": "PX_P10000",
+    "receiptDate": "01/29/2026",
+    "serviceFrom": "01/22/2026",
+    "serviceTo": "01/22/2026",
+    "recordNumber": "364"
+  },
+  "eventResolution": {
+    "editCode": "PX_G24",
+    "editLabel": "PRV STATE OUTSIDE PLAN SERVICE AREA",
+    "severity": "Hard Edit",
+    "validationMessage": "",
+    "edits": [
+      {
+        "code": "PX_G24",
+        "label": "PRV STATE OUTSIDE PLAN SERVICE AREA",
+        "severity": "Hard Edit",
+        "active": true
+      },
+      {
+        "code": "PX_G17",
+        "label": "ITS HOME PLAN TO KEY CLAIM",
+        "severity": "Informational",
+        "active": false
+      },
+      {
+        "code": "PX_SPS",
+        "label": "USE PA MENU OPTION TO VIEW PRV",
+        "severity": "Informational",
+        "active": false
+      },
+      {
+        "code": "PX_CIS",
+        "label": "CLAIM ELIGIBLE FOR CIA",
+        "severity": "Informational",
+        "active": false
+      },
+      {
+        "code": "PX_REL",
+        "label": "RELATED CLAIM IN HISTORY",
+        "severity": "Informational",
+        "active": false
+      }
+    ],
+    "bypassCode": "",
+    "bypassStatus": "Pending validation"
+  },
+  "memberInfo": {
+    "patient": {
+      "firstName": "Dwayne",
+      "middleName": "F",
+      "lastName": "Okoro",
+      "dob": "06/27/1964",
+      "sex": "M",
+      "memberPrefix": "RDX",
+      "hcid": "905W12773",
+      "relationship": "SUB - Subscriber",
+      "memberCode": "10",
+      "contractType": "C",
+      "erisa": "Y",
+      "pcp": "",
+      "pcpState": "",
+      "pcpRelationship": "",
+      "programCode": ""
+    },
+    "subscriber": {
+      "firstName": "Dwayne",
+      "middleName": "F",
+      "lastName": "Okoro",
+      "subscriberId": "905012773",
+      "address": "517 Larkfield Crossing  AUSTIN TX 78702"
+    },
+    "group": {
+      "groupName": "Pinecrest Logistics",
+      "groupId": "C2M0518",
+      "groupContract": "H000",
+      "detailContractCode": "HMPN",
+      "product": "Local",
+      "networkId": "",
+      "networkName": ""
+    }
+  },
+  "claimImage": {
+    "memberDetails": {
+      "patient": {
+        "firstName": "Elena",
+        "middleName": "R",
+        "lastName": "Vasquez",
+        "dob": "3/14/1972",
+        "sex": "F",
+        "memberPrefix": "RDX",
+        "hcid": "731W08846",
+        "relationship": "SUB - Subscriber",
+        "memberCode": "10",
+        "detailContractCode": "HMPN",
+        "contractType": "C",
+        "groupId": "6120HM",
+        "groupContract": "H000",
+        "product": "Local",
+        "erisa": "Y",
+        "pcp": "",
+        "pcpState": "",
+        "pcpRelationship": ""
+      },
+      "subscriber": {
+        "firstName": "Elena",
+        "middleName": "R",
+        "lastName": "Vasquez",
+        "subscriberId": "731208846",
+        "address": "1417 Birchwood Terrace  NEWARK NJ 07104"
+      },
+      "totalClaimLines": "1"
+    },
+    "additional": {
+      "claimSource": {
+        "mediaType": "-",
+        "pricingSource": "-",
+        "pricingSystem": "-",
+        "mixerPar": "-",
+        "receiverId": "NJ",
+        "receivedAtEdi": "-",
+        "providerError": "-",
+        "authNumber": "-",
+        "authExcln": "-",
+        "vendorIndicator": "-",
+        "receivedDate": "-",
+        "originalReferenceNumber": "-"
+      },
+      "ancillaryProvider": {
+        "type": "-",
+        "zip": "-",
+        "state": "-"
+      },
+      "ambulance": {
+        "pickupZip": "-",
+        "dropoffZip": "-"
+      },
+      "miscellaneous": {
+        "epsdt": "-",
+        "familyPlanning": "-",
+        "gtessDate": "-",
+        "dateOfIllness": "-",
+        "dateOfInjury": "-",
+        "lastMenstrualDate": "-",
+        "consultationDate": "-"
+      },
+      "stopData": {
+        "stopEdit": "-",
+        "lobParentRule": "-",
+        "lobChildRule": "-",
+        "lobSequence": "-",
+        "medBusinessParentRule": "-",
+        "medBusinessChildRule": "-",
+        "medSequence": "-"
+      },
+      "refundData": {
+        "correspondenceNumber": "-",
+        "refundAmount": "-",
+        "adjustmentReason": "-",
+        "vendorName": "-",
+        "delayReason": "-",
+        "carveOut": "-",
+        "adjustmentReceiptDate": "-"
+      },
+      "highDollar": {
+        "riskOutcome": "-"
+      },
+      "its": {
+        "account": {
+          "deliveryMethod": "—",
+          "accountType": "—",
+          "aso": "—",
+          "stateId": "—",
+          "originalCertificate": "—",
+          "originalGroup": "—"
+        },
+        "pricing": {
+          "primarySop": "—",
+          "secondarySop": "—",
+          "tertiarySop": "—",
+          "cobCalMethod": "—"
+        },
+        "providers": {
+          "mppqAssignUnassigned": "—",
+          "ppoNetworkAvailability": "—",
+          "ppoProviderAvailability": "—",
+          "eft835": "—",
+          "serviceZip": "—"
+        }
+      },
+      "sfdf": {
+        "sfMessage": "—",
+        "dfMessage": "—",
+        "primacy": "—",
+        "autoOtherAccident": "—",
+        "totalDaysVisits": "—"
+      },
+      "claimLineDetail": [
+        {
+          "lineNum": "—",
+          "blankDateInd": "—",
+          "approvedDenyInd": "—"
+        }
+      ]
+    }
+  },
+  "providerInfo": {
+    "rendering": {
+      "npi": "1467283950",
+      "name": "Priya R Menon",
+      "address": "1200 Harbor Avenue  NEWARK NJ 07102",
+      "pricingState": "NJ",
+      "pricingZip": "07102-1604",
+      "providerSps": "7000000000",
+      "providerEpin": "",
+      "license": "1111111111",
+      "networkOption": "Y",
+      "specialty": "207R00000X",
+      "specialtyDescription": "Internal Medicine",
+      "taxonomy": "0000R0000X"
+    },
+    "billing": {
+      "taxId": "98765656",
+      "npi": "1942857301",
+      "name": "City Hospital",
+      "facilityType": "",
+      "providerSps": "6667778888",
+      "providerEpin": "",
+      "medicareId": "",
+      "address": "1200 Harbor Avenue  NEWARK NJ 07102",
+      "nationalState": "NJ",
+      "locationCode": "",
+      "bhaProviderIndicator": "YN",
+      "taxonomy": "282N00000X",
+      "timelyFilingLimit": "—"
+    },
+    "referring": {
+      "referringPhysician": "A",
+      "npi": "1467283950"
+    },
+    "serviceFacility": {
+      "facilityTier": "N",
+      "type": "N",
+      "npi": ""
+    },
+    "miscellaneous": {
+      "supportingOrderingNpi": "1467283950",
+      "nsbIndicator": "None",
+      "alternateFacilityNpi": ""
+    }
+  },
+  "paymentInfo": {
+    "claim": {
+      "deductible": "0.00",
+      "copay": "0.00",
+      "coins": "0.00",
+      "patientLiab": "0.00",
+      "memberSurcharge": "0.00",
+      "nonElg": "0.00",
+      "hraPaid": "0.00",
+      "claimPaid": "285.00",
+      "pricingAllowedAmount": "285.00",
+      "totalCharge": "285.00",
+      "finalizationCode": "PX_P10000",
+      "recordNumber": "999"
+    },
+    "provider": {
+      "providerDisc": "0.00",
+      "providerLiab": "0.00",
+      "providerRiskWithhold": "—",
+      "providerSurcharge": "0.00",
+      "interest": "0.00",
+      "penalty": "0.00",
+      "systemInterest": "0.00"
+    },
+    "drg": {
+      "keyed": "—",
+      "priced": "—",
+      "original": "—"
+    },
+    "check": {
+      "accountNumber": "1234512345",
+      "checkNumber": "—",
+      "checkDate": "—",
+      "amount": "0.00",
+      "paymentSystem": "D",
+      "checkMailedTo": "\"PO BOX 00000 MILWAUKEE",
+      "eftCheckDate": "—",
+      "checkStatus": "CHECK NOT FOUND ON RECON DB",
+      "checkStatusDate": "01/20/2026",
+      "paidTo": "City Hospital",
+      "finalized": "—"
+    },
+    "payeeDetails": {
+      "flipPayee": ""
+    }
+  },
+  "claimHeader": {
+    "general": {
+      "serviceFromThrough": "01/15/2026 - 01/15/2026",
+      "assignmentOfBenefits": "Y - Benefit assigned to provider",
+      "providerParticipation": "PAR",
+      "providerContract": "NJP00000",
+      "treatmentAuth": "—",
+      "patientAccount": "M000000000",
+      "emergency": "No",
+      "employment": "No",
+      "coveredZipRadius": "-",
+      "frequency": "1",
+      "bbiIndicator": "-",
+      "pciIndicator": "-",
+      "fsbInd": "None",
+      "fsbExclusion": "X"
+    },
+    "benefitIndicators": {
+      "cob": "0",
+      "cobRule": "-",
+      "medInd": "No",
+      "medRule": "-",
+      "medicareAdvantage": "No",
+      "cdhp": "N",
+      "planPayer": "N",
+      "cobPercent": "0"
+    },
+    "diagnosisCodes": {
+      "dx1": "Z0000"
+    },
+    "conditionCodes": {
+      "code": "-"
+    }
+  },
+  "claimLines": [
+    {
+      "lineNum": "1",
+      "fromDate": "01/15/2026",
+      "toDate": "01/15/2026",
+      "pos": "22",
+      "service": "MED",
+      "procedure": "99214",
+      "modifiers": "—",
+      "units": "1",
+      "diagnosis": "Z0000",
+      "billed": "$285.00",
+      "dedInd": "NO",
+      "coinsPercent": "100",
+      "stoploss": "No",
+      "eobTy": "—",
+      "writeoffEobTy": "$0.00",
+      "noncoveredUnit": "0",
+      "deductible": "—",
+      "otherUnit": "0",
+      "copay": "—",
+      "eobTyLast": "—",
+      "priorAuthPassInd": "—",
+      "payment": "$285.00"
+    }
+  ],
+  "claimLineSummary": {
+    "lineNum": "1",
+    "fromDate": "01/15/2026",
+    "toDate": "01/15/2026",
+    "pos": "22",
+    "service": "MED",
+    "procedure": "99214",
+    "modifiers": "—",
+    "units": "1",
+    "diagnosis": "Z0000",
+    "billed": "$285.00",
+    "dedInd": "NO",
+    "coinsPercent": "100",
+    "stoploss": "No",
+    "eobTy": "—",
+    "writeoffEobTy": "$0.00",
+    "noncoveredUnit": "0",
+    "deductible": "—",
+    "otherUnit": "0",
+    "copay": "—",
+    "eobTyLast": "—",
+    "priorAuthPassInd": "—",
+    "payment": "$285.00"
+  },
+  "notes": {
+    "mainframe": "4T18QA",
+    "taskManagement": {
+      "routedTo": "-",
+      "urgency": "65",
+      "skills": "CT-Professional",
+      "csPg": "GS-National",
+      "benNonspider": "SPIDER",
+      "regCa": "-",
+      "resUnrestricted": "-",
+      "totalAge": "59",
+      "homeAge": "59",
+      "ageAdjusted": "N",
+      "baselineUrgency": "45",
+      "urgencyModifiers": "\"PG Modifer(0)"
+    },
+    "researchNotes": [
+      {
+        "text": "All detail line allowable amounts match"
+      },
+      {
+        "text": "System recommendation for Manual Adjudication processing - Manually Applied"
+      },
+      {
+        "text": "Sent to infinity from Intake process"
+      }
+    ],
+    "wgs": "Local plan cannot key, please handle directly."
+  },
+  "search": {
+    "claims": {
+      "dcnKernalClaim": "",
+      "claimId": "",
+      "subscriberOrHcid": "731W08846",
+      "sccf": "",
+      "procedure": "",
+      "serviceFrom": "01/15/2026",
+      "serviceTo": "01/15/2026",
+      "code": "",
+      "totalCharge": "",
+      "status": "ALL",
+      "providerTaxId": "98765656",
+      "providerNpi": "",
+      "renderingLicenseId": "",
+      "billType": ""
+    },
+    "claimsResultCount": "",
+    "claimsResults": [
+      {
+        "code": "",
+        "name": "",
+        "from": "",
+        "to": "",
+        "type": "",
+        "provider": "",
+        "billType": "",
+        "dcn": "",
+        "charged": "",
+        "paid": "",
+        "status": ""
+      },
+      {
+        "code": "",
+        "name": "",
+        "from": "",
+        "to": "",
+        "type": "",
+        "provider": "",
+        "billType": "",
+        "dcn": "",
+        "charged": "",
+        "paid": "",
+        "status": ""
+      }
+    ],
+    "codeSet": {
+      "selectCodeType": "-",
+      "enterCode": "-"
+    },
+    "auth": {
+      "search": {
+        "subscriberOrHcid": "731W08846",
+        "serviceStartDate": "4/25/2025",
+        "serviceEndDate": "4/20/2026",
+        "status": "-"
+      },
+      "members": {
+        "name": "Elena R Vasquez",
+        "dob": "3/14/1972",
+        "ageAdjusted": "\"65\"\"\"",
+        "memberId": "731208846",
+        "mcid": "",
+        "subscriberOrHcid": "731W08846"
+      }
+    },
+    "benefits": {
+      "planOptions": [
+        {
+          "costShare": "DEDUCTIBLE",
+          "network": "PPO",
+          "maximum": "$500",
+          "accumType": "Calendar Year"
+        },
+        {
+          "costShare": "OUT-OF-POCKET MAX",
+          "network": "PPO",
+          "maximum": "$3,000",
+          "accumType": "Calendar Year"
+        },
+        {
+          "costShare": "MEMBER CLAIM FILING DAY LIMIT",
+          "network": "—",
+          "maximum": "365 days",
+          "accumType": "—"
+        }
+      ],
+      "searchBenefits": {
+        "contractCode": "HMPN",
+        "effectiveDate": "1/1/2026",
+        "endDate": "12/31/9999",
+        "effectiveEndDate": "1/1/2026 - 12/31/9999"
+      },
+      "general": {
+        "contractCode": "HMPN",
+        "product": "Local",
+        "plan": "PPO",
+        "contractState": "NJ",
+        "benefitPeriod": "Calendar Year",
+        "benefitPeriodAlt": "—",
+        "fundingArrangement": "ASO",
+        "cdhpInd": "N",
+        "groupNumber": "6120HM",
+        "contractId": "H120",
+        "memberName": "Elena R Vasquez",
+        "caseNumber": "C73120",
+        "contractType": "C",
+        "crossAccumulation": "—"
+      },
+      "viewNic": {
+        "coverage": "MED-MEDICL COVERAGE",
+        "pricing": "CA29",
+        "network": "PPO"
+      },
+      "accumulators": {
+        "criteria": {
+          "memberId": "731208846",
+          "memberCode": "10",
+          "fromDate": "1/15/2026",
+          "toDate": "1/15/2026",
+          "sourceSystem": "WGS"
+        },
+        "selection": {
+          "accumulatorName": "—",
+          "benefitYear": "—",
+          "accumulatorEffDate": "—",
+          "cob": "—",
+          "deductible": "—",
+          "fertilityRx": "—",
+          "lifetime": "—",
+          "other": "—",
+          "outOfPocket": "—"
+        }
+      }
+    },
+    "provider": {
+      "npiTaxId": {
+        "npi": "1942857301",
+        "orgTaxId": "98765656",
+        "fromDate": "1/15/2026",
+        "throughDate": "1/15/2026",
+        "sourceSystem": "WGS",
+        "zipCode": "-",
+        "billingType": "-",
+        "specialty": "-",
+        "state": "-",
+        "alternateId": "-",
+        "alternateKey": "-"
+      },
+      "practitioner": {
+        "firstName": "-",
+        "lastName": "-",
+        "fromDate": "1/15/2026",
+        "throughDate": "1/15/2026",
+        "sourceSystem": "SPS",
+        "addressLine": "-",
+        "city": "-",
+        "state": "-",
+        "specialty": "-"
+      },
+      "organization": {
+        "organizationName": "City Hospital",
+        "orgTaxId": "98765656",
+        "fromDate": "1/15/2026",
+        "throughDate": "1/15/2026",
+        "sourceSystem": "SPS",
+        "addressLine": "-",
+        "city": "-",
+        "state": "NJ",
+        "zipCode": "07102-1604",
+        "billingType": "-",
+        "specialty": "General Acute Care Hospital"
+      },
+      "pcpPmg": {
+        "pcpPmgId": "-",
+        "fromDate": "1/15/2026",
+        "throughDate": "1/15/2026",
+        "sourceSystem": "SPS",
+        "specialty": "-",
+        "state": "-"
+      },
+      "alternateId": {
+        "organizationName": "City Hospital",
+        "alternateKeyOrg": "-",
+        "individual": "8023 - Legacy provider ID",
+        "alternateKeyIndiv": "-",
+        "nonAnthem": "33-NPI",
+        "alternateKeyNonAnthem": "-"
+      }
+    },
+    "member": {
+      "searchMember": {
+        "memberId": "731208846",
+        "firstName": "Elena",
+        "mi": "R",
+        "lastName": "Vasquez",
+        "dob": "3/14/1972",
+        "relationship": "SUB - Subscriber",
+        "memberCode": "10",
+        "gender": "F",
+        "state": "NJ",
+        "contractId": "H120",
+        "caseEntity": "C73120",
+        "groupNumber": "6120HM",
+        "hcid": "731W08846",
+        "prefix": "RDX",
+        "effectiveDate": "1/1/2026",
+        "endDate": "12/31/9999",
+        "productCode": "Local",
+        "contractState": "NJ",
+        "businessUnit": "Individual"
+      },
+      "general": {
+        "name": "Elena R Vasquez",
+        "dateOfBirth": "3/14/1972",
+        "age": "—",
+        "sex": "F",
+        "memberId": "731208846",
+        "hcid": "731W08846",
+        "relationship": "SUB - Subscriber",
+        "memberCode": "10",
+        "address": "1417 Birchwood Terrace  NEWARK NJ 07104",
+        "county": "79",
+        "country": "US",
+        "phone": "30000000000023",
+        "effectiveDate": "1/1/2026",
+        "endDate": "12/31/9999",
+        "productType": "BCPI - BC INCENTIVE PPO",
+        "groupType": "A -ACTIVE",
+        "cob": "Y",
+        "businessUnit": "Individual",
+        "paidToDate": "1/1/2026",
+        "erisa": "Y",
+        "caseGroupSetup": "Y",
+        "contractStartDate": "-",
+        "shortTermEndDate": "-",
+        "cxlProcessDate": "-",
+        "aptcIndicator": "-",
+        "csdt": "-",
+        "caseName": "Harborline Manufacturing",
+        "ncnReferralsInd": "—",
+        "foi": "G",
+        "roundoprd": "12",
+        "conversionCode": "0",
+        "medicareIndicator": "\"Part -A : G"
+      },
+      "additionalAddress": {
+        "address": "-"
+      },
+      "providerNetwork": {
+        "product": "57BC PPO INCENTIVE",
+        "providerGroupName": "-",
+        "address": "-",
+        "phone": "-"
+      },
+      "contractMembers": [
+        {
+          "memberCode": "10",
+          "name": "Elena R Vasquez",
+          "relationship": "SUB - Subscriber",
+          "dob": "3/14/1972",
+          "age": "—",
+          "effectiveDate": "1/1/2026",
+          "endDate": "12/31/9999"
+        },
+        {
+          "memberCode": "—",
+          "name": "—",
+          "relationship": "—",
+          "dob": "—",
+          "age": "—",
+          "effectiveDate": "—",
+          "endDate": "—"
+        }
+      ],
+      "group": {
+        "general": {
+          "name": "Harborline Manufacturing",
+          "status": "O ACTIVE",
+          "companyCode": "123C XXXX",
+          "paidToDate": "4/1/2026",
+          "locationStateCode": "NJ",
+          "locationCodeEffectiveDate": "1/1/2019",
+          "workLocation": "7003 ANTHEM NAT ACCT",
+          "workLocationPhone": "9999888899",
+          "rateMethodCode": "1 ASO BUSINESS",
+          "rmcEffectiveDate": "1/1/2019",
+          "groupType": "A ACTIVE",
+          "fundingTypeCode": "H ASC",
+          "graceDays": "30",
+          "claimGraceDays": "30"
+        },
+        "coverage": {
+          "originalEffectiveDate": "1/1/2019",
+          "groupProcessedDate": "10/9/2018",
+          "reinstateEffectiveDate": "-",
+          "reinstateProcessedDate": "-",
+          "cancelEffectiveDate": "-",
+          "cancelProcessedDate": "-",
+          "cancelReason": "-"
+        },
+        "contract": {
+          "productLine": "BC PPO INCENTIVE",
+          "claimsRoute": "PX_P-EXEC - NATIONAL ACCTS",
+          "benefitYearCalendarYear": "CY",
+          "benefitYearCalendarYearAsOfDate": "1/1/2019",
+          "contractCode": "H120",
+          "contractCodeEffectiveDate": "1/1/2019",
+          "promptPay": "N",
+          "promptPayDate": "1/1/2019",
+          "itsHomeParticipatingCode": "E CONTROL CUSTOM",
+          "itsHomeEffectiveDate": "1/1/2019",
+          "locationLobCode": "X BC/BCLH",
+          "overAgeMailing": "S MAIL TO SUBR",
+          "networkId": "BLUECDOO",
+          "networkName": "BLUE XXXX BLUE XXXX"
+        },
+        "additional": {
+          "product": "BC PPO INC Claim Manager",
+          "mbuCode": "NAC00000",
+          "claimsServiceLocation": "COOIO/CAACOII",
+          "serviceManager": "SRVC/DARLENE",
+          "claimManager": "CLMS/M PENNER",
+          "servicePhone": "999999999",
+          "serviceAddress": "XXXX PARK Road WAUWATOSA WI 53213",
+          "sourceSystem": "WGS 2.0"
+        }
+      }
+    },
+    "limitedLiability": {
+      "memberId": "905012773",
+      "memberCode": "10",
+      "dob": "06/27/1964",
+      "activeRecords": "—",
+      "allRecords": "All records",
+      "resultsNote": "1 limited liability record found for this member.",
+      "results": [
+        {
+          "type": "SPI-MMS",
+          "effectiveDate": "2/1/2025",
+          "endDate": "7/31/2025",
+          "orderOfBenefits": "—",
+          "description": "Record held for reference only. It does not cover this claim's date of service."
+        }
+      ]
+    },
+    "pricing": {
+      "member": {
+        "dob": "3/14/1972",
+        "sex": "F",
+        "groupNumber": "6120HM",
+        "groupId": "-",
+        "networkId": "BLUECS",
+        "memberZipCode": "53213",
+        "alternateZipCode": "-",
+        "medicareInd": "Y",
+        "hixInd": "-",
+        "marketType": "NTLA",
+        "memberInd": "-",
+        "ab72": "-",
+        "patientCode": "-",
+        "product": "Local",
+        "variance": "CA29",
+        "coverage": "MED",
+        "groupIdentifier": "-"
+      },
+      "provider": {
+        "taxId": "98765656",
+        "renderingNumber": "77777777777",
+        "billingNumber": "6666666666",
+        "renderingNpi": "1467283950",
+        "billingNpi": "1942857301",
+        "license": "11111222233",
+        "specialty": "676",
+        "zipCode": "07102-1604",
+        "planInd": "NJ",
+        "wgsp": "P",
+        "pcpState": "NJ",
+        "region": "532",
+        "gbdId": "-",
+        "providerInd": "-",
+        "providerParticipation": "-",
+        "providerProdVar": "WIP02186",
+        "networxInd": "-",
+        "finalMixer": "-",
+        "legacySpecialty": "-"
+      },
+      "claimHeader": {
+        "serviceFrom": "01/15/2026",
+        "serviceTo": "01/15/2026",
+        "placeOfService1": "1",
+        "placeOfService2": "22",
+        "cxtInd": "X",
+        "productLineCode": "57",
+        "serviceClassType": "-",
+        "emergRefInd": "-",
+        "icd9": "N",
+        "federalMandate": "-",
+        "cocInd": "-",
+        "mixerOverrideInd": "-",
+        "streetMedicineInd": "None",
+        "surpriseBillingInd": "-",
+        "cgntInd": "-",
+        "product": "WIPO",
+        "variance": "2186",
+        "contractNotes": "-",
+        "overridePriceProduct": "-",
+        "contractHierarchy": "-",
+        "bundleStatus": "-",
+        "clusterId": "-"
+      },
+      "diagnosisCodes": {
+        "a": "Z0000",
+        "b": "-",
+        "c": "-",
+        "d": "-",
+        "e": "-"
+      },
+      "lineSummary": {
+        "procedure": "99214",
+        "modifier": "—",
+        "uo": "1",
+        "cxPercent": "100",
+        "allowed": "285",
+        "billedAmount": "285",
+        "writeoff": "0"
+      }
+    }
+  },
+  "priorClaim": {
+    "dcn": "—",
+    "receiptDate": "—",
+    "memberInfo": {
+      "subscriberId": "—",
+      "hcid": "—",
+      "subscriberName": "—",
+      "patientDob": "—"
+    },
+    "providerInfo": {
+      "providerTaxId": "—",
+      "renderingProvider": "—",
+      "billingNpi": "—"
+    },
+    "paymentInfo": {
+      "nonElg": "—",
+      "providerDisc": "—",
+      "coins": "—",
+      "processDate": "—",
+      "finalizationCode": "—"
+    },
+    "serviceInfo": {
+      "primaryDx": "—",
+      "px1": "—"
+    },
+    "researchNotes": "—",
+    "researchNotesMore": "—",
+    "lines": [
+      {
+        "lineNum": "—",
+        "serviceFrom": "—",
+        "toDate": "—",
+        "procedure": "—",
+        "billed": "—"
+      }
+    ]
+  },
+  "system": {
+    "benefitRecommendation": {
+      "contractCode": "H120",
+      "effectiveDate": "1/1/2026",
+      "endDate": "12/31/9999",
+      "planState": "NJ",
+      "planDescription": "Harborline Manufacturing 2026/01/01 PPO H120"
+    }
+  },
+  "attachment": {
+    "pwk": {
+      "type": "—",
+      "documentNumber": "—"
+    }
+  },
+  "claimData": {
+    "details": {
+      "claimType": "Professional",
+      "itsHome": "No",
+      "claimSource": {
+        "mediaType": "PC",
+        "pricingSource": "W",
+        "pricingSystem": "WP",
+        "mixerPar": "Y",
+        "receiverId": "WGSGA",
+        "receivedAtEdi": "2026-01-18",
+        "providerError": "I000",
+        "imageControlNumber": "CI25281103489293491",
+        "authNumber": "—",
+        "authExcln": "—",
+        "vendorIndicator": "—",
+        "receivedDate": "2026-01-18",
+        "splitInd": "—",
+        "epactPlm": "—",
+        "gnyhaInd": "—",
+        "imrIndicator": "—",
+        "cliaId": "—",
+        "cliaQualifier": "—"
+      },
+      "ancillaryProvider": {
+        "type": "—",
+        "zip": "—",
+        "state": "—"
+      },
+      "ambulance": {
+        "pickupZip": "—",
+        "dropoffZip": "—"
+      },
+      "miscellaneous": {
+        "epsdt": "—",
+        "familyPlanning": "No",
+        "gtessDate": "—",
+        "dateOfIllness": "—",
+        "dateOfInjury": "—",
+        "lastMenstrualDate": "—",
+        "consultationDate": "—",
+        "eruDecision": "—",
+        "jaaErrorCode": "No"
+      },
+      "stopData": {
+        "stopEdit": "No",
+        "lobParentRule": "—",
+        "lobChildRule": "ALL WGS",
+        "lobSequence": "1",
+        "medBusinessParentRule": "NA",
+        "medBusinessChildRule": "656881",
+        "medSequence": "51"
+      },
+      "refundData": {
+        "correspondenceNumber": "—",
+        "refundAmount": "$0.00",
+        "adjustmentReasonCode": "PX_4",
+        "correctedClaimDcn": "—",
+        "vendorName": "—",
+        "delayReason": "—",
+        "carveOut": "—",
+        "adjustmentReceipt": "—"
+      },
+      "highDollar": {
+        "riskOutcome": "—"
+      }
+    },
+    "editing": {
+      "claimXten": {
+        "originalLine": {
+          "lineNum": "1",
+          "serviceDate": "01/15/2026",
+          "procedure": "99214",
+          "mod": "—",
+          "units": "1",
+          "billedAmount": "$285.00"
+        },
+        "proposedLine": {
+          "lineNum": "1",
+          "procedure": "—",
+          "mod": "—",
+          "units": "1",
+          "supportCode": "—",
+          "payPercent": "—",
+          "billedAmount": "—"
+        }
+      },
+      "ihealth": {
+        "originalLine": {
+          "lineNum": "1",
+          "serviceDate": "01/15/2026",
+          "procedure": "99214",
+          "mod": "—",
+          "units": "1",
+          "allowedAmount": "$285.00",
+          "savingsAmount": "$0.00"
+        },
+        "proposedLine": {
+          "procedure": "—",
+          "mod": "—",
+          "units": "1",
+          "payPercent": "—",
+          "status": "—"
+        }
+      }
+    },
+    "benefits": {
+      "accumulator1": {
+        "type": "BENYTD",
+        "fromDate": "2026-01-01",
+        "toDate": "2026-12-31",
+        "unit": "Dollar",
+        "status": "Accrued"
+      },
+      "accumulator2": {
+        "type": "MMCYTD",
+        "fromDate": "2026-01-01",
+        "toDate": "2026-12-31",
+        "unit": "Dollar",
+        "status": "Accrued"
+      }
+    },
+    "promptPay": {
+      "claim": {
+        "status": "PX_WGS",
+        "state": "—",
+        "ruleId": "—",
+        "systemInterest": "$0.00",
+        "penaltyAmount": "$0.00",
+        "manualInterestAmount": "—"
+      },
+      "calculation": {
+        "calculationFromDate": "2026-01-20",
+        "carveoutDate": "—",
+        "lastProcessedDate": "2026-01-20",
+        "baseAmount": "$0.00",
+        "calculatedInterestAmount": "$0.00",
+        "processedInDays": "0",
+        "mailingDays": "0",
+        "disburseDays": "0",
+        "allowedDays": "0",
+        "carveoutDays": "0",
+        "lateByDays": "0",
+        "dailyInterest": "$0.00"
+      },
+      "miscellaneous": {
+        "carveoutReasonCode": "PX_0",
+        "dayIndicator": "0",
+        "receiptMethod": "—",
+        "productFundType": "W",
+        "interestRate": "—",
+        "penalty": "—",
+        "minimumPayAmount": "—",
+        "erMinimumPay": "—",
+        "annualMonthlyPenalty": "—",
+        "mlhDate": "26020",
+        "ppStopDate": "—",
+        "additionalInformationRequestDate": "—",
+        "tdiInterestAmount": "—",
+        "tdiPenaltyAmount": "—"
+      }
+    },
+    "review": {
+      "utilization": {
+        "service": {
+          "lineNum": "1",
+          "procedure": "99214",
+          "revenueCode": "—",
+          "date": "01/15/2026",
+          "ruleId": "—",
+          "caseNumber": "NO MATCH"
+        }
+      },
+      "cdhp": {
+        "claim": {
+          "litesClaim": "—",
+          "rsnEobCode": "—",
+          "hraPaidTotal": "$0.00",
+          "hraEndingBalance": "$0.00",
+          "paymentCode": "—",
+          "cdhpAdmin": "—",
+          "acknowledgementRcvd": "—",
+          "requeryCount": "—"
+        },
+        "lineSummary": {
+          "lineNum": "1",
+          "procedure": "99214",
+          "billed": "$285.00",
+          "patientResp": "—",
+          "hraPaid": "—",
+          "rsnCode": "—"
+        }
+      },
+      "dofr": {
+        "meta": {
+          "inzip": "—",
+          "providerNetworkCode": "—",
+          "dofrId1": "—",
+          "dofrName1": "—",
+          "relationship": "—",
+          "pgmId": "—",
+          "pgId": "—",
+          "umDelegationIndicator": "—",
+          "effectiveDate": "—",
+          "endDate": "—"
+        },
+        "lineSummary": {
+          "lineNum": "1",
+          "procedure": "99214",
+          "revenueCode": "—",
+          "serviceCategory": "—",
+          "event": "—",
+          "capIndicator": "—",
+          "risk": "—",
+          "groupCode": "—",
+          "hc": "—"
+        }
+      }
+    },
+    "pricing": {
+      "mp": {
+        "header": {
+          "multiPlanIndicator": "—",
+          "caseNumber": "—",
+          "systemCode": "N",
+          "claimNumber": "—",
+          "externalNetworkClaimNumber": "—",
+          "networkId": "—",
+          "orgId": "0",
+          "providerStatus": "—",
+          "providerName": "City Hospital",
+          "networkStatus": "—",
+          "primaryCare": "—",
+          "parNonPar": "—",
+          "paidNetworkId": "—",
+          "exceptionReason": "—",
+          "gatekeeperPfPnf": "—",
+          "neutralBenefit": "—",
+          "productType": "Local",
+          "receiptInd": "—",
+          "gbdId": "—",
+          "promptPay": "—",
+          "ncnId": "—",
+          "urDays": "0",
+          "priceSheet": "—",
+          "externalProviderInd": "—",
+          "claimLevelError": "—",
+          "qpaSplitInd": "—",
+          "qpaUpdate": "—",
+          "qpaProduct": "—",
+          "qpaPricingVariance": "—",
+          "claimLevelQpa": "0.00",
+          "finalProduct": "—",
+          "zelisNcnGrossSavings": "0.00",
+          "ncnAnthemCost": "0.00",
+          "ncnExclInd": "—",
+          "jaaPayor": "—",
+          "clusterId": "—"
+        },
+        "line1": {
+          "no": "1",
+          "service": "MED",
+          "billed": "285.00",
+          "allowed": "285.00",
+          "reasonAmount": "—",
+          "units": "1",
+          "reason": "—",
+          "priceReasonCode": "—",
+          "qpaAmount": "0.00"
+        },
+        "line2": {
+          "no": "—",
+          "service": "—",
+          "billed": "—",
+          "allowed": "—",
+          "reasonAmount": "—",
+          "units": "—",
+          "reason": "—",
+          "priceReasonCode": "—",
+          "qpaAmount": "—"
+        },
+        "qpaTotalAmount": "0.00"
+      }
+    },
+    "relatedSummary": {
+      "code": "—",
+      "name": "—",
+      "fromDate": "—",
+      "toDate": "—",
+      "type": "—",
+      "provider": "—",
+      "dcn": "—",
+      "charged": "—",
+      "paid": "—",
+      "status": "—"
+    }
+  }
+}

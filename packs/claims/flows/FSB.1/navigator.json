@@ -1,0 +1,230 @@
+{
+  "$schema": "training-platform/v1/navigator",
+  "$version": "2.0.0",
+  "id": "nav_fsb_1_federal_surprise_bill",
+  "flowId": "flow_pricing_fsb_1",
+  "name": "Pricing FSB.1 — Federal Surprise Bill Navigator",
+  "description": "Walk the Pricing SOP for the PX_FSB hard edit — the claim carries a Federal Surprise Bill (PX_FSB) hard edit that must be resolved. Identify the active PX_FSB hard edit in the Event Resolution list and rule out corrected-claim events (PX_PAJ/PX_SCB); confirm the line of business via the Member Information Product field (Local — ITS but not ITS-Host); note the line details that drive the benefit category (service, place of service, procedure, diagnosis, and PAR/NON-PAR provider status); click the header Validate button and confirm the system applied the Participating benefits; confirm the cost shares (Deductible, Copay, Coinsurance) populated; stamp EOB write-off code PX_00AUQ on Line 1; then pay the claim.",
+  "totalSteps": 7,
+  "passMark": 70,
+  "correctDecision": "pay",
+  "correctDecisionLabel": "Pay",
+  "totalMaxPoints": 90,
+  "totalNavigatorPoints": 70,
+  "steps": [
+    {
+      "id": "step_001",
+      "sequenceId": 1,
+      "name": "Identify the PX_FSB hard edit and rule out corrected claim events",
+      "description": "Review all edits in the Event Resolution tab. The active PX_FSB hard edit is highlighted with an error indication — this is the current event to resolve. Also scan the events list for any corrected claim event such as PX_PAJ or PX_SCB. If a corrected claim event is present, follow the corrected claim processing guidelines; otherwise, proceed. In this scenario, no corrected claim event is present, so the trainee proceeds.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_all_edits",
+      "targetFieldId": "f_er_e_fsb",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Event Resolution tab and reviews the events list, where the active PX_FSB hard edit is shown (error-indicated) and no PX_PAJ/PX_SCB corrected-claim event is present.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Event Resolution' and review the edits list. The active PX_FSB hard edit is highlighted as the current event to resolve; there is no PX_PAJ/PX_SCB corrected-claim event, so proceed.",
+      "highlightFields": ["f_er_edit_code", "f_er_e_fsb"],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Identify the PX_FSB hard edit and rule out corrected claim events"
+    },
+    {
+      "id": "step_002",
+      "sequenceId": 2,
+      "name": "Check the Line of Business via Product field",
+      "description": "Determine whether the claim is ITS-Host or another Line of Business (LOB) by navigating to the Member Information tab, then the Group section, and reviewing the Product field. If the Product value is ITS-Host, follow the alternate SOP guidelines. If the Product field displays any other value, such as Local, National, or ACA, proceed to the next step. In this scenario, the Product is Local; therefore, the claim is not ITS-Host, and the trainee may proceed to the next step.",
+      "targetTabId": "tab_member_info",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_mi_group",
+      "targetFieldId": "f_mi_g_product",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_member_info"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Member Information tab and reads the Group Product field (Local).",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Member Information' and read the Product field under Group Information. It reads Local (ITS but not ITS-Host), so proceed.",
+      "highlightFields": ["f_mi_g_product"],
+      "highlightTabId": "tab_member_info",
+      "checklistItem": "Check the Line of Business via Product field"
+    },
+    {
+      "id": "step_003",
+      "sequenceId": 3,
+      "name": "Note the service, POS, procedure code, diagnosis code, and provider status",
+      "description": "Note the details needed to determine the applicable category of benefits. From the Claim Lines tab, record the Service, Place of Service (POS), Procedure code, and Diagnosis code on Line 1, and also note whether the provider is PAR (participating) or Non-PAR. These values will be used to verify that the correct benefits are applied. In this scenario the provider is Non-PAR, and the federal surprise bill mandate still applies the Participating benefits.",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_summary",
+      "targetFieldId": null,
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_lines"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Claim Lines tab. The five values named here stay ringed after the step completes — the navigator store holds a completed visit step's highlightFields for as long as the trainee stays on that tab — so no click on the values themselves is required. Points are therefore awarded for arriving at the line, not for evidence that each value was read.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Lines' and read the five ringed values on Line 1 — Service, POS, Procedure, Diagnosis, and the provider PAR status (Non-PAR). Together they determine that the Participating benefits apply under the federal surprise bill mandate. Opening the tab completes the step; you do not need to click the values.",
+      "highlightFields": [
+        "f_cl_service",
+        "f_cl_pos",
+        "f_cl_procedure",
+        "f_cl_diagnosis",
+        "f_cl_par_status"
+      ],
+      "highlightTabId": "tab_claim_lines",
+      "checklistItem": "Note the service, POS, procedure, diagnosis, and provider status"
+    },
+    {
+      "id": "step_004",
+      "sequenceId": 4,
+      "name": "Validate and verify Participating benefits are applied",
+      "description": "Click the Validate button on the claim summary. Once validated, verify that the system is applying the Participating benefits on the claim. In this scenario, the benefits are applied, so the trainee proceeds. Trainees will be guided to check that the benefits are applied correctly in the CI&W system manually.",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_summary",
+      "targetFieldId": "f_cl_participating_benefit",
+      "actionType": "validate_benefits",
+      "actionPayload": {
+        "actionId": "validate_benefits"
+      },
+      "completesActionId": "validate_benefits",
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the trainee clicks the header Validate button, which dispatches the validate_benefits action — it applies the Participating benefits and the Deductible/Copay/Coinsurance cost shares on the claim line.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Click the 'Validate' button in the claim header. The system applies the Participating benefits. Trainees will be guided to check that the benefits are applied correctly in the CI&W system manually.",
+      "highlightFields": ["f_cl_participating_benefit"],
+      "highlightTabId": "tab_claim_lines",
+      "checklistItem": "Validate and verify Participating benefits are applied"
+    },
+    {
+      "id": "step_005",
+      "sequenceId": 5,
+      "name": "Verify cost shares are applied",
+      "description": "Again, navigate to Claim lines tab then check that the Cost share fields — Deductible, Copay, and Coinsurance — are populated on the Claim Lines. Look for dollar amounts in each of those fields. If any amount is not populated, edit the field manually to set it. In this scenario, after validating, the amounts are populated, so the trainee continues.",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_summary",
+      "targetFieldId": null,
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_lines"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee clicks the Claim Lines tab. Because step_004's header Validate leaves the trainee on Claim Lines, this is a re-click of the tab already open, which the workspace tab strip records as a visit. The three cost-share values stay ringed after the step completes, so no click on the values themselves is required, and points are awarded for arriving at the line rather than for evidence that each value was read.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Click the 'Claim Lines' tab again and read the three ringed cost shares on Line 1 — Deductible, Copay, and Coinsurance. Each shows a dollar amount, so continue. Clicking the tab completes the step; you do not need to click the values.",
+      "highlightFields": ["f_cl_deductible", "f_cl_copay", "f_cl_coinsurance"],
+      "highlightTabId": "tab_claim_lines",
+      "checklistItem": "Verify cost shares are applied"
+    },
+    {
+      "id": "step_006",
+      "sequenceId": 6,
+      "name": "Enter EOB code PX_00AUQ on Line 1",
+      "description": "Look for any Write-off codes on Line 1 of the Claim Lines tab — the write-off code appears near the EOB column. Verify the write-off code (different write-off codes follow different guidelines). In this scenario, no code is present, so the trainee enters \"PX_00AUQ\" in the EOB column for Line 1 using the input box.",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_summary",
+      "targetFieldId": "f_cl_eob",
+      "actionType": "correct_field",
+      "actionPayload": {
+        "fieldId": "f_cl_eob"
+      },
+      "completionTrigger": "field_corrected",
+      "completionTriggerNote": "Completes when the trainee edits Line 1's EOB field to PX_00AUQ.",
+      "mismatchFieldId": "mismatch_cl1_eob",
+      "expectedValue": "PX_00AUQ",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "On the Claim Lines tab, Line 1 has no write-off code near the EOB column. Type 'PX_00AUQ' into Line 1's EOB field.",
+      "highlightFields": ["f_cl_eob"],
+      "highlightTabId": "tab_claim_lines",
+      "checklistItem": "Enter EOB code PX_00AUQ on Line 1"
+    },
+    {
+      "id": "step_007",
+      "sequenceId": 7,
+      "name": "Submit Pay decision",
+      "description": "Navigate to the Decision section in the header, select 'Pay' from the dropdown menu and click Submit.",
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "submit_decision",
+      "actionPayload": {
+        "type": "submit_decision",
+        "expectedDecision": "pay"
+      },
+      "completionTrigger": "decision_submitted",
+      "completionTriggerNote": "Completes when the trainee confirms the Pay decision in the submit dialog.",
+      "expectedValue": "pay",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Pick 'Pay' from the Decision dropdown in the claim header, then click Submit and confirm in the dialog.",
+      "highlightFields": [],
+      "checklistItem": "Submit Pay decision"
+    }
+  ],
+  "scoreBreakdown": {
+    "navigatorStepsMaxPoints": 70,
+    "decisionMaxPoints": 20,
+    "reasonCodeMaxPoints": 0,
+    "totalMaxPoints": 90,
+    "passMark": 70,
+    "weightedPassScore": 63
+  },
+  "stepSummaryForResults": [
+    {
+      "sequenceId": 1,
+      "name": "PX_FSB hard edit identified; corrected-claim events (PX_PAJ/PX_SCB) ruled out",
+      "points": 10
+    },
+    {
+      "sequenceId": 2,
+      "name": "Line of Business confirmed via Product field (Local)",
+      "points": 10
+    },
+    {
+      "sequenceId": 3,
+      "name": "Service / POS / Procedure / Diagnosis / PAR status noted",
+      "points": 10
+    },
+    {
+      "sequenceId": 4,
+      "name": "Validate clicked; Participating benefits applied",
+      "points": 10
+    },
+    {
+      "sequenceId": 5,
+      "name": "Cost shares (Deductible / Copay / Coinsurance) confirmed populated",
+      "points": 10
+    },
+    {
+      "sequenceId": 6,
+      "name": "EOB code PX_00AUQ stamped on Line 1",
+      "points": 10
+    },
+    {
+      "sequenceId": 7,
+      "name": "Pay decision submitted",
+      "points": 10
+    }
+  ]
+}

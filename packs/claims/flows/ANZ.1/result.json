@@ -1,0 +1,64 @@
+{
+  "$schema": "training-platform/v1/flow-result",
+  "$version": "1.0.0",
+  "id": "result_anz_1_ancillary_provider_location",
+  "rubric": {
+    "expectedDecision": "pay",
+    "expectedReasonCode": null,
+    "requiredStepIds": [
+      "step_001",
+      "step_002",
+      "step_003",
+      "step_004",
+      "step_005",
+      "step_006",
+      "step_007",
+      "step_008"
+    ],
+    "weights": {
+      "navigator": 80,
+      "decision": 20,
+      "reasonCode": 0
+    },
+    "deductions": {
+      "perMissedRequiredStep": 0,
+      "wrongDecision": 20,
+      "wrongReasonCode": 0
+    }
+  },
+  "resultConfig": {
+    "passLabel": "Passed!",
+    "failLabel": "You did not meet the pass mark.",
+    "passDescription": "Good work — and the part worth noticing is where the answer came from. The claim system could not tell you: the Ancillary Provider Type, ZIP and State were blank, and no adjudication screen on this claim carries the patient's location. You identified PX_ANZ among the edits and read the severity beside every code to establish that nothing had to be resolved before it, confirmed from POS 12 and procedure E0601 that this is an Ancillary DME claim, and then went to the scanned claim form — the document of record — and read the patient's address off it. From one line of that address you took the state and the ZIP, applied P as the patient-location indicator an ancillary DME claim takes, validated all three together and paid the claim. An associate who never goes back to the image accepts whatever the keyer typed.",
+    "failDescription": "Pass mark is {passMark}%. Review the steps below to see where you can improve.",
+    "scoreCircle": {
+      "radius": 40,
+      "strokeWidth": 8,
+      "passColor": "#3B6D11",
+      "failColor": "#A32D2D",
+      "trackColor": "#E5E7EB"
+    },
+    "statBoxes": [
+      {
+        "id": "navigator_score",
+        "label": "Navigator",
+        "dataKey": "navigatorScore",
+        "max": 80
+      },
+      {
+        "id": "decision_score",
+        "label": "Decision",
+        "dataKey": "decisionScore",
+        "max": 20
+      },
+      {
+        "id": "time_taken",
+        "label": "Time Taken",
+        "dataKey": "timeTakenSeconds",
+        "format": "duration"
+      }
+    ],
+    "retakeButton": true,
+    "backToClaimsButton": true
+  }
+}

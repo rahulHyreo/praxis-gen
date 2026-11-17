@@ -1,0 +1,372 @@
+{
+  "$schema": "training-platform/v1/navigator",
+  "$version": "2.0.0",
+  "id": "nav_pam_1_carelon_mbm",
+  "flowId": "flow_authorization_pam_1",
+  "name": "Authorization PAM.1 -Multiple Claim Lines Billed with a Carelon MBM Service Navigator",
+  "description": "Walk the Authorization (Carelon MBM) SOP for the PX_PAM event -multiple claim lines are billed with a Carelon MBM service and the service qualifies to be rejected, so the rejection is at the claim level. Identify the PX_PAM event, confirm the UM Rule ID is not one of the four flagged IDs, confirm the provider is not a Hospital Based Physician, run the eight Claim-Lines exclusion checks, confirm the claim type, verify the authorization is NO MATCH, rule out the PX_IUS/PX_LP/PX_LPF/PX_LPS events, verify the Line of Business, confirm the PX_PAM event fires, confirm Carelon MBM rules (Rule IDs containing AIM -here AIMGEN and AIMREHAB) are present on both claim lines, then deny the claim at claim level with reject code PX_RPAIM0.",
+  "totalSteps": 12,
+  "passMark": 70,
+  "correctDecision": "deny",
+  "correctDecisionLabel": "Deny",
+  "totalMaxPoints": 150,
+  "totalNavigatorPoints": 120,
+  "steps": [
+    {
+      "id": "step_001",
+      "sequenceId": 1,
+      "name": "Review all events and identify the PX_PAM event",
+      "description": "Review all events in the Event Resolution tab, including informational events, before paying, denying, or routing the claim when multiple events are set. The PX_PAM event will be displayed in the events list -this Authorization event occurs when multiple claim lines are billed with a Carelon MBM service, and if the service qualifies to be rejected, the rejection is at the claim level.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_all_edits",
+      "targetFieldId": "f_er_e_pam",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Event Resolution tab and reviews the events list, where the PX_NMF event is shown.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Event Resolution' and review the events list. The active PX_PAM event is shown -multiple claim lines are billed with a Carelon MBM service.",
+      "highlightFields": ["f_er_edit_code", "f_er_e_pam"],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Review all events and identify the PX_PAM event"
+    },
+    {
+      "id": "step_002",
+      "sequenceId": 2,
+      "name": "Check the UM Rule ID",
+      "description": "Determine whether the UM Rule ID is one of MMS001, PSYCH001, ASCRULE01, or NYSTATE02 by navigating to the Claim Data tab, then the Review sub-tab, and expanding the Utilization Management section. Review the UM Detail Service table, which contains the Line #, Procedure, Revenue Code, Date, Rule ID, and Case Number columns, and identify the value(s) displayed in the Rule ID column. If any of the listed Rule IDs (MMS001, PSYCH001, ASCRULE01, or NYSTATE02) are present, follow the alternate SOP steps. If none of the listed Rule IDs are present, proceed to the next step. In this scenario, the Rule IDs are AIMGEN and AIMREHAB, neither of which is included in the specified list; therefore, the trainee may proceed to the next step.",
+      "targetTabId": "tab_claim_data",
+      "targetSubTabId": "subtab_claim_data_review_pam",
+      "targetSectionId": "sec_cd_r_um",
+      "targetFieldId": "f_cdr_um_l1_rule",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_data",
+        "subTabId": "subtab_claim_data_review_pam"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Review sub-tab inside Claim Data and reads the UM Detail Service table's Rule ID column.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Data' → 'Review' and expand Utilization management. The UM Detail Service Rule IDs are AIMGEN and AIMREHAB -not one of MMS001 / PSYCH001 / ASCRULE01 / NYSTATE02 -so proceed.",
+      "highlightFields": ["f_cdr_um_l1_rule", "f_cdr_um_l2_rule"],
+      "highlightTabId": "tab_claim_data",
+      "highlightSubTabId": "subtab_claim_data_review_pam",
+      "checklistItem": "Check the UM Rule ID"
+    },
+    {
+      "id": "step_003",
+      "sequenceId": 3,
+      "name": "Check for a Hospital Based Physician",
+      "description": "Verify whether the provider billed on the claim qualifies as a Hospital Based Physician by navigating to the Provider Information tab, then the Rendering section, and reviewing the Specialty Description field. A provider is considered a Hospital Based Physician if the Specialty Description is Anesthesiology, Radiology, Emergency Room Physician, Pathology, Assistant Surgeon, Neonatology, Intensivist, or Hospitalist. If the provider is identified as a Hospital Based Physician, follow the alternate SOP steps. If the provider does not fall within one of these specialties, proceed to the next step. In this scenario, the Specialty Description is Cardiology; therefore, the provider is not considered a Hospital Based Physician, and the trainee may proceed to the next step.",
+      "targetTabId": "tab_provider_info",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_pi_rendering",
+      "targetFieldId": "f_pi_r_specialty_desc",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_provider_info"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Provider Information tab to read the Rendering Speciality Description.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Provider Info' and read the Speciality description under Rendering -it is Cardiology, not a Hospital Based Physician specialty, so proceed.",
+      "highlightFields": ["f_pi_r_specialty_desc"],
+      "highlightTabId": "tab_provider_info",
+      "checklistItem": "Check for a Hospital Based Physician"
+    },
+    {
+      "id": "step_004",
+      "sequenceId": 4,
+      "name": "Run the Claim Lines exclusion checks",
+      "description": "On the Claim Lines tab, check eight exclusion conditions against the claim line. For this claim, the line shows Procedure 92928, Modifier \"—\", and POS 21.\n\nFor each check, if the condition matches, follow the alternate SOP steps. Otherwise, proceed to the next check.\nConsulting Physician -Procedure code is 99231–99233 or 99251–99255. (92928 → no match)\n\nModifier 26 -Modifiers field equals 26. (\"—\" → no match)\n\nImplants -Procedure code starts with C or L. (92928 → no match)\n\nPAP / CPAP / BIPAP machines or supplies -Procedure code starts with E. (92928 → no match)\n\nChiropractic with PT, or PT alone -Procedure code is A2000–A2999. (92928 → no match)\n\nEmergency Room or Urgent Care -POS is 23 (ER) or 20 (Urgent Care). (21 → no match)\n\nAmbulance services -POS is 41 or 42. (21 → no match)\n\nDrug administration -Procedure code is J0000–J8999. (92928 → no match)\nIn this scenario, none of the eight conditions match, so the trainee proceeds.",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_summary",
+      "targetFieldId": "f_cl_procedure",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_lines"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Claim Lines tab to run the eight exclusion checks against the Procedure, Modifiers, and POS fields.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Lines'. Procedure 92928 (not 99231–99255 / C / L / E / A2xxx / J-code), Modifier '-' (not 26), and POS 21 (not 23/20/41/42) -none of the eight exclusions match, so proceed.",
+      "highlightFields": ["f_cl_procedure", "f_cl_modifiers", "f_cl_pos"],
+      "highlightTabId": "tab_claim_lines",
+      "checklistItem": "Run the Claim Lines exclusion checks"
+    },
+    {
+      "id": "step_005",
+      "sequenceId": 5,
+      "name": "Check the claim type against the SOP table",
+      "description": "Determine whether the claim falls under a scenario defined in the UM Events Authorization SOP by navigating to the Claim Data tab, then the Details sub-tab, and reviewing the Claim Type field. Compare the Claim Type value against the scenarios listed in the UM Events Authorization SOP table. If the value matches a scenario in the table, follow the corresponding SOP instructions for that scenario. If the value does not match any listed scenario, proceed to the next step. In this scenario, the Claim Type is Professional, which does not correspond to a scenario requiring special handling; therefore, the trainee may proceed to the next step.",
+      "targetTabId": "tab_claim_data",
+      "targetSubTabId": "subtab_claim_data_details",
+      "targetSectionId": "sec_cd_d_source",
+      "targetFieldId": "f_cdd_type",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_data",
+        "subTabId": "subtab_claim_data_details"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Details sub-tab inside Claim Data to read the claim type.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Data' → 'Details' and read the claim type -it is Professional, which is not one of the SOP-table scenarios, so proceed.",
+      "highlightFields": ["f_cdd_type"],
+      "highlightTabId": "tab_claim_data",
+      "highlightSubTabId": "subtab_claim_data_details",
+      "checklistItem": "Check the claim type against the SOP table"
+    },
+    {
+      "id": "step_006",
+      "sequenceId": 6,
+      "name": "Verify the authorization match",
+      "description": "Verify that all claim lines requiring authorization have been reviewed and determine whether a matching authorization exists by navigating to the Claim Data tab, then the Review sub-tab, and expanding the Utilization Management section. Review the UM Detail Service table, which displays the applicable claim lines along with the Procedure, Date, Rule ID, and Case Number fields. The claim lines listed in this section are the lines that require authorization. A valid Case Number indicates that a matching authorization exists. A value of NO MATCH indicates that an authorization exists but does not correspond to the billed service. A blank Case Number field indicates that no authorization exists. In this scenario, both claim lines display Procedure 92928 with Rule IDs AIMGEN and AIMREHAB, and the Case Number field displays NO MATCH for both rows. This indicates that authorizations exist but do not match the services billed on the claim; therefore, the trainee may proceed to the next step.",
+      "targetTabId": "tab_claim_data",
+      "targetSubTabId": "subtab_claim_data_review_pam",
+      "targetSectionId": "sec_cd_r_um",
+      "targetFieldId": "f_cdr_um_l1_case",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_data",
+        "subTabId": "subtab_claim_data_review_pam"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Review sub-tab inside Claim Data and reads the UM Detail Service table's Case Number column.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Data' → 'Review' and read the Case Number in the UM Detail Service table -it shows NO MATCH for both rows (an authorization exists but does not match the billed services), so proceed.",
+      "highlightFields": ["f_cdr_um_l1_case", "f_cdr_um_l2_case", "f_cdd_type"],
+      "highlightTabId": "tab_claim_data",
+      "highlightSubTabId": "subtab_claim_data_review_pam",
+      "checklistItem": "Verify the authorization match"
+    },
+    {
+      "id": "step_007",
+      "sequenceId": 7,
+      "name": "Check for PX_IUS/PX_LP/PX_LPF/PX_LPS events",
+      "description": "Determine whether the claim fires the PX_IUS, PX_LP, PX_LPF, or PX_LPS event by reviewing the Event Resolution tab. If any of those events is present, follow the alternate SOP steps; otherwise, proceed. In this scenario, the claim does not fire any of those events, so the trainee proceeds.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_all_edits",
+      "targetFieldId": null,
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Event Resolution tab again to scan for the PX_IUS / PX_LP / PX_LPF / PX_LPS events.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Event Resolution' again and scan the events list for PX_IUS / PX_LP / PX_LPF / PX_LPS -none are present, so proceed.",
+      "highlightFields": [],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Check for PX_IUS/PX_LP/PX_LPF/PX_LPS events"
+    },
+    {
+      "id": "step_008",
+      "sequenceId": 8,
+      "name": "Verify the Line of Business",
+      "description": "Verify the Line of Business (LOB) by navigating to the Search tab, then the Benefits sub-tab, and reviewing the General Information section to identify the Contract State. Next, navigate to the Member Information tab, then the Group section, and review the Product field. If the Contract State and Product combination corresponds to VA HMO with non-inpatient services, a GA Local outpatient service, or a NY Contract State, follow the alternate SOP steps. If none of these conditions apply, proceed to the next step. In this scenario, the Contract State is NV (Nevada) and the Product is Local; therefore, the claim does not meet any of the alternate processing criteria, and the trainee may proceed to the next step.",
+      "targetTabId": "tab_search",
+      "targetSubTabId": "subtab_search_benefits",
+      "targetSectionId": "sec_sc_b_general",
+      "targetFieldId": "f_sc_bg_state",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_search",
+        "subTabId": "subtab_search_benefits"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Benefits sub-tab inside Search to read the Contract state under General Information.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Search' → 'Benefits' and read the Contract state under General Information -it is NV, and the Member product is Local, so the LOB exclusions do not apply and the trainee proceeds.",
+      "highlightFields": ["f_sc_bg_state"],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_benefits",
+      "checklistItem": "Verify the Line of Business"
+    },
+    {
+      "id": "step_009",
+      "sequenceId": 9,
+      "name": "Check for PX_PAM/PX_NMF events",
+      "description": "Verify whether the PX_PAM or PX_NMF event fires on the claim by checking the Event Resolution tab. If either event is present, proceed to evaluate the Carelon MBM rules; otherwise, follow the alternate SOP steps. In this scenario, the claim fires the PX_PAM event, so the trainee proceeds.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_all_edits",
+      "targetFieldId": "f_er_e_pam",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Event Resolution tab again to confirm the PX_NMF event fires.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Event Resolution' again -the PX_PAM event fires (PX_PAM and PX_NMF are Carelon MBM events), so proceed to evaluate the Carelon MBM rules.",
+      "highlightFields": ["f_er_e_pam"],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Check for PX_PAM/PX_NMF events"
+    },
+    {
+      "id": "step_010",
+      "sequenceId": 10,
+      "name": "Verify the Carelon MBM rules on the claim lines",
+      "description": "Review the Rule ID values by navigating to the Claim Data tab, then the Review sub-tab, and expanding the Utilization Management section. Confirm whether all Rule IDs represent Carelon MBM rules. PX_PAM and PX_NMF are Carelon MBM events, and Carelon MBM Rule IDs contain “AIM” (for example, AIMREHAB and AIMGEN). In this scenario, the UM Detail Service table displays AIMGEN for Line #1 and AIMREHAB for Line #2. Because both Rule IDs contain “AIM,” all claim lines are billed with Carelon MBM services, which is the reason the PX_PAM event was triggered. As a result, the claim must be denied at the claim level, and the trainee may proceed to the next step.",
+      "targetTabId": "tab_claim_data",
+      "targetSubTabId": "subtab_claim_data_review_pam",
+      "targetSectionId": "sec_cd_r_um",
+      "targetFieldId": "f_cdr_um_l1_rule",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_data",
+        "subTabId": "subtab_claim_data_review_pam"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Review sub-tab inside Claim Data again to confirm the Carelon MBM rules (AIMGEN and AIMREHAB) on both claim lines.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Data' → 'Review' again and read the Rule IDs -Line 1 is AIMGEN and Line 2 is AIMREHAB, which both contain 'AIM' (Carelon MBM rules). Multiple claim lines billed with a Carelon MBM service fired the PX_PAM event, so deny the claim at claim level.",
+      "highlightFields": ["f_cdr_um_l1_rule", "f_cdr_um_l2_rule"],
+      "highlightTabId": "tab_claim_data",
+      "highlightSubTabId": "subtab_claim_data_review_pam",
+      "checklistItem": "Verify the Carelon MBM rules on the claim lines"
+    },
+    {
+      "id": "step_011",
+      "sequenceId": 11,
+      "name": "Deny the claim using Reject code PX_RPAIM0",
+      "description": "Apply reject code PX_RPAIM0 as defined in the SOP for the Carelon MBM rejection. From the Action menu, select Deny Claim. A new Deny Claim section will appear below the header. Enter reject code PX_RPAIM0 in the input box -the matching code will appear in a dropdown list -select it and click Submit.",
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "deny_claim",
+      "actionPayload": {
+        "type": "deny_claim"
+      },
+      "completesActionId": "deny_claim",
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the trainee submits the Deny Claim panel (which dispatches the deny_claim action).",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Action menu → Deny Claim. Enter reject code PX_RPAIM0 in the Deny Claim section, click Submit, then confirm the pop-up.",
+      "highlightFields": [],
+      "checklistItem": "Deny the claim using Reject code PX_RPAIM0"
+    },
+    {
+      "id": "step_012",
+      "sequenceId": 12,
+      "name": "Submit decision",
+      "description": "click Submit Button.",
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "submit_decision",
+      "actionPayload": {
+        "type": "submit_decision",
+        "expectedDecision": "deny"
+      },
+      "completionTrigger": "decision_submitted",
+      "completionTriggerNote": "Completes when the trainee confirms the Deny decision in the submit dialog.",
+      "expectedValue": "deny",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Pick 'Deny' from the Decision dropdown in the claim header, then click Submit and confirm in the dialog.",
+      "highlightFields": [],
+      "checklistItem": "Submit Deny decision"
+    }
+  ],
+  "scoreBreakdown": {
+    "navigatorStepsMaxPoints": 120,
+    "decisionMaxPoints": 20,
+    "reasonCodeMaxPoints": 10,
+    "totalMaxPoints": 150,
+    "passMark": 70,
+    "weightedPassScore": 105
+  },
+  "stepSummaryForResults": [
+    {
+      "sequenceId": 1,
+      "name": "PX_PAM event identified",
+      "points": 10
+    },
+    {
+      "sequenceId": 2,
+      "name": "UM Rule IDs not one of the flagged IDs (AIMGEN, AIMREHAB)",
+      "points": 10
+    },
+    {
+      "sequenceId": 3,
+      "name": "Provider is not a Hospital Based Physician (Cardiology)",
+      "points": 10
+    },
+    {
+      "sequenceId": 4,
+      "name": "Claim Lines exclusion checks all clear",
+      "points": 10
+    },
+    {
+      "sequenceId": 5,
+      "name": "Claim type confirmed (Professional)",
+      "points": 10
+    },
+    {
+      "sequenceId": 6,
+      "name": "Authorization does not match (NO MATCH)",
+      "points": 10
+    },
+    {
+      "sequenceId": 7,
+      "name": "PX_IUS/PX_LP/PX_LPF/PX_LPS events absent",
+      "points": 10
+    },
+    {
+      "sequenceId": 8,
+      "name": "Line of Business verified (NV / Local)",
+      "points": 10
+    },
+    {
+      "sequenceId": 9,
+      "name": "PX_PAM event confirmed firing",
+      "points": 10
+    },
+    {
+      "sequenceId": 10,
+      "name": "Carelon MBM rules confirmed on both claim lines (AIMGEN, AIMREHAB)",
+      "points": 10
+    },
+    {
+      "sequenceId": 11,
+      "name": "Deny Claim panel submitted with PX_RPAIM0",
+      "points": 10
+    },
+    {
+      "sequenceId": 12,
+      "name": "Deny decision submitted",
+      "points": 10
+    }
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "$schema": "training-platform/v1/navigator",
+  "$version": "2.0.0",
+  "id": "nav_zel_1_zelis_vendor_pricing_validate_pay",
+  "flowId": "flow_pricing_zel_1",
+  "name": "Pricing ZEL.1 — Zelis Vendor Pricing Validate & Pay Navigator",
+  "description": "Walk the Pricing SOP for the PX_ZEL event — a Zelis-related pricing event indicating the claim is involved with the external pricing vendor (Zelis) and requires vendor-based pricing. Identify the PX_ZEL hard edit on the Event Resolution tab and confirm the event hierarchy is clear (no other events present), click the claim-summary Validate button to apply the benefits, confirm there are no bypass codes to apply and read the system's routing-eligibility message, then pay the claim to route it to Zelis.",
+  "totalSteps": 4,
+  "passMark": 70,
+  "correctDecision": "pay",
+  "correctDecisionLabel": "Pay",
+  "totalMaxPoints": 60,
+  "totalNavigatorPoints": 40,
+  "steps": [
+    {
+      "id": "step_001",
+      "sequenceId": 1,
+      "name": "Identify the PX_ZEL hard edit and check the event hierarchy",
+      "description": "Review all edits in the Event Resolution tab. The PX_ZEL hard edit is highlighted with an error indication — this is the current event to resolve. The PX_ZEL event indicates the claim is involved with Zelis (the external pricing vendor) — either sent to, or being processed by, Zelis for pricing — so the claim requires vendor-based pricing. Verify the events list for any other events that need to be resolved first per the event hierarchy. If other events are present, resolve those that come before PX_ZEL first; if no other events are present, proceed. In this scenario, the claim has no other events, so the trainee proceeds.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_all_edits",
+      "targetFieldId": "f_er_e_zel",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Event Resolution tab and reviews the events list, where the active PX_ZEL hard edit is highlighted with an error indication and no other events are present.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Event Resolution' and review the events list. PX_ZEL (Zelis vendor pricing — vendor-based pricing required) is the active hard edit, highlighted with an error indication, and no other events are present, so proceed.",
+      "highlightFields": ["f_er_edit_code", "f_er_severity", "f_er_e_zel"],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Identify the PX_ZEL hard edit and check the event hierarchy"
+    },
+    {
+      "id": "step_002",
+      "sequenceId": 2,
+      "name": "Validate to apply benefits",
+      "description": "Click the Validate button in the claim summary. When Validate is clicked, the application applies the benefits to the claim. Verify that the correct benefits have been applied before proceeding (the Validation section shows 'Benefits applied'). In this scenario, the correct benefits are applied, so the trainee proceeds.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_validation",
+      "targetFieldId": "f_er_benefits_status",
+      "actionType": "validate",
+      "actionPayload": {
+        "type": "validate"
+      },
+      "completesActionId": "validate",
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the trainee clicks the claim-summary Validate button, which applies the benefits (and, because no bypass codes are present, surfaces the routing-eligibility message).",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Click the 'Validate' button in the claim summary. The application applies the benefits — confirm the Validation section shows 'Benefits applied', then proceed.",
+      "highlightFields": ["f_er_benefits_status", "f_er_edit_code"],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Validate to apply benefits"
+    },
+    {
+      "id": "step_003",
+      "sequenceId": 3,
+      "name": "Check bypass codes and confirm Zelis routing eligibility",
+      "description": "To route the claim to Zelis, validate that all required bypass codes are applied. Select the event resolution tab again, review the Bypass codes section — in this scenario there are no available bypass codes, so none need to be applied. Because there are no bypass codes on the events list, the system displays the message 'SUBMIT THE CLAIM TO LOG TO BATCH — CHDP CLAIM ELIGIBLE FOR PING', confirming the claim is eligible for routing. Again, navigate to the Event Resolution tab and confirm the message in the Validation section before submitting.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_bypass",
+      "targetFieldId": "f_er_validation_msg",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited_after_activation",
+      "completionTriggerNote": "Completes when the trainee returns to the Event Resolution tab after validating, where the Bypass codes section shows no available codes and the system message 'CHDP CLAIM ELIGIBLE FOR PING' is displayed in the Validation section.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "On 'Event Resolution', the Bypass codes section has no available codes. After validating, the system shows 'SUBMIT THE CLAIM TO LOG TO BATCH — CHDP CLAIM ELIGIBLE FOR PING' — return to the tab and read it in the Validation section, then proceed to pay.",
+      "highlightFields": [
+        "f_er_bypass_code",
+        "f_er_validation_msg",
+        "f_er_edit_code"
+      ],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Check bypass codes and confirm Zelis routing eligibility"
+    },
+    {
+      "id": "step_004",
+      "sequenceId": 4,
+      "name": "Submit Pay decision",
+      "description": "Navigate to the Decision section in the header, select 'Pay' from the dropdown menu and click Submit. Once Submit is clicked, the system automatically routes the claim to Zelis.",
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "submit_decision",
+      "actionPayload": {
+        "type": "submit_decision",
+        "expectedDecision": "pay"
+      },
+      "completionTrigger": "decision_submitted",
+      "completionTriggerNote": "Completes when the trainee confirms the Pay decision in the submit dialog, which routes the claim to Zelis.",
+      "expectedValue": "pay",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Pick 'Pay' from the Decision dropdown in the claim header, then click Submit and confirm in the dialog — the claim is routed to Zelis.",
+      "highlightFields": [],
+      "checklistItem": "Submit Pay decision and route to Zelis"
+    }
+  ],
+  "scoreBreakdown": {
+    "navigatorStepsMaxPoints": 40,
+    "decisionMaxPoints": 20,
+    "reasonCodeMaxPoints": 0,
+    "totalMaxPoints": 60,
+    "passMark": 70,
+    "weightedPassScore": 42
+  },
+  "stepSummaryForResults": [
+    {
+      "sequenceId": 1,
+      "name": "PX_ZEL hard edit identified; event hierarchy clear (no other events)",
+      "points": 10
+    },
+    {
+      "sequenceId": 2,
+      "name": "Validated — benefits applied",
+      "points": 10
+    },
+    {
+      "sequenceId": 3,
+      "name": "No bypass codes; claim eligible for routing (CHDP ELIGIBLE FOR PING)",
+      "points": 10
+    },
+    {
+      "sequenceId": 4,
+      "name": "Pay decision submitted; claim routed to Zelis",
+      "points": 10
+    }
+  ]
+}

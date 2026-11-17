@@ -1,0 +1,418 @@
+{
+  "$schema": "training-platform/v1/navigator",
+  "$version": "2.0.0",
+  "id": "nav_mn_3_noc_review_pay",
+  "flowId": "flow_pricing_mn_3",
+  "name": "Pricing MN.3 — Missing Standard Pricing / NOC (Request NOC Review, Overlay Comparable Code & Pay) Navigator",
+  "description": "Walk the Pricing SOP for the PX_MN event when the billed Not Otherwise Classified (NOC) procedure has no in-system price and no PSCCR response on file, so the claim is routed to the NOC Review team for pricing and then priced-and-paid via a comparable-code overlay. Note the Pricing state (NV), Tax ID, and billing provider name on Provider Information; identify the PX_MN01 soft edit on the Event Resolution tab (highlighted with an error indication) and rule out higher-hierarchy events (none precede PX_MN01); note the NOC procedure code (20999) on Claim Lines; note the Detail Contract code (5BHY) on Member Information and check special processing conditions (none apply); on Claim Data → Review read the empty UM Detail Service table (no authorization) and the Medical Review section (PSCCR reviews only NOC codes billed above $250; rationale $100 < $250 and no PSCCR response on file); confirm on Claim Notes that no comparable code exists yet; confirm on Attachments that medical records are available (25035878888, Type G); raise a NOC Review request via Action → Request claim review → Request NOC Review; receive the comparable code (42699) from the NOC team on the Notes tab; overlay 20999 with 42699 on Search → Pricing and click Get Pricing (Billed $5000, Allowed $350, Write-off $4650); write the write-off (4650) and EOB/TY (PX_00066) onto Claim Lines Line 1; then pay the claim.",
+  "totalSteps": 13,
+  "passMark": 70,
+  "correctDecision": "pay",
+  "correctDecisionLabel": "Pay",
+  "totalMaxPoints": 150,
+  "totalNavigatorPoints": 130,
+  "steps": [
+    {
+      "id": "step_001",
+      "sequenceId": 1,
+      "name": "Note the state, Tax ID, and provider name",
+      "description": "Open the Provider Information tab and note the Pricing state from the Rendering section plus the Tax ID and Billing Provider name from the Billing section — these are needed for the NOC review request. In this scenario the Pricing state is NV (Nevada).",
+      "targetTabId": "tab_provider_info",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_pi_rendering",
+      "targetFieldId": "f_pi_r_pricing_state",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_provider_info"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Provider Information tab and reads the Pricing state (NV) in the Rendering section plus the Tax ID and Billing Provider name in the Billing section.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Provider Information'. Read the Pricing state in the Rendering section (NV) and note the Tax ID and Billing Provider name in the Billing section — you'll need them for the NOC review request.",
+      "highlightFields": [
+        "f_pi_r_pricing_state",
+        "f_pi_b_tax_id",
+        "f_pi_b_name"
+      ],
+      "highlightTabId": "tab_provider_info",
+      "checklistItem": "Note the state, Tax ID, and provider name"
+    },
+    {
+      "id": "step_002",
+      "sequenceId": 2,
+      "name": "Identify the PX_MN01 soft edit and check the event hierarchy",
+      "description": "Review all edits in the Event Resolution tab. The PX_MN01 soft edit is highlighted with an error indication — this is the current event to resolve. PX_MN.3 is another subtype of the Not Otherwise Classified (NOC) pricing event. Verify the events list for any other events that need to be resolved first per the event hierarchy. In this scenario no higher-hierarchy event precedes PX_MN01, so the trainee proceeds with PX_MN01.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_all_edits",
+      "targetFieldId": "f_er_e_mn",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Event Resolution tab and reviews the events list, where the active PX_MN01 soft edit is highlighted with an error indication and no higher-hierarchy event precedes it.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Event Resolution' and review the events list. PX_MN01 is the active soft edit, highlighted with an error indication; no event precedes it in the hierarchy, so proceed.",
+      "highlightFields": ["f_er_edit_code", "f_er_e_mn"],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Identify the PX_MN01 soft edit and check the event hierarchy"
+    },
+    {
+      "id": "step_003",
+      "sequenceId": 3,
+      "name": "Note the NOC procedure code",
+      "description": "Open the Claim Lines tab and note the NOC procedure code on Line 1. In this scenario the procedure code is 20999 (Not Otherwise Classified), billed at $5000 — a NOC code with no standard pricing logic in the system.",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_summary",
+      "targetFieldId": "f_cl_procedure",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_lines"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Claim Lines tab and reads the Line-1 NOC procedure code (20999) billed at $5000.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Lines'. Line 1 carries NOC procedure code 20999, billed $5000 — a Not Otherwise Classified code with no in-system price.",
+      "highlightFields": ["f_cl_procedure", "f_cl_billed"],
+      "highlightTabId": "tab_claim_lines",
+      "checklistItem": "Note the NOC procedure code"
+    },
+    {
+      "id": "step_004",
+      "sequenceId": 4,
+      "name": "Note the contract code and check special processing conditions",
+      "description": "Open the Member Information tab and note the Detail Contract code in the Group section (5BHY). Then check whether any special processing conditions apply to the claim. In this scenario no special processing conditions apply, so the trainee proceeds. Click 'Confirm — no special processing applies' to record the determination.",
+      "targetTabId": "tab_member_info",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_mi_special",
+      "targetFieldId": "f_mi_special_confirm",
+      "actionType": "confirm_special_processing",
+      "actionPayload": {
+        "type": "action",
+        "action": "confirm_special_processing"
+      },
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the trainee clicks 'Confirm — no special processing applies' on the Member Information tab, dispatching the confirm_special_processing action.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Member Information'. Note the Detail Contract code (5BHY) in the Group section, then check special processing conditions — none apply, so click 'Confirm — no special processing applies'.",
+      "highlightFields": [
+        "f_mi_g_detail_contract",
+        "f_mi_special_note",
+        "f_mi_special_confirm"
+      ],
+      "highlightTabId": "tab_member_info",
+      "checklistItem": "Note the contract code and check special processing conditions"
+    },
+    {
+      "id": "step_005",
+      "sequenceId": 5,
+      "name": "Verify no authorization and no PSCCR response",
+      "description": "Navigate to the Claim Data tab ,then Review sub-tab . Under Utilization management, read the empty UM Detail Service table — no authorization approves the NOC code. Then review the Medical Review section: PSCCR completes reviews only for NOC codes billed above $250; here the rationale is $100 < $250 and no PSCCR response is on file, so PSCCR does not price this code. Click 'Confirm — no authorization and no PSCCR response' to record the determination and proceed to request a NOC Review.",
+      "targetTabId": "tab_claim_data",
+      "targetSubTabId": "subtab_claim_data_review",
+      "targetSectionId": "sec_cd_medreview",
+      "targetFieldId": "f_cdr_medreview_confirm",
+      "actionType": "confirm_review",
+      "actionPayload": {
+        "type": "action",
+        "action": "confirm_review"
+      },
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the trainee opens the Claim Data → Review sub-tab and clicks 'Confirm — no authorization and no PSCCR response', dispatching the confirm_review action.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Data' → 'Review'. The UM Detail Service table is empty (no authorization). The Medical Review section shows $100 < $250 and no PSCCR response. Click 'Confirm — no authorization and no PSCCR response'.",
+      "highlightFields": [
+        "f_cdr_um_heading",
+        "f_cdr_medreview_note",
+        "f_cdr_medreview_confirm"
+      ],
+      "highlightTabId": "tab_claim_data",
+      "highlightSubTabId": "subtab_claim_data_review",
+      "checklistItem": "Verify no authorization and no PSCCR response"
+    },
+    {
+      "id": "step_006",
+      "sequenceId": 6,
+      "name": "Verify no comparable code has been provided yet",
+      "description": "Navigate to the Notes tab,then open Claim Notes sub-tab and confirm that no comparable code has been provided yet — the NOC team has not returned a comparable code for procedure 20999, so there is nothing to overlay. Proceed to raise the NOC Review request.",
+      "targetTabId": "tab_notes",
+      "targetSubTabId": "subtab_notes_claim_notes",
+      "targetSectionId": "sec_n_claim_notes",
+      "targetFieldId": "f_n_no_comparable",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_notes",
+        "subTabId": "subtab_notes_claim_notes"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Notes → Claim Notes sub-tab and reads the no-comparable-code alert.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Notes' → 'Claim Notes'. No comparable code has been provided yet — there is nothing to overlay, so a NOC Review must be requested.",
+      "highlightFields": ["f_n_no_comparable"],
+      "highlightTabId": "tab_notes",
+      "highlightSubTabId": "subtab_notes_claim_notes",
+      "checklistItem": "Verify no comparable code has been provided yet"
+    },
+    {
+      "id": "step_007",
+      "sequenceId": 7,
+      "name": "Confirm medical records or English description are available",
+      "description": "Open the Attachments sub-tab of the Attachment tab and confirm that medical records / an English description are available on the claim. In this scenario the medical-records document number 25035878888 (Type G) is present, so the trainee proceeds to raise the NOC Review request.",
+      "targetTabId": "tab_attachment",
+      "targetSubTabId": "subtab_attachment_attachments",
+      "targetSectionId": "sec_att_pwk",
+      "targetFieldId": "f_att_doc_num",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_attachment",
+        "subTabId": "subtab_attachment_attachments"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Attachment → Attachments sub-tab and confirms the medical-records document number (25035878888, Type G) is present.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Attachment' → 'Attachments'. The medical-records document number 25035878888 (Type G) is present, so proceed to raise the NOC Review request.",
+      "highlightFields": ["f_att_type", "f_att_doc_num"],
+      "highlightTabId": "tab_attachment",
+      "highlightSubTabId": "subtab_attachment_attachments",
+      "checklistItem": "Confirm medical records or English description are available"
+    },
+    {
+      "id": "step_008",
+      "sequenceId": 8,
+      "name": "Submit the NOC review request",
+      "description": "Raise a NOC Review request for pricing. Open the Action menu (top-right) and select Request NOC Review under the Request claim review group. The Request claim review dialog opens with the line / HCPC reference (Line 1 / 20999) and the MLH / medical-record reference (25035878888); enter your comments and click Submit to send the NOC Review request. Submitting reveals the NOC team's response on the Notes tab.",
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "submit_noc_review",
+      "actionPayload": {
+        "type": "action",
+        "action": "submit_noc_review"
+      },
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the trainee opens the Action menu → Request claim review → Request NOC Review dialog and clicks Submit, dispatching the submit_noc_review action (and revealing the NOC team's comparable code on Notes).",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open the Action menu (top-right), select Request NOC Review under Request claim review, review the line/HCPC and medical-record references, enter comments, then click Submit.",
+      "highlightFields": [],
+      "completesActionId": "submit_noc_review",
+      "checklistItem": "Submit the NOC review request"
+    },
+    {
+      "id": "step_009",
+      "sequenceId": 9,
+      "name": "Receive the comparable code from the NOC team",
+      "description": "After submitting the NOC Review request, Navigate to the Notes tab , then open Claim Notes sub-tab  and read the NOC team's response — 'Consider Response received from NOC' — which provides the comparable code 42699 to use for pricing.",
+      "targetTabId": "tab_notes",
+      "targetSubTabId": "subtab_notes_claim_notes",
+      "targetSectionId": "sec_n_claim_notes",
+      "targetFieldId": "f_n_noc_response",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_notes",
+        "subTabId": "subtab_notes_claim_notes"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Notes → Claim Notes sub-tab and reads the NOC team's response with the comparable code 42699.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Notes' → 'Claim Notes'. The NOC team responded — 'Consider Response received from NOC' — with comparable code 42699 to use for pricing.",
+      "highlightFields": ["f_n_noc_response"],
+      "highlightTabId": "tab_notes",
+      "highlightSubTabId": "subtab_notes_claim_notes",
+      "checklistItem": "Receive the comparable code from the NOC team"
+    },
+    {
+      "id": "step_010",
+      "sequenceId": 10,
+      "name": "Overlay the comparable code and Get Pricing",
+      "description": "Navigate to the Search tab,then open Pricing sub-tab . Overlay the NOC procedure 20999 with the comparable code 42699 returned by the NOC team, then click Get Pricing to obtain the pricing for the claim line. In this scenario Get Pricing returns Billed $5000, Allowed $350, and Write-off $4650.",
+      "targetTabId": "tab_search",
+      "targetSubTabId": "subtab_search_pricing",
+      "targetSectionId": "sec_sc_pr_overlay",
+      "targetFieldId": "f_sc_p_getpricing",
+      "actionType": "get_pricing",
+      "actionPayload": {
+        "type": "action",
+        "action": "get_pricing"
+      },
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the trainee opens the Search → Pricing sub-tab and clicks Get Pricing, dispatching the get_pricing action (revealing Billed $5000 / Allowed $350 / Write-off $4650).",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Search' → 'Pricing'. Overlay 20999 with the comparable code 42699, then click 'Get Pricing' — it returns Billed $5000, Allowed $350, Write-off $4650.",
+      "highlightFields": [
+        "f_sc_p_overlay_orig",
+        "f_sc_p_overlay_comp",
+        "f_sc_p_getpricing"
+      ],
+      "highlightTabId": "tab_search",
+      "highlightSubTabId": "subtab_search_pricing",
+      "checklistItem": "Overlay the comparable code and Get Pricing"
+    },
+    {
+      "id": "step_011",
+      "sequenceId": 11,
+      "name": "Update the write-off ($4650)",
+      "description": "Return to the Claim Lines tab. On Line 1, enter the write-off in the Write-off input box. The write-off is the Bill charge minus the Allowed amount ($5000 − $350 = $4650). Type 4650 into the Write-off box.",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_pricing_entry",
+      "targetFieldId": "f_cl_writeoff",
+      "actionType": "field_edit",
+      "actionPayload": {
+        "fieldId": "f_cl_writeoff"
+      },
+      "completionTrigger": "field_value_set",
+      "completionTriggerNote": "Completes when the trainee types '4650' into the Line-1 Write-off input box on the Claim Lines tab.",
+      "expectedValue": "4650",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Lines'. In the Write-off box on Line 1, type: 4650 ($5000 billed − $350 allowed).",
+      "highlightFields": ["f_cl_writeoff"],
+      "highlightTabId": "tab_claim_lines",
+      "checklistItem": "Update the write-off ($4650)"
+    },
+    {
+      "id": "step_012",
+      "sequenceId": 12,
+      "name": "Update the EOB/TY (PX_00066)",
+      "description": "On Line 1 of the Claim Lines tab, enter the EOB/TY code in the EOB/TY input box. Type PX_00066 into the EOB/TY box (leading zeros preserved).",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_pricing_entry",
+      "targetFieldId": "f_cl_eobty",
+      "actionType": "field_edit",
+      "actionPayload": {
+        "fieldId": "f_cl_eobty"
+      },
+      "completionTrigger": "field_value_set",
+      "completionTriggerNote": "Completes when the trainee types 'PX_00066' into the Line-1 EOB/TY input box on the Claim Lines tab.",
+      "expectedValue": "PX_00066",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Lines'. In the EOB/TY box on Line 1, type: PX_00066 (keep the leading zeros).",
+      "highlightFields": ["f_cl_eobty"],
+      "highlightTabId": "tab_claim_lines",
+      "checklistItem": "Update the EOB/TY (PX_00066)"
+    },
+    {
+      "id": "step_013",
+      "sequenceId": 13,
+      "name": "Submit Pay decision",
+      "description": "Navigate to the Decision section in the header, select 'Pay' from the dropdown menu and click Submit. The NOC code has been priced via the comparable-code overlay and the write-off written onto the line, so the claim is paid.",
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "submit_decision",
+      "actionPayload": {
+        "type": "submit_decision",
+        "expectedDecision": "pay"
+      },
+      "completionTrigger": "decision_submitted",
+      "completionTriggerNote": "Completes when the trainee confirms the Pay decision in the submit dialog.",
+      "expectedValue": "pay",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Pick 'Pay' from the Decision dropdown in the claim header, then click Submit and confirm in the dialog.",
+      "highlightFields": [],
+      "checklistItem": "Submit Pay decision"
+    }
+  ],
+  "scoreBreakdown": {
+    "navigatorStepsMaxPoints": 130,
+    "decisionMaxPoints": 20,
+    "reasonCodeMaxPoints": 0,
+    "totalMaxPoints": 150,
+    "passMark": 70,
+    "weightedPassScore": 105
+  },
+  "stepSummaryForResults": [
+    {
+      "sequenceId": 1,
+      "name": "State (NV), Tax ID, and provider name noted",
+      "points": 10
+    },
+    {
+      "sequenceId": 2,
+      "name": "PX_MN01 soft edit identified; event hierarchy checked",
+      "points": 10
+    },
+    {
+      "sequenceId": 3,
+      "name": "NOC procedure code noted (20999)",
+      "points": 10
+    },
+    {
+      "sequenceId": 4,
+      "name": "Contract code (5BHY) noted; no special processing confirmed",
+      "points": 10
+    },
+    {
+      "sequenceId": 5,
+      "name": "No authorization and no PSCCR response confirmed",
+      "points": 10
+    },
+    {
+      "sequenceId": 6,
+      "name": "No comparable code provided yet confirmed",
+      "points": 10
+    },
+    {
+      "sequenceId": 7,
+      "name": "Medical records confirmed available (25035878888)",
+      "points": 10
+    },
+    {
+      "sequenceId": 8,
+      "name": "NOC review request submitted",
+      "points": 10
+    },
+    {
+      "sequenceId": 9,
+      "name": "Comparable code received from NOC team (42699)",
+      "points": 10
+    },
+    {
+      "sequenceId": 10,
+      "name": "Comparable code overlaid; pricing obtained ($350 / $4650)",
+      "points": 10
+    },
+    {
+      "sequenceId": 11,
+      "name": "Write-off entered (4650)",
+      "points": 10
+    },
+    {
+      "sequenceId": 12,
+      "name": "EOB/TY entered (PX_00066)",
+      "points": 10
+    },
+    {
+      "sequenceId": 13,
+      "name": "Pay decision submitted",
+      "points": 10
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "$schema": "training-platform/v1/flow-result",
+  "$version": "1.0.0",
+  "id": "result_mtf_2_exceeded_tfl",
+  "rubric": {
+    "expectedDecision": "deny",
+    "expectedReasonCode": "PX_R24040",
+    "requiredStepIds": [
+      "step_003",
+      "step_004",
+      "step_006",
+      "step_009",
+      "step_011",
+      "step_012",
+      "step_013",
+      "step_014"
+    ],
+    "weights": {
+      "navigator": 140,
+      "decision": 20,
+      "reasonCode": 10
+    },
+    "deductions": {
+      "perMissedRequiredStep": 0,
+      "wrongDecision": 20,
+      "wrongReasonCode": 10
+    }
+  },
+  "resultConfig": {
+    "passLabel": "Passed!",
+    "failLabel": "You did not meet the pass mark.",
+    "passDescription": "Great work — you confirmed the benefit type (SPIDER) and the 365-day member TFL, walked the Non-ITS Home / corrected-claim / Sutter / participation gates, confirmed all three claim lines fell outside the TFL, ruled out a prior deleted claim within the TFL and Acceptable Proof, and correctly denied the claim with reject code PX_R24040.",
+    "failDescription": "Pass mark is {passMark}%. Review the steps below to see where you can improve.",
+    "scoreCircle": {
+      "radius": 40,
+      "strokeWidth": 8,
+      "passColor": "#3B6D11",
+      "failColor": "#A32D2D",
+      "trackColor": "#E5E7EB"
+    },
+    "statBoxes": [
+      {
+        "id": "navigator_score",
+        "label": "Navigator",
+        "dataKey": "navigatorScore",
+        "max": 140
+      },
+      {
+        "id": "decision_score",
+        "label": "Decision",
+        "dataKey": "decisionScore",
+        "max": 20
+      },
+      {
+        "id": "reason_score",
+        "label": "Reason Code",
+        "dataKey": "reasonCodeScore",
+        "max": 10
+      },
+      {
+        "id": "time_taken",
+        "label": "Time Taken",
+        "dataKey": "timeTakenSeconds",
+        "format": "duration"
+      }
+    ],
+    "retakeButton": true,
+    "backToClaimsButton": true
+  }
+}

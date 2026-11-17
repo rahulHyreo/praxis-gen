@@ -1,0 +1,349 @@
+{
+  "$schema": "training-platform/v1/navigator",
+  "$version": "2.0.0",
+  "id": "nav_um1_1_auth_less_match",
+  "flowId": "flow_authorization_um1_1",
+  "name": "Authorization UM1.1 -Authorization Less Than 100% Match Navigator",
+  "description": "Walk the Authorization (UM) SOP for the PX_UM1 event -an authorization is on file but is less than a 100% match with the billed service. Identify the PX_UM1 event, confirm the UM Rule ID is not one of the four flagged IDs, confirm the provider is not a Hospital Based Physician, run the eight Claim-Lines exclusion checks, confirm the claim type, confirm the authorization is less than 100% match, note the member identity and service-line values, review the on-file Authorization record (dates in range, Status Approved), tag the authorization number onto the claim line, then pay the claim.",
+  "totalSteps": 11,
+  "passMark": 70,
+  "correctDecision": "pay",
+  "correctDecisionLabel": "Pay",
+  "totalMaxPoints": 130,
+  "totalNavigatorPoints": 110,
+  "steps": [
+    {
+      "id": "step_001",
+      "sequenceId": 1,
+      "name": "Review all events and identify the PX_UM1 event",
+      "description": "Review all events in the Event Resolution tab, including informational events, before paying, denying, or routing the claim when multiple events are set. The PX_UM1 event will be displayed in the events list -this Authorization event occurs when an authorization is on file in the application but is less than a 100% match with the claim.",
+      "targetTabId": "tab_event_resolution",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_er_all_edits",
+      "targetFieldId": "f_er_e_um1",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_event_resolution"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Event Resolution tab and reviews the events list, where the PX_UM1 event is shown.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Event Resolution' and review the events list. The active PX_UM1 event is shown -an authorization is on file but is less than a 100% match with the claim.",
+      "highlightFields": ["f_er_edit_code", "f_er_e_um1"],
+      "highlightTabId": "tab_event_resolution",
+      "checklistItem": "Review all events and identify the PX_UM1 event"
+    },
+    {
+      "id": "step_002",
+      "sequenceId": 2,
+      "name": "Check the UM Rule ID",
+      "description": "Determine whether the UM Rule ID is one of the following: MMS001, PSYCH001, ASCRULE01, or NYSTATE02. Navigate to the Claim Data tab, then the Review sub-tab, and expand the Utilization Management section. Review the UM Detail Service table, which contains the Line #, Procedure, Revenue Code, Date, Rule ID, and Case Number columns, and identify the value displayed in the Rule ID column. If the Rule ID matches any of the specified values (MMS001, PSYCH001, ASCRULE01, or NYSTATE02), follow the alternate SOP steps. If none of these Rule IDs is present, proceed to the next step. In this scenario, the Rule ID is INPAT001, which does not match any of the specified values; therefore, the trainee may proceed to the next step.",
+      "targetTabId": "tab_claim_data",
+      "targetSubTabId": "subtab_claim_data_review_um1",
+      "targetSectionId": "sec_cd_r_um",
+      "targetFieldId": "f_cdr_um_rule",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_data",
+        "subTabId": "subtab_claim_data_review_um1"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Review sub-tab inside Claim Data and reads the UM Detail Service table's Rule ID.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Data' → 'Review' and expand Utilization management. The UM Detail Service Rule ID is INPAT001 -not one of MMS001 / PSYCH001 / ASCRULE01 / NYSTATE02 -so proceed.",
+      "highlightFields": ["f_cdr_um_rule"],
+      "highlightTabId": "tab_claim_data",
+      "highlightSubTabId": "subtab_claim_data_review_um1",
+      "checklistItem": "Check the UM Rule ID"
+    },
+    {
+      "id": "step_003",
+      "sequenceId": 3,
+      "name": "Check for a Hospital Based Physician",
+      "description": "Verify whether the provider billed on the claim qualifies as a Hospital Based Physician by navigating to the Provider Information tab, then the Rendering section, and reviewing the Specialty Description field. A provider is considered a Hospital Based Physician if the Specialty Description is Anesthesiology, Radiology, Emergency Room Physician, Pathology, Assistant Surgeon, Neonatology, Intensivist, or Hospitalist. If the provider is identified as a Hospital Based Physician, follow the alternate SOP steps. If the provider does not fall within one of these specialties, proceed to the next step. In this scenario, the Specialty Description is Cardiology; therefore, the provider is not considered a Hospital Based Physician, and the trainee may proceed to the next step.",
+      "targetTabId": "tab_provider_info",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_pi_rendering",
+      "targetFieldId": "f_pi_r_specialty_desc",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_provider_info"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Provider Information tab to read the Rendering Speciality Description.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Provider Info' and read the Speciality description under Rendering -it is Cardiology, not a Hospital Based Physician specialty, so proceed.",
+      "highlightFields": ["f_pi_r_specialty_desc"],
+      "highlightTabId": "tab_provider_info",
+      "checklistItem": "Check for a Hospital Based Physician"
+    },
+    {
+      "id": "step_004",
+      "sequenceId": 4,
+      "name": "Run the Claim Lines exclusion checks",
+      "description": "On the Claim Lines tab, check eight exclusion conditions against the claim line. For this claim, the line shows Procedure 92928, Modifier \"—\", and POS 21.\n\nFor each check, if the condition matches, follow the alternate SOP steps. Otherwise, proceed to the next check.\nConsulting Physician -Procedure code is 99231–99233 or 99251–99255. (92928 → no match)\n\nModifier 26 -Modifiers field equals 26. (\"—\" → no match)\n\nImplants -Procedure code starts with C or L. (92928 → no match)\n\nPAP / CPAP / BIPAP machines or supplies -Procedure code starts with E. (92928 → no match)\n\nChiropractic with PT, or PT alone -Procedure code is A2000–A2999. (92928 → no match)\n\nEmergency Room or Urgent Care -POS is 23 (ER) or 20 (Urgent Care). (21 → no match)\n\nAmbulance services -POS is 41 or 42. (21 → no match)\n\nDrug administration -Procedure code is J0000–J8999. (92928 → no match)\nIn this scenario, none of the eight conditions match, so the trainee proceeds.",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_summary",
+      "targetFieldId": "f_cl_procedure",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_lines"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Claim Lines tab to run the eight exclusion checks against the Procedure, Modifiers, and POS fields.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Lines'. Procedure 92928 (not 99231–99255 / C / L / E / A2xxx / J-code), Modifier '-' (not 26), and POS 21 (not 23/20/41/42) -none of the eight exclusions match, so proceed.",
+      "highlightFields": ["f_cl_procedure", "f_cl_modifiers", "f_cl_pos"],
+      "highlightTabId": "tab_claim_lines",
+      "checklistItem": "Run the Claim Lines exclusion checks"
+    },
+    {
+      "id": "step_005",
+      "sequenceId": 5,
+      "name": "Check the claim type against the SOP table",
+      "description": "The UM Events Authorization SOP contains a table listing specific claim scenarios that require their own handling. To check whether this claim falls under any of those scenarios, look at the Claim type field in the Details sub-tab of the Claim Data tab. If the value matches a scenario in the SOP table, follow the steps listed in that table for that scenario. Otherwise, proceed to the next step.\nIn this scenario, the Claim type is Professional, so proceed.",
+      "targetTabId": "tab_claim_data",
+      "targetSubTabId": "subtab_claim_data_details",
+      "targetSectionId": "sec_cd_d_source",
+      "targetFieldId": "f_cdd_type",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_data",
+        "subTabId": "subtab_claim_data_details"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Details sub-tab inside Claim Data to read the claim type.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Data' → 'Details' and read the claim type -it is Professional, which is not one of the SOP-table scenarios, so proceed.",
+      "highlightFields": ["f_cdd_type"],
+      "highlightTabId": "tab_claim_data",
+      "highlightSubTabId": "subtab_claim_data_details",
+      "checklistItem": "Check the claim type against the SOP table"
+    },
+    {
+      "id": "step_006",
+      "sequenceId": 6,
+      "name": "Verify the authorization match",
+      "description": "Verify whether a matching authorization exists for the claim line(s) requiring authorization by navigating to the Claim Data tab, then the Review sub-tab, and expanding the Utilization Management section. Review the UM Detail Service table and examine the Case Number column for the applicable claim line(s). A valid Case Number indicates that a matching authorization exists. A value of NO MATCH indicates that an authorization exists but does not correspond to the billed service. A blank Case Number field indicates that no authorization exists. A value of less than 100% match indicates that an authorization exists but does not fully match the services billed on the claim. In this scenario, the Case Number field displays less than 100% match, indicating that an authorization exists but is not a complete match to the billed services; therefore, the trainee should proceed to compare the authorization details against the claim.",
+      "targetTabId": "tab_claim_data",
+      "targetSubTabId": "subtab_claim_data_review_um1",
+      "targetSectionId": "sec_cd_r_um",
+      "targetFieldId": "f_cdr_um_case",
+      "actionType": "subtab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_data",
+        "subTabId": "subtab_claim_data_review_um1"
+      },
+      "completionTrigger": "subtab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Review sub-tab inside Claim Data and reads the UM Detail Service table's Case Number.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Data' → 'Review' and read the Case Number in the UM Detail Service table -it shows 'less than 100% match' (an authorization exists but does not fully match the billed services), so compare the authorization against the claim details.",
+      "highlightFields": ["f_cdr_um_case", "f_cdd_type"],
+      "highlightTabId": "tab_claim_data",
+      "highlightSubTabId": "subtab_claim_data_review_um1",
+      "checklistItem": "Verify the authorization match"
+    },
+    {
+      "id": "step_007",
+      "sequenceId": 7,
+      "name": "Note the member identity values",
+      "description": "A less-than-100%-match means some information on the authorization does not match the claim, so the trainee must compare patient name, member code, place of service, dates of service, procedure codes, and units between the authorization and the claim. Open the Member Information tab and note the First Name, Middle Name, Last Name, and Member code.",
+      "targetTabId": "tab_member_info",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_mi_patient",
+      "targetFieldId": "f_mi_p_first",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_member_info"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Member Information tab to note the member identity values.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Member Info' and note First/Middle/Last name (John / Doe / Andrew) and Member code 20.",
+      "highlightFields": [
+        "f_mi_p_first",
+        "f_mi_p_middle",
+        "f_mi_p_last",
+        "f_mi_p_member_code"
+      ],
+      "highlightTabId": "tab_member_info",
+      "checklistItem": "Note the member identity values"
+    },
+    {
+      "id": "step_008",
+      "sequenceId": 8,
+      "name": "Note the service line values",
+      "description": "Open the Claim Lines tab and note the Units, POS, Procedure, From date, and To date for the billed service.",
+      "targetTabId": "tab_claim_lines",
+      "targetSubTabId": null,
+      "targetSectionId": "sec_cl_summary",
+      "targetFieldId": "f_cl_units",
+      "actionType": "tab_open",
+      "actionPayload": {
+        "tabId": "tab_claim_lines"
+      },
+      "completionTrigger": "tab_visited",
+      "completionTriggerNote": "Completes when the trainee opens the Claim Lines tab again to note the Units, POS, and service dates.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Open 'Claim Lines' and note Units 4, POS 21, From 05/31/2025, To 06/10/2025 for the billed service line.",
+      "highlightFields": ["f_cl_units", "f_cl_pos", "f_cl_from", "f_cl_to"],
+      "highlightTabId": "tab_claim_lines",
+      "checklistItem": "Note the service line values"
+    },
+    {
+      "id": "step_009",
+      "sequenceId": 9,
+      "name": "Cross-check claim details against the authorization",
+      "description": "Cross-check the values documented from the Member Information tab and the Claim Lines tab against the values displayed in the Claim Data tab, then the Review sub-tab, and the Authorization section. Expand the Authorization section to review the Authorization #, Date Range, Procedure, Provider, Status, Svc Type, and Score fields. Verify that the From Date and To Date from the Claim Lines tab fall within the authorization Date Range. Select the chevron (>) icon, or click the authorization row, to expand the authorization details and review the Member Name, Member Code, Procedure, Requested Units, Approved Units, and POS fields. Compare these values to the corresponding claim details to confirm that the authorization applies to the services billed. Finally, review the Status field to determine the authorization decision. If the Status is Approved, indicating that authorization has been approved for all services and dates of service billed on the claim, proceed to the next step. If the Status is not Approved, follow the alternate SOP steps. In this scenario, the Status is Approved; therefore, the trainee may proceed to the next step.",
+      "targetTabId": "tab_claim_data",
+      "targetSubTabId": "subtab_claim_data_review_um1",
+      "targetSectionId": "sec_cd_r_auth",
+      "targetFieldId": "f_cdr_auth_status",
+      "actionType": "expand_authorization",
+      "actionPayload": {
+        "type": "expand_authorization"
+      },
+      "completesActionId": "expand_authorization",
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the trainee expands the Authorization row (which dispatches the expand_authorization action) to review the authorization record.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "On 'Claim Data' → 'Review', click the chevron on the Authorization row to expand it. Confirm the From/To dates fall within 04/28/2025–06/26/2025 and the Status is Approved, then proceed.",
+      "highlightFields": ["f_cdr_auth_status", "f_cdr_auth_range"],
+      "highlightTabId": "tab_claim_data",
+      "highlightSubTabId": "subtab_claim_data_review_um1",
+      "checklistItem": "Cross-check claim details against the authorization"
+    },
+    {
+      "id": "step_010",
+      "sequenceId": 10,
+      "name": "Tag the authorization to the claim line",
+      "description": "Tag the on-file authorization onto the claim line. In the Authorization section, click the radio button (circle button) on the authorization row -a Tag button will appear. Click the Tag button to move the value in the Authorization # field into the Case Number field of the UM Detail Service sub-section under the Utilization management section, replacing the existing 'less than 100% match' value. With the authorization tagged, the trainee can now proceed to pay the claim.",
+      "targetTabId": "tab_claim_data",
+      "targetSubTabId": "subtab_claim_data_review_um1",
+      "targetSectionId": "sec_cd_r_auth",
+      "targetFieldId": "f_cdr_auth_num",
+      "actionType": "tag_authorization",
+      "actionPayload": {
+        "type": "tag_authorization"
+      },
+      "completesActionId": "tag_authorization",
+      "completionTrigger": "action_triggered",
+      "completionTriggerNote": "Completes when the trainee selects the Authorization row's radio and clicks Tag (which dispatches the tag_authorization action), moving UM98464939 into the UM Detail Service Case Number cell.",
+      "expectedValue": null,
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "In the Authorization section, click the radio on the authorization row, then click the Tag button. The UM Detail Service Case Number cell changes from 'less than 100% match' to UM98464939.",
+      "highlightFields": ["f_cdr_auth_num", "f_cdr_um_case"],
+      "highlightTabId": "tab_claim_data",
+      "highlightSubTabId": "subtab_claim_data_review_um1",
+      "checklistItem": "Tag the authorization to the claim line"
+    },
+    {
+      "id": "step_011",
+      "sequenceId": 11,
+      "name": "Submit Pay decision",
+      "description": "Navigate to the Decision section in the header, select 'Pay' from the dropdown menu and click Submit.",
+      "targetTabId": null,
+      "targetSubTabId": null,
+      "targetSectionId": null,
+      "targetFieldId": null,
+      "actionType": "submit_decision",
+      "actionPayload": {
+        "type": "submit_decision",
+        "expectedDecision": "pay"
+      },
+      "completionTrigger": "decision_submitted",
+      "completionTriggerNote": "Completes when the trainee confirms the Pay decision in the submit dialog.",
+      "expectedValue": "pay",
+      "scorePoints": 10,
+      "timeLimitSeconds": null,
+      "hint": "Pick 'Pay' from the Decision dropdown in the claim header, then click Submit and confirm in the dialog.",
+      "highlightFields": [],
+      "checklistItem": "Submit Pay decision"
+    }
+  ],
+  "scoreBreakdown": {
+    "navigatorStepsMaxPoints": 110,
+    "decisionMaxPoints": 20,
+    "reasonCodeMaxPoints": 0,
+    "totalMaxPoints": 130,
+    "passMark": 70,
+    "weightedPassScore": 91
+  },
+  "stepSummaryForResults": [
+    {
+      "sequenceId": 1,
+      "name": "PX_UM1 event identified",
+      "points": 10
+    },
+    {
+      "sequenceId": 2,
+      "name": "UM Rule ID not one of the flagged IDs (INPAT001)",
+      "points": 10
+    },
+    {
+      "sequenceId": 3,
+      "name": "Provider is not a Hospital Based Physician (Cardiology)",
+      "points": 10
+    },
+    {
+      "sequenceId": 4,
+      "name": "Claim Lines exclusion checks all clear",
+      "points": 10
+    },
+    {
+      "sequenceId": 5,
+      "name": "Claim type confirmed (Professional)",
+      "points": 10
+    },
+    {
+      "sequenceId": 6,
+      "name": "Authorization is less than 100% match",
+      "points": 10
+    },
+    {
+      "sequenceId": 7,
+      "name": "Member identity values noted",
+      "points": 10
+    },
+    {
+      "sequenceId": 8,
+      "name": "Service line values noted",
+      "points": 10
+    },
+    {
+      "sequenceId": 9,
+      "name": "Authorization record reviewed (dates in range, Approved)",
+      "points": 10
+    },
+    {
+      "sequenceId": 10,
+      "name": "Authorization tagged to the claim line",
+      "points": 10
+    },
+    {
+      "sequenceId": 11,
+      "name": "Pay decision submitted",
+      "points": 10
+    }
+  ]
+}

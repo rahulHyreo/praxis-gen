@@ -1,0 +1,97 @@
+{
+  "$schema": "training-platform/v1/flow-state",
+  "$version": "1.0.0",
+  "id": "state_6x_1_contract_exclusion_limit_dollar_cob",
+  "initial": {
+    "defaultActiveTabId": "tab_event_resolution",
+    "defaultActiveSubTabIds": {
+      "tab_search": "subtab_search_claims",
+      "tab_claim_data": "subtab_claim_data_details",
+      "tab_attachment": "subtab_attachment_attachments"
+    },
+    "defaultCollapsedSections": {},
+    "defaultDecision": "",
+    "decisionRequired": false
+  },
+  "modeConfig": {
+    "training": {
+      "id": "training",
+      "label": "Training mode",
+      "badgeIcon": "graduation-cap",
+      "showNavigator": true,
+      "timerType": "count_up",
+      "timerPosition": "navigator_header",
+      "timeLockEnabled": false,
+      "showHints": true,
+      "showMarkCompleteButton": true,
+      "allowTabClose": true
+    },
+    "practice": {
+      "id": "practice",
+      "label": "Practice mode",
+      "badgeIcon": "dumbbell",
+      "showNavigator": false,
+      "timerType": "count_up",
+      "timerPosition": "topbar",
+      "timeLockEnabled": false,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": true
+    },
+    "assessment": {
+      "id": "assessment",
+      "label": "Assessment Mode",
+      "badgeIcon": "graduation-cap",
+      "showNavigator": false,
+      "timerType": "count_down",
+      "timerPosition": "topbar_right",
+      "timeLimitSeconds": 600,
+      "timeLockEnabled": true,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": false,
+      "beforeUnloadWarning": "Assessment in progress. Leaving will lose your progress."
+    }
+  },
+  "actions": {
+    "claims_search": {
+      "label": "Search claim history",
+      "latencyMs": 300,
+      "writes": {
+        "search.claimsSearched": true
+      }
+    },
+    "claims_search_clear": {
+      "label": "Clear the claim search",
+      "latencyMs": 0,
+      "writes": {}
+    },
+    "open_reason_codes": {
+      "label": "Open the EOB and EOMB Reason Codes reference",
+      "latencyMs": 0,
+      "writes": {},
+      "completesStepId": "step_003"
+    },
+    "open_cob_edit": {
+      "label": "Edit the COB table",
+      "latencyMs": 0,
+      "writes": {
+        "cob.editMode": true
+      },
+      "completesStepId": "step_004"
+    },
+    "validate": {
+      "label": "Validate",
+      "latencyMs": 400,
+      "writes": {
+        "eventResolution.validationMessage": "PX_6X RESOLVED — COB COPAY 15.00 MATCHES THE PR-3 REASON CODE"
+      },
+      "completesStepId": "step_006"
+    }
+  },
+  "persistence": {
+    "persistKey": null,
+    "autosave": false,
+    "resetOnSubmit": false
+  }
+}

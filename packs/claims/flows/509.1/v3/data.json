@@ -1,0 +1,1191 @@
+{
+  "id": "claim_data_509_1_dcn_509101",
+  "dcn": "DCN-9140300",
+  "claim": {
+    "dcn": "DCN-9140300",
+    "patient": "BRENDA A ESPOSITO",
+    "serviceFrom": "05/08/2025",
+    "billedAmount": "$4,245.16"
+  },
+  "notes": {
+    "wgs": "—",
+    "research": "—",
+    "mainframe": "244383",
+    "taskManagement": {
+      "csPg": "Host",
+      "regCa": "—",
+      "skills": "CT-Professional",
+      "homeAge": "69",
+      "urgency": "67",
+      "routedTo": "—",
+      "totalAge": "40",
+      "ageAdjusted": "63",
+      "benNonspider": "—",
+      "baselineUrgency": "62",
+      "resUnrestricted": "—",
+      "urgencyModifiers": "Blank"
+    }
+  },
+  "flowId": "flow_eligibility_509_1",
+  "header": {
+    "dcn": "DCN-9140300",
+    "paid": "$589.00",
+    "edits": "PX_509",
+    "billed": "$4,245.16",
+    "allowed": "$0.00",
+    "actionCode": "—",
+    "writeOff": "$589.00",
+    "deductible": "$37.45",
+    "receipt": null,
+    "serviceFrom": "10/23/2025",
+    "serviceTo": "11/05/2025",
+    "coinsurance": "$312.51",
+    "copay": "$26.61"
+  },
+  "search": {
+    "auth": {
+      "search": {
+        "status": "—",
+        "serviceEndDate": "10/23/2025",
+        "serviceStartDate": "10/23/2025",
+        "subscriberOrHcid": "101666665"
+      },
+      "members": {
+        "dob": "4/19/1961",
+        "mcid": "—",
+        "name": "NANCY",
+        "memberId": "339670711",
+        "ageAdjusted": "63",
+        "subscriberOrHcid": "101666665"
+      }
+    },
+    "claims": {
+      "code": "—",
+      "sccf": "—",
+      "status": "All",
+      "claimId": "7694982976",
+      "billType": "131",
+      "procedure": "80053",
+      "serviceTo": "10/23/2025",
+      "providerNpi": "9703905715",
+      "serviceFrom": "10/23/2025",
+      "totalCharge": "$1,517.42",
+      "providerTaxId": "100148140",
+      "dcnKernalClaim": "1803457621458",
+      "subscriberOrHcid": "11666665",
+      "renderingLicenseId": "4733616459"
+    },
+    "member": {
+      "group": {
+        "general": {
+          "name": "GEORGIA ELECTRIC ASSOCIATES INC",
+          "status": "O ACTIVE",
+          "graceDays": "90",
+          "groupType": "A ACTIVE",
+          "paidToDate": "2025-10-10",
+          "companyCode": "886C ABCBS",
+          "workLocation": "9040 GA GROUP ADMIN",
+          "claimGraceDays": "90",
+          "rateMethodCode": "1 ASO BUSINESS",
+          "fundingTypeCode": "H ASC",
+          "rmcEffectiveDate": "2025-10-31",
+          "locationStateCode": "CA",
+          "workLocationPhone": "(830) 922-1034",
+          "locationCodeEffectiveDate": "2024-05-18"
+        },
+        "contract": {
+          "networkId": "BLUECDOO",
+          "promptPay": "N",
+          "claimsRoute": "PX_OHSTRC - STERIS CORP",
+          "networkName": "BLUE XXXX BLUE XXXX",
+          "productLine": "Blue Access PPO",
+          "contractCode": "82D3",
+          "promptPayDate": "2025-05-11",
+          "overAgeMailing": "S MAIL TO SUBR",
+          "locationLobCode": "X",
+          "itsHomeEffectiveDate": "2025-04-22",
+          "benefitYearCalendarYear": "CY",
+          "itsHomeParticipatingCode": "E CONTROL CUSTOM",
+          "contractCodeEffectiveDate": "2025-08-01",
+          "benefitYearCalendarYearAsOfDate": "2024-06-08"
+        },
+        "coverage": {
+          "cancelReason": "—",
+          "groupProcessedDate": "2024-09-16",
+          "cancelEffectiveDate": "—",
+          "cancelProcessedDate": "—",
+          "originalEffectiveDate": "2025-12-11",
+          "reinstateEffectiveDate": "—",
+          "reinstateProcessedDate": "—"
+        },
+        "additional": {
+          "mbuCode": "NAO00000",
+          "product": "OPENACCPOS",
+          "claimManager": "CLMS/M PENNER",
+          "servicePhone": "582718617",
+          "sourceSystem": "WGS 2.0",
+          "serviceAddress": "620 ERICA PLAINS JOHNBERG OH 87397-7912",
+          "serviceManager": "SRVC/DARLENE",
+          "claimsServiceLocation": "COOIO/CAACOII"
+        }
+      },
+      "general": {
+        "age": "78",
+        "cob": "—",
+        "foi": "12",
+        "sex": "F",
+        "csdt": "—",
+        "hcid": "82132581",
+        "name": "BRENDA ESPOSITO",
+        "erisa": "N",
+        "phone": "3114814815",
+        "county": "47",
+        "address": "Birch Court  ATLANTA GA 30301",
+        "country": "US",
+        "endDate": "2025-01-01",
+        "caseName": "GEORGIA ELECTRIC ASSOCIATES INC",
+        "memberId": "82132581",
+        "groupType": "A - ACTIVE",
+        "roundoprd": "12",
+        "memberCode": "37",
+        "paidToDate": "—",
+        "dateOfBirth": "10/19/1948",
+        "productType": "HYWC",
+        "businessUnit": "Individual",
+        "relationship": "Spouse",
+        "aptcIndicator": "Y",
+        "effectiveDate": "2024-11-14",
+        "caseGroupSetup": "Y",
+        "conversionCode": "0",
+        "cxlProcessDate": "—",
+        "ncnReferralsInd": "N",
+        "shortTermEndDate": "—",
+        "contractStartDate": "—",
+        "medicareIndicator": "B"
+      },
+      "results": [
+        {
+          "mi": "A",
+          "dob": "10/19/1948",
+          "state": "OH",
+          "gender": "F",
+          "lastName": "ESPOSITO",
+          "memberId": "82132581",
+          "firstName": "BRENDA",
+          "memberCode": "37",
+          "relationship": "SPS - Spouse / 1-male subscriber",
+          "contractGroups": [
+            {
+              "id": "cg_11666665_1",
+              "hcid": "82132581",
+              "prefix": "YZC",
+              "endDate": "2025-01-01",
+              "caseEntity": "C85674",
+              "contractId": "828T",
+              "updateById": "WMXOLEUS",
+              "applyAction": "apply_member_group_keyed",
+              "groupNumber": "5803EH",
+              "productCode": "HYWC",
+              "updatedDate": "2024-11-14",
+              "contractType": "C",
+              "contractState": "OH",
+              "effectiveDate": "2024-11-14",
+              "numberCovered": "01",
+              "cancellationDate": "2025-01-01",
+              "terminationReason": "Terminated — does not cover service dates"
+            },
+            {
+              "id": "cg_11666665_2",
+              "hcid": "82132581",
+              "prefix": "YZC",
+              "endDate": "2025-12-31",
+              "caseEntity": "C85674",
+              "contractId": "828T",
+              "updateById": "WMXOLEUS",
+              "applyAction": "apply_member_group",
+              "groupNumber": "7711IG",
+              "productCode": "HYWC",
+              "updatedDate": "2025-09-01",
+              "contractType": "C",
+              "contractState": "OH",
+              "effectiveDate": "2025-09-01",
+              "numberCovered": "01",
+              "cancellationDate": "—",
+              "terminationReason": "Active — covers service dates"
+            }
+          ]
+        }
+      ],
+      "groupOptions": {
+        "keyed": {
+          "name": "GEORGIA ELECTRIC ASSOCIATES INC",
+          "prefix": "YZC",
+          "status": "Terminated",
+          "groupId": "5803EH",
+          "businessUnit": "Individual",
+          "effectiveDate": "2024-11-14",
+          "terminationDate": "2025-01-01",
+          "coversServiceDates": "No"
+        },
+        "alternate": {
+          "name": "GEORGIA ELECTRIC ASSOCIATES INC",
+          "prefix": "YZC",
+          "status": "Active",
+          "groupId": "7711IG",
+          "businessUnit": "Individual",
+          "effectiveDate": "2025-09-01",
+          "terminationDate": "2025-12-31",
+          "coversServiceDates": "Yes"
+        }
+      },
+      "searchMember": {
+        "mi": "A",
+        "dob": "10/19/1948",
+        "hcid": "82132581",
+        "state": "OH",
+        "gender": "F",
+        "prefix": "YZC",
+        "endDate": "2025-01-01",
+        "lastName": "ESPOSITO",
+        "memberId": "82132581",
+        "firstName": "BRENDA",
+        "caseEntity": "C85674",
+        "contractId": "828T",
+        "memberCode": "37",
+        "groupNumber": "5803EH",
+        "productCode": "HYWC",
+        "businessUnit": "Individual",
+        "relationship": "SPS - Spouse / 1-male subscriber",
+        "contractState": "OH",
+        "effectiveDate": "2024-11-14"
+      },
+      "contractMembers": [
+        {
+          "age": "78",
+          "dob": "10/19/1948",
+          "name": "BRENDA A ESPOSITO",
+          "endDate": "2025-01-01",
+          "memberCode": "10",
+          "relationship": "SUB - Subscriber",
+          "effectiveDate": "2024-11-14"
+        },
+        {
+          "age": "78",
+          "dob": "10/19/1948",
+          "name": "BRENDA",
+          "endDate": "2025-01-01",
+          "memberCode": "37",
+          "relationship": "Spouse",
+          "effectiveDate": "2024-11-14"
+        }
+      ],
+      "providerNetwork": {
+        "phone": "—",
+        "address": "620 ERICA PLAINS JOHNBERG OH 87397-7912",
+        "product": "HMO/POS",
+        "providerGroupName": "Community Health Center"
+      },
+      "additionalAddress": {
+        "address": "620 ERICA PLAINS JOHNBERG OH 87397-7912"
+      }
+    },
+    "codeSet": {
+      "enterCode": "—",
+      "selectCodeType": "—"
+    },
+    "pricing": {
+      "member": {
+        "dob": "4/19/1961",
+        "sex": "F",
+        "ab72": "—",
+        "hixInd": "—",
+        "groupId": "5803EH",
+        "product": "JBNK",
+        "coverage": "MED",
+        "variance": "1",
+        "memberInd": "—",
+        "networkId": "BLUECS",
+        "marketType": "GANA",
+        "groupNumber": "5803EH",
+        "medicareInd": "Y",
+        "patientCode": "—",
+        "memberZipCode": "87397",
+        "groupIdentifier": "5803EH",
+        "alternateZipCode": "—"
+      },
+      "provider": {
+        "wgsp": "P",
+        "gbdId": "—",
+        "taxId": "732719211",
+        "region": "598",
+        "license": "4733616459",
+        "planInd": "WI",
+        "zipCode": "87397-7912",
+        "pcpState": "OH",
+        "specialty": "012",
+        "billingNpi": "7635473142",
+        "finalMixer": "—",
+        "networxInd": "—",
+        "providerInd": "P",
+        "renderingNpi": "9703905715",
+        "billingNumber": "7635473142",
+        "legacySpecialty": "—",
+        "providerProdVar": "WIP02186",
+        "renderingNumber": "9703905715",
+        "providerParticipation": "—"
+      },
+      "claimHeader": {
+        "icd9": "N",
+        "cocInd": "—",
+        "cxtInd": "X",
+        "cgntInd": "—",
+        "product": "HOSP",
+        "variance": "2202",
+        "clusterId": "—",
+        "serviceTo": "10/23/2025",
+        "emergRefInd": "E",
+        "serviceFrom": "10/23/2025",
+        "bundleStatus": "—",
+        "contractNotes": "—",
+        "federalMandate": "—",
+        "placeOfService1": "1",
+        "placeOfService2": "21",
+        "productLineCode": "OA",
+        "mixerOverrideInd": "—",
+        "serviceClassType": "—",
+        "contractHierarchy": "—",
+        "streetMedicineInd": "None",
+        "surpriseBillingInd": "—",
+        "overridePriceProduct": "—"
+      },
+      "lineSummary": {
+        "uo": "1",
+        "allowed": "$760.55",
+        "modifier": "26",
+        "writeoff": "$127.33",
+        "cxPercent": "71",
+        "procedure": "80053",
+        "billedAmount": "$887.88"
+      },
+      "diagnosisCodes": {
+        "a": "Z1231",
+        "b": "—",
+        "c": "—",
+        "d": "—",
+        "e": "—"
+      }
+    },
+    "benefits": {
+      "general": {
+        "plan": "RAND CORP",
+        "cdhpInd": "—",
+        "product": "HYWC",
+        "caseNumber": "A12192",
+        "contractId": "828T",
+        "memberName": "Mark Johnson",
+        "groupNumber": "212037M1AA",
+        "contractCode": "828T",
+        "contractType": "—",
+        "benefitPeriod": "—",
+        "contractState": "OH",
+        "benefitPeriodAlt": "—",
+        "crossAccumulation": "—",
+        "fundingArrangement": "—"
+      },
+      "viewNic": {
+        "network": "HMO",
+        "pricing": "0000 - NON NEG DEFAULT",
+        "coverage": "RX Drugs & Vision coverage"
+      },
+      "accumulators": {
+        "criteria": {
+          "toDate": "10/23/2025",
+          "fromDate": "10/23/2025",
+          "memberId": "339670711",
+          "memberCode": "37",
+          "sourceSystem": "WGS"
+        },
+        "selection": {
+          "cob": "—",
+          "other": "—",
+          "lifetime": "—",
+          "deductible": "—",
+          "benefitYear": "—",
+          "fertilityRx": "—",
+          "outOfPocket": "—",
+          "accumulatorName": "—",
+          "accumulatorEffDate": "—"
+        }
+      },
+      "searchBenefits": {
+        "endDate": "2025-01-01",
+        "contractCode": "828T",
+        "effectiveDate": "2024-11-14",
+        "effectiveEndDate": "—"
+      }
+    },
+    "provider": {
+      "pcpPmg": {
+        "state": "OH",
+        "fromDate": "10/23/2025",
+        "pcpPmgId": "—",
+        "specialty": "012",
+        "throughDate": "10/23/2025",
+        "sourceSystem": "SPS"
+      },
+      "npiTaxId": {
+        "npi": "9703905715",
+        "state": "OH",
+        "zipCode": "87397-7912",
+        "fromDate": "10/23/2025",
+        "orgTaxId": "732719211",
+        "specialty": "012",
+        "alternateId": "—",
+        "billingType": "—",
+        "throughDate": "10/23/2025",
+        "alternateKey": "—",
+        "sourceSystem": "WGS"
+      },
+      "alternateId": {
+        "nonAnthem": "—",
+        "individual": "—",
+        "alternateKeyOrg": "—",
+        "organizationName": "—",
+        "alternateKeyIndiv": "—",
+        "alternateKeyNonAnthem": "—"
+      },
+      "organization": {
+        "city": "—",
+        "state": "OH",
+        "zipCode": "87397-7912",
+        "fromDate": "10/23/2025",
+        "orgTaxId": "732719211",
+        "specialty": "012",
+        "addressLine": "9963 JOHNSON COURSE EAST WILLIAM OH 40495-9279",
+        "billingType": "—",
+        "throughDate": "10/23/2025",
+        "sourceSystem": "SPS",
+        "organizationName": "Community Health Center"
+      },
+      "practitioner": {
+        "city": "—",
+        "state": "OH",
+        "fromDate": "10/23/2025",
+        "lastName": "Johnson",
+        "firstName": "Mark",
+        "specialty": "012",
+        "addressLine": "9963 JOHNSON COURSE EAST WILLIAM OH 40495-9279",
+        "throughDate": "10/23/2025",
+        "sourceSystem": "SPS"
+      }
+    },
+    "limitedLiability": {
+      "dob": "4/19/1961",
+      "memberId": "101666665",
+      "allRecords": "—",
+      "memberCode": "37",
+      "activeRecords": "—"
+    }
+  },
+  "system": {
+    "benefitRecommendation": {
+      "endDate": "2025-01-01",
+      "planState": "OH",
+      "contractCode": "828T",
+      "effectiveDate": "2024-11-14",
+      "planDescription": "Rand corporation 2025/01/01 PPO E636"
+    }
+  },
+  "$schema": "training-platform/v1/workspace-data",
+  "claimId": "claim_509_1_001",
+  "$version": "2.0.0",
+  "claimData": {
+    "review": {
+      "cdhp": {
+        "claim": {
+          "cdhpAdmin": "—",
+          "litesClaim": "—",
+          "rsnEobCode": "—",
+          "paymentCode": "—",
+          "hraPaidTotal": "$0.00",
+          "requeryCount": "—",
+          "hraEndingBalance": "$0.00",
+          "acknowledgementRcvd": "—"
+        },
+        "lineSummary": {
+          "billed": "$887.88",
+          "hraPaid": "—",
+          "lineNum": "1",
+          "rsnCode": "—",
+          "procedure": "80053",
+          "patientResp": "—"
+        }
+      },
+      "dofr": {
+        "meta": {
+          "pgId": "—",
+          "inzip": "—",
+          "pgmId": "—",
+          "dofrId1": "—",
+          "endDate": "—",
+          "dofrName1": "—",
+          "relationship": "—",
+          "effectiveDate": "—",
+          "providerNetworkCode": "—",
+          "umDelegationIndicator": "—"
+        },
+        "lineSummary": {
+          "hc": "PP",
+          "risk": "—",
+          "event": "—",
+          "lineNum": "1",
+          "groupCode": "—",
+          "procedure": "80053",
+          "revenueCode": "0777",
+          "capIndicator": "—",
+          "serviceCategory": "—"
+        }
+      },
+      "utilization": {
+        "service": {
+          "ruleId": "AIMCADRUG",
+          "lineNum": "24",
+          "procedure": "80053",
+          "caseNumber": "6509985983",
+          "revenueCodeDate": "0981"
+        }
+      }
+    },
+    "details": {
+      "stopData": {
+        "stopEdit": "No",
+        "lobSequence": "1",
+        "medSequence": "51",
+        "lobChildRule": "ALL WGS",
+        "lobParentRule": "—",
+        "medBusinessChildRule": "656881",
+        "medBusinessParentRule": "NA"
+      },
+      "ambulance": {
+        "pickupZip": "—",
+        "dropoffZip": "—"
+      },
+      "claimType": "PA - Professional",
+      "highDollar": {
+        "riskOutcome": "—"
+      },
+      "refundData": {
+        "carveOut": "2026-12-08",
+        "vendorName": "—",
+        "delayReason": "—",
+        "refundAmount": "$0.00",
+        "adjustmentReceipt": "2024-08-06",
+        "correctedClaimDcn": "—",
+        "adjustmentReasonCode": "PX_4",
+        "correspondenceNumber": "—"
+      },
+      "claimSource": {
+        "cliaId": "—",
+        "epactPlm": "—",
+        "gnyhaInd": "—",
+        "mixerPar": "Y",
+        "splitInd": "—",
+        "authExcln": "—",
+        "mediaType": "PC",
+        "authNumber": "—",
+        "receiverId": "WGSGA",
+        "imrIndicator": "—",
+        "receivedDate": "2024-11-22",
+        "cliaQualifier": "—",
+        "pricingSource": "W",
+        "pricingSystem": "WP",
+        "providerError": "I000",
+        "receivedAtEdi": "2024-11-22",
+        "vendorIndicator": "—",
+        "imageControlNumber": "CI25281103489293491"
+      },
+      "miscellaneous": {
+        "epsdt": "—",
+        "gtessDate": "—",
+        "eruDecision": "—",
+        "dateOfInjury": "—",
+        "jaaErrorCode": "No",
+        "dateOfIllness": "—",
+        "familyPlanning": "No",
+        "consultationDate": "—",
+        "lastMenstrualDate": "—"
+      },
+      "ancillaryProvider": {
+        "zip": "—",
+        "type": "—",
+        "state": "—"
+      }
+    },
+    "editing": {
+      "ihealth": {
+        "originalLine": {
+          "mod": "26",
+          "units": "1",
+          "lineNum": "1",
+          "procedure": "80053",
+          "serviceDate": "10/23/2025",
+          "allowedAmount": "$760.55",
+          "savingsAmount": "$127.33"
+        },
+        "proposedLine": {
+          "mod": "26",
+          "units": "1",
+          "status": "PX_P",
+          "procedure": "99205",
+          "payPercent": "68"
+        }
+      },
+      "claimXten": {
+        "originalLine": {
+          "mod": "26",
+          "units": "1",
+          "lineNum": "1",
+          "procedure": "80053",
+          "serviceDate": "10/23/2025",
+          "billedAmount": "$887.88"
+        },
+        "proposedLine": {
+          "mod": "26",
+          "units": "1",
+          "lineNum": "1",
+          "procedure": "99205",
+          "payPercent": "93",
+          "supportCode": "—",
+          "billedAmount": "$887.88"
+        }
+      }
+    },
+    "benefits": {
+      "accumulator1": {
+        "type": "BENYTD",
+        "unit": "Dollar",
+        "status": "Accrued",
+        "toDate": "2024-11-16",
+        "fromDate": "2024-11-14"
+      },
+      "accumulator2": {
+        "type": "MMCYTD",
+        "unit": "Dollar",
+        "status": "Accrued",
+        "toDate": "2024-11-16",
+        "fromDate": "2024-11-14"
+      }
+    },
+    "promptPay": {
+      "claim": {
+        "state": "—",
+        "ruleId": "—",
+        "status": "PX_WGS",
+        "penaltyAmount": "$0.00",
+        "systemInterest": "$0.00",
+        "manualInterestAmount": "—"
+      },
+      "calculation": {
+        "baseAmount": "$0.00",
+        "lateByDays": "0",
+        "allowedDays": "0",
+        "mailingDays": "0",
+        "carveoutDate": "—",
+        "carveoutDays": "0",
+        "disburseDays": "0",
+        "dailyInterest": "$0.00",
+        "processedInDays": "0",
+        "lastProcessedDate": "2024-12-14",
+        "calculationFromDate": "2024-12-14",
+        "calculatedInterestAmount": "$0.00"
+      },
+      "miscellaneous": {
+        "mlhDate": "24319",
+        "penalty": "—",
+        "ppStopDate": "—",
+        "dayIndicator": "0",
+        "erMinimumPay": "—",
+        "interestRate": "—",
+        "receiptMethod": "—",
+        "productFundType": "W",
+        "minimumPayAmount": "—",
+        "tdiPenaltyAmount": "—",
+        "tdiInterestAmount": "—",
+        "carveoutReasonCode": "PX_0",
+        "annualMonthlyPenalty": "—",
+        "additionalInformationRequestDate": "—"
+      }
+    },
+    "relatedSummary": {
+      "dcn": "1803457621458",
+      "code": "76",
+      "name": "Mark Johnson",
+      "paid": "$894.25",
+      "type": "—",
+      "status": "—",
+      "toDate": "10/23/2025",
+      "charged": "$1,517.42",
+      "fromDate": "10/23/2025",
+      "provider": "Community Health Center"
+    }
+  },
+  "attachment": {
+    "pwk": {
+      "type": "G",
+      "view": "View Remittance"
+    }
+  },
+  "claimImage": {
+    "additional": {
+      "its": {
+        "account": {
+          "aso": "—",
+          "stateId": "—",
+          "accountType": "—",
+          "originalGroup": "—",
+          "deliveryMethod": "—",
+          "originalCertificate": "—"
+        },
+        "pricing": {
+          "primarySop": "—",
+          "tertiarySop": "—",
+          "cobCalMethod": "—",
+          "secondarySop": "—"
+        },
+        "providers": {
+          "eft835": "—",
+          "serviceZip": "—",
+          "mppqAssignUnassigned": "—",
+          "ppoNetworkAvailability": "—",
+          "ppoProviderAvailability": "—"
+        }
+      },
+      "sfdf": {
+        "primacy": "—",
+        "dfMessage": "—",
+        "sfMessage": "—",
+        "totalDaysVisits": "—",
+        "autoOtherAccident": "—"
+      },
+      "stopData": {
+        "stopEdit": "—",
+        "lobSequence": "—",
+        "medSequence": "—",
+        "lobChildRule": "—",
+        "lobParentRule": "—",
+        "medBusinessChildRule": "—",
+        "medBusinessParentRule": "—"
+      },
+      "ambulance": {
+        "pickupZip": "—",
+        "dropoffZip": "—"
+      },
+      "highDollar": {
+        "riskOutcome": "—"
+      },
+      "refundData": {
+        "carveOut": "—",
+        "vendorName": "—",
+        "delayReason": "—",
+        "refundAmount": "—",
+        "adjustmentReason": "—",
+        "correspondenceNumber": "—",
+        "adjustmentReceiptDate": "—"
+      },
+      "claimSource": {
+        "mixerPar": "—",
+        "authExcln": "—",
+        "mediaType": "—",
+        "authNumber": "—",
+        "receiverId": "—",
+        "receivedDate": "—",
+        "pricingSource": "—",
+        "pricingSystem": "—",
+        "providerError": "—",
+        "receivedAtEdi": "—",
+        "vendorIndicator": "—",
+        "originalReferenceNumber": "—"
+      },
+      "miscellaneous": {
+        "epsdt": "—",
+        "gtessDate": "—",
+        "dateOfInjury": "—",
+        "dateOfIllness": "—",
+        "familyPlanning": "—",
+        "consultationDate": "—",
+        "lastMenstrualDate": "—"
+      },
+      "claimLineDetail": [
+        {
+          "lineNum": "—",
+          "blankDateInd": "—",
+          "approvedDenyInd": "—"
+        },
+        {
+          "lineNum": "—",
+          "blankDateInd": "—",
+          "approvedDenyInd": "—"
+        }
+      ],
+      "ancillaryProvider": {
+        "zip": "—",
+        "type": "—",
+        "state": "—"
+      }
+    },
+    "memberDetails": {
+      "patient": {
+        "dob": "10/19/1948",
+        "pcp": "—",
+        "sex": "F",
+        "hcid": "82132581",
+        "erisa": "N",
+        "groupId": "5803EH",
+        "product": "Host",
+        "lastName": "ESPOSITO",
+        "pcpState": "OH",
+        "firstName": "BRENDA",
+        "memberCode": "37",
+        "middleName": "A",
+        "contractType": "C",
+        "memberPrefix": "YZC",
+        "relationship": "—",
+        "groupContract": "—",
+        "pcpRelationship": "—",
+        "detailContractCode": "8SVX"
+      },
+      "subscriber": {
+        "address": "Birch Court  ATLANTA GA 30301",
+        "lastName": "ESPOSITO",
+        "firstName": "BRENDA",
+        "middleName": "A",
+        "subscriberId": "82132581"
+      },
+      "totalClaimLines": "2"
+    }
+  },
+  "claimLines": [
+    {
+      "pos": "21",
+      "copay": "—",
+      "eobTy": "—",
+      "units": "1",
+      "billed": "887.88",
+      "dedInd": "NO",
+      "toDate": "10/23/2025",
+      "lineNum": "1",
+      "payment": "541.81",
+      "service": "PRV",
+      "fromDate": "10/23/2025",
+      "stoploss": "No",
+      "diagnosis": "I10",
+      "eobTyLast": "PX_MP",
+      "modifiers": "26",
+      "otherUnit": "0",
+      "procedure": "80053",
+      "deductible": "—",
+      "coinsPercent": "27",
+      "writeoffEobTy": "$127.33",
+      "noncoveredUnit": "0"
+    },
+    {
+      "pos": "21",
+      "copay": "—",
+      "eobTy": "—",
+      "units": "1",
+      "billed": "629.54",
+      "dedInd": "NO",
+      "toDate": "11/05/2025",
+      "lineNum": "2",
+      "payment": "539.33",
+      "service": "PRV",
+      "fromDate": "11/05/2025",
+      "stoploss": "No",
+      "diagnosis": "I10",
+      "eobTyLast": "PX_MP",
+      "modifiers": "—",
+      "otherUnit": "0",
+      "procedure": "85025",
+      "deductible": "—",
+      "coinsPercent": "27",
+      "writeoffEobTy": "$90.21",
+      "noncoveredUnit": "0"
+    }
+  ],
+  "memberInfo": {
+    "group": {
+      "groupId": "5803EH",
+      "product": "Host",
+      "groupName": "—",
+      "networkId": "—",
+      "networkName": "—",
+      "groupContract": "—",
+      "detailContractCode": "8SVX"
+    },
+    "patient": {
+      "dob": "10/19/1948",
+      "pcp": "—",
+      "sex": "F",
+      "hcid": "82132581",
+      "erisa": "N",
+      "lastName": "ESPOSITO",
+      "pcpState": "OH",
+      "firstName": "BRENDA",
+      "memberCode": "37",
+      "middleName": "A",
+      "programCode": "—",
+      "contractType": "C",
+      "memberPrefix": "YZC",
+      "relationship": "—",
+      "pcpRelationship": "—"
+    },
+    "subscriber": {
+      "address": "Birch Court  ATLANTA GA 30301",
+      "lastName": "ESPOSITO",
+      "firstName": "BRENDA",
+      "middleName": "A",
+      "subscriberId": "82132581"
+    }
+  },
+  "claimHeader": {
+    "general": {
+      "fsbInd": "—",
+      "emergency": "N",
+      "frequency": "3",
+      "employment": "No",
+      "bbiIndicator": "—",
+      "fsbExclusion": "T",
+      "pciIndicator": "—",
+      "treatmentAuth": "2.75687E+13",
+      "patientAccount": "M339670711",
+      "coveredZipRadius": "—",
+      "providerContract": "STDX0000",
+      "serviceFromThrough": "11/14/2024 - 11/16/2024",
+      "assignmentOfBenefits": "Y - Benefit assigned to provider",
+      "providerParticipation": "Non Par"
+    },
+    "conditionCodes": {
+      "code": "—"
+    },
+    "diagnosisCodes": {
+      "dx1": "I10"
+    },
+    "benefitIndicators": {
+      "cob": "No",
+      "cdhp": "N",
+      "medInd": "No",
+      "cobRule": "—",
+      "medRule": "—",
+      "planPayer": "N",
+      "cobPercent": "0",
+      "medicareAdvantage": "Yes"
+    }
+  },
+  "paymentInfo": {
+    "drg": {
+      "keyed": "—",
+      "priced": "—",
+      "original": "—"
+    },
+    "check": {
+      "amount": "—",
+      "paidTo": "CENTRAL CITY CLINIC",
+      "checkDate": "2024-12-21",
+      "finalized": "2024-12-21",
+      "checkNumber": "496922",
+      "checkStatus": "CHECK NOT FOUND ON RECON DB",
+      "eftCheckDate": "2024-12-21",
+      "accountNumber": "9928378856",
+      "checkMailedTo": "\"PO BOX 00000 ATLANTA",
+      "paymentSystem": "D",
+      "checkStatusDate": "2026-11-01"
+    },
+    "claim": {
+      "coins": "$312.51",
+      "copay": "$26.61",
+      "nonElg": "$0.00",
+      "hraPaid": "$0.00",
+      "claimPaid": "$894.25",
+      "deductible": "$37.45",
+      "patientLiab": "$376.57",
+      "totalCharge": "$1,517.42",
+      "memberSurcharge": "$0.00",
+      "finalizationCode": "PX_P00000",
+      "pricingAllowedAmount": "$1,270.82"
+    },
+    "provider": {
+      "lr": "N",
+      "penalty": "—",
+      "interest": "—",
+      "providerDisc": "$246.60",
+      "providerLiab": "$246.60",
+      "systemInterest": "—",
+      "providerSurcharge": "—",
+      "providerRiskWithhold": "—"
+    },
+    "payeeDetails": {
+      "flipPayee": "N"
+    }
+  },
+  "providerInfo": {
+    "billing": {
+      "npi": "7989178397",
+      "name": "RIVERBEND MEDICAL GROUP",
+      "taxId": "100148140",
+      "address": "9963 JOHNSON COURSE EAST WILLIAM OH 40495-9279",
+      "taxonomy": "792XR2424X",
+      "medicareId": "—",
+      "providerSps": "7110082321",
+      "facilityType": "DIAGNOSTIC IMAGING CENTER",
+      "locationCode": "—",
+      "providerEpin": "—",
+      "nationalState": "OH",
+      "timelyFilingLimit": "90",
+      "bhaProviderIndicator": "NN"
+    },
+    "referring": {
+      "npi": "9703905715",
+      "referringPhysician": "A"
+    },
+    "rendering": {
+      "npi": "7411453371",
+      "name": "Dr. Elena Vargas",
+      "address": "9963 JOHNSON COURSE EAST WILLIAM OH 40495-9279",
+      "license": "4733616459",
+      "taxonomy": "792XR2424X",
+      "specialty": "012",
+      "pricingZip": "40495-9279",
+      "providerSps": "7110082321",
+      "pricingState": "OH",
+      "providerEpin": "—",
+      "networkOption": "Y",
+      "specialtyDescription": "PSYCHIATRY"
+    },
+    "miscellaneous": {
+      "nsbIndicator": "—",
+      "alternateFacilityNpi": "—",
+      "supportingOrderingNpi": "9841118422"
+    },
+    "serviceFacility": {
+      "npi": "9703905715",
+      "type": "—",
+      "facilityTier": "—"
+    }
+  },
+  "correctDecision": "pay",
+  "eventResolution": {
+    "edits": [
+      {
+        "code": "PX_RNB",
+        "label": "Edit PX_RNB description",
+        "active": false
+      },
+      {
+        "code": "PX_IAF",
+        "label": "Edit PX_IAF description",
+        "active": false
+      },
+      {
+        "code": "PX_PLP",
+        "label": "Edit PX_PLP description",
+        "active": false
+      },
+      {
+        "code": "PX_334",
+        "label": "Edit PX_334 description",
+        "active": false
+      },
+      {
+        "code": "PX_REL",
+        "label": "Edit PX_REL description",
+        "active": false
+      },
+      {
+        "code": "PX_509",
+        "label": "Contract not in effect for the selected group for billed dates of service",
+        "active": true
+      }
+    ],
+    "editCode": "PX_509",
+    "severity": "Hard Edit",
+    "editLabel": "Contract not in effect for the selected group for billed dates of service"
+  },
+  "claimLineSummary": {
+    "pos": "21",
+    "copay": "—",
+    "eobTy": "—",
+    "units": "1",
+    "billed": "$887.88",
+    "dedInd": "NO",
+    "toDate": "10/23/2025",
+    "lineNum": "1",
+    "payment": "$541.81",
+    "service": "PRV",
+    "fromDate": "10/23/2025",
+    "stoploss": "No",
+    "diagnosis": "I10",
+    "eobTyLast": "PX_MP",
+    "modifiers": "26",
+    "otherUnit": "0",
+    "procedure": "80053",
+    "deductible": "—",
+    "coinsPercent": "27",
+    "writeoffEobTy": "$127.33",
+    "noncoveredUnit": "0"
+  },
+  "claimLineSummary2": {
+    "pos": "21",
+    "copay": "—",
+    "eobTy": "—",
+    "units": "1",
+    "billed": "$629.54",
+    "dedInd": "NO",
+    "toDate": "11/05/2025",
+    "lineNum": "2",
+    "payment": "$539.33",
+    "service": "PRV",
+    "fromDate": "11/05/2025",
+    "stoploss": "No",
+    "diagnosis": "I10",
+    "eobTyLast": "PX_MP",
+    "modifiers": "—",
+    "otherUnit": "0",
+    "procedure": "85025",
+    "deductible": "—",
+    "coinsPercent": "27",
+    "writeoffEobTy": "$90.21",
+    "noncoveredUnit": "0"
+  },
+  "correctReasonCode": "",
+  "navigatorSchemaId": "nav_509_1",
+  "correctDecisionLabel": "Pay",
+  "randomization": {
+    "fields": [
+      {
+        "strategy": "linked_group",
+        "dataKeys": [
+          "memberInfo.patient.firstName",
+          "memberInfo.patient.middleName",
+          "memberInfo.patient.lastName"
+        ],
+        "pool": [
+          ["LINDA", "R", "CARTER"],
+          ["JAMES", "P", "OKONKWO"],
+          ["PRIYA", "S", "RAMANATHAN"],
+          ["DERRICK", "L", "WHITFIELD"],
+          ["NATALIE", "K", "OSBORNE"]
+        ]
+      },
+      {
+        "strategy": "pick_from_pool",
+        "dataKey": "memberInfo.patient.dob",
+        "pool": ["3/14/1972", "8/29/1965", "11/2/1980", "6/7/1958", "9/21/1977"]
+      },
+      {
+        "strategy": "pick_from_pool",
+        "dataKey": "memberInfo.patient.hcid",
+        "pool": ["21884503", "47120936", "63095221", "80457718", "55310284"]
+      }
+    ]
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "$schema": "training-platform/v1/flow-result",
+  "$version": "1.0.0",
+  "id": "result_mn_3_noc_review_pay",
+  "rubric": {
+    "expectedDecision": "pay",
+    "expectedReasonCode": null,
+    "requiredStepIds": [
+      "step_001",
+      "step_002",
+      "step_003",
+      "step_004",
+      "step_005",
+      "step_006",
+      "step_007",
+      "step_008",
+      "step_009",
+      "step_010",
+      "step_011",
+      "step_012",
+      "step_013"
+    ],
+    "weights": {
+      "navigator": 130,
+      "decision": 20,
+      "reasonCode": 0
+    },
+    "deductions": {
+      "perMissedRequiredStep": 0,
+      "wrongDecision": 20,
+      "wrongReasonCode": 0
+    }
+  },
+  "resultConfig": {
+    "passLabel": "Passed!",
+    "failLabel": "You did not meet the pass mark.",
+    "passDescription": "Great work — you noted the Pricing state (NV), Tax ID, and billing provider name; identified the PX_MN01 soft edit and confirmed no higher-hierarchy event preceded it; noted the NOC procedure code (20999); noted the Detail Contract code (5BHY) and confirmed no special processing conditions applied; confirmed no authorization (empty UM Detail Service) and no PSCCR response ($100 < $250); confirmed no comparable code had been provided yet; confirmed medical records were available (25035878888, Type G); raised the NOC Review request; received the comparable code (42699) from the NOC team; overlaid it on the Pricing sub-tab and got pricing (Billed $5000, Allowed $350, Write-off $4650); entered the write-off (4650) and EOB/TY (PX_00066) on the claim line; and correctly paid the claim.",
+    "failDescription": "Pass mark is {passMark}%. Review the steps below to see where you can improve.",
+    "scoreCircle": {
+      "radius": 40,
+      "strokeWidth": 8,
+      "passColor": "#3B6D11",
+      "failColor": "#A32D2D",
+      "trackColor": "#E5E7EB"
+    },
+    "statBoxes": [
+      {
+        "id": "navigator_score",
+        "label": "Navigator",
+        "dataKey": "navigatorScore",
+        "max": 130
+      },
+      {
+        "id": "decision_score",
+        "label": "Decision",
+        "dataKey": "decisionScore",
+        "max": 20
+      },
+      {
+        "id": "time_taken",
+        "label": "Time Taken",
+        "dataKey": "timeTakenSeconds",
+        "format": "duration"
+      }
+    ],
+    "retakeButton": true,
+    "backToClaimsButton": true
+  }
+}

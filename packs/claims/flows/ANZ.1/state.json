@@ -1,0 +1,89 @@
+{
+  "$schema": "training-platform/v1/flow-state",
+  "$version": "1.0.0",
+  "id": "state_anz_1_ancillary_provider_location_validate_pay",
+  "initial": {
+    "defaultActiveTabId": "tab_event_resolution",
+    "defaultActiveSubTabIds": {
+      "tab_search": "subtab_search_benefits",
+      "tab_attachment": "subtab_attachment_attachments"
+    },
+    "defaultCollapsedSections": {},
+    "defaultDecision": ""
+  },
+  "modeConfig": {
+    "training": {
+      "id": "training",
+      "label": "Training mode",
+      "badgeIcon": "graduation-cap",
+      "showNavigator": true,
+      "timerType": "count_up",
+      "timerPosition": "navigator_header",
+      "timeLockEnabled": false,
+      "showHints": true,
+      "showMarkCompleteButton": true,
+      "allowTabClose": true
+    },
+    "practice": {
+      "id": "practice",
+      "label": "Practice mode",
+      "badgeIcon": "dumbbell",
+      "showNavigator": false,
+      "timerType": "count_up",
+      "timerPosition": "topbar",
+      "timeLockEnabled": false,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": true
+    },
+    "assessment": {
+      "id": "assessment",
+      "label": "Assessment Mode",
+      "badgeIcon": "graduation-cap",
+      "showNavigator": false,
+      "timerType": "count_down",
+      "timerPosition": "topbar_right",
+      "timeLimitSeconds": 600,
+      "timeLockEnabled": true,
+      "showHints": false,
+      "showMarkCompleteButton": false,
+      "allowTabClose": false,
+      "beforeUnloadWarning": "Assessment in progress. Leaving will lose your progress."
+    }
+  },
+  "actions": {
+    "validateAncillary": {
+      "label": "Validate",
+      "latencyMs": 400,
+      "writes": {
+        "claimData.details.ancillaryProvider.validationStatus": "Ancillary Provider details accepted — patient location applied",
+        "eventResolution.validationMessage": "PX_ANZ resolved: the claim now carries the patient-location details it was missing."
+      },
+      "completesStepId": "step_007",
+      "guard": {
+        "all": [
+          {
+            "dataKey": "claimData.details.ancillaryProvider.type",
+            "equalsIgnoreCase": "P"
+          },
+          {
+            "dataKey": "claimData.details.ancillaryProvider.zip",
+            "equalsIgnoreCase": "47885"
+          },
+          {
+            "dataKey": "claimData.details.ancillaryProvider.state",
+            "equalsIgnoreCase": "WI"
+          }
+        ],
+        "elseWrites": {
+          "claimData.details.ancillaryProvider.validationStatus": "Not accepted. Type, ZIP and State must all be entered, and all three must match the patient location on the claim image. Re-read the Address field under Claim Image – Member Details → Patient and check each box against it."
+        }
+      }
+    }
+  },
+  "persistence": {
+    "persistKey": null,
+    "autosave": false,
+    "resetOnSubmit": false
+  }
+}
